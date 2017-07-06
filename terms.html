@@ -1,0 +1,131 @@
+<p>
+  This document attempts to communicate the concepts outlined in the
+  Verifiable Claims space by using specific terms to discuss particular
+  concepts. This terminology is included below and linked to throughout the
+  document to aid the reader:
+</p>
+
+<dl class="termlist">
+  <dt><dfn data-lt="verifiable claim|verifiable claims|claims">claim</dfn></dt>
+  <dd>
+A statement made by an <a>entity</a> about a <a>subject</a>. A
+<strong>verifiable claim</strong> is a claim that is effectively tamper-proof and whose
+authorship can be cryptographically verified.
+  </dd>
+  <dt><dfn>credential curator</dfn></dt>
+  <dd>
+A program, such as a storage vault or personal verifiable
+claim wallet, that stores and protects access to a <a>holder's</a>
+credentials and verifiable claims.</dd>
+  <dt><dfn data-lt="credential services">credential service</dfn></dt>
+  <dd>
+A program, such as a <a>credential</a> storage vault or personal
+credential wallet, that stores and protects access to a
+<a>holder's</a> credentials.
+  </dd>
+  <dt><dfn data-lt="CTP">credential transport protocol</dfn></dt>
+  <dd>
+A set of messages and protocols for issuing, storing, requesting, and
+transmitting <a>credentials</a>.
+  </dd>
+  <dt><dfn>credential validation</dfn></dt>
+  <dd>
+The process that demonstrates the information in a <a>credential</a> is well-formed.
+  </dd>
+  <dt><dfn>credential verification</dfn></dt>
+  <dd>
+The process that cryptographically demonstrates the authenticity of a <a>credential</a>.
+  </dd>
+  <dt><dfn data-lt="decentralized identifiers|DID|DIDs">decentralized identifier</dfn></dt>
+  <dd>
+A portable URI-based identifier, also known as a DID, that is associated with
+an <a>entity</a>. These
+identifiers are most often used in a <a>credential</a> and are associated
+with <a>holders</a> such that the <a>credential</a> itself can be easily
+ported from one <a>identity provider</a> to another without the need to
+reissue the <a>credential</a>. An example of a DID is:
+<code>did:b6922d8e-20df-4939-95cd-f79375979178</code>
+  </dd>
+  <dt><dfn data-lt="decentralized identifier documents|DID document|DID documents">decentralized identifier document</dfn></dt>
+  <dd>
+A document that is accessible via an identifier registry and contains information
+related to a particular <a>decentralized identifier</a> such as the
+associated <a>identity provider</a> and public key information.
+  </dd>
+  <dt><dfn>digital signature</dfn></dt>
+  <dd>
+A mathematical scheme for demonstrating the authenticity of a digital message.
+  </dd>
+  <dt><dfn data-lt="entities|entity's">entity</dfn></dt>
+  <dd>
+A thing with distinct and independent existence such as a person, organization,
+concept, or device.
+  </dd>
+  <dt><dfn data-lt="credential|credentials|entity credentials">entity credential</dfn></dt>
+  <dd>
+A set of one or more claims made by the same <a>entity</a> about a
+<a>subject</a>.
+  </dd>
+  <dt><dfn data-lt="holders|holder's">holder</dfn></dt>
+  <dd>
+An <a>entity</a> that is in control of one or more <a>verifiable claims</a>.
+Typically a holder is also the primary <a>subject</a> of the
+<a>verifiable claims</a> that they are holding.
+  </dd>
+  <dt><dfn data-lt="identities|identity's">identity</dfn></dt>
+  <dd>
+The means for keeping track of <a>entities</a> across contexts. Digital
+identities enable tracking and customization of entity interactions across
+digital contexts, typically using identifiers and attributes. Unintended
+distribution or use of identity information can compromise privacy. Collection
+and use of such information should follow the principles of minimal disclosure.
+  </dd>
+  <dt><dfn data-lt="inspector|inspectors|inspector's|credential inspectors|credential inspector's">inspector</dfn></dt>
+  <dd>
+An <a>entity</a> that receives one or more <a>verifiable claims</a> for processing.
+  </dd>
+  <dt><dfn data-lt="entity documents">entity document</dfn></dt>
+  <dd>
+A Web-based document that contains statements about a
+particular <a>entity</a>. Entity documents MUST be accessible in
+JSON-LD [[!JSON-LD]] format and MAY be accessible in other RDF-compatible formats.
+  </dd>
+  <dt><dfn data-lt="entity owner's">entity owner</dfn></dt>
+  <dd>
+An <a>entity</a> that is in control of a particular <a>entity document</a>.
+  </dd>
+  <dt><dfn data-lt="identity provider's|IdP|IdP's">identity provider</dfn></dt>
+  <dd>
+A software service that manages one or more <a>identities</a> and their
+associated <a>credentials</a> on behalf of an <a>entity</a>. It typically
+handles requests to store <a>credentials</a> issued by an
+<a>issuer</a> and to retrieve <a>credentials</a> when requested by a
+<a>inspector</a>.
+  </dd>
+  <dt><dfn data-lt="entity profile|entity profiles">entity profile</dfn></dt>
+  <dd>
+A set of <a>entity credentials</a> related to the same <a>subject</a>.
+An <a>entity</a> may have multiple entity profiles and each entity profile
+may contain <a>claims</a> issued by multiple <a>entities</a>.
+  </dd>
+  <dt><dfn data-lt="identifier registries">identifier registry</dfn></dt>
+  <dd>
+Mediates the creation and verification of <a>subject</a> identifiers.
+  </dd>
+  <dt><dfn data-lt="issuers|issuer's">issuer</dfn></dt>
+  <dd>
+An <a>entity</a> that creates a <a>verifiable claim</a>, associates it
+with a particular <a>subject</a>, and transmits it to a <a>holder</a>.
+  </dd>
+  <dt><dfn data-lt="subjects|subject's">subject</dfn></dt>
+  <dd>
+An <a>entity</a> which may have multiple <a>entity profiles</a> and
+about which <a>claims</a> may be made.
+  </dd>
+  <dt><dfn>user agent</dfn></dt>
+  <dd>
+A program, such as a browser or other Web client, that mediates the
+communication between <a>holders</a>, <a>issuers</a> and
+<a>inspectors</a>.
+  </dd>
+</dl>
