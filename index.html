@@ -120,10 +120,10 @@ or send them to
 </section>
 
 <section>
-<h1>1. Introduction</h1>
+<h1>Introduction</h1>
 
 <section>
-<h2>1.1 Overview</h2>
+<h2>Overview</h2>
 
 <p>
 Conventional <a href=
@@ -200,7 +200,7 @@ and decentralized identity.
 </section>
 
 <section>
-<h2>1.2. URIs, URLs, and URNs</h2>
+<h2>URIs, URLs, and URNs</h2>
 
 <p>
 DIDs have a foundation in URIs, so it's important to understand how the
@@ -230,7 +230,7 @@ URNs are intended to last forever.
 </section>
 
 <section>
-<h2>1.3. Motivations for DIDs</h2>
+<h2>Motivations for DIDs</h2>
 
 <p>
 The growing need for decentralized identity has produced three specific
@@ -261,7 +261,7 @@ ledgers.
 </section>
 
 <section>
-<h2>1.4 The Role of Human-Friendly Identifiers</h2>
+<h2>The Role of Human-Friendly Identifiers</h2>
 
 <p>
 DIDs achieve global uniqueness without the need for a central
@@ -296,7 +296,7 @@ correlatable, especially if they are globally unique.
 </section>
 
 <section>
-<h2>1.5. Purpose of This Specification</h2>
+<h2>Purpose of This Specification</h2>
 
 <p>
 The first purpose of this specification is to define the generic DID
@@ -333,7 +333,7 @@ For a list of DID method specifications, see Appendix A.
 </section>
 
 <section>
-<h1>2. Example DIDs and DDOs</h1>
+<h1>Example DIDs and DDOs</h1>
 
 <p>
 This is an example of a DID:
@@ -344,7 +344,7 @@ did:example:21tDAKCERh95uGgKbJNHYp
 </pre>
 
 <section>
-<h2>2.1. Example Owner-Managed DDO</h2>
+<h2>Example Owner-Managed DDO</h2>
 
 <p>
 Following is an example of a DDO that describes the DID above. This
@@ -396,7 +396,7 @@ property below is just for illustration).
 </section>
 
 <section>
-<h2>2.2. Example Guardian-Managed DDO</h2>
+<h2>Example Guardian-Managed DDO</h2>
 
 <p>
 Following is a second example of a DDO that describes the DID above. In
@@ -439,7 +439,7 @@ private keys.
 </section>
 
 <section>
-<h1>3. Terminology and Acronyms</h1>
+<h1>Terminology and Acronyms</h1>
 
 <p>
 This specification defines the requirements of a conformant DID method
@@ -684,7 +684,7 @@ Committee</a> .
 </section>
 
 <section>
-<h1>4. Design Goals &amp; Principles</h1>
+<h1>Design Goals &amp; Principles</h1>
 
 <p>
 This section summarizes the design goals and principles of DID
@@ -918,7 +918,7 @@ architecture.
 </section>
 
 <section>
-<h1>5. DIDs (Decentralized Identifiers)</h1>
+<h1>DIDs (Decentralized Identifiers)</h1>
 
 <p>
 The foundation of DID architecture is the concept of the decentralized
@@ -943,7 +943,7 @@ that enable cryptographic verification of DID ownership.
 </p>
 
 <section>
-<h2>5.1. The Generic DID Scheme</h2>
+<h2>The Generic DID Scheme</h2>
 
 <p>
 The generic DID scheme is a URI scheme conformant with <a href=
@@ -972,7 +972,7 @@ fragments.
 </section>
 
 <section>
-<h2>5.2. Specific DID Method Schemes</h2>
+<h2>Specific DID Method Schemes</h2>
 
 <p>
 A DID method specification MUST define exactly one specific DID scheme
@@ -1014,7 +1014,7 @@ define as few specific-idstring formats as possible.
 </section>
 
 <section>
-<h2>5.3 DID Paths</h2>
+<h2>DID Paths</h2>
 
 <p>
 A generic DID path (the did-path rule in section 5.1) is identical to a
@@ -1032,7 +1032,7 @@ restrictive than the generic rules in this section.
 </section>
 
 <section>
-<h2>5.4 DID Fragments</h2>
+<h2>DID Fragments</h2>
 
 <p>
 A generic DID fragment (the did-fragment rule in section 5.1) is
@@ -1053,7 +1053,7 @@ more restrictive than the generic rules in this section.
 </section>
 
 <section>
-<h2>5.5 DID Normalization</h2>
+<h2>DID Normalization</h2>
 
 <p>
 For the broadest interoperability, DID normalization should be as simple
@@ -1076,7 +1076,7 @@ DID method specification.
 </section>
 
 <section>
-<h2>5.6 DID Persistence</h2>
+<h2>DID Persistence</h2>
 
 <p>
 A DID MUST be persistent and immutable, i.e., bound to an identity owner
@@ -1111,7 +1111,7 @@ See Future Work (section 11).
 </section>
 
 <section>
-<h1>6. DDOs (DID Descriptor Objects)</h1>
+<h1>DDOs (DID Descriptor Objects)</h1>
 
 <p>
 If a DID is the index key in a key-value pair, then the DDO is the value
@@ -1140,7 +1140,7 @@ including whether these properties are required or optional.
 </p>
 
 <section>
-<h2>6.1. Context (Required)</h2>
+<h2>Context (Required)</h2>
 
 <p>
 JSON objects in JSON-LD format must include a JSON-LD context statement.
@@ -1190,7 +1190,7 @@ B.
 </section>
 
 <section>
-<h2>6.2. Primary DID (Required)</h2>
+<h2>Primary DID (Required)</h2>
 
 <p>
 The primary DID is the primary index key for the DDO, i.e., it is DID
@@ -1227,7 +1227,7 @@ Example:
 </section>
 
 <section>
-<h2>6.3. Guardian (Required If No Proof of Ownership)</h2>
+<h2>Guardian (Required If No Proof of Ownership)</h2>
 
 <pre>
 
@@ -1277,7 +1277,7 @@ i.e., the guardian relationships must not be nested.
 </section>
 
 <section>
-<h2>6.4. Proof of Ownership (Required If No Guardian)</h2>
+<h2>Proof of Ownership (Required If No Guardian)</h2>
 
 <pre>
 
@@ -1360,7 +1360,7 @@ reference uniquely identifies this key description.
 </section>
 
 <section>
-<h2>6.5. Proof of Control (Optional and Method-Specific)</h2>
+<h2>Proof of Control (Optional and Method-Specific)</h2>
 
 <pre>
 
@@ -1557,7 +1557,7 @@ fragments.
 </section>
 
 <section>
-<h2>6.6. Service Endpoint References (Optional)</h2>
+<h2>Service Endpoint References (Optional)</h2>
 
 <pre>
 
@@ -1623,7 +1623,7 @@ normalization rules in its applicable URI scheme specification.
 </section>
 
 <section>
-<h2>6.7. Created (Optional)</h2>
+<h2>Created (Optional)</h2>
 
 <pre>
 
@@ -1681,7 +1681,7 @@ a notion.
 </section>
 
 <section>
-<h2>6.8. Updated (Optional)</h2>
+<h2>Updated (Optional)</h2>
 
 <pre>
 
@@ -1727,7 +1727,7 @@ from section 6.7.
 </section>
 
 <section>
-<h2>6.9. Signature (Optional)</h2>
+<h2>Signature (Optional)</h2>
 
 <pre>
 
@@ -1797,7 +1797,7 @@ Signatures</a> .
 </section>
 
 <section>
-<h1>7. DID Operations</h1>
+<h1>DID Operations</h1>
 
 <pre>
 
@@ -1830,7 +1830,7 @@ Signatures</a> .
 </ul>
 
 <section>
-<h2>7.1. Create</h2>
+<h2>Create</h2>
 
 <pre>
 
@@ -1843,7 +1843,7 @@ Signatures</a> .
 </section>
 
 <section>
-<h2>7.2. Read/Verify</h2>
+<h2>Read/Verify</h2>
 
 <pre>
 
@@ -1856,7 +1856,7 @@ Signatures</a> .
 </section>
 
 <section>
-<h2>7.3. Update</h2>
+<h2>Update</h2>
 
 <pre>
 
@@ -1869,7 +1869,7 @@ Signatures</a> .
 </section>
 
 <section>
-<h2>7.4. Delete/Revoke</h2>
+<h2>Delete/Revoke</h2>
 
 <pre>
 
@@ -1883,7 +1883,7 @@ Signatures</a> .
 </section>
 
 <section>
-<h1>8. DID Resolvers</h1>
+<h1>DID Resolvers</h1>
 
 <pre>
 
@@ -1917,7 +1917,7 @@ is signed.
 </section>
 
 <section>
-<h1>9. Security Considerations</h1>
+<h1>Security Considerations</h1>
 
 <pre>
 
@@ -1937,7 +1937,7 @@ is signed.
 </pre>
 
 <section>
-<h2>9.1. Requirements of DID Method Specifications</h2>
+<h2>Requirements of DID Method Specifications</h2>
 
 <pre>
 
@@ -2010,7 +2010,7 @@ authentication protocol.
 </section>
 
 <section>
-<h2>9.2 Binding of Identity</h2>
+<h2>Binding of Identity</h2>
 
 <pre>
 
@@ -2115,7 +2115,7 @@ description.
 </section>
 
 <section>
-<h2>9.3 Authentication Service Endpoints</h2>
+<h2>Authentication Service Endpoints</h2>
 
 <pre>
 
@@ -2128,7 +2128,7 @@ description.
 </section>
 
 <section>
-<h2>9.4 Non-Repudiation</h2>
+<h2>Non-Repudiation</h2>
 
 <pre>
 
@@ -2141,7 +2141,7 @@ description.
 </section>
 
 <section>
-<h2>9.5 Notification of DDO Changes</h2>
+<h2>Notification of DDO Changes</h2>
 
 <pre>
 
@@ -2177,7 +2177,7 @@ monitoring service, however this introduces another vector of attack.
 </section>
 
 <section>
-<h2>9.6 Key and Signature Expiration</h2>
+<h2>Key and Signature Expiration</h2>
 
 <pre>
 
@@ -2190,7 +2190,7 @@ monitoring service, however this introduces another vector of attack.
 </section>
 
 <section>
-<h2>9.7 Key Revocation and Recovery</h2>
+<h2>Key Revocation and Recovery</h2>
 
 <pre>
 
@@ -2210,7 +2210,7 @@ monitoring service, however this introduces another vector of attack.
 </section>
 
 <section>
-<h1>10. Privacy Considerations</h1>
+<h1>Privacy Considerations</h1>
 
 <pre>
 
@@ -2228,7 +2228,7 @@ monitoring service, however this introduces another vector of attack.
 </pre>
 
 <section>
-<h2>10.1 Requirements of DID Method Specifications</h2>
+<h2>Requirements of DID Method Specifications</h2>
 
 <pre>
 
@@ -2257,7 +2257,7 @@ exclusion.
 </section>
 
 <section>
-<h2>10.2 Keep Personally-Identifiable Information (PII) Off-Ledger</h2>
+<h2>Keep Personally-Identifiable Information (PII) Off-Ledger</h2>
 
 <pre>
 
@@ -2276,7 +2276,7 @@ exclusion.
 </section>
 
 <section>
-<h2>10.3 DID Correlation Risks and Pseudonymous DIDs</h2>
+<h2>DID Correlation Risks and Pseudonymous DIDs</h2>
 
 <pre>
 
@@ -2292,7 +2292,7 @@ exclusion.
 </section>
 
 <section>
-<h2>10.4 DDO Correlation Risks</h2>
+<h2>DDO Correlation Risks</h2>
 
 <pre>
 
@@ -2305,7 +2305,7 @@ exclusion.
 </section>
 
 <section>
-<h2>10.5 Herd Privacy</h2>
+<h2>Herd Privacy</h2>
 
 <pre>
 
@@ -2325,11 +2325,11 @@ exclusion.
 </section>
 
 <section>
-<h1>11. Future Work</h1>
+<h1>Future Work</h1>
 
 
 <section>
-<h2>11.1 Upper Limits on DID Character Length</h2>
+<h2>Upper Limits on DID Character Length</h2>
 
 <pre>
 
@@ -2342,7 +2342,7 @@ exclusion.
 </section>
 
 <section>
-<h2>11.2 Equivalence</h2>
+<h2>Equivalence</h2>
 
 <pre>
 
@@ -2360,7 +2360,7 @@ exclusion.
 </section>
 
 <section>
-<h2>11.3 Timestamps</h2>
+<h2>Timestamps</h2>
 
 <pre>
 
@@ -2379,7 +2379,7 @@ exclusion.
 </section>
 
 <section>
-<h2>11.4 Time Locks and DDO Recovery</h2>
+<h2>Time Locks and DDO Recovery</h2>
 
 <pre>
 
@@ -2395,7 +2395,7 @@ exclusion.
 </section>
 
 <section>
-<h2>11.5 Smart Signatures</h2>
+<h2>Smart Signatures</h2>
 
 <pre>
 
@@ -2411,7 +2411,7 @@ exclusion.
 </section>
 
 <section>
-<h2>11.6 Verifiable Claims</h2>
+<h2>Verifiable Claims</h2>
 
 <pre>
 
@@ -2426,7 +2426,7 @@ exclusion.
 </section>
 
 <section>
-<h2>11.7 Alternate Serializations and Graph Models</h2>
+<h2>Alternate Serializations and Graph Models</h2>
 
 <pre>
 
@@ -2443,7 +2443,7 @@ exclusion.
 </section>
 
 <section>
-<h1>12. References</h1>
+<h1>References</h1>
 
 <pre>
 
