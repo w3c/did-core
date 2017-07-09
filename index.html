@@ -345,9 +345,9 @@ For a list of DID method specifications, see Appendix A.
 This is an example of a DID:
 </p>
 
-<pre>
+<p>
 did:example:21tDAKCERh95uGgKbJNHYp
-</pre>
+</p>
 
 <section>
 <h2>Example Owner-Managed DDO</h2>
@@ -966,13 +966,13 @@ Following is the ABNF definition using the syntax in <a href=
 as upper or lowercase A-Z).
 </p>
 
-<pre>
+<p>
   did-reference      = did [ "/" did-path ] [ "#" did-fragment ]
   did                = "did:" method ":" specific-idstring
   method             = 1*methodcharmethodchar         = %x61-7A / DIGIT
   specific-idstring  = idstring *( ":" idstring )
   idstring           = 1*idcharidchar             = ALPHA / DIGIT / "." / "-"
-</pre>
+</p>
 <p>
 See sections 5.3 and 5.4 for the ABNF rules defining DID paths and
 fragments.
@@ -1183,17 +1183,11 @@ specified in Appendix B.
 Example (using an example URL):
 </p>
 
-<p>
-  {
-</p>
-
-<p>
+<pre>
+{
   "@context": "https://example.org/did/v1"
-</p>
-
-<p>
-  }
-</p>
+}
+</pre>
 
 <p>
 DID method specifications MAY define their own JSON-LD contexts. However
@@ -1237,12 +1231,9 @@ Example:
 </p>
 
 <pre>
-      {
-        "id": "did:example:21tDAKCERh95uGgKbJNHYp"
-      }
-
-
-
+{
+  "id": "did:example:21tDAKCERh95uGgKbJNHYp"
+}
 </pre>
 </section>
 
@@ -1375,21 +1366,21 @@ section 9.6.
 <h2>Proof of Control (Optional and Method-Specific)</h2>
 
 <p>
-Proof of Control is the mechanism by which an identity owner may give itself 
-or other entities permission to update the DDO—for example to assist with 
-key recovery. Note that Proof of Control is separate from Proof of Ownership 
-as explained in section 6.4. This is particularly important for key recovery 
-in the case of key loss, when the identity owner no longer has access to the 
-keys described using the owner property (section 6.4), or key compromise, 
-where the owner’s trusted third parties need to override malicious activity 
+Proof of Control is the mechanism by which an identity owner may give itself
+or other entities permission to update the DDO—for example to assist with
+key recovery. Note that Proof of Control is separate from Proof of Ownership
+as explained in section 6.4. This is particularly important for key recovery
+in the case of key loss, when the identity owner no longer has access to the
+keys described using the owner property (section 6.4), or key compromise,
+where the owner’s trusted third parties need to override malicious activity
 by an attacker. See section 9.
 
 <p>
-Because the access control logic in a Proof of Control block must be 
-implemented by the target distributed ledger or network, a DID method 
-specification MUST include its own Proof of Control rules and processing 
-logic. It is RECOMMENDED that all DID method specifications support the 
-generic Proof of Control rules specified in this section. A DID method 
+Because the access control logic in a Proof of Control block must be
+implemented by the target distributed ledger or network, a DID method
+specification MUST include its own Proof of Control rules and processing
+logic. It is RECOMMENDED that all DID method specifications support the
+generic Proof of Control rules specified in this section. A DID method
 specification MAY add its own method-specific Proof of Control rules.
 </p>
 
@@ -1444,13 +1435,13 @@ MUST be considered valid for Proof of Control.
 6.5.1 "Or" Control
 </h4>
 
-<pre>
+<p>
 
-    <br>
+
       To assert that any single member of a group of other DID owners has permission to update the DDO, the control block array MAY contain a single JSON object with two properties:
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 A property type whose value is the string OrControl.
@@ -1462,25 +1453,25 @@ fragments.
   </li>
 </ol>
 
-<pre>
+<p>
 
-    <br>
+
       If at least one update signature from a DID in this array is verified, it MUST be considered valid for Proof of Control.
 
 
 
-</pre>
+</p>
 <h4>
 6.5.2 "And" Control
 </h4>
 
-<pre>
+<p>
 
-    <br>
+
       To assert that only all members of a group of other DID owners must act together to update the DDO, the control block array MAY contain a single JSON object with two properties:
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 A property type whose value is the string AndControl.
@@ -1492,25 +1483,25 @@ fragments.
   </li>
 </ol>
 
-<pre>
+<p>
 
-    <br>
+
       If update signatures from ALL DIDs in this array are verified, it MUST be considered valid for Proof of Control.
 
 
 
-</pre>
+</p>
 <h4>
 6.5.3 "M-of-N" Control
 </h4>
 
-<pre>
+<p>
 
-    <br>
+
       To assert that a minimum number of members of a group of other DID owners must act together to update the DDO, the control block array MAY contain a single JSON object with three properties:
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 A property type whose value is the string MofNControl.
@@ -1527,76 +1518,61 @@ fragments.
   </li>
 </ol>
 
-<pre>
+<p>
 
-    <br>
+
       If the number of verified update signatures from DIDs in this array equals or exceeds the value of minimumSignatures, it MUST be considered valid for Proof of Control.
 
-    <br>
 
 
-    <br>
+
+
       Following is an example of a Proof of Control property implementing these rules:
 
-    <br>
-      {
 
-
-</pre>
+</p>
 
 <pre>
-
-      "control": [{
-            "type": "OrControl",
-            "signer": [            "did:example:21tDAKCERh95uGgKbJNHYp",
-                    "did:example:8uQhQMGzWxR8vw5P3UWH1j"
-               ]
-        }, {
-            "type": "AndControl",
-            "signer": [
-                    "did:example:7P7xfv5AeTSSWcuq6hPptQ",
-                    "did:example:X2v8rvzoCxayhYV5mhESQ1"
-               ]
-        }, {
-            "type": "MofNControl",
-            "minimumSignatures": 2,
-            "signer": [
-                    "did:example:4XirzuHiNnTrwfjCMtBEJ6",
-                    "did:example:iCGjJEChRbAdfZbGqZAYT7",
-                    "did:example:WUoAyXB7mhfcVESjypm5ty"
-               ]
-        }]
-
+{
+  "control": [{
+    "type": "OrControl",
+    "signer": [
+      "did:example:21tDAKCERh95uGgKbJNHYp",
+      "did:example:8uQhQMGzWxR8vw5P3UWH1j"
+     ]
+    }, {
+      "type": "AndControl",
+      "signer": [
+          "did:example:7P7xfv5AeTSSWcuq6hPptQ",
+          "did:example:X2v8rvzoCxayhYV5mhESQ1"
+         ]
+    }, {
+      "type": "MofNControl",
+      "minimumSignatures": 2,
+      "signer": [
+          "did:example:4XirzuHiNnTrwfjCMtBEJ6",
+          "did:example:iCGjJEChRbAdfZbGqZAYT7",
+          "did:example:WUoAyXB7mhfcVESjypm5ty"
+       ]
+    }]
+}
 </pre>
 
-<pre>
-
-    <br>
-      }
-
-
-
-</pre>
-
-<pre>
-
-
-</pre>
 </section>
 
 <section>
 <h2>Service Endpoint References (Optional)</h2>
 
-<pre>
+<p>
 
-    <br>
+
       In addition to publication of cryptographic key material, the other primary purpose of DID records is to enable discovery of service endpoints for the identity owner. A service endpoint may represent any type of service the identity owner wishes to advertise, including decentralized identity management services for further discovery, authentication, authorization, or interaction.
 
-    <br>
+
       The rules for service endpoints are:
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 A DDO MAY have exactly one property representing service endpoints.
@@ -1626,13 +1602,13 @@ normalization rules in its applicable URI scheme specification.
   </li>
 </ol>
 
-<pre>
+<p>
 
-    <br>
+
       Example:
 
 
-</pre>
+</p>
 
 <pre>
 
@@ -1645,26 +1621,26 @@ normalization rules in its applicable URI scheme specification.
 
 </pre>
 
-<pre>
+<p>
 
-    <br>
+
       See sections 9.1 and 9.3 for further security considerations regarding authentication service endpoints.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Created (Optional)</h2>
 
-<pre>
+<p>
 
-    <br>
+
       Standard metadata for identity records includes a timestamp of the original creation. The rules for including a creation timestamp are:
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 A DDO MUST have zero or one property representing a creation
@@ -1695,13 +1671,13 @@ a notion.
   </li>
 </ol>
 
-<pre>
+<p>
 
-    <br>
+
       Example:
 
 
-</pre>
+</p>
 
 <pre>
 
@@ -1711,23 +1687,23 @@ a notion.
 
 </pre>
 
-<pre>
+<p>
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Updated (Optional)</h2>
 
-<pre>
+<p>
 
-    <br>
+
       Standard metadata for identity records includes a timestamp of the most recent change. The rules for including a updated timestamp are:
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 A DDO MUST have zero or one property representing an updated
@@ -1744,13 +1720,13 @@ from section 6.7.
   </li>
 </ol>
 
-<pre>
+<p>
 
-    <br>
+
       Example:
 
 
-</pre>
+</p>
 
 <pre>
 
@@ -1760,23 +1736,23 @@ from section 6.7.
 
 </pre>
 
-<pre>
+<p>
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Signature (Optional)</h2>
 
-<pre>
+<p>
 
-    <br>
+
       A signature on a DDO is cryptographic proof of the integrity of the DDO according to either:
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 The identity owner as defined in section 6.4, or if not present:
@@ -1787,16 +1763,16 @@ The guardian as defined in section 6.3.
   </li>
 </ol>
 
-<pre>
+<p>
 
-    <br>
+
       This signature is NOT proof of the binding between a DID and a DDO. See section 9.2.
 
-    <br>
+
       The rules for a signature are:
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 A DDO MAY have exactly one property representing a signature.
@@ -1813,13 +1789,13 @@ Signatures</a> .
   </li>
 </ol>
 
-<pre>
+<p>
 
-    <br>
+
       Example:
 
 
-</pre>
+</p>
 
 <pre>
 
@@ -1828,36 +1804,36 @@ Signatures</a> .
             "type": "LinkedDataSignature2015",
             "created": "2016-02-08T16:02:20Z",
             "creator": "did:example:8uQhQMGzWxR8vw5P3UWH1ja#keys-1",
-            "signatureValue": "QNB13Y7Q9oLlDLL6AHyL31OE5fLji9DwJSA8qnv81oRaKonij8m+Jv4XdiEYvJ97iRlzKU/92/0LafSL5JftEgl960DLcbqMFxOtbAmFOIMa7eDcrgTL5ytXeYCYKLjHQG3s8a3UKDKRuEK54qK1G5hGKGoLgAVa6xgcDLjW7M19PEJV/c3HpGA7Eez6VFMoTt4yESjZvOXC97xN3KpshOx2HT/btgUbo0XjA1Oi0QHdgrLcUsQGt6w23RjeSToalrsA1G69OFeN2OiQrz9Jb4561hvKLSyWObwRmS6n5Vgr5xkvUm6MONRq0Vg33kXevoVM64KTBkISul61tzjn4w=="
+            "signatureValue": "QNB13Y7Q9...1tzjn4w=="
         }
 
 </pre>
 
-<pre>
+<p>
 
       }
 
 
-</pre>
+</p>
 </section>
 </section>
 
 <section>
 <h1>DID Operations</h1>
 
-<pre>
+<p>
 
-    <br>
+
       To enable the full functionality of DIDs and DDOs on a particular distributed ledger or network (called the target system), a DID method specification MUST specify how each of the following
         <a href=
 "https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a>
        operations is performed by a client. Each operation MUST be specified to the level of detail necessary to build and test interoperable client implementations with the target system.
 
-    <br>
+
       Note that, due to the specified contents of DDOs, these operations can effectively be used to perform all the operations required of a CKMS (cryptographic key management system), e.g.:
 
 
-</pre>
+</p>
 <ul>
   <li>
 Key registration
@@ -1894,53 +1870,53 @@ to establish proof of ownership.
 <section>
 <h2>Read/Verify</h2>
 
-<pre>
+<p>
 
-    <br>
+
       The DID method specification MUST specify how a client uses a DID to request a DDO from the target system, including how the client can verify the authenticity of the response.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Update</h2>
 
-<pre>
+<p>
 
-    <br>
+
       The DID method specification MUST specify how a client can update a DID record on the target system, including all cryptographic operations necessary to establish proof of control.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Delete/Revoke</h2>
 
-<pre>
+<p>
 
-    <br>
+
       Although a core feature of distributed ledgers is immutability, the DID method specification MUST specify how a client can revoke a DID record on the target system, including all cryptographic operations necessary to establish proof of revocation.
 
 
 
-</pre>
+</p>
 </section>
 </section>
 
 <section>
 <h1>DID Resolvers</h1>
 
-<pre>
+<p>
 
-    <br>
+
       A DID resolver is a software component with an API designed to accept requests for DID lookups and execute the corresponding DID method to retrieve the authoritative DDO. To be conformant with this specification, a DID resolver:
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 SHOULD validate that a DID is valid according to its DID method
@@ -1962,40 +1938,40 @@ MAY offer the service of returning requested properties of the DDO.
   </li>
 </ol>
 
-<pre>
+<p>
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h1>Security Considerations</h1>
 
-<pre>
+<p>
 
-    <br>
+
       NOTE TO IMPLEMENTERS: During the Implementer’s Draft stage, this section focuses on security topics that should be important in early implementations. The editors are also seeking feedback on threats and threat mitigations that should be reflected in this section or elsewhere in the spec.
 
-    <br>
+
       As the root identity records for decentralized identities, DIDs and DDOs are a vital component of decentralized identity management. They are also the foundational building blocks of DPKI (decentralized public key infrastructure) as an augmentation to conventional X.509 certificates.
 
-    <br>
+
       As such, DIDs are designed to operate under the general Internet threat model used by many IETF standards. We assume uncompromised endpoints, but allow messages to be read or corrupted on the network. Protecting against an attack when a system is compromised requires external key-signing hardware. See also section 6.5 regarding key revocation and recovery.
 
-    <br>
+
       For their part, the DLTs hosting DIDs and DDOs have special security properties for preventing active attacks. Their design uses public/private key cryptography to allow operation on passively monitored networks without risking compromise of private keys. This is what makes DID architecture and decentralized identity possible.
 
 
-</pre>
+</p>
 
 <section>
 <h2>Requirements of DID Method Specifications</h2>
 
-<pre>
+<p>
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 DID method specifications MUST include their own Security
@@ -2009,13 +1985,13 @@ This section MUST consider all the requirements mentioned in section
   </li>
 </ol>
 
-<pre>
+<p>
 
-    <br>
+
       At least the following forms of attack MUST be considered: eavesdropping, replay, message insertion, deletion, modification, and man-in-the-middle. Potential denial of service attacks MUST be identified as well. If the protocol incorporates cryptographic protection mechanisms, it should be clearly indicated which portions of the data are protected and what the protections are (i.e., integrity only, confidentiality, and/or endpoint authentication, etc.). Some indication should also be given to what sorts of attacks the cryptographic protection is susceptible. Data which should be held secret (keying material, random seeds, etc.) should be clearly labeled. If the technology involves authentication, particularly user-host authentication, the security of the authentication method MUST be clearly specified.
 
 
-</pre>
+</p>
 <ol start="3">
   <li>
 This section MUST also discuss, per Section 5 of <a href=
@@ -2063,32 +2039,32 @@ authentication protocol.
   </li>
 </ol>
 
-<pre>
+<p>
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Binding of Identity</h2>
 
-<pre>
+<p>
 
 
 
-</pre>
+</p>
 <h4>
 9.2.1 Proving Ownership of a DID and DDO
 </h4>
 
-<pre>
+<p>
 
-    <br>
+
       By itself, a verified signature on self-signed DDO does not prove ownership of a DID. It only proves the following:
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 The DDO has not been tampered with since it was registered.
@@ -2100,13 +2076,13 @@ signature at the time the signature was generated.
   </li>
 </ol>
 
-<pre>
+<p>
 
-    <br>
+
       Proving ownership of a DID, i.e., the binding between the DID and the DDO that describes it, requires a two step process:
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 Resolving the DID to a DDO according to its DID method
@@ -2119,31 +2095,31 @@ that was resolved.
   </li>
 </ol>
 
-<pre>
+<p>
 
-    <br>
+
       It should be noted that this process proves ownership of a DID and DDO regardless of whether the DDO is signed.
 
 
 
-</pre>
+</p>
 <h4>
 9.2.2 Proving Ownership of a Public Key
 </h4>
 
-<pre>
+<p>
 
-    <br>
+
       There are two methods for proving ownership of the private key corresponding to a public key description in the DDO: static and dynamic.
 
-    <br>
+
       The static method is to sign the DDO with the private key. This proves ownership of the private key at a time no later than the DDO was registered.
 
-    <br>
+
       If the DDO is not signed, ownership of a public key described in the DDO may still be proven dynamically as follows:
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 Send a challenge message containing a public key description from
@@ -2157,18 +2133,18 @@ description.
   </li>
 </ol>
 
-<pre>
+<p>
 
 
 
-</pre>
+</p>
 <h4>
 9.2.3 Identity Owner Authentication and Verifiable Claims
 </h4>
 
-<pre>
+<p>
 
-    <br>
+
       A DID and DDO do not inherently carry any
         <a href=
 "https://en.wikipedia.org/wiki/Personally_identifiable_information">PII</a>
@@ -2178,48 +2154,48 @@ description.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Authentication Service Endpoints</h2>
 
-<pre>
+<p>
 
-    <br>
+
       If a DDO publishes a service endpoint intended for authentication or authorization of an identity owner (section 6.6), it is the responsibility of the service endpoint provider, identity owner, and/or relying party to comply with the requirements of the authentication protocol(s) supported at that service endpoint.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Non-Repudiation</h2>
 
-<pre>
+<p>
 
-    <br>
+
       Non-repudiation of DIDs and DDO updates is supported under the assumption that: (1) the identity owner is monitoring for unauthorized updates (see section 9.5) and (2) the identity owner has had adequate opportunity to revoke malicious updates according to the DID method's access control mechanism (section 6.5). This capability is further supported if timestamps are included (sections 6.7 and 6.8) and the target DLT system supports timestamps.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Notification of DDO Changes</h2>
 
-<pre>
+<p>
 
-    <br>
+
       One mitigation against unauthorized changes to a DDO is monitoring and actively notifying the identity owner when there are changes. This is analogous to helping prevent account takeover on conventional username/password accounts by sending password reset notifications to the email addresses on file.
 
-    <br>
+
       In the case of a DID, where there is no intermediary registrar or account provider to generate the notification, the following approaches are RECOMMENDED:
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 Subscriptions. If the ledger or network on which the DID is
@@ -2239,71 +2215,71 @@ monitoring service, however this introduces another vector of attack.
   </li>
 </ol>
 
-<pre>
+<p>
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Key and Signature Expiration</h2>
 
-<pre>
+<p>
 
-    <br>
+
       In a decentralized identity architecture, there are no centralized authorities to enforce key or signature expiration policies. Therefore DID resolvers and other client applications SHOULD validate that keys have not expired. Since some use cases may have legitimate reasons why already-expired keys can be extended, a key expiration SHOULD NOT prevent any further use of the key, and implementations SHOULD attempt to update its status upon encountering it in a signature.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Key Revocation and Recovery</h2>
 
-<pre>
+<p>
 
-    <br>
+
       Section 7 specifies the DID operations that must be supported by a DID method specification, including revocation of a DDO by replacing it with an updated DDO. In general, checking for key revocation on DLT-based methods is expected to be handled in a manner similar to checking the balance of a cryptocurrency account on a distributed ledger: if the balance is empty, the entire DID is revoked.
 
-    <br>
+
       DID method specifications SHOULD enable support for a quorum of trusted parties to enable key recovery. Some of the facilities to do so are suggested in section 6.5, Proof of Control. Note that not all DID method specifications will recognize control from DIDs registered using other DID methods and they MAY restrict third-party control to DIDs that use the same method.
 
-    <br>
+
       Access control and key recovery in a DID method specification MAY also include a time lock feature to protect against key compromise by maintaining a second track of control for recovery. Further specification of this type of control is a matter for future work (see section 11.4).
 
 
 
-</pre>
+</p>
 </section>
 </section>
 
 <section>
 <h1>Privacy Considerations</h1>
 
-<pre>
+<p>
 
-    <br>
+
       It is critically important to apply the principles of Privacy by Design to all aspects of decentralized identity architecture, because DIDs and DDOs are—by design—administered directly by their owners. There is no registrar, hosting company, or other intermediate service provider to recommend or apply additional privacy safeguards.
 
-    <br>
+
       The authors of this specification have applied all seven Privacy by Design principles throughout its development. For example, privacy in this specification is preventative not remedial, and privacy is an embedded default. Furthermore, decentralized identity architecture by itself embodies principle #7, "Respect for user privacy—keep it user-centric."
 
-    <br>
+
       This section lists additional privacy considerations that implementers, guardians, and identity owners should bear in mind.
 
 
 
-</pre>
+</p>
 
 <section>
 <h2>Requirements of DID Method Specifications</h2>
 
-<pre>
+<p>
 
 
-</pre>
+</p>
 <ol start="1">
   <li>
 DID method specifications MUST include their own Privacy
@@ -2321,19 +2297,19 @@ exclusion.
   </li>
 </ol>
 
-<pre>
+<p>
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Keep Personally-Identifiable Information (PII) Off-Ledger</h2>
 
-<pre>
+<p>
 
-    <br>
+
       If a DID method specification is written for a public ledger or network where all DIDs and DDOs will be publicly available, it is STRONGLY RECOMMENDED that DDOs contain no PII. All PII should be kept off-ledger behind service endpoints under the control of the identity owner. With this privacy architecture, PII may be exchanged on a private, peer-to-peer basis using communications channels identified and secured by key descriptions in DID records. This also enables identity owners and relying parties to implement the
         <a href=
 "https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>
@@ -2344,47 +2320,47 @@ exclusion.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>DID Correlation Risks and Pseudonymous DIDs</h2>
 
-<pre>
+<p>
 
-    <br>
+
       Like any type of globally unique identifier, DIDs may be used for correlation. Identity owners can mitigate this privacy risk by using pairwise unique DIDs, i.e., by sharing a different private DID for every relationship. In effect, each DID acts as a pseudonym. A pseudonymous DID need only be shared with more than one party when the identity owner explicitly authorizes correlation between those parties.
 
-    <br>
+
       If pseudonymous DIDs are the default, then the only need for a public DID—a DID published openly or shared with a large number of parties—is when the identity owner explicitly desires public identification.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>DDO Correlation Risks</h2>
 
-<pre>
+<p>
 
-    <br>
+
       The anti-correlation protections of pseudonymous DIDs are easily defeated if the data in the corresponding DDOs can be correlated. For example, using same public key descriptions or bespoke service endpoints in multiple DDOs can provide as much correlation information as using the same DID. Therefore the DDO for a pseudonymous DID SHOULD also use pairwise-unique public keys and pairwise-unique service endpoints.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Herd Privacy</h2>
 
-<pre>
+<p>
 
-    <br>
+
       When an entity is indistinguishable from others in the herd, privacy is available. When the act of engaging privately with another party is by itself a recognizable flag, privacy is greatly diminished.
 
-    <br>
+
       DIDs and DID methods SHOULD work to improve herd privacy, particularly for those who legitimately need it most. Choose technologies and human interfaces that default to preserving anonymity and pseudonymity. In order to reduce
         <a href=
 "https://en.wikipedia.org/wiki/Device_fingerprint">digital fingerprints</a>
@@ -2392,7 +2368,7 @@ exclusion.
 
 
 
-</pre>
+</p>
 </section>
 </section>
 
@@ -2403,59 +2379,59 @@ exclusion.
 <section>
 <h2>Upper Limits on DID Character Length</h2>
 
-<pre>
+<p>
 
-    <br>
+
       The current specification does not take a position on maximum length of a DID. The maximum interoperable URL length is currently about 2K characters. QR codes can handle about 4K characters. Clients using DIDs will be responsible for storing many DIDs, and some methods would be able to externalize some of their costs onto clients by relying on more complicated signature schemes or by adding state into DIDs intended for temporary use. A future version of this specification should set reasonable limits on DID character length to minimize externalities.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Equivalence</h2>
 
-<pre>
+<p>
 
-    <br>
+
       Including an equivalence property, such as equivID, in DDOs whose value is an array of DIDs would allow identity owners to assert two or more DIDs that represent the same identity owner. This capability has numerous uses, including supporting migration between ledgers and providing forward compatibility of existing DIDs to future DLTs. In theory, equivalent DIDs should have the same identity rights, allowing
         <a href="https://w3c.github.io/vctf/">verifiable claims</a>
        made against one DID to apply to equivalent DIDs.
 
-    <br>
+
       Equivalence was not included in the current specification due to the complexity of verifying equivalence across different DLTs and different DID methods, and also of aggregating properties of equivalent DDOs. However equivalence should be supported in a future version of this specification.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Timestamps</h2>
 
-<pre>
+<p>
 
-    <br>
+
       Verifiable timestamps have significant utility for identity records. This is a good fit for DLTs, since most offer some type of timestamp mechanism. Despite some transactional cost, they are the most censorship-resistant transaction ordering systems in the world, so they are nearly ideal for DDO timestamping. In some cases a DLT's immediate timing is approximate, however their sense of
         <a href=
 "https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki%23Abstract">"median time past" (see Bitcoin BIP 113)</a>
        can be precisely defined.
 
-    <br>
+
       A generic DDO timestamping mechanism could would work across all DLTs and might operate via a mechanism including either individual transactions or transaction batches. The generic mechanism was deemed out of scope for this version, although it may be included in a future version of this specification.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Time Locks and DDO Recovery</h2>
 
-<pre>
+<p>
 
-    <br>
+
       Section 9.7 mentions one possible clever use of time locks to recover control of a DID after a key compromise. The technique relies on an ability to override the most recent update to a DDO with Proof of Control applied by an earlier version of the DDO in order to defeat the attacker. This protection depends on adding a
         <a href=
 "https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki%23Abstract">time lock (see Bitcoin BIP 65)</a>
@@ -2463,15 +2439,15 @@ exclusion.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
 <h2>Smart Signatures</h2>
 
-<pre>
+<p>
 
-    <br>
+
       Not all DLTs can support the Proof of Control logic in section 6.5. Therefore, in this version of the specification, all Proof of Control logic must be delegated to DID method specifications. A potential future solution is a
         <a href=
 "http://www.weboftrust.info/downloads/smart-signatures.pdf">Smart Signature</a>
@@ -2479,7 +2455,7 @@ exclusion.
 
 
 
-</pre>
+</p>
 </section>
 
 <section>
@@ -2499,9 +2475,9 @@ exclusion.
 <section>
 <h2>Alternate Serializations and Graph Models</h2>
 
-<pre>
+<p>
 
-    <br>
+
       This version of the specification relies on JSON-LD and the RDF graph model for expressing a DDO. Future versions of this specification MAY specify other semantic graph formats for a DDO, such as JXD (JSON XDI Data), a serialization format for the XDI graph model as defined by the
         <a href=
 "http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">OASIS XDI Core 1.0 specification</a>
@@ -2509,7 +2485,7 @@ exclusion.
 
 
 
-</pre>
+</p>
 </section>
 </section>
 
@@ -2518,78 +2494,81 @@ exclusion.
 
 <pre>
 
-    <br>
+
       [ABNF] Augmented BNF for Syntax Specifications: ABNF. IETF RFC 5234.
         <a href=
 "https://tools.ietf.org/html/rfc5234">https://tools.ietf.org/html/rfc5234</a>
 
-    <br>
+
       [IRI] Internationalized Resource Identifiers. IETF RFC 3987.
         <a href=
 "https://www.ietf.org/rfc/rfc3987.txt">https://www.ietf.org/rfc/rfc3987.txt</a>
 
-    <br>
+
       [JSON] The JavaScript Object Notation (JSON) Data Interchange Format
         <a href=
 "https://tools.ietf.org/html/rfc7159">https://tools.ietf.org/html/rfc7159</a>
 
-    <br>
+
       [JSON-LD] JSON-LD 1.0.
         <a href=
 "http://www.w3.org/TR/json-ld/">http://www.w3.org/TR/json-ld/</a>
 
-    <br>
+
       [LINKED-DATA-SIGNATURES] Draft Community Group Report
         <a href=
 "https://w3c-dvcg.github.io/ld-signatures/">https://w3c-dvcg.github.io/ld-signatures/</a>
 
-    <br>
+
       [RFC 3552] Guidelines for Writing RFC Text on Security Considerations. IETF RFC 3552.
         <a href=
 "https://tools.ietf.org/html/rfc3552">https://tools.ietf.org/html/rfc3552</a>
 
-    <br>
+
       [RFC 6973] Privacy Considerations for Internet Protocols. IETF RFC 6973.
         <a href=
 "https://tools.ietf.org/html/rfc6973">https://tools.ietf.org/html/rfc6973</a>
 
-    <br>
+
       [RFC-KEYWORDS] Key words for use in RFCs to Indicate Requirement Levels. IETF RFC 2119.
         <a href=
 "https://www.ietf.org/rfc/rfc2119.txt">https://www.ietf.org/rfc/rfc2119.txt</a>
 
-    <br>
-      [SBIR-TOPIC] Applicability of Blockchain Technology to Privacy Respecting Identity Management. U.S Department of Homeland Security Small Business Innovation Research Grant.
+
+      [SBIR-TOPIC] Applicability of Blockchain Technology to Privacy
+        Respecting Identity Management. U.S Department of Homeland
+        Security Small Business Innovation Research Grant.
         <a href=
 "https://www.sbir.gov/sbirsearch/detail/867797">https://www.sbir.gov/sbirsearch/detail/867797</a>
 
-    <br>
+
       [URI] Uniform Resource Identifiers. IETF RFC 3986.
         <a href=
 "https://www.ietf.org/rfc/rfc3986.txt">https://www.ietf.org/rfc/rfc3986.txt</a>
 
-    <br>
+
       [URN] URN (Uniform Resource Name) Syntax. IETF RFC 2141.
         <a href=
 "https://tools.ietf.org/rfc/rfc2141.txt">https://tools.ietf.org/rfc/rfc2141.txt</a>
 
-    <br>
+
       [UUID] A Universally Unique IDentifier (UUID) URN Namespace. IETF RFC 4122.
         <a href=
 "https://www.ietf.org/rfc/rfc4122.txt">https://www.ietf.org/rfc/rfc4122.txt</a>
 
-    <br>
+
       [VCTF] W3C Verifiable Claims Task Force.
         <a href=
 "http://opencreds.org/specs/source/claims-data-model/%23expressing-entity-credentials-in-json">http://opencreds.org/specs/source/claims-data-model/#expressing-entity-credentials-in-json</a>
 
-    <br>
+
       [XDI-CORE] OASIS XDI Core 1.0 Specification Working Draft 01
         <a href=
 "http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml</a>
 
-    <br>
-      [XML-DATETIME] W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes. W3C Recommendation.
+
+      [XML-DATETIME] W3C XML Schema Definition Language (XSD) 1.1
+        Part 2: Datatypes. W3C Recommendation.
         <a href=
 "https://www.w3.org/TR/xmlschema11-2/">https://www.w3.org/TR/xmlschema11-2/</a>
 
@@ -2597,39 +2576,39 @@ exclusion.
 
 </pre>
 
-<pre>
+<p>
 
 
-</pre>
+</p>
 
 <hr class="c1">
 
-<pre>
-    <br>
+<p>
 
 
 
-</pre>
+
+</p>
 </section>
 
 <section>
 <h1>Appendix A: Proposed DID Method Specifications</h1>
 
-<pre>
+<p>
 
-    <br>
+
       This table summarizes the DID method specifications currently in development. The links will be updated as subsequent Implementer’s Drafts are produced.
 
-    <br>
-
-
-    <br>
 
 
 
 
 
-</pre>
+
+
+
+
+</p>
 <table>
   <tbody>
     <tr>
@@ -2672,9 +2651,7 @@ exclusion.
         </p>
       </td>
       <td colspan="1" rowspan="1">
-        <p>
-          https://docs.google.com/document/d/1X7dWpVvskGRpk05yyPEMd1uqaJ9FnOzoeWMdwzdIFyU/edit#
-        </p>
+        <a href="https://docs.google.com/document/d/1X7dWpVvskGRpk05yyPEMd1uqaJ9FnOzoeWMdwzdIFyU/edit#">Sovrin DID Method</a>
       </td>
     </tr>
 
@@ -2812,7 +2789,7 @@ list of key descriptions recommended for use in DDOs.
             "id": "did:example:21tDAKCERh95uGgKbJNHYp#key/2",
             "type": ["CryptographicKey", "RsaPublicKey"],
             "expires": "2017-03-22T00:00:00Z",
-            "publicKeyBase64": "MIIBOgIBAAJBAKkbSUT9/Q2uBfGRau6/XJyZhcF5abo7b37I5hr3EmwGykdzyk8GSyJK3TOrjyl0sdJsGbFmgQaRyV"
+            "publicKeyBase64": "MIIBOgIBAAJBAKkbSUT9...mgQaRyV"
         }]
       }
 
@@ -2822,17 +2799,14 @@ list of key descriptions recommended for use in DDOs.
 <section>
 <h2>EdDSA Keys</h2>
 
-<p>
-  {
-</p>
-
 <pre>
+  {
       "owner": [{
             "id": "did:example:21tDAKCERh95uGgKbJNHYp#key/1",
             "type": ["CryptographicKey", "EdDsaSAPublicKey"],
             "curve": "ed25519",
             "expires": "2017-02-08T16:02:20Z",
-            "publicKeyBase64": "IOmA4R7TfhkYTYW87z640O3GYFldw0yqie9Wl1kZ5OBYNAKOwG5uOsPRK8/2C4STOWF+83cMcbZ3CBMq2/gi25s="
+            "publicKeyBase64": "IOmA4R7TfhkYTYW87...CBMq2/gi25s="
         }]
 
 </pre>
