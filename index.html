@@ -981,12 +981,14 @@ Following is the ABNF definition using the syntax in <a href=
 as upper or lowercase A-Z).
 </p>
 
-<pre>
+<pre class="nohighlight">
   did-reference      = did [ "/" did-path ] [ "#" did-fragment ]
   did                = "did:" method ":" specific-idstring
-  method             = 1*methodcharmethodchar         = %x61-7A / DIGIT
+  method             = 1*methodchar
+  methodchar         = %x61-7A / DIGIT
   specific-idstring  = idstring *( ":" idstring )
-  idstring           = 1*idcharidchar             = ALPHA / DIGIT / "." / "-"
+  idstring           = 1*idchar
+  idchar             = ALPHA / DIGIT / "." / "-"
 </pre>
 <p>
 See sections 5.3 and 5.4 for the ABNF rules defining DID paths and
