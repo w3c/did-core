@@ -94,7 +94,7 @@
       <p>
 Decentralized Identifiers (DIDs) are a new type of identifier intended
 for verifiable digital identity that is "self-sovereign", i.e., fully
-under the control of the identity owner and not dependent on a
+under the control of the entity and not dependent on a
 centralized registry, identity provider, or certificate authority. DIDs
 resolve to DID Descriptions — simple JSON documents that
 contain all the metadata needed to interact with the DID.
@@ -103,7 +103,7 @@ a set of mechanisms that may be used to authenticate as
 as a particular DID (e.g. public keys, pseudonymous biometric templates, etc.).
 The second is a set of authorization information that outlines which entities
 may modify the DID Description. The third is a set of service endpoints, which may
-be used to initiate trusted interactions with the identity owner. Each DID
+be used to initiate trusted interactions with the entity. Each DID
 uses a specific DID method, defined in a separate DID method specification, to
 define how the DID is registered, resolved, updated, and revoked on a
 specific distributed ledger or network.
@@ -164,23 +164,20 @@ management</a> .
 <p>
 The emergence of distributed ledger technology (DLT), sometimes referred
 to as blockchain technology, provides the opportunity to implement fully
-decentralized identity management. In this ecosystem, all participants
-with identities (called identity owners) share a common root of trust in
-the form of a globally distributed ledger (or a decentralized P2P
-network that provides similar capabilities).
+decentralized identity management. In this ecosystem, all entities
+share a common root of trust in the form of a globally distributed ledger
+(or a decentralized P2P network that provides similar capabilities).
 </p>
 
 <p>
-Each identity owner can be identified on a ledger with a <a href=
-  "https://en.wikipedia.org/wiki/Attribute%25E2%2580%2593value_pair">key-value
-pair</a> . The index key is a DID (decentralized identifier) and the
-value is its associated DID Description. A corresponding public key is published
-in the DID Description using a
-key description. A DID Description may also contain a set of service endpoints for
-interacting with the identity owner. Following the dictums of <a href=
+The entities are identified by decentralized identifiers (DIDs). They may
+authenticate via keys (or other mechanisms, such as privacy-preserving 
+biometrics). DIDs point to DID Descriptions.
+A DID Description also contain a set of service endpoints for
+interacting with the entity. Following the dictums of <a href=
   "https://en.wikipedia.org/wiki/Privacy_by_design">Privacy by Design</a>
-  , each identity owner may have as many DID records as necessary, to
-respect the identity owner’s desired separation of identities, personas,
+  , each entity may have as many DID records as necessary, to
+respect the entity’s desired separation of identities, personas,
 and contexts.
 </p>
 
@@ -197,7 +194,7 @@ identifiers as well as centralized certificate authorities for key
 management—the standard pattern in hierarchical <a href=
   "https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI (public
 key infrastructure</a> ). Because DID records are on a distributed
-ledger, each identity owner may serve as its own root authority—an
+ledger, each entity may serve as its own root authority—an
 architecture referred to as <a href=
   "https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">
 DPKI (decentralized PKI)</a> .
@@ -413,7 +410,7 @@ architecture.
       </td>
       <td colspan="1" rowspan="1">
         <p>
-          DID architecture should give identity owners the power to
+          DID architecture should give entitys the power to
           directly own and control their own digital identities without
           the need to rely on external authorities.
         </p>
@@ -433,7 +430,7 @@ architecture.
       </td>
       <td colspan="1" rowspan="1">
         <p>
-          DID architecture should enable identity owners to control the
+          DID architecture should enable entitys to control the
           privacy of their digital identities, including selective
           disclosure of attributes or other identity data.
         </p>
@@ -473,7 +470,7 @@ architecture.
       </td>
       <td colspan="1" rowspan="1">
         <p>
-          DID architecture should enable an identity owner to provide
+          DID architecture should enable an entity to provide
           cryptographic proof of ownership and proof of access control
           rights.
         </p>
@@ -534,7 +531,7 @@ architecture.
       <td colspan="1" rowspan="1">
         <p>
           DID architecture should be system-independent and enable
-          identity owners to use their digital identities with any system
+          entitys to use their digital identities with any system
           that supports DIDs and DIDM.
         </p>
       </td>
@@ -600,7 +597,7 @@ did:example:123456789abcdefghi
 
 <p>
 Following is an example of a DID Description that describes the DID above. This
-example assumes that the identity owner—the entity that controls the
+example assumes that the entity—the entity that controls the
 private keys for this identity—is authoritative for the DID Description. See section
 1.3.2 for an example of a DID Description created by a guardian. For the authoritative
 JSON-LD context definition, see Appendix B (the URL for the @context
@@ -636,7 +633,7 @@ property below is just for illustration).
 Following is a second example of a DID Description that describes the DID above. In
 this case the DID Description describes a dependent—an entity who is not currently
 in a position to control the private keys for this identity. This DID Description
-was created by a guardian—a separate identity owner with its own DID
+was created by a guardian—a separate entity with its own DID
 that serves as a trustee for the dependent. Note that while this DID Description
 asserts a set of service endpoints, it does not yet contain a set of key
 descriptions because the dependent does not yet have its own set of
@@ -742,7 +739,7 @@ pseudonymous biometrics, that an entity can use to authenticate itself as the
 DID. A DID Description may also contain other <a href=
   "https://en.wikipedia.org/wiki/Attribute_(computing)">attributes</a> or
   <a href="https://en.wikipedia.org/wiki/Claims-based_identity">claims</a>
-  describing the identity owner.
+  describing the entity.
 </p>
 
 <p>
@@ -813,17 +810,17 @@ DPKI. Acronym for decentralized PKI.
 </p>
 
 <p>
-Guardian. An identity owner who creates a DID record for a dependent who
+Guardian. An entity who creates a DID record for a dependent who
 does not yet have the capacity to control the private keys. The
 dependent must rely on the guardian to safeguard the private keys until
-the dependent can assume control and become an identity owner.
+the dependent can assume control and become an entity.
 </p>
 
 <p>
 Identity owner. The natural person, party, organization, or thing whose
 identity is represented by a DID record and who directly controls the
 private keys to control that record. (Note: this specification avoids
-the term "user" since an identity owner is not always an individual
+the term "user" since an entity is not always an individual
 person.)
 </p>
 
@@ -866,7 +863,7 @@ the <a href="https://www.w3.org/2011/rdf-wg/">W3C RDF Working Group</a>
 
 <p>
 Service endpoint. A network address at which a service operates on
-behalf of an identity owner. Examples of specific DIDM services include
+behalf of an entity. Examples of specific DIDM services include
 discovery services, authentication services, authorization services,
 interaction services, etc. A DIDM service endpoint may also be provided
 by a generalized data interchange protocol such as XDI.
@@ -927,7 +924,7 @@ infinitesimally small. UUIDs are formally a URN namespace specified in
 
 <p>
 A DID is similar to a UUID except: (a) it can be resolved or
-dereferenced to a standard resource describing the identity owner (a
+dereferenced to a standard resource describing the entity (a
 DID Description—see section 6), and (b) the DID Description may contain public key descriptions
 that enable cryptographic verification of DID ownership.
 </p>
@@ -1077,13 +1074,13 @@ DID method specification.
 <h2>DID Persistence</h2>
 
 <p>
-A DID MUST be persistent and immutable, i.e., bound to an identity owner
+A DID MUST be persistent and immutable, i.e., bound to an entity
 once and never changed (forever). Ideally a DID would be a completely
 abstract decentralized identifier (like a UUID) that could be bound to
 multiple underlying distributed ledgers or networks over time, thus
 maintaining its persistence independent of any particular ledger or
 network. However registering the same identifier on multiple ledgers or
-networks introduces extremely hard identity ownership and <a href=
+networks introduces extremely hard entityship and <a href=
   "https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">start-of-authority</a>
   (SOA) problems. It also greatly increases implementation complexity for
 developers.
@@ -1301,14 +1298,14 @@ Example:
 <h2>Authentication</h2>
 
 <p>
-Authentication is the mechanism by which an identity owner can
+Authentication is the mechanism by which an entity can
 cryptographically prove that they are associated with a DID and DID
 Description. See section 9.2. Note that Authentication is separate from
-Authorization because an identity owner may wish to enable other entities
+Authorization because an entity may wish to enable other entities
 to update the DID Description
 (for example, to assist with key recovery as discussed in section 6.5)
 without enabling them to prove ownership (and thus be able to impersonate
-the identity owner).
+the entity).
 </p>
 
 <p>
@@ -1376,11 +1373,11 @@ responsibility of DID resolvers and other clients. See section 9.6.
 <h2>Authorization</h2>
 
 <p>
-Authorization is the mechanism by which an identity owner may give itself
+Authorization is the mechanism by which an entity may give itself
 or other entities permission to update the DID Description—for example to assist with
 key recovery. Note that Authorization is separate from Authentication
 as explained in section 6.4. This is particularly important for key recovery
-in the case of key loss, when the identity owner no longer has access to their
+in the case of key loss, when the entity no longer has access to their
 keys, or key compromise, where the owner’s trusted third parties need to
 override malicious activity by an attacker. See section 9.
 
@@ -1516,8 +1513,8 @@ property array MAY contain a single JSON object
 <p>
 In addition to publication of authentication and authorization mechanisms,
 the other primary purpose of a DID Description is to enable discovery of
-service endpoints for the identity owner. A service endpoint may represent
-any type of service the identity owner wishes to advertise, including
+service endpoints for the entity. A service endpoint may represent
+any type of service the entity wishes to advertise, including
 decentralized identity management services for further discovery,
 authentication, authorization, or interaction.
 
@@ -1700,7 +1697,7 @@ from section 6.7.
 </p>
 <ol start="1">
   <li>
-The identity owner as defined in section 6.4, or if not present:
+The entity as defined in section 6.4, or if not present:
   </li>
 
   <li>
@@ -2108,7 +2105,7 @@ description.
 <p>
 
 
-      If a DID Description publishes a service endpoint intended for authentication or authorization of an identity owner (section 6.6), it is the responsibility of the service endpoint provider, identity owner, and/or relying party to comply with the requirements of the authentication protocol(s) supported at that service endpoint.
+      If a DID Description publishes a service endpoint intended for authentication or authorization of an entity (section 6.6), it is the responsibility of the service endpoint provider, entity, and/or relying party to comply with the requirements of the authentication protocol(s) supported at that service endpoint.
 
 
 
@@ -2121,7 +2118,7 @@ description.
 <p>
 
 
-      Non-repudiation of DIDs and DID Description updates is supported under the assumption that: (1) the identity owner is monitoring for unauthorized updates (see section 9.5) and (2) the identity owner has had adequate opportunity to revoke malicious updates according to the DID method's access control mechanism (section 6.5). This capability is further supported if timestamps are included (sections 6.7 and 6.8) and the target DLT system supports timestamps.
+      Non-repudiation of DIDs and DID Description updates is supported under the assumption that: (1) the entity is monitoring for unauthorized updates (see section 9.5) and (2) the entity has had adequate opportunity to revoke malicious updates according to the DID method's access control mechanism (section 6.5). This capability is further supported if timestamps are included (sections 6.7 and 6.8) and the target DLT system supports timestamps.
 
 
 
@@ -2134,7 +2131,7 @@ description.
 <p>
 
 
-      One mitigation against unauthorized changes to a DID Description is monitoring and actively notifying the identity owner when there are changes. This is analogous to helping prevent account takeover on conventional username/password accounts by sending password reset notifications to the email addresses on file.
+      One mitigation against unauthorized changes to a DID Description is monitoring and actively notifying the entity when there are changes. This is analogous to helping prevent account takeover on conventional username/password accounts by sending password reset notifications to the email addresses on file.
 
 
       In the case of a DID, where there is no intermediary registrar or account provider to generate the notification, the following approaches are RECOMMENDED:
@@ -2150,12 +2147,12 @@ relevant service endpoints listed in an existing DID.
   </li>
 
   <li>
-Self-monitoring. An identity owner may employ its own local or
+Self-monitoring. An entity may employ its own local or
 online agent to periodically monitor for changes to a DID Description.
   </li>
 
   <li>
-Third-party monitoring. An identity owner may rely on a third party
+Third-party monitoring. An entity may rely on a third party
 monitoring service, however this introduces another vector of attack.
   </li>
 </ol>
@@ -2212,7 +2209,7 @@ monitoring service, however this introduces another vector of attack.
       The authors of this specification have applied all seven Privacy by Design principles throughout its development. For example, privacy in this specification is preventative not remedial, and privacy is an embedded default. Furthermore, decentralized identity architecture by itself embodies principle #7, "Respect for user privacy—keep it user-centric."
 
 
-      This section lists additional privacy considerations that implementers, guardians, and identity owners should bear in mind.
+      This section lists additional privacy considerations that implementers, guardians, and entitys should bear in mind.
 
 
 
@@ -2255,7 +2252,7 @@ exclusion.
 <p>
 
 
-      If a DID method specification is written for a public ledger or network where all DIDs and DID Descriptions will be publicly available, it is STRONGLY RECOMMENDED that DID Descriptions contain no PII. All PII should be kept off-ledger behind service endpoints under the control of the identity owner. With this privacy architecture, PII may be exchanged on a private, peer-to-peer basis using communications channels identified and secured by key descriptions in DID records. This also enables identity owners and relying parties to implement the
+      If a DID method specification is written for a public ledger or network where all DIDs and DID Descriptions will be publicly available, it is STRONGLY RECOMMENDED that DID Descriptions contain no PII. All PII should be kept off-ledger behind service endpoints under the control of the entity. With this privacy architecture, PII may be exchanged on a private, peer-to-peer basis using communications channels identified and secured by key descriptions in DID records. This also enables entitys and relying parties to implement the
         <a href=
 "https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>
 
@@ -2274,10 +2271,10 @@ exclusion.
 <p>
 
 
-      Like any type of globally unique identifier, DIDs may be used for correlation. Identity owners can mitigate this privacy risk by using pairwise unique DIDs, i.e., by sharing a different private DID for every relationship. In effect, each DID acts as a pseudonym. A pseudonymous DID need only be shared with more than one party when the identity owner explicitly authorizes correlation between those parties.
+      Like any type of globally unique identifier, DIDs may be used for correlation. Identity owners can mitigate this privacy risk by using pairwise unique DIDs, i.e., by sharing a different private DID for every relationship. In effect, each DID acts as a pseudonym. A pseudonymous DID need only be shared with more than one party when the entity explicitly authorizes correlation between those parties.
 
 
-      If pseudonymous DIDs are the default, then the only need for a public DID—a DID published openly or shared with a large number of parties—is when the identity owner explicitly desires public identification.
+      If pseudonymous DIDs are the default, then the only need for a public DID—a DID published openly or shared with a large number of parties—is when the entity explicitly desires public identification.
 
 
 
@@ -2340,7 +2337,7 @@ exclusion.
 <p>
 
 
-      Including an equivalence property, such as equivID, in DID Descriptions whose value is an array of DIDs would allow identity owners to assert two or more DIDs that represent the same identity owner. This capability has numerous uses, including supporting migration between ledgers and providing forward compatibility of existing DIDs to future DLTs. In theory, equivalent DIDs should have the same identity rights, allowing
+      Including an equivalence property, such as equivID, in DID Descriptions whose value is an array of DIDs would allow entitys to assert two or more DIDs that represent the same entity. This capability has numerous uses, including supporting migration between ledgers and providing forward compatibility of existing DIDs to future DLTs. In theory, equivalent DIDs should have the same identity rights, allowing
         <a href="https://w3c.github.io/vctf/">verifiable claims</a>
        made against one DID to apply to equivalent DIDs.
 
@@ -2408,7 +2405,7 @@ exclusion.
 
 <p>
 
-      Although DIDs and DID Descriptions form a foundation for decentralized identity, they are only the first step in describing an identity owner. The rest of the descriptive power comes through collecting and selectively using
+      Although DIDs and DID Descriptions form a foundation for decentralized identity, they are only the first step in describing an entity. The rest of the descriptive power comes through collecting and selectively using
         <a href="https://w3c.github.io/vctf/">verifiable claims</a>
       . Future versions of the specification will describe in more detail how DIDs and DID Description can be integrated with—and help enable—the verifiable claims ecosystem.
 
