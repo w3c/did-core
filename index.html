@@ -96,13 +96,13 @@ Decentralized Identifiers (DIDs) are a new type of identifier intended
 for verifiable digital identity that is "self-sovereign", i.e., fully
 under the control of the entity and not dependent on a
 centralized registry, identity provider, or certificate authority. DIDs
-resolve to DID Descriptions — simple documents that
+resolve to DID Documents — simple documents that
 contain all the metadata needed to interact with the DID.
-Specifically, a DID Description contains at least three things. The first is
+Specifically, a DID Document contains at least three things. The first is
 a set of mechanisms that may be used to authenticate as
 as a particular DID (e.g. public keys, pseudonymous biometric templates, etc.).
 The second is a set of authorization information that outlines which entities
-may modify the DID Description. The third is a set of service endpoints, which
+may modify the DID Document. The third is a set of service endpoints, which
 may be used to initiate trusted interactions with the entity. Each DID
 uses a specific DID method, defined in a separate DID method specification, to
 define how the DID is registered, resolved, updated, and revoked on a
@@ -172,8 +172,8 @@ share a common root of trust in the form of a globally distributed ledger
 <p>
 The entities are identified by decentralized identifiers (DIDs). They may
 authenticate via proofs (e.g. digital signatures, privacy-preserving
-biometrics, etc.). DIDs point to DID Descriptions.
-A DID Description contains a set of service endpoints for
+biometrics, etc.). DIDs point to DID Documents.
+A DID Document contains a set of service endpoints for
 interacting with the entity. Following the dictums of <a href=
   "https://en.wikipedia.org/wiki/Privacy_by_design">Privacy by Design</a>
   , each entity may have as many DIDs as necessary, to
@@ -267,7 +267,7 @@ and managed without any such authority.
 
   <li>
 A URI whose ownership and associated metadata, including public
-keys, can be cryptographically verified. Control of DIDs and DID Descriptions
+keys, can be cryptographically verified. Control of DIDs and DID Documents
 leverages the same public/private key cryptography as distributed
 ledgers.
   </li>
@@ -593,13 +593,13 @@ did:example:123456789abcdefghi
 </p>
 
 <section>
-<h2>Owner-Managed DID Description</h2>
+<h2>Owner-Managed DID Document</h2>
 
 <p>
-Following is an example of a DID Description that describes the DID above. This
+Following is an example of a DID Document that describes the DID above. This
 example assumes that the entity—the entity that controls the
-private keys for this identity—is authoritative for the DID Description. See section
-1.3.2 for an example of a DID Description created by a guardian. For the authoritative
+private keys for this identity—is authoritative for the DID Document. See section
+1.3.2 for an example of a DID Document created by a guardian. For the authoritative
 JSON-LD context definition, see Appendix B (the URL for the @context
 property below is just for illustration).
 </p>
@@ -609,7 +609,7 @@ property below is just for illustration).
   "@context": "https://example.com/did/v1",
   "id": "did:example:123456789abcdefghi",
   "authorizationCapability": [{
-    // this entity may update any field in this DID Description using any
+    // this entity may update any field in this DID Document using any
     // authentication mechanism understood by the ledger
     "permission": "UpdateDidDocument",
     "entity": "did:example:123456789abcdefghi"
@@ -627,14 +627,14 @@ property below is just for illustration).
 </section>
 
 <section>
-<h2>Example Guardian-Managed DID Description</h2>
+<h2>Example Guardian-Managed DID Document</h2>
 
 <p>
-Following is a second example of a DID Description that describes the DID above. In
-this case the DID Description describes a dependent—an entity who is not currently
-in a position to control the private keys for this identity. This DID Description
+Following is a second example of a DID Document that describes the DID above. In
+this case the DID Document describes a dependent—an entity who is not currently
+in a position to control the private keys for this identity. This DID Document
 was created by a guardian—a separate entity with its own DID
-that serves as a trustee for the dependent. Note that while this DID Description
+that serves as a trustee for the dependent. Note that while this DID Document
 asserts a set of service endpoints, it does not yet contain a set of key
 descriptions because the dependent does not yet have its own set of
 private keys.
@@ -646,7 +646,7 @@ private keys.
   "id": "did:example:123456789abcdefghi",
   "authorizationCapability": [{
     // this entity is a guardian and may update any field in this
-    // DID Description using any authentication mechanism understood
+    // DID Document using any authentication mechanism understood
     // by the ledger
     "permission": "UpdateDidDocument",
     "entity": "did:example:zxyvwtrkpn987654321"
@@ -717,7 +717,7 @@ System</a> , national ID systems, etc.
 
 <p>
 Decentralized PKI (DPKI). Public key infrastructure based on
-decentralized identifiers and identity records (e.g., DID Descriptions) containing
+decentralized identifiers and identity records (e.g., DID Documents) containing
 verifiable public key descriptions.
 </p>
 
@@ -733,10 +733,10 @@ DID. Acronym for decentralized identifier.
 </p>
 
 <p>
-DID Description. A JSON data structure containing metadata
+DID Document. A JSON data structure containing metadata
 describing a DID, including mechanisms, such as public keys and
 pseudonymous biometrics, that an entity can use to authenticate itself as the
-DID. A DID Description may also contain other <a href=
+DID. A DID Document may also contain other <a href=
   "https://en.wikipedia.org/wiki/Attribute_(computing)">attributes</a> or
   <a href="https://en.wikipedia.org/wiki/Claims-based_identity">claims</a>
   describing the entity.
@@ -753,7 +753,7 @@ fragment, that fragment is NOT a DID fragment.
 <p>
 DID method. A definition of how a specific DID scheme can be implemented
 on a specific distributed ledger or network, including the precise
-method(s) by which DIDs and DID Descriptions can be read, written, and revoked.
+method(s) by which DIDs and DID Documents can be read, written, and revoked.
 </p>
 
 <p>
@@ -839,7 +839,7 @@ linked to concepts in an RDF <a href=
 </p>
 
 <p>
-Key description. A JSON object contained inside a DID Description that contains all
+Key description. A JSON object contained inside a DID Document that contains all
 the metadata necessary to use a public key or verification key. A list
 of standard key descriptions is included in Appendix C.
 </p>
@@ -925,7 +925,7 @@ infinitesimally small. UUIDs are formally a URN namespace specified in
 <p>
 A DID is similar to a UUID except: (a) it can be resolved or
 dereferenced to a standard resource describing the entity (a
-DID Description—see section 6), and (b) the DID Description may contain public key descriptions
+DID Document—see section 6), and (b) the DID Document may contain public key descriptions
 that enable cryptographic verification of DID ownership.
 </p>
 
@@ -1031,7 +1031,7 @@ A generic DID fragment (the did-fragment rule in section 5.1) is
 identical to a URI fragment and MUST conform to the ABNF of the fragment
 ABNF rule in <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>
   . A DID fragment MUST be used only as a method-independent pointer into
-the DID Description to identify a unique key description or other DID Description component. To
+the DID Document to identify a unique key description or other DID Document component. To
 resolve this pointer, the complete DID reference including the DID
 fragment MUST be used as the value of the id key for the target JSON
 object.
@@ -1095,7 +1095,7 @@ persistence of the DID and DID method over time.
 
 <p>
 NOTE: Although not included in this version, future versions of this
-specification may support a DID Description equivID property to establish verifiable
+specification may support a DID Document equivID property to establish verifiable
 equivalence relations between DID records representing the same identity
 owner on multiple ledgers or networks. Such equivalence relations can
 produce the practical equivalent of a single persistent abstract DID.
@@ -1106,24 +1106,24 @@ See Future Work (section 11).
 </section>
 
 <section>
-<h1>DID Descriptions</h1>
+<h1>DID Documents</h1>
 
 <p>
-If a DID is the index key in a key-value pair, then the DID Description is the
+If a DID is the index key in a key-value pair, then the DID Document is the
 value to which the index key points. The combination of a DID and its
-associated DID Description forms the root identity record for a decentralized
+associated DID Document forms the root identity record for a decentralized
 identity.
 </p>
 
 <p>
-A DID Description MUST be a single JSON object conforming to <a href=
+A DID Document MUST be a single JSON object conforming to <a href=
   "https://tools.ietf.org/html/rfc7159">RFC 7159</a> . For purposes of
 this version of the DID specification, the format of this JSON object is
 specified in <a href="http://json-ld.org/">JSON-LD</a> , a format for
 mapping JSON data into the RDF semantic graph model as defined by the
   <a href="https://www.w3.org/TR/json-ld/">W3C JSON-LD 1.0
 specification</a> . Future versions of this specification MAY specify
-other semantic graph formats for a DID Description such as JXD (JSON XDI Data), a
+other semantic graph formats for a DID Document such as JXD (JSON XDI Data), a
 serialization format for the <a href=
   "http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">
 XDI graph model</a> .
@@ -1144,12 +1144,12 @@ The rules for this statement are:
 
 <ol start="1">
   <li>
-A DID Description MUST have exactly one top-level context statement.
+A DID Document MUST have exactly one top-level context statement.
   </li>
 
   <li>
 This statement MUST be the first line in the JSON object. (This is
-not strictly necessary under JSON-LD but required for DID Descriptions.)
+not strictly necessary under JSON-LD but required for DID Documents.)
   </li>
 
   <li>
@@ -1186,13 +1186,13 @@ B.
 <h2>Primary DID</h2>
 
 <p>
-The primary DID is the primary index key for the DID Description, i.e., it is DID
-described by DID Description. The rules for a primary DID are:
+The primary DID is the primary index key for the DID Document, i.e., it is DID
+described by DID Document. The rules for a primary DID are:
 </p>
 
 <ol start="1">
   <li>
-A DID Description MUST have exactly one primary DID.
+A DID Document MUST have exactly one primary DID.
   </li>
 
   <li>
@@ -1204,7 +1204,7 @@ The value of this key MUST be a valid DID.
   </li>
 
   <li>
-When this DID Description is registered with the target distributed ledger or
+When this DID Document is registered with the target distributed ledger or
 network, the registered DID MUST match this primary DID value.
   </li>
 </ol>
@@ -1231,7 +1231,7 @@ field.
 
 <p>
 A guardian is an entity, such as a parent or aid organization, that creates and
-maintains a DID Description for a dependent who is not in a position to hold
+maintains a DID Document for a dependent who is not in a position to hold
 or control authentication credentials (e.g., cryptographic keys).
 </p>
 
@@ -1241,13 +1241,13 @@ The rules for a guardian are:
 
 <ol start="1">
   <li>
-A DID Description that includes an
+A DID Document that includes an
 <code>authenticationCredential</code> field (section 6.4) MAY list one or
 more guardians via the <code>authorization</code> field.
   </li>
 
   <li>
-A DID Description that does not include an
+A DID Document that does not include an
 <code>authenticationCredential</code> MUST have a guardian.
   </li>
 
@@ -1256,11 +1256,11 @@ The <code>authorization</code> field must contain a capability for the
 guardian that includes <code>UpdateDidDescription</code> as the capability,
 the DID of the guardian as the <code>entity</code>, and MAY include a
 more specific set of <code>authenticationCredential</code>s that the
-guardian MAY use to authenticate when updating the DID Description.
+guardian MAY use to authenticate when updating the DID Document.
   </li>
 
   <li>
-The guardian DID MUST resolve to a DID Description that has a
+The guardian DID MUST resolve to a DID Document that has a
 <code>authenticationCredential</code> property containing at least one value
 i.e., the guardian relationships must not be nested.
   </li>
@@ -1276,7 +1276,7 @@ Example:
   "id": "did:example:123456789abcdefghi",
   "authorizationCapability": [{
     // this entity is a guardian and may update any field in this
-    // DID Description using any authentication mechanism understood
+    // DID Document using any authentication mechanism understood
     // by the ledger
     "permission": "UpdateDidDocument",
     "entity": "did:example:zxyvwtrkpn987654321"
@@ -1302,7 +1302,7 @@ Authentication is the mechanism by which an entity can
 cryptographically prove that they are associated with a DID and DID
 Description. See section 9.2. Note that Authentication is separate from
 Authorization because an entity may wish to enable other entities
-to update the DID Description
+to update the DID Document
 (for example, to assist with key recovery as discussed in section 6.5)
 without enabling them to prove ownership (and thus be able to impersonate
 the entity).
@@ -1314,7 +1314,7 @@ The rules for Authentication are:
 
 <ol start="1">
   <li>
-A DID Description MAY include a <code>authenticationCredential</code>
+A DID Document MAY include a <code>authenticationCredential</code>
 property.
   </li>
 
@@ -1362,7 +1362,7 @@ Example:
 </pre>
 
 <p>
-Note that caching and expiration of the keys in DID Description
+Note that caching and expiration of the keys in DID Document
 <code>authenticationCredential</code> property is entirely the
 responsibility of DID resolvers and other clients. See section 9.6.
 </p>
@@ -1374,7 +1374,7 @@ responsibility of DID resolvers and other clients. See section 9.6.
 
 <p>
 Authorization is the mechanism by which an entity may give itself
-or other entities permission to update the DID Description—for example to assist with
+or other entities permission to update the DID Document—for example to assist with
 key recovery. Note that Authorization is separate from Authentication
 as explained in section 6.4. This is particularly important for key recovery
 in the case of key loss, when the entity no longer has access to their
@@ -1396,9 +1396,9 @@ specification MAY add its own method-specific Authorization rules.
 
 <ol start="1">
   <li>
-A DID Description MAY have exactly one property named
+A DID Document MAY have exactly one property named
 <code>authorization</code> representing authorization information associated
-with the DID Description.
+with the DID Document.
   </li>
 
   <li>
@@ -1411,7 +1411,7 @@ specification and SHOULD follow a capabilities-based security model.
   </li>
 
   <li>
-Updating the DID Description requires that the proof mechanism includes
+Updating the DID Document requires that the proof mechanism includes
 the <code>capability</code> property and the
 <code>UpdateDidDescription</code> value.
   </li>
@@ -1420,18 +1420,18 @@ the <code>capability</code> property and the
 If an authorization rule does not specify a specific proof mechanism
 (such as a public key ID), then an update proof verified with any
 credential in the <code>authenticationCredential</code> property of the
-DID Description dereferenced from that DID MUST be considered valid for
+DID Document dereferenced from that DID MUST be considered valid for
 the proof mechanism.
   </li>
 </ol>
 
 <h4>
-6.5.1 Enabling Multiple Entities to Update the DID Description
+6.5.1 Enabling Multiple Entities to Update the DID Document
 </h4>
 
 <p>
 To assert that any single member of a group of other DID owners has
-permission to update the DID Description, the <code>authorization</code>
+permission to update the DID Document, the <code>authorization</code>
 property array MAY contain multiple JSON objects:
 </p>
 
@@ -1440,13 +1440,13 @@ property array MAY contain multiple JSON objects:
   "@context": "https://example.com/did/v1",
   "id": "did:example:215cb1dc-1f44-4695-a07f-97649cad9938",
   "authorizationCapability": [{
-    // this entity may update any field in this DID Description using any
+    // this entity may update any field in this DID Document using any
     // authentication mechanism understood by the ledger
     "permission": "UpdateDidDocument",
     "entity": "did:example:z9f823hdf783h78fh2378"
   }, {
     // this entity may update the authenticationCredential field in this
-    // DID Description as long as they authenticate with RsaSignature2017
+    // DID Document as long as they authenticate with RsaSignature2017
     "permission": "UpdateDidDocument",
     "entity": "did:example:abvd73h285jf73hd73",
     "field": ["authenticationCredential"],
@@ -1468,7 +1468,7 @@ MUST be considered valid for Authorization.
 
 <p>
 To assert that a set of members of a group of other DID owners must act
-together to update the DID Description, the <code>authorization</code>
+together to update the DID Document, the <code>authorization</code>
 property array MAY contain a single JSON object
 </p>
 
@@ -1512,7 +1512,7 @@ property array MAY contain a single JSON object
 
 <p>
 In addition to publication of authentication and authorization mechanisms,
-the other primary purpose of a DID Description is to enable discovery of
+the other primary purpose of a DID Document is to enable discovery of
 service endpoints for the entity. A service endpoint may represent
 any type of service the entity wishes to advertise, including
 decentralized identity management services for further discovery,
@@ -1523,7 +1523,7 @@ authentication, authorization, or interaction.
 </p>
 <ol start="1">
   <li>
-A DID Description MAY have multiple properties representing service endpoints.
+A DID Document MAY have multiple properties representing service endpoints.
   </li>
 
   <li>
@@ -1585,7 +1585,7 @@ object.
 </p>
 <ol start="1">
   <li>
-A DID Description MUST have zero or one property representing a creation
+A DID Document MUST have zero or one property representing a creation
 timestamp. It is RECOMMENDED to include this property.
   </li>
 
@@ -1648,7 +1648,7 @@ a notion.
 </p>
 <ol start="1">
   <li>
-A DID Description MUST have zero or one property representing an updated
+A DID Document MUST have zero or one property representing an updated
 timestamp. It is RECOMMENDED to include this property.
   </li>
 
@@ -1691,7 +1691,7 @@ from section 6.7.
 <p>
 
 
-      A signature on a DID Description is cryptographic proof of the integrity of the DID Description according to either:
+      A signature on a DID Document is cryptographic proof of the integrity of the DID Document according to either:
 
 
 </p>
@@ -1708,7 +1708,7 @@ The guardian as defined in section 6.3.
 <p>
 
 
-      This signature is NOT proof of the binding between a DID and a DID Description. See section 9.2.
+      This signature is NOT proof of the binding between a DID and a DID Document. See section 9.2.
 
 
       The rules for a signature are:
@@ -1717,7 +1717,7 @@ The guardian as defined in section 6.3.
 </p>
 <ol start="1">
   <li>
-A DID Description MAY have exactly one property representing a signature.
+A DID Document MAY have exactly one property representing a signature.
   </li>
 
   <li>
@@ -1766,13 +1766,13 @@ Signatures</a> .
 <p>
 
 
-      To enable the full functionality of DIDs and DID Descriptions on a particular distributed ledger or network (called the target system), a DID method specification MUST specify how each of the following
+      To enable the full functionality of DIDs and DID Documents on a particular distributed ledger or network (called the target system), a DID method specification MUST specify how each of the following
         <a href=
 "https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a>
        operations is performed by a client. Each operation MUST be specified to the level of detail necessary to build and test interoperable client implementations with the target system.
 
 
-      Note that, due to the specified contents of DID Descriptions, these operations can effectively be used to perform all the operations required of a CKMS (cryptographic key management system), e.g.:
+      Note that, due to the specified contents of DID Documents, these operations can effectively be used to perform all the operations required of a CKMS (cryptographic key management system), e.g.:
 
 
 </p>
@@ -1803,7 +1803,7 @@ Key expiration
 
 <p>
 The DID method specification MUST specify how a client creates a
-DID record—the combination of a DID and its associated DID Description—on the
+DID record—the combination of a DID and its associated DID Document—on the
 target system, including all cryptographic operations necessary
 to establish proof of ownership.
 </p>
@@ -1815,7 +1815,7 @@ to establish proof of ownership.
 <p>
 
 
-      The DID method specification MUST specify how a client uses a DID to request a DID Description from the target system, including how the client can verify the authenticity of the response.
+      The DID method specification MUST specify how a client uses a DID to request a DID Document from the target system, including how the client can verify the authenticity of the response.
 
 
 
@@ -1855,7 +1855,7 @@ to establish proof of ownership.
 <p>
 
 
-      A DID resolver is a software component with an API designed to accept requests for DID lookups and execute the corresponding DID method to retrieve the authoritative DID Description. To be conformant with this specification, a DID resolver:
+      A DID resolver is a software component with an API designed to accept requests for DID lookups and execute the corresponding DID method to retrieve the authoritative DID Document. To be conformant with this specification, a DID resolver:
 
 
 </p>
@@ -1871,12 +1871,12 @@ specification when performing DID resolution operations.
   </li>
 
   <li>
-SHOULD offer the service of verifying the integrity of the DID Description if it
+SHOULD offer the service of verifying the integrity of the DID Document if it
 is signed.
   </li>
 
   <li>
-MAY offer the service of returning requested properties of the DID Description.
+MAY offer the service of returning requested properties of the DID Document.
   </li>
 </ol>
 
@@ -1896,13 +1896,13 @@ MAY offer the service of returning requested properties of the DID Description.
       NOTE TO IMPLEMENTERS: During the Implementer’s Draft stage, this section focuses on security topics that should be important in early implementations. The editors are also seeking feedback on threats and threat mitigations that should be reflected in this section or elsewhere in the spec.
 
 
-      As the root identity records for decentralized identities, DIDs and DID Descriptions are a vital component of decentralized identity management. They are also the foundational building blocks of DPKI (decentralized public key infrastructure) as an augmentation to conventional X.509 certificates.
+      As the root identity records for decentralized identities, DIDs and DID Documents are a vital component of decentralized identity management. They are also the foundational building blocks of DPKI (decentralized public key infrastructure) as an augmentation to conventional X.509 certificates.
 
 
       As such, DIDs are designed to operate under the general Internet threat model used by many IETF standards. We assume uncompromised endpoints, but allow messages to be read or corrupted on the network. Protecting against an attack when a system is compromised requires external key-signing hardware. See also section 6.5 regarding key revocation and recovery.
 
 
-      For their part, the DLTs hosting DIDs and DID Descriptions have special security properties for preventing active attacks. Their design uses public/private key cryptography to allow operation on passively monitored networks without risking compromise of private keys. This is what makes DID architecture and decentralized identity possible.
+      For their part, the DLTs hosting DIDs and DID Documents have special security properties for preventing active attacks. Their design uses public/private key cryptography to allow operation on passively monitored networks without risking compromise of private keys. This is what makes DID architecture and decentralized identity possible.
 
 
 </p>
@@ -1997,23 +1997,23 @@ authentication protocol.
 
 </p>
 <h4>
-9.2.1 Proving Ownership of a DID and DID Description
+9.2.1 Proving Ownership of a DID and DID Document
 </h4>
 
 <p>
 
 
-      By itself, a verified signature on self-signed DID Description does not prove ownership of a DID. It only proves the following:
+      By itself, a verified signature on self-signed DID Document does not prove ownership of a DID. It only proves the following:
 
 
 </p>
 <ol start="1">
   <li>
-The DID Description has not been tampered with since it was registered.
+The DID Document has not been tampered with since it was registered.
   </li>
 
   <li>
-The owner of the DID Description controlled the private key used for the
+The owner of the DID Document controlled the private key used for the
 signature at the time the signature was generated.
   </li>
 </ol>
@@ -2021,18 +2021,18 @@ signature at the time the signature was generated.
 <p>
 
 
-      Proving ownership of a DID, i.e., the binding between the DID and the DID Description that describes it, requires a two step process:
+      Proving ownership of a DID, i.e., the binding between the DID and the DID Document that describes it, requires a two step process:
 
 
 </p>
 <ol start="1">
   <li>
-Resolving the DID to a DID Description according to its DID method
+Resolving the DID to a DID Document according to its DID method
 specification.
   </li>
 
   <li>
-Verifying that the id property of the resulting DID Description matches the DID
+Verifying that the id property of the resulting DID Document matches the DID
 that was resolved.
   </li>
 </ol>
@@ -2040,7 +2040,7 @@ that was resolved.
 <p>
 
 
-      It should be noted that this process proves ownership of a DID and DID Description regardless of whether the DID Description is signed.
+      It should be noted that this process proves ownership of a DID and DID Document regardless of whether the DID Document is signed.
 
 
 
@@ -2052,21 +2052,21 @@ that was resolved.
 <p>
 
 
-      There are two methods for proving ownership of the private key corresponding to a public key description in the DID Description: static and dynamic.
+      There are two methods for proving ownership of the private key corresponding to a public key description in the DID Document: static and dynamic.
 
 
-      The static method is to sign the DID Description with the private key. This proves ownership of the private key at a time no later than the DID Description was registered.
+      The static method is to sign the DID Document with the private key. This proves ownership of the private key at a time no later than the DID Document was registered.
 
 
-      If the DID Description is not signed, ownership of a public key described in the DID Description may still be proven dynamically as follows:
+      If the DID Document is not signed, ownership of a public key described in the DID Document may still be proven dynamically as follows:
 
 
 </p>
 <ol start="1">
   <li>
 Send a challenge message containing a public key description from
-the DID Description and a nonce to an appropriate service endpoint described in the
-DID Description.
+the DID Document and a nonce to an appropriate service endpoint described in the
+DID Document.
   </li>
 
   <li>
@@ -2087,7 +2087,7 @@ description.
 <p>
 
 
-      A DID and DID Description do not inherently carry any
+      A DID and DID Document do not inherently carry any
         <a href=
 "https://en.wikipedia.org/wiki/Personally_identifiable_information">PII</a>
        (personally-identifiable information). The process of binding a DID to the real-world owner of an identity using claims about the owner is out of scope for this specification. However this topic is the focus of the
@@ -2105,7 +2105,7 @@ description.
 <p>
 
 
-      If a DID Description publishes a service endpoint intended for authentication or authorization of an entity (section 6.6), it is the responsibility of the service endpoint provider, entity, and/or relying party to comply with the requirements of the authentication protocol(s) supported at that service endpoint.
+      If a DID Document publishes a service endpoint intended for authentication or authorization of an entity (section 6.6), it is the responsibility of the service endpoint provider, entity, and/or relying party to comply with the requirements of the authentication protocol(s) supported at that service endpoint.
 
 
 
@@ -2118,7 +2118,7 @@ description.
 <p>
 
 
-      Non-repudiation of DIDs and DID Description updates is supported under the assumption that: (1) the entity is monitoring for unauthorized updates (see section 9.5) and (2) the entity has had adequate opportunity to revoke malicious updates according to the DID method's access control mechanism (section 6.5). This capability is further supported if timestamps are included (sections 6.7 and 6.8) and the target DLT system supports timestamps.
+      Non-repudiation of DIDs and DID Document updates is supported under the assumption that: (1) the entity is monitoring for unauthorized updates (see section 9.5) and (2) the entity has had adequate opportunity to revoke malicious updates according to the DID method's access control mechanism (section 6.5). This capability is further supported if timestamps are included (sections 6.7 and 6.8) and the target DLT system supports timestamps.
 
 
 
@@ -2126,12 +2126,12 @@ description.
 </section>
 
 <section>
-<h2>Notification of DID Description Changes</h2>
+<h2>Notification of DID Document Changes</h2>
 
 <p>
 
 
-      One mitigation against unauthorized changes to a DID Description is monitoring and actively notifying the entity when there are changes. This is analogous to helping prevent account takeover on conventional username/password accounts by sending password reset notifications to the email addresses on file.
+      One mitigation against unauthorized changes to a DID Document is monitoring and actively notifying the entity when there are changes. This is analogous to helping prevent account takeover on conventional username/password accounts by sending password reset notifications to the email addresses on file.
 
 
       In the case of a DID, where there is no intermediary registrar or account provider to generate the notification, the following approaches are RECOMMENDED:
@@ -2148,7 +2148,7 @@ relevant service endpoints listed in an existing DID.
 
   <li>
 Self-monitoring. An entity may employ its own local or
-online agent to periodically monitor for changes to a DID Description.
+online agent to periodically monitor for changes to a DID Document.
   </li>
 
   <li>
@@ -2183,7 +2183,7 @@ monitoring service, however this introduces another vector of attack.
 <p>
 
 
-      Section 7 specifies the DID operations that must be supported by a DID method specification, including revocation of a DID Description by replacing it with an updated DID Description. In general, checking for key revocation on DLT-based methods is expected to be handled in a manner similar to checking the balance of a cryptocurrency account on a distributed ledger: if the balance is empty, the entire DID is revoked.
+      Section 7 specifies the DID operations that must be supported by a DID method specification, including revocation of a DID Document by replacing it with an updated DID Document. In general, checking for key revocation on DLT-based methods is expected to be handled in a manner similar to checking the balance of a cryptocurrency account on a distributed ledger: if the balance is empty, the entire DID is revoked.
 
 
       DID method specifications SHOULD enable support for a quorum of trusted parties to enable key recovery. Some of the facilities to do so are suggested in section 6.5, Authorization. Note that not all DID method specifications will recognize control from DIDs registered using other DID methods and they MAY restrict third-party control to DIDs that use the same method.
@@ -2203,7 +2203,7 @@ monitoring service, however this introduces another vector of attack.
 <p>
 
 
-      It is critically important to apply the principles of Privacy by Design to all aspects of decentralized identity architecture, because DIDs and DID Descriptions are—by design—administered directly by their owners. There is no registrar, hosting company, or other intermediate service provider to recommend or apply additional privacy safeguards.
+      It is critically important to apply the principles of Privacy by Design to all aspects of decentralized identity architecture, because DIDs and DID Documents are—by design—administered directly by their owners. There is no registrar, hosting company, or other intermediate service provider to recommend or apply additional privacy safeguards.
 
 
       The authors of this specification have applied all seven Privacy by Design principles throughout its development. For example, privacy in this specification is preventative not remedial, and privacy is an embedded default. Furthermore, decentralized identity architecture by itself embodies principle #7, "Respect for user privacy—keep it user-centric."
@@ -2252,7 +2252,7 @@ exclusion.
 <p>
 
 
-      If a DID method specification is written for a public ledger or network where all DIDs and DID Descriptions will be publicly available, it is STRONGLY RECOMMENDED that DID Descriptions contain no PII. All PII should be kept off-ledger behind service endpoints under the control of the entity. With this privacy architecture, PII may be exchanged on a private, peer-to-peer basis using communications channels identified and secured by key descriptions in DID records. This also enables entitys and relying parties to implement the
+      If a DID method specification is written for a public ledger or network where all DIDs and DID Documents will be publicly available, it is STRONGLY RECOMMENDED that DID Documents contain no PII. All PII should be kept off-ledger behind service endpoints under the control of the entity. With this privacy architecture, PII may be exchanged on a private, peer-to-peer basis using communications channels identified and secured by key descriptions in DID records. This also enables entitys and relying parties to implement the
         <a href=
 "https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>
 
@@ -2282,12 +2282,12 @@ exclusion.
 </section>
 
 <section>
-<h2>DID Description Correlation Risks</h2>
+<h2>DID Document Correlation Risks</h2>
 
 <p>
 
 
-      The anti-correlation protections of pseudonymous DIDs are easily defeated if the data in the corresponding DID Descriptions can be correlated. For example, using same public key descriptions or bespoke service endpoints in multiple DID Descriptions can provide as much correlation information as using the same DID. Therefore the DID Description for a pseudonymous DID SHOULD also use pairwise-unique public keys and pairwise-unique service endpoints.
+      The anti-correlation protections of pseudonymous DIDs are easily defeated if the data in the corresponding DID Documents can be correlated. For example, using same public key descriptions or bespoke service endpoints in multiple DID Documents can provide as much correlation information as using the same DID. Therefore the DID Document for a pseudonymous DID SHOULD also use pairwise-unique public keys and pairwise-unique service endpoints.
 
 
 
@@ -2337,12 +2337,12 @@ exclusion.
 <p>
 
 
-      Including an equivalence property, such as equivID, in DID Descriptions whose value is an array of DIDs would allow entitys to assert two or more DIDs that represent the same entity. This capability has numerous uses, including supporting migration between ledgers and providing forward compatibility of existing DIDs to future DLTs. In theory, equivalent DIDs should have the same identity rights, allowing
+      Including an equivalence property, such as equivID, in DID Documents whose value is an array of DIDs would allow entitys to assert two or more DIDs that represent the same entity. This capability has numerous uses, including supporting migration between ledgers and providing forward compatibility of existing DIDs to future DLTs. In theory, equivalent DIDs should have the same identity rights, allowing
         <a href="https://w3c.github.io/vctf/">verifiable claims</a>
        made against one DID to apply to equivalent DIDs.
 
 
-      Equivalence was not included in the current specification due to the complexity of verifying equivalence across different DLTs and different DID methods, and also of aggregating properties of equivalent DID Descriptions. However equivalence should be supported in a future version of this specification.
+      Equivalence was not included in the current specification due to the complexity of verifying equivalence across different DLTs and different DID methods, and also of aggregating properties of equivalent DID Documents. However equivalence should be supported in a future version of this specification.
 
 
 
@@ -2355,13 +2355,13 @@ exclusion.
 <p>
 
 
-      Verifiable timestamps have significant utility for identity records. This is a good fit for DLTs, since most offer some type of timestamp mechanism. Despite some transactional cost, they are the most censorship-resistant transaction ordering systems in the world, so they are nearly ideal for DID Description timestamping. In some cases a DLT's immediate timing is approximate, however their sense of
+      Verifiable timestamps have significant utility for identity records. This is a good fit for DLTs, since most offer some type of timestamp mechanism. Despite some transactional cost, they are the most censorship-resistant transaction ordering systems in the world, so they are nearly ideal for DID Document timestamping. In some cases a DLT's immediate timing is approximate, however their sense of
         <a href=
 "https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki%23Abstract">"median time past" (see Bitcoin BIP 113)</a>
        can be precisely defined.
 
 
-      A generic DID Description timestamping mechanism could would work across all DLTs and might operate via a mechanism including either individual transactions or transaction batches. The generic mechanism was deemed out of scope for this version, although it may be included in a future version of this specification.
+      A generic DID Document timestamping mechanism could would work across all DLTs and might operate via a mechanism including either individual transactions or transaction batches. The generic mechanism was deemed out of scope for this version, although it may be included in a future version of this specification.
 
 
 
@@ -2369,12 +2369,12 @@ exclusion.
 </section>
 
 <section>
-<h2>Time Locks and DID Description Recovery</h2>
+<h2>Time Locks and DID Document Recovery</h2>
 
 <p>
 
 
-      Section 9.7 mentions one possible clever use of time locks to recover control of a DID after a key compromise. The technique relies on an ability to override the most recent update to a DID Description with Authorization applied by an earlier version of the DID Description in order to defeat the attacker. This protection depends on adding a
+      Section 9.7 mentions one possible clever use of time locks to recover control of a DID after a key compromise. The technique relies on an ability to override the most recent update to a DID Document with Authorization applied by an earlier version of the DID Document in order to defeat the attacker. This protection depends on adding a
         <a href=
 "https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki%23Abstract">time lock (see Bitcoin BIP 65)</a>
        to protect part of the transaction chain, enabling a Authorization block to be used to recover control. We plan to add support for time locks in a future version of this specification.
@@ -2405,9 +2405,9 @@ exclusion.
 
 <p>
 
-      Although DIDs and DID Descriptions form a foundation for decentralized identity, they are only the first step in describing an entity. The rest of the descriptive power comes through collecting and selectively using
+      Although DIDs and DID Documents form a foundation for decentralized identity, they are only the first step in describing an entity. The rest of the descriptive power comes through collecting and selectively using
         <a href="https://w3c.github.io/vctf/">verifiable claims</a>
-      . Future versions of the specification will describe in more detail how DIDs and DID Description can be integrated with—and help enable—the verifiable claims ecosystem.
+      . Future versions of the specification will describe in more detail how DIDs and DID Document can be integrated with—and help enable—the verifiable claims ecosystem.
 
 
 
@@ -2420,7 +2420,7 @@ exclusion.
 <p>
 
 
-      This version of the specification relies on JSON-LD and the RDF graph model for expressing a DID Description. Future versions of this specification MAY specify other semantic graph formats for a DID Description, such as JXD (JSON XDI Data), a serialization format for the XDI graph model as defined by the
+      This version of the specification relies on JSON-LD and the RDF graph model for expressing a DID Document. Future versions of this specification MAY specify other semantic graph formats for a DID Document, such as JXD (JSON XDI Data), a serialization format for the XDI graph model as defined by the
         <a href=
 "http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">OASIS XDI Core 1.0 specification</a>
       .
@@ -2688,7 +2688,7 @@ exclusion.
 <h1>Appendix B: The Generic DID Context for JSON-LD</h1>
 
 <p>
-This JSON-LD document is the generic context for all DID Descriptions. See section
+This JSON-LD document is the generic context for all DID Documents. See section
 6.1 for the rules for using this context.
 </p>
 
@@ -2707,13 +2707,13 @@ https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/maste
   "@context": "https://w3id.org/veres-one/v1",
   "id": "did:example:123456789abcdefghi",
   "authorizationCapability": [{
-    // this entity may update any field in this DID Description using any
+    // this entity may update any field in this DID Document using any
     // authentication mechanism understood by the ledger
     "permission": "UpdateDidDocument",
     "entity": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938"
   }, {
     // this entity may update the authenticationCredential field in this
-    // DID Description as long as they authenticate with RsaSignature2017
+    // DID Document as long as they authenticate with RsaSignature2017
     "entity": "did:v1:b5f8c320-f7ca-4869-85e6-a1bcbf825b2a",
     "permission": "UpdateDidDocument",
     "field": ["authenticationCredential"],
@@ -2747,7 +2747,7 @@ https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/maste
     }]
   }, {
     // this entity may issue credentials where the "issuer" field is this
-    // DID Description's DID as long as this specific RSA key is used
+    // DID Document's DID as long as this specific RSA key is used
     "permission": "IssueCredential",
     "entity": "did:example:123456789abcdefghi",
     "permittedProofType": [{
@@ -2784,7 +2784,7 @@ https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/maste
 <p>
 As described in section 6, key description is a standard way to describe
 a public key or verification key in JSON-LD. This appendix contains a
-list of key descriptions recommended for use in DID Descriptions.
+list of key descriptions recommended for use in DID Documents.
 </p>
 
 <section>
