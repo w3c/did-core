@@ -604,9 +604,9 @@ JSON-LD context definition, see Appendix B (the URL for the @context
 property below is just for illustration).
 </p>
 
-<pre class="example nohighlight">
+<pre class="example nohighlight" title="Minimal self-managed DID Document">
 {
-  "@context": "https://example.com/did/v1",
+  "@context": "https;//w3id.org/did/v1",
   "id": "did:example:123456789abcdefghi",
   "authorizationCapability": [{
     // this entity may update any field in this DID Document using any
@@ -640,9 +640,9 @@ descriptions because the dependent does not yet have its own set of
 private keys.
 </p>
 
-<pre class="example nohighlight">
+<pre class="example nohighlight" title="Basic delegate-managed DID Document">
 {
-  "@context": "https://example.com/did/v1",
+  "@context": "https;//w3id.org/did/v1",
   "id": "did:example:123456789abcdefghi",
   "authorizationCapability": [{
     // this entity is a delegate and may update any field in this
@@ -1270,9 +1270,9 @@ i.e., the delegate relationships must not be nested.
 Example:
 </p>
 
-<pre class="example nohighlight">
+<pre class="example nohighlight" title="Basic DID Document">
 {
-  "@context": "https://example.com/did/v1",
+  "@context": "https;//w3id.org/did/v1",
   "id": "did:example:123456789abcdefghi",
   "authorizationCapability": [{
     // this entity is a delegate and may update any field in this
@@ -1340,9 +1340,10 @@ specification.
 Example:
 </p>
 
-<pre class="example nohighlight">
+<pre class="example nohighlight"
+  title="Authentication credential field containing two credentials">
 {
-  "@context": "https://example.com/did/v1",
+  "@context": "https;//w3id.org/did/v1",
   "id": "did:example:123456789abcdefghi",
   "authenticationCredential": [{
     // this biometric can be used to authenticate as DID ...fghi
@@ -1435,9 +1436,10 @@ permission to update the DID Document, the <code>authorizationCapability</code>
 property array MAY contain multiple JSON objects:
 </p>
 
-<pre class="example nohighlight">
+<pre class="example nohighlight"
+  title="Authorization capability field containing two capability descriptions">
 {
-  "@context": "https://example.com/did/v1",
+  "@context": "https;//w3id.org/did/v1",
   "id": "did:example:215cb1dc-1f44-4695-a07f-97649cad9938",
   "authorizationCapability": [{
     // this entity may update any field in this DID Document using any
@@ -1472,9 +1474,10 @@ together to update the DID Document, the <code>authorizationCapability</code>
 property array MAY contain a single JSON object
 </p>
 
-<pre class="example nohighlight">
+<pre class="example nohighlight"
+  title="Authorization capability to update DID Document that requires three signatures">
 {
-  "@context": "https://example.com/did/v1",
+  "@context": "https;//w3id.org/did/v1",
   "id": "did:example:215cb1dc-1f44-4695-a07f-97649cad9938",
   "authorizationCapability": [{
     // anyone may update the authenticationCredential and writeAuthorization
@@ -1549,7 +1552,7 @@ object.
 
 </p>
 
-<pre class="example nohighlight">
+<pre class="example nohighlight" title="Service description for a Social Web inbox">
 {
   "credentialRepositoryService": "https://repository.example.com/123",
   "socialWebInboxService": {
@@ -2702,9 +2705,9 @@ For this implementer’s draft, the URL for this context is:
 https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/final-documents/did-context-v1-draft-01.txt</a>
 </p>
 
-<pre class="example nohighlight">
+<pre class="example nohighlight" title="Advanced DID Document example">
 {
-  "@context": "https://w3id.org/veres-one/v1",
+  "@context": "https://w3id.org/did/v1",
   "id": "did:example:123456789abcdefghi",
   "authorizationCapability": [{
     // this entity may update any field in this DID Document using any
