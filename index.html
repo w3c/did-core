@@ -593,13 +593,13 @@ did:example:123456789abcdefghi
 </p>
 
 <section>
-<h2>Owner-Managed DID Document</h2>
+<h2>Self-Managed DID Document</h2>
 
 <p>
 Following is an example of a DID Document that describes the DID above. This
 example assumes that the entity—the entity that controls the
 private keys for this identity—is authoritative for the DID Document. See section
-1.3.2 for an example of a DID Document created by a guardian. For the authoritative
+1.3.2 for an example of a DID Document created by a delegate. For the authoritative
 JSON-LD context definition, see Appendix B (the URL for the @context
 property below is just for illustration).
 </p>
@@ -627,13 +627,13 @@ property below is just for illustration).
 </section>
 
 <section>
-<h2>Example Guardian-Managed DID Document</h2>
+<h2>Example Delegate-Managed DID Document</h2>
 
 <p>
 Following is a second example of a DID Document that describes the DID above. In
 this case the DID Document describes a dependent—an entity who is not currently
 in a position to control the private keys for this identity. This DID Document
-was created by a guardian—a separate entity with its own DID
+was created by a delegate—a separate entity with its own DID
 that serves as a trustee for the dependent. Note that while this DID Document
 asserts a set of service endpoints, it does not yet contain a set of key
 descriptions because the dependent does not yet have its own set of
@@ -645,7 +645,7 @@ private keys.
   "@context": "https://example.com/did/v1",
   "id": "did:example:123456789abcdefghi",
   "authorizationCapability": [{
-    // this entity is a guardian and may update any field in this
+    // this entity is a delegate and may update any field in this
     // DID Document using any authentication mechanism understood
     // by the ledger
     "permission": "UpdateDidDocument",
@@ -723,7 +723,7 @@ verifiable public key descriptions.
 
 <p>
 Dependent. A person, organization, or thing whose DID record is
-registered and maintained by a guardian because the dependent is not in
+registered and maintained by a delegate because the dependent is not in
 a position to control the private keys. A dependent becomes an identity
 owner when the dependent takes control of the private keys.
 </p>
@@ -812,7 +812,7 @@ DPKI. Acronym for decentralized PKI.
 <p>
 Guardian. An entity who creates a DID record for a dependent who
 does not yet have the capacity to control the private keys. The
-dependent must rely on the guardian to safeguard the private keys until
+dependent must rely on the delegate to safeguard the private keys until
 the dependent can assume control and become an entity.
 </p>
 
@@ -1225,44 +1225,44 @@ Example:
 
 <p class="issue">
 The way that Guardians are handled is changing. The feature is still supported,
-but via the `authorization` field rather than the more specialized `guardian`
+but via the `authorization` field rather than the more specialized `delegate`
 field.
 </p>
 
 <p>
-A guardian is an entity, such as a parent or aid organization, that creates and
+A delegate is an entity, such as a parent or aid organization, that creates and
 maintains a DID Document for a dependent who is not in a position to hold
 or control authentication credentials (e.g., cryptographic keys).
 </p>
 
 <p>
-The rules for a guardian are:
+The rules for a delegate are:
 </p>
 
 <ol start="1">
   <li>
 A DID Document that includes an
 <code>authenticationCredential</code> field (section 6.4) MAY list one or
-more guardians via the <code>authorization</code> field.
+more delegates via the <code>authorization</code> field.
   </li>
 
   <li>
 A DID Document that does not include an
-<code>authenticationCredential</code> MUST have a guardian.
+<code>authenticationCredential</code> MUST have a delegate.
   </li>
 
   <li>
 The <code>authorization</code> field must contain a capability for the
-guardian that includes <code>UpdateDidDescription</code> as the capability,
-the DID of the guardian as the <code>entity</code>, and MAY include a
+delegate that includes <code>UpdateDidDescription</code> as the capability,
+the DID of the delegate as the <code>entity</code>, and MAY include a
 more specific set of <code>authenticationCredential</code>s that the
-guardian MAY use to authenticate when updating the DID Document.
+delegate MAY use to authenticate when updating the DID Document.
   </li>
 
   <li>
-The guardian DID MUST resolve to a DID Document that has a
+The delegate DID MUST resolve to a DID Document that has a
 <code>authenticationCredential</code> property containing at least one value
-i.e., the guardian relationships must not be nested.
+i.e., the delegate relationships must not be nested.
   </li>
 </ol>
 
@@ -1275,7 +1275,7 @@ Example:
   "@context": "https://example.com/did/v1",
   "id": "did:example:123456789abcdefghi",
   "authorizationCapability": [{
-    // this entity is a guardian and may update any field in this
+    // this entity is a delegate and may update any field in this
     // DID Document using any authentication mechanism understood
     // by the ledger
     "permission": "UpdateDidDocument",
@@ -1701,7 +1701,7 @@ The entity as defined in section 6.4, or if not present:
   </li>
 
   <li>
-The guardian as defined in section 6.3.
+The delegate as defined in section 6.3.
   </li>
 </ol>
 
@@ -2209,7 +2209,7 @@ monitoring service, however this introduces another vector of attack.
       The authors of this specification have applied all seven Privacy by Design principles throughout its development. For example, privacy in this specification is preventative not remedial, and privacy is an embedded default. Furthermore, decentralized identity architecture by itself embodies principle #7, "Respect for user privacy—keep it user-centric."
 
 
-      This section lists additional privacy considerations that implementers, guardians, and entitys should bear in mind.
+      This section lists additional privacy considerations that implementers, delegates, and entitys should bear in mind.
 
 
 
