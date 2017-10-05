@@ -604,6 +604,14 @@ JSON-LD context definition, see Appendix B (the URL for the @context
 property below is just for illustration).
 </p>
 
+<p class="issue">
+Discussions at Rebooting the Web of Trust 5 resulted in consensus to
+remove the <code>authorizationCapability</code> field as it is unclear whether
+all ledgers will find the field useful. The field will most likely be moved
+into a DID Method specification or a separate DID Ledger Capabilities
+document.
+</p>
+
 <pre class="example nohighlight" title="Minimal self-managed DID Document">
 {
   "@context": "https;//w3id.org/did/v1",
@@ -1373,6 +1381,15 @@ responsibility of DID resolvers and other clients. See section 9.6.
 <section>
 <h2>Authorization</h2>
 
+<p class="issue">
+Discussions at Rebooting the Web of Trust 5 resulted in consensus to
+remove the <code>authorizationCapability</code> field as it is unclear whether
+all ledgers will find the field useful. The field will most likely be moved
+into a DID Method specification or a separate DID Ledger Capabilities
+document. Authorization will most likely be a DID Method-specific
+definition.
+</p>
+
 <p>
 Authorization is the mechanism by which an entity may give itself
 or other entities permission to update the DID Document—for example to assist with
@@ -1929,6 +1946,13 @@ This section MUST consider all the requirements mentioned in section
 27) for the DID operations defined in the specification. In particular:
   </li>
 </ol>
+
+<p class="issue">
+Discussions at Rebooting the Web of Trust 5 resulted in consensus to move
+Authorization to DID Method specifications. It is currently expected that
+there will be an attempt to create a generarlized authorization mechanism
+that is build on object capabilities.
+</p>
 
 <p>
 
