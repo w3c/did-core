@@ -519,7 +519,7 @@ when possible to express authorization to modify a DID Document.
   "exampleService": "https://example.com/messages/8377464",
   "authenticationCredential": [{
     // this key can be used to authenticate as DID ...9938
-    "id": "did:example:123456789abcdefghi/keys/1",
+    "id": "did:example:123456789abcdefghi#keys-1",
     "type": "RsaCryptographicKey",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
@@ -1257,7 +1257,7 @@ Example:
     "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
   }, {
     // this key can be used to authenticate as DID ...fghi
-    "id": "did:example:123456789abcdefghi/keys/1",
+    "id": "did:example:123456789abcdefghi#keys-1",
     "type": "RsaCryptographicKey",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
@@ -1400,7 +1400,7 @@ property array MAY contain a single JSON object
       "proofType": "RsaSignature2017",
       "minimumSignatures": 3,
       "authenticationCredential": [{
-        "id": "did:example:304ebc3e-7997-4bf4-a915-dd87e8455941/keys/123",
+        "id": "did:example:304ebc3e-7997-4bf4-a915-dd87e8455941#keys-123",
         "type": "RsaCryptographicKey",
         "owner": "did:example:304ebc3e-7997-4bf4-a915-dd87e8455941",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
@@ -2651,7 +2651,7 @@ https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/maste
       "proofType": "RsaSignature2017",
       "minimumSignatures": 3,
       "authenticationCredential": [{
-        "id": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941/keys/123",
+        "id": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941#keys-123",
         "type": "RsaCryptographicKey",
         "owner": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
@@ -2675,7 +2675,7 @@ https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/maste
     "permittedProofType": [{
       "proofType": "RsaSignature2017",
       "authenticationCredential": [{
-        "id": "did:example:123456789abcdefghi/keys/1",
+        "id": "did:example:123456789abcdefghi#keys-1",
         "type": "RsaCryptographicKey",
         "owner": "did:example:123456789abcdefghi",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
@@ -2691,7 +2691,7 @@ https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/maste
     "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
   }, {
     // this key can be used to authenticate as DID ...9938
-    "id": "did:example:123456789abcdefghi/keys/1",
+    "id": "did:example:123456789abcdefghi#keys-1",
     "type": "RsaCryptographicKey",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
@@ -2714,7 +2714,7 @@ list of key descriptions recommended for use in DID Documents.
 
 <pre>
 {
-  "id": "did:example:123456789abcdefghi/keys/1",
+  "id": "did:example:123456789abcdefghi#keys-1",
   "type": ["CryptographicKey", "RsaCryptographicKey"],
   "owner": "did:example:123456789abcdefghi",
   "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
