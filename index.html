@@ -194,7 +194,7 @@ This design eliminates dependence on centralized registries for
 identifiers as well as centralized certificate authorities for key
 management—the standard pattern in hierarchical <a href=
   "https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI (public
-key infrastructure</a> ). Because DID records are on a distributed
+key infrastructure</a> ). Because DIDs reside on a distributed
 ledger, each entity may serve as its own root authority—an
 architecture referred to as <a href=
   "https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">
@@ -203,8 +203,8 @@ DPKI (decentralized PKI)</a> .
 
 <p>
 Note that DID methods may also be developed for identities registered in
-federated identity management systems. For their part, federated
-identity systems may add support for DIDs. This creates an
+federated or centralized identity management systems. For their part,
+all types of identity systems may add support for DIDs. This creates an
 interoperability bridge between the worlds of centralized, federated,
 and decentralized identity.
 </p>
@@ -213,7 +213,7 @@ and decentralized identity.
 <h2>URIs, URLs, and URNs</h2>
 
 <p>
-DIDs have a foundation in URIs, so it's important to understand how the
+DIDs have a foundation in URLs, so it's important to understand how the
 W3C <a href="https://www.w3.org/TR/uri-clarification/">clarified</a>
   the terms URI (Uniform Resource Identifier), URL (Uniform Resource
 Locator), and URN (Uniform Resource Name) in September 2001. The key
@@ -246,31 +246,26 @@ URNs are intended to last forever.
 <h2>Motivations for DIDs</h2>
 
 <p>
-The growing need for decentralized identity has produced three specific
-requirements for a new type of URI that still fits within URI/URL/URN
-architecture but in a less than traditional way:
+The growing need for decentralized identity has produced two specific
+requirements for a new type of URL that still fits Web Architecture and has
+a few additional requirements that more traditional URLs, like HTTP-based URLs,
+do not have:
 </p>
 
 <ol start="1">
   <li>
-A URI that is persistent like a URN yet can be resolved or
-de-referenced to locate a resource like a URL. In essence, a DID is a
-URI that serves both functions.
-  </li>
-
-  <li>
-A URI that does not require a centralized authority to register,
-resolve, update, or revoke. The overwhelming majority of URIs today are
-based on DNS names or IP addresses that depend on centralized
+The new type of URL SHOULD NOT require a centralized authority to
+register, resolve, update, or revoke the identifier. The overwhelming majority
+of URIs today are based on DNS names or IP addresses that depend on centralized
 authorities for registration and ultimate control. DIDs can be created
 and managed without any such authority.
   </li>
 
   <li>
-A URI whose ownership and associated metadata, including public
-keys, can be cryptographically verified. Control of DIDs and DID Documents
-leverages the same public/private key cryptography as distributed
-ledgers.
+A URL whose ownership and associated metadata, including public
+keys, can be cryptographically verified. Authentication via DIDs and
+DID Documents leverage the same public/private key cryptography as
+distributed ledgers.
   </li>
 </ol>
 
@@ -316,9 +311,9 @@ correlatable, especially if they are globally unique.
 
 <p>
 The first purpose of this specification is to define the generic DID
-scheme and a generic set of operations on DID records that can be
-implemented for any distributed ledger or network capable of accepting
-DID records. The second purpose of this specification to define the
+scheme and a generic set of operations on DIDs that can be
+implemented for any distributed ledger or network capable of supporting
+DIDs. The second purpose of this specification to define the
 conformance requirements for a DID method specification—a separate
 specification that defines a specific DID scheme and specific set of DID
 record operations for a specific distributed ledger or network.
@@ -342,7 +337,8 @@ DID records on the network for which it is written.
 </p>
 
 <p>
-For a list of DID method specifications, see Appendix A.
+For a list of DID Methods and their corresponding specifications,
+see Appendix A.
 </p>
 
 </section>
@@ -356,60 +352,36 @@ This section summarizes the design goals and principles of DID
 architecture.
 </p>
 
-<table>
+<table class="simple">
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
   <tbody>
+
     <tr>
-      <td colspan="1" rowspan="1">
-        <p>
-          #
-        </p>
+      <td>
+        Decentralization
       </td>
-      <td colspan="1" rowspan="1">
-        <p>
-          Goal
-        </p>
-      </td>
-      <td colspan="1" rowspan="1">
-        <p>
-          Description
-        </p>
+      <td>
+        DID architecture should eliminate the requirement for
+        centralized authorities or single points of failure in identity
+        management, including the registration of globally unique
+        identifiers, public verification keys, service endpoints, and
+        other metadata.
       </td>
     </tr>
 
     <tr>
-      <td colspan="1" rowspan="1">
-        <p>
-          1
-        </p>
-      </td>
-      <td colspan="1" rowspan="1">
-        <p>
-          Decentralization
-        </p>
-      </td>
-      <td colspan="1" rowspan="1">
-        <p>
-          DID architecture should eliminate the requirement for
-          centralized authorities or single points of failure in identity
-          management, including the registration of globally unique
-          identifiers, public verification keys, service endpoints, and
-          other metadata.
-        </p>
-      </td>
-    </tr>
-
-    <tr>
-      <td colspan="1" rowspan="1">
-        <p>
-          2
-        </p>
-      </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Self-Sovereignty
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           DID architecture should give entitys the power to
           directly own and control their own digital identities without
@@ -419,17 +391,12 @@ architecture.
     </tr>
 
     <tr>
-      <td colspan="1" rowspan="1">
-        <p>
-          3
-        </p>
-      </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Privacy
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           DID architecture should enable entitys to control the
           privacy of their digital identities, including selective
@@ -439,17 +406,12 @@ architecture.
     </tr>
 
     <tr>
-      <td colspan="1" rowspan="1">
-        <p>
-          4
-        </p>
-      </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Security
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           DID architecture should enable sufficient security for relying
           parties to rely on DID records to their required level of
@@ -459,17 +421,12 @@ architecture.
     </tr>
 
     <tr>
-      <td colspan="1" rowspan="1">
-        <p>
-          5
-        </p>
-      </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Proof-based
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           DID architecture should enable an entity to provide
           cryptographic proof of ownership and proof of access control
@@ -479,17 +436,12 @@ architecture.
     </tr>
 
     <tr>
-      <td colspan="1" rowspan="1">
-        <p>
-          6
-        </p>
-      </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Discoverability
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           DID architecture should make it possible for entities to
           discover DID records for other entities to learn more about or
@@ -499,17 +451,12 @@ architecture.
     </tr>
 
     <tr>
-      <td colspan="1" rowspan="1">
-        <p>
-          7
-        </p>
-      </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Interoperability
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           DID architecture should use interoperable standards so DIDs and
           DID record infrastructure can make use of existing tools and
@@ -519,17 +466,12 @@ architecture.
     </tr>
 
     <tr>
-      <td colspan="1" rowspan="1">
-        <p>
-          8
-        </p>
-      </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Portability
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           DID architecture should be system-independent and enable
           entitys to use their digital identities with any system
@@ -539,17 +481,12 @@ architecture.
     </tr>
 
     <tr>
-      <td colspan="1" rowspan="1">
-        <p>
-          9
-        </p>
-      </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Simplicity
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           To meet these design goals, DID architecture should be (to
           paraphrase Albert Einstein) "as simple as possible but no
@@ -559,17 +496,12 @@ architecture.
     </tr>
 
     <tr>
-      <td colspan="1" rowspan="1">
-        <p>
-          10
-        </p>
-      </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Extensibility
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           When possible, DID architecture should enable extensibility
           provided it does not hinder interoperability, portability or
@@ -2582,22 +2514,22 @@ exclusion.
 <table>
   <tbody>
     <tr>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Method Name
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           DLT or Network
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Authors
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Link
         </p>
@@ -2605,104 +2537,104 @@ exclusion.
     </tr>
 
     <tr>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           did:sov:
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Sovrin
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Sovrin Foundation
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <a href="https://docs.google.com/document/d/1X7dWpVvskGRpk05yyPEMd1uqaJ9FnOzoeWMdwzdIFyU/edit#">Sovrin DID Method</a>
       </td>
     </tr>
 
     <tr>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           did:btcr:
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Bitcoin
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Christopher Allen
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
       </td>
     </tr>
 
     <tr>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           did:uport:
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Ethereum
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           uPort
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
       </td>
     </tr>
 
     <tr>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           did:cnsnt:
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Ethereum
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Consent
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
       </td>
     </tr>
 
 
     <tr>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           did:v1:
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Veres One
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <p>
           Digital Bazaar
         </p>
       </td>
-      <td colspan="1" rowspan="1">
+      <td>
         <a href="https://w3c-ccg.github.io/didm-veres-one/">Veres One DID Method</a>
       </td>
     </tr>
