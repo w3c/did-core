@@ -481,31 +481,29 @@ simplicity.
 <h1>Simple Examples</h1>
 
 <p>
-This is an example of a DID:
+This is a simple example of a DID:
 </p>
 
-<p>
+<pre class="example" title="A simple example of a Decentralized Identifier (DID)">
 did:example:123456789abcdefghi
-</p>
+</pre>
 
 <section>
 <h2>Self-Managed DID Document</h2>
 
 <p>
 Following is an example of a DID Document that describes the DID above. This
-example assumes that the entity—the entity that controls the
-private keys for this identity—is authoritative for the DID Document. See section
-1.3.2 for an example of a DID Document created by a delegate. For the authoritative
-JSON-LD context definition, see Appendix B (the URL for the @context
-property below is just for illustration).
+example assumes that the entity that controls the private keys for this
+identifier is authoritative for the DID Document.
 </p>
 
-<p class="issue">
+<p class="issue" data-number="11">
 Discussions at Rebooting the Web of Trust 5 resulted in consensus to
-remove the <code>authorizationCapability</code> field as it is unclear whether
-all ledgers will find the field useful. The field will most likely be moved
-into a DID Method specification or a separate DID Ledger Capabilities
-document.
+remove the <code>authorizationCapability</code> field to DID Method specs
+as it is unclear whether all ledgers will find the field useful. The field will
+most likely be moved into a DID Method specification or a separate DID Ledger
+Capabilities document. The current consensus is to use object capabilities
+when possible to express authorization to modify a DID Document.
 </p>
 
 <pre class="example nohighlight" title="Minimal self-managed DID Document">
@@ -518,7 +516,7 @@ document.
     "permission": "UpdateDidDocument",
     "entity": "did:example:123456789abcdefghi"
   }],
-  "credentialRepositoryService": "https://vc.example.com/abcdef",
+  "exampleService": "https://example.com/messages/8377464",
   "authenticationCredential": [{
     // this key can be used to authenticate as DID ...9938
     "id": "did:example:123456789abcdefghi/keys/1",
@@ -528,6 +526,7 @@ document.
   }]
 }
 </pre>
+
 </section>
 
 <section>
