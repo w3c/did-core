@@ -533,9 +533,11 @@ when possible to express authorization to modify a DID Document.
 <h2>Example Delegate-Managed DID Document</h2>
 
 <p>
-Following is a second example of a DID Document that describes the DID above. In
+The following example expresses a DID Document that describes the DID above
+where control of the document is delegated to another entity. In
 this case the DID Document describes a dependent—an entity who is not currently
-in a position to control the private keys for this identity. This DID Document
+in a position to control the authentication information for this identity.
+This DID Document
 was created by a delegate—a separate entity with its own DID
 that serves as a trustee for the dependent. Note that while this DID Document
 asserts a set of service endpoints, it does not yet contain a set of key
@@ -554,7 +556,7 @@ private keys.
     "permission": "UpdateDidDocument",
     "entity": "did:example:zxyvwtrkpn987654321"
   }],
-  "credentialRepositoryService": "https://vc.example.com/abcdef",
+  "exampleService": "https://example.com/messages/8377464",
   "authenticationCredential": [{
     // this biometric can be used to authenticate as DID ...fghi
     "id": "did:example:123456789abcdefghi/biometric/1",
@@ -565,8 +567,13 @@ private keys.
   }]
 }
 </pre>
-<p>
-
+<p class="issue" title="Make delegation use cases more clear">
+It will probably not be immediately obvious to most developers why delegation
+is important. We should elaborate that there are use cases around DIDs that
+are focused on people that do not have the technological means (yet) to control
+a DID such as the unbanked, refugee use cases, child protection services, and
+other people that are in delicate situations without ready access to
+technology.
 </p>
 
 </section>
@@ -1265,10 +1272,11 @@ Example:
 }
 </pre>
 
-<p>
-Note that caching and expiration of the keys in DID Document
+<p class="note">
+Caching and expiration of the keys in a DID Document
 <code>authenticationCredential</code> property is entirely the
-responsibility of DID resolvers and other clients. See section 9.6.
+responsibility of DID resolvers and other clients. See Section
+<a href="#did-resolvers"></a>.
 </p>
 
 </section>
