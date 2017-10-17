@@ -83,7 +83,7 @@
         // This is important for Rec-track documents, do not copy a patent URI from a random
         // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
         // Team Contact.
-        wgPatentURI:  "",
+        wgPatentURI:  "https://www.w3.org/community/about/agreements/cla/",
         maxTocLevel: 4,
         inlineCSS: true
       };
@@ -165,7 +165,7 @@ management</a> .
 <p>
 The emergence of distributed ledger technology (DLT), sometimes referred
 to as blockchain technology, provides the opportunity to implement fully
-decentralized identity management. In this ecosystem, all entities
+<a>decentralized identity management</a>. In this ecosystem, all entities
 share a common root of trust in the form of a globally distributed ledger
 (or a decentralized P2P network that provides similar capabilities).
 </p>
@@ -535,10 +535,10 @@ when possible to express authorization to modify a DID Document.
 <p>
 The following example expresses a DID Document that describes the DID above
 where control of the document is delegated to another entity. In
-this case the DID Document describes a dependent—an entity who is not currently
+this case the DID Document describes a <a>dependent</a>—an entity who is not currently
 in a position to control the authentication information for this identity.
 This DID Document
-was created by a delegate—a separate entity with its own DID
+was created by a <a>delegate</a>—a separate entity with its own DID
 that serves as a trustee for the dependent. Note that while this DID Document
 asserts a set of service endpoints, it does not yet contain a set of key
 descriptions because the dependent does not yet have its own set of
@@ -583,234 +583,8 @@ technology.
 <section>
 <h1>Terminology</h1>
 
-<p>
-This specification defines the requirements of a conformant DID method
-specification. The key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
-  "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
-  "OPTIONAL" in this document are to be interpreted as described in
-  <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a> .
-</p>
-
-<p>
-All other terms used in this specification are defined in this glossary.
-</p>
-
-<p>
-Blockchain. A specific type of distributed ledger technology (DLT) that
-stores ledger entries in blocks of transactions that are grouped
-together and hashed into a cryptographic chain. Because this type of DLT
-was introduced by <a href=
-  "https://en.wikipedia.org/wiki/Bitcoin">Bitcoin</a> , the term
-  "blockchain" is sometimes used to refer specifically to the Bitcoin
-ledger.
-</p>
-
-<p>
-Decentralized identifier (DID). A globally unique identifier that does
-not require a centralized registration authority because it is
-registered with distributed ledger technology or other form of
-decentralized network. The generic format of a DID is defined in this
-specification. A specific DID scheme is defined in a DID method
-specification.
-</p>
-
-<p>
-Decentralized identity management (DIDM). <a href=
-  "https://en.wikipedia.org/wiki/Identity_management">Identity
-management</a> based on decentralized identifiers. DIDM extends
-identifier creation authority beyond the traditional roots of trust
-required by <a href="https://en.wikipedia.org/wiki/X.500">X.500
-directory services</a> , the <a href=
-  "https://en.wikipedia.org/wiki/Domain_Name_System">Domain Name
-System</a> , national ID systems, etc.
-</p>
-
-<p>
-Decentralized PKI (DPKI). Public key infrastructure based on
-decentralized identifiers and identity records (e.g., DID Documents) containing
-verifiable public key descriptions.
-</p>
-
-<p>
-Dependent. A person, organization, or thing whose DID record is
-registered and maintained by a delegate because the dependent is not in
-a position to control the private keys. A dependent becomes an identity
-owner when the dependent takes control of the private keys.
-</p>
-
-<p>
-DID. Acronym for decentralized identifier.
-</p>
-
-<p>
-DID Document. A JSON data structure containing metadata
-describing a DID, including mechanisms, such as public keys and
-pseudonymous biometrics, that an entity can use to authenticate itself as the
-DID. A DID Document may also contain other <a href=
-  "https://en.wikipedia.org/wiki/Attribute_(computing)">attributes</a> or
-  <a href="https://en.wikipedia.org/wiki/Claims-based_identity">claims</a>
-  describing the entity.
-</p>
-
-<p>
-DID fragment. The portion of a DID reference that follows the first hash
-sign character ("#"). A DID fragment uses the same syntax as a URI
-fragment. See section 5.5. Note that a DID fragment MUST immediately
-follow a DID. If a DID reference includes a DID path followed by a
-fragment, that fragment is NOT a DID fragment.
-</p>
-
-<p>
-DID method. A definition of how a specific DID scheme can be implemented
-on a specific distributed ledger or network, including the precise
-method(s) by which DIDs and DID Documents can be read, written, and revoked.
-</p>
-
-<p>
-DID method conformance profile. A specification (or section of a
-specification) that defines the rules an implementer must follow in
-order to conform with another DID method specification. A conformance
-profile narrows the set of options that may be used in order to meet a
-specific implementation goal.
-</p>
-
-<p>
-DID method specification. The specification for a specific DID scheme
-and DID method that is conformant with the requirements of this
-specification.
-</p>
-
-<p>
-DID path. The portion of a DID reference that follows the first forward
-slash character. A DID path uses the identical syntax as a URI path. See
-section 5.4. Note that if a DID path is followed by a fragment, that
-fragment is NOT a DID fragment.
-</p>
-
-<p>
-DID reference. A DID plus an optional DID path or DID fragment.
-</p>
-
-<p>
-DID scheme. The formal syntax of a DID identifier. The generic DID
-scheme is defined in this specification. A DID method specification
-defines a specific DID scheme that works with a specific DID method.
-</p>
-
-<p>
-DIDM. Acronym for decentralized identity management.
-</p>
-
-<p>
-Distributed ledger technology (DLT). A <a href=
-  "https://en.wikipedia.org/wiki/Distributed_database">distributed
-database</a> in which the various nodes use a <a href=
-  "https://en.wikipedia.org/wiki/Consensus_(computer_science)">consensus
-protocol</a> to maintain a shared ledger in which each transaction is
-cryptographically signed and chained to the previous transaction. See
-also blockchain.
-</p>
-
-<p>
-DLT. Acronym for distributed ledger technology.
-</p>
-
-<p>
-DPKI. Acronym for decentralized PKI.
-</p>
-
-<p>
-Delegate. An entity who creates a DID record for a dependent who
-does not yet have the capacity to control the private keys. The
-dependent must rely on the delegate to safeguard the private keys until
-the dependent can assume control and become an entity.
-</p>
-
-<p>
-Identity owner. The natural person, party, organization, or thing whose
-identity is represented by a DID record and who directly controls the
-private keys to control that record. (Note: this specification avoids
-the term "user" since an entity is not always an individual
-person.)
-</p>
-
-<p>
-Identity record. Another name for a DID record.
-</p>
-
-<p>
-JSON-LD (JSON Linked Data). A method of encoding <a href=
-  "https://en.wikipedia.org/wiki/Linked_data">Linked Data</a> using JSON.
-The <a href="https://www.w3.org/TR/json-ld/">W3C JSON-LD 1.0
-specification</a> enables object properties in a JSON document to be
-linked to concepts in an RDF <a href=
-  "https://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a>
-  .
-</p>
-
-<p>
-Key description. A JSON object contained inside a DID Document that contains all
-the metadata necessary to use a public key or verification key. A list
-of standard key descriptions is included in Appendix C.
-</p>
-
-<p>
-Ledger. In the context of this specification, a shared database of
-transactions maintained via distributed ledger technology.
-</p>
-
-<p>
-PKI. Acronym for <a href=
-  "https://en.wikipedia.org/wiki/Public_key_infrastructure">public key
-infrastructure</a> .
-</p>
-
-<p>
-RDF (Resource Description Framework). A semantic graph model defined by
-the <a href="https://www.w3.org/2011/rdf-wg/">W3C RDF Working Group</a>
-  .
-</p>
-
-<p>
-Service endpoint. A network address at which a service operates on
-behalf of an entity. Examples of specific DIDM services include
-discovery services, authentication services, authorization services,
-interaction services, etc. A DIDM service endpoint may also be provided
-by a generalized data interchange protocol such as XDI.
-</p>
-
-<p>
-UUID. Universally Unique Identifier as specified by <a href=
-  "https://www.ietf.org/rfc/rfc4122.txt">RFC 4122</a> .
-</p>
-
-<p>
-URI (Uniform Resource Identifier). The official name for all Web
-identifiers as defined by IETF <a href=
-  "https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a> . See section 1.2.
-</p>
-
-<p>
-URL (Uniform Resource Locator). Any URI that can be resolved or
-de-referenced to locate a specific resource on the Web. See section 1.2.
-</p>
-
-<p>
-URN (Uniform Resource Name). A URI intended to serve as a persistent,
-location-independent identifier of a resource, i.e., an identifier that
-will always represent the same resource and never change (ideally
-forever). URN syntax is defined by IETF <a href=
-  "https://www.ietf.org/rfc/rfc2141.txt">RFC 2141</a> . In general URNs
-cannot directly be resolved or de-referenced to locate the resource they
-identify. See section 1.2.
-</p>
-
-<p>
-XDI (Extensible Data Interchange) (also XRI Data Interchange)—a semantic
-graph format and semantic data interchange protocol defined by the
-  <a href="https://www.oasis-open.org/committees/xdi/">OASIS XDI Technical
-Committee</a> .
-</p>
+<div data-include="terms.html"
+  data-oninclude="restrictReferences"></div>
 
 </section>
 
@@ -818,7 +592,7 @@ Committee</a> .
 <h1>Decentralized Identifiers (DIDs)</h1>
 
 <p>
-The foundation of DID architecture is the concept of the decentralized
+The foundation of <a>DID</a> architecture is the concept of the decentralized
 identifier. This concept is not new; <a href=
   "https://en.wikipedia.org/wiki/Universally_unique_identifier">UUIDs</a>
   (Universally Unique IDentifiers) were first developed in the 1980s and
@@ -843,7 +617,7 @@ that enable cryptographic verification of DID ownership.
 <h2>The Generic DID Scheme</h2>
 
 <p>
-The generic DID scheme is a URI scheme conformant with <a href=
+The generic <a>DID scheme</a> is a URI scheme conformant with <a href=
   "https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a> . It consists of a
 DID followed by an optional path and/or fragment. The term DID refers
 only to the identifier conforming to the did rule in the ABNF below;
@@ -919,7 +693,7 @@ define as few specific-idstring formats as possible.
 <h2>DID Paths</h2>
 
 <p>
-A generic DID path (the did-path rule in section 5.1) is identical to a
+A generic <a>DID path</a> (the did-path rule in section 5.1) is identical to a
 URI path and MUST conform to the ABNF of the path-rootless ABNF rule in
   <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a> . A DID path
 SHOULD be used to address resources available via a DID service
@@ -937,7 +711,7 @@ restrictive than the generic rules in this section.
 <h2>DID Fragments</h2>
 
 <p>
-A generic DID fragment (the did-fragment rule in section 5.1) is
+A generic <a>DID fragment</a> (the did-fragment rule in section 5.1) is
 identical to a URI fragment and MUST conform to the ABNF of the fragment
 ABNF rule in <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>
   . A DID fragment MUST be used only as a method-independent pointer into
@@ -1436,7 +1210,7 @@ property array MAY contain a single JSON object
 <p>
 In addition to publication of authentication and authorization mechanisms,
 the other primary purpose of a DID Document is to enable discovery of
-service endpoints for the entity. A service endpoint may represent
+<a>service endpoints</a> for the entity. A service endpoint may represent
 any type of service the entity wishes to advertise, including
 decentralized identity management services for further discovery,
 authentication, authorization, or interaction.
