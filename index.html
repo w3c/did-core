@@ -592,25 +592,24 @@ technology.
 <h1>Decentralized Identifiers (DIDs)</h1>
 
 <p>
-The foundation of <a>DID</a> architecture is the concept of the decentralized
-identifier. This concept is not new; <a href=
-  "https://en.wikipedia.org/wiki/Universally_unique_identifier">UUIDs</a>
-  (Universally Unique IDentifiers) were first developed in the 1980s and
-later became a standard feature of the Open Software Foundation’s
-  <a href=
-  "https://en.wikipedia.org/wiki/Distributed_Computing_Environment">Distributed
-Computing Environment</a> . UUIDs achieve global uniqueness without a
+The concept of a globally unique <a>decentralized identifier</a> is not new;
+<a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">Universally Unique Identifiers</a>
+(UUIDs) were first developed in the 1980s and later became a standard feature
+of the Open Software Foundation’s
+<a href="https://en.wikipedia.org/wiki/Distributed_Computing_Environment">Distributed Computing Environment</a>.
+UUIDs achieve global uniqueness without a
 centralized registry service by using an algorithm that generates
 128-bit values with sufficient entropy that the chance of collision are
-infinitesimally small. UUIDs are formally a URN namespace specified in
-  <a href="https://tools.ietf.org/html/rfc4122">IETF RFC 4122</a> .
+infinitesimally small. UUIDs are formally specified in [[RFC4122]] as a
+specific type of Unified Resource Name (URN).
 </p>
 
 <p>
-A DID is similar to a UUID except: (a) it can be resolved or
+A DID is similar to a UUID except: (a) like a URL, it can be resolved or
 dereferenced to a standard resource describing the entity (a
-DID Document—see section 6), and (b) the DID Document may contain public key descriptions
-that enable cryptographic verification of DID ownership.
+<a>DID Document</a>—see Section <a href="#did-documents"></a>),
+and (b) unlike a URL, the DID Document typically contains cryptographic
+material that enables authentication of an entity associated with the DID.
 </p>
 
 <section>
