@@ -651,7 +651,8 @@ fragments.
 
 <p>
 A DID method specification MUST define exactly one specific DID scheme
-identified by exactly one method name (the method rule in section 5.1).
+identified by exactly one method name (the method rule in Section
+<a href="#the-generic-did-scheme"></a>).
 Since DIDs are intended for decentralized identity infrastructure, it is
 NOT RECOMMENDED to establish a registry of unique DID method names.
 Rather the uniqueness of DID method names should be established via
@@ -678,7 +679,7 @@ how to generate the specific-idstring component of a DID. The
 specific-idstring value MUST be able to be generated without the use of
 a centralized registry service. The specific-idstring value SHOULD be
 globally unique by itself. The fully qualified DID as defined by the did
-rule in section 5.1 MUST be globally unique.
+rule in Section <a href="#the-generic-did-scheme"></a> MUST be globally unique.
 </p>
 
 <p>
@@ -693,11 +694,12 @@ define as few specific-idstring formats as possible.
 <h2>DID Paths</h2>
 
 <p>
-A generic <a>DID path</a> (the did-path rule in section 5.1) is identical to a
+A generic <a>DID path</a> (the did-path rule in Section
+<a href="#the-generic-did-scheme"></a>) is identical to a
 URI path and MUST conform to the ABNF of the path-rootless ABNF rule in
   <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>. A DID path
 SHOULD be used to address resources available via a DID service
-endpoint. See section 6.6.
+endpoint. See Section <a href="#service-endpoints"></a>.
 </p>
 
 <p>
@@ -711,7 +713,8 @@ restrictive than the generic rules in this section.
 <h2>DID Fragments</h2>
 
 <p>
-A generic <a>DID fragment</a> (the did-fragment rule in section 5.1) is
+A generic <a>DID fragment</a> (the did-fragment rule in Section
+<a href="#the-generic-did-scheme"></a>) is
 identical to a URI fragment and MUST conform to the ABNF of the fragment
 ABNF rule in <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>.
 A DID fragment MUST be used only as a method-independent pointer into
@@ -747,8 +750,8 @@ The method name MUST be lowercase.
 
   <li>
 Case sensitivity and normalization of the value of the
-specific-idstring rule in section 5.1 MUST be defined by the governing
-DID method specification.
+specific-idstring rule in Section <a href="#the-generic-did-scheme"></a>
+MUST be defined by the governing DID method specification.
   </li>
 </ol>
 
@@ -783,7 +786,7 @@ specification may support a DID Document equivID property to establish verifiabl
 equivalence relations between DID records representing the same identity
 owner on multiple ledgers or networks. Such equivalence relations can
 produce the practical equivalent of a single persistent abstract DID.
-See Future Work (section 11).
+See Future Work (Section <a href="#future-work"></a>).
 </p>
 
 </section>
@@ -926,7 +929,8 @@ The rules for a delegate are:
 <ol start="1">
   <li>
 A DID Document that includes an
-<code>authenticationCredential</code> field (section 6.4) MAY list one or
+<code>authenticationCredential</code> field
+(Section <a href="#authentication"></a>) MAY list one or
 more delegates via the <code>authorizationCapability</code> field.
   </li>
 
@@ -984,10 +988,12 @@ Example:
 <p>
 Authentication is the mechanism by which an entity can
 cryptographically prove that they are associated with a DID and DID
-Description. See section 9.2. Note that Authentication is separate from
+Description. See Section <a href="#binding-of-identity"></a>.
+Note that Authentication is separate from
 Authorization because an entity may wish to enable other entities
 to update the DID Document
-(for example, to assist with key recovery as discussed in section 6.5)
+(for example, to assist with key recovery as discussed in
+Section <a href="#key-revocation-and-recovery"></a>)
 without enabling them to prove ownership (and thus be able to impersonate
 the entity).
 </p>
@@ -1071,10 +1077,13 @@ definition.
 Authorization is the mechanism by which an entity may give itself
 or other entities permission to update the DID Document—for example to assist with
 key recovery. Note that Authorization is separate from Authentication
-as explained in section 6.4. This is particularly important for key recovery
+as explained in Section <a href="#authentication"></a>.
+This is particularly important for key recovery
 in the case of key loss, when the entity no longer has access to their
 keys, or key compromise, where the owner’s trusted third parties need to
-override malicious activity by an attacker. See section 9.
+override malicious activity by an attacker.
+See Section <a href="#security-considerations"></a>.
+</p>
 
 <p>
 Because the access control logic in the Authorization block must be
@@ -1261,13 +1270,11 @@ object.
 </pre>
 
 <p>
-
-
-      See sections 9.1 and 9.3 for further security considerations regarding authentication service endpoints.
-
-
-
+See Sections <a href="#requirements-of-a-did-method-specification"></a> and
+<a href="#authentication-service-endpoints"></a> for further security
+considerations regarding authentication service endpoints.
 </p>
+
 </section>
 
 <section>
@@ -1377,10 +1384,8 @@ The delegate as defined in section 6.3.
 </ol>
 
 <p>
-
-
-      This signature is NOT proof of the binding between a DID and a DID Document. See section 9.2.
-
+This signature is NOT proof of the binding between a DID and a DID Document.
+See Section <a href="#binding-of-identity"></a>.
 
       The rules for a signature are:
 </p>
@@ -1571,8 +1576,8 @@ Considerations sections.
   </li>
 
   <li>
-This section MUST consider all the requirements mentioned in section
-5 of <a href="https://tools.ietf.org/html/rfc3552">RFC 3552</a> (page
+This section MUST consider all the requirements mentioned in section 5 of
+<a href="https://tools.ietf.org/html/rfc3552">RFC 3552</a> (page
 27) for the DID operations defined in the specification. In particular:
   </li>
 </ol>
@@ -1633,8 +1638,8 @@ to a specific set of authorization rights.
 
   <li>
 DID methods that introduce new authentication service endpoint types
-  (section 6.6) SHOULD consider the security requirements of the supported
-authentication protocol.
+(Section <a href="#service-endpoints"></a>) SHOULD consider the security
+requirements of the supported authentication protocol.
   </li>
 </ol>
 
@@ -1740,7 +1745,9 @@ description.
 <p>
 
 
-      Non-repudiation of DIDs and DID Document updates is supported under the assumption that: (1) the entity is monitoring for unauthorized updates (see section 9.5) and (2) the entity has had adequate opportunity to revoke malicious updates according to the DID method's access control mechanism (section 6.5). This capability is further supported if timestamps are included (sections 6.7 and 6.8) and the target DLT system supports timestamps.
+      Non-repudiation of DIDs and DID Document updates is supported under the assumption that: (1) the entity is monitoring for unauthorized updates
+      (see Section <a href="#notification-of-did-document-changes"></a>)
+      and (2) the entity has had adequate opportunity to revoke malicious updates according to the DID method's access control mechanism (section 6.5). This capability is further supported if timestamps are included (sections 6.7 and 6.8) and the target DLT system supports timestamps.
 
 
 
@@ -1800,7 +1807,7 @@ monitoring service, however this introduces another vector of attack.
 <p>
 
 
-      Section 7 specifies the DID operations that must be supported by a DID method specification, including revocation of a DID Document by replacing it with an updated DID Document. In general, checking for key revocation on DLT-based methods is expected to be handled in a manner similar to checking the balance of a cryptocurrency account on a distributed ledger: if the balance is empty, the entire DID is revoked.
+Section <a href="#did-operations"></a> specifies the DID operations that must be supported by a DID method specification, including revocation of a DID Document by replacing it with an updated DID Document. In general, checking for key revocation on DLT-based methods is expected to be handled in a manner similar to checking the balance of a cryptocurrency account on a distributed ledger: if the balance is empty, the entire DID is revoked.
 
 
       DID method specifications SHOULD enable support for a quorum of trusted parties to enable key recovery. Some of the facilities to do so are suggested in section 6.5, Authorization. Note that not all DID method specifications will recognize control from DIDs registered using other DID methods and they MAY restrict third-party control to DIDs that use the same method.
@@ -2132,8 +2139,8 @@ Future versions of the specification will describe in more detail how DIDs and D
 <h1>The Generic DID Context for JSON-LD</h1>
 
 <p>
-This JSON-LD document is the generic context for all DID Documents. See section
-6.1 for the rules for using this context.
+This JSON-LD document is the generic context for all DID Documents.
+See Section <a href="#context"></a> for the rules for using this context.
 </p>
 
 <p>
@@ -2226,7 +2233,8 @@ https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/maste
 <h1>Standard Key Descriptions</h1>
 
 <p>
-As described in section 6, key description is a standard way to describe
+As described in Section <a href="#did-documents"></a>, key description is a
+standard way to describe
 a public key or verification key in JSON-LD. This appendix contains a
 list of key descriptions recommended for use in DID Documents.
 </p>
