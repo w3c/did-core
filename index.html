@@ -484,7 +484,7 @@ simplicity.
 This is a simple example of a DID:
 </p>
 
-<pre class="example" title="A simple example of a Decentralized Identifier (DID)">
+<pre class="example nohighlight" title="A simple example of a Decentralized Identifier (DID)">
 did:example:123456789abcdefghi
 </pre>
 
@@ -849,7 +849,7 @@ specified in Appendix B.
 Example (using an example URL):
 </p>
 
-<pre>
+<pre class="example nohighlight">
 {
   "@context": "https://example.org/did/v1"
 }
@@ -896,7 +896,7 @@ network, the registered DID MUST match this primary DID value.
 Example:
 </p>
 
-<pre>
+<pre class="example nohighlight">
 {
   "id": "did:example:21tDAKCERh95uGgKbJNHYp"
 }
@@ -1317,12 +1317,10 @@ a notion.
 
 </p>
 
-<pre>
-
-      {
-      "created": "2002-10-10T17:00:00Z"
-      }
-
+<pre class="example nohighlight">
+{
+  "created": "2002-10-10T17:00:00Z"
+}
 </pre>
 
 <p>
@@ -1366,12 +1364,10 @@ from section 6.7.
 
 </p>
 
-<pre>
-
-      {
-      "updated": "2016-10-17T02:41:00Z"
-      }
-
+<pre class="example nohighlight">
+{
+  "updated": "2016-10-17T02:41:00Z"
+}
 </pre>
 
 <p>
@@ -1435,24 +1431,17 @@ Signatures</a>.
 
 </p>
 
-<pre>
-
-      {
-      "signature": {
-            "type": "LinkedDataSignature2015",
-            "created": "2016-02-08T16:02:20Z",
-            "creator": "did:example:8uQhQMGzWxR8vw5P3UWH1ja#keys-1",
-            "signatureValue": "QNB13Y7Q9...1tzjn4w=="
-        }
-
+<pre class="example nohighlight">
+{
+  "signature": {
+    "type": "LinkedDataSignature2015",
+    "created": "2016-02-08T16:02:20Z",
+    "creator": "did:example:8uQhQMGzWxR8vw5P3UWH1ja#keys-1",
+    "signatureValue": "QNB13Y7Q9...1tzjn4w=="
+  }
+}
 </pre>
 
-<p>
-
-      }
-
-
-</p>
 </section>
 </section>
 
@@ -2492,7 +2481,7 @@ list of key descriptions recommended for use in DID Documents.
 <section>
 <h2>RSA Keys</h2>
 
-<pre>
+<pre class="example nohighlight">
 {
   "id": "did:example:123456789abcdefghi#keys-1",
   "type": ["CryptographicKey", "RsaCryptographicKey"],
@@ -2505,7 +2494,7 @@ list of key descriptions recommended for use in DID Documents.
 <section>
 <h2>EdDSA Keys</h2>
 
-<pre>
+<pre class="example nohighlight">
 {
   "id": "did:example:123456789abcdefghi/keys/2",
   "type": ["CryptographicKey", "EdDsaSAKey"],
