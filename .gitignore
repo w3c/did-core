@@ -1,0 +1,4 @@
+*.sw[nop]
+*~
+.DS_Store
+TAGS
