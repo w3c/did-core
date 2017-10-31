@@ -1310,11 +1310,7 @@ a notion.
 </ol>
 
 <p>
-
-
       Example:
-
-
 </p>
 
 <pre class="example nohighlight">
@@ -1323,11 +1319,6 @@ a notion.
 }
 </pre>
 
-<p>
-
-
-
-</p>
 </section>
 
 <section>
@@ -1357,11 +1348,7 @@ from section 6.7.
 </ol>
 
 <p>
-
-
       Example:
-
-
 </p>
 
 <pre class="example nohighlight">
@@ -1370,22 +1357,13 @@ from section 6.7.
 }
 </pre>
 
-<p>
-
-
-
-</p>
 </section>
 
 <section>
 <h2>Signature (Optional)</h2>
 
 <p>
-
-
       A signature on a DID Document is cryptographic proof of the integrity of the DID Document according to either:
-
-
 </p>
 <ol start="1">
   <li>
@@ -1404,9 +1382,8 @@ The delegate as defined in section 6.3.
 
 
       The rules for a signature are:
-
-
 </p>
+
 <ol start="1">
   <li>
 A DID Document MAY have exactly one property representing a signature.
@@ -1424,11 +1401,7 @@ Signatures</a>.
 </ol>
 
 <p>
-
-
       Example:
-
-
 </p>
 
 <pre class="example nohighlight">
@@ -1565,11 +1538,6 @@ MAY offer the service of returning requested properties of the DID Document.
   </li>
 </ol>
 
-<p>
-
-
-
-</p>
 </section>
 
 <section>
@@ -1595,10 +1563,6 @@ MAY offer the service of returning requested properties of the DID Document.
 <section>
 <h2>Requirements of DID Method Specifications</h2>
 
-<p>
-
-
-</p>
 <ol start="1">
   <li>
 DID method specifications MUST include their own Security
@@ -1673,11 +1637,6 @@ authentication protocol.
   </li>
 </ol>
 
-<p>
-
-
-
-</p>
 </section>
 
 <section>
@@ -1693,12 +1652,9 @@ authentication protocol.
 </h4>
 
 <p>
-
-
-      By itself, a verified signature on self-signed DID Document does not prove ownership of a DID. It only proves the following:
-
-
+By itself, a verified signature on self-signed DID Document does not prove ownership of a DID. It only proves the following:
 </p>
+
 <ol start="1">
   <li>
 The DID Document has not been tampered with since it was registered.
@@ -1711,12 +1667,9 @@ signature at the time the signature was generated.
 </ol>
 
 <p>
-
-
-      Proving ownership of a DID, i.e., the binding between the DID and the DID Document that describes it, requires a two step process:
-
-
+Proving ownership of a DID, i.e., the binding between the DID and the DID Document that describes it, requires a two step process:
 </p>
+
 <ol start="1">
   <li>
 Resolving the DID to a DID Document according to its DID method
@@ -1751,9 +1704,8 @@ that was resolved.
 
 
       If the DID Document is not signed, ownership of a public key described in the DID Document may still be proven dynamically as follows:
-
-
 </p>
+
 <ol start="1">
   <li>
 Send a challenge message containing a public key description from
@@ -1777,17 +1729,12 @@ description.
 </h4>
 
 <p>
-
-
       A DID and DID Document do not inherently carry any
         <a href=
 "https://en.wikipedia.org/wiki/Personally_identifiable_information">PII</a>
        (personally-identifiable information). The process of binding a DID to the real-world owner of an identity using claims about the owner is out of scope for this specification. However this topic is the focus of the
         <a href="https://w3c.github.io/vctf/">verifiable claims</a>
        standardization work at the W3C (where the term "DID" originated).
-
-
-
 </p>
 </section>
 
@@ -1795,12 +1742,7 @@ description.
 <h2>Authentication Service Endpoints</h2>
 
 <p>
-
-
       If a DID Document publishes a service endpoint intended for authentication or authorization of an entity (section 6.6), it is the responsibility of the service endpoint provider, entity, and/or relying party to comply with the requirements of the authentication protocol(s) supported at that service endpoint.
-
-
-
 </p>
 </section>
 
@@ -1849,11 +1791,6 @@ monitoring service, however this introduces another vector of attack.
   </li>
 </ol>
 
-<p>
-
-
-
-</p>
 </section>
 
 <section>
@@ -1910,10 +1847,6 @@ monitoring service, however this introduces another vector of attack.
 <section>
 <h2>Requirements of DID Method Specifications</h2>
 
-<p>
-
-
-</p>
 <ol start="1">
   <li>
 DID method specifications MUST include their own Privacy
@@ -1931,11 +1864,6 @@ exclusion.
   </li>
 </ol>
 
-<p>
-
-
-
-</p>
 </section>
 
 <section>
@@ -1977,12 +1905,7 @@ as no PII will be written to an immutable ledger.
 <h2>DID Document Correlation Risks</h2>
 
 <p>
-
-
       The anti-correlation protections of pseudonymous DIDs are easily defeated if the data in the corresponding DID Documents can be correlated. For example, using same public key descriptions or bespoke service endpoints in multiple DID Documents can provide as much correlation information as using the same DID. Therefore the DID Document for a pseudonymous DID SHOULD also use pairwise-unique public keys and pairwise-unique service endpoints.
-
-
-
 </p>
 </section>
 
@@ -2231,16 +2154,6 @@ Future versions of the specification will describe in more detail how DIDs and D
 
 
       This table summarizes the DID method specifications currently in development. The links will be updated as subsequent Implementer’s Drafts are produced.
-
-
-
-
-
-
-
-
-
-
 </p>
 <table>
   <tbody>
@@ -2269,19 +2182,13 @@ Future versions of the specification will describe in more detail how DIDs and D
 
     <tr>
       <td>
-        <p>
           did:sov:
-        </p>
       </td>
       <td>
-        <p>
           Sovrin
-        </p>
       </td>
       <td>
-        <p>
           Sovrin Foundation
-        </p>
       </td>
       <td>
         <a href="https://docs.google.com/document/d/1X7dWpVvskGRpk05yyPEMd1uqaJ9FnOzoeWMdwzdIFyU/edit#">Sovrin DID Method</a>
@@ -2290,19 +2197,13 @@ Future versions of the specification will describe in more detail how DIDs and D
 
     <tr>
       <td>
-        <p>
           did:btcr:
-        </p>
       </td>
       <td>
-        <p>
           Bitcoin
-        </p>
       </td>
       <td>
-        <p>
           Christopher Allen
-        </p>
       </td>
       <td>
       </td>
@@ -2310,19 +2211,13 @@ Future versions of the specification will describe in more detail how DIDs and D
 
     <tr>
       <td>
-        <p>
           did:uport:
-        </p>
       </td>
       <td>
-        <p>
           Ethereum
-        </p>
       </td>
       <td>
-        <p>
           uPort
-        </p>
       </td>
       <td>
       </td>
@@ -2330,40 +2225,27 @@ Future versions of the specification will describe in more detail how DIDs and D
 
     <tr>
       <td>
-        <p>
           did:cnsnt:
-        </p>
       </td>
       <td>
-        <p>
           Ethereum
-        </p>
       </td>
       <td>
-        <p>
           Consent
-        </p>
       </td>
       <td>
       </td>
     </tr>
 
-
     <tr>
       <td>
-        <p>
           did:v1:
-        </p>
       </td>
       <td>
-        <p>
           Veres One
-        </p>
       </td>
       <td>
-        <p>
           Digital Bazaar
-        </p>
       </td>
       <td>
         <a href="https://w3c-ccg.github.io/didm-veres-one/">Veres One DID Method</a>
