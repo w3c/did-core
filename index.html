@@ -639,9 +639,10 @@ as upper or lowercase A-Z).
   idstring           = 1*idchar
   idchar             = ALPHA / DIGIT / "." / "-"
 </pre>
+
 <p>
-See sections 5.3 and 5.4 for the ABNF rules defining DID paths and
-fragments.
+See Ssections <a href="#did-paths"></a> and <a href="#did-fragments"></a>
+for the ABNF rules defining DID paths and fragments.
 </p>
 
 </section>
@@ -1984,7 +1985,7 @@ share common settings across client implementations, keep negotiated options to 
 <p>
 
 
-      Section 9.7 mentions one possible clever use of time locks to recover control of a DID after a key compromise. The technique relies on an ability to override the most recent update to a DID Document with Authorization applied by an earlier version of the DID Document in order to defeat the attacker. This protection depends on adding a
+Section <a href="#key-revocation-and-recover"></a> mentions one possible clever use of time locks to recover control of a DID after a key compromise. The technique relies on an ability to override the most recent update to a DID Document with Authorization applied by an earlier version of the DID Document in order to defeat the attacker. This protection depends on adding a
         <a href=
 "https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki%23Abstract">time lock (see Bitcoin BIP 65)</a>
        to protect part of the transaction chain, enabling a Authorization block to be used to recover control. We plan to add support for time locks in a future version of this specification.
