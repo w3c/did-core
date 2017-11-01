@@ -215,25 +215,25 @@ and decentralized identity.
 <p>
 DIDs have a foundation in URLs, so it's important to understand how the
 W3C <a href="https://www.w3.org/TR/uri-clarification/">clarified</a>
-  the terms URI (Uniform Resource Identifier), URL (Uniform Resource
-Locator), and URN (Uniform Resource Name) in September 2001. The key
+the terms [[URI]] (Uniform Resource Identifier), [[URL]] (Uniform Resource
+Locator), and [[URN]] (Uniform Resource Name) in September 2001. The key
 difference between these three categories of identifiers are:
 </p>
 
 <ol start="1">
   <li>
-URI is the term for any type of identifier used to identify a
+[[URI]] is the term for any type of identifier used to identify a
 resource on the Web.
   </li>
 
   <li>
-URL is the term for any type of URI that can be resolved or
+[[URL]] is the term for any type of URI that can be resolved or
 de-referenced to locate a representation of a resource on the Web (e.g.,
 Web page, file, image, etc.)
   </li>
 
   <li>
-URN is the term for a specific type of URI intended to persistently
+[[URN]] is the term for a specific type of URI intended to persistently
 identify a resource, i.e., an identifier that will never change no
 matter how often the resource moves, changes names, changes owners, etc.
 URNs are intended to last forever.
@@ -322,15 +322,12 @@ record operations for a specific distributed ledger or network.
 <p>
 Conceptually, the relationship of this specification and a DID method
 specification is similar to the relationship of the IETF generic URI
-specification (<a href="https://www.ietf.org/rfc/rfc3986.txt">RFC
-3986</a>) and a specific <a href=
-  "http://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml">URI
-scheme</a> (such as the http: and https: schemes specified in <a href=
-  "http://www.iana.org/go/rfc7230">RFC 7230</a>). It is also similar to
-the relationship of the IETF generic URN specification (<a href=
-  "https://www.ietf.org/rfc/rfc2141.txt">RFC 2141</a>) and a specific URN
-namespace definition (such as the UUID URN namespace defined in <a href=
-  "https://tools.ietf.org/html/rfc4122">RFC 4122</a>). The difference is
+specification ([[RFC3986]]) and a specific URI scheme ([[IANA-URI-SCHEMES]]
+(such as the http: and https: schemes specified in [[RFC7230]]).
+It is also similar to the relationship of the IETF generic URN specification
+([[URN]]) and a specific URN
+namespace definition (such as the UUID URN namespace defined in [[RFC4122]]).
+The difference is
 that a DID method specification, in addition to defining a specific DID
 scheme, must also specify the methods for reading, writing, and revoking
 DID records on the network for which it is written.
@@ -616,8 +613,8 @@ material that enables authentication of an entity associated with the DID.
 <h2>The Generic DID Scheme</h2>
 
 <p>
-The generic <a>DID scheme</a> is a URI scheme conformant with <a href=
-  "https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>. It consists of a
+The generic <a>DID scheme</a> is a URI scheme conformant with [[RFC3986]].
+It consists of a
 DID followed by an optional path and/or fragment. The term DID refers
 only to the identifier conforming to the did rule in the ABNF below;
 when used alone, it does not include a path or fragment. A DID that may
@@ -625,9 +622,8 @@ optionally include a path and/or fragment is called a DID reference.
 </p>
 
 <p>
-Following is the ABNF definition using the syntax in <a href=
-  "https://tools.ietf.org/html/rfc5234">RFC 5234</a> (which defines ALPHA
-as upper or lowercase A-Z).
+Following is the ABNF definition using the syntax in [[RFC5234]]
+(which defines ALPHA as upper or lowercase A-Z).
 </p>
 
 <pre class="nohighlight">
@@ -698,7 +694,7 @@ define as few specific-idstring formats as possible.
 A generic <a>DID path</a> (the did-path rule in Section
 <a href="#the-generic-did-scheme"></a>) is identical to a
 URI path and MUST conform to the ABNF of the path-rootless ABNF rule in
-  <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>. A DID path
+[[RFC3986]]. A DID path
 SHOULD be used to address resources available via a DID service
 endpoint. See Section <a href="#service-endpoints"></a>.
 </p>
@@ -717,12 +713,11 @@ restrictive than the generic rules in this section.
 A generic <a>DID fragment</a> (the did-fragment rule in Section
 <a href="#the-generic-did-scheme"></a>) is
 identical to a URI fragment and MUST conform to the ABNF of the fragment
-ABNF rule in <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>.
+ABNF rule in [[RFC3986]].
 A DID fragment MUST be used only as a method-independent pointer into
 the DID Document to identify a unique key description or other DID Document component. To
 resolve this pointer, the complete DID reference including the DID
-fragment MUST be used as the value of the id key for the target JSON
-object.
+fragment MUST be used as the value of the id key for the target JSON object.
 </p>
 
 <p>
@@ -804,13 +799,12 @@ identity.
 </p>
 
 <p>
-A DID Document MUST be a single JSON object conforming to <a href=
-  "https://tools.ietf.org/html/rfc7159">RFC 7159</a>. For purposes of
+A DID Document MUST be a single JSON object conforming to [[RFC7159]].
+For purposes of
 this version of the DID specification, the format of this JSON object is
 specified in <a href="https://json-ld.org/">JSON-LD</a>, a format for
-mapping JSON data into the RDF semantic graph model as defined by the
-  <a href="https://www.w3.org/TR/json-ld/">W3C JSON-LD 1.0
-specification</a>. Future versions of this specification MAY specify
+mapping JSON data into the RDF semantic graph model as defined by [[JSON-LD]].
+Future versions of this specification MAY specify
 other semantic graph formats for a DID Document such as JXD (JSON XDI Data), a
 serialization format for the <a href=
   "http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">
@@ -1239,12 +1233,10 @@ specification.
   </li>
 
   <li>
-The value of the service endpoint MUST be a valid URI conforming to <a href=
-  "https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a> and normalized
-according to the rules in section 6 of <a href=
-  "https://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a> and to any
-normalization rules in its applicable URI scheme specification or a JSON-LD
-object.
+The value of the service endpoint MUST be a valid URI conforming to
+[[RFC3986]] and normalized according to the rules in section 6 of [[RFC3986]]
+and to any normalization rules in its applicable URI scheme specification or a
+JSON-LD object.
   </li>
 </ol>
 
@@ -1301,7 +1293,8 @@ The key for this property MUST be created.
   <li>
 The value of this key MUST be a valid XML datetime value as defined
 in section 3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">W3C
-XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a>.
+XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a>
+[[XMLSCHEMA11-2]].
   </li>
 
   <li>
@@ -1578,8 +1571,8 @@ Considerations sections.
 
   <li>
 This section MUST consider all the requirements mentioned in section 5 of
-<a href="https://tools.ietf.org/html/rfc3552">RFC 3552</a> (page
-27) for the DID operations defined in the specification. In particular:
+[[RFC3552]] (page 27) for the DID operations defined in the specification.
+In particular:
   </li>
 </ol>
 
@@ -1599,8 +1592,7 @@ that is build on object capabilities.
 </p>
 <ol start="3">
   <li>
-This section MUST also discuss, per Section 5 of <a href=
-  "https://tools.ietf.org/html/rfc3552">RFC 3552</a>, residual risks
+This section MUST also discuss, per Section 5 of [[RFC3552]], residual risks
   (such as the risks from compromise in a related protocol, incorrect
 implementation, or cipher) after threat mitigation has been deployed.
   </li>
@@ -1630,8 +1622,7 @@ method MUST be discussed.
   <li>
 DID methods MUST discuss the policy mechanism by which DIDs are
 proven to be uniquely assigned. A DID fits the functional definition of
-a URN as defined in <a href="https://tools.ietf.org/html/rfc2141">RFC
-2141</a> —a persistent identifier that is assigned once to a resource
+a URN as defined in [[RFC2141]]—a persistent identifier that is assigned once to a resource
 and never reassigned. In a security context this is particularly
 important since a DID may be used to identify a specific party subject
 to a specific set of authorization rights.
@@ -1852,8 +1843,8 @@ considerations in this section.
 
   <li>
 The DID method privacy section MUST discuss any subsection of
-section 5 of <a href="https://tools.ietf.org/html/rfc6973">RFC 6973t</a>
-  that could apply in a method-specific manner. The subsections to
+section 5 of [[RFC6973]]
+that could apply in a method-specific manner. The subsections to
 consider are: surveillance, stored data compromise, unsolicited traffic,
 misattribution, correlation, identification, secondary use, disclosure,
 exclusion.
@@ -2272,46 +2263,38 @@ list of key descriptions recommended for use in DID Documents.
 <section>
 <h1>References</h1>
 
+<p class="issue">
+Move these to localBiblio, update refs, and/or remove as needed.
+</p>
+
 <pre>
       [ABNF] Augmented BNF for Syntax Specifications: ABNF. IETF RFC 5234.
         <a href=
 "https://tools.ietf.org/html/rfc5234">https://tools.ietf.org/html/rfc5234</a>
 
-
       [IRI] Internationalized Resource Identifiers. IETF RFC 3987.
         <a href=
 "https://www.ietf.org/rfc/rfc3987.txt">https://www.ietf.org/rfc/rfc3987.txt</a>
-
 
       [JSON] The JavaScript Object Notation (JSON) Data Interchange Format
         <a href=
 "https://tools.ietf.org/html/rfc7159">https://tools.ietf.org/html/rfc7159</a>
 
-
       [JSON-LD] JSON-LD 1.0.
         <a href=
 "http://www.w3.org/TR/json-ld/">http://www.w3.org/TR/json-ld/</a>
-
 
       [LINKED-DATA-SIGNATURES] Draft Community Group Report
         <a href=
 "https://w3c-dvcg.github.io/ld-signatures/">https://w3c-dvcg.github.io/ld-signatures/</a>
 
-
-      [RFC 3552] Guidelines for Writing RFC Text on Security Considerations. IETF RFC 3552.
-        <a href=
-"https://tools.ietf.org/html/rfc3552">https://tools.ietf.org/html/rfc3552</a>
-
-
       [RFC 6973] Privacy Considerations for Internet Protocols. IETF RFC 6973.
         <a href=
 "https://tools.ietf.org/html/rfc6973">https://tools.ietf.org/html/rfc6973</a>
 
-
       [RFC-KEYWORDS] Key words for use in RFCs to Indicate Requirement Levels. IETF RFC 2119.
         <a href=
 "https://www.ietf.org/rfc/rfc2119.txt">https://www.ietf.org/rfc/rfc2119.txt</a>
-
 
       [SBIR-TOPIC] Applicability of Blockchain Technology to Privacy
         Respecting Identity Management. U.S Department of Homeland
@@ -2319,31 +2302,13 @@ list of key descriptions recommended for use in DID Documents.
         <a href=
 "https://www.sbir.gov/sbirsearch/detail/867797">https://www.sbir.gov/sbirsearch/detail/867797</a>
 
-
-      [URI] Uniform Resource Identifiers. IETF RFC 3986.
-        <a href=
-"https://www.ietf.org/rfc/rfc3986.txt">https://www.ietf.org/rfc/rfc3986.txt</a>
-
-
-      [URN] URN (Uniform Resource Name) Syntax. IETF RFC 2141.
-        <a href=
-"https://tools.ietf.org/rfc/rfc2141.txt">https://tools.ietf.org/rfc/rfc2141.txt</a>
-
-
-      [UUID] A Universally Unique IDentifier (UUID) URN Namespace. IETF RFC 4122.
-        <a href=
-"https://www.ietf.org/rfc/rfc4122.txt">https://www.ietf.org/rfc/rfc4122.txt</a>
-
-
       [VCWG] W3C Verifiable Claims Working Group.
         <a href=
 "https://www.w3.org/2017/vc/WG/">https://www.w3.org/2017/vc/WG/</a>
 
-
       [XDI-CORE] OASIS XDI Core 1.0 Specification Working Draft 01
         <a href=
 "http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml</a>
-
 
       [XML-DATETIME] W3C XML Schema Definition Language (XSD) 1.1
         Part 2: Datatypes. W3C Recommendation.
