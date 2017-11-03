@@ -19,6 +19,7 @@
     "LinkedDataSignature2016": "sec:LinkedDataSignature2016",
     "RsaCryptographicKey": "sec:RsaCryptographicKey",
     "RsaSignature2015": "sec:RsaSignature2015",
+    "RsaSignature2017": "sec:RsaSignature2017",
     "UpdateDidDescription": "didv:UpdateDidDescription",
 
     "authenticationCredential": "sec:authenticationCredential",
