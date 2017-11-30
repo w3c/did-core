@@ -2216,45 +2216,6 @@ https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/maste
 </pre>
 </section>
 
-<section class="appendix">
-<h1>Standard Key Descriptions</h1>
-
-<p>
-As described in Section <a href="#did-documents"></a>, key description is a
-standard way to describe
-a public key or verification key in JSON-LD. This appendix contains a
-list of key descriptions recommended for use in DID Documents.
-</p>
-
-<section>
-<h2>RSA Keys</h2>
-
-<pre class="example nohighlight">
-{
-  "id": "did:example:123456789abcdefghi#keys-1",
-  "type": ["CryptographicKey", "RsaCryptographicKey"],
-  "owner": "did:example:123456789abcdefghi",
-  "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-}
-</pre>
-</section>
-
-<section>
-<h2>EdDSA Keys</h2>
-
-<pre class="example nohighlight">
-{
-  "id": "did:example:123456789abcdefghi/keys/2",
-  "type": ["CryptographicKey", "EdDsaSAKey"],
-  "owner": "did:example:123456789abcdefghi",
-  "curve": "ed25519",
-  "expires": "2017-02-08T16:02:20Z",
-  "publicKeyBase64": "IOmA4R7TfhkYTYW87...CBMq2/gi25s="
-}
-</pre>
-</section>
-</section>
-
 <section>
 <h1>References</h1>
 

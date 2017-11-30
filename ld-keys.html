@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Linked Data Key Format Registry</title>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+    <!--
+      === NOTA BENE ===
+      For the three scripts below, if your spec resides on dev.w3 you can check them
+      out in the same tree and use relative links so that they'll work offline,
+     -->
+    <script src='https://www.w3.org/Tools/respec/respec-w3c-common' class='remove'></script>
+    <script src="./common.js"></script>
+    <script type="text/javascript" class="remove">
+      var respecConfig = {
+        // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
+        specStatus: "CG-DRAFT",
+
+        // the specification's short name, as in http://www.w3.org/TR/short-name/
+        shortName: "ld-key-registry",
+
+        // subtitle
+        subtitle: "Decentralized Identifier Method Registry",
+
+        // if you wish the publication date to be other than today, set this
+        // publishDate:  "2009-08-06",
+
+        // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
+        // and its maturity status
+        // previousPublishDate:  "1977-03-15",
+        // previousMaturity:  "WD",
+
+        // extend the bibliography entries
+        localBiblio: ccg.localBiblio,
+
+        github: "https://github.com/w3c-ccg/did-spec",
+        includePermalinks: false,
+
+        // if there a publicly available Editor's Draft, this is the link
+        edDraftURI: "https://w3c-ccg.github.io/did-spec/",
+
+        // if this is a LCWD, uncomment and set the end of its review period
+        // lcEnd: "2009-08-05",
+
+        // editors, add as many as you like
+        // only "name" is required
+        editors: [
+          { name: "Manu Sporny", url: "http://manu.sporny.org/",
+            company: "Digital Bazaar", companyURL: "https://digitalbazaar.com/" },
+          { name: "Drummond Reed", url: "https://www.linkedin.com/in/drummondreed/",
+            company: "Evernym", companyURL: "https://evernym.com/"}
+        ],
+
+        // authors, add as many as you like.
+        // This is optional, uncomment if you have authors as well as editors.
+        // only "name" is required. Same format as editors.
+        authors: [
+          { name: "Credentials Community Group", url: "https://w3c-ccg.github.io/",
+            company: "W3C", companyURL: "https://www.w3.org/" }
+        ],
+
+        // name of the WG
+        wg:           "Credentials Community Group",
+
+        // URI of the public WG page
+        wgURI:        "https://www.w3.org/community/credentials/",
+
+        // name (with the @w3c.org) of the public mailing to which comments are due
+        wgPublicList: "public-credentials",
+
+        // URI of the patent status for this WG, for Rec-track documents
+        // !!!! IMPORTANT !!!!
+        // This is important for Rec-track documents, do not copy a patent URI from a random
+        // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
+        // Team Contact.
+        wgPatentURI:  "https://www.w3.org/community/about/agreements/cla/",
+        maxTocLevel: 4,
+        inlineCSS: true
+      };
+    </script>
+  </head>
+  <body>
+    <section id='abstract'>
+      <p>
+This document serves as an informative registry for all known Linked Data
+Key descriptions and their associated specifications.
+      </p>
+    </section>
+
+<section id='sotd'>
+<p>
+Comments regarding this document are welcome. Please file issues
+directly on <a href="https://github.com/w3c-ccg/did-spec/issues/">GitHub</a>,
+or send them to
+<a href="mailto:public-credentials@w3.org">public-credentials@w3.org</a>
+(<a href="mailto:public-credentials-request@w3.org?subject=subscribe">subscribe</a>,
+<a href="https://lists.w3.org/Archives/Public/public-credentials/">archives</a>).
+</p>
+
+<p>
+Portions of the work on this specification have been funded by the
+United States Department of Homeland Security's Science and Technology
+Directorate under contracts HSHQDC-16-R00012-H-SB2016-1-002 and
+HSHQDC-17-C-00019. The content of this specification does not necessarily
+reflect the position or the policy of the U.S. Government and no official
+endorsement should be inferred.
+</p>
+
+<p>
+Work on this specification has also been supported by the Rebooting the
+Web of Trust community facilitated by Christopher Allen, Shannon Appelcline,
+Kiara Robles, Brian Weller, Betty Dhamers, Kaliya Young, Manu Sporny,
+Drummond Reed, and Joe Andrieu.
+</p>
+
+</section>
+
+
+<section>
+<h1>Introduction</h1>
+<p>
+This document contains a list of all known Linked Data Key formats and their
+associated specifications.
+</p>
+</section>
+
+<section>
+<h1>The Registry</h1>
+
+<p>
+This table summarizes the Linked Data key specifications currently known to
+the community.
+</p>
+
+<table class="simple">
+  <thead>
+    <tr>
+      <th>Key Identifier</th>
+      <th>Specification</th>
+      <th>Authors</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+          EdDsaSAKey
+      </td>
+      <td>
+          None
+      </td>
+      <td>
+          Kim Duffy
+      </td>
+      <td>
+<pre>
+{
+  "id": "did:example:123456789abcdefghi/keys/2",
+  "type": ["CryptographicKey", "EdDsaSAKey"],
+  "owner": "did:example:123456789abcdefghi",
+  "curve": "ed25519",
+  "expires": "2017-02-08T16:02:20Z",
+  "publicKeyBase64": "IOmA4R7TfhkYTYW87...CBMq2/gi25s="
+}
+</pre class="nohighlight">
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+          RsaKey
+      </td>
+      <td>
+          <a href="https://w3c-dvcg.github.io/lds-rsa2017/">RSA Signature Suite 2017</a>
+      </td>
+      <td>
+          Dave Longley, Manu Sporny
+      </td>
+      <td>
+<pre class="nohighlight">
+{
+  "id": "did:example:123456789abcdefghi#keys-1",
+  "type": ["CryptographicKey", "RsaKey"],
+  "owner": "did:example:123456789abcdefghi",
+  "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+}
+</pre>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</section>
+
+</section>
+
+</body>
+</html>
