@@ -202,11 +202,11 @@ DPKI (decentralized PKI)</a>.
 </p>
 
 <p>
-Note that DID methods may also be developed for identities registered in
+Note that DID methods may also be developed for identifiers registered in
 federated or centralized identity management systems. For their part,
-all types of identity systems may add support for DIDs. This creates an
+all types of identifier systems may add support for DIDs. This creates an
 interoperability bridge between the worlds of centralized, federated,
-and decentralized identity.
+and decentralized identifiers.
 </p>
 
 <section>
@@ -246,7 +246,7 @@ URNs are intended to last forever.
 <h2>Motivations for DIDs</h2>
 
 <p>
-The growing need for decentralized identity has produced two specific
+The growing need for decentralized identifiers has produced two specific
 requirements for a new type of URL that still fits Web Architecture and has
 a few additional requirements that more traditional URLs, like HTTP-based URLs,
 do not have:
@@ -364,7 +364,7 @@ Decentralization
       </td>
       <td>
 DID architecture should eliminate the requirement for
-centralized authorities or single points of failure in identity
+centralized authorities or single points of failure in identifier
 management, including the registration of globally unique
 identifiers, public verification keys, service endpoints, and
 other metadata.
@@ -377,8 +377,7 @@ Self-Sovereignty
       </td>
       <td>
 DID architecture should give entities, both human and non-human,
-the power to
-directly own and control their own digital identities without
+the power to directly own and control their digital identifiers without
 the need to rely on external authorities.
       </td>
     </tr>
@@ -389,8 +388,8 @@ Privacy
       </td>
       <td>
 DID architecture should enable entities to control the
-privacy of their digital identities, including minimal, selective,
-and progressive disclosure of attributes or other identity data.
+privacy of their information, including minimal, selective,
+and progressive disclosure of attributes or other data.
       </td>
     </tr>
 
@@ -400,7 +399,7 @@ Security
       </td>
       <td>
 DID architecture should enable sufficient security for relying
-parties to depend on DID records for their required level of
+parties to depend on DID Documents for their required level of
 assurance.
       </td>
     </tr>
@@ -443,7 +442,7 @@ Portability
       </td>
       <td>
 DID architecture should be system and network-independent and enable
-entitys to use their digital identities with any system
+entitys to use their digital identifiers with any system
 that supports DIDs and DID Methods.
       </td>
     </tr>
@@ -533,7 +532,7 @@ when possible to express authorization to modify a DID Document.
 The following example expresses a DID Document that describes the DID above
 where control of the document is delegated to another entity. In
 this case the DID Document describes a <a>dependent</a>—an entity who is not currently
-in a position to control the authentication information for this identity.
+in a position to control the authentication information for this identifier.
 This DID Document
 was created by a <a>delegate</a>—a separate entity with its own DID
 that serves as a trustee for the dependent. Note that while this DID Document
@@ -780,7 +779,7 @@ persistence of the DID and DID method over time.
 <p>
 NOTE: Although not included in this version, future versions of this
 specification may support a DID Document equivID property to establish verifiable
-equivalence relations between DID records representing the same identity
+equivalence relations between DID records representing the same identifier
 owner on multiple ledgers or networks. Such equivalence relations can
 produce the practical equivalent of a single persistent abstract DID.
 See Future Work (Section <a href="#future-work"></a>).
@@ -795,8 +794,8 @@ See Future Work (Section <a href="#future-work"></a>).
 <p>
 If a DID is the index key in a key-value pair, then the DID Document is the
 value to which the index key points. The combination of a DID and its
-associated DID Document forms the root identity record for a decentralized
-identity.
+associated DID Document forms the root record for a decentralized
+identifier.
 </p>
 
 <p>
@@ -831,7 +830,12 @@ A DID Document MUST have exactly one top-level context statement.
   </li>
 
   <li>
-The key for this property MUST be <code>@context</code>.
+This statement MUST be the first line in the JSON object. (This is
+not strictly necessary under JSON-LD but required for DID Documents.)
+  </li>
+
+  <li>
+    The key for this property MUST be <code>@context</code>.
   </li>
 
   <li>
@@ -1272,7 +1276,7 @@ considerations regarding authentication service endpoints.
 <p>
 
 
-      Standard metadata for identity records includes a timestamp of the original creation. The rules for including a creation timestamp are:
+      Standard metadata for identifier records includes a timestamp of the original creation. The rules for including a creation timestamp are:
 
 
 </p>
@@ -1325,7 +1329,7 @@ a notion.
 <p>
 
 
-      Standard metadata for identity records includes a timestamp of the most recent change. The rules for including a updated timestamp are:
+      Standard metadata for identifier records includes a timestamp of the most recent change. The rules for including a updated timestamp are:
 
 
 </p>
@@ -1545,7 +1549,7 @@ MAY offer the service of returning requested properties of the DID Document.
       NOTE TO IMPLEMENTERS: During the Implementer’s Draft stage, this section focuses on security topics that should be important in early implementations. The editors are also seeking feedback on threats and threat mitigations that should be reflected in this section or elsewhere in the spec.
 
 
-      As the root identity records for decentralized identities, DIDs and DID Documents are a vital component of decentralized identity management. They are also the foundational building blocks of DPKI (decentralized public key infrastructure) as an augmentation to conventional X.509 certificates.
+      As the root identifier records for decentralized identifiers, DIDs and DID Documents are a vital component of decentralized identity management. They are also the foundational building blocks of DPKI (decentralized public key infrastructure) as an augmentation to conventional X.509 certificates.
 
 
       As such, DIDs are designed to operate under the general Internet threat model used by many IETF standards. We assume uncompromised endpoints, but allow messages to be read or corrupted on the network. Protecting against an attack when a system is compromised requires external key-signing hardware. See also section 6.5 regarding key revocation and recovery.
@@ -1711,7 +1715,7 @@ description.
       A DID and DID Document do not inherently carry any
         <a href=
 "https://en.wikipedia.org/wiki/Personally_identifiable_information">PII</a>
-       (personally-identifiable information). The process of binding a DID to the real-world owner of an identity using claims about the owner is out of scope for this specification. However this topic is the focus of the
+       (personally-identifiable information). The process of binding a DID to the real-world owner of an identifier using claims about the owner is out of scope for this specification. However this topic is the focus of the
         <a href="https://w3c.github.io/vctf/">verifiable claims</a>
        standardization work at the W3C (where the term "DID" originated).
 </p>
@@ -1782,7 +1786,7 @@ monitoring service, however this introduces another vector of attack.
 <p>
 
 
-      In a decentralized identity architecture, there are no centralized authorities to enforce key or signature expiration policies. Therefore DID resolvers and other client applications SHOULD validate that keys have not expired. Since some use cases may have legitimate reasons why already-expired keys can be extended, a key expiration SHOULD NOT prevent any further use of the key, and implementations SHOULD attempt to update its status upon encountering it in a signature.
+      In a decentralized identifier architecture, there are no centralized authorities to enforce key or signature expiration policies. Therefore DID resolvers and other client applications SHOULD validate that keys have not expired. Since some use cases may have legitimate reasons why already-expired keys can be extended, a key expiration SHOULD NOT prevent any further use of the key, and implementations SHOULD attempt to update its status upon encountering it in a signature.
 
 
 
@@ -1815,10 +1819,10 @@ Section <a href="#did-operations"></a> specifies the DID operations that must be
 <p>
 
 
-      It is critically important to apply the principles of Privacy by Design to all aspects of decentralized identity architecture, because DIDs and DID Documents are—by design—administered directly by their owners. There is no registrar, hosting company, or other intermediate service provider to recommend or apply additional privacy safeguards.
+      It is critically important to apply the principles of Privacy by Design to all aspects of decentralized identifier architecture, because DIDs and DID Documents are—by design—administered directly by their owners. There is no registrar, hosting company, or other intermediate service provider to recommend or apply additional privacy safeguards.
 
 
-      The authors of this specification have applied all seven Privacy by Design principles throughout its development. For example, privacy in this specification is preventative not remedial, and privacy is an embedded default. Furthermore, decentralized identity architecture by itself embodies principle #7, "Respect for user privacy—keep it user-centric."
+      The authors of this specification have applied all seven Privacy by Design principles throughout its development. For example, privacy in this specification is preventative not remedial, and privacy is an embedded default. Furthermore, decentralized identifier architecture by itself embodies principle #7, "Respect for user privacy—keep it user-centric."
 
 
       This section lists additional privacy considerations that implementers, delegates, and entitys should bear in mind.
@@ -1935,7 +1939,7 @@ share common settings across client implementations, keep negotiated options to 
 <p>
 
 
-      Including an equivalence property, such as equivID, in DID Documents whose value is an array of DIDs would allow entitys to assert two or more DIDs that represent the same entity. This capability has numerous uses, including supporting migration between ledgers and providing forward compatibility of existing DIDs to future DLTs. In theory, equivalent DIDs should have the same identity rights, allowing
+      Including an equivalence property, such as equivID, in DID Documents whose value is an array of DIDs would allow entitys to assert two or more DIDs that represent the same entity. This capability has numerous uses, including supporting migration between ledgers and providing forward compatibility of existing DIDs to future DLTs. In theory, equivalent DIDs should have the same identifier rights, allowing
         <a href="https://w3c.github.io/vctf/">verifiable claims</a>
        made against one DID to apply to equivalent DIDs.
 
@@ -1953,7 +1957,7 @@ share common settings across client implementations, keep negotiated options to 
 <p>
 
 
-      Verifiable timestamps have significant utility for identity records. This is a good fit for DLTs, since most offer some type of timestamp mechanism. Despite some transactional cost, they are the most censorship-resistant transaction ordering systems in the world, so they are nearly ideal for DID Document timestamping. In some cases a DLT's immediate timing is approximate, however their sense of
+      Verifiable timestamps have significant utility for identifier records. This is a good fit for DLTs, since most offer some type of timestamp mechanism. Despite some transactional cost, they are the most censorship-resistant transaction ordering systems in the world, so they are nearly ideal for DID Document timestamping. In some cases a DLT's immediate timing is approximate, however their sense of
         <a href=
 "https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki%23Abstract">"median time past" (see Bitcoin BIP 113)</a>
        can be precisely defined.
@@ -2029,7 +2033,102 @@ Future versions of the specification will describe in more detail how DIDs and D
 </section>
 
 <section class="appendix">
-<h1>The Generic DID Context for JSON-LD</h1>
+<h1>Proposed DID Method Specifications</h1>
+
+<p>
+      This table summarizes the DID method specifications currently in development. The links will be updated as subsequent Implementer’s Drafts are produced.
+</p>
+
+<table class="simple">
+  <thead>
+    <tr>
+      <th>Method Name</th>
+      <th>DLT or Network</th>
+      <th>Authors</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+          did:sov:
+      </td>
+      <td>
+          Sovrin
+      </td>
+      <td>
+          Sovrin Foundation
+      </td>
+      <td>
+        <a href="https://docs.google.com/document/d/1X7dWpVvskGRpk05yyPEMd1uqaJ9FnOzoeWMdwzdIFyU/edit#">Sovrin DID Method</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+          did:btcr:
+      </td>
+      <td>
+          Bitcoin
+      </td>
+      <td>
+          Christopher Allen
+      </td>
+      <td>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+          did:uport:
+      </td>
+      <td>
+          Ethereum
+      </td>
+      <td>
+          uPort
+      </td>
+      <td>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+          did:cnsnt:
+      </td>
+      <td>
+          Ethereum
+      </td>
+      <td>
+          Consent
+      </td>
+      <td>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+          did:v1:
+      </td>
+      <td>
+          Veres One
+      </td>
+      <td>
+          Digital Bazaar
+      </td>
+      <td>
+        <a href="https://w3c-ccg.github.io/didm-veres-one/">Veres One DID Method</a>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</section>
+
+<section class="appendix">
+  <h1>The Generic DID Context for JSON-LD</h1>
 
 <p>
 This JSON-LD document is the generic context for all DID Documents.
@@ -2120,6 +2219,45 @@ https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/maste
   }]
 }
 </pre>
+</section>
+
+<section class="appendix">
+<h1>Standard Key Descriptions</h1>
+
+<p>
+As described in Section <a href="#did-documents"></a>, key description is a
+standard way to describe
+a public key or verification key in JSON-LD. This appendix contains a
+list of key descriptions recommended for use in DID Documents.
+</p>
+
+<section>
+<h2>RSA Keys</h2>
+
+<pre class="example nohighlight">
+{
+  "id": "did:example:123456789abcdefghi#keys-1",
+  "type": ["CryptographicKey", "RsaCryptographicKey"],
+  "owner": "did:example:123456789abcdefghi",
+  "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+}
+</pre>
+</section>
+
+<section>
+<h2>EdDSA Keys</h2>
+
+<pre class="example nohighlight">
+{
+  "id": "did:example:123456789abcdefghi/keys/2",
+  "type": ["CryptographicKey", "EdDsaSAKey"],
+  "owner": "did:example:123456789abcdefghi",
+  "curve": "ed25519",
+  "expires": "2017-02-08T16:02:20Z",
+  "publicKeyBase64": "IOmA4R7TfhkYTYW87...CBMq2/gi25s="
+}
+</pre>
+</section>
 </section>
 
 <section>
