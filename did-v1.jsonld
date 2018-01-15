@@ -18,10 +18,13 @@
     "LinkedDataSignature2015": "sec:LinkedDataSignature2015",
     "LinkedDataSignature2016": "sec:LinkedDataSignature2016",
     "RsaCryptographicKey": "sec:RsaCryptographicKey",
+    "RsaKeyBasedAuthentication2018": "sec:RsaKeyBasedAuthentication",
+    "RsaSigningKey2018": "sec:RsaSigningKey",
     "RsaSignature2015": "sec:RsaSignature2015",
     "RsaSignature2017": "sec:RsaSignature2017",
     "UpdateDidDescription": "didv:UpdateDidDescription",
 
+    "authentication": "sec:authenticationSuite",
     "authenticationCredential": "sec:authenticationCredential",
     "authorizationCapability": "sec:authorizationCapability",
     "canonicalizationAlgorithm": "sec:canonicalizationAlgorithm",
