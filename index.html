@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Decentralized Identifiers (DIDs) v0.7</title>
+    <title>Decentralized Identifiers (DIDs) v0.9</title>
     <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
     <!--
       === NOTA BENE ===
@@ -513,20 +513,21 @@ when possible to express authorization to modify a DID Document.
 {
   "@context": "https://w3id.org/did/v1",
   "id": "did:example:123456789abcdefghi",
-  "authorizationCapability": [{
-    // this entity may update any field in this DID Document using any
-    // authentication mechanism understood by the ledger
-    "permission": "UpdateDidDocument",
-    "entity": "did:example:123456789abcdefghi"
-  }],
-  "exampleService": "https://example.com/messages/8377464",
-  "authenticationCredential": [{
-    // this key can be used to authenticate as DID ...9938
+  "publicKey": [{
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaCryptographicKey",
+    "type": "RsaSigningKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }]
+  }],
+  "authentication": [{
+    // this key can be used to authenticate as DID ...9938
+    "type": "RsaKeyBasedAuthentication2018",
+    "publicKey": "#keys-1"
+  }],
+  service: {[
+    "type": "MessagingService",
+    "serviceEndpoint": "https://example.com/messages/8377464"
+  ]}
 }
 </pre>
 
@@ -857,7 +858,7 @@ Example (using an example URL):
 
 <pre class="example nohighlight">
 {
-  "@context": "https://example.org/did/v1"
+  "@context": "https://w3id.org/did/v1"
 }
 </pre>
 
@@ -872,16 +873,16 @@ Appendix <a href="#the-generic-did-context-for-json-ld"></a>
 </section>
 
 <section>
-<h2>Primary DID</h2>
+<h2>DID Subject</h2>
 
 <p>
-The primary DID is the primary index key for the DID Document, i.e., it is DID
-described by DID Document. The rules for a primary DID are:
+The DID subject is the identifier that the DID Document is about, i.e., it is
+the DID described by DID Document. The rules for a DID subject are:
 </p>
 
 <ol start="1">
   <li>
-A DID Document MUST have exactly one primary DID.
+A DID Document MUST have exactly one DID subject.
   </li>
 
   <li>
@@ -894,7 +895,7 @@ The value of this key MUST be a valid DID.
 
   <li>
 When this DID Document is registered with the target distributed ledger or
-network, the registered DID MUST match this primary DID value.
+network, the registered DID MUST match this DID subject value.
   </li>
 </ol>
 
@@ -909,7 +910,7 @@ Example:
 </pre>
 </section>
 
-<section>
+<!-- section>
 <h2>Delegates</h2>
 
 <p class="issue">
@@ -982,7 +983,7 @@ Example:
   }]
 }
 </pre>
-</section>
+</section -->
 
 <section>
 <h2>Authentication</h2>
@@ -1063,7 +1064,7 @@ responsibility of DID resolvers and other clients. See Section
 
 </section>
 
-<section>
+<!-- section>
 <h2>Authorization</h2>
 
 <p class="issue">
@@ -1213,7 +1214,7 @@ property array MAY contain a single JSON object:
 </pre>
 </section>
 
-</section>
+</section -->
 
 <section>
 <h2>Service Endpoints</h2>
@@ -2040,92 +2041,37 @@ Future versions of the specification will describe in more detail how DIDs and D
 </section>
 
 <section class="appendix">
-<h1>Proposed DID Method Specifications</h1>
+<h1>Registries</h1>
 
 <p>
-      This table summarizes the DID method specifications currently in development. The links will be updated as subsequent Implementer’s Drafts are produced.
+There are multiple registries that define DID Methods and extensions to this
+specification. These registries are:
 </p>
 
 <table class="simple">
   <thead>
     <tr>
-      <th>Method Name</th>
-      <th>DLT or Network</th>
-      <th>Authors</th>
-      <th>Link</th>
+      <th>Registry</th>
+      <th>Purpose</th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
       <td>
-          did:sov:
+          <a href="https://w3c-ccg.github.io/did-method-registry/">DID Method Registry</a>
       </td>
       <td>
-          Sovrin
-      </td>
-      <td>
-          Sovrin Foundation
-      </td>
-      <td>
-        <a href="https://docs.google.com/document/d/1X7dWpVvskGRpk05yyPEMd1uqaJ9FnOzoeWMdwzdIFyU/edit#">Sovrin DID Method</a>
+          Defines all known DID Methods and contains links to their specifications.
       </td>
     </tr>
 
     <tr>
       <td>
-          did:btcr:
+          <a href="https://w3c-ccg.github.io/ld-key-registry/">Linked Data Key Formats Registry</a>
       </td>
       <td>
-          Bitcoin
-      </td>
-      <td>
-          Christopher Allen
-      </td>
-      <td>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-          did:uport:
-      </td>
-      <td>
-          Ethereum
-      </td>
-      <td>
-          uPort
-      </td>
-      <td>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-          did:cnsnt:
-      </td>
-      <td>
-          Ethereum
-      </td>
-      <td>
-          Consent
-      </td>
-      <td>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-          did:v1:
-      </td>
-      <td>
-          Veres One
-      </td>
-      <td>
-          Digital Bazaar
-      </td>
-      <td>
-        <a href="https://w3c-ccg.github.io/didm-veres-one/">Veres One DID Method</a>
+          Defines all known Linked Data Key Formats.
       </td>
     </tr>
 
@@ -2135,28 +2081,63 @@ Future versions of the specification will describe in more detail how DIDs and D
 </section>
 
 <section class="appendix">
-  <h1>The Generic DID Context for JSON-LD</h1>
+  <h1>Real World Example</h1>
 
 <p>
-This JSON-LD document is the generic context for all DID Documents.
-See Section <a href="#context"></a> for the rules for using this context.
-</p>
-
-<p>
-For this implementer’s draft, the URL for this context is:
-</p>
-
-<p>
-  <a href=
-  "https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/final-documents/did-context-v1-draft-01.txt">
-https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/final-documents/did-context-v1-draft-01.txt</a>
+A future-facing real-world context is provided below:
 </p>
 
 <pre class="example nohighlight" title="Advanced DID Document example">
 {
-  "@context": "https://w3id.org/did/v1",
+  "@context": "https://w3id.org/future-method/v1",
   "id": "did:example:123456789abcdefghi",
-  "authorizationCapability": [{
+
+  "publicKey": [{
+    "id": "did:example:123456789abcdefghi#keys-1",
+    "type": "RsaSigningKey2018",
+    "owner": "did:example:123456789abcdefghi",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }],
+
+  // EXPERIMENTAL: Proposal for pseudonymous biometric templates
+  "publicBiometricTemplate": [{
+    // this biometric can be used to authenticate as DID ...fghi
+    "id": "did:example:123456789abcdefghi#bio-1",
+    "type": "PseudonymousBiometricTemplate2017",
+    "owner": "did:example:123456789abcdefghi",
+    "biometricService": "https://example.com/authenticate"
+    "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
+  }]
+
+  "authentication": [{
+    // this key can be used to authenticate as DID ...9938
+    "type": "RsaKeyBasedAuthentication2018",
+    "publicKey": "#keys-1"
+  }, {
+    // this key can be used to authenticate as DID ...9938
+    "type": "PseudonymousBiometricBasedAuthentication2018",
+    "publicKey": "#bio-1"
+  }],
+
+  // EXPERIMENTAL: Proposal for encrypting messages for DID
+  "encryption": [{
+    // this key can be used to encrypt messages for the DID ...9938
+    "type": "RsaKeyBasedEncryption2018",
+    "publicKey": "#keys-2"
+  },
+
+  service: {[
+    "type": "MessagingService",
+    "serviceEndpoint": "https://example.com/messages/8377464",
+    // EXPERIMENTAL: Proposal for doing service encryption
+    "encryption": [{
+      // this key can be used to encrypt messages for the DID ...9938
+      "type": "RsaKeyBasedEncryption2018",
+      "publicKey": "#keys-2"
+    }
+  ]}
+
+  "didAuthorization": [{
     // this entity may update any field in this DID Document using any
     // authentication mechanism understood by the ledger
     "permission": "UpdateDidDocument",
@@ -2209,62 +2190,9 @@ https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/maste
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }
     }]
-  }],
-  "authenticationCredential": [{
-    // this biometric can be used to authenticate as DID ...fghi
-    "id": "did:example:123456789abcdefghi/biometric/1",
-    "type": "PseudonymousBiometricTemplate2017",
-    "owner": "did:example:123456789abcdefghi",
-    "biometricService": "https://example.com/authenticate"
-    "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
-  }, {
-    // this key can be used to authenticate as DID ...9938
-    "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaCryptographicKey",
-    "owner": "did:example:123456789abcdefghi",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }]
 }
 </pre>
-</section>
-
-<section class="appendix">
-<h1>Standard Key Descriptions</h1>
-
-<p>
-As described in Section <a href="#did-documents"></a>, key description is a
-standard way to describe
-a public key or verification key in JSON-LD. This appendix contains a
-list of key descriptions recommended for use in DID Documents.
-</p>
-
-<section>
-<h2>RSA Keys</h2>
-
-<pre class="example nohighlight">
-{
-  "id": "did:example:123456789abcdefghi#keys-1",
-  "type": ["CryptographicKey", "RsaCryptographicKey"],
-  "owner": "did:example:123456789abcdefghi",
-  "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-}
-</pre>
-</section>
-
-<section>
-<h2>EdDSA Keys</h2>
-
-<pre class="example nohighlight">
-{
-  "id": "did:example:123456789abcdefghi/keys/2",
-  "type": ["CryptographicKey", "EdDsaSAKey"],
-  "owner": "did:example:123456789abcdefghi",
-  "curve": "ed25519",
-  "expires": "2017-02-08T16:02:20Z",
-  "publicKeyBase64": "IOmA4R7TfhkYTYW87...CBMq2/gi25s="
-}
-</pre>
-</section>
 </section>
 
 <section>
