@@ -524,10 +524,10 @@ when possible to express authorization to modify a DID Document.
     "type": "RsaKeyBasedAuthentication2018",
     "publicKey": "#keys-1"
   }],
-  service: {[
+  "service": [{
     "type": "MessagingService",
     "serviceEndpoint": "https://example.com/messages/8377464"
-  ]}
+  }]
 }
 </pre>
 
@@ -2110,9 +2110,9 @@ A future-facing real-world context is provided below:
     "id": "did:example:123456789abcdefghi#bio-1",
     "type": "PseudonymousBiometricTemplate2017",
     "owner": "did:example:123456789abcdefghi",
-    "biometricService": "https://example.com/authenticate"
+    "biometricService": "https://example.com/authenticate",
     "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
-  }]
+  }],
 
   "authentication": [{
     // this key can be used to authenticate as DID ...9938
@@ -2129,9 +2129,9 @@ A future-facing real-world context is provided below:
     // this key can be used to encrypt messages for the DID ...9938
     "type": "RsaKeyBasedEncryption2018",
     "publicKey": "#keys-2"
-  },
+  }],
 
-  service: {[
+  "service": [{
     "type": "MessagingService",
     "serviceEndpoint": "https://example.com/messages/8377464",
     // EXPERIMENTAL: Proposal for doing service encryption
@@ -2139,8 +2139,8 @@ A future-facing real-world context is provided below:
       // this key can be used to encrypt messages for the DID ...9938
       "type": "RsaKeyBasedEncryption2018",
       "publicKey": "#keys-2"
-    }
-  ]}
+    }]
+  }],
 
   "didAuthorization": [{
     // this entity may update any field in this DID Document using any
@@ -2193,7 +2193,7 @@ A future-facing real-world context is provided below:
         "type": "RsaCryptographicKey",
         "owner": "did:example:123456789abcdefghi",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-      }
+      }]
     }]
   }]
 }
