@@ -102,8 +102,8 @@ specific DID. Each DID Document contains at least three things:
 cryptographic material, authentication suites, and service endpoints.
 Cryptographic material combined with authentication suites provide a set of
 mechanisms to authenticate as the DID subject (e.g. public keys,
-pseudonymous biometric templates, etc.). Service endpoints contain a set of
-service endpoints for trusted interactions with the DID subject.
+pseudonymous biometric templates, etc.). Service endpoints enable
+trusted interactions with the DID subject.
       </p>
 
       <p>
@@ -525,8 +525,8 @@ when possible to express authorization to modify a DID Document.
     "publicKey": "#keys-1"
   }],
   "service": [{
-    "type": "MessagingService",
-    "serviceEndpoint": "https://example.com/messages/8377464"
+    "type": "example",
+    "endpoint": "https://example.com/endpoint/8377464"
   }]
 }
 </pre>
@@ -560,7 +560,6 @@ private keys.
     "permission": "UpdateDidDocument",
     "entity": "did:example:zxyvwtrkpn987654321"
   }],
-  "exampleService": "https://example.com/messages/8377464",
   "authenticationCredential": [{
     // this biometric can be used to authenticate as DID ...fghi
     "id": "did:example:123456789abcdefghi/biometric/1",
@@ -568,6 +567,10 @@ private keys.
     "owner": "did:example:123456789abcdefghi",
     "biometricService": "https://example.com/authenticate"
     "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
+  }],
+  "service": [{
+    "type": "example",
+    "endpoint": "https://example.com/endpoint/8377464"
   }]
 }
 </pre>
@@ -972,7 +975,6 @@ Example:
     "permission": "UpdateDidDocument",
     "entity": "did:example:zxyvwtrkpn987654321"
   }],
-  "credentialRepositoryService": "https://vc.example.com/abcdef",
   "authenticationCredential": [{
     // this biometric can be used to authenticate as DID ...fghi
     "id": "did:example:123456789abcdefghi/biometric/1",
@@ -980,6 +982,10 @@ Example:
     "owner": "did:example:123456789abcdefghi",
     "biometricService": "https://example.com/authenticate"
     "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
+  }],
+  "service": [{
+    "type": "example",
+    "endpoint": "https://example.com/endpoint/8377464"
   }]
 }
 </pre>
@@ -1232,7 +1238,15 @@ authentication, authorization, or interaction.
 </p>
 <ol start="1">
   <li>
-A DID Document MAY have multiple properties representing service endpoints.
+A DID Document MAY include a <code>services</code> property.
+  </li>
+
+  <li>
+The value of the <code>services</code> property should be an array of service endpoints.
+  </li>
+
+  <li>
+Each service endpoint must include <code>type</code> and <code>endpoint</code> properties, and may include additional properties.
   </li>
 
   <li>
@@ -1241,7 +1255,7 @@ specification.
   </li>
 
   <li>
-The value of the service endpoint MUST be a valid URI conforming to
+The value of the <code>endpoint</code> property MUST be a valid URI conforming to
 [[RFC3986]] and normalized according to the rules in section 6 of [[RFC3986]]
 and to any normalization rules in its applicable URI scheme specification or a
 JSON-LD object.
@@ -1256,17 +1270,38 @@ JSON-LD object.
 
 </p>
 
-<pre class="example nohighlight" title="Service description for a Social Web inbox">
+<pre class="example nohighlight" title="Various service endpoints">
 {
-  "credentialRepositoryService": "https://repository.example.com/123",
-  "socialWebInboxService": {
-    "id": "https://social.example.com/83hfh37dj",
+  "service": [{
+    "type": "openid-connect-v3.1",
+    "endpoint": "https://openid.example.com/"
+  }, {
+    "type": "credential-repository",
+    "endpoint": "https://repository.example.com/service/8377464"
+  }, {
+    "type": "xdi",
+    "endpoint": "https://xdi.example.com/8377464"
+  }, {
+    "type": "agent",
+    "endpoint": "https://agent.example.com/8377464"
+  }, {
+    "type": "hub",
+    "endpoint": "https://hub.example.com/.identity/did:example:0123456789abcdef/"
+  }, {
+    "type": "messaging",
+    "endpoint": "https://example.com/messages/8377464"
+  }, {
+    "type": "social-web-inbox",
+    "endpoint": "https://social.example.com/83hfh37dj",
     "description": "My public social inbox",
     "spamCost": {
       "amount": "0.50",
       "currency": "USD"
     }
-  }
+  }, {
+    "type": "did-auth-push-mode-v1",
+    "endpoint": "http://auth.example.com/did:example:123456789abcdefg"
+  }]
 }
 </pre>
 
@@ -2132,7 +2167,7 @@ A future-facing real-world context is provided below:
   }],
 
   "service": [{
-    "type": "MessagingService",
+    "type": "messaging",
     "serviceEndpoint": "https://example.com/messages/8377464",
     // EXPERIMENTAL: Proposal for doing service encryption
     "encryption": [{
