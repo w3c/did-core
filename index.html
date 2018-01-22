@@ -525,7 +525,7 @@ when possible to express authorization to modify a DID Document.
     "publicKey": "#keys-1"
   }],
   "service": [{
-    "type": "example",
+    "type": "ExampleService",
     "endpoint": "https://example.com/endpoint/8377464"
   }]
 }
@@ -569,7 +569,7 @@ private keys.
     "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
   }],
   "service": [{
-    "type": "example",
+    "type": "ExampleService",
     "endpoint": "https://example.com/endpoint/8377464"
   }]
 }
@@ -984,7 +984,7 @@ Example:
     "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
   }],
   "service": [{
-    "type": "example",
+    "type": "ExampleService",
     "endpoint": "https://example.com/endpoint/8377464"
   }]
 }
@@ -1273,25 +1273,25 @@ JSON-LD object.
 <pre class="example nohighlight" title="Various service endpoints">
 {
   "service": [{
-    "type": "openid-connect-v3.1",
+    "type": "OpenIdConnectVersion3.1Service",
     "endpoint": "https://openid.example.com/"
   }, {
-    "type": "credential-repository",
+    "type": "CredentialRepositoryService",
     "endpoint": "https://repository.example.com/service/8377464"
   }, {
-    "type": "xdi",
+    "type": "XdiService",
     "endpoint": "https://xdi.example.com/8377464"
   }, {
-    "type": "agent",
+    "type": "AgentService",
     "endpoint": "https://agent.example.com/8377464"
   }, {
-    "type": "hub",
+    "type": "HubService",
     "endpoint": "https://hub.example.com/.identity/did:example:0123456789abcdef/"
   }, {
-    "type": "messaging",
+    "type": "MessagingService",
     "endpoint": "https://example.com/messages/8377464"
   }, {
-    "type": "social-web-inbox",
+    "type": "SocialWebInboxService",
     "endpoint": "https://social.example.com/83hfh37dj",
     "description": "My public social inbox",
     "spamCost": {
@@ -1299,7 +1299,7 @@ JSON-LD object.
       "currency": "USD"
     }
   }, {
-    "type": "did-auth-push-mode-v1",
+    "type": "DidAuthPushModeVersion1",
     "endpoint": "http://auth.example.com/did:example:123456789abcdefg"
   }]
 }
