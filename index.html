@@ -2156,22 +2156,32 @@ A future-facing real-world context is provided below:
     "biometricTemplate": "#bio-1"
   }],
 
-  // EXPERIMENTAL: Proposal for encrypting messages for DID
-  "encryption": [{
-    // this key can be used to encrypt messages for the DID ...9938
-    "type": "RsaEncryption2018",
-    "publicKey": "#keys-2"
-  }],
-
   "service": [{
-    "type": "messaging",
-    "serviceEndpoint": "https://example.com/messages/8377464",
-    // EXPERIMENTAL: Proposal for doing service encryption
-    "encryption": [{
-      // this key can be used to encrypt messages for the DID ...9938
-      "type": "RsaEncryption2018",
-      "publicKey": "#keys-2"
-    }]
+    "type": "OpenIdConnectVersion3.1Service",
+    "serviceEndpoint": "https://openid.example.com/"
+  }, {
+    "type": "CredentialRepositoryService",
+    "serviceEndpoint": "https://repository.example.com/service/8377464"
+  }, {
+    "type": "XdiService",
+    "serviceEndpoint": "https://xdi.example.com/8377464"
+  }, {
+    "type": "HubService",
+    "serviceEndpoint": "https://hub.example.com/.identity/did:example:0123456789abcdef/"
+  }, {
+    "type": "MessagingService",
+    "serviceEndpoint": "https://example.com/messages/8377464"
+  }, {
+    "type": "SocialWebInboxService",
+    "serviceEndpoint": "https://social.example.com/83hfh37dj",
+    "description": "My public social inbox",
+    "spamCost": {
+      "amount": "0.50",
+      "currency": "USD"
+    }
+  }, {
+    "type": "DidAuthPushModeVersion1",
+    "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefg"
   }],
 
   // EXPERIMENTAL: Authorization rules to update the document is method-specific
