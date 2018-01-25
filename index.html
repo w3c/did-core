@@ -514,7 +514,7 @@ when possible to express authorization to modify a DID Document.
   "@context": "https://w3id.org/did/v1",
   "id": "did:example:123456789abcdefghi",
   "publicKey": [{
-    "id": "#keys-1",
+    "id": "did:example:123456789abcdefghi#keys-1",
     "type": "RsaSigningKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
@@ -522,7 +522,7 @@ when possible to express authorization to modify a DID Document.
   "authentication": [{
     // this key can be used to authenticate as DID ...9938
     "type": "RsaSignatureAuthentication2018",
-    "publicKey": "#keys-1"
+    "publicKey": "did:example:123456789abcdefghi#keys-1"
   }],
   "service": [{
     "type": "ExampleService",
@@ -1048,11 +1048,11 @@ Example:
   "authentication": [{
     // this key can be used to authenticate as DID ...9938
     "type": "RsaSignatureAuthentication2018",
-    "publicKey": "#keys-1"
+    "publicKey": "did:example:123456789abcdefghi#keys-1"
   }, {
     // this key can be used to authenticate as DID ...9938
     "type": "PseudonymousBiometricAuthentication2018",
-    "biometricTemplate": "#bio-1"
+    "biometricTemplate": "did:example:123456789abcdefghi#bio-1"
   }],
   ...
 }
@@ -2125,12 +2125,12 @@ A future-facing real-world context is provided below:
   "id": "did:example:123456789abcdefghi",
 
   "publicKey": [{
-    "id": "#keys-1",
+    "id": "did:example:123456789abcdefghi#keys-1",
     "type": "RsaSigningKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }, {
-    "id": "#keys-2",
+    "id": "did:example:123456789abcdefghi#keys-2",
     "type": "RsaEncryptionKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
@@ -2139,7 +2139,7 @@ A future-facing real-world context is provided below:
   // EXPERIMENTAL: Proposal for pseudonymous biometric templates
   "publicBiometricTemplate": [{
     // this biometric can be used to authenticate as DID ...fghi
-    "id": "#bio-1",
+    "id": "did:example:123456789abcdefghi#bio-1",
     "type": "PseudonymousBiometricTemplate2017",
     "owner": "did:example:123456789abcdefghi",
     "biometricService": "https://example.com/authenticate",
@@ -2149,11 +2149,11 @@ A future-facing real-world context is provided below:
   "authentication": [{
     // this key can be used to authenticate as DID ...9938
     "type": "RsaSignatureAuthentication2018",
-    "publicKey": "#keys-1"
+    "publicKey": "did:example:123456789abcdefghi#keys-1"
   }, {
     // this key can be used to authenticate as DID ...9938
     "type": "PseudonymousBiometricAuthentication2018",
-    "biometricTemplate": "#bio-1"
+    "biometricTemplate": "did:example:123456789abcdefghi#bio-1"
   }],
 
   "service": [{
