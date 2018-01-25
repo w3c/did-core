@@ -526,7 +526,7 @@ when possible to express authorization to modify a DID Document.
   }],
   "service": [{
     "type": "ExampleService",
-    "endpoint": "https://example.com/endpoint/8377464"
+    "serviceEndpoint": "https://example.com/endpoint/8377464"
   }]
 }
 </pre>
@@ -570,7 +570,7 @@ private keys.
   }],
   "service": [{
     "type": "ExampleService",
-    "endpoint": "https://example.com/endpoint/8377464"
+    "serviceEndpoint": "https://example.com/endpoint/8377464"
   }]
 }
 </pre>
@@ -985,7 +985,7 @@ Example:
   }],
   "service": [{
     "type": "ExampleService",
-    "endpoint": "https://example.com/endpoint/8377464"
+    "serviceEndpoint": "https://example.com/endpoint/8377464"
   }]
 }
 </pre>
@@ -1044,26 +1044,22 @@ Example:
 {
   "@context": "https://w3id.org/did/v1",
   "id": "did:example:123456789abcdefghi",
-  "authenticationCredential": [{
-    // this biometric can be used to authenticate as DID ...fghi
-    "id": "did:example:123456789abcdefghi/biometric/1",
-    "type": "PseudonymousBiometricTemplate2017",
-    "owner": "did:example:123456789abcdefghi",
-    "biometricService": "https://example.com/authenticate",
-    "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
+  ...
+  "authentication": [{
+    // this key can be used to authenticate as DID ...9938
+    "type": "RsaKeyBasedAuthentication2018",
+    "publicKey": "#keys-1"
   }, {
-    // this key can be used to authenticate as DID ...fghi
-    "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaCryptographicKey",
-    "owner": "did:example:123456789abcdefghi",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }]
+    // this key can be used to authenticate as DID ...9938
+    "type": "PseudonymousBiometricBasedAuthentication2018",
+    "biometricTemplate": "#bio-1"
+  }],
+  ...
 }
 </pre>
 
 <p class="note">
-Caching and expiration of the keys in a DID Document
-<code>authenticationCredential</code> property is entirely the
+Caching and expiration of the keys in a DID Document is entirely the
 responsibility of DID resolvers and other clients. See Section
 <a href="#did-resolvers"></a>.
 </p>
@@ -1274,25 +1270,25 @@ JSON-LD object.
 {
   "service": [{
     "type": "OpenIdConnectVersion3.1Service",
-    "endpoint": "https://openid.example.com/"
+    "serviceEndpoint": "https://openid.example.com/"
   }, {
     "type": "CredentialRepositoryService",
-    "endpoint": "https://repository.example.com/service/8377464"
+    "serviceEndpoint": "https://repository.example.com/service/8377464"
   }, {
     "type": "XdiService",
-    "endpoint": "https://xdi.example.com/8377464"
+    "serviceEndpoint": "https://xdi.example.com/8377464"
   }, {
     "type": "AgentService",
-    "endpoint": "https://agent.example.com/8377464"
+    "serviceEndpoint": "https://agent.example.com/8377464"
   }, {
     "type": "HubService",
-    "endpoint": "https://hub.example.com/.identity/did:example:0123456789abcdef/"
+    "serviceEndpoint": "https://hub.example.com/.identity/did:example:0123456789abcdef/"
   }, {
     "type": "MessagingService",
-    "endpoint": "https://example.com/messages/8377464"
+    "serviceEndpoint": "https://example.com/messages/8377464"
   }, {
     "type": "SocialWebInboxService",
-    "endpoint": "https://social.example.com/83hfh37dj",
+    "serviceEndpoint": "https://social.example.com/83hfh37dj",
     "description": "My public social inbox",
     "spamCost": {
       "amount": "0.50",
@@ -1300,7 +1296,7 @@ JSON-LD object.
     }
   }, {
     "type": "DidAuthPushModeVersion1",
-    "endpoint": "http://auth.example.com/did:example:123456789abcdefg"
+    "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefg"
   }]
 }
 </pre>
@@ -2156,7 +2152,7 @@ A future-facing real-world context is provided below:
   }, {
     // this key can be used to authenticate as DID ...9938
     "type": "PseudonymousBiometricBasedAuthentication2018",
-    "publicKey": "#bio-1"
+    "biometricTemplate": "#bio-1"
   }],
 
   // EXPERIMENTAL: Proposal for encrypting messages for DID
