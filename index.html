@@ -521,7 +521,7 @@ when possible to express authorization to modify a DID Document.
   }],
   "authentication": [{
     // this key can be used to authenticate as DID ...9938
-    "type": "RsaKeyBasedAuthentication2018",
+    "type": "RsaSignatureAuthentication2018",
     "publicKey": "#keys-1"
   }],
   "service": [{
@@ -1047,11 +1047,11 @@ Example:
   ...
   "authentication": [{
     // this key can be used to authenticate as DID ...9938
-    "type": "RsaKeyBasedAuthentication2018",
+    "type": "RsaSignatureAuthentication2018",
     "publicKey": "#keys-1"
   }, {
     // this key can be used to authenticate as DID ...9938
-    "type": "PseudonymousBiometricBasedAuthentication2018",
+    "type": "PseudonymousBiometricAuthentication2018",
     "biometricTemplate": "#bio-1"
   }],
   ...
@@ -1401,10 +1401,11 @@ from section 6.7.
 </section>
 
 <section>
-<h2>Signature (Optional)</h2>
+<h2>Proof (Optional)</h2>
 
 <p>
-      A signature on a DID Document is cryptographic proof of the integrity of the DID Document according to either:
+A <code>proof</code> on a DID Document is cryptographic proof of the
+integrity of the DID Document according to either:
 </p>
 <ol start="1">
   <li>
@@ -1417,25 +1418,25 @@ The delegate as defined in section 6.3.
 </ol>
 
 <p>
-This signature is NOT proof of the binding between a DID and a DID Document.
+This proof is NOT proof of the binding between a DID and a DID Document.
 See Section <a href="#binding-of-identity"></a>.
 
-      The rules for a signature are:
+      The rules for a proof are:
 </p>
 
 <ol start="1">
   <li>
-A DID Document MAY have exactly one property representing a signature.
+A DID Document MAY have exactly one property representing a proof.
   </li>
 
   <li>
-The key for this property MUST be signature.
+The key for this property MUST be <code>proof</code>.
   </li>
 
   <li>
-The value of this key MUST be a valid JSON-LD signature as defined
+The value of this key MUST be a valid JSON-LD proof as defined
 by <a href="https://w3c-dvcg.github.io/ld-signatures/">Linked Data
-Signatures</a>.
+Proofs</a>.
   </li>
 </ol>
 
@@ -1443,9 +1444,9 @@ Signatures</a>.
       Example:
 </p>
 
-<pre class="example nohighlight">
+<pre class="example nohighlight" title="A signature-based proof">
 {
-  "signature": {
+  "proof": {
     "type": "LinkedDataSignature2015",
     "created": "2016-02-08T16:02:20Z",
     "creator": "did:example:8uQhQMGzWxR8vw5P3UWH1ja#keys-1",
@@ -2147,18 +2148,18 @@ A future-facing real-world context is provided below:
 
   "authentication": [{
     // this key can be used to authenticate as DID ...9938
-    "type": "RsaKeyBasedAuthentication2018",
+    "type": "RsaSignatureAuthentication2018",
     "publicKey": "#keys-1"
   }, {
     // this key can be used to authenticate as DID ...9938
-    "type": "PseudonymousBiometricBasedAuthentication2018",
+    "type": "PseudonymousBiometricAuthentication2018",
     "biometricTemplate": "#bio-1"
   }],
 
   // EXPERIMENTAL: Proposal for encrypting messages for DID
   "encryption": [{
     // this key can be used to encrypt messages for the DID ...9938
-    "type": "RsaKeyBasedEncryption2018",
+    "type": "RsaEncryption2018",
     "publicKey": "#keys-2"
   }],
 
@@ -2168,7 +2169,7 @@ A future-facing real-world context is provided below:
     // EXPERIMENTAL: Proposal for doing service encryption
     "encryption": [{
       // this key can be used to encrypt messages for the DID ...9938
-      "type": "RsaKeyBasedEncryption2018",
+      "type": "RsaEncryption2018",
       "publicKey": "#keys-2"
     }]
   }],
