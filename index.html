@@ -560,7 +560,7 @@ private keys.
     "permission": "UpdateDidDocument",
     "entity": "did:example:zxyvwtrkpn987654321"
   }],
-  "authenticationCredential": [{
+  "authentication": [{
     // this biometric can be used to authenticate as DID ...fghi
     "id": "did:example:123456789abcdefghi/biometric/1",
     "type": "PseudonymousBiometricTemplate2017",
@@ -935,27 +935,27 @@ The rules for a delegate are:
 <ol start="1">
   <li>
 A DID Document that includes an
-<code>authenticationCredential</code> field
+<code>authentication</code> field
 (Section <a href="#authentication"></a>) MAY list one or
 more delegates via the <code>authorizationCapability</code> field.
   </li>
 
   <li>
 A DID Document that does not include an
-<code>authenticationCredential</code> MUST have a delegate.
+<code>authentication</code> MUST have a delegate.
   </li>
 
   <li>
 The <code>authorizationCapability</code> field must contain a capability for the
 delegate that includes <code>UpdateDidDocument</code> as the capability,
 the DID of the delegate as the <code>entity</code>, and MAY include a
-more specific set of <code>authenticationCredential</code>s that the
+more specific set of <code>authentication</code>s that the
 delegate MAY use to authenticate when updating the DID Document.
   </li>
 
   <li>
 The delegate DID MUST resolve to a DID Document that has a
-<code>authenticationCredential</code> property containing at least one value
+<code>authentication</code> property containing at least one value
 i.e., the delegate relationships must not be nested.
   </li>
 </ol>
@@ -975,7 +975,7 @@ Example:
     "permission": "UpdateDidDocument",
     "entity": "did:example:zxyvwtrkpn987654321"
   }],
-  "authenticationCredential": [{
+  "authentication": [{
     // this biometric can be used to authenticate as DID ...fghi
     "id": "did:example:123456789abcdefghi/biometric/1",
     "type": "PseudonymousBiometricTemplate2017",
@@ -1013,12 +1013,12 @@ The rules for Authentication are:
 
 <ol start="1">
   <li>
-A DID Document MAY include a <code>authenticationCredential</code>
+A DID Document MAY include a <code>authentication</code>
 property.
   </li>
 
   <li>
-The value of the <code>authenticationCredential</code> property should be an
+The value of the <code>authentication</code> property should be an
 array of proof mechanisms.
   </li>
 
@@ -1128,7 +1128,7 @@ the <code>capability</code> property and the
   <li>
 If an authorization rule does not specify a specific proof mechanism
 (such as a public key ID), then an update proof verified with any
-credential in the <code>authenticationCredential</code> property of the
+credential in the <code>authentication</code> property of the
 DID Document dereferenced from that DID MUST be considered valid for
 the proof mechanism.
   </li>
@@ -1154,11 +1154,11 @@ property array MAY contain multiple JSON objects:
     "permission": "UpdateDidDocument",
     "entity": "did:example:z9f823hdf783h78fh2378"
   }, {
-    // this entity may update the authenticationCredential field in this
+    // this entity may update the authentication field in this
     // DID Document as long as they authenticate with RsaSignature2017
     "permission": "UpdateDidDocument",
     "entity": "did:example:abvd73h285jf73hd73",
-    "field": ["authenticationCredential"],
+    "field": ["authentication"],
     "permittedProofType": [{
       "proofType": "RsaSignature2017"
     }]
@@ -1187,14 +1187,14 @@ property array MAY contain a single JSON object:
   "@context": "https://w3id.org/did/v1",
   "id": "did:example:215cb1dc-1f44-4695-a07f-97649cad9938",
   "authorizationCapability": [{
-    // anyone may update the authenticationCredential and writeAuthorization
+    // anyone may update the authentication and writeAuthorization
     // fields as long as they provide a specific multi-signature proof
     "permission": "UpdateDidDocument",
-    "field": ["authenticationCredential", "writeAuthorization"],
+    "field": ["authentication", "writeAuthorization"],
     "permittedProofType": [{
       "proofType": "RsaSignature2017",
       "minimumSignatures": 3,
-      "authenticationCredential": [{
+      "authentication": [{
         "id": "did:example:304ebc3e-7997-4bf4-a915-dd87e8455941#keys-123",
         "type": "RsaCryptographicKey",
         "owner": "did:example:304ebc3e-7997-4bf4-a915-dd87e8455941",
@@ -2191,23 +2191,23 @@ A future-facing real-world context is provided below:
     "permission": "UpdateDidDocument",
     "entity": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938"
   }, {
-    // this entity may update the authenticationCredential field in this
+    // this entity may update the authentication field in this
     // DID Document as long as they authenticate with RsaSignature2017
     "entity": "did:v1:b5f8c320-f7ca-4869-85e6-a1bcbf825b2a",
     "permission": "UpdateDidDocument",
-    "field": ["authenticationCredential"],
+    "field": ["authentication"],
     "permittedProofType": [{
       "proofType": "RsaSignature2017"
     }]
   }, {
-    // anyone may update the authenticationCredential and writeAuthorization
+    // anyone may update the authentication and writeAuthorization
     // fields as long as they provide a specific multi-signature proof
     "permission": "UpdateDidDocument",
-    "field": ["authenticationCredential", "writeAuthorization"],
+    "field": ["authentication", "writeAuthorization"],
     "permittedProofType": [{
       "proofType": "RsaSignature2017",
       "minimumSignatures": 3,
-      "authenticationCredential": [{
+      "authentication": [{
         "id": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941#keys-123",
         "type": "RsaCryptographicKey",
         "owner": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941",
@@ -2231,7 +2231,7 @@ A future-facing real-world context is provided below:
     "entity": "did:example:123456789abcdefghi",
     "permittedProofType": [{
       "proofType": "RsaSignature2017",
-      "authenticationCredential": [{
+      "authentication": [{
         "id": "did:example:123456789abcdefghi#keys-1",
         "type": "RsaCryptographicKey",
         "owner": "did:example:123456789abcdefghi",
