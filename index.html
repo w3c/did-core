@@ -562,9 +562,7 @@ private keys.
   }],
   "authentication": [{
     // this biometric can be used to authenticate as DID ...fghi
-    "id": "did:example:123456789abcdefghi/biometric/1",
     "type": "PseudonymousBiometricTemplate2017",
-    "owner": "did:example:123456789abcdefghi",
     "biometricService": "https://example.com/authenticate",
     "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
   }],
@@ -977,9 +975,7 @@ Example:
   }],
   "authentication": [{
     // this biometric can be used to authenticate as DID ...fghi
-    "id": "did:example:123456789abcdefghi/biometric/1",
     "type": "PseudonymousBiometricTemplate2017",
-    "owner": "did:example:123456789abcdefghi",
     "biometricService": "https://example.com/authenticate",
     "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
   }],
@@ -1046,11 +1042,11 @@ Example:
   "id": "did:example:123456789abcdefghi",
   ...
   "authentication": [{
-    // this key can be used to authenticate as DID ...9938
+    // this key can be used to authenticate as DID ...fghi
     "type": "RsaSignatureAuthentication2018",
     "publicKey": "did:example:123456789abcdefghi#keys-1"
   }, {
-    // this key can be used to authenticate as DID ...9938
+    // this key can be used to authenticate as DID ...fghi
     "type": "PseudonymousBiometricAuthentication2018",
     "biometricTemplate": "did:example:123456789abcdefghi#bio-1"
   }],
@@ -1268,7 +1264,7 @@ JSON-LD object.
 
 <pre class="example nohighlight" title="Various service endpoints">
 {
-  "service": [{
+  "services": [{
     "type": "OpenIdConnectVersion3.1Service",
     "serviceEndpoint": "https://openid.example.com/"
   }, {
@@ -1384,7 +1380,7 @@ The key for this property MUST be updated.
 
   <li>
 The value of this key MUST follow the formatting rules (3, 4, 5)
-from section 6.7.
+from section <a href="#created-optional"></a>.
   </li>
 </ol>
 
@@ -1409,11 +1405,11 @@ integrity of the DID Document according to either:
 </p>
 <ol start="1">
   <li>
-The entity as defined in section 6.4, or if not present:
+The entity as defined in section <a href="#service-endpoints"></a>, or if not present:
   </li>
 
   <li>
-The delegate as defined in section 6.3.
+The delegate as defined in section 4.3.
   </li>
 </ol>
 
@@ -1592,7 +1588,7 @@ MAY offer the service of returning requested properties of the DID Document.
       As the root identifier records for decentralized identifiers, DIDs and DID Documents are a vital component of decentralized identity management. They are also the foundational building blocks of DPKI (decentralized public key infrastructure) as an augmentation to conventional X.509 certificates.
 
 
-      As such, DIDs are designed to operate under the general Internet threat model used by many IETF standards. We assume uncompromised endpoints, but allow messages to be read or corrupted on the network. Protecting against an attack when a system is compromised requires external key-signing hardware. See also section 6.5 regarding key revocation and recovery.
+      As such, DIDs are designed to operate under the general Internet threat model used by many IETF standards. We assume uncompromised endpoints, but allow messages to be read or corrupted on the network. Protecting against an attack when a system is compromised requires external key-signing hardware. See also section <a href="#key-revocation-and-recovery"></a> regarding key revocation and recovery.
 
 
       For their part, the DLTs hosting DIDs and DID Documents have special security properties for preventing active attacks. Their design uses public/private key cryptography to allow operation on passively monitored networks without risking compromise of private keys. This is what makes DID architecture and decentralized identity possible.
@@ -1767,7 +1763,7 @@ description.
 <h2>Authentication Service Endpoints</h2>
 
 <p>
-      If a DID Document publishes a service endpoint intended for authentication or authorization of an entity (section 6.6), it is the responsibility of the service endpoint provider, entity, and/or relying party to comply with the requirements of the authentication protocol(s) supported at that service endpoint.
+      If a DID Document publishes a service endpoint intended for authentication or authorization of an entity (section <a href="#service-endpoints"></a>), it is the responsibility of the service endpoint provider, entity, and/or relying party to comply with the requirements of the authentication protocol(s) supported at that service endpoint.
 </p>
 </section>
 
@@ -1779,7 +1775,7 @@ description.
 
       Non-repudiation of DIDs and DID Document updates is supported under the assumption that: (1) the entity is monitoring for unauthorized updates
       (see Section <a href="#notification-of-did-document-changes"></a>)
-      and (2) the entity has had adequate opportunity to revoke malicious updates according to the DID method's access control mechanism (section 6.5). This capability is further supported if timestamps are included (sections 6.7 and 6.8) and the target DLT system supports timestamps.
+      and (2) the entity has had adequate opportunity to revoke malicious updates according to the DID method's access control mechanism (section <a href="#authentication"></a>). This capability is further supported if timestamps are included (sections <a href="#created-optional"></a> and <a href="#updated-optional"></a>) and the target DLT system supports timestamps.
 
 
 
@@ -1845,7 +1841,7 @@ Section <a href="#did-operations"></a> specifies the DID operations that must be
       DID method specifications SHOULD enable support for a quorum of trusted parties to enable key recovery. Some of the facilities to do so are suggested in section 6.5, Authorization. Note that not all DID method specifications will recognize control from DIDs registered using other DID methods and they MAY restrict third-party control to DIDs that use the same method.
 
 
-      Access control and key recovery in a DID method specification MAY also include a time lock feature to protect against key compromise by maintaining a second track of control for recovery. Further specification of this type of control is a matter for future work (see section 11.4).
+      Access control and key recovery in a DID method specification MAY also include a time lock feature to protect against key compromise by maintaining a second track of control for recovery. Further specification of this type of control is a matter for future work (see section <a href="#time-locks-and-did-document-recovery"></a>).
 
 
 
@@ -2016,7 +2012,7 @@ share common settings across client implementations, keep negotiated options to 
 <p>
 
 
-Section <a href="#key-revocation-and-recover"></a> mentions one possible clever use of time locks to recover control of a DID after a key compromise. The technique relies on an ability to override the most recent update to a DID Document with Authorization applied by an earlier version of the DID Document in order to defeat the attacker. This protection depends on adding a
+Section <a href="#key-revocation-and-recovery"></a> mentions one possible clever use of time locks to recover control of a DID after a key compromise. The technique relies on an ability to override the most recent update to a DID Document with Authorization applied by an earlier version of the DID Document in order to defeat the attacker. This protection depends on adding a
         <a href=
 "https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki%23Abstract">time lock (see Bitcoin BIP 65)</a>
        to protect part of the transaction chain, enabling a Authorization block to be used to recover control. We plan to add support for time locks in a future version of this specification.
@@ -2147,16 +2143,16 @@ A future-facing real-world context is provided below:
   }],
 
   "authentication": [{
-    // this key can be used to authenticate as DID ...9938
+    // this key can be used to authenticate as DID ...fghi
     "type": "RsaSignatureAuthentication2018",
     "publicKey": "did:example:123456789abcdefghi#keys-1"
   }, {
-    // this key can be used to authenticate as DID ...9938
+    // this key can be used to authenticate as DID ...fghi
     "type": "PseudonymousBiometricAuthentication2018",
     "biometricTemplate": "did:example:123456789abcdefghi#bio-1"
   }],
 
-  "service": [{
+  "services": [{
     "type": "OpenIdConnectVersion3.1Service",
     "serviceEndpoint": "https://openid.example.com/"
   }, {
