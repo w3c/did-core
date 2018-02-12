@@ -1230,15 +1230,15 @@ authentication, authorization, or interaction.
 </p>
 <ol start="1">
   <li>
-A DID Document MAY include a <code>services</code> property.
+A DID Document MAY include a <code>service</code> property.
   </li>
 
   <li>
-The value of the <code>services</code> property should be an array of service endpoints.
+The value of the <code>service</code> property should be an array of service endpoints.
   </li>
 
   <li>
-Each service endpoint must include <code>type</code> and <code>serviceEndpoint</code> properties, and may include additional properties.
+Each service endpoint must include <code>type</code> and <code>serviceEndpoint</code> properties, and MAY include additional properties.
   </li>
 
   <li>
@@ -1264,7 +1264,7 @@ JSON-LD object.
 
 <pre class="example nohighlight" title="Various service endpoints">
 {
-  "services": [{
+  "service": [{
     "type": "OpenIdConnectVersion3.1Service",
     "serviceEndpoint": "https://openid.example.com/"
   }, {
@@ -2152,7 +2152,7 @@ A future-facing real-world context is provided below:
     "biometricTemplate": "did:example:123456789abcdefghi#bio-1"
   }],
 
-  "services": [{
+  "service": [{
     "type": "OpenIdConnectVersion3.1Service",
     "serviceEndpoint": "https://openid.example.com/"
   }, {
