@@ -1113,15 +1113,13 @@ array of proof mechanisms.
   </li>
 
   <li>
-Each proof mechanism must include <code>id</code>,
-<code>type</code>, and <code>owner</code> properties.
+Each proof mechanism must include the
+<code>type</code> property.
   </li>
 
   <li>
-Each proof mechanism MAY be a key description of a valid public key or
-verification key. A list of standard key descriptions is included in
-Appendix <a href="#standard-key-descriptions"></a>.
-A new key description MAY also be defined by a DID method specification.
+Each proof mechanism MAY reference a public key or verification
+key (see Section <a href="#public-keys"></a>).
   </li>
 </ol>
 
