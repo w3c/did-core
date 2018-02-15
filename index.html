@@ -988,6 +988,100 @@ Example:
 </section -->
 
 <section>
+<h2>Public Keys</h2>
+
+<p>
+Public keys are used for digital signatures, encryption and other cryptographic operations, 
+which in turn are the basis for purposes such as authentication
+(see Section <a href="#authentication"></a>)
+or establishing secure communication with <a>service endpoints</a>
+(see Section <a href="#service-endpoints"></a>).
+In addition, public keys may play a role in authorization mechanisms of DID CRUD operations 
+(see Section <a href="#did-operations"></a>); This
+may be defined by DID Method specifications.
+</p>
+
+<p>
+The primary intention is that a DID Document lists public keys whose corresponding
+private keys are controlled by the entity identified by the DID ("owned" public keys).
+However, a DID Document MAY also list "non-owned" public keys.
+</p>
+
+<p>
+The rules for public keys are:
+</p>
+
+<ol start="1">
+  <li>
+A DID Document MAY include a <code>publicKey</code>
+property.
+  </li>
+
+  <li>
+The value of the <code>publicKey</code> property should be an
+array of public keys.
+  </li>
+
+  <li>
+Each public key must include <code>id</code> and
+<code>type</code> properties, and exactly one value property.
+  </li>
+
+  <li>
+Each public key may include an <code>owner</code> property, which identifies the entity that controls
+the corresponding private key. If this property is missing, it is assumed to be the DID subject.
+  </li>
+
+  <li>
+The value property of a public key may be
+<code>publicKeyPem</code>, <code>publicKeyJwk</code>, <code>publicKeyHex</code>, <code>publicKeyBase64</code> or similar,
+depending on the format and encoding of the public key.
+  </li>
+
+  <li>
+A registry of key types and formats is available at [[LINKED-DATA-KEY-FORMAT-REGISTRY]].
+  </li>
+</ol>
+
+<p>
+Example:
+</p>
+
+<pre class="example nohighlight"
+  title="Various public keys">
+{
+  "@context": ["https://w3id.org/did/v1", "https://w3id.org/security/v1"],
+  "id": "did:example:123456789abcdefghi",
+  ...
+  "publicKey": [{
+    "id": "did:example:123456789abcdefghi#keys-1",
+    "type": "RsaSigningKey",
+    "owner": "did:example:123456789abcdefghi",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }, {
+    "id": "did:example:123456789abcdefghi#keys-2",
+    "type": "Ed25519VerificationKey",
+    "owner": "did:example:123456789abcdefghi",
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+  }, {
+    "id": "did:example:123456789abcdefghi#keys-3",
+    "type": "EdDsaSAPublicKeySecp256k1",
+    "owner": "did:example:123456789abcdefghi",
+    "publicKeyHex": "02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71"
+  }],
+  ...
+}
+</pre>
+
+<p class="note">
+Caching and expiration of the keys in a DID Document is entirely the
+responsibility of DID resolvers and other clients. See Section
+<a href="#did-resolvers"></a>.
+</p>
+
+</section>
+
+<section>
 <h2>Authentication</h2>
 
 <p>
@@ -1053,12 +1147,6 @@ Example:
   ...
 }
 </pre>
-
-<p class="note">
-Caching and expiration of the keys in a DID Document is entirely the
-responsibility of DID resolvers and other clients. See Section
-<a href="#did-resolvers"></a>.
-</p>
 
 </section>
 
@@ -2262,6 +2350,10 @@ Move these to localBiblio, update refs, and/or remove as needed.
       [JSON-LD] JSON-LD 1.0.
         <a href=
 "http://www.w3.org/TR/json-ld/">http://www.w3.org/TR/json-ld/</a>
+
+      [LINKED-DATA-KEY-FORMAT-REGISTRY] Draft Community Group Report
+        <a href=
+"https://w3c-ccg.github.io/ld-key-registry/">https://w3c-ccg.github.io/ld-key-registry/</a>
 
       [LINKED-DATA-SIGNATURES] Draft Community Group Report
         <a href=
