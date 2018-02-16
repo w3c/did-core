@@ -515,7 +515,7 @@ when possible to express authorization to modify a DID Document.
   "id": "did:example:123456789abcdefghi",
   "publicKey": [{
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaSigningKey2018",
+    "type": "RsaSignatureVerificationKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }],
@@ -1055,17 +1055,17 @@ Example:
   ...
   "publicKey": [{
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaSigningKey",
+    "type": "RsaSignatureVerificationKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }, {
     "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey",
+    "type": "Ed25519SignatureVerificationKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }, {
     "id": "did:example:123456789abcdefghi#keys-3",
-    "type": "EdDsaSAPublicKeySecp256k1",
+    "type": "Secp256k1SignatureVerificationKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyHex": "02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71"
   }],
@@ -1237,12 +1237,12 @@ property array MAY contain multiple JSON objects:
     "entity": "did:example:z9f823hdf783h78fh2378"
   }, {
     // this entity may update the authentication field in this
-    // DID Document as long as they authenticate with RsaSignature2017
+    // DID Document as long as they authenticate with RsaSignature2018
     "permission": "UpdateDidDocument",
     "entity": "did:example:abvd73h285jf73hd73",
     "field": ["authentication"],
     "permittedProofType": [{
-      "proofType": "RsaSignature2017"
+      "proofType": "RsaSignature2018"
     }]
   }]
 }
@@ -1274,21 +1274,21 @@ property array MAY contain a single JSON object:
     "permission": "UpdateDidDocument",
     "field": ["authentication", "writeAuthorization"],
     "permittedProofType": [{
-      "proofType": "RsaSignature2017",
+      "proofType": "RsaSignature2018",
       "minimumSignatures": 3,
       "authentication": [{
         "id": "did:example:304ebc3e-7997-4bf4-a915-dd87e8455941#keys-123",
-        "type": "RsaCryptographicKey",
+        "type": "RsaSignatureVerificationKey2018",
         "owner": "did:example:304ebc3e-7997-4bf4-a915-dd87e8455941",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }, {
         "id": "did:example:0f22346a-a360-4f3e-9b42-3366e348e941/keys/foo",
-        "type": "RsaCryptographicKey",
+        "type": "RsaSignatureVerificationKey2018",
         "owner": "did:example:0f22346a-a360-4f3e-9b42-3366e348e941",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }, {
         "id": "did:example:a8d00377-e9f1-44df-a1b9-55072e13262a/keys/abc",
-        "type": "RsaCryptographicKey",
+        "type": "RsaSignatureVerificationKey2018",
         "owner": "did:example:a8d00377-e9f1-44df-a1b9-55072e13262a",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }]
@@ -2208,7 +2208,7 @@ A future-facing real-world context is provided below:
 
   "publicKey": [{
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaSigningKey2018",
+    "type": "RsaSignatureVerificationKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }, {
@@ -2274,12 +2274,12 @@ A future-facing real-world context is provided below:
     "entity": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938"
   }, {
     // this entity may update the authentication field in this
-    // DID Document as long as they authenticate with RsaSignature2017
+    // DID Document as long as they authenticate with RsaSignature2018
     "entity": "did:v1:b5f8c320-f7ca-4869-85e6-a1bcbf825b2a",
     "permission": "UpdateDidDocument",
     "field": ["authentication"],
     "permittedProofType": [{
-      "proofType": "RsaSignature2017"
+      "proofType": "RsaSignature2018"
     }]
   }, {
     // anyone may update the authentication and writeAuthorization
@@ -2287,21 +2287,21 @@ A future-facing real-world context is provided below:
     "permission": "UpdateDidDocument",
     "field": ["authentication", "writeAuthorization"],
     "permittedProofType": [{
-      "proofType": "RsaSignature2017",
+      "proofType": "RsaSignature2018",
       "minimumSignatures": 3,
       "authentication": [{
         "id": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941#keys-123",
-        "type": "RsaCryptographicKey",
+        "type": "RsaSignatureVerificationKey2018",
         "owner": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }, {
         "id": "did:v1:0f22346a-a360-4f3e-9b42-3366e348e941/keys/foo",
-        "type": "RsaCryptographicKey",
+        "type": "RsaSignatureVerificationKey2018",
         "owner": "did:v1:0f22346a-a360-4f3e-9b42-3366e348e941",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }, {
         "id": "did:v1:a8d00377-e9f1-44df-a1b9-55072e13262a/keys/abc",
-        "type": "RsaCryptographicKey",
+        "type": "RsaSignatureVerificationKey2018",
         "owner": "did:v1:a8d00377-e9f1-44df-a1b9-55072e13262a",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }]
@@ -2312,10 +2312,10 @@ A future-facing real-world context is provided below:
     "permission": "IssueCredential",
     "entity": "did:example:123456789abcdefghi",
     "permittedProofType": [{
-      "proofType": "RsaSignature2017",
+      "proofType": "RsaSignature2018",
       "authentication": [{
         "id": "did:example:123456789abcdefghi#keys-1",
-        "type": "RsaCryptographicKey",
+        "type": "RsaSignatureVerificationKey2018",
         "owner": "did:example:123456789abcdefghi",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }]
