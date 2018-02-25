@@ -515,7 +515,7 @@ when possible to express authorization to modify a DID Document.
   "id": "did:example:123456789abcdefghi",
   "publicKey": [{
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaSignatureVerificationKey2018",
+    "type": "RsaVerificationKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }],
@@ -1055,17 +1055,17 @@ Example:
   ...
   "publicKey": [{
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaSignatureVerificationKey2018",
+    "type": "RsaVerificationKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }, {
     "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519SignatureVerificationKey2018",
+    "type": "Ed25519VerificationKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }, {
     "id": "did:example:123456789abcdefghi#keys-3",
-    "type": "Secp256k1SignatureVerificationKey2018",
+    "type": "Secp256k1VerificationKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyHex": "02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71"
   }],
@@ -1278,17 +1278,17 @@ property array MAY contain a single JSON object:
       "minimumSignatures": 3,
       "authentication": [{
         "id": "did:example:304ebc3e-7997-4bf4-a915-dd87e8455941#keys-123",
-        "type": "RsaSignatureVerificationKey2018",
+        "type": "RsaVerificationKey2018",
         "owner": "did:example:304ebc3e-7997-4bf4-a915-dd87e8455941",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }, {
         "id": "did:example:0f22346a-a360-4f3e-9b42-3366e348e941/keys/foo",
-        "type": "RsaSignatureVerificationKey2018",
+        "type": "RsaVerificationKey2018",
         "owner": "did:example:0f22346a-a360-4f3e-9b42-3366e348e941",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }, {
         "id": "did:example:a8d00377-e9f1-44df-a1b9-55072e13262a/keys/abc",
-        "type": "RsaSignatureVerificationKey2018",
+        "type": "RsaVerificationKey2018",
         "owner": "did:example:a8d00377-e9f1-44df-a1b9-55072e13262a",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }]
@@ -2208,7 +2208,7 @@ A future-facing real-world context is provided below:
 
   "publicKey": [{
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaSignatureVerificationKey2018",
+    "type": "RsaVerificationKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }, {
@@ -2291,17 +2291,17 @@ A future-facing real-world context is provided below:
       "minimumSignatures": 3,
       "authentication": [{
         "id": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941#keys-123",
-        "type": "RsaSignatureVerificationKey2018",
+        "type": "RsaVerificationKey2018",
         "owner": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }, {
         "id": "did:v1:0f22346a-a360-4f3e-9b42-3366e348e941/keys/foo",
-        "type": "RsaSignatureVerificationKey2018",
+        "type": "RsaVerificationKey2018",
         "owner": "did:v1:0f22346a-a360-4f3e-9b42-3366e348e941",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }, {
         "id": "did:v1:a8d00377-e9f1-44df-a1b9-55072e13262a/keys/abc",
-        "type": "RsaSignatureVerificationKey2018",
+        "type": "RsaVerificationKey2018",
         "owner": "did:v1:a8d00377-e9f1-44df-a1b9-55072e13262a",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }]
@@ -2315,7 +2315,7 @@ A future-facing real-world context is provided below:
       "proofType": "RsaSignature2018",
       "authentication": [{
         "id": "did:example:123456789abcdefghi#keys-1",
-        "type": "RsaSignatureVerificationKey2018",
+        "type": "RsaVerificationKey2018",
         "owner": "did:example:123456789abcdefghi",
         "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
       }]
