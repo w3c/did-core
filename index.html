@@ -904,6 +904,13 @@ Example:
   "id": "did:example:21tDAKCERh95uGgKbJNHYp"
 }
 </pre>
+
+<p class="note">
+DID Method specifications MAY create intermediate representations of a
+DID Document that do not contain the <code>id</code> key, such as when a
+DID Resolver is performing resolution. However, the fully resolved DID Document
+MUST contain a valid <code>id</code> property.
+</p>
 </section>
 
 <!-- section>
