@@ -1144,22 +1144,14 @@ Example:
 
 </section>
 
-<!-- section>
-<h2>Authorization</h2>
-
-<p class="issue">
-Discussions at Rebooting the Web of Trust 5 resulted in consensus to
-remove the <code>authorizationCapability</code> field as it is unclear whether
-all ledgers will find the field useful. The field will most likely be moved
-into a DID Method specification or a separate DID Ledger Capabilities
-document. Authorization will most likely be a DID Method-specific
-definition.
-</p>
+<section>
+<h2>Authorization and Delegation</h2>
 
 <p>
-Authorization is the mechanism by which an entity may give itself
-or other entities permission to update the DID Document—for example to assist with
-key recovery. Note that Authorization is separate from Authentication
+Authorization is the mechanism by which an entity states how one may perform
+operations on behalf of the entity. Delegation is the mechanism that an
+entity may use to authorize other entities to act on its behalf.
+Note that Authorization is separate from Authentication
 as explained in Section <a href="#authentication"></a>.
 This is particularly important for key recovery
 in the case of key loss, when the entity no longer has access to their
@@ -1169,132 +1161,30 @@ See Section <a href="#security-considerations"></a>.
 </p>
 
 <p>
-Because the access control logic in the Authorization block must be
-implemented by the target distributed ledger or network, a DID method
-specification MUST include its own Authorization rules and processing
-logic. It is RECOMMENDED that all DID method specifications support the
-generic Authorization rules specified in this section. A DID method
-specification MAY add its own method-specific Authorization rules.
+Since Authorization and Delegation are typically implemented by the
+ledger, each DID Method specification is expected to detail how
+authorization and delegation are performed for the ledger.
 </p>
 
 <p>
-  The generic Authorization rules are:
+There are at least two suggested methods for implementing Authorization,
+Delegation, and the concept of Guardianship:
 </p>
 
-<ol start="1">
-  <li>
-A DID Document MAY have exactly one property named
-<code>authorizationCapability</code> representing authorization information associated
-with the DID Document.
-  </li>
-
-  <li>
-The value of this property SHOULD be an array.
-  </li>
-
-  <li>
-The values of this array MUST be defined in a DID method
-specification and SHOULD follow a capabilities-based security model.
-  </li>
-
-  <li>
-Updating the DID Document requires that the proof mechanism includes
-the <code>capability</code> property and the
-<code>UpdateDidDocument</code> value.
-  </li>
-
-  <li>
-If an authorization rule does not specify a specific proof mechanism
-(such as a public key ID), then an update proof verified with any
-credential in the <code>authentication</code> property of the
-DID Document dereferenced from that DID MUST be considered valid for
-the proof mechanism.
-  </li>
+<ol>
+<li>
+A ledger could implement a coarse grained <code>guardian</code> pattern
+by re-using the same cryptography suite pattern used by the
+<code>authentication</code> property, or more preferably
+</li>
+<li>
+A ledger could implement a Capabilities-based approach and provide
+more fine-grained control of authorization, delegation, and
+guardianship.
+</li>
 </ol>
 
-<section>
-<h3>Enabling Multiple Entities to Update the DID Document</h3>
-
-<p>
-To assert that any single member of a group of other DID owners has
-permission to update the DID Document, the <code>authorizationCapability</code>
-property array MAY contain multiple JSON objects:
-</p>
-
-<pre class="example nohighlight"
-  title="Authorization capability field containing two capability descriptions">
-{
-  "@context": "https://w3id.org/did/v1",
-  "id": "did:example:215cb1dc-1f44-4695-a07f-97649cad9938",
-  "authorizationCapability": [{
-    // this entity may update any field in this DID Document using any
-    // authentication mechanism understood by the ledger
-    "permission": "UpdateDidDocument",
-    "entity": "did:example:z9f823hdf783h78fh2378"
-  }, {
-    // this entity may update the authentication field in this
-    // DID Document as long as they authenticate with RsaSignature2018
-    "permission": "UpdateDidDocument",
-    "entity": "did:example:abvd73h285jf73hd73",
-    "field": ["authentication"],
-    "permittedProofType": [{
-      "proofType": "RsaSignature2018"
-    }]
-  }]
-}
-</pre>
-
-<p>
-If at least one update signature from a DID in this array is verified, it
-MUST be considered valid for Authorization.
-</p>
 </section>
-
-<section>
-<h3>Requiring Multiple Proofs</h3>
-
-<p>
-To assert that a set of members of a group of other DID owners must act
-together to update the DID Document, the <code>authorizationCapability</code>
-property array MAY contain a single JSON object:
-</p>
-
-<pre class="example nohighlight"
-  title="Authorization capability to update DID Document that requires three signatures">
-{
-  "@context": "https://w3id.org/did/v1",
-  "id": "did:example:215cb1dc-1f44-4695-a07f-97649cad9938",
-  "authorizationCapability": [{
-    // anyone may update the authentication and writeAuthorization
-    // fields as long as they provide a specific multi-signature proof
-    "permission": "UpdateDidDocument",
-    "field": ["authentication", "writeAuthorization"],
-    "permittedProofType": [{
-      "proofType": "RsaSignature2018",
-      "minimumSignatures": 3,
-      "authentication": [{
-        "id": "did:example:304ebc3e-7997-4bf4-a915-dd87e8455941#keys-123",
-        "type": "RsaVerificationKey2018",
-        "owner": "did:example:304ebc3e-7997-4bf4-a915-dd87e8455941",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-      }, {
-        "id": "did:example:0f22346a-a360-4f3e-9b42-3366e348e941/keys/foo",
-        "type": "RsaVerificationKey2018",
-        "owner": "did:example:0f22346a-a360-4f3e-9b42-3366e348e941",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-      }, {
-        "id": "did:example:a8d00377-e9f1-44df-a1b9-55072e13262a/keys/abc",
-        "type": "RsaVerificationKey2018",
-        "owner": "did:example:a8d00377-e9f1-44df-a1b9-55072e13262a",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-      }]
-    }]
-  }]
-}
-</pre>
-</section>
-
-</section -->
 
 <section>
 <h2>Service Endpoints</h2>
@@ -2260,62 +2150,6 @@ A future-facing real-world context is provided below:
   }, {
     "type": "DidAuthPushModeVersion1",
     "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefg"
-  }],
-
-  // EXPERIMENTAL: Authorization rules to update the document is method-specific
-  "didAuthorization": [{
-    // this entity may update any field in this DID Document using any
-    // authentication mechanism understood by the ledger
-    "permission": "UpdateDidDocument",
-    "entity": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938"
-  }, {
-    // this entity may update the authentication field in this
-    // DID Document as long as they authenticate with RsaSignature2018
-    "entity": "did:v1:b5f8c320-f7ca-4869-85e6-a1bcbf825b2a",
-    "permission": "UpdateDidDocument",
-    "field": ["authentication"],
-    "permittedProofType": [{
-      "proofType": "RsaSignature2018"
-    }]
-  }, {
-    // anyone may update the authentication and writeAuthorization
-    // fields as long as they provide a specific multi-signature proof
-    "permission": "UpdateDidDocument",
-    "field": ["authentication", "writeAuthorization"],
-    "permittedProofType": [{
-      "proofType": "RsaSignature2018",
-      "minimumSignatures": 3,
-      "authentication": [{
-        "id": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941#keys-123",
-        "type": "RsaVerificationKey2018",
-        "owner": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-      }, {
-        "id": "did:v1:0f22346a-a360-4f3e-9b42-3366e348e941/keys/foo",
-        "type": "RsaVerificationKey2018",
-        "owner": "did:v1:0f22346a-a360-4f3e-9b42-3366e348e941",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-      }, {
-        "id": "did:v1:a8d00377-e9f1-44df-a1b9-55072e13262a/keys/abc",
-        "type": "RsaVerificationKey2018",
-        "owner": "did:v1:a8d00377-e9f1-44df-a1b9-55072e13262a",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-      }]
-    }]
-  }, {
-    // this entity may issue credentials where the "issuer" field is this
-    // DID Document's DID as long as this specific RSA key is used
-    "permission": "IssueCredential",
-    "entity": "did:example:123456789abcdefghi",
-    "permittedProofType": [{
-      "proofType": "RsaSignature2018",
-      "authentication": [{
-        "id": "did:example:123456789abcdefghi#keys-1",
-        "type": "RsaVerificationKey2018",
-        "owner": "did:example:123456789abcdefghi",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-      }]
-    }]
   }]
 }
 </pre>
