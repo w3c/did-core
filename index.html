@@ -1084,7 +1084,7 @@ Example:
   }, {
     "id": "did:example:123456789abcdefghi#keys-2",
     "type": "Ed25519VerificationKey2018",
-    "owner": "did:example:123456789abcdefghi",
+    "owner": "did:example:pqrstuvwxyz0987654321",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }, {
     "id": "did:example:123456789abcdefghi#keys-3",
@@ -1097,11 +1097,14 @@ Example:
 </pre>
 
 <p class="note">
-While the <code>owner</code> field may seem redundant in the examples above,
-keys may be expressed in a DID Document where the
+While the <code>owner</code> field may seem redundant in some of the examples
+above, keys may be expressed in a DID Document where the
 owner is described in another DID Document. Linked Data Proof libraries
 typically expect the <code>owner</code> field to always exist and may throw an
-exception if it is missing.
+exception if it is missing. Futhermore, per the requirement that DID Documents
+be interpretable as either a graph or a tree, a default
+<code>owner</code> field cannot be inferred by using a key's position in
+a tree.
 </p>
 
 <p class="note">
