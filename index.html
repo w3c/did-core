@@ -103,7 +103,7 @@ specific DID. Each DID Document contains at least three things:
 cryptographic material, authentication suites, and service endpoints.
 Cryptographic material combined with authentication suites provide a set of
 mechanisms to authenticate as the DID subject (e.g. public keys,
-pseudonymous biometric templates, etc.). Service endpoints enable
+pseudonymous biometric protocols, etc.). Service endpoints enable
 trusted interactions with the DID subject.
       </p>
 
@@ -182,7 +182,7 @@ own identifiers on any number of distributed, independent roots of trust.
 <p>
 The entities are identified by decentralized identifiers (DIDs). They may
 authenticate via proofs (e.g. digital signatures, privacy-preserving
-biometrics, etc.). DIDs point to DID Documents.
+biometric protocols, etc.). DIDs point to DID Documents.
 A DID Document contains a set of service endpoints for
 interacting with the entity. Following the dictums of <a href=
   "https://en.wikipedia.org/wiki/Privacy_by_design">Privacy by Design</a>,
@@ -2198,29 +2198,24 @@ A future-facing real-world context is provided below:
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }, {
     "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "RsaEncryptionKey2018",
+    "type": "Ed25519VerificationKey2018",
+    "owner": "did:example:123456789abcdefghi",
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+  }, {
+    "id": "did:example:123456789abcdefghi#keys-3",
+    "type": "RsaPublicKeyExchangeKey2018",
     "owner": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }],
 
-  // EXPERIMENTAL: Proposal for pseudonymous biometric templates
-  "publicBiometricTemplate": [{
-    // this biometric can be used to authenticate as DID ...fghi
-    "id": "did:example:123456789abcdefghi#bio-1",
-    "type": "PseudonymousBiometricTemplate2017",
-    "owner": "did:example:123456789abcdefghi",
-    "biometricService": "https://example.com/authenticate",
-    "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
-  }],
-
   "authentication": [{
-    // this key can be used to authenticate as DID ...fghi
+    // this mechanism can be used to authenticate as DID ...fghi
     "type": "RsaSignatureAuthentication2018",
     "publicKey": "did:example:123456789abcdefghi#keys-1"
   }, {
-    // this key can be used to authenticate as DID ...fghi
-    "type": "PseudonymousBiometricAuthentication2018",
-    "biometricTemplate": "did:example:123456789abcdefghi#bio-1"
+    // this mechanism can be used to biometrically authenticate as DID ...fghi
+    "type": "ieee2410Authentication2018",
+    "publicKey": "did:example:123456789abcdefghi#keys-2"
   }],
 
   "service": [{
@@ -2248,7 +2243,11 @@ A future-facing real-world context is provided below:
     }
   }, {
     "type": "DidAuthPushModeVersion1",
-    "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefg"
+    "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefghi"
+  }, {
+    "id": "did:example:123456789abcdefghi;bops",
+    "type": "BopsService",
+    "serviceEndpoint": "https://bops.example.com/enterprise/"
   }]
 }
 </pre>
