@@ -89,6 +89,12 @@
         inlineCSS: true
       };
     </script>
+    <style>
+pre .highlight {
+  font-weight: bold;
+  color: green;
+}
+    </style>
   </head>
   <body>
     <section id='abstract'>
@@ -1531,6 +1537,163 @@ Proofs</a>.
 </pre>
 
 </section>
+
+      <section>
+        <h2>Extensibility</h2>
+
+        <p>
+One of the goals of the Decentralized Identifiers Data Model is to enable
+permissionless innovation. This requires that the data model is extensible
+in a number of different ways:
+        </p>
+
+        <ul>
+          <li>
+The requirement to model complex multi-entity relationships is provided
+through the use of a graph-based data model.
+          </li>
+          <li>
+The requirement to be able to extend the machine-readable vocabularies
+used to describe information in the data model without the use of a
+centralized system for doing so is accomplished via the use
+of [[LINKED-DATA]].
+          </li>
+          <li>
+The requirement to support multiple types of cryptographic proof formats is
+accomplished via the use of Linked Data Proofs [[LD-PROOFS]],
+Linked Data Signatures [[LD-SIGNATURES]], and a variety of signature suites.
+          </li>
+          <li>
+The requirement to provide all of the extensibility mechanisms outlined above
+in a data format that is popular among software developers and web page authors
+is enabled via the use of [[!JSON-LD]].
+          </li>
+        </ul>
+
+        <p>
+This approach to data modelling is often called an "open world assumption",
+meaning that any entity can say anything about any other entity. This approach
+often feels in conflict with building simple and predictable software systems.
+Balancing extensibility with program correctness is always more challenging
+with an open world assumption than it is with closed software systems.
+        </p>
+
+        <p>
+The rest of this section describes how both extensibility and program
+correctness are achieved through a series of examples.
+        </p>
+
+        <p>
+Let us assume that we start with the following <a>DID Document</a>:
+        </p>
+
+        <pre class="example nohighlight" title="A simple DID Document">
+{
+  "@context": "https://example.org/example-method/v1",
+  "id": "did:example:123456789abcdefghi",
+  "publicKey": [{ ... }],
+  "authentication": [{ ... }],
+  "service": [{ ... }]
+}
+        </pre>
+
+        <p>
+The contents of the <code>publicKey</code>, <code>authentication</code>,
+and <code>service</code> properties are not important for the purposes of
+this section. What is important is that the object above is a valid
+<a>DID Document</a>. Let's assume that a developer wanted to
+extend the <a>DID Document</a> to store one additional piece of
+information: the subject's favorite.
+        </p>
+
+        <p>
+The first thing that a developer would do is create a JSON-LD Context
+containing the new term:
+        </p>
+
+        <pre class="example nohighlight" title="An example JSON-LD Context">
+{
+  "@context": {
+    "favoriteFood": "https://example.com/vocab#favoriteFood"
+  }
+}
+        </pre>
+
+        <p>
+Now that the JSON-LD Context has been created, the developer MUST publish it
+somewhere that is accessible to any <a>DID Document</a> processor. For this
+example, let us assume that the JSON-LD Context above is published
+in the decentralized ledger at the following URL:
+<code>did:example:contexts:987654321</code>. At this point, extending the
+first example in this section is a simple matter of including the
+context above and adding the new property to the <a>DID Document</a>.
+        </p>
+
+        <pre class="example nohighlight"
+          title="A DID Document with a custom extension">
+{
+  "@context": <span class="highlight">[
+    </span>"https://example.org/example-method/v1",
+    <span class="highlight">"did:example:contexts:987654321"
+  ]</span>,
+  "id": "did:example:123456789abcdefghi",
+  "authentication": [{ ... }],
+  "service": [{ ... }],
+  <span class="highlight">"favoriteFood": "Leche Flan"</span>
+}
+        </pre>
+
+        <p>
+The examples so far have shown that it is easy to extend the Decentralized
+Identifiers Data Model in a permissionless and decentralized way. The
+mechanism shown also ensures that Decentralized Identifiers that were created
+in this way provide a mechanism to prevent namespace conflicts and
+semantic ambiguity.
+        </p>
+
+        <p>
+An extensibility model that is this dynamic does increase implementation burden.
+Software written for such a system will have to determine if accepting
+<a>DID Document</a>s with extensions is acceptable based on the
+risk profile of the application. Some applications may choose to accept but
+ignore extensions, others may choose to only accept certain extensions, while
+highly secure environments may require that no extensions are allowed. These
+decisions are up to the developers of these applications and are specifically
+not the domain of this specification.
+        </p>
+
+        <p>
+Implementations MUST produce an error when an extension JSON-LD Context
+overrides the expanded URL for a term specified in this specification. To
+avoid the possibility of accidentally overriding terms, developers are urged
+to scope their extensions.
+For example, the following extension scopes the new <code>favoriteFood</code>
+term so that it may only be used within the <code>preferences</code> property:
+        </p>
+
+        <pre class="example nohighlight" title="Scoping terms in a JSON-LD Context">
+{
+  "@context": {
+    <span class="highlight">"preference": {
+      "@id": "https://example.com/vocab#preference",
+      "@context": {
+        "favoriteFood": "https://example.com/vocab#favoriteFood"
+      }
+    }</span>
+  }
+}
+        </pre>
+
+        <p>
+Developers are urged to ensure that extension JSON-LD Contexts are highly
+available. Implementations that cannot fetch a context will produce an error.
+Strategies for ensuring that extension JSON-LD Contexts are always available
+include using content-addressed URLs for contexts, bundling context documents
+with implementations, or enabling aggressive caching of contexts.
+        </p>
+
+      </section>
+
 </section>
 
 <section>

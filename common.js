@@ -55,6 +55,26 @@ var ccg = {
       status:   'CG-DRAFT',
       publisher:  'Credentials W3C Community Group'
     },
+    "LD-PROOFS": {
+      title: "Linked Data Proofs",
+      href: "https://w3c-dvcg.github.io/ld-proofs/",
+      authors: [
+        "Manu Sporny",
+        "Dave Longley"
+      ],
+      status: "CG-DRAFT",
+      publisher: "Digital Verification Community Group"
+    },
+    "LD-SIGNATURES": {
+      title: "Linked Data Signatures",
+      href: "https://w3c-dvcg.github.io/ld-signatures/",
+      authors: [
+        "Manu Sporny",
+        "Dave Longley"
+      ],
+      status: "CG-DRAFT",
+      publisher: "Digital Verification Community Group"
+    },
   }
 };
 
