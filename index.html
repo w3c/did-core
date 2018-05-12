@@ -1088,6 +1088,74 @@ Example:
 }
 </pre>
 
+<p>
+A key may be <em>embedded</em> or <em>referenced</em> in a
+<a>DID Document</a>. For example, the <code>authentication</code> property
+may refer to keys in both ways:
+</p>
+
+<pre class="example nohighlight"
+  title="Various public keys">
+{
+  ...
+
+  "authentication": [{
+    // this key is referenced
+    "type": "RsaSignatureAuthentication2018",
+    "publicKey": "did:example:123456789abcdefghi#keys-1"
+  }, {
+    // this key is embedded
+    "type": "RsaSignatureAuthentication2018",
+    "publicKey: {
+      "id": "did:example:123456789abcdefghi#keys-2",
+      "type": "Ed25519VerificationKey2018",
+      "owner": "did:example:pqrstuvwxyz0987654321",
+      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    }
+  }],
+
+  ...
+}
+</pre>
+
+<p>
+The algorithm to use when processing a <code>publicKey</code> property in a
+<a>DID Document</a> is:
+</p>
+<ol class="algorithm">
+  <li>
+Let <em>value</em> be the data associated with the <code>publicKey</code>
+property and initialize <em>result</em> to <code>null</code>.
+  </li>
+  <li>
+If <em>value</em> is an object, the key material is embedded. Set
+<em>result</em> to <em>value</em>.
+  </li>
+  <li>
+If <em>value</em> is a string, the key is included by reference. Assume
+<em>value</em> is a URL.
+    <ol>
+      <li>
+Dereference the URL and retrieve the <code>publicKey</code>
+properties associated with the URL (e.g. process the <code>publicKey</code>
+property at the top-level of the dereferenced document).</li>
+      <li>Iterate through each public key object.
+        <ol>
+          <li>
+If the <code>id</code> property of the object matches <em>value</em>, set
+<em>result</em> to the object.
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+If <em>result</em> does not contain at least the <code>id</code>,
+<code>type</code>, and <code>owner</code> properties as well as any
+mandatory public cryptographic material, throw an error.
+  </li>
+</ol>
+
 <p class="note">
 While the <code>owner</code> field may seem redundant in some of the examples
 above, keys may be expressed in a DID Document where the
