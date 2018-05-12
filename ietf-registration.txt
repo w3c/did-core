@@ -1,0 +1,27 @@
+Scheme name: did
+Status: Provisional
+
+Applications/protocols that use this scheme name:
+
+A "did" URI is used to express an identifier that is conformant to the
+Decentralized Identifier[1] specification. The specification details how
+identifiers conformant to the "did" URI Scheme can be implemented using
+decentralized ledgers, decentralized hashtables, and other types of
+decentralized networks.
+
+This specification is currently under development by the W3C Credentials
+Community Group and is expected to transition to the W3C standards track
+at the end of 2018 or early 2019 calendar year.
+
+Contact:
+
+ Manu Sporny <msporny@digitalbazaar.com>
+
+Change controller:
+
+ Manu Sporny <msporny@digitalbazaar.com>
+ W3C Credentials Community Group <public-credentials@w3.org>
+
+References:
+
+[1] https://w3c-ccg.github.io/did-spec/
