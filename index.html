@@ -1602,8 +1602,8 @@ The contents of the <code>publicKey</code>, <code>authentication</code>,
 and <code>service</code> properties are not important for the purposes of
 this section. What is important is that the object above is a valid
 <a>DID Document</a>. Let's assume that a developer wanted to
-extend the <a>DID Document</a> to store one additional piece of
-information: the subject's favorite.
+extend the <a>DID Document</a> to express an additional piece of
+information: the subject's public photo stream.
         </p>
 
         <p>
@@ -1614,7 +1614,7 @@ containing the new term:
         <pre class="example nohighlight" title="An example JSON-LD Context">
 {
   "@context": {
-    "favoriteFood": "https://example.com/vocab#favoriteFood"
+    "PhotoStreamService": "https://example.com/vocab#PhotoStreamService"
   }
 }
         </pre>
@@ -1632,14 +1632,15 @@ context above and adding the new property to the <a>DID Document</a>.
         <pre class="example nohighlight"
           title="A DID Document with a custom extension">
 {
-  "@context": <span class="highlight">[
-    </span>"https://example.org/example-method/v1",
-    <span class="highlight">"did:example:contexts:987654321"
-  ]</span>,
+  "@context": "https://example.org/example-method/v1",
   "id": "did:example:123456789abcdefghi",
   "authentication": [{ ... }],
-  "service": [{ ... }],
-  <span class="highlight">"favoriteFood": "Leche Flan"</span>
+  "service": [<span class="highlight">{
+    "@context": "did:example:contexts:987654321",
+    "id": "did:example:123456789abcdefghi;photos",
+    "type": "PhotoStreamService",
+    "serviceEndpoint": "https://example.org/photos/379283"
+  }</span>]
 }
         </pre>
 
@@ -1667,17 +1668,18 @@ Implementations MUST produce an error when an extension JSON-LD Context
 overrides the expanded URL for a term specified in this specification. To
 avoid the possibility of accidentally overriding terms, developers are urged
 to scope their extensions.
-For example, the following extension scopes the new <code>favoriteFood</code>
-term so that it may only be used within the <code>preferences</code> property:
+For example, the following extension scopes the new
+<code>PhotoStreamService</code> term so that it may only be used within the
+<code>service</code> property:
         </p>
 
         <pre class="example nohighlight" title="Scoping terms in a JSON-LD Context">
 {
   "@context": {
-    <span class="highlight">"preference": {
-      "@id": "https://example.com/vocab#preference",
+    <span class="highlight">"service": {
+      "@id": "https://w3id.org/did#service",
       "@context": {
-        "favoriteFood": "https://example.com/vocab#favoriteFood"
+        "PhotoStreamService": "https://example.com/vocab#PhotoStreamService"
       }
     }</span>
   }
