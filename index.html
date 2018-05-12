@@ -501,15 +501,6 @@ example assumes that the entity that controls the private keys for this
 identifier is authoritative for the DID Document.
 </p>
 
-<p class="issue" data-number="11">
-Discussions at Rebooting the Web of Trust 5 resulted in consensus to
-remove the <code>authorizationCapability</code> field to DID Method specs
-as it is unclear whether all ledgers will find the field useful. The field will
-most likely be moved into a DID Method specification or a separate DID Ledger
-Capabilities document. The current consensus is to use object capabilities
-when possible to express authorization to modify a DID Document.
-</p>
-
 <pre class="example nohighlight" title="Minimal self-managed DID Document">
 {
   "@context": "https://w3id.org/did/v1",
