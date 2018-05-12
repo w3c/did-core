@@ -1309,7 +1309,7 @@ The value of the <code>service</code> property should be an array of service end
   </li>
 
   <li>
-Each service endpoint must include <code>type</code> and <code>serviceEndpoint</code> properties, and MAY include additional properties.
+Each service endpoint must include <code>id</code>, </code><code>type</code>, and <code>serviceEndpoint</code> properties, and MAY include additional properties.
   </li>
 
   <li>
@@ -1318,10 +1318,10 @@ specification.
   </li>
 
   <li>
-The value of the <code>serviceEndpoint</code> property MUST be a valid URI conforming to
-[[RFC3986]] and normalized according to the rules in section 6 of [[RFC3986]]
-and to any normalization rules in its applicable URI scheme specification or a
-JSON-LD object.
+The value of the <code>serviceEndpoint</code> property MUST be a valid URI
+conforming to [[RFC3986]] and normalized according to the rules in section 6
+of [[RFC3986]] and to any normalization rules in its applicable URI scheme
+specification or a JSON-LD object.
   </li>
 </ol>
 
@@ -1336,24 +1336,31 @@ JSON-LD object.
 <pre class="example nohighlight" title="Various service endpoints">
 {
   "service": [{
+    "id": "did:example:123456789abcdefghi;openid",
     "type": "OpenIdConnectVersion3.1Service",
     "serviceEndpoint": "https://openid.example.com/"
   }, {
+    "id": "did:example:123456789abcdefghi;vcr",
     "type": "CredentialRepositoryService",
     "serviceEndpoint": "https://repository.example.com/service/8377464"
   }, {
+    "id": "did:example:123456789abcdefghi;xdi",
     "type": "XdiService",
     "serviceEndpoint": "https://xdi.example.com/8377464"
   }, {
+    "id": "did:example:123456789abcdefghi;agent",
     "type": "AgentService",
     "serviceEndpoint": "https://agent.example.com/8377464"
   }, {
+    "id": "did:example:123456789abcdefghi;hub",
     "type": "HubService",
     "serviceEndpoint": "https://hub.example.com/.identity/did:example:0123456789abcdef/"
   }, {
+    "id": "did:example:123456789abcdefghi;messages",
     "type": "MessagingService",
     "serviceEndpoint": "https://example.com/messages/8377464"
   }, {
+    "id": "did:example:123456789abcdefghi;inbox",
     "type": "SocialWebInboxService",
     "serviceEndpoint": "https://social.example.com/83hfh37dj",
     "description": "My public social inbox",
@@ -1362,6 +1369,7 @@ JSON-LD object.
       "currency": "USD"
     }
   }, {
+    "id": "did:example:123456789abcdefghi;authpush",
     "type": "DidAuthPushModeVersion1",
     "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefg"
   }]
