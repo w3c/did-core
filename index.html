@@ -1152,7 +1152,8 @@ If the <code>id</code> property of the object matches <em>value</em>, set
   <li>
 If <em>result</em> does not contain at least the <code>id</code>,
 <code>type</code>, and <code>owner</code> properties as well as any
-mandatory public cryptographic material, throw an error.
+mandatory public cryptographic material, as determined by the
+<em>result</em>'s <code>type</code> property, throw an error.
   </li>
 </ol>
 
