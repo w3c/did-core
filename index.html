@@ -1553,10 +1553,9 @@ The requirement to model complex multi-entity relationships is provided
 through the use of a graph-based data model.
           </li>
           <li>
-The requirement to be able to extend the machine-readable vocabularies
-used to describe information in the data model without the use of a
-centralized system for doing so is accomplished via the use
-of [[LINKED-DATA]].
+The requirement to enable extending the machine-readable vocabularies used to
+describe information in the data model &mdash; without relying on a centralized
+system  &mdash; is accomplished via the use of [[LINKED-DATA]].
           </li>
           <li>
 The requirement to support multiple types of cryptographic proof formats is
@@ -1571,7 +1570,7 @@ is enabled via the use of [[!JSON-LD]].
         </ul>
 
         <p>
-This approach to data modelling is often called an "open world assumption",
+This approach to data modeling is often called an "open world assumption",
 meaning that any entity can say anything about any other entity. This approach
 often feels in conflict with building simple and predictable software systems.
 Balancing extensibility with program correctness is always more challenging
@@ -1647,9 +1646,8 @@ context above and adding the new property to the <a>DID Document</a>.
         <p>
 The examples so far have shown that it is easy to extend the Decentralized
 Identifiers Data Model in a permissionless and decentralized way. The
-mechanism shown also ensures that Decentralized Identifiers that were created
-in this way provide a mechanism to prevent namespace conflicts and
-semantic ambiguity.
+mechanism also ensures that Decentralized Identifiers created
+in this way prevent namespace conflicts and semantic ambiguity.
         </p>
 
         <p>
@@ -1658,8 +1656,8 @@ Software written for such a system will have to determine if accepting
 <a>DID Document</a>s with extensions is acceptable based on the
 risk profile of the application. Some applications may choose to accept but
 ignore extensions, others may choose to only accept certain extensions, while
-highly secure environments may require that no extensions are allowed. These
-decisions are up to the developers of these applications and are specifically
+highly secure environments may disallow extensions. These
+decisions are up to the application developers and are specifically
 not the domain of this specification.
         </p>
 
