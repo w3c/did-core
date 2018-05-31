@@ -75,6 +75,16 @@ var ccg = {
       status: "CG-DRAFT",
       publisher: "Digital Verification Community Group"
     },
+    "DID-METHOD-REGISTRY": {
+      title: "The Decentralized Identifier Method Registry",
+      href: "https://w3c-ccg.github.io/did-method-registry/",
+      authors: [
+        "Manu Sporny",
+        "Drummond Reed"
+      ],
+      status: "CG-DRAFT",
+      publisher: "Digital Verification Community Group"
+    }
   }
 };
 
