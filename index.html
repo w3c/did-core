@@ -328,7 +328,7 @@ correlatable, especially if they are globally unique.
 The first purpose of this specification is to define the generic DID
 scheme and a generic set of operations on DIDs that can be
 implemented for any distributed ledger or network capable of supporting
-DIDs. The second purpose of this specification to define the
+DIDs. The second purpose of this specification is to define the
 conformance requirements for a DID method specification—a separate
 specification that defines a specific DID scheme and specific set of DID
 record operations for a specific distributed ledger or network.
@@ -457,7 +457,7 @@ Portability
       </td>
       <td>
 DID architecture should be system and network-independent and enable
-entitys to use their digital identifiers with any system
+entities to use their digital identifiers with any system
 that supports DIDs and DID Methods.
       </td>
     </tr>
@@ -1204,7 +1204,7 @@ The rules for Authentication are:
 
 <ol start="1">
   <li>
-A DID Document MAY include a <code>authentication</code>
+A DID Document MAY include an <code>authentication</code>
 property.
   </li>
 
@@ -1449,7 +1449,7 @@ a notion.
 <p>
 
 
-      Standard metadata for identifier records includes a timestamp of the most recent change. The rules for including a updated timestamp are:
+      Standard metadata for identifier records includes a timestamp of the most recent change. The rules for including an updated timestamp are:
 
 
 </p>
@@ -1857,7 +1857,7 @@ In particular:
 <p class="issue">
 Discussions at Rebooting the Web of Trust 5 resulted in consensus to move
 Authorization to DID Method specifications. It is currently expected that
-there will be an attempt to create a generarlized authorization mechanism
+there will be an attempt to create a generalized authorization mechanism
 that is build on object capabilities.
 </p>
 
@@ -1922,7 +1922,7 @@ requirements of the supported authentication protocol.
 <h3>Proving Ownership of a DID and DID Document</h3>
 
 <p>
-By itself, a verified signature on self-signed DID Document does not prove ownership of a DID. It only proves the following:
+By itself, a verified signature on a self-signed DID Document does not prove ownership of a DID. It only proves the following:
 </p>
 
 <ol start="1">
@@ -2103,7 +2103,7 @@ Section <a href="#did-operations"></a> specifies the DID operations that must be
       The authors of this specification have applied all seven Privacy by Design principles throughout its development. For example, privacy in this specification is preventative not remedial, and privacy is an embedded default. Furthermore, decentralized identifier architecture by itself embodies principle #7, "Respect for user privacy—keep it user-centric."
 
 
-      This section lists additional privacy considerations that implementers, delegates, and entitys should bear in mind.
+      This section lists additional privacy considerations that implementers, delegates, and entities should bear in mind.
 
 
 
@@ -2137,7 +2137,7 @@ exclusion.
 <p>
 
 
-      If a DID method specification is written for a public ledger or network where all DIDs and DID Documents will be publicly available, it is STRONGLY RECOMMENDED that DID Documents contain no PII. All PII should be kept off-ledger behind service endpoints under the control of the entity. With this privacy architecture, PII may be exchanged on a private, peer-to-peer basis using communications channels identified and secured by key descriptions in DID records. This also enables entitys and relying parties to implement the
+      If a DID method specification is written for a public ledger or network where all DIDs and DID Documents will be publicly available, it is STRONGLY RECOMMENDED that DID Documents contain no PII. All PII should be kept off-ledger behind service endpoints under the control of the entity. With this privacy architecture, PII may be exchanged on a private, peer-to-peer basis using communications channels identified and secured by key descriptions in DID records. This also enables entities and relying parties to implement the
         <a href=
 "https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>
 
@@ -2217,7 +2217,7 @@ share common settings across client implementations, keep negotiated options to 
 <p>
 
 
-      Including an equivalence property, such as equivID, in DID Documents whose value is an array of DIDs would allow entitys to assert two or more DIDs that represent the same entity. This capability has numerous uses, including supporting migration between ledgers and providing forward compatibility of existing DIDs to future DLTs. In theory, equivalent DIDs should have the same identifier rights, allowing
+      Including an equivalence property, such as equivID, in DID Documents whose value is an array of DIDs would allow entities to assert two or more DIDs that represent the same entity. This capability has numerous uses, including supporting migration between ledgers and providing forward compatibility of existing DIDs to future DLTs. In theory, equivalent DIDs should have the same identifier rights, allowing
         <a href="https://w3c.github.io/vctf/">verifiable claims</a>
        made against one DID to apply to equivalent DIDs.
 
