@@ -1922,6 +1922,8 @@ requirements of the supported authentication protocol.
 <h3>Proving Ownership of a DID and DID Document</h3>
 
 <p>
+Signatures are one method to allow DID Documents to be cryptographically verifiable.</p>
+<p>
 By itself, a verified signature on a self-signed DID Document does not prove ownership of a DID. It only proves the following:
 </p>
 
@@ -1953,7 +1955,11 @@ that was resolved.
 </ol>
 
 <p>
-It should be noted that this process proves ownership of a DID and DID Document regardless of whether the DID Document is signed.
+It should be noted that this process proves ownership of a DID and DID Document regardless of whether the DID Document is signed.</p>
+<p>
+Signatures on DID Documents are optional. DID Method Specs SHOULD explain and specify their implementation if applicable.</p>
+<p>
+It is RECOMMENDED to combine timestamps with signatures.
 </p>
 
 </section>
