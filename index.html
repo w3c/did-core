@@ -10,8 +10,8 @@
     out in the same tree and use relative links so that they'll work offline.
    -->
 
-  <script class='remove' src=
-  'https://www.w3.org/Tools/respec/respec-w3c-common'>
+  <script class='remove'
+    src='https://www.w3.org/Tools/respec/respec-w3c-common'>
   </script><!--script src='./respec-w3c-common.js' class='remove'></script-->
 
   <script src="./common.js">
@@ -929,8 +929,8 @@ The key for this property MUST be <code>@context</code>.
         </li>
 
         <li>
-The value of this key MUST be the URL for the generic DID context
-as specified in Appendix <a href="#the-generic-did-context-for-json-ld"></a>.
+The value of this key MUST be the URL for the generic DID context:
+<code>https://w3id.org/did/v1</code>.
         </li>
       </ol>
 
@@ -947,8 +947,7 @@ Example (using an example URL):
 DID method specifications MAY define their own JSON-LD contexts.
 However it is NOT RECOMMENDED to define a new context unless
 necessary to properly implement the method. Method-specific contexts
-MUST NOT override the terms defined in the generic DID context listed
-in Appendix <a href="#the-generic-did-context-for-json-ld"></a>
+MUST NOT override the terms defined in the generic DID context.
       </p>
     </section>
 
@@ -1483,7 +1482,8 @@ Example:
 }
 </pre>
       <p>
-See Sections <a href="#requirements-of-a-did-method-specification"></a> and <a href="#authentication-service-endpoints"></a> for further security
+See Sections <a href="#specific-did-method-schemes"></a>
+and <a href="#authentication"></a> for further security
 considerations regarding authentication service endpoints.
       </p>
     </section>
