@@ -18,7 +18,7 @@
   </script>
   <script class="remove" type="text/javascript">
   var respecConfig = {
-    // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
+    // specification status (e.g., WD, LCWD, NOTE, etc.). If in doubt use ED.
     specStatus: "CG-DRAFT",
 
     // the specification's short name, as in http://www.w3.org/TR/short-name/
@@ -142,7 +142,7 @@ DIDs resolve to DID Documents — simple documents that describe how to
 use that specific DID. Each DID Document contains at least three
 things: cryptographic material, authentication suites, and service
 endpoints. Cryptographic material combined with authentication suites
-provide a set of mechanisms to authenticate as the DID subject (e.g.
+provide a set of mechanisms to authenticate as the DID subject (e.g.,
 public keys, pseudonymous biometric protocols, etc.). Service endpoints
 enable trusted interactions with the DID subject.
     </p>
@@ -219,7 +219,7 @@ number of distributed, independent roots of trust.
 
       <p>
 The entities are identified by decentralized identifiers (DIDs). They
-may authenticate via proofs (e.g. digital signatures,
+may authenticate via proofs (e.g., digital signatures,
 privacy-preserving biometric protocols, etc.). DIDs point to DID
 Documents. A DID Document contains a set of service endpoints for
 interacting with the entity. Following the dictums of <a href="https://en.wikipedia.org/wiki/Privacy_by_design">Privacy by
@@ -269,9 +269,8 @@ are:
 
         <ol start="1">
           <li>
-[[URI]] is the term for any type of identifier that identifies an abstract
-or physical resource. It may or may not be resolveable to a resource
-(e.g. URNs, URLs, etc.).
+[[URI]] is the term for any type of identifier (e.g., URN, URL, etc.) that identifies an abstract
+or physical resource. It may or may not be resolveable to a resource.
           </li>
 
           <li>
@@ -283,7 +282,7 @@ de-referenced to locate a representation of a resource on the Web
           <li>
 [[URN]] is the term for a specific type of URI intended to
 persistently identify a resource, i.e., an identifier that will
-never change no matter how often the resource moves, changes names,
+never change no matter how often the resource moves, changes labels,
 changes owners, etc. URNs are intended to last forever.
           </li>
         </ol>
@@ -1057,7 +1056,7 @@ delegate MAY use to authenticate when updating the DID Document.
 
 
 The delegate DID MUST resolve to a DID Document that has a
-<code>authentication</code> property containing at least one value
+<code>authentication</code> property containing at least one value,
 i.e., the delegate relationships must not be nested.
 
 </li>
@@ -1121,7 +1120,7 @@ the DID ("owned" public keys). However, a DID Document MAY also list
 If a public key does not exist in the DID Document, it MUST be
 assumed the key has been revoked or is invalid. The DID Document MAY
 contain revoked keys. A DID Document that contains a revoked key MUST
-also contain or refer to the revocation information for the key (e.g.
+also contain or refer to the revocation information for the key (e.g.,
 a revocation list). Each DID Method specification is expected to
 detail how revocation is performed and tracked.
       </p>
@@ -1243,7 +1242,7 @@ Assume <em>value</em> is a URL.
           <ol>
             <li>
 Dereference the URL and retrieve the <code>publicKey</code>
-properties associated with the URL (e.g. process the
+properties associated with the URL (e.g., process the
             <code>publicKey</code> property at the top-level of the
 dereferenced document).
             </li>
