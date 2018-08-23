@@ -2350,7 +2350,15 @@ correlated. For example, using same public key descriptions or
 bespoke service endpoints in multiple DID Documents can provide as
 much correlation information as using the same DID. Therefore the DID
 Document for a pseudonymous DID SHOULD also use pairwise-unique
-public keys and pairwise-unique service endpoints.
+public keys.
+
+It might seem natural to also use pairwise-unique service endpoints
+in the DID Document for a pseudonymous DID. However, unique endpoints
+allow all traffic between to DIDs to be isolated perfectly into
+unique buckets, where timing correlation and similar analysis is easy.
+Therefore, a better strategy for endpoint privacy may be to share an
+endpoint among thousands or millions of DIDs owned by many different
+entities.
       </p>
     </section>
 
