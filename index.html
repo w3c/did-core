@@ -2225,11 +2225,10 @@ Key and Signature Expiration
 In a decentralized identifier architecture, there are no centralized
 authorities to enforce key or signature expiration policies.
 Therefore DID resolvers and other client applications SHOULD validate
-that keys have not expired. Since some use cases may have legitimate
-reasons why already-expired keys can be extended, a key expiration
-SHOULD NOT prevent any further use of the key, and implementations
-SHOULD attempt to update its status upon encountering it in a
-signature.
+that keys were not expired at the time they were used. Since some use cases
+may have legitimate reasons why already-expired keys can be extended, a key
+expiration SHOULD NOT prevent any further use of the key, and implementations
+of a resolver SHOULD be compatible with such extension behavior.
       </p>
     </section>
 
