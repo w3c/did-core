@@ -1,6 +1,6 @@
 {
   "name": "did-context",
-  "version": "1.0.0",
+  "version": "1.0.1-0",
   "description": "DID Context",
   "main": "js",
   "files": [
