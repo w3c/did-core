@@ -17,6 +17,7 @@
     "ServiceEndpointProxyService": "didv:ServiceEndpointProxyService",
 
     "allowedAction": "sec:allowedAction",
+    "assertionMethod": {"@id": "sec:assertionMethod", "@type": "@id", "@container": "@set"},
     "authentication": {"@id": "sec:authenticationMethod", "@type": "@id", "@container": "@set"},
     "capability": {"@id": "sec:capability", "@type": "@id"},
     "capabilityAction": "sec:capabilityAction",
@@ -26,9 +27,10 @@
     "capabilityStatusList": {"@id": "sec:capabilityStatusList", "@type": "@id"},
     "canonicalizationAlgorithm": "sec:canonicalizationAlgorithm",
     "caveat": {"@id": "sec:caveat", "@type": "@id", "@container": "@set"},
+    "challenge": "sec:challenge",
+    "controller": {"@id": "sec:controller", "@type": "@id"},
     "created": {"@id": "dc:created", "@type": "xsd:dateTime"},
     "creator": {"@id": "dc:creator", "@type": "@id"},
-    "controller": {"@id": "sec:controller", "@type": "@id"},
     "delegator": {"@id": "sec:delegator", "@type": "@id"},
     "domain": "sec:domain",
     "expirationDate": {"@id": "sec:expiration", "@type": "xsd:dateTime"},
@@ -45,6 +47,7 @@
     "publicKeyPem": "sec:publicKeyPem",
     "revoked": {"@id": "sec:revoked", "@type": "xsd:dateTime"},
     "service": {"@id": "didv:service", "@type": "@id", "@container": "@set"},
-    "serviceEndpoint": {"@id": "didv:serviceEndpoint", "@type": "@id"}
+    "serviceEndpoint": {"@id": "didv:serviceEndpoint", "@type": "@id"},
+    "verificationMethod": {"@id": "sec:verificationMethod", "@type": "@id"}
   }
 }
