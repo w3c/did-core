@@ -37,6 +37,7 @@
     "invocationTarget": {"@id": "sec:invocationTarget", "@type": "@id"},
     "invoker": {"@id": "sec:invoker", "@type": "@id"},
     "jws": "sec:jws",
+    "keyAgreement": {"@id": "sec:keyAgreementMethod", "@type": "@id", "@container": "@set"},
     "nonce": "sec:nonce",
     "owner": {"@id": "sec:owner", "@type": "@id"},
     "proof": {"@id": "sec:proof", "@type": "@id", "@container": "@graph"},
