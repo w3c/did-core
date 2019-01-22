@@ -283,7 +283,7 @@ de-referenced to locate a representation of a resource on the Web
 [[URN]] is the term for a specific type of URI intended to
 persistently identify a resource, i.e., an identifier that will
 never change no matter how often the resource moves, changes labels,
-changes owners, etc. URNs are intended to last forever.
+changes controllers, etc. URNs are intended to last forever.
           </li>
         </ol>
       </section>
@@ -311,7 +311,7 @@ such authority.
           </li>
 
           <li>
-A URL whose ownership and associated metadata, including public
+A URL whose control and associated metadata, including public
 keys, can be cryptographically verified. Authentication via DIDs
 and DID Documents leverage the same public/private key cryptography
 as distributed ledgers.
@@ -339,7 +339,7 @@ two".
 There are of course many use cases where it is desirable to
 discover a DID when starting from a human-friendly identifier—a
 natural language name, a domain name, or a conventional address for
-a DID owner such as a mobile telephone number, email address,
+a DID controller such as a mobile telephone number, email address,
 Twitter handle, or blog URL. However, the problem of mapping
 human-friendly identifiers to DIDs (and doing so in a way that can
 be verified and trusted) is out-of-scope for this specification.
@@ -562,7 +562,7 @@ Document.
   "publicKey": [{
     "id": "did:example:123456789abcdefghi#keys-1",
     "type": "RsaVerificationKey2018",
-    "owner": "did:example:123456789abcdefghi",
+    "controller": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }],
   "authentication": [{
@@ -873,7 +873,7 @@ commitment to persistence of the DID and DID method over time.
 NOTE: Although not included in this version, future versions of this
 specification may support a DID Document equivID property to
 establish verifiable equivalence relations between DID records
-representing the same identifier owner on multiple ledgers or
+representing the same entity on multiple ledgers or
 networks. Such equivalence relations can produce the practical
 equivalent of a single persistent abstract DID. See Future Work
         (Section <a href="#future-work"></a>).
@@ -1138,7 +1138,7 @@ Each public key must include <code>id</code> and
         </li>
 
         <li>
-Each public key may include an <code>owner</code> property, which
+Each public key may include an <code>controller</code> property, which
 identifies the entity that controls the corresponding private key. If
 this property is missing, it is assumed to be the DID subject.
         </li>
@@ -1168,17 +1168,17 @@ Example:
   "publicKey": [{
     "id": "did:example:123456789abcdefghi#keys-1",
     "type": "RsaVerificationKey2018",
-    "owner": "did:example:123456789abcdefghi",
+    "controller": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }, {
     "id": "did:example:123456789abcdefghi#keys-2",
     "type": "Ed25519VerificationKey2018",
-    "owner": "did:example:pqrstuvwxyz0987654321",
+    "controller": "did:example:pqrstuvwxyz0987654321",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }, {
     "id": "did:example:123456789abcdefghi#keys-3",
     "type": "Secp256k1VerificationKey2018",
-    "owner": "did:example:123456789abcdefghi",
+    "controller": "did:example:123456789abcdefghi",
     "publicKeyHex": "02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71"
   }],
   ...
@@ -1204,7 +1204,7 @@ may refer to keys in both ways:
     "publicKey: {
       "id": "did:example:123456789abcdefghi#keys-2",
       "type": "Ed25519VerificationKey2018",
-      "owner": "did:example:pqrstuvwxyz0987654321",
+      "controller": "did:example:pqrstuvwxyz0987654321",
       "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
   }],
@@ -1254,20 +1254,20 @@ If the <code>id</code> property of the object matches
 
         <li>
 If <em>result</em> does not contain at least the <code>id</code>,
-        <code>type</code>, and <code>owner</code> properties as well as any
+        <code>type</code>, and <code>controller</code> properties as well as any
 mandatory public cryptographic material, as determined by the
         <em>result</em>'s <code>type</code> property, throw an error.
         </li>
       </ol>
 
       <p class="note">
-While the <code>owner</code> field may seem redundant in some of the
+While the <code>controller</code> field may seem redundant in some of the
 examples above, keys may be expressed in a DID Document where the
-owner is described in another DID Document. Linked Data Proof
-libraries typically expect the <code>owner</code> field to always
+controller is described in another DID Document. Linked Data Proof
+libraries typically expect the <code>controller</code> field to always
 exist and may throw an exception if it is missing. Futhermore, per
 the requirement that DID Documents be interpretable as either a graph
-or a tree, a default <code>owner</code> field cannot be inferred by
+or a tree, a default <code>controller</code> field cannot be inferred by
 using a key's position in a tree.
       </p>
 
@@ -1290,7 +1290,7 @@ Description. See Section <a href="#binding-of-identity"></a>. Note
 that Authentication is separate from Authorization because an entity
 may wish to enable other entities to update the DID Document (for
 example, to assist with key recovery as discussed in Section <a href="#key-revocation-and-recovery"></a>) without enabling them to prove
-ownership (and thus be able to impersonate the entity).
+control (and thus be able to impersonate the entity).
       </p>
 
       <p>
@@ -1353,7 +1353,7 @@ mechanism that an entity may use to authorize other entities to act
 on its behalf. Note that Authorization is separate from
 Authentication as explained in Section <a href="#authentication"></a>. This is particularly important for key
 recovery in the case of key loss, when the entity no longer has
-access to their keys, or key compromise, where the owner’s trusted
+access to their keys, or key compromise, where the controller’s trusted
 third parties need to override malicious activity by an attacker. See
 Section <a href="#security-considerations"></a>.
       </p>
@@ -1840,7 +1840,7 @@ Create
 The DID method specification MUST specify how a client creates a DID
 record—the combination of a DID and its associated DID Document—on
 the target system, including all cryptographic operations necessary
-to establish proof of ownership.
+to establish proof of control.
       </p>
     </section>
 
@@ -2040,7 +2040,7 @@ Binding of Identity
 
       <section>
         <h3>
-Proving Ownership of a DID and DID Document
+Proving Control of a DID and DID Document
         </h3>
 
         <p>
@@ -2050,7 +2050,7 @@ cryptographically verifiable.
 
         <p>
 By itself, a verified signature on a self-signed DID Document does
-not prove ownership of a DID. It only proves the following:
+not prove control of a DID. It only proves the following:
         </p>
 
         <ol start="1">
@@ -2060,13 +2060,13 @@ registered.
           </li>
 
           <li>
-The owner of the DID Document controlled the private key used
+The controller of the DID Document controlled the private key used
 for the signature at the time the signature was generated.
           </li>
         </ol>
 
         <p>
-Proving ownership of a DID, i.e., the binding between the DID and
+Proving control of a DID, i.e., the binding between the DID and
 the DID Document that describes it, requires a two step process:
         </p>
 
@@ -2083,7 +2083,7 @@ matches the DID that was resolved.
         </ol>
 
         <p>
-It should be noted that this process proves ownership of a DID and
+It should be noted that this process proves control of a DID and
 DID Document regardless of whether the DID Document is signed.
         </p>
 
@@ -2099,16 +2099,16 @@ It is RECOMMENDED to combine timestamps with signatures.
 
       <section>
         <h3>
-Proving Ownership of a Public Key
+Proving Control of a Public Key
         </h3>
 
         <p>
-There are two methods for proving ownership of the private key
+There are two methods for proving control of the private key
 corresponding to a public key description in the DID Document:
 static and dynamic. The static method is to sign the DID Document
-with the private key. This proves ownership of the private key at a
+with the private key. This proves control of the private key at a
 time no later than the DID Document was registered. If the DID
-Document is not signed, ownership of a public key described in the
+Document is not signed, control of a public key described in the
 DID Document may still be proven dynamically as follows:
         </p>
 
@@ -2128,16 +2128,18 @@ key description.
 
       <section>
         <h3>
-Identity Owner Authentication and Verifiable Claims
+Authentication and Verifiable Claims
         </h3>
 
         <p>
-A DID and DID Document do not inherently carry any <a href="https://en.wikipedia.org/wiki/Personally_identifiable_information">
+A DID and DID Document do not inherently carry any 
+<a href="https://en.wikipedia.org/wiki/Personally_identifiable_information">
 PII</a> (personally-identifiable information). The process of
-binding a DID to the real-world owner of an identifier using claims
-about the owner is out of scope for this specification. However
-this topic is the focus of the <a href="https://w3c.github.io/vctf/">verifiable claims</a> standardization
-work at the W3C (where the term "DID" originated).
+binding a DID to a real-world entity such as a person or company,
+for example with credentials whose subject is that DID, is out 
+of scope for this specification. However this topic is the focus of the 
+<a href="https://w3c.github.io/vctf/">verifiable claims</a> 
+standardization work at the W3C (where the term "DID" originated).
         </p>
       </section>
     </section>
@@ -2192,7 +2194,7 @@ notification, the following approaches are RECOMMENDED:
         <li>
 Subscriptions. If the ledger or network on which the DID is
 registered directly supports change notifications, this service can
-be offered to DID owners. Notifications may be sent directly to the
+be offered to DID controllers. Notifications may be sent directly to the
 relevant service endpoints listed in an existing DID.
         </li>
 
@@ -2259,7 +2261,7 @@ Privacy Considerations
     <p>
 It is critically important to apply the principles of Privacy by Design
 to all aspects of decentralized identifier architecture, because DIDs
-and DID Documents are—by design—administered directly by their owners.
+and DID Documents are—by design—administered directly by their controllers.
 There is no registrar, hosting company, or other intermediate service
 provider to recommend or apply additional privacy safeguards. The
 authors of this specification have applied all seven Privacy by Design
@@ -2320,7 +2322,7 @@ DID Correlation Risks and Pseudonymous DIDs
 
       <p>
 Like any type of globally unique identifier, DIDs may be used for
-correlation. Identity owners can mitigate this privacy risk by using
+correlation. DID controllers can mitigate this privacy risk by using
 pairwise unique DIDs, i.e., by sharing a different private DID for
 every relationship. In effect, each DID acts as a pseudonym. A
 pseudonymous DID need only be shared with more than one party when
@@ -2574,17 +2576,17 @@ A future-facing real-world context is provided below:
   "publicKey": [{
     "id": "did:example:123456789abcdefghi#keys-1",
     "type": "RsaVerificationKey2018",
-    "owner": "did:example:123456789abcdefghi",
+    "controller": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }, {
     "id": "did:example:123456789abcdefghi#keys-2",
     "type": "Ed25519VerificationKey2018",
-    "owner": "did:example:123456789abcdefghi",
+    "controller": "did:example:123456789abcdefghi",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }, {
     "id": "did:example:123456789abcdefghi#keys-3",
     "type": "RsaPublicKeyExchangeKey2018",
-    "owner": "did:example:123456789abcdefghi",
+    "controller": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }],
 
