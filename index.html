@@ -1115,7 +1115,7 @@ such as authentication (see Section <a href="#authentication"></a>)
 or establishing secure communication with <a>service endpoints</a>
         (see Section <a href="#service-endpoints"></a>). In addition, public
 keys may play a role in authorization mechanisms of DID CRUD
-operations (see Section <a href="#did-operations"></a>); This may be
+operations (see Section <a href="#did-operations"></a>). This may be
 defined by DID Method specifications.
       </p>
       
@@ -1138,30 +1138,33 @@ A DID Document MAY include a <code>publicKey</code> property.
         </li>
 
         <li>
-The value of the <code>publicKey</code> property should be an
-array of public keys.
+The value of the <code>publicKey</code> property MUST be an array of 
+public keys. 
         </li>
 
         <li>
-Each public key must include <code>id</code> and
-        <code>type</code> properties, and exactly one value property.
+Each public key MUST include <code>id</code> and <code>type</code> 
+properties, and exactly one value property. The array of public keys 
+SHOULD NOT contain duplicate entries with the same <code>id</code> and 
+different value properties with different formats.
         </li>
 
         <li>
-Each public key may include an <code>controller</code> property, which
-identifies the entity that controls the corresponding private key. If
+Each public key MUST include a <code>controller</code> property, which 
+identifies the entity that controls the corresponding private key. If 
 this property is missing, it is assumed to be the DID subject.
         </li>
 
         <li>
-The value property of a public key may be
-        <code>publicKeyPem</code>, <code>publicKeyJwk</code>,
-        <code>publicKeyHex</code>, <code>publicKeyBase64</code> or similar,
-depending on the format and encoding of the public key.
+The value property of a public key MUST be exactly one of
+<code>publicKeyPem</code>, <code>publicKeyJwk</code>, 
+<code>publicKeyHex</code>, <code>publicKeyBase64</code>, 
+<code>publicKeyBase58</code>, <code>publicKeyMultibase</code>, or similar depending on the format and 
+encoding of the public key. 
         </li>
 
         <li>
-A registry of key types and formats is available in Appendix
+A registry of key types and formats is available in Appendix 
 <a href="#registries"></a>.
         </li>
       </ol>
