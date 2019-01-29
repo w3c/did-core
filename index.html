@@ -816,6 +816,16 @@ the id key for the target JSON object.
 A specific DID scheme MAY specify ABNF rules for DID fragments that
 are more restrictive than the generic rules in this section.
       </p>
+
+      <p>
+It is desirable that we enable tree-based processing of DIDs that include
+DID fragments (which resolve directly within the DID document) to locate
+metadata contained directly in the DID document or the service resource
+given by the target URL without needing to rely on graph-based processing.
+      </p>
+      <p>
+Implementations SHOULD NOT prevent the use of JSON pointers ([[RFC6901]]).
+      </p>
     </section>
 
     <section>
