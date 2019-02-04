@@ -261,15 +261,15 @@ URIs, URLs, and URNs
         <p>
 DIDs have a foundation in URLs, so it's important to understand how
 the W3C <a href="https://www.w3.org/TR/uri-clarification/">clarified</a> the terms
-[[URI]] (Uniform Resource Identifier), [[URL]] (Uniform Resource
-Locator), and [[URN]] (Uniform Resource Name) in September 2001.
+URI (Uniform Resource Identifier, [[RFC3986]]), [[URL]] (Uniform Resource
+Locator), and URN (Uniform Resource Name, [[RFC8141]]) in September 2001.
 The key difference between these three categories of identifiers
 are:
         </p>
 
         <ol start="1">
           <li>
-[[URI]] is the term for any type of identifier (e.g., URN, URL, etc.) that identifies an abstract
+URI ([[RFC3986]]) is the term for any type of identifier (e.g., URN, URL, etc.) that identifies an abstract
 or physical resource. It may or may not be resolveable to a resource.
           </li>
 
@@ -280,7 +280,7 @@ de-referenced to locate a representation of a resource on the Web
           </li>
 
           <li>
-[[URN]] is the term for a specific type of URI intended to
+URN ([[RFC8141]]) is the term for a specific type of URI intended to
 persistently identify a resource, i.e., an identifier that will
 never change no matter how often the resource moves, changes labels,
 changes controllers, etc. URNs are intended to last forever.
@@ -378,7 +378,7 @@ method specification is similar to the relationship of the IETF
 generic URI specification ([[RFC3986]]) and a specific URI scheme
           ([[IANA-URI-SCHEMES]] (such as the http: and https: schemes
 specified in [[RFC7230]]). It is also similar to the relationship
-of the IETF generic URN specification ([[URN]]) and a specific URN
+of the IETF generic URN specification ([[RFC8141]]) and a specific URN
 namespace definition (such as the UUID URN namespace defined in
 [[RFC4122]]). The difference is that a DID method specification, in
 addition to defining a specific DID scheme, must also specify the
@@ -2030,7 +2030,7 @@ method MUST be discussed.
         <li>
 DID methods MUST discuss the policy mechanism by which DIDs are
 proven to be uniquely assigned. A DID fits the functional definition
-of a URN as defined in [[RFC2141]]—a persistent identifier that is
+of a URN as defined in [[RFC8141]]—a persistent identifier that is
 assigned once to a resource and never reassigned. In a security
 context this is particularly important since a DID may be used to
 identify a specific party subject to a specific set of authorization
