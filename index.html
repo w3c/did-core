@@ -1151,16 +1151,15 @@ different value properties with different formats.
 
         <li>
 Each public key MUST include a <code>controller</code> property, which 
-identifies the entity that controls the corresponding private key. If 
-this property is missing, it is assumed to be the DID subject.
+identifies the entity that controls the corresponding private key.
         </li>
 
         <li>
 The value property of a public key MUST be exactly one of
 <code>publicKeyPem</code>, <code>publicKeyJwk</code>, 
 <code>publicKeyHex</code>, <code>publicKeyBase64</code>, 
-<code>publicKeyBase58</code>, <code>publicKeyMultibase</code>, or similar depending on the format and 
-encoding of the public key. 
+<code>publicKeyBase58</code>, <code>publicKeyMultibase</code>, depending 
+on the format and encoding of the public key. 
         </li>
 
         <li>
