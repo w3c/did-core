@@ -734,52 +734,6 @@ fragments.
 
     <section>
       <h2>
-Specific DID Method Schemes
-      </h2>
-
-      <p>
-A DID method specification MUST define exactly one specific DID
-scheme identified by exactly one method name (the method rule in
-Section <a href="#the-generic-did-scheme"></a>). Since DIDs are
-intended for decentralized identity infrastructure, it is NOT
-RECOMMENDED to establish a registry of unique DID method names.
-Rather the uniqueness of DID method names should be established via
-human consensus, i.e., a specific DID scheme MUST use a method name
-that is unique among all DID method names known to the specification
-authors at the time of publication.
-      </p>
-
-      <p>
-A list of known DID method names and their associated specifications
-is provided in Appendix <a href="#registries"></a>.
-      </p>
-
-      <p>
-Since the method name is part of the DID, it SHOULD be as short as
-practical. A method name of five characters or less is RECOMMENDED.
-The method name MAY reflect the name of the distributed ledger or
-network to which the DID method specification applies.
-      </p>
-
-      <p>
-The DID method specification for the specific DID scheme MUST specify
-how to generate the specific-idstring component of a DID. The
-specific-idstring value MUST be able to be generated without the use
-of a centralized registry service. The specific-idstring value SHOULD
-be globally unique by itself. The fully qualified DID as defined by
-the DID rule in Section <a href="#the-generic-did-scheme"></a> MUST
-be globally unique.
-      </p>
-
-      <p>
-If needed, a specific DID scheme MAY define multiple specific
-specific-idstring formats. It is RECOMMENDED that a specific DID
-scheme define as few specific-idstring formats as possible.
-      </p>
-    </section>
-
-    <section>
-      <h2>
 Paths
       </h2>
 
@@ -1805,10 +1759,61 @@ enabling aggressive caching of contexts.
 
   <section>
     <h1>
-DID Operations
+DID Methods
     </h1>
 
-    <p>
+    <section>
+      <h2>
+DID Method Schemes
+      </h2>
+
+      <p>
+A DID method specification MUST define exactly one specific DID
+scheme identified by exactly one method name (the method rule in
+Section <a href="#the-generic-did-scheme"></a>). Since DIDs are
+intended for decentralized identity infrastructure, it is NOT
+RECOMMENDED to establish a registry of unique DID method names.
+Rather the uniqueness of DID method names should be established via
+human consensus, i.e., a specific DID scheme MUST use a method name
+that is unique among all DID method names known to the specification
+authors at the time of publication.
+      </p>
+
+      <p>
+A list of known DID method names and their associated specifications
+is provided in Appendix <a href="#registries"></a>.
+      </p>
+
+      <p>
+Since the method name is part of the DID, it SHOULD be as short as
+practical. A method name of five characters or less is RECOMMENDED.
+The method name MAY reflect the name of the distributed ledger or
+network to which the DID method specification applies.
+      </p>
+
+      <p>
+The DID method specification for the specific DID scheme MUST specify
+how to generate the specific-idstring component of a DID. The
+specific-idstring value MUST be able to be generated without the use
+of a centralized registry service. The specific-idstring value SHOULD
+be globally unique by itself. The fully qualified DID as defined by
+the DID rule in Section <a href="#the-generic-did-scheme"></a> MUST
+be globally unique.
+      </p>
+
+      <p>
+If needed, a specific DID scheme MAY define multiple specific
+specific-idstring formats. It is RECOMMENDED that a specific DID
+scheme define as few specific-idstring formats as possible.
+      </p>
+    </section>
+
+    <section>
+      <h2>
+DID Operations
+      </h2>
+
+      <p>
 To enable the full functionality of DIDs and DID Documents on a
 particular distributed ledger or network (called the target system), a
 DID method specification MUST specify how each of the following
@@ -1819,78 +1824,79 @@ interoperable client implementations with the target system. Note that,
 due to the specified contents of DID Documents, these operations can
 effectively be used to perform all the operations required of a CKMS
       (cryptographic key management system), e.g.:
-    </p>
+      </p>
 
-    <ul>
-      <li>
+      <ul>
+        <li>
 Key registration
-      </li>
+        </li>
 
-      <li>
+        <li>
 Key replacement
-      </li>
+        </li>
 
-      <li>
+        <li>
 Key rotation
-      </li>
+        </li>
 
-      <li>
+        <li>
 Key recovery
-      </li>
+        </li>
 
-      <li>
+        <li>
 Key expiration
-      </li>
-    </ul>
+        </li>
+      </ul>
 
-    <section>
-      <h2>
+      <section>
+        <h3>
 Create
-      </h2>
+        </h3>
 
-      <p>
+        <p>
 The DID method specification MUST specify how a client creates a DID
 record—the combination of a DID and its associated DID Document—on
 the target system, including all cryptographic operations necessary
 to establish proof of control.
-      </p>
-    </section>
+        </p>
+      </section>
 
-    <section>
-      <h2>
+      <section>
+        <h3>
 Read/Verify
-      </h2>
+        </h3>
 
-      <p>
+        <p>
 The DID method specification MUST specify how a client uses a DID to
 request a DID Document from the target system, including how the
 client can verify the authenticity of the response.
-      </p>
-    </section>
+        </p>
+      </section>
 
-    <section>
-      <h2>
+      <section>
+        <h3>
 Update
-      </h2>
+        </h3>
 
-      <p>
+        <p>
 The DID method specification MUST specify how a client can update a
 DID record on the target system, including all cryptographic
 operations necessary to establish proof of control.
-      </p>
-    </section>
+        </p>
+      </section>
 
-    <section>
-      <h2>
+      <section>
+        <h3>
 Delete/Revoke
-      </h2>
+        </h3>
 
-      <p>
+        <p>
 Although a core feature of distributed ledgers is immutability, the
 DID method specification MUST specify how a client can revoke a DID
 record on the target system, including all cryptographic operations
 necessary to establish proof of revocation.
-      </p>
+        </p>
+      </section>
     </section>
   </section>
 
