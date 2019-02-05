@@ -254,9 +254,9 @@ centralized, federated, and decentralized identifiers.
       </p>
 
       <section>
-        <h2>
+        <h3>
 Motivations for DIDs
-        </h2>
+        </h3>
 
         <p>
 The growing need for decentralized identifiers has produced two
@@ -285,9 +285,9 @@ as distributed ledgers.
       </section>
 
       <section>
-        <h2>
+        <h3>
 The Role of Human-Friendly Identifiers
-        </h2>
+        </h3>
 
         <p>
 DIDs achieve global uniqueness without the need for a central
@@ -320,13 +320,14 @@ privacy consequences of using human-friendly identifiers that are
 inherently correlatable, especially if they are globally unique.
         </p>
       </section>
+    </section>
 
-      <section>
-        <h2>
+    <section>
+      <h2>
 Purpose of This Specification
-        </h2>
+      </h2>
 
-        <p>
+      <p>
 The first purpose of this specification is to define the generic
 DID scheme and a generic set of operations on DIDs that can be
 implemented for any distributed ledger or network capable of
@@ -335,9 +336,9 @@ define the conformance requirements for a DID method
 specification—a separate specification that defines a specific DID
 scheme and specific set of DID record operations for a specific
 distributed ledger or network.
-        </p>
+      </p>
 
-        <p>
+      <p>
 Conceptually, the relationship of this specification and a DID
 method specification is similar to the relationship of the IETF
 generic URI specification ([[RFC3986]]) and a specific URI scheme
@@ -349,19 +350,18 @@ namespace definition (such as the UUID URN namespace defined in
 addition to defining a specific DID scheme, must also specify the
 methods for reading, writing, and revoking DID records on the
 network for which it is written.
-        </p>
+      </p>
 
-        <p>
+      <p>
 For a list of DID Methods and their corresponding specifications,
 see the DID Method Registry [[DID-METHOD-REGISTRY]].
-        </p>
-      </section>
+      </p>
     </section>
 
     <section>
-      <h1>
+      <h2>
 Design Goals
-      </h1>
+      </h2>
 
       <p>
 This section summarizes the design goals and principles of DID
@@ -495,32 +495,33 @@ portability, or simplicity.
         </tbody>
       </table>
     </section>
+  </section>
 
-    <section>
-      <h1>
+  <section>
+    <h1>
 Simple Examples
-      </h1>
+    </h1>
+
+    <p>
+This is a simple example of a DID:
+    </p>
+
+    <pre class="example nohighlight" title="A simple example of a Decentralized Identifier (DID)">
+did:example:123456789abcdefghi
+    </pre>
+    <section>
+      <h2>
+Self-Managed DID Document
+      </h2>
 
       <p>
-This is a simple example of a DID:
-      </p>
-
-      <pre class="example nohighlight" title="A simple example of a Decentralized Identifier (DID)">
-did:example:123456789abcdefghi
-</pre>
-      <section>
-        <h2>
-Self-Managed DID Document
-        </h2>
-
-        <p>
 Following is an example of a DID Document that describes the DID
 above. This example assumes that the entity that controls the
 private keys for this identifier is authoritative for the DID
 Document.
-        </p>
+      </p>
 
-        <pre class="example nohighlight" title="Minimal self-managed DID Document">
+      <pre class="example nohighlight" title="Minimal self-managed DID Document">
 {
   "@context": "https://w3id.org/did/v1",
   "id": "did:example:123456789abcdefghi",
@@ -540,8 +541,8 @@ Document.
     "serviceEndpoint": "https://example.com/endpoint/8377464"
   }]
 }
-</pre>
-      </section>
+      </pre>
+    </section>
       <!-- section>
 <h2>Example Delegate-Managed DID Document</h2>
 
@@ -594,7 +595,6 @@ technology.
 </p>
 
 </section-->
-    </section>
   </section>
 
   <section>
