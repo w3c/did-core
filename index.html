@@ -139,14 +139,15 @@ control of the DID subject, independent from any centralized registry,
 identity provider, or certificate authority. DIDs are URLs that relate
 a DID subject to means for trustable interactions with that subject.
 DIDs resolve to DID Documents — simple documents that describe how to
-use that specific DID. Each DID Document contains at least three
-things: cryptographic material, authentication suites, and service
-endpoints. Cryptographic material combined with authentication suites
-provide a set of mechanisms to authenticate as the DID subject (e.g.,
-public keys, pseudonymous biometric protocols, etc.). Service endpoints
-enable trusted interactions with the DID subject.
+use that specific DID. Each DID Document may contain at least three
+things: proof purposes, verification methods, and service endpoints.
+Proof purposes are combined with verification methods to provide mechanisms
+for proving things. For example, a DID Document can specify that a particular
+verification method, such as a cryptographic public key or pseudonymous
+biometric protocol, can be used to verify a proof that was created for the
+purpose of authentication. Service endpoints enable trusted interactions with
+the DID controller.
     </p>
-
     <p>
 This document specifies a common data model, format, and operations
 that all DIDs support.
@@ -525,16 +526,12 @@ Document.
 {
   "@context": "https://w3id.org/did/v1",
   "id": "did:example:123456789abcdefghi",
-  "publicKey": [{
+  "authentication": [{
+    // this key can be used to authenticate as did:...fghi
     "id": "did:example:123456789abcdefghi#keys-1",
     "type": "RsaVerificationKey2018",
     "controller": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }],
-  "authentication": [{
-    // this key can be used to authenticate as DID ...9938
-    "type": "RsaSignatureAuthentication2018",
-    "publicKey": "did:example:123456789abcdefghi#keys-1"
   }],
   "service": [{
     "type": "ExampleService",
@@ -573,7 +570,7 @@ private keys.
   "entity": "did:example:zxyvwtrkpn987654321"
 }],
 "authentication": [{
-  // this biometric can be used to authenticate as DID ...fghi
+  // this biometric can be used to authenticate as did:...fghi
   "type": "PseudonymousBiometricTemplate2017",
   "biometricService": "https://example.com/authenticate",
   "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
@@ -1049,7 +1046,7 @@ Example:
   "entity": "did:example:zxyvwtrkpn987654321"
 }],
 "authentication": [{
-  // this biometric can be used to authenticate as DID ...fghi
+  // this biometric can be used to authenticate as did:...fghi
   "type": "PseudonymousBiometricTemplate2017",
   "biometricService": "https://example.com/authenticate",
   "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
@@ -1077,7 +1074,7 @@ keys may play a role in authorization mechanisms of DID CRUD
 operations (see Section <a href="#did-operations"></a>). This may be
 defined by DID Method specifications.
       </p>
-      
+
       <p>
 If a public key does not exist in the DID Document, it MUST be
 assumed the key has been revoked or is invalid. The DID Document MAY
@@ -1097,32 +1094,32 @@ A DID Document MAY include a <code>publicKey</code> property.
         </li>
 
         <li>
-The value of the <code>publicKey</code> property MUST be an array of 
-public keys. 
+The value of the <code>publicKey</code> property MUST be an array of
+public keys.
         </li>
 
         <li>
-Each public key MUST include <code>id</code> and <code>type</code> 
-properties, and exactly one value property. The array of public keys 
-SHOULD NOT contain duplicate entries with the same <code>id</code> and 
+Each public key MUST include <code>id</code> and <code>type</code>
+properties, and exactly one value property. The array of public keys
+SHOULD NOT contain duplicate entries with the same <code>id</code> and
 different value properties with different formats.
         </li>
 
         <li>
-Each public key MUST include a <code>controller</code> property, which 
+Each public key MUST include a <code>controller</code> property, which
 identifies the entity that controls the corresponding private key.
         </li>
 
         <li>
 The value property of a public key MUST be exactly one of
-<code>publicKeyPem</code>, <code>publicKeyJwk</code>, 
-<code>publicKeyHex</code>, <code>publicKeyBase64</code>, 
-<code>publicKeyBase58</code>, <code>publicKeyMultibase</code>, depending 
-on the format and encoding of the public key. 
+<code>publicKeyPem</code>, <code>publicKeyJwk</code>,
+<code>publicKeyHex</code>, <code>publicKeyBase64</code>,
+<code>publicKeyBase58</code>, <code>publicKeyMultibase</code>, depending
+on the format and encoding of the public key.
         </li>
 
         <li>
-A registry of key types and formats is available in Appendix 
+A registry of key types and formats is available in Appendix
 <a href="#registries"></a>.
         </li>
       </ol>
@@ -1165,20 +1162,17 @@ may refer to keys in both ways:
 {
 ...
 
-  "authentication": [{
-    // this key is referenced
-    "type": "RsaSignatureAuthentication2018",
-    "publicKey": "did:example:123456789abcdefghi#keys-1"
-  }, {
-    // this key is embedded
-    "type": "RsaSignatureAuthentication2018",
-    "publicKey: {
+  "authentication": [
+    // this key is referenced, it may be used for more than one proof purpose
+    "did:example:123456789abcdefghi#keys-1",
+    // this key is embedded and may *only* be used for authentication
+    {
       "id": "did:example:123456789abcdefghi#keys-2",
       "type": "Ed25519VerificationKey2018",
-      "controller": "did:example:pqrstuvwxyz0987654321",
+      "controller": "did:example:123456789abcdefghi",
       "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
-  }],
+  ],
 
 ...
 }
@@ -1276,16 +1270,12 @@ property.
 
         <li>
 The value of the <code>authentication</code> property should be
-an array of proof mechanisms.
+an array of verification methods.
         </li>
 
         <li>
-Each proof mechanism must include the <code>type</code> property.
-        </li>
-
-        <li>
-Each proof mechanism MAY embed or reference a public key (see
-Section <a href="#public-keys"></a>).
+Each verification method MAY be embedded or referenced. An example of
+a verification method is a public key (see Section <a href="#public-keys"></a>).
         </li>
       </ol>
 
@@ -1293,20 +1283,26 @@ Section <a href="#public-keys"></a>).
 Example:
       </p>
 
-      <pre class="example nohighlight" title="Authentication credential field containing two credentials">
+      <pre class="example nohighlight" title="Authentication field containing three verification methods">
 {
   "@context": "https://w3id.org/did/v1",
   "id": "did:example:123456789abcdefghi",
   ...
-  "authentication": [{
-    // this key can be used to authenticate as DID ...fghi
-    "type": "RsaSignatureAuthentication2018",
-    "publicKey": "did:example:123456789abcdefghi#keys-1"
-  }, {
-    // this key can be used to authenticate as DID ...fghi
-    "type": "PseudonymousBiometricAuthentication2018",
-    "biometricTemplate": "did:example:123456789abcdefghi#bio-1"
-  }],
+  "authentication": [
+    // this method can be used to authenticate as did:...fghi
+    "did:example:123456789abcdefghi#keys-1",
+    // this method can be used to authenticate as did:...fghi
+    "did:example:123456789abcdefghi#biometric-1",
+    // this method is *only* authorized for authentication, it may not
+    // be used for any other proof purpose, so its full description is
+    // embedded here rather than using only a reference
+    {
+      "id": "did:example:123456789abcdefghi#keys-2",
+      "type": "Ed25519VerificationKey2018",
+      "controller": "did:example:123456789abcdefghi",
+      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    }
+  ],
   ...
 }
 </pre>
@@ -1343,7 +1339,7 @@ Authorization, Delegation, and the concept of Guardianship:
       <ol>
         <li>
 A ledger could implement a coarse grained <code>guardian</code>
-pattern by re-using the same cryptography suite pattern used by the
+pattern by reusing the same proof purpose pattern used by the
         <code>authentication</code> property, or more preferably
         </li>
 
@@ -1700,7 +1696,7 @@ context above and adding the new property to the <a>DID Document</a>.
 {
   "@context": "https://example.org/example-method/v1",
   "id": "did:example:123456789abcdefghi",
-  "authentication": [{ ... }],
+  "authentication": [ ... ],
   "service": [<span class="highlight">{
     "@context": "did:example:contexts:987654321",
     "id": "did:example:123456789abcdefghi;photos",
@@ -2155,13 +2151,13 @@ Authentication and Verifiable Claims
         </h3>
 
         <p>
-A DID and DID Document do not inherently carry any 
+A DID and DID Document do not inherently carry any
 <a href="https://en.wikipedia.org/wiki/Personally_identifiable_information">
 PII</a> (personally-identifiable information). The process of
 binding a DID to a real-world entity such as a person or company,
-for example with credentials whose subject is that DID, is out 
-of scope for this specification. However this topic is the focus of the 
-<a href="https://w3c.github.io/vctf/">verifiable claims</a> 
+for example with credentials whose subject is that DID, is out
+of scope for this specification. However this topic is the focus of the
+<a href="https://w3c.github.io/vctf/">verifiable claims</a>
 standardization work at the W3C (where the term "DID" originated).
         </p>
       </section>
@@ -2602,26 +2598,27 @@ A future-facing real-world context is provided below:
     "controller": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }, {
-    "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018",
-    "controller": "did:example:123456789abcdefghi",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-  }, {
     "id": "did:example:123456789abcdefghi#keys-3",
-    "type": "RsaPublicKeyExchangeKey2018",
+    "type": "Ieee2410VerificationKey2018",
     "controller": "did:example:123456789abcdefghi",
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }],
 
-  "authentication": [{
-    // this mechanism can be used to authenticate as DID ...fghi
-    "type": "RsaSignatureAuthentication2018",
-    "publicKey": "did:example:123456789abcdefghi#keys-1"
-  }, {
-    // this mechanism can be used to biometrically authenticate as DID ...fghi
-    "type": "ieee2410Authentication2018",
-    "publicKey": "did:example:123456789abcdefghi#keys-2"
-  }],
+  "authentication": [
+    // this mechanism can be used to authenticate as did:...fghi
+    "did:example:123456789abcdefghi#keys-1",
+    // this mechanism can be used to biometrically authenticate as did:...fghi
+    "did:example:123456789abcdefghi#keys-3",
+    // this mechanism is *only* authorized for authentication, it may not
+    // be used for any other proof purpose, so its full description is
+    // embedded here rather than using only a reference
+    {
+      "id": "did:example:123456789abcdefghi#keys-2",
+      "type": "Ed25519VerificationKey2018",
+      "controller": "did:example:123456789abcdefghi",
+      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    }
+  ],
 
   "service": [{
     "type": "OpenIdConnectVersion1.0Service",
