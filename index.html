@@ -816,25 +816,30 @@ Persistence
 
       <p>
 A DID MUST be persistent and immutable, i.e., bound to an entity once
-and never changed (forever). Ideally a DID would be a completely
+and never changed (forever). 
+      </p>
+
+      <p>
+Ideally a DID would be a completely
 abstract decentralized identifier (like a UUID) that could be bound
 to multiple underlying distributed ledgers or networks over time,
 thus maintaining its persistence independent of any particular ledger
 or network. However registering the same identifier on multiple
-ledgers or networks introduces extremely hard entityship and <a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">start-of-authority</a>
-        (SOA) problems. It also greatly increases implementation complexity
+ledgers or networks introduces extremely hard entityship and 
+<a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">start-of-authority</a>
+(SOA) problems. It also greatly increases implementation complexity
 for developers.
       </p>
 
       <p>
-To avoid these issues, it is RECOMMENDED that DID method
-specifications only produce DIDs and DID methods bound to strong,
+To avoid these issues, it is RECOMMENDED that <a>DID method</a>
+specifications only produce DIDs and <a>DID methods</a> bound to strong,
 stable ledgers or networks capable of making the highest level of
 commitment to persistence of the DID and DID method over time.
       </p>
 
-      <p>
-NOTE: Although not included in this version, future versions of this
+      <p class="note">
+Although not included in this version, future versions of this
 specification may support a DID Document equivID property to
 establish verifiable equivalence relations between DID records
 representing the same entity on multiple ledgers or
