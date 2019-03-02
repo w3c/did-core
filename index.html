@@ -669,6 +669,35 @@ top of JSON data.
     </section>
   </section>
 
+  <section class="informative">
+    <h1>
+Core Data Model
+    </h1>
+    <p>
+This section outlines the core data model concepts. These are elaborated
+in <a href="#did-documents"></a>.
+    </p>
+
+    <section>
+      <h2>
+Document
+      </h2>
+    </section>
+
+    <section>
+      <h2>
+Keys
+      </h2>
+    </section>
+
+    <section>
+      <h2>
+Services
+      </h2>
+    </section>
+
+  </section>
+
   <section>
     <h1>
 Decentralized Identifiers (DIDs)
@@ -813,7 +842,7 @@ Persistence
 
       <p>
 A DID MUST be persistent and immutable, i.e., bound to an entity once
-and never changed (forever). 
+and never changed (forever).
       </p>
 
       <p>
@@ -822,7 +851,7 @@ abstract decentralized identifier (like a UUID) that could be bound
 to multiple underlying distributed ledgers or networks over time,
 thus maintaining its persistence independent of any particular ledger
 or network. However registering the same identifier on multiple
-ledgers or networks introduces extremely hard entityship and 
+ledgers or networks introduces extremely hard entityship and
 <a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">start-of-authority</a>
 (SOA) problems. It also greatly increases implementation complexity
 for developers.
@@ -853,6 +882,7 @@ DID Documents
     </h1>
 
     <p>
+DID Documents are the serialization of the <a href="#core-data-model"></a>.
 If a DID is the index key in a key-value pair, then the DID Document is
 the value to which the index key points. The combination of a DID and
 its associated DID Document forms the root record for a decentralized
@@ -860,62 +890,9 @@ identifier.
     </p>
 
     <p>
-A DID Document MUST be a single JSON object conforming to [[RFC7159]].
-For purposes of this version of the DID specification, the format of
-this JSON object is specified in <a href="https://json-ld.org/">JSON-LD</a>, a format for mapping JSON data into
-the RDF semantic graph model as defined by [[JSON-LD]]. Future versions
-of this specification MAY specify other semantic graph formats for a
-DID Document such as JXD (JSON XDI Data), a serialization format for
-the <a href="http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">
-XDI graph model</a>.
-    </p>
-
-    <p>
-The following sections define the properties of this JSON object,
+The following sections define the properties of the DID Document,
 including whether these properties are required or optional.
     </p>
-
-    <section>
-      <h2>
-Context
-      </h2>
-
-      <p>
-JSON objects in JSON-LD format must include a JSON-LD context
-statement. The rules for this statement are:
-      </p>
-
-      <ol start="1">
-        <li>
-A DID Document MUST have exactly one top-level context statement.
-        </li>
-
-        <li>
-The key for this property MUST be <code>@context</code>.
-        </li>
-
-        <li>
-The value of this key MUST be the URL for the generic DID context:
-<code>https://w3id.org/did/v1</code>.
-        </li>
-      </ol>
-
-      <p>
-Example (using an example URL):
-      </p>
-
-      <pre class="example nohighlight">
-{
-  "@context": "https://w3id.org/did/v1"
-}
-</pre>
-      <p>
-DID method specifications MAY define their own JSON-LD contexts.
-However it is NOT RECOMMENDED to define a new context unless
-necessary to properly implement the method. Method-specific contexts
-MUST NOT override the terms defined in the generic DID context.
-      </p>
-    </section>
 
     <section>
       <h2>
@@ -1754,6 +1731,70 @@ produce an error. Strategies for ensuring that extension JSON-LD
 Contexts are always available include using content-addressed URLs
 for contexts, bundling context documents with implementations, or
 enabling aggressive caching of contexts.
+      </p>
+    </section>
+  </section>
+
+  <section>
+    <h1>
+DID Document Syntax
+    </h1>
+        <p>
+A DID Document MUST be a single JSON object conforming to [[RFC7159]].
+Many of the concepts in this document were introduced by example using the
+JSON-LD syntax, a format for mapping JSON data into the RDF semantic graph model as defined by
+[[!JSON-LD]]. This section formalizes how the data model (described in Sections
+<a href="#data-model"></a> and <a href="#did-documents"></a>) is realized in JSON-LD.
+        </p>
+        <p>
+Although syntactic mappings are provided for JSON-LD only, applications and
+services can use any other data representation syntax, such as JXD (JSON XDI Data, a serialization format for
+the <a href="http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">
+XDI graph model</a>), XML, YAML, or CBOR, that is capable of expressing the data model.
+        </p>
+
+    <section>
+      <h2>
+JSON-LD
+      </h2>
+
+      <p>
+JSON objects in JSON-LD format must include a JSON-LD context
+statement.  The
+<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
+is described in detail in the [[!JSON-LD]] specification. The rules for this
+statement are:
+      </p>
+
+      <ol start="1">
+        <li>
+A DID Document MUST have exactly one top-level context statement.
+        </li>
+
+        <li>
+The key for this property MUST be <code>@context</code>.
+        </li>
+
+        <li>
+The value of this key MUST be the URL for the generic DID context:
+<code>https://w3id.org/did/v1</code>.
+        </li>
+      </ol>
+
+      <p>
+Example (using an example URL):
+      </p>
+
+      <pre class="example nohighlight">
+{
+  "@context": "https://w3id.org/did/v1"
+}
+</pre>
+      <p>
+DID method specifications MAY define their own JSON-LD contexts.
+However it is NOT RECOMMENDED to define a new context unless
+necessary to properly implement the method. Method-specific contexts
+MUST NOT override the terms defined in the generic DID context.
       </p>
     </section>
   </section>
