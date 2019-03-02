@@ -433,7 +433,7 @@ assurance.
 Proof-based
             </td>
             <td>
-DID architecture should enable an entity to provide
+DID architecture should enable the DID subject to provide
 cryptographic proof of authentication and proof of
 authorization rights.
             </td>
@@ -516,10 +516,9 @@ Self-Managed DID Document
       </h2>
 
       <p>
-Following is an example of a DID Document that describes the DID
-above. This example assumes that the entity that controls the
-private keys for this identifier is authoritative for the DID
-Document.
+Following is an example of a DID Document for the DID
+above. This example assumes that the subject of the DID Document is
+the controller of the private keys for this identifier.
       </p>
 
       <pre class="example nohighlight" title="Minimal self-managed DID Document">
@@ -718,10 +717,10 @@ specific type of Unified Resource Name (URN).
 
     <p>
 A DID is similar to a UUID except: (a) like a URL, it can be resolved
-or dereferenced to a standard resource describing the entity (a <a>DID
+or dereferenced to a standard resource describing the subject (a <a>DID
 Document</a>—see Section <a href="#did-documents"></a>), and (b) unlike
 a URL, the DID Document typically contains cryptographic material that
-enables authentication of an entity associated with the DID.
+enables authentication of the DID subject.
     </p>
 
     <section>
@@ -841,7 +840,7 @@ Persistence
       </h2>
 
       <p>
-A DID MUST be persistent and immutable, i.e., bound to an entity once
+A DID MUST be persistent and immutable, i.e., bound to the subject once
 and never changed (forever).
       </p>
 
@@ -868,7 +867,7 @@ commitment to persistence of the DID and DID method over time.
 Although not included in this version, future versions of this
 specification may support a DID Document equivID property to
 establish verifiable equivalence relations between DID records
-representing the same entity on multiple ledgers or
+representing the same subject on multiple ledgers or
 networks. Such equivalence relations can produce the practical
 equivalent of a single persistent abstract DID. See Future Work
         (Section <a href="#future-work"></a>).
@@ -1084,7 +1083,7 @@ different value properties with different formats.
 
         <li>
 Each public key MUST include a <code>controller</code> property, which
-identifies the entity that controls the corresponding private key.
+identifies the controller of the corresponding private key.
         </li>
 
         <li>
@@ -1229,10 +1228,11 @@ Authentication
 Authentication is the mechanism by which a <a href="#did-subject">DID subject</a> can
 cryptographically prove that they are associated with a DID.
 See Section <a href="#binding-of-identity"></a>. Note
-that Authentication is separate from Authorization because an entity
-may wish to enable other entities to update the DID Document (for
-example, to assist with key recovery as discussed in Section <a href="#key-revocation-and-recovery"></a>) without enabling them to prove
-control (and thus be able to impersonate the entity).
+that Authentication is separate from Authorization because the subject
+may wish to enable others to update their DID Document (for
+example, to assist with key recovery as discussed in Section
+<a href="#key-revocation-and-recovery"></a>) without enabling them to prove
+control (and thus be able to impersonate the subject).
       </p>
 
       <p>
@@ -1291,12 +1291,13 @@ Authorization and Delegation
       </h2>
 
       <p>
-Authorization is the mechanism by which an entity states how one may
-perform operations on behalf of the entity. Delegation is the
-mechanism that an entity may use to authorize other entities to act
-on its behalf. Note that Authorization is separate from
-Authentication as explained in Section <a href="#authentication"></a>. This is particularly important for key
-recovery in the case of key loss, when the entity no longer has
+Authorization is the mechanism used to state how operations may be
+performed on behalf of the DID subject. Delegation is the
+mechanism that the subject may use to authorize others to act
+on their behalf. Note that Authorization is separate from
+Authentication as explained in Section <a href="#authentication"></a>.
+This is particularly important for key
+recovery in the case of key loss, when the subject no longer has
 access to their keys, or key compromise, where the controller’s trusted
 third parties need to override malicious activity by an attacker. See
 Section <a href="#security-considerations"></a>.
@@ -1336,8 +1337,8 @@ Service Endpoints
       <p>
 In addition to publication of authentication and authorization
 mechanisms, the other primary purpose of a DID Document is to enable
-discovery of <a>service endpoints</a> for the entity. A service
-endpoint may represent any type of service the entity wishes to
+discovery of <a>service endpoints</a> for the subject. A service
+endpoint may represent any type of service the subject wishes to
 advertise, including decentralized identity management services for
 further discovery, authentication, authorization, or interaction. The
 rules for service endpoints are:
@@ -1524,7 +1525,7 @@ integrity of the DID Document according to either:
 
       <ol start="1">
         <li>
-The entity as defined in section <a href="#service-endpoints"></a>, or if not present:
+The subject as defined in section <a href="#service-endpoints"></a>, or if not present:
         </li>
 
         <li>
@@ -1612,8 +1613,8 @@ developers and web page authors is enabled via the use of
 
       <p>
 This approach to data modeling is often called an "open world
-assumption", meaning that any entity can say anything about any other
-entity. This approach often feels in conflict with building simple
+assumption", meaning that anyone can say anything about any other
+thing. This approach often feels in conflict with building simple
 and predictable software systems. Balancing extensibility with
 program correctness is always more challenging with an open world
 assumption than it is with closed software systems.
@@ -2195,8 +2196,8 @@ Authentication and Verifiable Claims
 A DID and DID Document do not inherently carry any
 <a href="https://en.wikipedia.org/wiki/Personally_identifiable_information">
 PII</a> (personally-identifiable information). The process of
-binding a DID to a real-world entity such as a person or company,
-for example with credentials whose subject is that DID, is out
+binding a DID to something in the real-world such as a person or company,
+for example with credentials with the same subject as that DID, is out
 of scope for this specification. However this topic is the focus of the
 <a href="https://w3c.github.io/vctf/">verifiable claims</a>
 standardization work at the W3C (where the term "DID" originated).
@@ -2211,8 +2212,9 @@ Authentication Service Endpoints
 
       <p>
 If a DID Document publishes a service endpoint intended for
-authentication or authorization of an entity (section <a href="#service-endpoints"></a>), it is the responsibility of the service
-endpoint provider, entity, and/or relying party to comply with the
+authentication or authorization of the subject (section
+<a href="#service-endpoints"></a>), it is the responsibility of the service
+endpoint provider, subject, and/or relying party to comply with the
 requirements of the authentication protocol(s) supported at that
 service endpoint.
       </p>
@@ -2225,13 +2227,14 @@ Non-Repudiation
 
       <p>
 Non-repudiation of DIDs and DID Document updates is supported under
-the assumption that: (1) the entity is monitoring for unauthorized
-updates (see Section <a href="#notification-of-did-document-changes"></a>) and (2) the entity has
-had adequate opportunity to revoke malicious updates according to the
-DID method's access control mechanism (section <a href="#authentication"></a>). This capability is further supported if
-timestamps are included (sections <a href="#created-optional"></a>
-and <a href="#updated-optional"></a>) and the target DLT system
-supports timestamps.
+the assumption that: (1) the subject is monitoring for unauthorized
+updates (see Section <a href="#notification-of-did-document-changes"></a>)
+and (2) the subject has had adequate opportunity to revoke malicious updates
+according to the DID method's access control mechanism (section
+<a href="#authentication"></a>).
+This capability is further supported if timestamps are included (sections
+<a href="#created-optional"></a> and <a href="#updated-optional"></a>) and the
+target DLT system supports timestamps.
       </p>
     </section>
 
@@ -2242,7 +2245,7 @@ Notification of DID Document Changes
 
       <p>
 One mitigation against unauthorized changes to a DID Document is
-monitoring and actively notifying the entity when there are changes.
+monitoring and actively notifying the subject when there are changes.
 This is analogous to helping prevent account takeover on conventional
 username/password accounts by sending password reset notifications to
 the email addresses on file. In the case of a DID, where there is no
@@ -2259,12 +2262,12 @@ relevant service endpoints listed in an existing DID.
         </li>
 
         <li>
-Self-monitoring. An entity may employ its own local or online
+Self-monitoring. A DID subject may employ their own local or online
 agent to periodically monitor for changes to a DID Document.
         </li>
 
         <li>
-Third-party monitoring. An entity may rely on a third party
+Third-party monitoring. A DID subject may rely on a third party
 monitoring service, however this introduces another vector of attack.
         </li>
       </ol>
@@ -2330,7 +2333,7 @@ specification is preventative not remedial, and privacy is an embedded
 default. Furthermore, decentralized identifier architecture by itself
 embodies principle #7, "Respect for user privacy—keep it user-centric."
 This section lists additional privacy considerations that implementers,
-delegates, and entities should bear in mind.
+delegates, and DID subjects should bear in mind.
     </p>
 
     <section>
@@ -2365,10 +2368,11 @@ If a DID method specification is written for a public ledger or
 network where all DIDs and DID Documents will be publicly available,
 it is STRONGLY RECOMMENDED that DID Documents contain no PII. All PII
 should be kept off-ledger behind service endpoints under the control
-of the entity. With this privacy architecture, PII may be exchanged
+of the subject. With this privacy architecture, PII may be exchanged
 on a private, peer-to-peer basis using communications channels
 identified and secured by key descriptions in DID records. This also
-enables entities and relying parties to implement the <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>
+enables subjects and relying parties to implement the
+<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>
 <a href="https://en.wikipedia.org/wiki/Right_to_be_forgotten">right
 to be forgotten</a>, as no PII will be written to an immutable
 ledger.
@@ -2386,10 +2390,10 @@ correlation. DID controllers can mitigate this privacy risk by using
 pairwise unique DIDs, i.e., by sharing a different private DID for
 every relationship. In effect, each DID acts as a pseudonym. A
 pseudonymous DID need only be shared with more than one party when
-the entity explicitly authorizes correlation between those parties.
+the subject explicitly authorizes correlation between those parties.
 If pseudonymous DIDs are the default, then the only need for a public
 DID—a DID published openly or shared with a large number of
-parties—is when the entity explicitly desires public identification.
+parties—is when the subject explicitly desires public identification.
       </p>
     </section>
 
@@ -2412,8 +2416,8 @@ in the DID Document for a pseudonymous DID. However, unique endpoints
 allow all traffic between to DIDs to be isolated perfectly into
 unique buckets, where timing correlation and similar analysis is easy.
 Therefore, a better strategy for endpoint privacy may be to share an
-endpoint among thousands or millions of DIDs owned by many different
-entities.
+endpoint among thousands or millions of DIDs controlled by many different
+subjects.
       </p>
     </section>
 
@@ -2423,7 +2427,7 @@ Herd Privacy
       </h2>
 
       <p>
-When an entity is indistinguishable from others in the herd, privacy
+When a DID subject is indistinguishable from others in the herd, privacy
 is available. When the act of engaging privately with another party
 is by itself a recognizable flag, privacy is greatly diminished. DIDs
 and DID methods SHOULD work to improve herd privacy, particularly for
@@ -2468,8 +2472,8 @@ Equivalence
 
       <p>
 Including an equivalence property, such as equivID, in DID Documents
-whose value is an array of DIDs would allow entities to assert two or
-more DIDs that represent the same entity. This capability has
+whose value is an array of DIDs would allow subjects to assert two or
+more DIDs that represent the same subject. This capability has
 numerous uses, including supporting migration between ledgers and
 providing forward compatibility of existing DIDs to future DLTs. In
 theory, equivalent DIDs should have the same identifier rights,
@@ -2546,7 +2550,7 @@ Verifiable Claims
 
       <p>
 Although DIDs and DID Documents form a foundation for decentralized
-identity, they are only the first step in describing an entity. The
+identity, they are only the first step in describing a their subjects. The
 rest of the descriptive power comes through collecting and
 selectively using <a href="https://w3c.github.io/vctf/">verifiable
 claims</a>. Future versions of the specification will describe in
