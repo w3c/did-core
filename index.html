@@ -894,6 +894,47 @@ including whether these properties are required or optional.
     </p>
 
     <section>
+      <h2>Contexts</h2>
+      <p>
+  DID Documents MUST include the <code>@context</code> property.  The
+  <a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
+  is described in detail in the [[!JSON-LD]] specification. The rules for this
+  statement are:
+      </p>
+
+      <ol start="1">
+        <li>
+A DID Document MUST have exactly one top-level context statement.
+        </li>
+
+        <li>
+The key for this property MUST be <code>@context</code>.
+        </li>
+
+        <li>
+The value of this key MUST be the URL for the generic DID context:
+<code>https://w3id.org/did/v1</code>.
+        </li>
+      </ol>
+
+      <p>
+Example (using an example URL):
+      </p>
+
+      <pre class="example nohighlight">
+{
+  "@context": "https://w3id.org/did/v1"
+}
+</pre>
+      <p>
+DID method specifications MAY define their own JSON-LD contexts.
+However it is NOT RECOMMENDED to define a new context unless
+necessary to properly implement the method. Method-specific contexts
+MUST NOT override the terms defined in the generic DID context.
+      </p>
+    </section>
+
+    <section>
       <h2>
 DID Subject
       </h2>
@@ -1741,18 +1782,52 @@ enabling aggressive caching of contexts.
 DID Document Syntax
     </h1>
         <p>
-A DID Document MUST be a single JSON object conforming to [[RFC7159]].
+A DID Document MUST be a single JSON object conforming to [[RFC8259]].
 Many of the concepts in this document were introduced by example using the
 JSON-LD syntax, a format for mapping JSON data into the RDF semantic graph model as defined by
 [[!JSON-LD]]. This section formalizes how the data model (described in Sections
 <a href="#data-model"></a> and <a href="#did-documents"></a>) is realized in JSON-LD.
         </p>
         <p>
-Although syntactic mappings are provided for JSON-LD only, applications and
+Although syntactic mappings are provided for JSON and JSON-LD only, applications and
 services can use any other data representation syntax, such as JXD (JSON XDI Data, a serialization format for
 the <a href="http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">
 XDI graph model</a>), XML, YAML, or CBOR, that is capable of expressing the data model.
         </p>
+
+      <section>
+        <h3>JSON</h3>
+
+        <p>
+The data model as described in Section <a href="#core-data-model"></a> can be
+encoded in Javascript Object Notation (JSON) [[RFC8259]] by mapping property
+values to JSON types as follows:
+        </p>
+
+        <ul>
+          <li>
+Numeric values representable as IEEE754 SHOULD be represented as a Number type.
+          </li>
+          <li>
+Boolean values SHOULD be represented as a Boolean type.
+          </li>
+          <li>
+Sequence value SHOULD be represented as an Array type.
+          </li>
+          <li>
+Unordered sets of values SHOULD be represented as an Array type.
+          </li>
+          <li>
+Sets of <a>properties</a> SHOULD be represented as an Object type.
+          </li>
+          <li>
+Empty values SHOULD be represented as a null value.
+          </li>
+          <li>
+Other values MUST be represented as a String type.
+          </li>
+        </ul>
+      </section>
 
     <section>
       <h2>
@@ -1760,43 +1835,55 @@ JSON-LD
       </h2>
 
       <p>
-JSON objects in JSON-LD format must include a JSON-LD context
-statement.  The
+[[!JSON-LD]] is a JSON-based format used to serialize
+<a href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a>. The
+syntax is designed to easily integrate into deployed systems already using
+JSON, and provides a smooth upgrade path from JSON to JSON-LD. It is primarily
+intended to be a way to use Linked Data in Web-based programming environments,
+to build interoperable Web services, and to store Linked Data in JSON-based
+storage engines.
+      </p>
+
+      <p>
+JSON-LD is useful when extending the data model described in this
+specification. Instances of the data model are encoded in JSON-LD in the same
+way they are encoded in JSON (Section <a href="#json"></a>), with the addition
+of the <code>@context</code> property. The
 <a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
-is described in detail in the [[!JSON-LD]] specification. The rules for this
-statement are:
+is described in detail in the [[!JSON-LD]] specification and its use is
+elaborated on in Section <a href="#extensibility"></a>.
       </p>
-
-      <ol start="1">
-        <li>
-A DID Document MUST have exactly one top-level context statement.
-        </li>
-
-        <li>
-The key for this property MUST be <code>@context</code>.
-        </li>
-
-        <li>
-The value of this key MUST be the URL for the generic DID context:
-<code>https://w3id.org/did/v1</code>.
-        </li>
-      </ol>
 
       <p>
-Example (using an example URL):
+In general, the data model and syntaxes described in this document are
+designed such that developers can copy and paste examples into their software systems. The design goal of
+this approach is to provide a low barrier to entry while still ensuring global
+interoperability between a heterogeneous set of software systems. This section
+describes some of these approaches, which will likely go unnoticed by most
+developers, but whose details will be of interest to implementers. The most
+noteworthy syntactic sugars provided by JSON-LD are:
       </p>
 
-      <pre class="example nohighlight">
-{
-  "@context": "https://w3id.org/did/v1"
-}
-</pre>
-      <p>
-DID method specifications MAY define their own JSON-LD contexts.
-However it is NOT RECOMMENDED to define a new context unless
-necessary to properly implement the method. Method-specific contexts
-MUST NOT override the terms defined in the generic DID context.
-      </p>
+      <ul>
+        <li>
+The <code>@id</code> and <code>@type</code> keywords are aliased to
+<code>id</code> and <code>type</code> respectively, enabling developers to use
+this specification as idiomatic JSON.
+        </li>
+        <li>
+Data types, such as integers, dates, units of measure, and URLs, are
+automatically typed to provide stronger type guarantees for use cases that
+require them.
+        </li>
+        <li>
+The <code>@protected</code> properties feature of JSON-LD 1.1 is used to ensure
+that terms defined by this specification cannot be overridden. This means
+that as long as the same <code>@context</code> declaration is made at the top
+of a <a>verifiable credential</a> or <a>verifiable presentation</a>, even when
+<a>issuers</a> do not use a JSON-LD processor, that interoperability is still
+guaranteed if <a>verifiers</a> use a JSON-LD processor.
+        </li>
+      </ul>
     </section>
   </section>
 
