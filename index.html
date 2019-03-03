@@ -235,7 +235,7 @@ contexts.
 
       <p>
 DID methods are the mechanism by which a DID and its associated DID
-Document are created, read, updated, and revoked on a specific
+Document are created, read, updated, and deactivated on a specific
 distributed ledger or network. DID methods are defined using separate
 DID method specifications.
       </p>
@@ -273,7 +273,7 @@ traditional URLs, like HTTP-based URLs, do not have:
         <ol start="1">
           <li>
 The new type of URL SHOULD NOT require a centralized authority
-to register, resolve, update, or revoke the identifier. The
+to register, resolve or deactivate, nor to update associated data. The
 overwhelming majority of URIs today are based on DNS names or IP
 addresses that depend on centralized authorities for registration
 and ultimate control. DIDs can be created and managed without any
@@ -353,7 +353,7 @@ of the IETF generic URN specification ([[RFC8141]]) and a specific URN
 namespace definition (such as the UUID URN namespace defined in
 [[RFC4122]]). The difference is that a DID method specification, in
 addition to defining a specific DID scheme, must also specify the
-methods for reading, writing, and revoking DID documents on the
+methods for resolving and deactivating DIDs and writing DID documents on the
 network for which it is written.
       </p>
 
@@ -2014,14 +2014,14 @@ operations necessary to establish proof of control.
 
       <section>
         <h3>
-Delete/Revoke
+Deactivate
         </h3>
 
         <p>
 Although a core feature of distributed ledgers is immutability, the
-DID method specification MUST specify how a client can revoke a DID
+DID method specification MUST specify how a client can deactivate a DID
 on the target system, including all cryptographic operations
-necessary to establish proof of revocation.
+necessary to establish proof of deactivation.
         </p>
       </section>
     </section>
@@ -2313,7 +2313,7 @@ Non-Repudiation
 Non-repudiation of DIDs and DID Document updates is supported under
 the assumption that: (1) the subject is monitoring for unauthorized
 updates (see Section <a href="#notification-of-did-document-changes"></a>)
-and (2) the subject has had adequate opportunity to revoke malicious updates
+and (2) the subject has had adequate opportunity to revert malicious updates
 according to the DID method's access control mechanism (section
 <a href="#authentication"></a>).
 This capability is further supported if timestamps are included (sections
@@ -2381,11 +2381,11 @@ Key Revocation and Recovery
       <p>
 Section <a href="#did-operations"></a> specifies the DID operations
 that must be supported by a DID method specification, including
-revocation of a DID Document by replacing it with an updated DID
+deactivation of a DID Document by replacing it with an updated DID
 Document. In general, checking for key revocation on DLT-based
 methods is expected to be handled in a manner similar to checking the
 balance of a cryptocurrency account on a distributed ledger: if the
-balance is empty, the entire DID is revoked. DID method
+balance is empty, the entire DID is deactivated. DID method
 specifications SHOULD enable support for a quorum of trusted parties
 to enable key recovery. Some of the facilities to do so are suggested
 in section 6.5, Authorization. Note that not all DID method
