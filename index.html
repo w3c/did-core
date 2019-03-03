@@ -334,12 +334,12 @@ Purpose of This Specification
 
       <p>
 The first purpose of this specification is to define the generic
-DID scheme and a generic set of operations on DIDs that can be
+DID scheme and a generic set of operations on DID documents that can be
 implemented for any distributed ledger or network capable of
 supporting DIDs. The second purpose of this specification is to
 define the conformance requirements for a DID method
 specification—a separate specification that defines a specific DID
-scheme and specific set of DID record operations for a specific
+scheme and specific set of DID document operations for a specific
 distributed ledger or network.
       </p>
 
@@ -353,7 +353,7 @@ of the IETF generic URN specification ([[RFC8141]]) and a specific URN
 namespace definition (such as the UUID URN namespace defined in
 [[RFC4122]]). The difference is that a DID method specification, in
 addition to defining a specific DID scheme, must also specify the
-methods for reading, writing, and revoking DID records on the
+methods for reading, writing, and revoking DID documents on the
 network for which it is written.
       </p>
 
@@ -870,7 +870,7 @@ commitment to persistence of the DID and DID method over time.
       <p class="note">
 Although not included in this version, future versions of this
 specification may support a DID Document equivID property to
-establish verifiable equivalence relations between DID records
+establish verifiable equivalence relations between DIDs
 representing the same subject on multiple ledgers or
 networks. Such equivalence relations can produce the practical
 equivalent of a single persistent abstract DID. See Future Work
@@ -1983,9 +1983,8 @@ Create
 
         <p>
 The DID method specification MUST specify how a client creates a DID
-record—the combination of a DID and its associated DID Document—on
-the target system, including all cryptographic operations necessary
-to establish proof of control.
+and its associated DID Document on the target system, including all
+cryptographic operations necessary to establish proof of control.
         </p>
       </section>
 
@@ -2008,7 +2007,7 @@ Update
 
         <p>
 The DID method specification MUST specify how a client can update a
-DID record on the target system, including all cryptographic
+DID Document on the target system, including all cryptographic
 operations necessary to establish proof of control.
         </p>
       </section>
@@ -2021,7 +2020,7 @@ Delete/Revoke
         <p>
 Although a core feature of distributed ledgers is immutability, the
 DID method specification MUST specify how a client can revoke a DID
-record on the target system, including all cryptographic operations
+on the target system, including all cryptographic operations
 necessary to establish proof of revocation.
         </p>
       </section>
@@ -2455,7 +2454,7 @@ it is STRONGLY RECOMMENDED that DID Documents contain no PII. All PII
 should be kept off-ledger behind service endpoints under the control
 of the subject. With this privacy architecture, PII may be exchanged
 on a private, peer-to-peer basis using communications channels
-identified and secured by key descriptions in DID records. This also
+identified and secured by key descriptions in DID documents. This also
 enables subjects and relying parties to implement the
 <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>
 <a href="https://en.wikipedia.org/wiki/Right_to_be_forgotten">right
