@@ -897,6 +897,27 @@ including whether these properties are required or optional.
 
     <section>
       <h2>Contexts</h2>
+
+        <p>
+When two software systems need to exchange data, they must use terminology and
+a protocol that both systems understand. As an analogy, consider how two
+people communicate. Both people must use the same language and the words they
+use must mean the same thing to each other. This specification uses the
+<code>@context</code> property to express the context of a conversation.
+        </p>
+
+        <dl>
+          <dt><dfn>@context</dfn></dt>
+          <dd>
+The value of the <code>@context</code> property MUST be one or more
+<a>URIs</a>, where the value of the first <a>URI</a> is
+<code>https://www.w3.org/2019/did/v1</code>. If more than one
+<a>URI</a> is provided, the <a>URIs</a> MUST be interpreted as an ordered set.
+It is RECOMMENDED that dereferencing the <a>URIs</a> results in a document
+containing machine-readable information about the context.
+          </dd>
+        </dl>
+
       <p>
   DID Documents MUST include the <code>@context</code> property.  The
   <a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
@@ -1788,7 +1809,7 @@ A DID Document MUST be a single JSON object conforming to [[RFC8259]].
 Many of the concepts in this document were introduced by example using the
 JSON-LD syntax, a format for mapping JSON data into the RDF semantic graph model as defined by
 [[!JSON-LD]]. This section formalizes how the data model (described in Sections
-<a href="#data-model"></a> and <a href="#did-documents"></a>) is realized in JSON-LD.
+<a href="#core-data-model"></a> and <a href="#did-documents"></a>) is realized in JSON-LD.
         </p>
         <p>
 Although syntactic mappings are provided for JSON and JSON-LD only, applications and
