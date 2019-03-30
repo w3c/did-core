@@ -678,11 +678,11 @@ top of JSON data.
 
   <section class="informative">
     <h1>
-Core Data Model
+Data Model
     </h1>
     <p>
-This section outlines the core data model concepts. These are elaborated
-in <a href="#did-documents"></a>.
+This section outlines the Decentralized Identifier data model concepts.
+These are elaborated in <a href="#did-documents"></a>.
     </p>
 
     <section>
@@ -890,7 +890,7 @@ DID Documents
 
     <p>
 A DID points to a DID Document. DID Documents are the serialization of
-the <a href="#core-data-model"></a>.
+the <a href="#data-model"></a>.
 The following sections define the properties of the DID Document,
 including whether these properties are required or optional.
     </p>
@@ -1809,7 +1809,7 @@ A DID Document MUST be a single JSON object conforming to [[RFC8259]].
 Many of the concepts in this document were introduced by example using the
 JSON-LD syntax, a format for mapping JSON data into the RDF semantic graph model as defined by
 [[!JSON-LD]]. This section formalizes how the data model (described in Sections
-<a href="#core-data-model"></a> and <a href="#did-documents"></a>) is realized in JSON-LD.
+<a href="#data-model"></a> and <a href="#did-documents"></a>) is realized in JSON-LD.
         </p>
         <p>
 Although syntactic mappings are provided for JSON and JSON-LD only, applications and
@@ -1822,7 +1822,7 @@ XDI graph model</a>), XML, YAML, or CBOR, that is capable of expressing the data
         <h3>JSON</h3>
 
         <p>
-The data model as described in Section <a href="#core-data-model"></a> can be
+The data model as described in Section <a href="#data-model"></a> can be
 encoded in Javascript Object Notation (JSON) [[RFC8259]] by mapping property
 values to JSON types as follows:
         </p>
