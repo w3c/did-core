@@ -27,6 +27,19 @@ var ccg = {
       status: "FPWD",
       publisher: "Verifiable Claims Working Group"
     },
+    "VC-DATA-MODEL": {
+      title: "Verifiable Credentials Data Model",
+      href: "https://www.w3.org/TR/verifiable-claims-data-model/",
+      authors: [
+        "Manu Sporny",
+        "Dave Longley",
+        "Grant Noble",
+        "David Chadwick",
+        "Daniel C. Burnett"
+      ],
+      status: "FPWD",
+      publisher: "Verifiable Claims Working Group"
+    },
     // aliases to known references
     "HTTP-SIGNATURES": {
       aliasOf: "http-signatures"

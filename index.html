@@ -335,12 +335,12 @@ Purpose of This Specification
       <p>
 The first purpose of this specification is to define the generic
 DID scheme and a generic set of operations on DID documents that can be
-implemented for any distributed ledger or network capable of
-supporting DIDs. The second purpose of this specification is to
+implemented for any <a>Decentralized Identifier Registry</a>. The second
+purpose of this specification is to
 define the conformance requirements for a DID method
 specification—a separate specification that defines a specific DID
 scheme and specific set of DID document operations for a specific
-distributed ledger or network.
+<a>Decentralized Identifier Registry</a>.
       </p>
 
       <p>
@@ -786,10 +786,10 @@ and never changed (forever).
       <p>
 Ideally a DID would be a completely
 abstract decentralized identifier (like a UUID) that could be bound
-to multiple underlying distributed ledgers or networks over time,
-thus maintaining its persistence independent of any particular ledger
-or network. However registering the same identifier on multiple
-ledgers or networks introduces extremely hard entityship and
+to multiple underlying <a>Decentralized Identifier Registries</a> over time,
+thus maintaining its persistence independent of any particular system.
+However registering the same identifier on multiple
+<a>Decentralized Identifier Registries</a> introduces extremely hard entityship and
 <a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">start-of-authority</a>
 (SOA) problems. It also greatly increases implementation complexity
 for developers.
@@ -798,7 +798,7 @@ for developers.
       <p>
 To avoid these issues, it is RECOMMENDED that <a>DID method</a>
 specifications only produce DIDs and <a>DID methods</a> bound to strong,
-stable ledgers or networks capable of making the highest level of
+stable <a>Decentralized Identifier Registries</a> capable of making the highest level of
 commitment to persistence of the DID and DID method over time.
       </p>
 
@@ -806,8 +806,8 @@ commitment to persistence of the DID and DID method over time.
 Although not included in this version, future versions of this
 specification may support a DID Document equivID property to
 establish verifiable equivalence relations between DIDs
-representing the same subject on multiple ledgers or
-networks. Such equivalence relations can produce the practical
+representing the same subject on multiple <a>Decentralized Identifier
+Registries</a>. Such equivalence relations can produce the practical
 equivalent of a single persistent abstract DID. See Future Work
         (Section <a href="#future-work"></a>).
       </p>
@@ -913,8 +913,8 @@ The value of this key MUST be a valid DID.
         </li>
 
         <li>
-When this DID Document is registered with the target distributed
-ledger or network, the registered DID MUST match this DID subject
+When this DID Document is registered with the target <a>Decentralized
+Identifier Registry</a>, the registered DID MUST match this DID subject
 value.
         </li>
       </ol>
@@ -1299,9 +1299,8 @@ Section <a href="#security-considerations"></a>.
       </p>
 
       <p>
-Since Authorization and Delegation are typically implemented by the
-ledger, each DID Method specification is expected to detail how
-authorization and delegation are performed for the ledger.
+Each DID Method MUST define how authorization and delegation are
+implemented, including any necessary cryptographic operations.
       </p>
 
       <p>
@@ -1311,15 +1310,15 @@ Authorization, Delegation, and the concept of Guardianship:
 
       <ol>
         <li>
-A ledger could implement a coarse grained <code>guardian</code>
-pattern by reusing the same proof purpose pattern used by the
-        <code>authentication</code> property, or more preferably
+A <a>Decentralized Identifier Registry</a> could implement a coarse
+grained <code>guardian</code> pattern by reusing the same proof purpose
+pattern used by the <code>authentication</code> property, or more preferably
         </li>
 
         <li>
-A ledger could implement a Capabilities-based approach and
-provide more fine-grained control of authorization, delegation, and
-guardianship.
+A <a>Decentralized Identifier Registry</a> could implement a
+Capabilities-based approach and provide more fine-grained control of
+authorization, delegation, and guardianship.
         </li>
       </ol>
     </section>
@@ -1659,7 +1658,7 @@ containing the new term:
 Now that the JSON-LD Context has been created, the developer MUST
 publish it somewhere that is accessible to any <a>DID Document</a>
 processor. For this example, let us assume that the JSON-LD Context
-above is published in the decentralized ledger at the following URL:
+above is published at the following URL:
         <code>did:example:contexts:987654321</code>. At this point, extending
 the first example in this section is a simple matter of including the
 context above and adding the new property to the <a>DID Document</a>.
@@ -1870,8 +1869,8 @@ listing known DID method names and their associated specifications (see Appendix
       <p>
 Since the method name is part of the DID, it SHOULD be as short as
 practical. A method name of five characters or less is RECOMMENDED.
-The method name MAY reflect the name of the distributed ledger or
-network to which the DID method specification applies.
+The method name MAY reflect the name of the <a>Decentralized Identifier
+Registry</a> to which the DID method specification applies.
       </p>
 
       <p>
@@ -1898,7 +1897,7 @@ DID Operations
 
       <p>
 To enable the full functionality of DIDs and DID Documents on a
-particular distributed ledger or network (called the target system), a
+particular <a>Decentralized Identifier Registry</a>, a
 DID method specification MUST specify how each of the following
 <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">
 CRUD</a> operations is performed by a client. Each operation MUST be
@@ -1938,7 +1937,7 @@ Create
 
         <p>
 The DID method specification MUST specify how a client creates a DID
-and its associated DID Document on the target system, including all
+and its associated DID Document on the <a>Decentralized Identifier Registry</a>, including all
 cryptographic operations necessary to establish proof of control.
         </p>
       </section>
@@ -1950,7 +1949,7 @@ Read/Verify
 
         <p>
 The DID method specification MUST specify how a client uses a DID to
-request a DID Document from the target system, including how the
+request a DID Document from the <a>Decentralized Identifier Registry</a>, including how the
 client can verify the authenticity of the response.
         </p>
       </section>
@@ -1962,7 +1961,7 @@ Update
 
         <p>
 The DID method specification MUST specify how a client can update a
-DID Document on the target system, including all cryptographic
+DID Document on the <a>Decentralized Identifier Registry</a>, including all cryptographic
 operations necessary to establish proof of control.
         </p>
       </section>
@@ -1975,8 +1974,8 @@ Deactivate
         <p>
 Although a core feature of distributed ledgers is immutability, the
 DID method specification MUST specify how a client can deactivate a DID
-on the target system, including all cryptographic operations
-necessary to establish proof of deactivation.
+on the <a>Decentralized Identifier Registry</a>, including all cryptographic
+operations necessary to establish proof of deactivation.
         </p>
       </section>
     </section>
@@ -2294,7 +2293,7 @@ notification, the following approaches are RECOMMENDED:
 
       <ol start="1">
         <li>
-Subscriptions. If the ledger or network on which the DID is
+Subscriptions. If the <a>Decentralized Identifier Registry</a> on which the DID is
 registered directly supports change notifications, this service can
 be offered to DID controllers. Notifications may be sent directly to the
 relevant service endpoints listed in an existing DID.
@@ -2399,14 +2398,14 @@ identification, secondary use, disclosure, exclusion.
 
     <section>
       <h2>
-Keep Personally-Identifiable Information (PII) Off-Ledger
+Keep Personally-Identifiable Information (PII) Private
       </h2>
 
       <p>
-If a DID method specification is written for a public ledger or
-network where all DIDs and DID Documents will be publicly available,
+If a DID method specification is written for a public <a>Decentralized
+Identifier Registry</a> where all DIDs and DID Documents will be publicly available,
 it is STRONGLY RECOMMENDED that DID Documents contain no PII. All PII
-should be kept off-ledger behind service endpoints under the control
+should be kept behind service endpoints under the control
 of the subject. With this privacy architecture, PII may be exchanged
 on a private, peer-to-peer basis using communications channels
 identified and secured by key descriptions in DID documents. This also
@@ -2513,8 +2512,10 @@ Equivalence
 Including an equivalence property, such as equivID, in DID Documents
 whose value is an array of DIDs would allow subjects to assert two or
 more DIDs that represent the same subject. This capability has
-numerous uses, including supporting migration between ledgers and
-providing forward compatibility of existing DIDs to future DLTs. In
+numerous uses, including supporting migration between <a>Decentralized
+Identifier Registries</a> and
+providing forward compatibility of existing DIDs to future <a>Decentralized
+Identifier Registries</a>. In
 theory, equivalent DIDs should have the same identifier rights,
 allowing <a href="https://w3c.github.io/vctf/">verifiable claims</a>
 made against one DID to apply to equivalent DIDs. Equivalence was not
