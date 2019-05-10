@@ -88,11 +88,9 @@ compatible graph-based data formats.
   <dt><dfn data-lt="">DID Fragment</dfn></dt>
 
   <dd>
-The portion of a <a>DID reference</a> that follows the first hash
+The portion of a <a>DID URL</a> that follows the first hash
 sign character ("#"). A DID fragment uses the same syntax as a URI
-fragment. See section 5.5. Note that a DID fragment MUST immediately
-follow a DID. If a DID reference includes a DID path followed by a
-fragment, that fragment is NOT a DID fragment.
+fragment. See section 5.7.
   </dd>
 
 
@@ -111,18 +109,27 @@ are written and updated.
   <dt><dfn data-lt="">DID Path</dfn></dt>
 
   <dd>
-The portion of a <a>DID reference</a> that follows the first forward
-slash character. A DID path uses the identical syntax as a URI path. See
-section 5.4. Note that if a DID path is followed by a fragment, that
-fragment is NOT a <a>DID fragment</a>.
+The portion of a <a>DID URL</a> that follows the first forward
+slash character ("/"). A DID path uses the identical syntax as a URI path.
+See section 5.5.
   </dd>
 
 
 
-  <dt><dfn data-lt="">DID Reference</dfn></dt>
+  <dt><dfn data-lt="">DID Query</dfn></dt>
 
   <dd>
-A DID plus an optional <a>DID path</a> or <a>DID fragment</a>.
+The portion of a <a>DID URL</a> that follows the first question
+mark character ("?"). A DID path uses the identical syntax as a URI path.
+See section 5.6.
+  </dd>
+
+
+
+  <dt><dfn data-lt="">DID URL</dfn></dt>
+
+  <dd>
+A DID plus an optional <a>DID path</a>, optional <a>DID query</a>, and optional <a>DID fragment</a>.
   </dd>
 
 

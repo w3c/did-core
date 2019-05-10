@@ -97,6 +97,15 @@ var ccg = {
       ],
       status: "CG-DRAFT",
       publisher: "Digital Verification Community Group"
+    },
+    "MATRIX-URIS": {
+      title: "Matrix URIs - Ideas about Web Architecture",
+      date: "December 1996",
+      href: "https://www.w3.org/DesignIssues/MatrixURIs.html",
+      authors: [
+        "Tim Berners-Lee"
+      ],
+      status: "Personal View"
     }
   }
 };

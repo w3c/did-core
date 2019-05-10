@@ -537,6 +537,7 @@ the controller of the private keys for this identifier.
     "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
   }],
   "service": [{
+    "id": "did:example:123456789abcdefghi#service123",
     "type": "ExampleService",
     "serviceEndpoint": "https://example.com/endpoint/8377464"
   }]
@@ -664,46 +665,196 @@ enables authentication of the DID subject.
 
     <section>
       <h2>
-The Generic DID Scheme
+Generic DID Syntax
       </h2>
 
       <p>
 The generic <a>DID scheme</a> is a URI scheme conformant with
-[[RFC3986]]. It consists of a DID followed by an optional path and/or
-fragment. The term DID refers only to the identifier conforming to
-the did rule in the ABNF below; when used alone, it does not include
-a path or fragment. A DID that may optionally include a path and/or
-fragment is called a DID reference.
+[[RFC3986]]. The DID scheme specializes only the scheme and
+authority components of a DID URI—the <code>path-abempty</code>,
+<code>query</code>, and <code>fragment</code> components are
+identical to the ABNF rules defined
+in [[RFC3986]].
+      </p>
+
+      <p class="note">
+The term <a>DID</a> refers only to the URI
+conforming to the <code>did</code> rule in the ABNF below. A
+DID always identifies the DID subject. The term <a>DID URL</a>,
+defined by the <code>did-url</code> rule,
+refers to a URL that begins with a DID followed by one or more
+additional components. A DID URL always identifies the resource to
+be located.
       </p>
 
       <p>
-Following is the ABNF definition using the syntax in [[RFC5234]]
-        (which defines ALPHA as upper or lowercase A-Z).
+The following is the ABNF definition using the syntax in [[RFC5234]]
+which defines <code>ALPHA</code> and <code>DIGIT</code>. All other
+rule names not defined in this ABNF are defined in [[RFC3986]].
       </p>
 
       <pre class="nohighlight">
-did-reference      = did [ "/" did-path ] [ "#" did-fragment ]
-did                = "did:" method ":" specific-idstring
-method             = 1*methodchar
-methodchar         = %x61-7A / DIGIT
-specific-idstring  = idstring *( ":" idstring )
-idstring           = 1*idchar
-idchar             = ALPHA / DIGIT / "." / "-"
+did                = "did:" method-name ":" method-specific-id
+method-name        = 1*method-char
+method-char        = %x61-7A / DIGIT
+method-specific-id = *idchar *( ":" *idchar )
+idchar             = ALPHA / DIGIT / "." / "-" / "_"
+did-url            = did *( ";" param ) path-abempty [ "?" query ] 
+                     [ "#" fragment ]
+param              = param-name [ "=" param-value ]
+param-name         = 1*param-char
+param-value        = *param-char
+param-char         = ALPHA / DIGIT / "." / "-" / "_" / ":" /
+                     pct-encoded
 </pre>
+
+      <p class="issue" data-number="198">
+The grammar currently allows an empty <code>method-specific-id</code>,
+e.g. <code>did:example:</code> would be a valid DID that could identify
+the DID method itself.
+      </p>
+
+    </section>
+
+    <section>
+      <h2>
+Method-Specific Syntax
+      </h2>
+
       <p>
-See Sections <a href="#paths"></a> and <a href="#fragments"></a> for the ABNF rules defining DID paths and
-fragments.
+A DID method specification MUST further restrict the generic DID
+syntax by defining its own <code>method-name</code> and its own
+<code>method-specific-id</code> syntax. See Section <a href="#did-methods"></a>.
       </p>
     </section>
 
     <section>
       <h2>
-Paths
+Generic DID Parameter Names
       </h2>
 
       <p>
-A generic <a>DID path</a> (the did-path rule in Section <a href="#the-generic-did-scheme"></a>) is identical to a URI path and MUST
-conform to the ABNF of the path-rootless ABNF rule in [[RFC3986]]. A
+DID URL syntax supports a simple, generalized format for parameters based on the
+matrix parameter syntax ([[MATRIX-URIS]]).
+The ABNF above does not specify any parameter names (the <code>param-name</code>
+rule).
+      </p>
+      <p>
+Some generic DID parameter names (e.g., for service selection) are completely
+independent of any specific DID method and MUST always function the same way
+for all DIDs.
+Others (e.g., for versioning) MAY be supported by
+certain DID methods, but MUST operate uniformly across those DID methods that
+do support them.
+      </p>
+      <p>
+Parameter names that are completely method-specific are covered in
+<a href="#method-specific-did-parameter-names"></a>.
+      </p>
+      <p>
+The following table defines a set of generic DID parameter names:
+      </p>
+
+      <table class="simple">
+        <thead>
+          <tr>
+            <th>Generic DID Parameter Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+      </table>
+
+      <p>
+The exact processing rules for these parameters are specified in the DID
+Resolution specification.
+      </p>
+
+      <p class="note">
+Note that there may be additional parameters or options that are not part
+of the DID URL but instead passed to a DID resolver “out of band”, i.e.,
+using a resolution protocol or some other mechanism. Such options could
+for example control caching or the desired format of a resolution result.
+This is similar to HTTP, where caching or result format are expressed as
+HTTP headers rather than as part of an HTTP URL. The important distinction
+is that DID parameters that are part of the DID URL specify what resource
+is being identified, whereas DID resolver options that are not part of the
+DID URL control how that resource is dereferenced.
+      </p>
+    </section>
+
+    <section>
+      <h2>
+Method-Specific DID Parameter Names
+      </h2>
+
+      <p>
+A DID method specification MAY specify additional method-specific parameter
+names. A method-specific parameter name MUST be prefixed by the method name
+as defined by the <code>method-name</code> rule.
+      </p>
+
+      <p>
+For example, if the method <code>did:foo:</code> defines the parameter bar,
+the parameter name must be <code>foo:bar</code>. An example DID URL using
+this method and this method-specific parameter would be:
+      </p>
+
+      <p>
+<code>did:foo:21tDAKCERh95uGgKbJNHYp;foo:bar=high</code>
+      </p>
+
+      <p class="issue" data-number="199">
+Consider using kebab-case style instead of colon separator,
+e.g. <code>foo-bar</code> instead of <code>foo:bar</code>.
+      </p>
+
+      <p>
+A method-specific parameter name defined by one DID method MAY
+be used by other DID methods. For example:
+      </p>
+
+      <p>
+<code>did:example:21tDAKCERh95uGgKbJNHYp;foo:bar=low</code>
+      </p>
+
+      <p>
+Method-specific parameter names MAY be combined with generic parameter
+names in any order.
+      </p>
+
+      <p>
+<code>did:example:21tDAKCERh95uGgKbJNHYp;service=agent;foo:bar=high</code>
+      </p>
+
+      <p>
+Both DID method namespaces and method-specific parameter
+namespaces may include colons, so they may be partitioned hierarchically
+as defined by a DID method specification. Here is an example DID URL that
+illustrates both:
+      </p>
+
+      <p>
+<code>did:foo:baz:21tDAKCERh95uGgKbJNHYp;foo:baz:hex=b612</code>
+      </p>
+    </section>
+
+      <p class="issue" data-number="200">
+Review what exactly we want to say about method-specific parameters
+defined by one method but used in a DID URL with a different method.
+Also discuss hierarchical method namespaces in DID parameter names.
+      </p>
+
+    <section>
+      <h2>
+Path
+      </h2>
+
+      <p>
+A generic <a>DID path</a> is identical to a URI path and MUST
+conform to the the <code>path-abempty</code> ABNF rule in [[RFC3986]]. A
 DID path SHOULD be used to address resources available via a DID
 service endpoint. See Section <a href="#service-endpoints"></a>.
       </p>
@@ -716,17 +867,34 @@ more restrictive than the generic rules in this section.
 
     <section>
       <h2>
-Fragments
+Query
       </h2>
 
       <p>
-A generic <a>DID fragment</a> (the did-fragment rule in Section
-<a href="#the-generic-did-scheme"></a>) is identical to a URI
-fragment and MUST conform to the ABNF of the fragment ABNF rule in
+A generic <a>DID query</a> is identical to a URI query and MUST
+conform to the the <code>query</code> ABNF rule in [[RFC3986]]. A
+DID query SHOULD be used to address resources available via a DID
+service endpoint. See Section <a href="#service-endpoints"></a>.
+      </p>
+
+      <p>
+A specific DID scheme MAY specify ABNF rules for DID queries that are
+more restrictive than the generic rules in this section.
+      </p>
+    </section>
+
+    <section>
+      <h2>
+Fragment
+      </h2>
+
+      <p>
+A generic <a>DID fragment</a> is identical to a URI
+fragment and MUST conform to the the <code>fragment</code> ABNF rule in
 [[RFC3986]]. A DID fragment MUST be used only as a method-independent
 reference into the DID Document to identify a component of a DID Document
 (e.g. a unique key description). To resolve this reference, the complete
-DID reference including the DID fragment MUST be used as the value of
+DID URL including the DID fragment MUST be used as the value of
 the key for the target component in the DID Document object.
       </p>
 
@@ -767,7 +935,7 @@ The method name MUST be lowercase.
 
         <li>
 Case sensitivity and normalization of the value of the
-specific-idstring rule in Section <a href="#the-generic-did-scheme">
+<code>method-specific-id</code> rule in Section <a href="#generic-did-syntax">
           </a> MUST be defined by the governing DID method specification.
         </li>
       </ol>
@@ -1374,31 +1542,31 @@ Example:
       <pre class="example nohighlight" title="Various service endpoints">
 {
   "service": [{
-    "id": "did:example:123456789abcdefghi;openid",
+    "id": "did:example:123456789abcdefghi#openid",
     "type": "OpenIdConnectVersion1.0Service",
     "serviceEndpoint": "https://openid.example.com/"
   }, {
-    "id": "did:example:123456789abcdefghi;vcr",
+    "id": "did:example:123456789abcdefghi#vcr",
     "type": "CredentialRepositoryService",
     "serviceEndpoint": "https://repository.example.com/service/8377464"
   }, {
-    "id": "did:example:123456789abcdefghi;xdi",
+    "id": "did:example:123456789abcdefghi#xdi",
     "type": "XdiService",
     "serviceEndpoint": "https://xdi.example.com/8377464"
   }, {
-    "id": "did:example:123456789abcdefghi;agent",
+    "id": "did:example:123456789abcdefghi#agent",
     "type": "AgentService",
     "serviceEndpoint": "https://agent.example.com/8377464"
   }, {
-    "id": "did:example:123456789abcdefghi;hub",
+    "id": "did:example:123456789abcdefghi#hub",
     "type": "HubService",
     "serviceEndpoint": "https://hub.example.com/.identity/did:example:0123456789abcdef/"
   }, {
-    "id": "did:example:123456789abcdefghi;messages",
+    "id": "did:example:123456789abcdefghi#messages",
     "type": "MessagingService",
     "serviceEndpoint": "https://example.com/messages/8377464"
   }, {
-    "id": "did:example:123456789abcdefghi;inbox",
+    "id": "did:example:123456789abcdefghi#inbox",
     "type": "SocialWebInboxService",
     "serviceEndpoint": "https://social.example.com/83hfh37dj",
     "description": "My public social inbox",
@@ -1407,7 +1575,7 @@ Example:
       "currency": "USD"
     }
   }, {
-    "id": "did:example:123456789abcdefghi;authpush",
+    "id": "did:example:123456789abcdefghi#authpush",
     "type": "DidAuthPushModeVersion1",
     "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefg"
   }]
@@ -1671,7 +1839,7 @@ context above and adding the new property to the <a>DID Document</a>.
   "authentication": [ ... ],
   "service": [<span class="highlight">{
     "@context": "did:example:contexts:987654321",
-    "id": "did:example:123456789abcdefghi;photos",
+    "id": "did:example:123456789abcdefghi#photos",
     "type": "PhotoStreamService",
     "serviceEndpoint": "https://example.org/photos/379283"
   }</span>]
@@ -1851,8 +2019,8 @@ DID Method Schemes
 
       <p>
 A DID method specification MUST define exactly one specific DID
-scheme identified by exactly one method name (the method rule in
-Section <a href="#the-generic-did-scheme"></a>).
+scheme identified by exactly one method name (the <code>method-name</code> rule in
+Section <a href="#generic-did-syntax"></a>).
       </p>
 
       <p>
@@ -1875,18 +2043,18 @@ Registry</a> to which the DID method specification applies.
 
       <p>
 The DID method specification for the specific DID scheme MUST specify
-how to generate the specific-idstring component of a DID. The
-specific-idstring value MUST be able to be generated without the use
-of a centralized registry service. The specific-idstring value SHOULD
+how to generate the <code>method-specific-id</code> component of a DID. The
+<code>method-specific-id</code> value MUST be able to be generated without the use
+of a centralized registry service. The <code>method-specific-id</code> value SHOULD
 be globally unique by itself. The fully qualified DID as defined by
-the DID rule in Section <a href="#the-generic-did-scheme"></a> MUST
+the DID rule in Section <a href="#generic-did-syntax"></a> MUST
 be globally unique.
       </p>
 
       <p>
 If needed, a specific DID scheme MAY define multiple specific
-specific-idstring formats. It is RECOMMENDED that a specific DID
-scheme define as few specific-idstring formats as possible.
+<code>method-specific-id</code> formats. It is RECOMMENDED that a specific DID
+scheme define as few <code>method-specific-id</code> formats as possible.
       </p>
     </section>
 
@@ -2706,22 +2874,28 @@ A future-facing real-world context is provided below:
   ],
 
   "service": [{
+    "id": "did:example:123456789abcdefghi#oidc",
     "type": "OpenIdConnectVersion1.0Service",
     "serviceEndpoint": "https://openid.example.com/"
   }, {
+    "id": "did:example:123456789abcdefghi#vcStore",
     "type": "CredentialRepositoryService",
     "serviceEndpoint": "https://repository.example.com/service/8377464"
   }, {
+    "id": "did:example:123456789abcdefghi#xdi",
     "type": "XdiService",
     "serviceEndpoint": "https://xdi.example.com/8377464"
   }, {
+    "id": "did:example:123456789abcdefghi#hub",
     "type": "HubService",
     "serviceEndpoint": "https://hub.example.com/.identity/did:example:0123456789abcdef/"
   }, {
+    "id": "did:example:123456789abcdefghi#messaging",
     "type": "MessagingService",
     "serviceEndpoint": "https://example.com/messages/8377464"
   }, {
     "type": "SocialWebInboxService",
+    "id": "did:example:123456789abcdefghi#inbox",
     "serviceEndpoint": "https://social.example.com/83hfh37dj",
     "description": "My public social inbox",
     "spamCost": {
@@ -2730,9 +2904,10 @@ A future-facing real-world context is provided below:
     }
   }, {
     "type": "DidAuthPushModeVersion1",
+    "id": "did:example:123456789abcdefghi#push",
     "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefghi"
   }, {
-    "id": "did:example:123456789abcdefghi;bops",
+    "id": "did:example:123456789abcdefghi#bops",
     "type": "BopsService",
     "serviceEndpoint": "https://bops.example.com/enterprise/"
   }]
