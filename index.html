@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>
-    Decentralized Identifiers (DIDs) v0.12
+    Decentralized Identifiers (DIDs) v0.13
   </title>
   <meta content='text/html; charset=utf-8' http-equiv='Content-Type'><!--
     === NOTA BENE ===
@@ -699,7 +699,7 @@ method-name        = 1*method-char
 method-char        = %x61-7A / DIGIT
 method-specific-id = *idchar *( ":" *idchar )
 idchar             = ALPHA / DIGIT / "." / "-" / "_"
-did-url            = did *( ";" param ) path-abempty [ "?" query ] 
+did-url            = did *( ";" param ) path-abempty [ "?" query ]
                      [ "#" fragment ]
 param              = param-name [ "=" param-value ]
 param-name         = 1*param-char
