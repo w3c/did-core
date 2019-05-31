@@ -186,11 +186,6 @@ Heather Vescent.
 Introduction
     </h1>
 
-    <section>
-      <h2>
-Overview
-      </h2>
-
       <p>
 Conventional <a href="https://en.wikipedia.org/wiki/Identity_management">identity
 management</a> systems are based on centralized authorities such as
@@ -258,80 +253,6 @@ DIDs. This creates an interoperability bridge between the worlds of
 centralized, federated, and decentralized identifiers.
       </p>
 
-      <section>
-        <h3>
-Motivations for DIDs
-        </h3>
-
-        <p>
-The growing need for decentralized identifiers has produced two
-specific requirements for a new type of URL that still fits Web
-Architecture and has a few additional requirements that more
-traditional URLs, like HTTP-based URLs, do not have:
-        </p>
-
-        <ol start="1">
-          <li>
-The new type of URL SHOULD NOT require a centralized authority
-to register, resolve or deactivate, nor to update associated data. The
-overwhelming majority of URIs today are based on DNS names or IP
-addresses that depend on centralized authorities for registration
-and ultimate control. DIDs can be created and managed without any
-such authority.
-          </li>
-
-          <li>
-A URL whose control and associated metadata, including public
-keys, can be cryptographically verified. Authentication via DIDs
-and DID Documents leverage the same public/private key cryptography
-as distributed ledgers.
-          </li>
-        </ol>
-      </section>
-
-      <section>
-        <h3>
-The Role of Human-Friendly Identifiers
-        </h3>
-
-        <p>
-DIDs achieve global uniqueness without the need for a central
-registration authority. This comes, however, at the cost of human
-memorability. The algorithms capable of generating globally unique
-identifiers automatically produce random strings of characters that
-have no human meaning. This demonstrates the axiom about
-identifiers known as <a href="https://en.wikipedia.org/wiki/Zooko%27s_triangle">Zooko's
-Triangle</a>: "human-meaningful, decentralized, secure—pick any
-two".
-        </p>
-
-        <p>
-There are of course many use cases where it is desirable to
-discover a DID when starting from a human-friendly identifier—a
-natural language name, a domain name, or a conventional address for
-a DID controller such as a mobile telephone number, email address,
-Twitter handle, or blog URL. However, the problem of mapping
-human-friendly identifiers to DIDs (and doing so in a way that can
-be verified and trusted) is out-of-scope for this specification.
-        </p>
-
-        <p>
-Solutions to this problem (and there are many) should be defined in
-separate specifications that reference this specification. It is
-strongly recommended that such specifications carefully consider:
-          (a) the numerous security attacks based on deceiving users about
-the true human-friendly identifier for a target entity, and (b) the
-privacy consequences of using human-friendly identifiers that are
-inherently correlatable, especially if they are globally unique.
-        </p>
-      </section>
-    </section>
-
-    <section>
-      <h2>
-Purpose of This Specification
-      </h2>
-
       <p>
 The first purpose of this specification is to define the generic
 DID scheme and a generic set of operations on DID documents that can be
@@ -343,7 +264,7 @@ scheme and specific set of DID document operations for a specific
 <a>Decentralized Identifier Registry</a>.
       </p>
 
-      <p>
+      <p class="note">
 Conceptually, the relationship of this specification and a DID
 method specification is similar to the relationship of the IETF
 generic URI specification ([[RFC3986]]) and a specific URI scheme
@@ -361,16 +282,59 @@ network for which it is written.
 For a list of DID Methods and their corresponding specifications,
 see the DID Method Registry [[DID-METHOD-REGISTRY]].
       </p>
+
+  <section class="informative">
+    <h2>
+A Simple Example
+    </h2>
+
+    <p>
+A DID is a simple text string that consists of three parts: 1) the URL scheme
+identifier (<code>did</code>), 2) the identifier for the
+DID Method, and 3) the DID Method-specific identifier.
+    </p>
+
+    <pre class="example nohighlight" title="A simple example of a Decentralized Identifier (DID)">
+did:example:123456789abcdefghi
+    </pre>
+
+    <p>
+The DID above resolves to a DID Document. A DID Document contains information
+associated with the DID such as ways to cryptographically authenticate the
+entity in control of the DID, as well as services that can be used to
+interact with the entity.
+    </p>
+
+    <pre class="example nohighlight" title="Minimal self-managed DID Document">
+{
+  "@context": "https://w3id.org/did/v1",
+  "id": "did:example:123456789abcdefghi",
+  "authentication": [{
+    <span class="comment">// used to authenticate as did:...fghi</span>
+    "id": "did:example:123456789abcdefghi#keys-1",
+    "type": "RsaVerificationKey2018",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }],
+  "service": [{
+    <span class="comment">// used to retrieve Verifiable Credentials associated with the DID</span>
+    "type": "VerifiableCredentialService",
+    "serviceEndpoint": "https://example.com/vc/"
+  }]
+}
+      </pre>
     </section>
 
-    <section>
+    <section class="informative">
       <h2>
 Design Goals
       </h2>
 
       <p>
-This section summarizes the design goals and principles of DID
-architecture.
+Decentralized Identifiers are a component of larger systems, such as
+the Verifiable Credentials ecosystem [[?VC-DATA-MODEL]], which have driven
+the design goals for this specification. This section summarizes the
+primary design goals for this specification.
       </p>
 
       <table class="simple">
@@ -391,7 +355,7 @@ Description
 Decentralization
             </td>
             <td>
-DID architecture should eliminate the requirement for
+Eliminate the requirement for
 centralized authorities or single points of failure in
 identifier management, including the registration of globally
 unique identifiers, public verification keys, service
@@ -401,11 +365,11 @@ endpoints, and other metadata.
 
           <tr>
             <td>
-Self&#8209;Sovereignty
+Control
             </td>
             <td>
-DID architecture should give entities, both human and
-non-human, the power to directly own and control their digital
+Give entities, both human and
+non-human, the power to directly control their digital
 identifiers without the need to rely on external authorities.
             </td>
           </tr>
@@ -415,7 +379,7 @@ identifiers without the need to rely on external authorities.
 Privacy
             </td>
             <td>
-DID architecture should enable entities to control the privacy
+Enable entities to control the privacy
 of their information, including minimal, selective, and
 progressive disclosure of attributes or other data.
             </td>
@@ -426,7 +390,7 @@ progressive disclosure of attributes or other data.
 Security
             </td>
             <td>
-DID architecture should enable sufficient security for relying
+Enable sufficient security for relying
 parties to depend on DID Documents for their required level of
 assurance.
             </td>
@@ -437,9 +401,8 @@ assurance.
 Proof-based
             </td>
             <td>
-DID architecture should enable the DID subject to provide
-cryptographic proof of authentication and proof of
-authorization rights.
+Enable the DID subject to provide
+cryptographic proof when interacting with other entities.
             </td>
           </tr>
 
@@ -448,7 +411,7 @@ authorization rights.
 Discoverability
             </td>
             <td>
-DID architecture should make it possible for entities to
+Make it possible for entities to
 discover DIDs for other entities to learn more about or
 interact with those entities.
             </td>
@@ -459,7 +422,7 @@ interact with those entities.
 Interoperability
             </td>
             <td>
-DID architecture should use interoperable standards so DID
+Use interoperable standards so DID
 infrastructure can make use of existing tools and software
 libraries designed for interoperability.
             </td>
@@ -470,7 +433,7 @@ libraries designed for interoperability.
 Portability
             </td>
             <td>
-DID architecture should be system and network-independent and
+Be system and network-independent and
 enable entities to use their digital identifiers with any
 system that supports DIDs and DID Methods.
             </td>
@@ -481,9 +444,8 @@ system that supports DIDs and DID Methods.
 Simplicity
             </td>
             <td>
-To meet these design goals, DID architecture should be (to
-paraphrase Albert Einstein) "as simple as possible but no
-simpler".
+Favor a reduced set of simple features in order to make the technology
+easier to understand, implement, and deploy.
             </td>
           </tr>
 
@@ -492,7 +454,7 @@ simpler".
 Extensibility
             </td>
             <td>
-When possible, DID architecture should enable extensibility
+When possible, enable extensibility
 provided it does not greatly hinder interoperability,
 portability, or simplicity.
             </td>
@@ -502,100 +464,6 @@ portability, or simplicity.
     </section>
   </section>
 
-  <section class="informative">
-    <h1>
-Simple Examples
-    </h1>
-
-    <p>
-This is a simple example of a DID:
-    </p>
-
-    <pre class="example nohighlight" title="A simple example of a Decentralized Identifier (DID)">
-did:example:123456789abcdefghi
-    </pre>
-    <section>
-      <h2>
-Self-Managed DID Document
-      </h2>
-
-      <p>
-Following is an example of a DID Document for the DID
-above. This example assumes that the subject of the DID Document is
-the controller of the private keys for this identifier.
-      </p>
-
-      <pre class="example nohighlight" title="Minimal self-managed DID Document">
-{
-  "@context": "https://w3id.org/did/v1",
-  "id": "did:example:123456789abcdefghi",
-  "authentication": [{
-    // this key can be used to authenticate as did:...fghi
-    "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaVerificationKey2018",
-    "controller": "did:example:123456789abcdefghi",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }],
-  "service": [{
-    "id": "did:example:123456789abcdefghi#service123",
-    "type": "ExampleService",
-    "serviceEndpoint": "https://example.com/endpoint/8377464"
-  }]
-}
-      </pre>
-    </section>
-      <!-- section>
-<h2>Example Delegate-Managed DID Document</h2>
-
-<p>
-
-The following example expresses a DID Document that describes the DID above
-where control of the document is delegated to another entity. In
-this case the DID Document describes a <a>dependent</a>—an entity who is not currently
-in a position to control the authentication information for this identifier.
-This DID Document
-was created by a <a>delegate</a>—a separate entity with its own DID
-that serves as a trustee for the dependent. Note that while this DID Document
-asserts a set of service endpoints, it does not yet contain a set of key
-descriptions because the dependent does not yet have its own set of
-private keys.
-
-</p>
-
-<pre class="example nohighlight" title="Basic delegate-managed DID Document">
-{
-"@context": "https://w3id.org/did/v1",
-"id": "did:example:123456789abcdefghi",
-"authorizationCapability": [{
-  // this entity is a delegate and may update any field in this
-  // DID Document using any authentication mechanism understood
-  // by the ledger
-  "permission": "UpdateDidDocument",
-  "entity": "did:example:zxyvwtrkpn987654321"
-}],
-"authentication": [{
-  // this biometric can be used to authenticate as did:...fghi
-  "type": "PseudonymousBiometricTemplate2017",
-  "biometricService": "https://example.com/authenticate",
-  "biometricTemplateShard": "Mjk4MzQyO...5Mzg0MDI5Mwo="
-}],
-"service": [{
-  "type": "ExampleService",
-  "serviceEndpoint": "https://example.com/endpoint/8377464"
-}]
-}
-</pre>
-<p class="issue" title="Make delegation use cases more clear">
-It will probably not be immediately obvious to most developers why delegation
-is important. We should elaborate that there are use cases around DIDs that
-are focused on people that do not have the technological means (yet) to control
-a DID such as the unbanked, refugee use cases, child protection services, and
-other people that are in delicate situations without ready access to
-technology.
-
-</p>
-
-</section-->
   </section>
 
   <section class="informative">
@@ -2520,6 +2388,44 @@ recovery. Further specification of this type of control is a matter
 for future work (see section <a href="#time-locks-and-did-document-recovery"></a>).
       </p>
     </section>
+
+    <section>
+      <h2>
+The Role of Human-Friendly Identifiers
+      </h2>
+
+      <p>
+DIDs achieve global uniqueness without the need for a central
+registration authority. This comes, however, at the cost of human
+memorability. The algorithms capable of generating globally unique
+identifiers automatically produce random strings of characters that
+have no human meaning. This demonstrates the axiom about
+identifiers known as <a href="https://en.wikipedia.org/wiki/Zooko%27s_triangle">Zooko's
+Triangle</a>: "human-meaningful, decentralized, secure—pick any
+two".
+      </p>
+
+      <p>
+There are of course many use cases where it is desirable to
+discover a DID when starting from a human-friendly identifier—a
+natural language name, a domain name, or a conventional address for
+a DID controller such as a mobile telephone number, email address,
+Twitter handle, or blog URL. However, the problem of mapping
+human-friendly identifiers to DIDs (and doing so in a way that can
+be verified and trusted) is out-of-scope for this specification.
+      </p>
+
+      <p>
+Solutions to this problem (and there are many) should be defined in
+separate specifications that reference this specification. It is
+strongly recommended that such specifications carefully consider:
+          (a) the numerous security attacks based on deceiving users about
+the true human-friendly identifier for a target entity, and (b) the
+privacy consequences of using human-friendly identifiers that are
+inherently correlatable, especially if they are globally unique.
+      </p>
+    </section>
+
   </section>
 
   <section class="informative">
