@@ -279,7 +279,7 @@ specified in [[RFC7230]]). It is also similar to the relationship
 of the IETF generic URN specification ([[RFC8141]]) and a specific URN
 namespace definition (such as the UUID URN namespace defined in
 [[RFC4122]]). The difference is that a DID method specification, in
-addition to defining a specific DID scheme, must also specify the
+addition to defining a specific DID scheme, MUST also specify the
 methods for resolving and deactivating DIDs and writing DID documents on the
 network for which it is written.
       </p>
@@ -740,7 +740,7 @@ names in any order.
 
       <p>
 Both DID method namespaces and method-specific parameter
-namespaces may include colons, so they may be partitioned hierarchically
+namespaces MAY include colons, so they may be partitioned hierarchically
 as defined by a DID method specification. Here is an example DID URL that
 illustrates both:
       </p>
@@ -1211,7 +1211,7 @@ Example:
 }
 </pre>
       <p>
-A key may be <em>embedded</em> or <em>referenced</em> in a <a>DID
+A key MAY be <em>embedded</em> or <em>referenced</em> in a <a>DID
 Document</a>. For example, the <code>authentication</code> property
 may refer to keys in both ways:
       </p>
@@ -1328,7 +1328,7 @@ property.
         </li>
 
         <li>
-The value of the <code>authentication</code> property should be
+The value of the <code>authentication</code> property SHOULD be
 an array of verification methods.
         </li>
 
@@ -1437,7 +1437,7 @@ Service Endpoints
 In addition to publication of authentication and authorization
 mechanisms, the other primary purpose of a DID Document is to enable
 discovery of <a>service endpoints</a> for the subject. A service
-endpoint may represent any type of service the subject wishes to
+endpoint MAY represent any type of service the subject wishes to
 advertise, including decentralized identity management services for
 further discovery, authentication, authorization, or interaction. The
 rules for service endpoints are:
@@ -1449,7 +1449,7 @@ A DID Document MAY include a <code>service</code> property.
         </li>
 
         <li>
-The value of the <code>service</code> property should be an array
+The value of the <code>service</code> property SHOULD be an array
 of service endpoints.
         </li>
 
@@ -1806,7 +1806,7 @@ specification.
 Implementations MUST produce an error when an extension JSON-LD
 Context overrides the expanded URL for a term specified in this
 specification. To avoid the possibility of accidentally overriding
-terms, developers are urged to scope their extensions. For example,
+terms, developers SHOULD scope their extensions. For example,
 the following extension scopes the new
         <code>PhotoStreamService</code> term so that it may only be used
 within the <code>service</code> property:
@@ -2078,8 +2078,8 @@ operations necessary to establish proof of deactivation.
 Unique DID Method Names
       </h2>
       <p>
-The authors of a new DID method specification are
-expected to use a method name that is unique among all DID method
+The authors of a new DID method specification
+SHOULD use a method name that is unique among all DID method
 names known to them at the time of publication.
       </p>
       <p>
@@ -2436,17 +2436,17 @@ notification, the following approaches are RECOMMENDED:
         <li>
 Subscriptions. If the <a>Decentralized Identifier Registry</a> on which the DID is
 registered directly supports change notifications, this service can
-be offered to DID controllers. Notifications may be sent directly to the
+be offered to DID controllers. Notifications MAY be sent directly to the
 relevant service endpoints listed in an existing DID.
         </li>
 
         <li>
-Self-monitoring. A DID subject may employ their own local or online
+Self-monitoring. A DID subject MAY employ their own local or online
 agent to periodically monitor for changes to a DID Document.
         </li>
 
         <li>
-Third-party monitoring. A DID subject may rely on a third party
+Third-party monitoring. A DID subject MAY rely on a third party
 monitoring service, however this introduces another vector of attack.
         </li>
       </ol>
@@ -2637,7 +2637,7 @@ It might seem natural to also use pairwise-unique service endpoints
 in the DID Document for a pseudonymous DID. However, unique endpoints
 allow all traffic between to DIDs to be isolated perfectly into
 unique buckets, where timing correlation and similar analysis is easy.
-Therefore, a better strategy for endpoint privacy may be to share an
+Therefore, a better strategy for endpoint privacy maybe to share an
 endpoint among thousands or millions of DIDs controlled by many different
 subjects.
       </p>
@@ -2760,7 +2760,7 @@ Smart Signatures
       <p>
 Not all DLTs can support the Authorization logic in section 6.5.
 Therefore, in this version of the specification, all Authorization
-logic must be delegated to DID method specifications. A potential
+logic MUST be delegated to DID method specifications. A potential
 future solution is a <a href="http://www.weboftrust.info/downloads/smart-signatures.pdf">Smart
 Signature</a> specification that specifies the code any conformant
 DLT may implement to process signature control logic.
