@@ -1117,7 +1117,9 @@ A DID Document MAY include a <code>publicKey</code> property.
 
         <li>
 The value of the <code>publicKey</code> property MUST be an array of
-public keys.
+public keys, and every public key property MUST be in the
+<a href="https://w3c-ccg.github.io/ld-cryptosuite-registry">Linked Data
+Cryptographic Suite Registry</a>.
         </li>
 
         <li>
@@ -1133,19 +1135,18 @@ identifies the controller of the corresponding private key.
         </li>
 
         <li>
-The value property of a public key MUST be exactly one of
-<code>publicKeyPem</code>, <code>publicKeyJwk</code>,
-<code>publicKeyHex</code>, <code>publicKeyBase64</code>,
-<code>publicKeyBase58</code>, <code>publicKeyMultibase</code>, depending
-on the format and encoding of the public key.
-        </li>
-
-        <li>
 A registry of key types and formats is available in Appendix
 <a href="#registries"></a>.
         </li>
       </ol>
-
+      <p class="note">
+        The following is a non-exhaustive list of public key
+        properties used by the community:
+        <code>publicKeyPem</code>, <code>publicKeyJwk</code>,
+        <code>publicKeyHex</code>, <code>publicKeyBase64</code>,
+        <code>publicKeyBase58</code>, <code>publicKeyMultibase</code>,
+        <code>ethereumAddress</code>.
+      </p>
       <p>
 Example:
       </p>
