@@ -89,7 +89,7 @@ compatible graph-based data formats.
 
   <dd>
 The portion of a <a>DID URL</a> that follows the first hash
-sign character ("#"). A DID fragment uses the same syntax as a URI
+sign character (<code>#</code>). A DID fragment uses the same syntax as a URI
 fragment. See Section <a href="#fragment"></a>.
   </dd>
 
@@ -109,8 +109,8 @@ are written and updated.
   <dt><dfn data-lt="">DID Path</dfn></dt>
 
   <dd>
-The portion of a <a>DID URL</a> that follows the first forward
-slash character ("/"). A DID path uses the identical syntax as a URI path.
+The portion of a <a>DID URL</a> that begins with and includes the first forward
+slash character (<code>/</code>). A DID path uses the identical syntax as a URI path.
 See Section <a href="#path"></a>.
   </dd>
 
@@ -120,7 +120,7 @@ See Section <a href="#path"></a>.
 
   <dd>
 The portion of a <a>DID URL</a> that follows the first question
-mark character ("?"). A DID path uses the identical syntax as a URI path.
+mark character (<code>?</code>). A DID path uses the identical syntax as a URI path.
 See Section <a href="#query"></a>.
   </dd>
 
@@ -129,7 +129,8 @@ See Section <a href="#query"></a>.
   <dt><dfn data-lt="">DID URL</dfn></dt>
 
   <dd>
-A DID plus an optional <a>DID path</a>, optional <a>DID query</a>, and optional <a>DID fragment</a>.
+A DID plus an optional <a>DID path</a>, optional <code>?</code> character followed by a
+<a>DID query</a>, and optional <code>#</code> character followed by a <a>DID fragment</a>.
   </dd>
 
 
