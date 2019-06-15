@@ -746,6 +746,9 @@ service endpoint. See Section <a href="#service-endpoints"></a>.
 A specific DID scheme MAY specify ABNF rules for DID paths that are
 more restrictive than the generic rules in this section.
       </p>
+      <pre class="example nohighlight">
+did:example:123456/path
+      </pre>
     </section>
 
     <section>
@@ -764,6 +767,9 @@ service endpoint. See Section <a href="#service-endpoints"></a>.
 A specific DID scheme MAY specify ABNF rules for DID queries that are
 more restrictive than the generic rules in this section.
       </p>
+      <pre class="example nohighlight">
+did:example:123456?query=true
+      </pre>
     </section>
 
     <section>
@@ -795,6 +801,9 @@ given by the target URL without needing to rely on graph-based processing.
       <p>
 Implementations SHOULD NOT prevent the use of JSON pointers ([[RFC6901]]).
       </p>
+      <pre class="example nohighlight">
+did:example:123456#oidc"
+      </pre>
     </section>
 
     <section>
