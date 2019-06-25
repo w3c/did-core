@@ -1496,8 +1496,13 @@ Example:
     "serviceEndpoint": "https://agent.example.com/8377464"
   }, {
     "id": "did:example:123456789abcdefghi#hub",
-    "type": "HubService",
-    "serviceEndpoint": "https://hub.example.com/.identity/did:example:0123456789abcdef/"
+    "type": "IdentityHub",
+    "publicKey": "did:example:123456789abcdefghi#key-1",
+    "serviceEndpoint": {
+      "@context": "https://schema.identity.foundation/hub",
+      "type": "UserHubEndpoint",
+      "instances": ["did:example:456", "did:example:789"]
+    }
   }, {
     "id": "did:example:123456789abcdefghi#messages",
     "type": "MessagingService",
