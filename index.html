@@ -737,7 +737,7 @@ Path
 
       <p>
 A generic <a>DID path</a> is identical to a URI path and MUST
-conform to the the <code>path-abempty</code> ABNF rule in [[RFC3986]]. A
+conform to the <code>path-abempty</code> ABNF rule in [[RFC3986]]. A
 DID path SHOULD be used to address resources available via a DID
 service endpoint. See Section <a href="#service-endpoints"></a>.
       </p>
@@ -758,7 +758,7 @@ Query
 
       <p>
 A generic <a>DID query</a> is identical to a URI query and MUST
-conform to the the <code>query</code> ABNF rule in [[RFC3986]]. A
+conform to the <code>query</code> ABNF rule in [[RFC3986]]. A
 DID query SHOULD be used to address resources available via a DID
 service endpoint. See Section <a href="#service-endpoints"></a>.
       </p>
@@ -779,7 +779,7 @@ Fragment
 
       <p>
 A generic <a>DID fragment</a> is identical to a URI
-fragment and MUST conform to the the <code>fragment</code> ABNF rule in
+fragment and MUST conform to the <code>fragment</code> ABNF rule in
 [[RFC3986]]. A DID fragment MUST be used only as a method-independent
 reference into the DID Document to identify a component of a DID Document
 (e.g. a unique key description). To resolve this reference, the complete
@@ -910,7 +910,7 @@ containing machine-readable information about the context.
         </dl>
 
       <p>
-  DID Documents MUST include the <code>@context</code> property.  The
+  DID Documents MUST include the <code>@context</code> property. The
   <a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
   is described in detail in the [[!JSON-LD]] specification. The rules for this
   statement are:
@@ -1262,7 +1262,7 @@ While the <code>controller</code> field may seem redundant in some of the
 examples above, keys may be expressed in a DID Document where the
 controller is described in another DID Document. Linked Data Proof
 libraries typically expect the <code>controller</code> field to always
-exist and may throw an exception if it is missing. Futhermore, per
+exist and may throw an exception if it is missing. Furthermore, per
 the requirement that DID Documents be interpretable as either a graph
 or a tree, a default <code>controller</code> field cannot be inferred by
 using a key's position in a tree.
@@ -1893,7 +1893,7 @@ require them.
 The <code>@protected</code> properties feature of JSON-LD 1.1 is used to ensure
 that terms defined by this specification cannot be overridden. This means
 that as long as the same <code>@context</code> declaration is made at the top
-of a <a>DID document</a>, that interoperability is guaranteed between implementions
+of a <a>DID document</a>, that interoperability is guaranteed between implementations
 which use a JSON-LD processor and implementations which do not.
         </li>
       </ul>
