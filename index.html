@@ -657,7 +657,7 @@ Resolution specification.
 
       <p class="note">
 Note that there may be additional parameters or options that are not part
-of the DID URL but instead passed to a DID resolver “out of band”, i.e.,
+of the DID URL but instead passed to a DID resolver "out of band", i.e.,
 using a resolution protocol or some other mechanism. Such options could
 for example control caching or the desired format of a resolution result.
 This is similar to HTTP, where caching or result format are expressed as
@@ -1100,7 +1100,7 @@ Public keys are used for digital signatures, encryption and other
 cryptographic operations, which in turn are the basis for purposes
 such as authentication (see Section <a href="#authentication"></a>)
 or establishing secure communication with <a>service endpoints</a>
-        (see Section <a href="#service-endpoints"></a>). In addition, public
+(see Section <a href="#service-endpoints"></a>). In addition, public
 keys may play a role in authorization mechanisms of DID CRUD
 operations (see Section <a href="#did-operations"></a>). This may be
 defined by DID Method specifications.
@@ -1553,7 +1553,7 @@ The key for this property MUST be updated.
 
         <li>
 The value of this key MUST follow the formatting rules (3, 4, 5)
-from section <a href="#created-optional"></a>.
+from Section <a href="#created-optional"></a>.
         </li>
       </ol>
 
@@ -1580,7 +1580,7 @@ integrity of the DID Document according to either:
 
       <ol start="1">
         <li>
-The subject as defined in section <a href="#service-endpoints"></a>, or if not present:
+The subject as defined in Section <a href="#service-endpoints"></a>, or if not present:
         </li>
 
         <li>
@@ -2116,7 +2116,7 @@ designed to operate under the general Internet threat model used by
 many IETF standards. We assume uncompromised endpoints, but allow
 messages to be read or corrupted on the network. Protecting against an
 attack when a system is compromised requires external key-signing
-hardware. See also section <a href="#key-revocation-and-recovery"></a>
+hardware. See also Section <a href="#key-revocation-and-recovery"></a>
 regarding key revocation and recovery. For their part, the DLTs hosting
 DIDs and DID Documents have special security properties for preventing
 active attacks. Their design uses public/private key cryptography to
@@ -2176,8 +2176,8 @@ mitigation has been deployed.
 
         <li>
 This section MUST provide integrity protection and update
-authentication for all operations required by Section 7 of this
-specification (DID Operations).
+authentication for all operations required by
+Section <a href="#did-operations"></a>.
         </li>
 
         <li>
@@ -2189,7 +2189,7 @@ resources SHOULD be discussed in relation to denial of service.
         <li>
 Method-specific endpoint authentication MUST be discussed. Where
 DID methods make use of DLTs with varying network topology, sometimes
-offered as "light node" or “ <a href="https://en.bitcoin.it/wiki/Thin_Client_Security">thin client</a> ”
+offered as "light node" or "<a href="https://en.bitcoin.it/wiki/Thin_Client_Security">thin client</a>"
 implementations to reduce required computing resources, the security
 assumptions of the topology available to implementations of the DID
 method MUST be discussed.
@@ -2446,7 +2446,7 @@ that use the same method. Access control and key recovery in a DID
 method specification MAY also include a time lock feature to protect
 against key compromise by maintaining a second track of control for
 recovery. Further specification of this type of control is a matter
-for future work (see section <a href="#time-locks-and-did-document-recovery"></a>).
+for future work (see Section <a href="#time-locks-and-did-document-recovery"></a>).
       </p>
     </section>
 
