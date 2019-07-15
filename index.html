@@ -283,7 +283,32 @@ addition to defining a specific DID scheme, must also specify the
 methods for resolving and deactivating DIDs and writing DID documents on the
 network for which it is written.
       </p>
-
+      <p>
+The hierarchical design of a generic DID specification with specific DID method
+specifications introduces some of the same concepts as the URI specification:
+      </p>
+        <ul>
+          <li>
+DIDs from different DID methods may not be interoperable, just as URIs from
+different URI schemes may not be interoperable.
+          </li>
+          <li>
+Entities may need multiple DIDs to support different relationships, as the other
+party may only support certain DID methods, just as some browsers may only
+support certain URI schemes.
+          </li>
+          <li>
+Entities may need multiple DIDs to support the different cryptographic schemes
+of different DID methods, as not all parties will support the same cryptographic
+schemes, just as not all browsers support the same URI schemes.
+          </li>
+          <li>
+Managing multiple DIDs, and tracking which DID belongs to which relationship,
+under which cryptographic scheme, introduces similar logistical challenges as
+managing multiple web addresses and tracking which address belongs to which
+website, or tracking which email address belongs to which relationship.
+          </li>
+        </ul>
       <p>
 For a list of DID Methods and their corresponding specifications,
 see the DID Method Registry [[DID-METHOD-REGISTRY]].
