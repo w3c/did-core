@@ -2540,6 +2540,48 @@ e-mail addresses using DNS lookups is available at [[DNS-DID]].
 	  </p>
     </section>
 
+    <section>
+        <h2>
+Immutability
+        </h2>
+
+        <p>
+Many cybersecurity abuses hinge on exploiting gaps between reality and
+the assumptions of rational, good-faith actors. Like any ecosystem, the
+DID ecosystem has some potential for this to occur. Because this spec is
+focused on a data model rather than a protocol, it offers no opinion about
+many aspects of how that model is put to use. However, individual DID methods
+may wish to consider constraints that would eliminate behaviors or semantics
+they don't need. The more "locked down" a DID method is, while providing the
+same set of features, the less it can be manipulated by malicious actors.
+        </p>
+        <p>
+As an example, consider the flexibility that the data model offers with respect
+to updating. A single edit to a DID doc can change anything and everything except
+the root <code>id</code> property of the document &mdash; and any individual JSON object
+in the data model can change all of its properties except its <code>id</code>.
+But is it actually desirable for a service endpoint to change its <code>type</code>
+once it's been defined? Or for a key to change its value? Or would it be better
+to require a new <code>id</code> when certain fundamental properties of an
+object change? Malicious takeovers of a web site often aim for an outcome where the
+site keeps its identifier (the host name), but gets subtle, dangerous changes
+underneath. If certain properties of the site were required by spec to be immutable
+(e.g., the <a target="_blank" href="https://en.wikipedia.org/wiki/Autonomous_system_(Internet)">
+ASN</a> associated with its IP address), such attacks might be much harder and
+more expensive to carry out &mdash; and anomaly detection would be easier.
+        </p>
+        <p>
+The notion that immutability may provide some cybersecurity benefits is particularly
+relevant because of caching. For DID methods tied to a global source of truth, a
+direct, just-in-time lookup of the latest version of a DID doc is always possible.
+However, it seems likely that layers of cache might eventually sit between a client
+and that source of truth. If they do, believing the attributes of an object in the
+DID doc to have a given state, when they are actually subtly different, may invite
+exploits. This is particularly true if some lookups are of a full DID doc,
+and others are of partial data, where the larger context is assumed.
+        </p>
+    </section>
+
   </section>
 
   <section class="informative">
