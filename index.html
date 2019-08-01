@@ -1366,22 +1366,40 @@ implemented, including any necessary cryptographic operations.
 
       <p>
 There are at least two suggested methods for implementing
-Authorization, Delegation, and the concept of Guardianship:
+Authorization and Delegation, which may be layered:
       </p>
 
       <ol>
         <li>
 A <a>Decentralized Identifier Registry</a> could implement a coarse
-grained <code>guardian</code> pattern by reusing the same proof purpose
-pattern used by the <code>authentication</code> property, or more preferably
+grained <code>controller</code> pattern by enabling DID documents to
+express the DID of another DID controller that controls it, or
+additionally,
         </li>
 
         <li>
 A <a>Decentralized Identifier Registry</a> could implement a
-Capabilities-based approach and provide more fine-grained control of
-authorization, delegation, and guardianship.
+Capabilities-based approach that enables further fine-grained control
+of authorization and delegation.
         </li>
       </ol>
+
+      <p>
+Example:
+      </p>
+
+      <pre class="example nohighlight" title="DID Document with a controller property">
+{
+  "@context": "https://w3id.org/did/v1",
+  "id": "did:example:123456789abcdefghi",
+  "controller": "did:example:bcehfew7h32f32h7af3",
+  "service": [{
+    <span class="comment">// used to retrieve Verifiable Credentials associated with the DID</span>
+    "type": "VerifiableCredentialService",
+    "serviceEndpoint": "https://example.com/vc/"
+  }]
+}
+        </pre>
     </section>
 
     <section>
