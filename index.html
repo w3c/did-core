@@ -806,7 +806,8 @@ Fragment
       <p>
 A generic <a>DID fragment</a> is identical to a URI
 fragment and MUST conform to the <code>fragment</code> ABNF rule in
-[[RFC3986]]. A DID fragment MUST be used only as a method-independent
+[[RFC3986]]. Implementers are strongly discouraged from using a DID fragment
+for anything other than a method-independent
 reference into the DID Document to identify a component of a DID Document
 (e.g. a unique key description). To resolve this reference, the complete
 DID URL including the DID fragment MUST be used as the value of
@@ -865,7 +866,7 @@ Persistence
       </h2>
 
       <p>
-A DID MUST be persistent and immutable, i.e., bound to the subject once
+A DID is expected to be persistent and immutable, i.e., bound to the subject once
 and never changed (forever).
       </p>
 
@@ -953,7 +954,7 @@ The key for this property MUST be <code>@context</code>.
 
         <li>
 The value of this key MUST be the URL for the generic DID context:
-<code>https://w3id.org/did/v1</code>.
+<code>https://www.w3.org/2019/did/v1</code>.
         </li>
       </ol>
 
@@ -1160,8 +1161,7 @@ Cryptographic Suite Registry</a>.
         <li>
 Each public key MUST include <code>id</code> and <code>type</code>
 properties, and exactly one value property. The array of public keys
-SHOULD NOT contain duplicate entries with the same <code>id</code> and
-different value properties with different formats.
+MUST NOT contain duplicate entries with the same <code>id</code>.
         </li>
 
         <li>
