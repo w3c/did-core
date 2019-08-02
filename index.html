@@ -681,7 +681,27 @@ protection, as specified in [[HASHLINK]].
 Identifies a service from the DID Document by service id.
             </td>
           </tr>
+          <tr>
+            <td>
+<code>version-id</code>
+            </td>
+            <td>
+Identifies a specific version of a DID Document to be resolved (the version ID
+could be sequential, or a UUID, or method-specific). Note: This parameter may
+not be supported by all DID methods.
+            </td>
+          </tr>
 
+          <tr>
+            <td>
+<code>version-time</code>
+            </td>
+            <td>
+Identifies a certain version timestamp of a DID Document to be resolved (i.e.
+the DID Document that was valid for a DID at a certain time). Note: This
+parameter may not be supported by all DID methods.
+            </td>
+          </tr>
         </tbody>
       </table>
 
