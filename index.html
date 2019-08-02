@@ -1995,10 +1995,12 @@ DID method specification MUST specify how each of the following
 <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">
 CRUD</a> operations is performed by a client. Each operation MUST be
 specified to the level of detail necessary to build and test
-interoperable client implementations with the target system. Note that,
-due to the specified contents of DID Documents, these operations can
-effectively be used to perform all the operations required of a CKMS
-      (cryptographic key management system), e.g.:
+interoperable client implementations with the target system.
+The specification document for a DID method that does not support specific 
+operations such as Update and Deactivate MUST clearly specify these 
+limitations. Note that, due to the specified contents of DID Documents, 
+these operations can effectively be used to perform all the operations 
+required of a CKMS (cryptographic key management system), e.g.:
       </p>
 
       <ul>
@@ -2054,8 +2056,9 @@ Update
 
         <p>
 The DID method specification MUST specify how a client can update a
-DID Document on the <a>Decentralized Identifier Registry</a>, including all cryptographic
-operations necessary to establish proof of control.
+DID Document on the <a>Decentralized Identifier Registry</a>, 
+including all cryptographic operations necessary to establish proof 
+of control, <em>or</em>  state that updates are not possible.
         </p>
       </section>
 
@@ -2068,7 +2071,8 @@ Deactivate
 Although a core feature of distributed ledgers is immutability, the
 DID method specification MUST specify how a client can deactivate a DID
 on the <a>Decentralized Identifier Registry</a>, including all cryptographic
-operations necessary to establish proof of deactivation.
+operations necessary to establish proof of deactivation <em>or</em> state that 
+deactivation is not possible.
         </p>
       </section>
     </section>
