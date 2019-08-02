@@ -107,6 +107,16 @@ var ccg = {
       ],
       status: "Personal View"
     },
+    "HASHLINK": {
+      title: "Cryptographic Hyperlinks",
+      date: "December 2018",
+      href: "https://tools.ietf.org/html/draft-sporny-hashlink-02",
+      authors: [
+        "Manu Sporny"
+      ],
+      status: "Internet-Draft",
+      publisher: "IETF"
+    },
     "DNS-DID": {
       title: "The Decentralized Identifier (DID) in the DNS",
       date: "February 2019",
