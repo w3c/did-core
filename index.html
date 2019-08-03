@@ -259,12 +259,12 @@ centralized, federated, and decentralized identifiers.
       <p>
 The first purpose of this specification is to define the generic
 DID scheme and a generic set of operations on DID documents that can be
-implemented for any <a>Decentralized Identifier Registry</a>. The second
+implemented for any <a>DID Registry</a>. The second
 purpose of this specification is to
 define the conformance requirements for a DID method
 specification—a separate specification that defines a specific DID
 scheme and specific set of DID document operations for a specific
-<a>Decentralized Identifier Registry</a>.
+<a>DID Registry</a>.
       </p>
 
       <p class="note">
@@ -915,10 +915,10 @@ and never changed (forever).
       <p>
 Ideally a DID would be a completely
 abstract decentralized identifier (like a UUID) that could be bound
-to multiple underlying <a>Decentralized Identifier Registries</a> over time,
+to multiple underlying <a>DID Registries</a> over time,
 thus maintaining its persistence independent of any particular system.
 However registering the same identifier on multiple
-<a>Decentralized Identifier Registries</a> introduces extremely hard entityship and
+<a>DID Registries</a> introduces extremely hard entityship and
 <a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">start-of-authority</a>
 (SOA) problems. It also greatly increases implementation complexity
 for developers.
@@ -927,7 +927,7 @@ for developers.
       <p>
 To avoid these issues, it is RECOMMENDED that <a>DID method</a>
 specifications only produce DIDs and <a>DID methods</a> bound to strong,
-stable <a>Decentralized Identifier Registries</a> capable of making the highest level of
+stable <a>DID Registries</a> capable of making the highest level of
 commitment to persistence of the DID and DID method over time.
       </p>
 
@@ -935,7 +935,7 @@ commitment to persistence of the DID and DID method over time.
 Although not included in this version, future versions of this
 specification may support a DID Document equivID property to
 establish verifiable equivalence relations between DIDs
-representing the same subject on multiple <a>Decentralized Identifier
+representing the same subject on multiple <a>DID
 Registries</a>. Such equivalence relations can produce the practical
 equivalent of a single persistent abstract DID. See Future Work
         (Section <a href="#future-work"></a>).
@@ -1042,8 +1042,8 @@ The value of this key MUST be a valid DID.
         </li>
 
         <li>
-When this DID Document is registered with the target <a>Decentralized
-Identifier Registry</a>, the registered DID MUST match this DID subject
+When this DID Document is registered with the target <a>DID
+Registry</a>, the registered DID MUST match this DID subject
 value.
         </li>
       </ol>
@@ -1439,14 +1439,14 @@ Authorization and Delegation, which may be layered:
 
       <ol>
         <li>
-A <a>Decentralized Identifier Registry</a> could implement a coarse
+A <a>DID Registry</a> could implement a coarse
 grained <code>controller</code> pattern by enabling DID documents to
 express the DID of another DID controller that controls it, or
 additionally,
         </li>
 
         <li>
-A <a>Decentralized Identifier Registry</a> could implement a
+A <a>DID Registry</a> could implement a
 Capabilities-based approach that enables further fine-grained control
 of authorization and delegation.
         </li>
@@ -2010,7 +2010,7 @@ Section <a href="#generic-did-syntax"></a>).
       <p>
 Since the method name is part of the DID, it SHOULD be as short as
 practical. A method name of five characters or less is RECOMMENDED.
-The method name MAY reflect the name of the <a>Decentralized Identifier
+The method name MAY reflect the name of the <a>DID
 Registry</a> to which the DID method specification applies.
       </p>
 
@@ -2037,7 +2037,7 @@ DID Operations
 
       <p>
 To enable the full functionality of DIDs and DID Documents on a
-particular <a>Decentralized Identifier Registry</a>, a
+particular <a>DID Registry</a>, a
 DID method specification MUST specify how each of the following
 <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">
 CRUD</a> operations is performed by a client. Each operation MUST be
@@ -2079,7 +2079,7 @@ Create
 
         <p>
 The DID method specification MUST specify how a client creates a DID
-and its associated DID Document on the <a>Decentralized Identifier Registry</a>, including all
+and its associated DID Document on the <a>DID Registry</a>, including all
 cryptographic operations necessary to establish proof of control.
         </p>
       </section>
@@ -2091,7 +2091,7 @@ Read/Verify
 
         <p>
 The DID method specification MUST specify how a client uses a DID to
-request a DID Document from the <a>Decentralized Identifier Registry</a>, including how the
+request a DID Document from the <a>DID Registry</a>, including how the
 client can verify the authenticity of the response.
         </p>
       </section>
@@ -2103,7 +2103,7 @@ Update
 
         <p>
 The DID method specification MUST specify how a client can update a
-DID Document on the <a>Decentralized Identifier Registry</a>, 
+DID Document on the <a>DID Registry</a>, 
 including all cryptographic operations necessary to establish proof 
 of control, <em>or</em>  state that updates are not possible.
         </p>
@@ -2117,7 +2117,7 @@ Deactivate
         <p>
 Although a core feature of distributed ledgers is immutability, the
 DID method specification MUST specify how a client can deactivate a DID
-on the <a>Decentralized Identifier Registry</a>, including all cryptographic
+on the <a>DID Registry</a>, including all cryptographic
 operations necessary to establish proof of deactivation <em>or</em> state that 
 deactivation is not possible.
         </p>
@@ -2485,7 +2485,7 @@ notification, the following approaches are RECOMMENDED:
 
       <ol start="1">
         <li>
-Subscriptions. If the <a>Decentralized Identifier Registry</a> on which the DID is
+Subscriptions. If the <a>DID Registry</a> on which the DID is
 registered directly supports change notifications, this service can
 be offered to DID controllers. Notifications MAY be sent directly to the
 relevant service endpoints listed in an existing DID.
@@ -2679,8 +2679,8 @@ Keep Personally-Identifiable Information (PII) Private
       </h2>
 
       <p>
-If a DID method specification is written for a public <a>Decentralized
-Identifier Registry</a> where all DIDs and DID Documents will be publicly available,
+If a DID method specification is written for a public <a>DID
+Registry</a> where all DIDs and DID Documents will be publicly available,
 it is STRONGLY RECOMMENDED that DID Documents contain no PII. All PII
 should be kept behind service endpoints under the control
 of the subject. With this privacy architecture, PII may be exchanged
@@ -2789,10 +2789,9 @@ Equivalence
 Including an equivalence property, such as equivID, in DID Documents
 whose value is an array of DIDs would allow subjects to assert two or
 more DIDs that represent the same subject. This capability has
-numerous uses, including supporting migration between <a>Decentralized
-Identifier Registries</a> and
-providing forward compatibility of existing DIDs to future <a>Decentralized
-Identifier Registries</a>. In
+numerous uses, including supporting migration between <a>DID Registries</a> and
+providing forward compatibility of existing DIDs to future <a>DID
+Registries</a>. In
 theory, equivalent DIDs should have the same identifier rights,
 allowing <a href="https://w3c.github.io/vctf/">verifiable claims</a>
 made against one DID to apply to equivalent DIDs. Equivalence was not
