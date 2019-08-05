@@ -623,7 +623,7 @@ param-char         = ALPHA / DIGIT / "." / "-" / "_" / ":" /
 
       <p class="issue" data-number="198">
 The grammar currently allows an empty <code>method-specific-id</code>,
-e.g. <code>did:example:</code> would be a valid DID that could identify
+e.g., <code>did:example:</code> would be a valid DID that could identify
 the DID method itself.
       </p>
 
@@ -710,7 +710,7 @@ not be supported by all DID methods.
 <code>version-time</code>
             </td>
             <td>
-Identifies a certain version timestamp of a DID Document to be resolved (i.e.
+Identifies a certain version timestamp of a DID Document to be resolved (i.e.,
 the DID Document that was valid for a DID at a certain time). Note: This
 parameter may not be supported by all DID methods.
             </td>
@@ -759,7 +759,7 @@ this method and this method-specific parameter would be:
 
       <p class="issue" data-number="199">
 Consider using kebab-case style instead of colon separator,
-e.g. <code>foo-bar</code> instead of <code>foo:bar</code>.
+e.g., <code>foo-bar</code> instead of <code>foo:bar</code>.
       </p>
 
       <p>
@@ -851,7 +851,7 @@ fragment and MUST conform to the <code>fragment</code> ABNF rule in
 [[RFC3986]]. Implementers are strongly discouraged from using a DID fragment
 for anything other than a method-independent
 reference into the DID Document to identify a component of a DID Document
-(e.g. a unique key description). To resolve this reference, the complete
+(e.g., a unique key description). To resolve this reference, the complete
 DID URL including the DID fragment MUST be used as the value of
 the key for the target component in the DID Document object.
       </p>
@@ -938,7 +938,7 @@ establish verifiable equivalence relations between DIDs
 representing the same subject on multiple <a>DID
 Registries</a>. Such equivalence relations can produce the practical
 equivalent of a single persistent abstract DID. See Future Work
-        (Section <a href="#future-work"></a>).
+(Section <a href="#future-work"></a>).
       </p>
     </section>
   </section>
@@ -979,10 +979,10 @@ containing machine-readable information about the context.
         </dl>
 
       <p>
-  DID Documents MUST include the <code>@context</code> property. The
-  <a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
-  is described in detail in the [[!JSON-LD]] specification. The rules for this
-  statement are:
+DID Documents MUST include the <code>@context</code> property. The
+<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
+is described in detail in the [[!JSON-LD]] specification. The rules for this
+statement are:
       </p>
 
       <ol start="1">
@@ -1065,75 +1065,47 @@ resolved DID Document MUST contain a valid <code>id</code> property.
       </p>
     </section>
     <!-- section>
-<h2>Delegates</h2>
-
-<p class="issue">
+      <h2>Delegates</h2>
+        <p class="issue">
 The way that Delegates are handled is changing. The feature is still supported,
 but via the `authorizationCapability` field rather than the more specialized
 `guardian` field.
-
-</p>
-
-<p>
-
+        </p>
+        <p>
 A delegate is an entity, such as a parent or aid organization, that creates and
 maintains a DID Document for a dependent who is not in a position to hold
 or control authentication credentials (e.g., cryptographic keys).
-
-</p>
-
-<p>
-
+        </p>
+        <p>
 The rules for a delegate are:
-
-</p>
-
-<ol start="1">
-<li>
-
-
+        </p>
+        <ol start="1">
+          <li>
 A DID Document that includes an
 <code>authentication</code> field
 (Section <a href="#authentication"></a>) MAY list one or
 more delegates via the <code>authorizationCapability</code> field.
-
-</li>
-
-<li>
-
-
+          </li>
+          <li>
 A DID Document that does not include an
 <code>authentication</code> MUST have a delegate.
-
-</li>
-
-<li>
-
-
+          </li>
+          <li>
 The <code>authorizationCapability</code> field must contain a capability for the
 delegate that includes <code>UpdateDidDocument</code> as the capability,
 the DID of the delegate as the <code>entity</code>, and MAY include a
 more specific set of <code>authentication</code>s that the
 delegate MAY use to authenticate when updating the DID Document.
-
-</li>
-
-<li>
-
-
+          </li>
+          <li>
 The delegate DID MUST resolve to a DID Document that has a
 <code>authentication</code> property containing at least one value,
 i.e., the delegate relationships must not be nested.
-
-</li>
-</ol>
-
-<p>
-
+          </li>
+        </ol>
+        <p>
 Example:
-
-</p>
-
+        </p>
 <pre class="example nohighlight" title="Basic DID Document">
 {
 "@context": "https://www.w3.org/2019/did/v1",
@@ -1157,7 +1129,7 @@ Example:
 }]
 }
 </pre>
-</section -->
+    </section -->
 
     <section>
       <h2>
@@ -1301,7 +1273,7 @@ Assume <em>value</em> is a URL.
             <li>
 Dereference the URL and retrieve the <code>publicKey</code>
 properties associated with the URL (e.g., process the
-            <code>publicKey</code> property at the top-level of the
+<code>publicKey</code> property at the top-level of the
 dereferenced document).
             </li>
 
@@ -1310,7 +1282,7 @@ Iterate through each public key object.
               <ol>
                 <li>
 If the <code>id</code> property of the object matches
-                <em>value</em>, set <em>result</em> to the object.
+<em>value</em>, set <em>result</em> to the object.
                 </li>
               </ol>
             </li>
@@ -1319,9 +1291,9 @@ If the <code>id</code> property of the object matches
 
         <li>
 If <em>result</em> does not contain at least the <code>id</code>,
-        <code>type</code>, and <code>controller</code> properties as well as any
+<code>type</code>, and <code>controller</code> properties as well as any
 mandatory public cryptographic material, as determined by the
-        <em>result</em>'s <code>type</code> property, throw an error.
+<em>result</em>'s <code>type</code> property, throw an error.
         </li>
       </ol>
 
@@ -1497,7 +1469,7 @@ of service endpoints.
 
         <li>
 Each service endpoint MUST include <code>id</code>,
-        <code>type</code>, and <code>serviceEndpoint</code> properties, and
+<code>type</code>, and <code>serviceEndpoint</code> properties, and
 MAY include additional properties.
         </li>
 
@@ -1786,7 +1758,7 @@ Let us assume that we start with the following <a>DID Document</a>:
       </pre>
       <p>
 The contents of the <code>publicKey</code>,
-        <code>authentication</code>, and <code>service</code> properties are
+<code>authentication</code>, and <code>service</code> properties are
 not important for the purposes of this section. What is important is
 that the object above is a valid <a>DID Document</a>. Let's assume
 that a developer wanted to extend the <a>DID Document</a> to express
@@ -1811,7 +1783,7 @@ Now that the JSON-LD Context has been created, the developer MUST
 publish it somewhere that is accessible to any <a>DID Document</a>
 processor. For this example, let us assume that the JSON-LD Context
 above is published at the following URL:
-        <code>did:example:contexts:987654321</code>. At this point, extending
+<code>did:example:contexts:987654321</code>. At this point, extending
 the first example in this section is a simple matter of including the
 context above and adding the new property to the <a>DID Document</a>.
       </p>
@@ -1855,7 +1827,7 @@ Context overrides the expanded URL for a term specified in this
 specification. To avoid the possibility of accidentally overriding
 terms, developers SHOULD scope their extensions. For example,
 the following extension scopes the new
-        <code>PhotoStreamService</code> term so that it may only be used
+<code>PhotoStreamService</code> term so that it may only be used
 within the <code>service</code> property:
       </p>
 
@@ -2277,7 +2249,7 @@ Section <a href="#did-operations"></a>.
 
         <li>
 Where DID methods make use of peer-to-peer computing resources
-        (such as with all known DLTs), the expected burdens of those
+(such as with all known DLTs), the expected burdens of those
 resources SHOULD be discussed in relation to denial of service.
         </li>
 
@@ -2575,7 +2547,7 @@ be verified and trusted) is out-of-scope for this specification.
 Solutions to this problem (and there are many) should be defined in
 separate specifications that reference this specification. It is
 strongly recommended that such specifications carefully consider:
-          (a) the numerous security attacks based on deceiving users about
+(a) the numerous security attacks based on deceiving users about
 the true human-friendly identifier for a target entity, and (b) the
 privacy consequences of using human-friendly identifiers that are
 inherently correlatable, especially if they are globally unique.
@@ -2816,7 +2788,7 @@ most censorship-resistant transaction ordering systems in the world,
 so they are nearly ideal for DID Document timestamping. In some cases
 a DLT's immediate timing is approximate, however their sense of
 <a href="https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki%23Abstract">
-        "median time past" (see Bitcoin BIP 113)</a> can be precisely
+"median time past" (see Bitcoin BIP 113)</a> can be precisely
 defined. A generic DID Document timestamping mechanism could would
 work across all DLTs and might operate via a mechanism including
 either individual transactions or transaction batches. The generic
