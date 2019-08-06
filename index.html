@@ -140,23 +140,20 @@
   <section id='abstract'>
     <p>
 Decentralized Identifiers (DIDs) are a new type of identifier for
-verifiable, "self-sovereign" digital identity. DIDs are fully under the
-control of the DID subject, independent from any centralized registry,
+verifiable, decentralized digital identity. These new identifiers
+are designed to enable the controller of a DID to prove control over
+it and to be implemented independently of any centralized registry,
 identity provider, or certificate authority. DIDs are URLs that relate
 a DID subject to means for trustable interactions with that subject.
-DIDs resolve to DID Documents — simple documents that describe how to
-use that specific DID. Each DID Document may contain at least three
-things: proof purposes, verification methods, and service endpoints.
-Proof purposes are combined with verification methods to provide mechanisms
-for proving things. For example, a DID Document can specify that a particular
-verification method, such as a cryptographic public key or pseudonymous
-biometric protocol, can be used to verify a proof that was created for the
-purpose of authentication. Service endpoints enable trusted interactions with
-the DID controller.
+DIDs resolve to DID Documents &mdash; simple documents that describe how to
+use that specific DID. Each DID Document may express cryptographic
+material, verification methods, and/or service endpoints. These provide
+a set of mechanisms which enable a DID controller to prove control of the
+DID. Service endpoints enable trusted interactions with the DID subject.
     </p>
     <p>
-This document specifies a common data model, format, and operations
-that all DIDs support.
+This document specifies a common data model, format, and operations that
+all DIDs support. 
     </p>
   </section>
 
