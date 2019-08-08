@@ -215,11 +215,11 @@ The emergence of distributed ledger technology (DLT), sometimes
 referred to as blockchain technology, provides the opportunity for
 fully <a>decentralized identity management</a>. In a decentralized
 identity system, entities (in the sense of discrete identifiable units
-such as—but not limited to—people and organisations) are free to use any
-shared root of trust.
+such as—but not limited to—people, organizations, and things) are free
+to use any shared root of trust.
 Globally distributed ledgers, decentralized P2P networks, or other systems
 with similar capabilities, provide the means for managing a root of
-trust with neither centralized authority nor a single point of
+trust without introducing a centralized authority or a single point of
 failure. In combination, DLTs and decentralized identity systems
 enable any entity to create and manage their own identifiers on any
 number of distributed, independent roots of trust.
@@ -249,7 +249,7 @@ DID method specifications.
 This design eliminates dependence on centralized registries for
 identifiers as well as centralized certificate authorities for key
 management—the standard pattern in hierarchical <a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI (public
-key infrastructure</a>). Because DIDs reside on a distributed ledger,
+key infrastructure</a>). In cases where the <a>DID Registry</a> is a distributed ledger,
 each entity may serve as its own root authority—an architecture
 referred to as <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">
 DPKI (decentralized PKI)</a>.
@@ -282,10 +282,10 @@ generic URI specification ([[RFC3986]]) and a specific URI scheme
 specified in [[RFC7230]]). It is also similar to the relationship
 of the IETF generic URN specification ([[RFC8141]]) and a specific URN
 namespace definition (such as the UUID URN namespace defined in
-[[RFC4122]]). The difference is that a DID method specification, in
-addition to defining a specific DID scheme, MUST also specify the
+[[RFC4122]]). The difference is that a DID Method specification, in
+addition to defining a specific DID scheme, also specifies the
 methods for resolving and deactivating DIDs and writing DID documents on the
-network for which it is written.
+appropriate <a>DID Registry</a>.
       </p>
       <p>
 The hierarchical design of a generic DID specification with specific DID method
@@ -509,13 +509,13 @@ portability, or simplicity.
               <li> the specification is specific, detailed, and complete enough for independent implementation, and</li>
               <li> the specification contains sections describing security and privacy considerations.</li>
           </ol>
-              
-              
+
+
           <p>Interoperability for producers and consumers of DIDs and DID Documents is provided by ensuring the DIDs and DID Documents conform. Interoperability for method specifications is provided by the details in each method specification. It is understood that, just like a web browser is not required to implement all known URI schemes, conformant software that works with DIDs is not required to implement all known DID methods. However, all implementations of a given DID method must be interoperable for that method.</p>
-          
+
 </section>
   </section>
-    
+
   </section>
 
   <section class="informative">
@@ -2083,8 +2083,8 @@ Update
 
         <p>
 The DID method specification MUST specify how a client can update a
-DID Document on the <a>DID Registry</a>, 
-including all cryptographic operations necessary to establish proof 
+DID Document on the <a>DID Registry</a>,
+including all cryptographic operations necessary to establish proof
 of control, <em>or</em>  state that updates are not possible.
         </p>
       </section>
@@ -2098,7 +2098,7 @@ Deactivate
 Although a core feature of distributed ledgers is immutability, the
 DID method specification MUST specify how a client can deactivate a DID
 on the <a>DID Registry</a>, including all cryptographic
-operations necessary to establish proof of deactivation <em>or</em> state that 
+operations necessary to establish proof of deactivation <em>or</em> state that
 deactivation is not possible.
         </p>
       </section>
