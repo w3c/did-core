@@ -533,26 +533,65 @@ Terminology
 Data Model
     </h1>
     <p>
-This section outlines the Decentralized Identifier data model concepts.
-These are elaborated in <a href="#did-documents"></a>.
+This section outlines the Decentralized Identifier data model concepts,
+in particular how keys, services, and the <a>DID Subject</a> are related to the
+<a>DID Document</a>.
+    </p>
+    <p>
+For information about how the data model can be extended, see
+<a href="#extensibility"></a>.
     </p>
 
     <section>
       <h2>
 Document
       </h2>
+      <p>
+A DID resolves to a <a>DID Document</a>. This is the concrete serialization of
+the data model, according to a particular syntax (see
+<a href="#did-document-syntax"></a>). The <a>DID Document</a> contains attributes
+or claims about the <a href="#did-subject"></a>, and the DID itself is
+contained in the <code>id</code> property.
+      </p>
+      <p>
+The properties that can be present in a <a>DID Document</a> are detailed
+further in <a href="#did-documents"></a>.
+      </p>
+      <p>
+The properties present in a <a>DID Document</a> can be updated according to
+the applicable <a href="#did-methods"></a>.
+      </p>
     </section>
 
     <section>
       <h2>
 Keys
       </h2>
+      <p>
+One or more <a href="#public-keys"></a> can be included in a <a>DID
+Document</a> using, for example, the <code>publicKey</code> or <code>authentication</code>
+properties depending on what they are to be used for. Each public key
+has an identifier (<code>id</code>) of its own, a <code>type</code>,
+and a <code>controller</code>, as well as other properties which
+depend on what type of key it is.
+      </p>
     </section>
 
     <section>
       <h2>
 Services
       </h2>
+      <p>
+A <a>DID Document</a> can contain pointers to services using the <code>
+service</code> property. Services can be anything the <a>DID Subject</a>
+wishes to advertise, for example other ways to interact with
+the <a>DID Subject</a>. Each service has its own <code>id</code> and
+<code>type</code>, as well as a <code>serviceEndpoint</code> with a
+URI or further properties describing the service.
+      </p>
+      <p>
+For more information see <a href="#service-endpoints"></a>.
+      </p>
     </section>
 
   </section>
