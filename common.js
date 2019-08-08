@@ -127,6 +127,16 @@ var ccg = {
         "Markus Sabadello"
       ],
       status: "Internet-Draft"
+    },
+    "DID-RESOLUTION": {
+      title: "Decentralized Identifier Resolution",
+      href: "https://w3c-ccg.github.io/did-resolution/",
+      authors: [
+        "Markus Sabadello",
+        "Dmitri Zagidulin"
+      ],
+      status: "Draft Community Group Report",
+      publisher: "Credentials Community Group"
     }
   }
 };

@@ -719,8 +719,7 @@ parameter may not be supported by all DID methods.
       </table>
 
       <p>
-The exact processing rules for these parameters are specified in the DID
-Resolution specification.
+The exact processing rules for these parameters are specified in [[DID-RESOLUTION]].
       </p>
 
       <p class="note">
@@ -2137,33 +2136,17 @@ DID Resolvers
     </h1>
 
     <p>
-A DID resolver is a software component with an API designed to accept
-requests for DID lookups and execute the corresponding DID method to
-retrieve the authoritative DID Document. To be conformant with this
-specification, a DID resolver:
+A DID Resolver is a software or hardware component with an API for resolving
+<a>DIDs</a> of at least one <a>DID method</a>. It
+executes the corresponding DID method's <a href="#read-verify">Read</a> operation to
+obtain the authoritative DID Document.
     </p>
 
-    <ol start="1">
-      <li>
-SHOULD validate that a DID is valid according to its DID method
-specification, otherwise it should produce an error.
-      </li>
+    <p>
+The interfaces and algorithms for resolving <a>DIDs</a> and dereferencing <a>DID URLs</a> are
+specified in [[DID-RESOLUTION]].
+    </p>
 
-      <li>
-MUST conform to the requirements of the applicable DID method
-specification when performing DID resolution operations.
-      </li>
-
-      <li>
-SHOULD offer the service of verifying the integrity of the DID
-Document if it is signed.
-      </li>
-
-      <li>
-MAY offer the service of returning requested properties of the DID
-Document.
-      </li>
-    </ol>
   </section>
 
   <section class="informative">
