@@ -151,12 +151,12 @@ verifiable, decentralized digital identity. These new identifiers
 are designed to enable the controller of a DID to prove control over
 it and to be implemented independently of any centralized registry,
 identity provider, or certificate authority. DIDs are URLs that relate
-a DID subject to means for trustable interactions with that subject.
+a <a>DID subject</a> to means for trustable interactions with that subject.
 DIDs resolve to DID Documents &mdash; simple documents that describe how to
 use that specific DID. Each DID Document may express cryptographic
 material, verification methods, and/or service endpoints. These provide
 a set of mechanisms which enable a DID controller to prove control of the
-DID. Service endpoints enable trusted interactions with the DID subject.
+DID. Service endpoints enable trusted interactions with the <a>DID subject</a>.
     </p>
     <p>
 This document specifies a common data model, format, and operations that
@@ -230,7 +230,7 @@ Entities are identified by decentralized identifiers (DIDs), and
 may authenticate via proofs (e.g., digital signatures,
 privacy-preserving biometric protocols, etc.). DIDs point to DID
 Documents. A DID Document contains a set of service endpoints for
-interacting with the entity the DID identifies (aka the DID subject).
+interacting with the entity the DID identifies (aka the <a>DID subject</a>).
 Following the dictums of
 <a href="https://en.wikipedia.org/wiki/Privacy_by_design">Privacy by
 Design</a>, any entity may have as many DIDs as necessary (and
@@ -437,7 +437,7 @@ assurance.
 Proof-based
             </td>
             <td>
-Enable the DID subject to provide
+Enable the <a>DID subject</a> to provide
 cryptographic proof when interacting with other entities.
             </td>
           </tr>
@@ -580,7 +580,7 @@ A DID is similar to a UUID except: (a) like a URL, it can be resolved
 or dereferenced to a standard resource describing the subject (a <a>DID
 Document</a>—see Section <a href="#did-documents"></a>), and (b) unlike
 a URL, the DID Document typically contains cryptographic material that
-enables authentication of the DID subject.
+enables authentication of the <a>DID subject</a>.
     </p>
 
     <section>
@@ -600,7 +600,7 @@ in [[RFC3986]].
       <p class="note">
 The term <a>DID</a> refers only to the URI
 conforming to the <code>did</code> rule in the ABNF below. A
-DID always identifies the DID subject. The term <a>DID URL</a>,
+DID always identifies the <a>DID subject</a>. The term <a>DID URL</a>,
 defined by the <code>did-url</code> rule,
 refers to a URL that begins with a DID followed by one or more
 additional components. A DID URL always identifies the resource to
@@ -1031,9 +1031,9 @@ DID Subject
       </h2>
 
       <p>
-The DID subject is the identifier that the DID Document is about,
-i.e., it is the DID described by DID Document. The rules for a DID
-subject are:
+The <a>DID Subject</a> is the entity that the DID Document is about, i.e.,
+it is the entity identified by the DID and described by the DID Document.
+The rules for a <a>DID subject</a> are:
       </p>
 
       <ol start="1">
@@ -1396,7 +1396,7 @@ Authorization and Delegation
 
       <p>
 Authorization is the mechanism used to state how operations may be
-performed on behalf of the DID subject. Delegation is the
+performed on behalf of the <a>DID subject</a>. Delegation is the
 mechanism that the subject may use to authorize others to act
 on their behalf. Note that Authorization is separate from
 Authentication as explained in Section <a href="#authentication"></a>.
@@ -2456,12 +2456,12 @@ relevant service endpoints listed in an existing DID.
         </li>
 
         <li>
-Self-monitoring. A DID subject MAY employ their own local or online
+Self-monitoring. A <a>DID subject</a> MAY employ their own local or online
 agent to periodically monitor for changes to a DID Document.
         </li>
 
         <li>
-Third-party monitoring. A DID subject MAY rely on a third party
+Third-party monitoring. A <a>DID subject</a> MAY rely on a third party
 monitoring service, however this introduces another vector of attack.
         </li>
       </ol>
@@ -2612,7 +2612,7 @@ specification is preventative not remedial, and privacy is an embedded
 default. Furthermore, decentralized identifier architecture by itself
 embodies principle #7, "Respect for user privacy—keep it user-centric."
 This section lists additional privacy considerations that implementers,
-delegates, and DID subjects should bear in mind.
+delegates, and <a>DID subjects</a> should bear in mind.
     </p>
 
     <section>
@@ -2706,7 +2706,7 @@ Herd Privacy
       </h2>
 
       <p>
-When a DID subject is indistinguishable from others in the herd, privacy
+When a <a>DID subject</a> is indistinguishable from others in the herd, privacy
 is available. When the act of engaging privately with another party
 is by itself a recognizable flag, privacy is greatly diminished. DIDs
 and DID methods SHOULD work to improve herd privacy, particularly for
