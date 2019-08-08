@@ -851,9 +851,10 @@ fragment and MUST conform to the <code>fragment</code> ABNF rule in
 [[RFC3986]]. Implementers are strongly discouraged from using a DID fragment
 for anything other than a method-independent
 reference into the DID Document to identify a component of a DID Document
-(e.g., a unique key description). To resolve this reference, the complete
-DID URL including the DID fragment MUST be used as the value of
-the key for the target component in the DID Document object.
+(e.g. a unique key description or service endpoint). To resolve this reference,
+the complete DID URL including the DID fragment MUST be used as input to the
+DID URL dereferencing algorithm (see [[DID-RESOLUTION]]) for the target
+component in the DID Document object.
       </p>
 
       <p>
