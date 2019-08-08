@@ -155,7 +155,7 @@ a <a>DID subject</a> to means for trustable interactions with that subject.
 DIDs resolve to DID Documents &mdash; simple documents that describe how to
 use that specific DID. Each DID Document may express cryptographic
 material, verification methods, and/or service endpoints. These provide
-a set of mechanisms which enable a DID controller to prove control of the
+a set of mechanisms which enable a <a>DID controller</a> to prove control of the
 DID. Service endpoints enable trusted interactions with the <a>DID subject</a>.
     </p>
     <p>
@@ -1460,7 +1460,7 @@ Authorization and Delegation, which may be layered:
         <li>
 A <a>DID Registry</a> could implement a coarse
 grained <code>controller</code> pattern by enabling DID documents to
-express the DID of another DID controller that controls it, or
+express the DID of another <a>DID controller</a> that controls it, or
 additionally,
         </li>
 
@@ -2490,7 +2490,7 @@ notification, the following approaches are RECOMMENDED:
         <li>
 Subscriptions. If the <a>DID Registry</a> on which the DID is
 registered directly supports change notifications, this service can
-be offered to DID controllers. Notifications MAY be sent directly to the
+be offered to <a>DID controllers</a>. Notifications MAY be sent directly to the
 relevant service endpoints listed in an existing DID.
         </li>
 
@@ -2568,7 +2568,7 @@ two".
 There are of course many use cases where it is desirable to
 discover a DID when starting from a human-friendly identifier—a
 natural language name, a domain name, or a conventional address for
-a DID controller such as a mobile telephone number, email address,
+a <a>DID controller</a> such as a mobile telephone number, email address,
 Twitter handle, or blog URL. However, the problem of mapping
 human-friendly identifiers to DIDs (and doing so in a way that can
 be verified and trusted) is out-of-scope for this specification.
@@ -2704,7 +2704,7 @@ DID Correlation Risks and Pseudonymous DIDs
 
       <p>
 Like any type of globally unique identifier, DIDs may be used for
-correlation. DID controllers can mitigate this privacy risk by using
+correlation. <a>DID controllers</a> can mitigate this privacy risk by using
 pairwise unique DIDs, i.e., by sharing a different private DID for
 every relationship. In effect, each DID acts as a pseudonym. A
 pseudonymous DID need only be shared with more than one party when
