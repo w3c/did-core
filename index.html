@@ -134,6 +134,13 @@
     font-weight: bold;
     color: green;
   }
+  pre .comment {
+    color: SteelBlue;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
   </style>
 </head>
 <body>
@@ -153,7 +160,7 @@ DID. Service endpoints enable trusted interactions with the DID subject.
     </p>
     <p>
 This document specifies a common data model, format, and operations that
-all DIDs support. 
+all DIDs support.
     </p>
   </section>
 
@@ -1205,7 +1212,7 @@ Example:
 {
   "@context": ["https://www.w3.org/2019/did/v1", "https://w3id.org/security/v1"],
   "id": "did:example:123456789abcdefghi",
-  ...
+  <span class="comment">...</span>
   "publicKey": [{
     "id": "did:example:123456789abcdefghi#keys-1",
     "type": "RsaVerificationKey2018",
@@ -1222,7 +1229,7 @@ Example:
     "controller": "did:example:123456789abcdefghi",
     "publicKeyHex": "02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71"
   }],
-  ...
+  <span class="comment">...</span>
 }
 </pre>
       <p>
@@ -1233,12 +1240,12 @@ may refer to keys in both ways:
 
       <pre class="example nohighlight" title="Various public keys">
 {
-...
+<span class="comment">...</span>
 
   "authentication": [
-    // this key is referenced, it may be used for more than one proof purpose
+    <span class="comment">// this key is referenced, it may be used for more than one proof purpose</span>
     "did:example:123456789abcdefghi#keys-1",
-    // this key is embedded and may *only* be used for authentication
+    <span class="comment">// this key is embedded and may *only* be used for authentication</span>
     {
       "id": "did:example:123456789abcdefghi#keys-2",
       "type": "Ed25519VerificationKey2018",
@@ -1247,7 +1254,7 @@ may refer to keys in both ways:
     }
   ],
 
-...
+<span class="comment">...</span>
 }
 </pre>
       <p>
@@ -1361,15 +1368,15 @@ Example:
 {
   "@context": "https://www.w3.org/2019/did/v1",
   "id": "did:example:123456789abcdefghi",
-  ...
+  <span class="comment">...</span>
   "authentication": [
-    // this method can be used to authenticate as did:...fghi
+    <span class="comment">// this method can be used to authenticate as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
-    // this method can be used to authenticate as did:...fghi
+    <span class="comment">// this method can be used to authenticate as did:...fghi</span>
     "did:example:123456789abcdefghi#biometric-1",
-    // this method is *only* authorized for authentication, it may not
-    // be used for any other proof purpose, so its full description is
-    // embedded here rather than using only a reference
+    <span class="comment">// this method is *only* authorized for authentication, it may not</span>
+    <span class="comment">// be used for any other proof purpose, so its full description is</span>
+    <span class="comment">// embedded here rather than using only a reference</span>
     {
       "id": "did:example:123456789abcdefghi#keys-2",
       "type": "Ed25519VerificationKey2018",
@@ -1377,7 +1384,7 @@ Example:
       "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
   ],
-  ...
+  <span class="comment">...</span>
 }
 </pre>
     </section>
@@ -1752,9 +1759,9 @@ Let us assume that we start with the following <a>DID Document</a>:
 {
   "@context": "https://example.org/example-method/v1",
   "id": "did:example:123456789abcdefghi",
-  "publicKey": [{ ... }],
-  "authentication": [{ ... }],
-  "service": [{ ... }]
+  "publicKey": [{ <span class="comment">...</span> }],
+  "authentication": [{ <span class="comment">...</span> }],
+  "service": [{ <span class="comment">...</span> }]
 }
       </pre>
       <p>
@@ -1793,7 +1800,7 @@ context above and adding the new property to the <a>DID Document</a>.
 {
   "@context": "https://example.org/example-method/v1",
   "id": "did:example:123456789abcdefghi",
-  "authentication": [ ... ],
+  "authentication": [ <span class="comment">...</span> ],
   "service": [<span class="highlight">{
     "@context": "did:example:contexts:987654321",
     "id": "did:example:123456789abcdefghi#photos",
@@ -2016,10 +2023,10 @@ DID method specification MUST specify how each of the following
 CRUD</a> operations is performed by a client. Each operation MUST be
 specified to the level of detail necessary to build and test
 interoperable client implementations with the target system.
-The specification document for a DID method that does not support specific 
-operations such as Update and Deactivate MUST clearly specify these 
-limitations. Note that, due to the specified contents of DID Documents, 
-these operations can effectively be used to perform all the operations 
+The specification document for a DID method that does not support specific
+operations such as Update and Deactivate MUST clearly specify these
+limitations. Note that, due to the specified contents of DID Documents,
+these operations can effectively be used to perform all the operations
 required of a CKMS (cryptographic key management system), e.g.:
       </p>
 
@@ -2923,13 +2930,13 @@ A future-facing real-world context is provided below:
   }],
 
   "authentication": [
-    // this mechanism can be used to authenticate as did:...fghi
+    <span class="comment">// this mechanism can be used to authenticate as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
-    // this mechanism can be used to biometrically authenticate as did:...fghi
+    <span class="comment">// this mechanism can be used to biometrically authenticate as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-3",
-    // this mechanism is *only* authorized for authentication, it may not
-    // be used for any other proof purpose, so its full description is
-    // embedded here rather than using only a reference
+    <span class="comment">// this mechanism is *only* authorized for authentication, it may not</span>
+    <span class="comment">// be used for any other proof purpose, so its full description is</span>
+    <span class="comment">// embedded here rather than using only a reference</span>
     {
       "id": "did:example:123456789abcdefghi#keys-2",
       "type": "Ed25519VerificationKey2018",
