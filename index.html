@@ -215,8 +215,8 @@ The emergence of distributed ledger technology (DLT), sometimes
 referred to as blockchain technology, provides the opportunity for
 fully <a>decentralized identity management</a>. In a decentralized
 identity system, entities (in the sense of discrete identifiable units
-such as—but not limited to—people, organizations, and things) are free
-to use any shared root of trust.
+such as &mdash; but not limited to &mdash; people, organizations, and 
+things) are free to use any shared root of trust.
 Globally distributed ledgers, decentralized P2P networks, or other systems
 with similar capabilities, provide the means for managing a root of
 trust without introducing a centralized authority or a single point of
@@ -248,11 +248,13 @@ DID method specifications.
       <p>
 This design eliminates dependence on centralized registries for
 identifiers as well as centralized certificate authorities for key
-management—the standard pattern in hierarchical <a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI (public
-key infrastructure</a>). In cases where the <a>DID Registry</a> is a distributed ledger,
-each entity may serve as its own root authority—an architecture
-referred to as <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">
-DPKI (decentralized PKI)</a>.
+management &mdash; the standard pattern in hierarchical
+<a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI
+(public key infrastructure</a>). In cases where the <a>DID Registry</a>
+is a distributed ledger, each entity may serve as its own root authority
+&mdash; an architecture referred to as 
+<a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">DPKI
+(decentralized PKI)</a>.
       </p>
 
       <p>
@@ -269,7 +271,7 @@ DID scheme and a generic set of operations on DID documents that can be
 implemented for any <a>DID Registry</a>. The second
 purpose of this specification is to
 define the conformance requirements for a DID method
-specification—a separate specification that defines a specific DID
+specification &mdash; a separate specification that defines a specific DID
 scheme and specific set of DID document operations for a specific
 <a>DID Registry</a>.
       </p>
@@ -617,7 +619,7 @@ specific type of Unified Resource Name (URN).
     <p>
 A DID is similar to a UUID except: (a) like a URL, it can be resolved
 or dereferenced to a standard resource describing the subject (a <a>DID
-Document</a>—see Section <a href="#did-documents"></a>), and (b) unlike
+Document</a> &mdash; see Section <a href="#did-documents"></a>), and (b) unlike
 a URL, the DID Document typically contains cryptographic material that
 enables authentication of the <a>DID subject</a>.
     </p>
@@ -630,7 +632,7 @@ Generic DID Syntax
       <p>
 The generic <a>DID scheme</a> is a URI scheme conformant with
 [[RFC3986]]. The DID scheme specializes only the scheme and
-authority components of a DID URI—the <code>path-abempty</code>,
+authority components of a DID URI &mdash; the <code>path-abempty</code>,
 <code>query</code>, and <code>fragment</code> components are
 identical to the ABNF rules defined
 in [[RFC3986]].
@@ -2296,7 +2298,7 @@ method MUST be discussed.
         <li>
 DID methods MUST discuss the policy mechanism by which DIDs are
 proven to be uniquely assigned. A DID fits the functional definition
-of a URN as defined in [[RFC8141]]—a persistent identifier that is
+of a URN as defined in [[RFC8141]] &mdash; a persistent identifier that is
 assigned once to a resource and never reassigned. In a security
 context this is particularly important since a DID may be used to
 identify a specific party subject to a specific set of authorization
@@ -2560,13 +2562,13 @@ memorability. The algorithms capable of generating globally unique
 identifiers automatically produce random strings of characters that
 have no human meaning. This demonstrates the axiom about
 identifiers known as <a href="https://en.wikipedia.org/wiki/Zooko%27s_triangle">Zooko's
-Triangle</a>: "human-meaningful, decentralized, secure—pick any
+Triangle</a>: "human-meaningful, decentralized, secure &mdash; pick any
 two".
       </p>
 
       <p>
 There are of course many use cases where it is desirable to
-discover a DID when starting from a human-friendly identifier—a
+discover a DID when starting from a human-friendly identifier &mdash; a
 natural language name, a domain name, or a conventional address for
 a <a>DID controller</a> such as a mobile telephone number, email address,
 Twitter handle, or blog URL. However, the problem of mapping
@@ -2642,14 +2644,14 @@ Privacy Considerations
     <p>
 It is critically important to apply the principles of Privacy by Design
 to all aspects of decentralized identifier architecture, because DIDs
-and DID Documents are—by design—administered directly by their controllers.
+and DID Documents are &mdash; by design &mdash; administered directly by their controllers.
 There is no registrar, hosting company, or other intermediate service
 provider to recommend or apply additional privacy safeguards. The
 authors of this specification have applied all seven Privacy by Design
 principles throughout its development. For example, privacy in this
 specification is preventative not remedial, and privacy is an embedded
 default. Furthermore, decentralized identifier architecture by itself
-embodies principle #7, "Respect for user privacy—keep it user-centric."
+embodies principle #7, "Respect for user privacy &mdash; keep it user-centric."
 This section lists additional privacy considerations that implementers,
 delegates, and <a>DID subjects</a> should bear in mind.
     </p>
@@ -2710,8 +2712,8 @@ every relationship. In effect, each DID acts as a pseudonym. A
 pseudonymous DID need only be shared with more than one party when
 the subject explicitly authorizes correlation between those parties.
 If pseudonymous DIDs are the default, then the only need for a public
-DID—a DID published openly or shared with a large number of
-parties—is when the subject explicitly desires public identification.
+DID &mdash; a DID published openly or shared with a large number of
+parties &mdash; is when the subject explicitly desires public identification.
       </p>
     </section>
 
@@ -2873,8 +2875,8 @@ identity, they are only the first step in describing their subjects. The
 rest of the descriptive power comes through collecting and
 selectively using <a href="https://w3c.github.io/vctf/">verifiable
 claims</a>. Future versions of the specification will describe in
-more detail how DIDs and DID Document can be integrated with—and help
-enable—the verifiable claims ecosystem.
+more detail how DIDs and DID Document can be integrated with &mdash; and help
+enable &mdash; the verifiable claims ecosystem.
       </p>
     </section>
 
