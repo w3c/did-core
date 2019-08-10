@@ -267,12 +267,12 @@ centralized, federated, and decentralized identifiers.
 
       <p>
 The first purpose of this specification is to define the generic
-DID scheme and a generic set of operations on DID documents that can be
+DID scheme and a generic set of operations on DID Documents that can be
 implemented for any <a>DID Registry</a>. The second
 purpose of this specification is to
 define the conformance requirements for a DID method
 specification &mdash; a separate specification that defines a specific DID
-scheme and specific set of DID document operations for a specific
+scheme and specific set of DID Document operations for a specific
 <a>DID Registry</a>.
       </p>
 
@@ -286,7 +286,7 @@ of the IETF generic URN specification ([[RFC8141]]) and a specific URN
 namespace definition (such as the UUID URN namespace defined in
 [[RFC4122]]). The difference is that a DID Method specification, in
 addition to defining a specific DID scheme, also specifies the
-methods for resolving and deactivating DIDs and writing DID documents on the
+methods for resolving and deactivating DIDs and writing DID Documents on the
 appropriate <a>DID Registry</a>.
       </p>
       <p>
@@ -911,8 +911,8 @@ are more restrictive than the generic rules in this section.
 
       <p>
 It is desirable that we enable tree-based processing of DIDs that include
-DID fragments (which resolve directly within the DID document) to locate
-metadata contained directly in the DID document or the service resource
+DID fragments (which resolve directly within the DID Document) to locate
+metadata contained directly in the DID Document or the service resource
 given by the target URL without needing to rely on graph-based processing.
       </p>
       <p>
@@ -1461,7 +1461,7 @@ Authorization and Delegation, which may be layered:
       <ol>
         <li>
 A <a>DID Registry</a> could implement a coarse
-grained <code>controller</code> pattern by enabling DID documents to
+grained <code>controller</code> pattern by enabling DID Documents to
 express the DID of another <a>DID controller</a> that controls it, or
 additionally,
         </li>
@@ -2005,7 +2005,7 @@ require them.
 The <code>@protected</code> properties feature of JSON-LD 1.1 is used to ensure
 that terms defined by this specification cannot be overridden. This means
 that as long as the same <code>@context</code> declaration is made at the top
-of a <a>DID document</a>, that interoperability is guaranteed between implementations
+of a <a>DID Document</a>, that interoperability is guaranteed between implementations
 which use a JSON-LD processor and implementations which do not.
         </li>
       </ul>
@@ -2609,7 +2609,7 @@ same set of features, the less it can be manipulated by malicious actors.
         </p>
         <p>
 As an example, consider the flexibility that the data model offers with respect
-to updating. A single edit to a DID doc can change anything and everything except
+to updating. A single edit to a DID Document can change anything and everything except
 the root <code>id</code> property of the document &mdash; and any individual JSON object
 in the data model can change all of its properties except its <code>id</code>.
 But is it actually desirable for a service endpoint to change its <code>type</code>
@@ -2625,11 +2625,11 @@ more expensive to carry out &mdash; and anomaly detection would be easier.
         <p>
 The notion that immutability may provide some cybersecurity benefits is particularly
 relevant because of caching. For DID methods tied to a global source of truth, a
-direct, just-in-time lookup of the latest version of a DID doc is always possible.
+direct, just-in-time lookup of the latest version of a DID Document is always possible.
 However, it seems likely that layers of cache might eventually sit between a client
 and that source of truth. If they do, believing the attributes of an object in the
-DID doc to have a given state, when they are actually subtly different, may invite
-exploits. This is particularly true if some lookups are of a full DID doc,
+DID Document to have a given state, when they are actually subtly different, may invite
+exploits. This is particularly true if some lookups are of a full DID Document,
 and others are of partial data, where the larger context is assumed.
         </p>
     </section>
@@ -2690,7 +2690,7 @@ it is STRONGLY RECOMMENDED that DID Documents contain no PII. All PII
 should be kept behind service endpoints under the control
 of the subject. With this privacy architecture, PII may be exchanged
 on a private, peer-to-peer basis using communications channels
-identified and secured by key descriptions in DID documents. This also
+identified and secured by key descriptions in DID Documents. This also
 enables subjects and relying parties to implement the
 <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>
 <a href="https://en.wikipedia.org/wiki/Right_to_be_forgotten">right
