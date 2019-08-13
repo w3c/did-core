@@ -95,7 +95,7 @@ input.task-list-item-checkbox {
   <title>
     Decentralized Identifiers (DIDs) v0.13
   </title>
-  
+
 
   <style id="respec-mainstyle">/*****************************************************************
  * ReSpec 3 CSS
@@ -381,9 +381,6 @@ h6 > a.self-link::before {
 }
 </style>
 
-  <script src="./common.js">
-  </script>
-  
   <style>
   pre .highlight {
     font-weight: bold;
@@ -690,14 +687,14 @@ DID. Service endpoints enable trusted interactions with the DID subject."><link 
         <time class="dt-published" datetime="2019-08-10">10 August 2019</time>
       </h2>
       <dl>
-        
-        
+
+
         <dt>Latest editor's draft:</dt><dd><a href="https://w3c-ccg.github.io/did-spec/">https://w3c-ccg.github.io/did-spec/</a></dd>
-        
-        
-        
-        
-        
+
+
+
+
+
         <dt>Editors:</dt>
         <dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="https://www.linkedin.com/in/drummondreed/">Drummond Reed</a>
             (<a class="p-org org h-org h-card" href="https://evernym.com/">Evernym</a>)
@@ -706,7 +703,7 @@ DID. Service endpoints enable trusted interactions with the DID subject."><link 
           </dd><dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="https://www.linkedin.com/in/markus-sabadello-353a0821">Markus Sabadello</a>
             (<a class="p-org org h-org h-card" href="https://danubetech.com/">Danube Tech</a>)
           </dd>
-        
+
         <dt>
                 Authors:
               </dt><dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="https://www.linkedin.com/in/drummondreed/">Drummond Reed</a>
@@ -730,18 +727,18 @@ DID. Service endpoints enable trusted interactions with the DID subject."><link 
       <a href="https://github.com/w3c-ccg/did-spec/pulls/">Pull requests</a>
     </dd>
       </dl>
-      
+
       <p class="copyright">
         <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
         ©
         2019
-        
+
         the Contributors to the Decentralized Identifiers (DIDs) v0.13 Specification, published by the
         <a href="https://www.w3.org/community/credentials/">Credentials Community Group</a> under the
         <a href="https://www.w3.org/community/about/agreements/fsa/">W3C Community Final Specification Agreement (FSA)</a>. A human-readable
               <a href="https://www.w3.org/community/about/agreements/fsa-deed/">summary</a>
               is available.
-            
+
       </p>
       <hr title="Separator for header">
     </div>
@@ -769,11 +766,11 @@ all DIDs support.
       This specification was published by the
       <a href="https://www.w3.org/community/credentials/">Credentials Community Group</a>. It is not a W3C Standard nor is it
       on the W3C Standards Track.
-      
+
             Please note that under the
             <a href="https://www.w3.org/community/about/agreements/final/">W3C Community Final Specification Agreement (FSA)</a>
             other conditions apply.
-          
+
       Learn more about
       <a href="https://www.w3.org/community/">W3C Community and Business Groups</a>.
     </p>
@@ -971,7 +968,7 @@ The emergence of distributed ledger technology (DLT), sometimes
 referred to as blockchain technology, provides the opportunity for
 fully <a href="#dfn-decentralized-identity-management" class="internalDFN" data-link-type="dfn">decentralized identity management</a>. In a decentralized
 identity system, entities (in the sense of discrete identifiable units
-such as — but not limited to — people, organizations, and 
+such as — but not limited to — people, organizations, and
 things) are free to use any shared root of trust.
 Globally distributed ledgers, decentralized P2P networks, or other systems
 with similar capabilities, provide the means for managing a root of
@@ -1008,7 +1005,7 @@ management — the standard pattern in hierarchical
 <a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI
 (public key infrastructure</a>). In cases where the <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registry</a>
 is a distributed ledger, each entity may serve as its own root authority
-— an architecture referred to as 
+— an architecture referred to as
 <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">DPKI
 (decentralized PKI)</a>.
       </p>
@@ -1278,7 +1275,7 @@ portability, or simplicity.
 </section>
   </section>
 
-  
+
 
   <section class="informative" id="terminology">
     <h2 id="x2-terminology"><bdi class="secno">2. </bdi>
@@ -1294,9 +1291,9 @@ document to aid the reader:
 
 <dl class="termlist" id="terms">
 
-  
 
-  
+
+
 
   <dt><dfn data-lt="did|dids|decentralized identifiers|decentralized identifier" id="dfn-did" data-dfn-type="dfn">Decentralized Identifier</dfn> (DID)</dt>
 
@@ -1329,15 +1326,15 @@ deactivation of <a href="#dfn-did" class="internalDFN" data-link-type="dfn">Dece
 A DID Registry is a type of Verifiable Data Registry (see [<cite><a class="bibref" href="#bib-vc-data-model" title="Verifiable Credentials Data Model" data-link-type="biblio">VC-DATA-MODEL</a></cite>]).
   </dd>
 
-  
-
-  
 
 
 
-  
 
-  
+
+
+
+
+
 
 
 
@@ -1449,23 +1446,23 @@ cryptographically signed and chained to the previous transaction
 
 
 
-  
-
-  
 
 
 
-  
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1482,9 +1479,9 @@ by a generalized data interchange protocol such as
 
 
 
-  
 
-  
+
+
 
 
   <dt><dfn data-lt="xdi|extensible data interchange" id="dfn-xdi" data-dfn-type="dfn">Extensible Data Interchange</dfn> (aka XDI)</dt>
@@ -2127,7 +2124,7 @@ when a DID Resolver is performing resolution. However, the fully
 resolved DID Document <em class="rfc2119" title="MUST">MUST</em> contain a valid <code>id</code> property.
       </p></div>
     </section>
-    
+
 
     <section id="public-keys">
       <h3 id="x5-3-public-keys"><bdi class="secno">5.3 </bdi>
@@ -4079,7 +4076,7 @@ A future-facing real-world context is provided below:
 
 <section id="references" class="appendix">
       <h2 id="c-references"><bdi class="secno">C. </bdi>References<a class="self-link" aria-label="§" href="#references"></a></h2>
-      
+
     <section id="normative-references">
         <h3 id="c-1-normative-references"><bdi class="secno">C.1 </bdi>Normative references<a class="self-link" aria-label="§" href="#normative-references"></a></h3>
       <dl class="bibliography">
