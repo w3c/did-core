@@ -1,134 +1,25 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>
-    Decentralized Identifiers (DIDs) v0.13
-  </title>
-  <meta content='text/html; charset=utf-8' http-equiv='Content-Type'><!--
-    === NOTA BENE ===
-    For the three scripts below, if your spec resides on dev.w3 you can check them
-    out in the same tree and use relative links so that they'll work offline.
-   -->
-
-  <script class='remove'
-    src='https://www.w3.org/Tools/respec/respec-w3c-common'>
-  </script><!--script src='./respec-w3c-common.js' class='remove'></script-->
-
-  <script src="./common.js">
+  <meta charset="utf-8">
+  <title>DID Specification</title>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
+  <script class='remove'>
+    // See https://github.com/w3c/respec/wiki/ for how to configure ReSpec
+    var respecConfig = {
+      specStatus: "ED",
+      shortName: "did-spec",
+      editors: [{
+        name: "Drummond Reed"
+      },
+      {
+        name: "Manu Sporny"
+      },
+      {
+        name: "Markus Sabadello"
+      }]
+    };
   </script>
-  <script class="remove" type="text/javascript">
-  var respecConfig = {
-    // specification status (e.g., WD, LCWD, NOTE, etc.). If in doubt use ED.
-    specStatus: "CG-DRAFT",
-
-    // the specification's short name, as in http://www.w3.org/TR/short-name/
-    shortName: "did",
-
-    // subtitle
-    subtitle: "Data Model and Syntaxes for Decentralized Identifiers (DIDs)",
-
-    // if you wish the publication date to be other than today, set this
-    // publishDate:  "2009-08-06",
-
-    // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
-    // and its maturity status
-    // previousPublishDate:  "1977-03-15",
-    // previousMaturity:  "WD",
-
-    // extend the bibliography entries
-    localBiblio: ccg.localBiblio,
-
-    github: "https://github.com/w3c-ccg/did-spec",
-    includePermalinks: false,
-
-    // if there a publicly available Editor's Draft, this is the link
-    edDraftURI: "https://w3c-ccg.github.io/did-spec/",
-
-    // if this is a LCWD, uncomment and set the end of its review period
-    // lcEnd: "2009-08-05",
-
-    // editors, add as many as you like
-    // only "name" is required
-    editors: [{
-        name: "Drummond Reed",
-        url: "https://www.linkedin.com/in/drummondreed/",
-        company: "Evernym",
-        companyURL: "https://evernym.com/"
-      },
-      {
-        name: "Manu Sporny",
-        url: "http://manu.sporny.org/",
-        company: "Digital Bazaar",
-        companyURL: "https://digitalbazaar.com/"
-      }
-    ],
-
-    // authors, add as many as you like.
-    // This is optional, uncomment if you have authors as well as editors.
-    // only "name" is required. Same format as editors.
-    authors: [{
-        name: "Drummond Reed",
-        url: "https://www.linkedin.com/in/drummondreed/",
-        company: "Evernym",
-        companyURL: "https://evernym.com/"
-      },
-      {
-        name: "Manu Sporny",
-        url: "http://manu.sporny.org/",
-        company: "Digital Bazaar",
-        companyURL: "https://digitalbazaar.com/"
-      },
-      {
-        name: "Dave Longley",
-        url: "",
-        company: "Digital Bazaar",
-        companyURL: "https://digitalbazaar.com/"
-      },
-      {
-        name: "Christopher Allen",
-        url: "https://www.linkedin.com/in/christophera",
-        company: "Blockchain Commons",
-        companyURL: "https://www.BlockchainCommons.com"
-      },
-      {
-        name: "Ryan Grant",
-        url: "",
-        company: "",
-        companyURL: ""
-      },
-      {
-        name: "Markus Sabadello",
-        url: "https://www.linkedin.com/in/markus-sabadello-353a0821",
-        company: "Danube Tech",
-        companyURL: "https://danubetech.com/"
-      }
-    ],
-
-    // name of the WG
-    wg: "Credentials Community Group",
-
-    // URI of the public WG page
-    wgURI: "https://www.w3.org/community/credentials/",
-
-    // name (with the @w3c.org) of the public mailing to which comments are due
-    wgPublicList: "public-credentials",
-
-    // URI of the patent status for this WG, for Rec-track documents
-    // !!!! IMPORTANT !!!!
-    // This is important for Rec-track documents, do not copy a patent URI from a random
-    // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
-    // Team Contact.
-    wgPatentURI: "https://www.w3.org/community/about/agreements/cla/",
-    maxTocLevel: 4,
-    inlineCSS: true
-  };
-  </script>
-  <style>
-  pre .highlight {
-    font-weight: bold;
-    color: green;
-  }
-  </style>
 </head>
 <body>
   <section id='abstract'>
