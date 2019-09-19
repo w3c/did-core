@@ -9,10 +9,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/w3c-ccg/did-spec"
+    "url": "https://github.com/w3c/did-spec"
   },
   "bugs": {
-    "url": "https://github.com/w3c-ccg/did-spec/issues"
+    "url": "https://github.com/w3c/did-spec/issues"
   },
-  "homepage": "https://github.com/w3c-ccg/did-spec#readme"
+  "homepage": "https://github.com/w3c/did-spec#readme"
 }
