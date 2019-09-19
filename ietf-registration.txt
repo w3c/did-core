@@ -9,9 +9,9 @@ identifiers conformant to the "did" URI Scheme can be implemented using
 decentralized ledgers, decentralized hashtables, and other types of
 decentralized networks.
 
-This specification is currently under development by the W3C Credentials
-Community Group and is expected to transition to the W3C standards track
-at the end of 2018 or early 2019 calendar year.
+This specification is currently under development by the W3C Decentralized
+Identifiers Working Group and is expected to transition to the W3C standards
+track at the end of 2018 or early 2019 calendar year.
 
 Contact:
 
@@ -20,8 +20,8 @@ Contact:
 Change controller:
 
  Manu Sporny <msporny@digitalbazaar.com>
- W3C Credentials Community Group <public-credentials@w3.org>
+ W3C Decentralized Identifiers Working Group <public-did-wg@w3.org>
 
 References:
 
-[1] https://w3c-ccg.github.io/did-spec/
+[1] https://w3c.github.io/did-spec/
