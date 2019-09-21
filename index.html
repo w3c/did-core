@@ -1557,56 +1557,6 @@ considerations regarding authentication service endpoints.
 
     <section>
       <h2>
-Created (Optional)
-      </h2>
-
-      <p>
-Standard metadata for identifier records includes a timestamp of the
-original creation. The rules for including a creation timestamp are:
-      </p>
-
-      <ol start="1">
-        <li>
-A DID Document MUST have zero or one property representing a
-creation timestamp. It is RECOMMENDED to include this property.
-        </li>
-
-        <li>
-The key for this property MUST be created.
-        </li>
-
-        <li>
-The value of this key MUST be a valid XML datetime value as
-defined in section 3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition
-Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]].
-        </li>
-
-        <li>
-This datetime value MUST be normalized to UTC 00:00 as indicated
-by the trailing "Z".
-        </li>
-
-        <li>
-Method specifications that rely on DLTs SHOULD require time
-values that are after the known <a href="https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki">"median
-time past" (defined in Bitcoin BIP 113)</a>, when the DLT supports
-such a notion.
-        </li>
-      </ol>
-
-      <p>
-Example:
-      </p>
-
-      <pre class="example nohighlight">
-{
-  "created": "2002-10-10T17:00:00Z"
-}
-</pre>
-    </section>
-
-    <section>
-      <h2>
 Updated (Optional)
       </h2>
 
