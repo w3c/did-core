@@ -106,6 +106,37 @@ var ccg = {
         "Tim Berners-Lee"
       ],
       status: "Personal View"
+    },
+    "HASHLINK": {
+      title: "Cryptographic Hyperlinks",
+      date: "December 2018",
+      href: "https://tools.ietf.org/html/draft-sporny-hashlink-02",
+      authors: [
+        "Manu Sporny"
+      ],
+      status: "Internet-Draft",
+      publisher: "IETF"
+    },
+    "DNS-DID": {
+      title: "The Decentralized Identifier (DID) in the DNS",
+      date: "February 2019",
+      href: "https://datatracker.ietf.org/doc/draft-mayrhofer-did-dns/",
+      authors: [
+        "Alexander Mayrhofer",
+        "Dimitrij Klesev",
+        "Markus Sabadello"
+      ],
+      status: "Internet-Draft"
+    },
+    "DID-RESOLUTION": {
+      title: "Decentralized Identifier Resolution",
+      href: "https://w3c-ccg.github.io/did-resolution/",
+      authors: [
+        "Markus Sabadello",
+        "Dmitri Zagidulin"
+      ],
+      status: "Draft Community Group Report",
+      publisher: "Credentials Community Group"
     }
   }
 };

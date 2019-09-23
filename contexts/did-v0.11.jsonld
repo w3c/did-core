@@ -10,10 +10,14 @@
     "didv": "https://w3id.org/did#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
 
+    "EcdsaSecp256k1Signature2019": "sec:EcdsaSecp256k1Signature2019",
+    "EcdsaSecp256k1VerificationKey2019": "sec:EcdsaSecp256k1VerificationKey2019",
     "Ed25519Signature2018": "sec:Ed25519Signature2018",
     "Ed25519VerificationKey2018": "sec:Ed25519VerificationKey2018",
     "RsaSignature2018": "sec:RsaSignature2018",
     "RsaVerificationKey2018": "sec:RsaVerificationKey2018",
+    "SchnorrSecp256k1Signature2019": "sec:SchnorrSecp256k1Signature2019",
+    "SchnorrSecp256k1VerificationKey2019": "sec:SchnorrSecp256k1VerificationKey2019",
     "ServiceEndpointProxyService": "didv:ServiceEndpointProxyService",
 
     "allowedAction": "sec:allowedAction",

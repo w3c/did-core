@@ -43,12 +43,12 @@ directory services</a>, the <a href=
 System</a>, and most national ID systems.
   </dd>
 
-  <dt><dfn data-lt="DIR|decentralized identifier registry|decentralized identifier registries">Decentralized Identifier Registry</dfn> (DIR)</dt>
+  <dt><dfn data-lt="did registry|did registries|decentralized identifier registry|decentralized identifier registries">DID Registry</dfn></dt>
 
   <dd>
 A role a system performs to mediate the creation, verification, updating, and
 deactivation of <a>Decentralized Identifiers</a>.
-A DIR is a type of Verifiable Data Registry (see [[VC-DATA-MODEL]]).
+A DID Registry is a type of Verifiable Data Registry (see [[VC-DATA-MODEL]]).
   </dd>
 
   <dt><dfn data-lt="">Decentralized Public Key Infrastructure</dfn> (DPKI)</dt>
@@ -71,13 +71,23 @@ a position to control the private keys. A dependent becomes an
   </dd>
 
 
+
+  <dt><dfn data-lt="did controller|did controllers">DID Controller</dfn></dt>
+
+  <dd>
+The entity, or a group of entities, in control of a DID and/or <a>DID Document</a>.
+Note that the DID Controller may or may not include the <a>DID Subject</a>.
+  </dd>
+
+
+
   <dt><dfn data-lt="">DID Document</dfn></dt>
 
   <dd>
 A set of data that describes the subject of a
 <a>DID</a>, including mechanisms, such as public keys and
 pseudonymous biometrics, that the DID subject can use to authenticate itself
-and prove their association with the DID. A DID Document may also contain other
+and prove their association with the DID. A DID Document MAY also contain other
 <a href="https://en.wikipedia.org/wiki/Attribute_(computing)">attributes</a> or
 <a href="https://en.wikipedia.org/wiki/Claims-based_identity">claims</a>
 describing the subject. These documents are graph-based data structures that
@@ -85,12 +95,13 @@ are typically expressed using [[JSON-LD]], but may be expressed using other
 compatible graph-based data formats.
   </dd>
 
+
   <dt><dfn data-lt="">DID Fragment</dfn></dt>
 
   <dd>
 The portion of a <a>DID URL</a> that follows the first hash
-sign character ("#"). A DID fragment uses the same syntax as a URI
-fragment. See section 5.7.
+sign character (<code>#</code>). A DID fragment uses the same syntax as a URI
+fragment. See Section <a href="#fragment"></a>.
   </dd>
 
 
@@ -109,9 +120,9 @@ are written and updated.
   <dt><dfn data-lt="">DID Path</dfn></dt>
 
   <dd>
-The portion of a <a>DID URL</a> that follows the first forward
-slash character ("/"). A DID path uses the identical syntax as a URI path.
-See section 5.5.
+The portion of a <a>DID URL</a> that begins with and includes the first forward
+slash character (<code>/</code>). A DID path uses the identical syntax as a URI path.
+See Section <a href="#path"></a>.
   </dd>
 
 
@@ -120,16 +131,24 @@ See section 5.5.
 
   <dd>
 The portion of a <a>DID URL</a> that follows the first question
-mark character ("?"). A DID path uses the identical syntax as a URI path.
-See section 5.6.
+mark character (<code>?</code>). A DID path uses the identical syntax as a URI path.
+See Section <a href="#query"></a>.
   </dd>
 
+
+
+  <dt><dfn data-lt="did subject|did subjects">DID Subject</dfn></dt>
+  <dd>
+The DID Subject is the entity that the DID Document is about, i.e.,
+it is the entity identified by the DID and described by the DID Document.
+  </dd>
 
 
   <dt><dfn data-lt="">DID URL</dfn></dt>
 
   <dd>
-A DID plus an optional <a>DID path</a>, optional <a>DID query</a>, and optional <a>DID fragment</a>.
+A DID plus an optional <a>DID path</a>, optional <code>?</code> character followed by a
+<a>DID query</a>, and optional <code>#</code> character followed by a <a>DID fragment</a>.
   </dd>
 
 

@@ -1,0 +1,4088 @@
+<!DOCTYPE html><html lang="en" dir="ltr"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"><meta name="generator" content="ReSpec 24.30.3"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- EXAMPLES --- */
+span.example-title {
+    text-transform: none;
+}
+aside.example, div.example, div.illegal-example {
+    padding: 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+}
+div.illegal-example { color: red }
+div.illegal-example p { color: black }
+aside.example, div.example {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+    border-color: #e0cb52;
+    background: #fcfaee;
+}
+
+aside.example div.example {
+    border-left-width: .1em;
+    border-color: #999;
+    background: #fff;
+}
+aside.example div.example span.example-title {
+    color: #999;
+}
+</style><style>/* --- ISSUES/NOTES --- */
+.issue-label {
+    text-transform: initial;
+}
+
+.warning > p:first-child { margin-top: 0 }
+.warning {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+}
+span.warning { padding: .1em .5em .15em; }
+
+.issue.closed span.issue-number {
+    text-decoration: line-through;
+}
+
+.warning {
+    border-color: #f11;
+    border-width: .2em;
+    border-style: solid;
+    background: #fbe9e9;
+}
+
+.warning-title:before{
+    content: "⚠"; /*U+26A0 WARNING SIGN*/
+    font-size: 3em;
+    float: left;
+    height: 100%;
+    padding-right: .3em;
+    vertical-align: top;
+    margin-top: -0.5em;
+}
+
+li.task-list-item {
+    list-style: none;
+}
+
+input.task-list-item-checkbox {
+    margin: 0 0.35em 0.25em -1.6em;
+    vertical-align: middle;
+}
+
+.issue a.respec-gh-label {
+  padding: 5px;
+  margin: 0 2px 0 2px;
+  font-size: 10px;
+  text-transform: none;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  position: relative;
+  bottom: 2px;
+  border: none;
+}
+
+.issue a.respec-label-dark {
+  color: #fff;
+  background-color: #000;
+}
+
+.issue a.respec-label-light {
+  color: #000;
+  background-color: #fff;
+}
+</style>
+  <title>
+    Decentralized Identifiers (DIDs) v0.13
+  </title>
+
+
+  <style id="respec-mainstyle">/*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+
+@keyframes pop {
+  0% {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(1.25, 1.25);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+/* Override code highlighter background */
+.hljs {
+  background: transparent !important;
+}
+
+/* --- INLINES --- */
+h1 abbr,
+h2 abbr,
+h3 abbr,
+h4 abbr,
+h5 abbr,
+h6 abbr,
+a abbr {
+  border: none;
+}
+
+dfn {
+  font-weight: bold;
+}
+
+a.internalDFN {
+  color: inherit;
+  border-bottom: 1px solid #99c;
+  text-decoration: none;
+}
+
+a.externalDFN {
+  color: inherit;
+  border-bottom: 1px dotted #ccc;
+  text-decoration: none;
+}
+
+a.bibref {
+  text-decoration: none;
+}
+
+.respec-offending-element:target {
+  animation: pop 0.25s ease-in-out 0s 1;
+}
+
+.respec-offending-element,
+a[href].respec-offending-element {
+  text-decoration: red wavy underline;
+}
+@supports not (text-decoration: red wavy underline) {
+  .respec-offending-element:not(pre) {
+    display: inline-block;
+  }
+  .respec-offending-element {
+    /* Red squiggly line */
+    background: url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=)
+      bottom repeat-x;
+  }
+}
+
+#references :target {
+  background: #eaf3ff;
+  animation: pop 0.4s ease-in-out 0s 1;
+}
+
+cite .bibref {
+  font-style: normal;
+}
+
+code {
+  color: #c83500;
+}
+
+th code {
+  color: inherit;
+}
+
+a[href].orcid {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+a[href].orcid > svg {
+    margin-bottom: -2px;
+}
+
+/* --- TOC --- */
+
+.toc a,
+.tof a {
+  text-decoration: none;
+}
+
+a .secno,
+a .figno {
+  color: #000;
+}
+
+ul.tof,
+ol.tof {
+  list-style: none outside none;
+}
+
+.caption {
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+/* --- TABLE --- */
+
+table.simple {
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-bottom: 3px solid #005a9c;
+}
+
+.simple th {
+  background: #005a9c;
+  color: #fff;
+  padding: 3px 5px;
+  text-align: left;
+}
+
+.simple th[scope="row"] {
+  background: inherit;
+  color: inherit;
+  border-top: 1px solid #ddd;
+}
+
+.simple td {
+  padding: 3px 10px;
+  border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+  background: #f0f6ff;
+}
+
+/* --- DL --- */
+
+.section dd > p:first-child {
+  margin-top: 0;
+}
+
+.section dd > p:last-child {
+  margin-bottom: 0;
+}
+
+.section dd {
+  margin-bottom: 1em;
+}
+
+.section dl.attrs dd,
+.section dl.eldef dd {
+  margin-bottom: 0;
+}
+
+#issue-summary > ul,
+.respec-dfn-list {
+  column-count: 2;
+}
+
+#issue-summary li,
+.respec-dfn-list li {
+  list-style: none;
+}
+
+details.respec-tests-details {
+  margin-left: 1em;
+  display: inline-block;
+  vertical-align: top;
+}
+
+details.respec-tests-details > * {
+  padding-right: 2em;
+}
+
+details.respec-tests-details[open] {
+  z-index: 999999;
+  position: absolute;
+  border: thin solid #cad3e2;
+  border-radius: 0.3em;
+  background-color: white;
+  padding-bottom: 0.5em;
+}
+
+details.respec-tests-details[open] > summary {
+  border-bottom: thin solid #cad3e2;
+  padding-left: 1em;
+  margin-bottom: 1em;
+  line-height: 2em;
+}
+
+details.respec-tests-details > ul {
+  width: 100%;
+  margin-top: -0.3em;
+}
+
+details.respec-tests-details > li {
+  padding-left: 1em;
+}
+
+a[href].self-link:hover {
+  opacity: 1;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  position: relative;
+}
+
+aside.example .marker > a.self-link {
+  color: inherit;
+}
+
+h2 > a.self-link,
+h3 > a.self-link,
+h4 > a.self-link,
+h5 > a.self-link,
+h6 > a.self-link {
+  border: none;
+  color: inherit;
+  font-size: 83%;
+  height: 2em;
+  left: -1.6em;
+  opacity: 0.5;
+  position: absolute;
+  text-align: center;
+  text-decoration: none;
+  top: 0;
+  transition: opacity 0.2s;
+  width: 2em;
+}
+
+h2 > a.self-link::before,
+h3 > a.self-link::before,
+h4 > a.self-link::before,
+h5 > a.self-link::before,
+h6 > a.self-link::before {
+  content: "§";
+  display: block;
+}
+
+@media (max-width: 767px) {
+  dd {
+    margin-left: 0;
+  }
+
+  /* Don't position self-link in headings off-screen */
+  h2 > a.self-link,
+  h3 > a.self-link,
+  h4 > a.self-link,
+  h5 > a.self-link,
+  h6 > a.self-link {
+    left: auto;
+    top: auto;
+  }
+}
+
+@media print {
+  .removeOnSave {
+    display: none;
+  }
+}
+</style>
+
+  <style>
+  pre .highlight {
+    font-weight: bold;
+    color: green;
+  }
+  pre .comment {
+    color: SteelBlue;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  </style>
+<style>var {
+  position: relative;
+  cursor: pointer;
+}
+
+var[data-type]::before,
+var[data-type]::after {
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+/* the triangle or arrow or caret or whatever */
+var[data-type]::before {
+  content: "";
+  transform: translateX(-50%);
+  border-width: 4px 6px 0 6px;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: #000;
+}
+
+/* actual text */
+var[data-type]::after {
+  content: attr(data-type);
+  transform: translateX(-50%) translateY(-100%);
+  background: #000;
+  text-align: center;
+  /* additional styling */
+  font-family: "Dank Mono", "Fira Code", monospace;
+  font-style: normal;
+  padding: 6px;
+  border-radius: 3px;
+  color: #daca88;
+  text-indent: 0;
+  font-weight: normal;
+}
+
+var[data-type]:hover::after,
+var[data-type]:hover::before {
+  opacity: 1;
+}
+</style><script id="initialUserConfig" type="application/json">{
+  "specStatus": "CG-FINAL",
+  "shortName": "did",
+  "subtitle": "Data Model and Syntaxes",
+  "localBiblio": {
+    "REST": {
+      "title": "Architectural Styles and the Design of Network-based Software Architectures",
+      "date": "2000",
+      "href": "http://www.ics.uci.edu/~fielding/pubs/dissertation/",
+      "authors": [
+        "Fielding, Roy Thomas"
+      ],
+      "publisher": "University of California, Irvine."
+    },
+    "VC-USECASES": {
+      "title": "Verifiable Claims Use Cases",
+      "href": "https://www.w3.org/TR/verifiable-claims-use-cases/",
+      "authors": [
+        "Shane McCarron",
+        "Daniel Burnett",
+        "Gregg Kellogg",
+        "Brian Sletten",
+        "Manu Sporny"
+      ],
+      "status": "FPWD",
+      "publisher": "Verifiable Claims Working Group"
+    },
+    "VC-DATA-MODEL": {
+      "title": "Verifiable Credentials Data Model",
+      "href": "https://www.w3.org/TR/verifiable-claims-data-model/",
+      "authors": [
+        "Manu Sporny",
+        "Dave Longley",
+        "Grant Noble",
+        "David Chadwick",
+        "Daniel C. Burnett"
+      ],
+      "status": "FPWD",
+      "publisher": "Verifiable Claims Working Group",
+      "id": "vc-data-model"
+    },
+    "HTTP-SIGNATURES": {
+      "aliasOf": "http-signatures"
+    },
+    "MACAROONS": {
+      "title": "Macaroons",
+      "href": "http://macaroons.io/",
+      "authors": [
+        "Arnar Birgisson",
+        "Joe Gibbs Politz",
+        "Úlfar Erlingsson",
+        "Ankur Taly",
+        "Michael Vrable",
+        "Mark Lentczner"
+      ],
+      "status": "unofficial",
+      "publisher": "Credentials Community Group"
+    },
+    "OPEN-BADGES": {
+      "title": "Open Badges",
+      "href": "https://github.com/openbadges/openbadges-specification",
+      "authors": [
+        "Brian Brennan",
+        "Mike Larsson",
+        "Chris McAvoy",
+        "Nate Otto",
+        "Kerri Lemoie"
+      ],
+      "status": "BA-DRAFT",
+      "publisher": "Badge Alliance Standard Working Group"
+    },
+    "RDF-NORMALIZATION": {
+      "title": "RDF Dataset Normalization",
+      "href": "http://json-ld.github.io/normalization/spec/",
+      "authors": [
+        "Dave Longley",
+        "Manu Sporny"
+      ],
+      "status": "CG-DRAFT",
+      "publisher": "Credentials W3C Community Group"
+    },
+    "LD-PROOFS": {
+      "title": "Linked Data Proofs",
+      "href": "https://w3c-dvcg.github.io/ld-proofs/",
+      "authors": [
+        "Manu Sporny",
+        "Dave Longley"
+      ],
+      "status": "CG-DRAFT",
+      "publisher": "Digital Verification Community Group",
+      "id": "ld-proofs"
+    },
+    "LD-SIGNATURES": {
+      "title": "Linked Data Signatures",
+      "href": "https://w3c-dvcg.github.io/ld-signatures/",
+      "authors": [
+        "Manu Sporny",
+        "Dave Longley"
+      ],
+      "status": "CG-DRAFT",
+      "publisher": "Digital Verification Community Group",
+      "id": "ld-signatures"
+    },
+    "DID-METHOD-REGISTRY": {
+      "title": "The Decentralized Identifier Method Registry",
+      "href": "https://w3c-ccg.github.io/did-method-registry/",
+      "authors": [
+        "Manu Sporny",
+        "Drummond Reed"
+      ],
+      "status": "CG-DRAFT",
+      "publisher": "Digital Verification Community Group",
+      "id": "did-method-registry"
+    },
+    "MATRIX-URIS": {
+      "title": "Matrix URIs - Ideas about Web Architecture",
+      "date": "December 1996",
+      "href": "https://www.w3.org/DesignIssues/MatrixURIs.html",
+      "authors": [
+        "Tim Berners-Lee"
+      ],
+      "status": "Personal View",
+      "id": "matrix-uris"
+    },
+    "HASHLINK": {
+      "title": "Cryptographic Hyperlinks",
+      "date": "December 2018",
+      "href": "https://tools.ietf.org/html/draft-sporny-hashlink-02",
+      "authors": [
+        "Manu Sporny"
+      ],
+      "status": "Internet-Draft",
+      "publisher": "IETF",
+      "id": "hashlink"
+    },
+    "DNS-DID": {
+      "title": "The Decentralized Identifier (DID) in the DNS",
+      "date": "February 2019",
+      "href": "https://datatracker.ietf.org/doc/draft-mayrhofer-did-dns/",
+      "authors": [
+        "Alexander Mayrhofer",
+        "Dimitrij Klesev",
+        "Markus Sabadello"
+      ],
+      "status": "Internet-Draft",
+      "id": "dns-did"
+    },
+    "DID-RESOLUTION": {
+      "title": "Decentralized Identifier Resolution",
+      "href": "https://w3c-ccg.github.io/did-resolution/",
+      "authors": [
+        "Markus Sabadello",
+        "Dmitri Zagidulin"
+      ],
+      "status": "Draft Community Group Report",
+      "publisher": "Credentials Community Group",
+      "id": "did-resolution"
+    }
+  },
+  "github": "https://github.com/w3c-ccg/did-spec",
+  "includePermalinks": false,
+  "edDraftURI": "https://w3c-ccg.github.io/did-spec/",
+  "editors": [
+    {
+      "name": "Drummond Reed",
+      "url": "https://www.linkedin.com/in/drummondreed/",
+      "company": "Evernym",
+      "companyURL": "https://evernym.com/"
+    },
+    {
+      "name": "Manu Sporny",
+      "url": "http://manu.sporny.org/",
+      "company": "Digital Bazaar",
+      "companyURL": "https://digitalbazaar.com/"
+    },
+    {
+      "name": "Markus Sabadello",
+      "url": "https://www.linkedin.com/in/markus-sabadello-353a0821",
+      "company": "Danube Tech",
+      "companyURL": "https://danubetech.com/"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Drummond Reed",
+      "url": "https://www.linkedin.com/in/drummondreed/",
+      "company": "Evernym",
+      "companyURL": "https://evernym.com/"
+    },
+    {
+      "name": "Manu Sporny",
+      "url": "http://manu.sporny.org/",
+      "company": "Digital Bazaar",
+      "companyURL": "https://digitalbazaar.com/"
+    },
+    {
+      "name": "Dave Longley",
+      "url": "",
+      "company": "Digital Bazaar",
+      "companyURL": "https://digitalbazaar.com/"
+    },
+    {
+      "name": "Christopher Allen",
+      "url": "https://www.linkedin.com/in/christophera",
+      "company": "Blockchain Commons",
+      "companyURL": "https://www.BlockchainCommons.com"
+    },
+    {
+      "name": "Ryan Grant",
+      "url": "",
+      "company": "",
+      "companyURL": ""
+    },
+    {
+      "name": "Markus Sabadello",
+      "url": "https://www.linkedin.com/in/markus-sabadello-353a0821",
+      "company": "Danube Tech",
+      "companyURL": "https://danubetech.com/"
+    }
+  ],
+  "wg": "Credentials Community Group",
+  "wgURI": "https://www.w3.org/community/credentials/",
+  "wgPublicList": "public-credentials",
+  "wgPatentURI": "https://www.w3.org/community/about/agreements/cla/",
+  "maxTocLevel": 4,
+  "inlineCSS": true,
+  "publishISODate": "2019-08-10T00:00:00.000Z",
+  "generatedSubtitle": "Final Community Group Report 10 August 2019"
+}</script><meta name="description" content="Decentralized Identifiers (DIDs) are a new type of identifier for
+verifiable, decentralized digital identity. These new identifiers
+are designed to enable the controller of a DID to prove control over
+it and to be implemented independently of any centralized registry,
+identity provider, or certificate authority. DIDs are URLs that relate
+a DID subject to means for trustable interactions with that subject.
+DIDs resolve to DID Documents — simple documents that describe how to
+use that specific DID. Each DID Document may express cryptographic
+material, verification methods, and/or service endpoints. These provide
+a set of mechanisms which enable a DID controller to prove control of the
+DID. Service endpoints enable trusted interactions with the DID subject."><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/cg-final"></head>
+<body class="h-entry informative"><div class="head">
+      <a class="logo" href="https://www.w3.org/"><img alt="W3C" width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C"></a>
+      <h1 class="title p-name" id="title">Decentralized Identifiers (DIDs) v0.13</h1>
+      <h2 id="subtitle">Data Model and Syntaxes</h2>
+      <h2>
+        Final Community Group Report
+        <time class="dt-published" datetime="2019-08-10">10 August 2019</time>
+      </h2>
+      <dl>
+
+
+        <dt>Latest editor's draft:</dt><dd><a href="https://w3c-ccg.github.io/did-spec/">https://w3c-ccg.github.io/did-spec/</a></dd>
+
+
+
+
+
+        <dt>Editors:</dt>
+        <dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="https://www.linkedin.com/in/drummondreed/">Drummond Reed</a>
+            (<a class="p-org org h-org h-card" href="https://evernym.com/">Evernym</a>)
+          </dd><dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="http://manu.sporny.org/">Manu Sporny</a>
+            (<a class="p-org org h-org h-card" href="https://digitalbazaar.com/">Digital Bazaar</a>)
+          </dd><dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="https://www.linkedin.com/in/markus-sabadello-353a0821">Markus Sabadello</a>
+            (<a class="p-org org h-org h-card" href="https://danubetech.com/">Danube Tech</a>)
+          </dd>
+
+        <dt>
+                Authors:
+              </dt><dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="https://www.linkedin.com/in/drummondreed/">Drummond Reed</a>
+            (<a class="p-org org h-org h-card" href="https://evernym.com/">Evernym</a>)
+          </dd><dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="http://manu.sporny.org/">Manu Sporny</a>
+            (<a class="p-org org h-org h-card" href="https://digitalbazaar.com/">Digital Bazaar</a>)
+          </dd><dd class="p-author h-card vcard"><span class="p-name fn">Dave Longley</span>
+            (<a class="p-org org h-org h-card" href="https://digitalbazaar.com/">Digital Bazaar</a>)
+          </dd><dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="https://www.linkedin.com/in/christophera">Christopher Allen</a>
+            (<a class="p-org org h-org h-card" href="https://www.BlockchainCommons.com">Blockchain Commons</a>)
+          </dd><dd class="p-author h-card vcard"><span class="p-name fn">Ryan Grant</span></dd><dd class="p-author h-card vcard"><a class="u-url url p-name fn" href="https://www.linkedin.com/in/markus-sabadello-353a0821">Markus Sabadello</a>
+            (<a class="p-org org h-org h-card" href="https://danubetech.com/">Danube Tech</a>)
+          </dd>
+        <dt>Participate:</dt><dd>
+      <a href="https://github.com/w3c-ccg/did-spec/">GitHub w3c-ccg/did-spec</a>
+    </dd><dd>
+      <a href="https://github.com/w3c-ccg/did-spec/issues/">File a bug</a>
+    </dd><dd>
+      <a href="https://github.com/w3c-ccg/did-spec/commits/gh-pages">Commit history</a>
+    </dd><dd>
+      <a href="https://github.com/w3c-ccg/did-spec/pulls/">Pull requests</a>
+    </dd>
+      </dl>
+
+      <p class="copyright">
+        <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+        ©
+        2019
+
+        the Contributors to the Decentralized Identifiers (DIDs) v0.13 Specification, published by the
+        <a href="https://www.w3.org/community/credentials/">Credentials Community Group</a> under the
+        <a href="https://www.w3.org/community/about/agreements/fsa/">W3C Community Final Specification Agreement (FSA)</a>. A human-readable
+              <a href="https://www.w3.org/community/about/agreements/fsa-deed/">summary</a>
+              is available.
+
+      </p>
+      <hr title="Separator for header">
+    </div>
+  <section id="abstract" class="introductory"><h2>Abstract</h2>
+    <p>
+Decentralized Identifiers (DIDs) are a new type of identifier for
+verifiable, decentralized digital identity. These new identifiers
+are designed to enable the controller of a DID to prove control over
+it and to be implemented independently of any centralized registry,
+identity provider, or certificate authority. DIDs are URLs that relate
+a <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID subject</a> to means for trustable interactions with that subject.
+DIDs resolve to DID Documents — simple documents that describe how to
+use that specific DID. Each DID Document may express cryptographic
+material, verification methods, and/or service endpoints. These provide
+a set of mechanisms which enable a <a href="#dfn-did-controller" class="internalDFN" data-link-type="dfn">DID controller</a> to prove control of the
+DID. Service endpoints enable trusted interactions with the <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID subject</a>.
+    </p>
+    <p>
+This document specifies a common data model, format, and operations that
+all DIDs support.
+    </p>
+  </section>
+
+  <section id="sotd" class="introductory"><h2>Status of This Document</h2><p>
+      This specification was published by the
+      <a href="https://www.w3.org/community/credentials/">Credentials Community Group</a>. It is not a W3C Standard nor is it
+      on the W3C Standards Track.
+
+            Please note that under the
+            <a href="https://www.w3.org/community/about/agreements/final/">W3C Community Final Specification Agreement (FSA)</a>
+            other conditions apply.
+
+      Learn more about
+      <a href="https://www.w3.org/community/">W3C Community and Business Groups</a>.
+    </p>
+    <p>
+Comments regarding this document are welcome. Please file issues
+directly on <a href="https://github.com/w3c-ccg/did-spec/issues/">GitHub</a>, or send them
+to <a href="mailto:public-credentials@w3.org">public-credentials@w3.org</a> (
+<a href="mailto:public-credentials-request@w3.org?subject=subscribe">subscribe</a>,
+<a href="https://lists.w3.org/Archives/Public/public-credentials/">archives</a>).
+    </p>
+
+    <p>
+Portions of the work on this specification have been funded by the
+United States Department of Homeland Security's Science and Technology
+Directorate under contracts HSHQDC-16-R00012-H-SB2016-1-002 and
+HSHQDC-17-C-00019. The content of this specification does not
+necessarily reflect the position or the policy of the U.S. Government
+and no official endorsement should be inferred.
+    </p>
+
+    <p>
+Work on this specification has also been supported by the Rebooting the
+Web of Trust community facilitated by Christopher Allen, Shannon
+Appelcline, Kiara Robles, Brian Weller, Betty Dhamers, Kaliya Young,
+Kim Hamilton Duffy, Manu Sporny, Drummond Reed, Joe Andrieu, and
+Heather Vescent.
+    </p>
+  <p>
+            If you wish to make comments regarding this document, please send
+            them to
+            <a href="mailto:public-credentials@w3.org">public-credentials@w3.org</a>
+            (<a href="mailto:public-credentials-request@w3.org?subject=subscribe">subscribe</a>,
+            <a href="https://lists.w3.org/Archives/Public/public-credentials/">archives</a>).
+          </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>
+Introduction
+    </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#a-simple-example"><bdi class="secno">1.1 </bdi>
+A Simple Example
+    </a></li><li class="tocline"><a class="tocxref" href="#design-goals"><bdi class="secno">1.2 </bdi>
+Design Goals
+      </a></li><li class="tocline"><a class="tocxref" href="#interoperability"><bdi class="secno">1.3 </bdi>Interoperability</a></li></ol></li><li class="tocline"><a class="tocxref" href="#terminology"><bdi class="secno">2. </bdi>
+Terminology
+    </a></li><li class="tocline"><a class="tocxref" href="#data-model"><bdi class="secno">3. </bdi>
+Data Model
+    </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#document"><bdi class="secno">3.1 </bdi>
+Document
+      </a></li><li class="tocline"><a class="tocxref" href="#keys"><bdi class="secno">3.2 </bdi>
+Keys
+      </a></li><li class="tocline"><a class="tocxref" href="#services"><bdi class="secno">3.3 </bdi>
+Services
+      </a></li></ol></li><li class="tocline"><a class="tocxref" href="#decentralized-identifiers-dids"><bdi class="secno">4. </bdi>
+Decentralized Identifiers (DIDs)
+    </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#generic-did-syntax"><bdi class="secno">4.1 </bdi>
+Generic DID Syntax
+      </a></li><li class="tocline"><a class="tocxref" href="#method-specific-syntax"><bdi class="secno">4.2 </bdi>
+Method-Specific Syntax
+      </a></li><li class="tocline"><a class="tocxref" href="#generic-did-parameter-names"><bdi class="secno">4.3 </bdi>
+Generic DID Parameter Names
+      </a></li><li class="tocline"><a class="tocxref" href="#method-specific-did-parameter-names"><bdi class="secno">4.4 </bdi>
+Method-Specific DID Parameter Names
+      </a></li><li class="tocline"><a class="tocxref" href="#path"><bdi class="secno">4.5 </bdi>
+Path
+      </a></li><li class="tocline"><a class="tocxref" href="#query"><bdi class="secno">4.6 </bdi>
+Query
+      </a></li><li class="tocline"><a class="tocxref" href="#fragment"><bdi class="secno">4.7 </bdi>
+Fragment
+      </a></li><li class="tocline"><a class="tocxref" href="#normalization"><bdi class="secno">4.8 </bdi>
+Normalization
+      </a></li><li class="tocline"><a class="tocxref" href="#persistence"><bdi class="secno">4.9 </bdi>
+Persistence
+      </a></li></ol></li><li class="tocline"><a class="tocxref" href="#did-documents"><bdi class="secno">5. </bdi>
+DID Documents
+    </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#contexts"><bdi class="secno">5.1 </bdi>Contexts</a></li><li class="tocline"><a class="tocxref" href="#did-subject"><bdi class="secno">5.2 </bdi>
+DID Subject
+      </a></li><li class="tocline"><a class="tocxref" href="#public-keys"><bdi class="secno">5.3 </bdi>
+Public Keys
+      </a></li><li class="tocline"><a class="tocxref" href="#authentication"><bdi class="secno">5.4 </bdi>
+Authentication
+      </a></li><li class="tocline"><a class="tocxref" href="#authorization-and-delegation"><bdi class="secno">5.5 </bdi>
+Authorization and Delegation
+      </a></li><li class="tocline"><a class="tocxref" href="#service-endpoints"><bdi class="secno">5.6 </bdi>
+Service Endpoints
+      </a></li><li class="tocline"><a class="tocxref" href="#created-optional"><bdi class="secno">5.7 </bdi>
+Created (Optional)
+      </a></li><li class="tocline"><a class="tocxref" href="#updated-optional"><bdi class="secno">5.8 </bdi>
+Updated (Optional)
+      </a></li><li class="tocline"><a class="tocxref" href="#proof-optional"><bdi class="secno">5.9 </bdi>
+Proof (Optional)
+      </a></li><li class="tocline"><a class="tocxref" href="#extensibility"><bdi class="secno">5.10 </bdi>
+Extensibility
+      </a></li></ol></li><li class="tocline"><a class="tocxref" href="#did-document-syntax"><bdi class="secno">6. </bdi>
+DID Document Syntax
+    </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#json"><bdi class="secno">6.1 </bdi>JSON</a></li><li class="tocline"><a class="tocxref" href="#json-ld"><bdi class="secno">6.2 </bdi>
+JSON-LD
+      </a></li></ol></li><li class="tocline"><a class="tocxref" href="#did-methods"><bdi class="secno">7. </bdi>
+DID Methods
+    </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#did-method-schemes"><bdi class="secno">7.1 </bdi>
+DID Method Schemes
+      </a></li><li class="tocline"><a class="tocxref" href="#did-operations"><bdi class="secno">7.2 </bdi>
+DID Operations
+      </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#create"><bdi class="secno">7.2.1 </bdi>
+Create
+        </a></li><li class="tocline"><a class="tocxref" href="#read-verify"><bdi class="secno">7.2.2 </bdi>
+Read/Verify
+        </a></li><li class="tocline"><a class="tocxref" href="#update"><bdi class="secno">7.2.3 </bdi>
+Update
+        </a></li><li class="tocline"><a class="tocxref" href="#deactivate"><bdi class="secno">7.2.4 </bdi>
+Deactivate
+        </a></li></ol></li><li class="tocline"><a class="tocxref" href="#unique-did-method-names"><bdi class="secno">7.3 </bdi>
+Unique DID Method Names
+      </a></li></ol></li><li class="tocline"><a class="tocxref" href="#did-resolvers"><bdi class="secno">8. </bdi>
+DID Resolvers
+    </a></li><li class="tocline"><a class="tocxref" href="#security-considerations"><bdi class="secno">9. </bdi>
+Security Considerations
+    </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#requirements-of-did-method-specifications"><bdi class="secno">9.1 </bdi>
+Requirements of DID Method Specifications
+      </a></li><li class="tocline"><a class="tocxref" href="#choosing-did-resolvers"><bdi class="secno">9.2 </bdi>
+Choosing DID Resolvers
+      </a></li><li class="tocline"><a class="tocxref" href="#binding-of-identity"><bdi class="secno">9.3 </bdi>
+Binding of Identity
+      </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#proving-control-of-a-did-and-did-document"><bdi class="secno">9.3.1 </bdi>
+Proving Control of a DID and DID Document
+        </a></li><li class="tocline"><a class="tocxref" href="#proving-control-of-a-public-key"><bdi class="secno">9.3.2 </bdi>
+Proving Control of a Public Key
+        </a></li><li class="tocline"><a class="tocxref" href="#authentication-and-verifiable-claims"><bdi class="secno">9.3.3 </bdi>
+Authentication and Verifiable Claims
+        </a></li></ol></li><li class="tocline"><a class="tocxref" href="#authentication-service-endpoints"><bdi class="secno">9.4 </bdi>
+Authentication Service Endpoints
+      </a></li><li class="tocline"><a class="tocxref" href="#non-repudiation"><bdi class="secno">9.5 </bdi>
+Non-Repudiation
+      </a></li><li class="tocline"><a class="tocxref" href="#notification-of-did-document-changes"><bdi class="secno">9.6 </bdi>
+Notification of DID Document Changes
+      </a></li><li class="tocline"><a class="tocxref" href="#key-and-signature-expiration"><bdi class="secno">9.7 </bdi>
+Key and Signature Expiration
+      </a></li><li class="tocline"><a class="tocxref" href="#key-revocation-and-recovery"><bdi class="secno">9.8 </bdi>
+Key Revocation and Recovery
+      </a></li><li class="tocline"><a class="tocxref" href="#the-role-of-human-friendly-identifiers"><bdi class="secno">9.9 </bdi>
+The Role of Human-Friendly Identifiers
+      </a></li><li class="tocline"><a class="tocxref" href="#immutability"><bdi class="secno">9.10 </bdi>
+Immutability
+        </a></li></ol></li><li class="tocline"><a class="tocxref" href="#privacy-considerations"><bdi class="secno">10. </bdi>
+Privacy Considerations
+    </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#requirements-of-did-method-specifications-0"><bdi class="secno">10.1 </bdi>
+Requirements of DID Method Specifications
+      </a></li><li class="tocline"><a class="tocxref" href="#keep-personally-identifiable-information-pii-private"><bdi class="secno">10.2 </bdi>
+Keep Personally-Identifiable Information (PII) Private
+      </a></li><li class="tocline"><a class="tocxref" href="#did-correlation-risks-and-pseudonymous-dids"><bdi class="secno">10.3 </bdi>
+DID Correlation Risks and Pseudonymous DIDs
+      </a></li><li class="tocline"><a class="tocxref" href="#did-document-correlation-risks"><bdi class="secno">10.4 </bdi>
+DID Document Correlation Risks
+      </a></li><li class="tocline"><a class="tocxref" href="#herd-privacy"><bdi class="secno">10.5 </bdi>
+Herd Privacy
+      </a></li></ol></li><li class="tocline"><a class="tocxref" href="#future-work"><bdi class="secno">11. </bdi>
+Future Work
+    </a><ol class="toc"><li class="tocline"><a class="tocxref" href="#upper-limits-on-did-character-length"><bdi class="secno">11.1 </bdi>
+Upper Limits on DID Character Length
+      </a></li><li class="tocline"><a class="tocxref" href="#equivalence"><bdi class="secno">11.2 </bdi>
+Equivalence
+      </a></li><li class="tocline"><a class="tocxref" href="#timestamps"><bdi class="secno">11.3 </bdi>
+Timestamps
+      </a></li><li class="tocline"><a class="tocxref" href="#time-locks-and-did-document-recovery"><bdi class="secno">11.4 </bdi>
+Time Locks and DID Document Recovery
+      </a></li><li class="tocline"><a class="tocxref" href="#smart-signatures"><bdi class="secno">11.5 </bdi>
+Smart Signatures
+      </a></li><li class="tocline"><a class="tocxref" href="#verifiable-claims"><bdi class="secno">11.6 </bdi>
+Verifiable Claims
+      </a></li><li class="tocline"><a class="tocxref" href="#alternate-serializations-and-graph-models"><bdi class="secno">11.7 </bdi>
+Alternate Serializations and Graph Models
+      </a></li></ol></li><li class="tocline"><a class="tocxref" href="#registries"><bdi class="secno">A. </bdi>
+Registries
+    </a></li><li class="tocline"><a class="tocxref" href="#real-world-example"><bdi class="secno">B. </bdi>
+Real World Example
+    </a></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">C. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><bdi class="secno">C.1 </bdi>Normative references</a></li><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">C.2 </bdi>Informative references</a></li></ol></li></ol></nav>
+
+  <section class="informative" id="introduction">
+    <h2 id="x1-introduction"><bdi class="secno">1. </bdi>
+Introduction
+    <a class="self-link" aria-label="§" href="#introduction"></a></h2><p><em>This section is non-normative.</em></p>
+
+      <p>
+Conventional <a href="https://en.wikipedia.org/wiki/Identity_management">identity
+management</a> systems are based on centralized authorities such as
+corporate <a href="https://en.wikipedia.org/wiki/Directory_service">directory
+services</a>, <a href="https://en.wikipedia.org/wiki/Certificate_authority">certificate
+authorities</a>, or <a href="https://en.wikipedia.org/wiki/Domain_name_registry">domain name
+registries</a>. From the standpoint of cryptographic trust
+verification, each of these centralized authorities serves as its own
+<a href="https://en.wikipedia.org/wiki/Trust_anchor">root of
+trust</a>. To make identity management work across these systems
+requires implementing <a href="https://en.wikipedia.org/wiki/Federated_identity">federated identity
+management</a>.
+      </p>
+
+      <p>
+The emergence of distributed ledger technology (DLT), sometimes
+referred to as blockchain technology, provides the opportunity for
+fully <a href="#dfn-decentralized-identity-management" class="internalDFN" data-link-type="dfn">decentralized identity management</a>. In a decentralized
+identity system, entities (in the sense of discrete identifiable units
+such as — but not limited to — people, organizations, and
+things) are free to use any shared root of trust.
+Globally distributed ledgers, decentralized P2P networks, or other systems
+with similar capabilities, provide the means for managing a root of
+trust without introducing a centralized authority or a single point of
+failure. In combination, DLTs and decentralized identity systems
+enable any entity to create and manage their own identifiers on any
+number of distributed, independent roots of trust.
+      </p>
+
+      <p>
+Entities are identified by decentralized identifiers (DIDs), and
+may authenticate via proofs (e.g., digital signatures,
+privacy-preserving biometric protocols, etc.). DIDs point to DID
+Documents. A DID Document contains a set of service endpoints for
+interacting with the entity the DID identifies (aka the <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID subject</a>).
+Following the dictums of
+<a href="https://en.wikipedia.org/wiki/Privacy_by_design">Privacy by
+Design</a>, any entity may have as many DIDs as necessary (and
+corresponding DID Documents and service endpoints), to respect the
+entity’s desired separation of identities, personas, and contexts.
+      </p>
+
+      <p>
+DID methods are the mechanism by which a DID and its associated DID
+Document are created, read, updated, and deactivated on a specific
+distributed ledger or network. DID methods are defined using separate
+DID method specifications.
+      </p>
+
+      <p>
+This design eliminates dependence on centralized registries for
+identifiers as well as centralized certificate authorities for key
+management — the standard pattern in hierarchical
+<a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI
+(public key infrastructure</a>). In cases where the <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registry</a>
+is a distributed ledger, each entity may serve as its own root authority
+— an architecture referred to as
+<a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">DPKI
+(decentralized PKI)</a>.
+      </p>
+
+      <p>
+Note that DID methods may also be developed for identifiers
+registered in federated or centralized identity management systems.
+For their part, all types of identifier systems may add support for
+DIDs. This creates an interoperability bridge between the worlds of
+centralized, federated, and decentralized identifiers.
+      </p>
+
+      <p>
+The first purpose of this specification is to define the generic
+DID scheme and a generic set of operations on DID Documents that can be
+implemented for any <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registry</a>. The second
+purpose of this specification is to
+define the conformance requirements for a DID method
+specification — a separate specification that defines a specific DID
+scheme and specific set of DID Document operations for a specific
+<a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registry</a>.
+      </p>
+
+      <div class="note" role="note" id="issue-container-generatedID"><div role="heading" class="note-title marker" id="h-note" aria-level="3"><span>Note</span></div><p class="">
+Conceptually, the relationship of this specification and a DID
+method specification is similar to the relationship of the IETF
+generic URI specification ([<cite><a class="bibref" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax" data-link-type="biblio">RFC3986</a></cite>]) and a specific URI scheme
+          ([<cite><a class="bibref" href="#bib-iana-uri-schemes" title="Uniform Resource Identifier (URI) Schemes" data-link-type="biblio">IANA-URI-SCHEMES</a></cite>] (such as the http: and https: schemes
+specified in [<cite><a class="bibref" href="#bib-rfc7230" title="Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing" data-link-type="biblio">RFC7230</a></cite>]). It is also similar to the relationship
+of the IETF generic URN specification ([<cite><a class="bibref" href="#bib-rfc8141" title="Uniform Resource Names (URNs)" data-link-type="biblio">RFC8141</a></cite>]) and a specific URN
+namespace definition (such as the UUID URN namespace defined in
+[<cite><a class="bibref" href="#bib-rfc4122" title="A Universally Unique IDentifier (UUID) URN Namespace" data-link-type="biblio">RFC4122</a></cite>]). The difference is that a DID Method specification, in
+addition to defining a specific DID scheme, also specifies the
+methods for resolving and deactivating DIDs and writing DID Documents on the
+appropriate <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registry</a>.
+      </p></div>
+      <p>
+The hierarchical design of a generic DID specification with specific DID method
+specifications introduces some of the same concepts as the URI specification:
+      </p>
+        <ul>
+          <li>
+DIDs from different DID methods may not be interoperable, just as URIs from
+different URI schemes may not be interoperable.
+          </li>
+          <li>
+Entities may need multiple DIDs to support different relationships, as the other
+party may only support certain DID methods, just as some browsers may only
+support certain URI schemes.
+          </li>
+          <li>
+Entities may need multiple DIDs to support the different cryptographic schemes
+of different DID methods, as not all parties will support the same cryptographic
+schemes, just as not all browsers support the same URI schemes.
+          </li>
+          <li>
+Managing multiple DIDs, and tracking which DID belongs to which relationship,
+under which cryptographic scheme, introduces similar logistical challenges as
+managing multiple web addresses and tracking which address belongs to which
+website, or tracking which email address belongs to which relationship.
+          </li>
+        </ul>
+      <p>
+For a list of DID Methods and their corresponding specifications,
+see the DID Method Registry [<cite><a class="bibref" href="#bib-did-method-registry" title="The Decentralized Identifier Method Registry" data-link-type="biblio">DID-METHOD-REGISTRY</a></cite>].
+      </p>
+
+  <section class="informative" id="a-simple-example">
+    <h3 id="x1-1-a-simple-example"><bdi class="secno">1.1 </bdi>
+A Simple Example
+    <a class="self-link" aria-label="§" href="#a-simple-example"></a></h3><p><em>This section is non-normative.</em></p>
+
+    <p>
+A DID is a simple text string that consists of three parts: 1) the URL scheme
+identifier (<code>did</code>), 2) the identifier for the
+DID Method, and 3) the DID Method-specific identifier.
+    </p>
+
+    <div class="example" id="example-1-a-simple-example-of-a-decentralized-identifier-did">
+          <div class="marker">
+      <a class="self-link" href="#example-1-a-simple-example-of-a-decentralized-identifier-did">Example<bdi> 1</bdi></a><span class="example-title">: A simple example of a Decentralized Identifier (DID)</span>
+    </div> <pre class="nohighlight">did:example:123456789abcdefghi</pre>
+        </div>
+
+    <p>
+The DID above resolves to a DID Document. A DID Document contains information
+associated with the DID such as ways to cryptographically authenticate the
+entity in control of the DID, as well as services that can be used to
+interact with the entity.
+    </p>
+
+    <div class="example" id="example-2-minimal-self-managed-did-document">
+          <div class="marker">
+      <a class="self-link" href="#example-2-minimal-self-managed-did-document">Example<bdi> 2</bdi></a><span class="example-title">: Minimal self-managed DID Document</span>
+    </div> <pre class="nohighlight">{
+  "@context": "https://www.w3.org/2019/did/v1",
+  "id": "did:example:123456789abcdefghi",
+  "authentication": [{
+    <span class="comment">// used to authenticate as did:...fghi</span>
+    "id": "did:example:123456789abcdefghi#keys-1",
+    "type": "RsaVerificationKey2018",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }],
+  "service": [{
+    <span class="comment">// used to retrieve Verifiable Credentials associated with the DID</span>
+    "id":"did:example:123456789abcdefghi#vcs",
+    "type": "VerifiableCredentialService",
+    "serviceEndpoint": "https://example.com/vc/"
+  }]
+}</pre>
+        </div>
+    </section>
+
+    <section class="informative" id="design-goals">
+      <h3 id="x1-2-design-goals"><bdi class="secno">1.2 </bdi>
+Design Goals
+      <a class="self-link" aria-label="§" href="#design-goals"></a></h3><p><em>This section is non-normative.</em></p>
+
+      <p>
+Decentralized Identifiers are a component of larger systems, such as
+the Verifiable Credentials ecosystem [<cite><a class="bibref" href="#bib-vc-data-model" title="Verifiable Credentials Data Model" data-link-type="biblio">VC-DATA-MODEL</a></cite>], which have driven
+the design goals for this specification. This section summarizes the
+primary design goals for this specification.
+      </p>
+
+      <table class="simple">
+        <thead>
+          <tr>
+            <th>
+Goal
+            </th>
+            <th>
+Description
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+Decentralization
+            </td>
+            <td>
+Eliminate the requirement for
+centralized authorities or single points of failure in
+identifier management, including the registration of globally
+unique identifiers, public verification keys, service
+endpoints, and other metadata.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+Control
+            </td>
+            <td>
+Give entities, both human and
+non-human, the power to directly control their digital
+identifiers without the need to rely on external authorities.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+Privacy
+            </td>
+            <td>
+Enable entities to control the privacy
+of their information, including minimal, selective, and
+progressive disclosure of attributes or other data.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+Security
+            </td>
+            <td>
+Enable sufficient security for relying
+parties to depend on DID Documents for their required level of
+assurance.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+Proof-based
+            </td>
+            <td>
+Enable the <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID subject</a> to provide
+cryptographic proof when interacting with other entities.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+Discoverability
+            </td>
+            <td>
+Make it possible for entities to
+discover DIDs for other entities to learn more about or
+interact with those entities.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+Interoperability
+            </td>
+            <td>
+Use interoperable standards so DID
+infrastructure can make use of existing tools and software
+libraries designed for interoperability.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+Portability
+            </td>
+            <td>
+Be system and network-independent and
+enable entities to use their digital identifiers with any
+system that supports DIDs and DID Methods.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+Simplicity
+            </td>
+            <td>
+Favor a reduced set of simple features in order to make the technology
+easier to understand, implement, and deploy.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+Extensibility
+            </td>
+            <td>
+When possible, enable extensibility
+provided it does not greatly hinder interoperability,
+portability, or simplicity.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="interoperability">
+      <h3 id="x1-3-interoperability"><bdi class="secno">1.3 </bdi>Interoperability<a class="self-link" aria-label="§" href="#interoperability"></a></h3>
+          <p>Interoperability of implementations for DIDs and DID Documents will be tested by evaluating an implementation's ability to create and parse DIDs and DID Documents that conform to the specification. Interoperability for DID methods will be determined by evaluating each DID method's specification to determine, at a minimum, </p>
+          <ol>
+              <li> the DID method name is unique and not used by an existing, incompatible DID method, </li>
+              <li> the required operations are supported,</li>
+              <li> operations requiring descriptions are described,</li>
+              <li> the specification is specific, detailed, and complete enough for independent implementation, and</li>
+              <li> the specification contains sections describing security and privacy considerations.</li>
+          </ol>
+
+
+          <p>Interoperability for producers and consumers of DIDs and DID Documents is provided by ensuring the DIDs and DID Documents conform. Interoperability for method specifications is provided by the details in each method specification. It is understood that, just like a web browser is not required to implement all known URI schemes, conformant software that works with DIDs is not required to implement all known DID methods. However, all implementations of a given DID method must be interoperable for that method.</p>
+
+</section>
+  </section>
+
+
+
+  <section class="informative" id="terminology">
+    <h2 id="x2-terminology"><bdi class="secno">2. </bdi>
+Terminology
+    <a class="self-link" aria-label="§" href="#terminology"></a></h2><p><em>This section is non-normative.</em></p>
+
+    <div data-oninclude="restrictReferences"><p>
+This document attempts to communicate the concepts outlined in the
+Decentralized Identifier space by using specialized terms to discuss specific
+concepts. This terminology is included below and linked to throughout the
+document to aid the reader:
+</p>
+
+<dl class="termlist" id="terms">
+
+
+
+
+
+  <dt><dfn data-lt="did|dids|decentralized identifiers|decentralized identifier" id="dfn-did" data-dfn-type="dfn">Decentralized Identifier</dfn> (DID)</dt>
+
+  <dd>
+A globally unique identifier that does
+not require a centralized registration authority because it is
+registered with <a href="#dfn-dlt" class="internalDFN" data-link-type="dfn">distributed ledger</a> technology or other form of
+decentralized network. The generic format of a DID is defined in this
+specification. A specific <a href="#dfn-did-scheme" class="internalDFN" data-link-type="dfn">DID scheme</a> is defined in a
+<a href="#dfn-did-method" class="internalDFN" data-link-type="dfn">DID method</a> specification.
+  </dd>
+
+  <dt><dfn data-lt="" id="dfn-decentralized-identity-management" data-dfn-type="dfn">Decentralized Identity Management</dfn></dt>
+
+  <dd>
+<a href="https://en.wikipedia.org/wiki/Identity_management">Identity
+Management</a> based on <a href="#dfn-did" class="internalDFN" data-link-type="dfn">decentralized identifiers</a>.
+Decentralized Identity Management extends the identifier creation authority
+beyond the traditional roots of trust
+required by <a href="https://en.wikipedia.org/wiki/X.500">X.500
+directory services</a>, the <a href="https://en.wikipedia.org/wiki/Domain_Name_System">Domain Name
+System</a>, and most national ID systems.
+  </dd>
+
+  <dt><dfn data-lt="did registry|did registries|decentralized identifier registry|decentralized identifier registries" id="dfn-did-registry" data-dfn-type="dfn">DID Registry</dfn></dt>
+
+  <dd>
+A role a system performs to mediate the creation, verification, updating, and
+deactivation of <a href="#dfn-did" class="internalDFN" data-link-type="dfn">Decentralized Identifiers</a>.
+A DID Registry is a type of Verifiable Data Registry (see [<cite><a class="bibref" href="#bib-vc-data-model" title="Verifiable Credentials Data Model" data-link-type="biblio">VC-DATA-MODEL</a></cite>]).
+  </dd>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <dt><dfn data-lt="did controller|did controllers" id="dfn-did-controller" data-dfn-type="dfn">DID Controller</dfn></dt>
+
+  <dd>
+The entity, or a group of entities, in control of a DID and/or <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a>.
+Note that the DID Controller may or may not include the <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID Subject</a>.
+  </dd>
+
+
+
+  <dt><dfn data-lt="" id="dfn-did-document" data-dfn-type="dfn">DID Document</dfn></dt>
+
+  <dd>
+A set of data that describes the subject of a
+<a href="#dfn-did" class="internalDFN" data-link-type="dfn">DID</a>, including mechanisms, such as public keys and
+pseudonymous biometrics, that the DID subject can use to authenticate itself
+and prove their association with the DID. A DID Document <em class="rfc2119" title="MAY">MAY</em> also contain other
+<a href="https://en.wikipedia.org/wiki/Attribute_(computing)">attributes</a> or
+<a href="https://en.wikipedia.org/wiki/Claims-based_identity">claims</a>
+describing the subject. These documents are graph-based data structures that
+are typically expressed using [<cite><a class="bibref" href="#bib-json-ld" title="JSON-LD 1.0" data-link-type="biblio">JSON-LD</a></cite>], but may be expressed using other
+compatible graph-based data formats.
+  </dd>
+
+
+  <dt><dfn data-lt="" id="dfn-did-fragment" data-dfn-type="dfn">DID Fragment</dfn></dt>
+
+  <dd>
+The portion of a <a href="#dfn-did-url" class="internalDFN" data-link-type="dfn">DID URL</a> that follows the first hash
+sign character (<code>#</code>). A DID fragment uses the same syntax as a URI
+fragment. See Section <a href="#fragment" class="sec-ref">§&nbsp;<bdi class="secno">4.7 </bdi>
+Fragment
+      </a>.
+  </dd>
+
+
+
+  <dt><dfn data-lt="" id="dfn-did-method" data-dfn-type="dfn" data-plurals="did methods">DID Method</dfn></dt>
+
+  <dd>
+A definition of how a specific DID scheme can be implemented
+on a specific distributed ledger or network, including the precise
+method(s) by which DIDs are resolved and deactivated and DID Documents
+are written and updated.
+  </dd>
+
+
+
+  <dt><dfn data-lt="" id="dfn-did-path" data-dfn-type="dfn">DID Path</dfn></dt>
+
+  <dd>
+The portion of a <a href="#dfn-did-url" class="internalDFN" data-link-type="dfn">DID URL</a> that begins with and includes the first forward
+slash character (<code>/</code>). A DID path uses the identical syntax as a URI path.
+See Section <a href="#path" class="sec-ref">§&nbsp;<bdi class="secno">4.5 </bdi>
+Path
+      </a>.
+  </dd>
+
+
+
+  <dt><dfn data-lt="" id="dfn-did-query" data-dfn-type="dfn">DID Query</dfn></dt>
+
+  <dd>
+The portion of a <a href="#dfn-did-url" class="internalDFN" data-link-type="dfn">DID URL</a> that follows the first question
+mark character (<code>?</code>). A DID path uses the identical syntax as a URI path.
+See Section <a href="#query" class="sec-ref">§&nbsp;<bdi class="secno">4.6 </bdi>
+Query
+      </a>.
+  </dd>
+
+
+
+  <dt><dfn data-lt="did subject|did subjects" id="dfn-did-subject" data-dfn-type="dfn">DID Subject</dfn></dt>
+  <dd>
+The DID Subject is the entity that the DID Document is about, i.e.,
+it is the entity identified by the DID and described by the DID Document.
+  </dd>
+
+
+  <dt><dfn data-lt="" id="dfn-did-url" data-dfn-type="dfn" data-plurals="did urls">DID URL</dfn></dt>
+
+  <dd>
+A DID plus an optional <a href="#dfn-did-path" class="internalDFN" data-link-type="dfn">DID path</a>, optional <code>?</code> character followed by a
+<a href="#dfn-did-query" class="internalDFN" data-link-type="dfn">DID query</a>, and optional <code>#</code> character followed by a <a href="#dfn-did-fragment" class="internalDFN" data-link-type="dfn">DID fragment</a>.
+  </dd>
+
+
+
+  <dt><dfn data-lt="" id="dfn-did-scheme" data-dfn-type="dfn">DID Scheme</dfn></dt>
+
+  <dd>
+The formal syntax of a <a href="#dfn-did" class="internalDFN" data-link-type="dfn">Decentralized Identifier</a>. The generic DID
+scheme is defined in this specification. Separate DID method specifications
+define a specific <a href="#dfn-did-scheme" class="internalDFN" data-link-type="dfn">DID scheme</a> that works with that specific DID method.
+  </dd>
+
+
+
+  <dt><dfn data-lt="dlt|distributed ledger" id="dfn-dlt" data-dfn-type="dfn">Distributed Ledger</dfn> (aka DLT)</dt>
+
+  <dd>
+A <a href="https://en.wikipedia.org/wiki/Distributed_database">distributed
+database</a> in which the various nodes use a <a href="https://en.wikipedia.org/wiki/Consensus_(computer_science)">consensus
+protocol</a> to maintain a shared ledger in which each transaction is
+cryptographically signed and chained to the previous transaction
+  </dd>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <dt><dfn data-lt="service endpoints|service endpoint" id="dfn-service-endpoints" data-dfn-type="dfn">Service Endpoint</dfn></dt>
+
+  <dd>
+A network address at which a service operates on
+behalf of a DID subject. Examples of specific services include
+discovery services, social networks, file storage services, and
+verifiable claim repository services. Service endpoints may also be provided
+by a generalized data interchange protocol such as
+<a href="#dfn-xdi" class="internalDFN" data-link-type="dfn">Extensible Data Interchange</a>.
+  </dd>
+
+
+
+
+
+
+
+
+  <dt><dfn data-lt="xdi|extensible data interchange" id="dfn-xdi" data-dfn-type="dfn">Extensible Data Interchange</dfn> (aka XDI)</dt>
+
+  <dd>
+A semantic
+graph format and semantic data interchange protocol defined by the
+  <a href="https://www.oasis-open.org/committees/xdi/">OASIS XDI Technical
+Committee</a>.
+  </dd>
+
+  <dt><dfn data-lt="uri|uris" id="dfn-uri" data-dfn-type="dfn">URI</dfn></dt>
+  <dd>
+An identifier as defined by [<cite><a class="bibref" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax" data-link-type="biblio">RFC3986</a></cite>].
+  </dd>
+
+</dl>
+</div>
+
+  </section>
+
+  <section class="informative" id="data-model">
+    <h2 id="x3-data-model"><bdi class="secno">3. </bdi>
+Data Model
+    <a class="self-link" aria-label="§" href="#data-model"></a></h2><p><em>This section is non-normative.</em></p>
+    <p>
+This section outlines the Decentralized Identifier data model concepts,
+in particular how keys, services, and the <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID Subject</a> are related to the
+<a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a>.
+    </p>
+    <p>
+For information about how the data model can be extended, see
+<a href="#extensibility" class="sec-ref">§&nbsp;<bdi class="secno">5.10 </bdi>
+Extensibility
+      </a>.
+    </p>
+
+    <section id="document">
+      <h3 id="x3-1-document"><bdi class="secno">3.1 </bdi>
+Document
+      <a class="self-link" aria-label="§" href="#document"></a></h3>
+      <p>
+A DID resolves to a <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a>. This is the concrete serialization of
+the data model, according to a particular syntax (see
+<a href="#did-document-syntax" class="sec-ref">§&nbsp;<bdi class="secno">6. </bdi>
+DID Document Syntax
+    </a>). The <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a> contains attributes
+or claims about the <a href="#did-subject" class="sec-ref">§&nbsp;<bdi class="secno">5.2 </bdi>
+DID Subject
+      </a>, and the DID itself is
+contained in the <code>id</code> property.
+      </p>
+      <p>
+The properties that can be present in a <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a> are detailed
+further in <a href="#did-documents" class="sec-ref">§&nbsp;<bdi class="secno">5. </bdi>
+DID Documents
+    </a>.
+      </p>
+      <p>
+The properties present in a <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a> can be updated according to
+the applicable <a href="#did-methods" class="sec-ref">§&nbsp;<bdi class="secno">7. </bdi>
+DID Methods
+    </a>.
+      </p>
+    </section>
+
+    <section id="keys">
+      <h3 id="x3-2-keys"><bdi class="secno">3.2 </bdi>
+Keys
+      <a class="self-link" aria-label="§" href="#keys"></a></h3>
+      <p>
+One or more <a href="#public-keys" class="sec-ref">§&nbsp;<bdi class="secno">5.3 </bdi>
+Public Keys
+      </a> can be included in a <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID
+Document</a> using, for example, the <code>publicKey</code> or <code>authentication</code>
+properties depending on what they are to be used for. Each public key
+has an identifier (<code>id</code>) of its own, a <code>type</code>,
+and a <code>controller</code>, as well as other properties which
+depend on what type of key it is.
+      </p>
+    </section>
+
+    <section id="services">
+      <h3 id="x3-3-services"><bdi class="secno">3.3 </bdi>
+Services
+      <a class="self-link" aria-label="§" href="#services"></a></h3>
+      <p>
+A <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a> can contain pointers to services using the <code>
+service</code> property. Services can be anything the <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID Subject</a>
+wishes to advertise, for example other ways to interact with
+the <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID Subject</a>. Each service has its own <code>id</code> and
+<code>type</code>, as well as a <code>serviceEndpoint</code> with a
+URI or further properties describing the service.
+      </p>
+      <p>
+For more information see <a href="#service-endpoints" class="sec-ref">§&nbsp;<bdi class="secno">5.6 </bdi>
+Service Endpoints
+      </a>.
+      </p>
+    </section>
+
+  </section>
+
+  <section id="decentralized-identifiers-dids">
+    <h2 id="x4-decentralized-identifiers-dids"><bdi class="secno">4. </bdi>
+Decentralized Identifiers (DIDs)
+    <a class="self-link" aria-label="§" href="#decentralized-identifiers-dids"></a></h2>
+
+    <p>
+The concept of a globally unique <a href="#dfn-did" class="internalDFN" data-link-type="dfn">decentralized identifier</a> is not
+new; <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">Universally
+Unique Identifiers</a> (UUIDs) were first developed in the 1980s and
+later became a standard feature of the Open Software Foundation’s
+<a href="https://en.wikipedia.org/wiki/Distributed_Computing_Environment">Distributed
+Computing Environment</a>. UUIDs achieve global uniqueness without a
+centralized registry service by using an algorithm that generates
+128-bit values with sufficient entropy that the chance of collision are
+infinitesimally small. UUIDs are formally specified in [<cite><a class="bibref" href="#bib-rfc4122" title="A Universally Unique IDentifier (UUID) URN Namespace" data-link-type="biblio">RFC4122</a></cite>] as a
+specific type of Unified Resource Name (URN).
+    </p>
+
+    <p>
+A DID is similar to a UUID except: (a) like a URL, it can be resolved
+or dereferenced to a standard resource describing the subject (a <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID
+Document</a> — see Section <a href="#did-documents" class="sec-ref">§&nbsp;<bdi class="secno">5. </bdi>
+DID Documents
+    </a>), and (b) unlike
+a URL, the DID Document typically contains cryptographic material that
+enables authentication of the <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID subject</a>.
+    </p>
+
+    <section id="generic-did-syntax">
+      <h3 id="x4-1-generic-did-syntax"><bdi class="secno">4.1 </bdi>
+Generic DID Syntax
+      <a class="self-link" aria-label="§" href="#generic-did-syntax"></a></h3>
+
+      <p>
+The generic <a href="#dfn-did-scheme" class="internalDFN" data-link-type="dfn">DID scheme</a> is a URI scheme conformant with
+[<cite><a class="bibref" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax" data-link-type="biblio">RFC3986</a></cite>]. The DID scheme specializes only the scheme and
+authority components of a DID URI — the <code>path-abempty</code>,
+<code>query</code>, and <code>fragment</code> components are
+identical to the ABNF rules defined
+in [<cite><a class="bibref" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax" data-link-type="biblio">RFC3986</a></cite>].
+      </p>
+
+      <div class="note" role="note" id="issue-container-generatedID-0"><div role="heading" class="note-title marker" id="h-note-0" aria-level="4"><span>Note</span></div><p class="">
+The term <a href="#dfn-did" class="internalDFN" data-link-type="dfn">DID</a> refers only to the URI
+conforming to the <code>did</code> rule in the ABNF below. A
+DID always identifies the <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID subject</a>. The term <a href="#dfn-did-url" class="internalDFN" data-link-type="dfn">DID URL</a>,
+defined by the <code>did-url</code> rule,
+refers to a URL that begins with a DID followed by one or more
+additional components. A DID URL always identifies the resource to
+be located.
+      </p></div>
+
+      <p>
+The following is the ABNF definition using the syntax in [<cite><a class="bibref" href="#bib-rfc5234" title="Augmented BNF for Syntax Specifications: ABNF" data-link-type="biblio">RFC5234</a></cite>]
+which defines <code>ALPHA</code> and <code>DIGIT</code>. All other
+rule names not defined in this ABNF are defined in [<cite><a class="bibref" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax" data-link-type="biblio">RFC3986</a></cite>].
+      </p>
+
+      <pre class="nohighlight">did                = "did:" method-name ":" method-specific-id
+method-name        = 1*method-char
+method-char        = %x61-7A / DIGIT
+method-specific-id = *idchar *( ":" *idchar )
+idchar             = ALPHA / DIGIT / "." / "-" / "_"
+did-url            = did *( ";" param ) path-abempty [ "?" query ]
+                     [ "#" fragment ]
+param              = param-name [ "=" param-value ]
+param-name         = 1*param-char
+param-value        = *param-char
+param-char         = ALPHA / DIGIT / "." / "-" / "_" / ":" /
+                     pct-encoded</pre>
+
+      <div class="issue" id="issue-container-number-198"><div role="heading" class="issue-title marker" id="h-issue" aria-level="4"><a href="https://github.com/w3c-ccg/did-spec/issues/198"><span class="issue-number">Issue 198</span></a><span class="issue-label">: Should DID syntax allow an empty "method-specific-id"?</span></div><p class="">
+The grammar currently allows an empty <code>method-specific-id</code>,
+e.g., <code>did:example:</code> would be a valid DID that could identify
+the DID method itself.
+      </p></div>
+
+    </section>
+
+    <section id="method-specific-syntax">
+      <h3 id="x4-2-method-specific-syntax"><bdi class="secno">4.2 </bdi>
+Method-Specific Syntax
+      <a class="self-link" aria-label="§" href="#method-specific-syntax"></a></h3>
+
+      <p>
+A DID method specification <em class="rfc2119" title="MUST">MUST</em> further restrict the generic DID
+syntax by defining its own <code>method-name</code> and its own
+<code>method-specific-id</code> syntax. See Section <a href="#did-methods" class="sec-ref">§&nbsp;<bdi class="secno">7. </bdi>
+DID Methods
+    </a>.
+      </p>
+    </section>
+
+    <section id="generic-did-parameter-names">
+      <h3 id="x4-3-generic-did-parameter-names"><bdi class="secno">4.3 </bdi>
+Generic DID Parameter Names
+      <a class="self-link" aria-label="§" href="#generic-did-parameter-names"></a></h3>
+
+      <p>
+DID URL syntax supports a simple, generalized format for parameters based on the
+matrix parameter syntax ([<cite><a class="bibref" href="#bib-matrix-uris" title="Matrix URIs - Ideas about Web Architecture" data-link-type="biblio">MATRIX-URIS</a></cite>]).
+The ABNF above does not specify any parameter names (the <code>param-name</code>
+rule).
+      </p>
+      <p>
+Some generic DID parameter names (e.g., for service selection) are completely
+independent of any specific DID method and <em class="rfc2119" title="MUST">MUST</em> always function the same way
+for all DIDs.
+Others (e.g., for versioning) <em class="rfc2119" title="MAY">MAY</em> be supported by
+certain DID methods, but <em class="rfc2119" title="MUST">MUST</em> operate uniformly across those DID methods that
+do support them.
+      </p>
+      <p>
+Parameter names that are completely method-specific are covered in
+<a href="#method-specific-did-parameter-names" class="sec-ref">§&nbsp;<bdi class="secno">4.4 </bdi>
+Method-Specific DID Parameter Names
+      </a>.
+      </p>
+      <p>
+The following table defines a set of generic DID parameter names:
+      </p>
+
+      <table class="simple">
+        <thead>
+          <tr>
+            <th>Generic DID Parameter Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+<code>hl</code>
+            </td>
+            <td>
+A resource hash of the DID Document to add integrity
+protection, as specified in [<cite><a class="bibref" href="#bib-hashlink" title="Cryptographic Hyperlinks" data-link-type="biblio">HASHLINK</a></cite>].
+            </td>
+          </tr>
+          <tr>
+            <td>
+<code>service</code>
+            </td>
+            <td>
+Identifies a service from the DID Document by service id.
+            </td>
+          </tr>
+          <tr>
+            <td>
+<code>version-id</code>
+            </td>
+            <td>
+Identifies a specific version of a DID Document to be resolved (the version ID
+could be sequential, or a UUID, or method-specific). Note: This parameter may
+not be supported by all DID methods.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+<code>version-time</code>
+            </td>
+            <td>
+Identifies a certain version timestamp of a DID Document to be resolved (i.e.,
+the DID Document that was valid for a DID at a certain time). Note: This
+parameter may not be supported by all DID methods.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+The exact processing rules for these parameters are specified in [<cite><a class="bibref" href="#bib-did-resolution" title="Decentralized Identifier Resolution" data-link-type="biblio">DID-RESOLUTION</a></cite>].
+      </p>
+
+      <div class="note" role="note" id="issue-container-generatedID-1"><div role="heading" class="note-title marker" id="h-note-1" aria-level="4"><span>Note</span></div><p class="">
+Note that there may be additional parameters or options that are not part
+of the DID URL but instead passed to a DID resolver "out of band", i.e.,
+using a resolution protocol or some other mechanism. Such options could
+for example control caching or the desired format of a resolution result.
+This is similar to HTTP, where caching or result format are expressed as
+HTTP headers rather than as part of an HTTP URL. The important distinction
+is that DID parameters that are part of the DID URL specify what resource
+is being identified, whereas DID resolver options that are not part of the
+DID URL control how that resource is dereferenced.
+      </p></div>
+    </section>
+
+    <section id="method-specific-did-parameter-names">
+      <h3 id="x4-4-method-specific-did-parameter-names"><bdi class="secno">4.4 </bdi>
+Method-Specific DID Parameter Names
+      <a class="self-link" aria-label="§" href="#method-specific-did-parameter-names"></a></h3>
+
+      <p>
+A DID method specification <em class="rfc2119" title="MAY">MAY</em> specify additional method-specific parameter
+names. A method-specific parameter name <em class="rfc2119" title="MUST">MUST</em> be prefixed by the method name
+as defined by the <code>method-name</code> rule.
+      </p>
+
+      <p>
+For example, if the method <code>did:foo:</code> defines the parameter bar,
+the parameter name must be <code>foo:bar</code>. An example DID URL using
+this method and this method-specific parameter would be:
+      </p>
+
+      <p>
+<code>did:foo:21tDAKCERh95uGgKbJNHYp;foo:bar=high</code>
+      </p>
+
+      <div class="issue" id="issue-container-number-199"><div role="heading" class="issue-title marker" id="h-issue-0" aria-level="4"><a href="https://github.com/w3c-ccg/did-spec/issues/199"><span class="issue-number">Issue 199</span></a><span class="issue-label">: Use colon separator or kebab-case for method-specific DID parameter names?</span></div><p class="">
+Consider using kebab-case style instead of colon separator,
+e.g., <code>foo-bar</code> instead of <code>foo:bar</code>.
+      </p></div>
+
+      <p>
+A method-specific parameter name defined by one DID method <em class="rfc2119" title="MAY">MAY</em>
+be used by other DID methods. For example:
+      </p>
+
+      <p>
+<code>did:example:21tDAKCERh95uGgKbJNHYp;foo:bar=low</code>
+      </p>
+
+      <p>
+Method-specific parameter names <em class="rfc2119" title="MAY">MAY</em> be combined with generic parameter
+names in any order.
+      </p>
+
+      <p>
+<code>did:example:21tDAKCERh95uGgKbJNHYp;service=agent;foo:bar=high</code>
+      </p>
+
+      <p>
+Both DID method namespaces and method-specific parameter
+namespaces <em class="rfc2119" title="MAY">MAY</em> include colons, so they may be partitioned hierarchically
+as defined by a DID method specification. Here is an example DID URL that
+illustrates both:
+      </p>
+
+      <p>
+<code>did:foo:baz:21tDAKCERh95uGgKbJNHYp;foo:baz:hex=b612</code>
+      </p>
+    </section>
+
+      <div class="issue" id="issue-container-number-200"><div role="heading" class="issue-title marker" id="h-issue-1" aria-level="3"><a href="https://github.com/w3c-ccg/did-spec/issues/200"><span class="issue-number">Issue 200</span></a><span class="issue-label">: Details on the use of method-specific DID parameters</span></div><p class="">
+Review what exactly we want to say about method-specific parameters
+defined by one method but used in a DID URL with a different method.
+Also discuss hierarchical method namespaces in DID parameter names.
+      </p></div>
+
+    <section id="path">
+      <h3 id="x4-5-path"><bdi class="secno">4.5 </bdi>
+Path
+      <a class="self-link" aria-label="§" href="#path"></a></h3>
+
+      <p>
+A generic <a href="#dfn-did-path" class="internalDFN" data-link-type="dfn">DID path</a> is identical to a URI path and <em class="rfc2119" title="MUST">MUST</em>
+conform to the <code>path-abempty</code> ABNF rule in [<cite><a class="bibref" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax" data-link-type="biblio">RFC3986</a></cite>]. A
+DID path <em class="rfc2119" title="SHOULD">SHOULD</em> be used to address resources available via a DID
+service endpoint. See Section <a href="#service-endpoints" class="sec-ref">§&nbsp;<bdi class="secno">5.6 </bdi>
+Service Endpoints
+      </a>.
+      </p>
+
+      <p>
+A specific DID scheme <em class="rfc2119" title="MAY">MAY</em> specify ABNF rules for DID paths that are
+more restrictive than the generic rules in this section.
+      </p>
+      <div class="example" id="example-3">
+          <div class="marker">
+      <a class="self-link" href="#example-3">Example<bdi> 3</bdi></a>
+    </div> <pre class="nohighlight">did:example:123456/path</pre>
+        </div>
+    </section>
+
+    <section id="query">
+      <h3 id="x4-6-query"><bdi class="secno">4.6 </bdi>
+Query
+      <a class="self-link" aria-label="§" href="#query"></a></h3>
+
+      <p>
+A generic <a href="#dfn-did-query" class="internalDFN" data-link-type="dfn">DID query</a> is identical to a URI query and <em class="rfc2119" title="MUST">MUST</em>
+conform to the <code>query</code> ABNF rule in [<cite><a class="bibref" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax" data-link-type="biblio">RFC3986</a></cite>]. A
+DID query <em class="rfc2119" title="SHOULD">SHOULD</em> be used to address resources available via a DID
+service endpoint. See Section <a href="#service-endpoints" class="sec-ref">§&nbsp;<bdi class="secno">5.6 </bdi>
+Service Endpoints
+      </a>.
+      </p>
+
+      <p>
+A specific DID scheme <em class="rfc2119" title="MAY">MAY</em> specify ABNF rules for DID queries that are
+more restrictive than the generic rules in this section.
+      </p>
+      <div class="example" id="example-4">
+          <div class="marker">
+      <a class="self-link" href="#example-4">Example<bdi> 4</bdi></a>
+    </div> <pre class="nohighlight">did:example:123456?query=true</pre>
+        </div>
+    </section>
+
+    <section id="fragment">
+      <h3 id="x4-7-fragment"><bdi class="secno">4.7 </bdi>
+Fragment
+      <a class="self-link" aria-label="§" href="#fragment"></a></h3>
+
+      <p>
+A generic <a href="#dfn-did-fragment" class="internalDFN" data-link-type="dfn">DID fragment</a> is identical to a URI
+fragment and <em class="rfc2119" title="MUST">MUST</em> conform to the <code>fragment</code> ABNF rule in
+[<cite><a class="bibref" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax" data-link-type="biblio">RFC3986</a></cite>]. Implementers are strongly discouraged from using a DID fragment
+for anything other than a method-independent
+reference into the DID Document to identify a component of a DID Document
+(e.g. a unique key description or service endpoint). To resolve this reference,
+the complete DID URL including the DID fragment <em class="rfc2119" title="MUST">MUST</em> be used as input to the
+DID URL dereferencing algorithm (see [<cite><a class="bibref" href="#bib-did-resolution" title="Decentralized Identifier Resolution" data-link-type="biblio">DID-RESOLUTION</a></cite>]) for the target
+component in the DID Document object.
+      </p>
+
+      <p>
+A specific DID scheme <em class="rfc2119" title="MAY">MAY</em> specify ABNF rules for DID fragments that
+are more restrictive than the generic rules in this section.
+      </p>
+
+      <p>
+It is desirable that we enable tree-based processing of DIDs that include
+DID fragments (which resolve directly within the DID Document) to locate
+metadata contained directly in the DID Document or the service resource
+given by the target URL without needing to rely on graph-based processing.
+      </p>
+      <p>
+Implementations <em class="rfc2119" title="SHOULD NOT">SHOULD NOT</em> prevent the use of JSON pointers ([<cite><a class="bibref" href="#bib-rfc6901" title="JavaScript Object Notation (JSON) Pointer" data-link-type="biblio">RFC6901</a></cite>]).
+      </p>
+      <div class="example" id="example-5">
+          <div class="marker">
+      <a class="self-link" href="#example-5">Example<bdi> 5</bdi></a>
+    </div> <pre class="nohighlight">did:example:123456#oidc</pre>
+        </div>
+    </section>
+
+    <section id="normalization">
+      <h3 id="x4-8-normalization"><bdi class="secno">4.8 </bdi>
+Normalization
+      <a class="self-link" aria-label="§" href="#normalization"></a></h3>
+
+      <p>
+For the broadest interoperability, DID normalization should be as
+simple and universal as possible. Therefore:
+      </p>
+
+      <ol start="1">
+        <li>
+The did: scheme name <em class="rfc2119" title="MUST">MUST</em> be lowercase.
+        </li>
+
+        <li>
+The method name <em class="rfc2119" title="MUST">MUST</em> be lowercase.
+        </li>
+
+        <li>
+Case sensitivity and normalization of the value of the
+<code>method-specific-id</code> rule in Section <a href="#generic-did-syntax" class="sec-ref">§&nbsp;
+          <bdi class="secno">4.1 </bdi>
+Generic DID Syntax
+      </a> <em class="rfc2119" title="MUST">MUST</em> be defined by the governing DID method specification.
+        </li>
+      </ol>
+    </section>
+
+    <section id="persistence">
+      <h3 id="x4-9-persistence"><bdi class="secno">4.9 </bdi>
+Persistence
+      <a class="self-link" aria-label="§" href="#persistence"></a></h3>
+
+      <p>
+A DID is expected to be persistent and immutable, i.e., bound exclusively
+and permanently to its one and only subject. Even after a DID has been
+deactivated, it is intended that it never be repurposed.
+      </p>
+
+      <p>
+Ideally a DID would be a completely
+abstract decentralized identifier (like a UUID) that could be bound
+to multiple underlying <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registries</a> over time,
+thus maintaining its persistence independent of any particular system.
+However registering the same identifier on multiple
+<a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registries</a> introduces extremely hard entityship and
+<a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">start-of-authority</a>
+(SOA) problems. It also greatly increases implementation complexity
+for developers.
+      </p>
+
+      <p>
+To avoid these issues, it is <em class="rfc2119" title="RECOMMENDED">RECOMMENDED</em> that <a href="#dfn-did-method" class="internalDFN" data-link-type="dfn">DID method</a>
+specifications only produce DIDs and <a href="#dfn-did-method" class="internalDFN" data-link-type="dfn">DID methods</a> bound to strong,
+stable <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registries</a> capable of making the highest level of
+commitment to persistence of the DID and DID method over time.
+      </p>
+
+      <div class="note" role="note" id="issue-container-generatedID-2"><div role="heading" class="note-title marker" id="h-note-2" aria-level="4"><span>Note</span></div><p class="">
+Although not included in this version, future versions of this
+specification may support a DID Document equivID property to
+establish verifiable equivalence relations between DIDs
+representing the same subject on multiple <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID
+Registries</a>. Such equivalence relations can produce the practical
+equivalent of a single persistent abstract DID. See Future Work
+(Section <a href="#future-work" class="sec-ref">§&nbsp;<bdi class="secno">11. </bdi>
+Future Work
+    </a>).
+      </p></div>
+    </section>
+  </section>
+
+  <section id="did-documents">
+    <h2 id="x5-did-documents"><bdi class="secno">5. </bdi>
+DID Documents
+    <a class="self-link" aria-label="§" href="#did-documents"></a></h2>
+
+    <p>
+A DID points to a DID Document. DID Documents are the serialization of
+the <a href="#data-model" class="sec-ref">§&nbsp;<bdi class="secno">3. </bdi>
+Data Model
+    </a>.
+The following sections define the properties of the DID Document,
+including whether these properties are required or optional.
+    </p>
+
+    <section id="contexts">
+      <h3 id="x5-1-contexts"><bdi class="secno">5.1 </bdi>Contexts<a class="self-link" aria-label="§" href="#contexts"></a></h3>
+
+        <p>
+When two software systems need to exchange data, they must use terminology and
+a protocol that both systems understand. As an analogy, consider how two
+people communicate. Both people must use the same language and the words they
+use must mean the same thing to each other. This specification uses the
+<code>@context</code> property to express the context of a conversation.
+        </p>
+
+        <dl>
+          <dt><dfn data-dfn-type="dfn" id="dfn-context">@context</dfn></dt>
+          <dd>
+The value of the <code>@context</code> property <em class="rfc2119" title="MUST">MUST</em> be one or more
+<a href="#dfn-uri" class="internalDFN" data-link-type="dfn">URIs</a>, where the value of the first <a href="#dfn-uri" class="internalDFN" data-link-type="dfn">URI</a> is
+<code>https://www.w3.org/2019/did/v1</code>. If more than one
+<a href="#dfn-uri" class="internalDFN" data-link-type="dfn">URI</a> is provided, the <a href="#dfn-uri" class="internalDFN" data-link-type="dfn">URIs</a> <em class="rfc2119" title="MUST">MUST</em> be interpreted as an ordered set.
+It is <em class="rfc2119" title="RECOMMENDED">RECOMMENDED</em> that dereferencing the <a href="#dfn-uri" class="internalDFN" data-link-type="dfn">URIs</a> results in a document
+containing machine-readable information about the context.
+          </dd>
+        </dl>
+
+      <p>
+DID Documents <em class="rfc2119" title="MUST">MUST</em> include the <code>@context</code> property. The
+<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
+is described in detail in the [<cite class="respec-offending-element" title="Normative references in informative sections are not allowed. Remove '!' from the start of the reference `[[!JSON-LD]]`" id="respec-offender-normative-references-in-informative-sections-are-not-allowed-remove-from-the-start-of-the-reference-json-ld"><a class="bibref" href="#bib-json-ld" title="JSON-LD 1.0" data-link-type="biblio">JSON-LD</a></cite>] specification. The rules for this
+statement are:
+      </p>
+
+      <ol start="1">
+        <li>
+A DID Document <em class="rfc2119" title="MUST">MUST</em> have exactly one top-level context statement.
+        </li>
+
+        <li>
+The key for this property <em class="rfc2119" title="MUST">MUST</em> be <code>@context</code>.
+        </li>
+
+        <li>
+The value of this key <em class="rfc2119" title="MUST">MUST</em> be the URL for the generic DID context:
+<code>https://www.w3.org/2019/did/v1</code>.
+        </li>
+      </ol>
+
+      <p>
+Example (using an example URL):
+      </p>
+
+      <div class="example" id="example-6">
+          <div class="marker">
+      <a class="self-link" href="#example-6">Example<bdi> 6</bdi></a>
+    </div> <pre class="nohighlight">{
+  "@context": "https://www.w3.org/2019/did/v1"
+}</pre>
+        </div>
+      <p>
+DID method specifications <em class="rfc2119" title="MAY">MAY</em> define their own JSON-LD contexts.
+However it is <em class="rfc2119" title="NOT RECOMMENDED">NOT RECOMMENDED</em> to define a new context unless
+necessary to properly implement the method. Method-specific contexts
+<em class="rfc2119" title="MUST NOT">MUST NOT</em> override the terms defined in the generic DID context.
+      </p>
+    </section>
+
+    <section id="did-subject">
+      <h3 id="x5-2-did-subject"><bdi class="secno">5.2 </bdi>
+DID Subject
+      <a class="self-link" aria-label="§" href="#did-subject"></a></h3>
+
+      <p>
+The <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID Subject</a> is the entity that the DID Document is about, i.e.,
+it is the entity identified by the DID and described by the DID Document.
+The rules for a <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID subject</a> are:
+      </p>
+
+      <ol start="1">
+        <li>
+A DID Document <em class="rfc2119" title="MUST">MUST</em> have exactly one DID subject.
+        </li>
+
+        <li>
+The key for this property <em class="rfc2119" title="MUST">MUST</em> be id.
+        </li>
+
+        <li>
+The value of this key <em class="rfc2119" title="MUST">MUST</em> be a valid DID.
+        </li>
+
+        <li>
+When this DID Document is registered with the target <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID
+Registry</a>, the registered DID <em class="rfc2119" title="MUST">MUST</em> match this DID subject
+value.
+        </li>
+      </ol>
+
+      <p>
+Example:
+      </p>
+
+      <div class="example" id="example-7">
+          <div class="marker">
+      <a class="self-link" href="#example-7">Example<bdi> 7</bdi></a>
+    </div> <pre class="nohighlight">{
+  "id": "did:example:21tDAKCERh95uGgKbJNHYp"
+}</pre>
+        </div>
+      <div class="note" role="note" id="issue-container-generatedID-3"><div role="heading" class="note-title marker" id="h-note-3" aria-level="4"><span>Note</span></div><p class="">
+DID Method specifications <em class="rfc2119" title="MAY">MAY</em> create intermediate representations of
+a DID Document that do not contain the <code>id</code> key, such as
+when a DID Resolver is performing resolution. However, the fully
+resolved DID Document <em class="rfc2119" title="MUST">MUST</em> contain a valid <code>id</code> property.
+      </p></div>
+    </section>
+
+
+    <section id="public-keys">
+      <h3 id="x5-3-public-keys"><bdi class="secno">5.3 </bdi>
+Public Keys
+      <a class="self-link" aria-label="§" href="#public-keys"></a></h3>
+
+      <p>
+Public keys are used for digital signatures, encryption and other
+cryptographic operations, which in turn are the basis for purposes
+such as authentication (see Section <a href="#authentication" class="sec-ref">§&nbsp;<bdi class="secno">5.4 </bdi>
+Authentication
+      </a>)
+or establishing secure communication with <a href="#dfn-service-endpoints" class="internalDFN" data-link-type="dfn">service endpoints</a>
+(see Section <a href="#service-endpoints" class="sec-ref">§&nbsp;<bdi class="secno">5.6 </bdi>
+Service Endpoints
+      </a>). In addition, public
+keys may play a role in authorization mechanisms of DID CRUD
+operations (see Section <a href="#did-operations" class="sec-ref">§&nbsp;<bdi class="secno">7.2 </bdi>
+DID Operations
+      </a>). This may be
+defined by DID Method specifications.
+      </p>
+
+      <p>
+If a public key does not exist in the DID Document, it <em class="rfc2119" title="MUST">MUST</em> be
+assumed the key has been revoked or is invalid. The DID Document <em class="rfc2119" title="MAY">MAY</em>
+contain revoked keys. A DID Document that contains a revoked key <em class="rfc2119" title="MUST">MUST</em>
+also contain or refer to the revocation information for the key (e.g.,
+a revocation list). Each DID Method specification is expected to
+detail how revocation is performed and tracked.
+      </p>
+
+      <p>
+The rules for public keys are:
+      </p>
+
+      <ol start="1">
+        <li>
+A DID Document <em class="rfc2119" title="MAY">MAY</em> include a <code>publicKey</code> property.
+        </li>
+
+        <li>
+The value of the <code>publicKey</code> property <em class="rfc2119" title="MUST">MUST</em> be an array of
+public keys, and every public key property <em class="rfc2119" title="MUST">MUST</em> be in the
+<a href="https://w3c-ccg.github.io/ld-cryptosuite-registry">Linked Data
+Cryptographic Suite Registry</a>.
+        </li>
+
+        <li>
+Each public key <em class="rfc2119" title="MUST">MUST</em> include <code>id</code> and <code>type</code>
+properties, and exactly one value property. The array of public keys
+<em class="rfc2119" title="MUST NOT">MUST NOT</em> contain duplicate entries with the same <code>id</code>.
+        </li>
+
+        <li>
+Each public key <em class="rfc2119" title="MUST">MUST</em> include a <code>controller</code> property, which
+identifies the controller of the corresponding private key.
+        </li>
+
+        <li>
+A registry of key types and formats is available in Appendix
+<a href="#registries" class="sec-ref">§&nbsp;<bdi class="secno">A. </bdi>
+Registries
+    </a>.
+        </li>
+      </ol>
+      <div class="note" role="note" id="issue-container-generatedID-4"><div role="heading" class="note-title marker" id="h-note-4" aria-level="4"><span>Note</span></div><p class="">
+        The following is a non-exhaustive list of public key
+        properties used by the community:
+        <code>publicKeyPem</code>, <code>publicKeyJwk</code>,
+        <code>publicKeyHex</code>, <code>publicKeyBase64</code>,
+        <code>publicKeyBase58</code>, <code>publicKeyMultibase</code>,
+        <code>ethereumAddress</code>.
+      </p></div>
+      <p>
+Example:
+      </p>
+
+      <div class="example" id="example-8-various-public-keys">
+          <div class="marker">
+      <a class="self-link" href="#example-8-various-public-keys">Example<bdi> 8</bdi></a><span class="example-title">: Various public keys</span>
+    </div> <pre class="nohighlight">{
+  "@context": ["https://www.w3.org/2019/did/v1", "https://w3id.org/security/v1"],
+  "id": "did:example:123456789abcdefghi",
+  <span class="comment">...</span>
+  "publicKey": [{
+    "id": "did:example:123456789abcdefghi#keys-1",
+    "type": "RsaVerificationKey2018",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }, {
+    "id": "did:example:123456789abcdefghi#keys-2",
+    "type": "Ed25519VerificationKey2018",
+    "controller": "did:example:pqrstuvwxyz0987654321",
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+  }, {
+    "id": "did:example:123456789abcdefghi#keys-3",
+    "type": "Secp256k1VerificationKey2018",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyHex": "02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71"
+  }],
+  <span class="comment">...</span>
+}</pre>
+        </div>
+      <p>
+A key <em class="rfc2119" title="MAY">MAY</em> be <em>embedded</em> or <em>referenced</em> in a <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID
+Document</a>. For example, the <code>authentication</code> property
+may refer to keys in both ways:
+      </p>
+
+      <div class="example" id="example-9-various-public-keys">
+          <div class="marker">
+      <a class="self-link" href="#example-9-various-public-keys">Example<bdi> 9</bdi></a><span class="example-title">: Various public keys</span>
+    </div> <pre class="nohighlight">{
+<span class="comment">...</span>
+
+  "authentication": [
+    <span class="comment">// this key is referenced, it may be used for more than one proof purpose</span>
+    "did:example:123456789abcdefghi#keys-1",
+    <span class="comment">// this key is embedded and may *only* be used for authentication</span>
+    {
+      "id": "did:example:123456789abcdefghi#keys-2",
+      "type": "Ed25519VerificationKey2018",
+      "controller": "did:example:123456789abcdefghi",
+      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    }
+  ],
+
+<span class="comment">...</span>
+}</pre>
+        </div>
+      <p>
+The algorithm to use when processing a <code>publicKey</code>
+property in a <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a> is:
+      </p>
+
+      <ol class="algorithm">
+        <li>
+Let <em>value</em> be the data associated with the
+        <code>publicKey</code> property and initialize <em>result</em> to
+        <code>null</code>.
+        </li>
+
+        <li>
+If <em>value</em> is an object, the key material is embedded. Set
+        <em>result</em> to <em>value</em>.
+        </li>
+
+        <li>
+If <em>value</em> is a string, the key is included by reference.
+Assume <em>value</em> is a URL.
+          <ol>
+            <li>
+Dereference the URL and retrieve the <code>publicKey</code>
+properties associated with the URL (e.g., process the
+<code>publicKey</code> property at the top-level of the
+dereferenced document).
+            </li>
+
+            <li>
+Iterate through each public key object.
+              <ol>
+                <li>
+If the <code>id</code> property of the object matches
+<em>value</em>, set <em>result</em> to the object.
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+
+        <li>
+If <em>result</em> does not contain at least the <code>id</code>,
+<code>type</code>, and <code>controller</code> properties as well as any
+mandatory public cryptographic material, as determined by the
+<em>result</em>'s <code>type</code> property, throw an error.
+        </li>
+      </ol>
+
+      <div class="note" role="note" id="issue-container-generatedID-5"><div role="heading" class="note-title marker" id="h-note-5" aria-level="4"><span>Note</span></div><p class="">
+While the <code>controller</code> field may seem redundant in some of the
+examples above, keys may be expressed in a DID Document where the
+controller is described in another DID Document. Linked Data Proof
+libraries typically expect the <code>controller</code> field to always
+exist and may throw an exception if it is missing. Furthermore, per
+the requirement that DID Documents be interpretable as either a graph
+or a tree, a default <code>controller</code> field cannot be inferred by
+using a key's position in a tree.
+      </p></div>
+
+      <div class="note" role="note" id="issue-container-generatedID-6"><div role="heading" class="note-title marker" id="h-note-6" aria-level="4"><span>Note</span></div><p class="">
+Caching and expiration of the keys in a DID Document is entirely the
+responsibility of DID resolvers and other clients. See Section
+<a href="#did-resolvers" class="sec-ref">§&nbsp;<bdi class="secno">8. </bdi>
+DID Resolvers
+    </a>.
+      </p></div>
+    </section>
+
+    <section id="authentication">
+      <h3 id="x5-4-authentication"><bdi class="secno">5.4 </bdi>
+Authentication
+      <a class="self-link" aria-label="§" href="#authentication"></a></h3>
+
+      <p>
+Authentication is the mechanism by which the controller(s) of a DID can
+cryptographically prove that they are associated with that DID.
+See Section <a href="#binding-of-identity" class="sec-ref">§&nbsp;<bdi class="secno">9.3 </bdi>
+Binding of Identity
+      </a>. Note
+that Authentication is separate from Authorization because the controllers
+may wish to enable others to update their DID Document (for
+example, to assist with key recovery as discussed in Section
+<a href="#key-revocation-and-recovery" class="sec-ref">§&nbsp;<bdi class="secno">9.8 </bdi>
+Key Revocation and Recovery
+      </a>) without enabling them to prove
+control (and thus be able to impersonate the controllers).
+      </p>
+
+      <p>
+The rules for Authentication are:
+      </p>
+
+      <ol start="1">
+        <li>
+A DID Document <em class="rfc2119" title="MAY">MAY</em> include an <code>authentication</code>
+property.
+        </li>
+
+        <li>
+The value of the <code>authentication</code> property <em class="rfc2119" title="SHOULD">SHOULD</em> be
+an array of verification methods.
+        </li>
+
+        <li>
+Each verification method <em class="rfc2119" title="MAY">MAY</em> be embedded or referenced. An example of
+a verification method is a public key (see Section <a href="#public-keys" class="sec-ref">§&nbsp;<bdi class="secno">5.3 </bdi>
+Public Keys
+      </a>).
+        </li>
+      </ol>
+
+      <p>
+Example:
+      </p>
+
+      <div class="example" id="example-10-authentication-field-containing-three-verification-methods">
+          <div class="marker">
+      <a class="self-link" href="#example-10-authentication-field-containing-three-verification-methods">Example<bdi> 10</bdi></a><span class="example-title">: Authentication field containing three verification methods</span>
+    </div> <pre class="nohighlight">{
+  "@context": "https://www.w3.org/2019/did/v1",
+  "id": "did:example:123456789abcdefghi",
+  <span class="comment">...</span>
+  "authentication": [
+    <span class="comment">// this method can be used to authenticate as did:...fghi</span>
+    "did:example:123456789abcdefghi#keys-1",
+    <span class="comment">// this method can be used to authenticate as did:...fghi</span>
+    "did:example:123456789abcdefghi#biometric-1",
+    <span class="comment">// this method is *only* authorized for authentication, it may not</span>
+    <span class="comment">// be used for any other proof purpose, so its full description is</span>
+    <span class="comment">// embedded here rather than using only a reference</span>
+    {
+      "id": "did:example:123456789abcdefghi#keys-2",
+      "type": "Ed25519VerificationKey2018",
+      "controller": "did:example:123456789abcdefghi",
+      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    }
+  ],
+  <span class="comment">...</span>
+}</pre>
+        </div>
+    </section>
+
+    <section id="authorization-and-delegation">
+      <h3 id="x5-5-authorization-and-delegation"><bdi class="secno">5.5 </bdi>
+Authorization and Delegation
+      <a class="self-link" aria-label="§" href="#authorization-and-delegation"></a></h3>
+
+      <p>
+Authorization is the mechanism used to state how operations may be
+performed on behalf of the <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID subject</a>. Delegation is the
+mechanism that the subject may use to authorize others to act
+on their behalf. Note that Authorization is separate from
+Authentication as explained in Section <a href="#authentication" class="sec-ref">§&nbsp;<bdi class="secno">5.4 </bdi>
+Authentication
+      </a>.
+This is particularly important for key
+recovery in the case of key loss, when the subject no longer has
+access to their keys, or key compromise, where the controller’s trusted
+third parties need to override malicious activity by an attacker. See
+Section <a href="#security-considerations" class="sec-ref">§&nbsp;<bdi class="secno">9. </bdi>
+Security Considerations
+    </a>.
+      </p>
+
+      <p>
+Each DID Method <em class="rfc2119" title="MUST">MUST</em> define how authorization and delegation are
+implemented, including any necessary cryptographic operations.
+      </p>
+
+      <p>
+There are at least two suggested methods for implementing
+Authorization and Delegation, which may be layered:
+      </p>
+
+      <ol>
+        <li>
+A <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registry</a> could implement a coarse
+grained <code>controller</code> pattern by enabling DID Documents to
+express the DID of another <a href="#dfn-did-controller" class="internalDFN" data-link-type="dfn">DID controller</a> that controls it, or
+additionally,
+        </li>
+
+        <li>
+A <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registry</a> could implement a
+Capabilities-based approach that enables further fine-grained control
+of authorization and delegation.
+        </li>
+      </ol>
+
+      <p>
+Example:
+      </p>
+
+      <div class="example" id="example-11-did-document-with-a-controller-property">
+          <div class="marker">
+      <a class="self-link" href="#example-11-did-document-with-a-controller-property">Example<bdi> 11</bdi></a><span class="example-title">: DID Document with a controller property</span>
+    </div> <pre class="nohighlight">{
+  "@context": "https://www.w3.org/2019/did/v1",
+  "id": "did:example:123456789abcdefghi",
+  "controller": "did:example:bcehfew7h32f32h7af3",
+  "service": [{
+    <span class="comment">// used to retrieve Verifiable Credentials associated with the DID</span>
+    "type": "VerifiableCredentialService",
+    "serviceEndpoint": "https://example.com/vc/"
+  }]
+}</pre>
+        </div>
+    </section>
+
+    <section id="service-endpoints">
+      <h3 id="x5-6-service-endpoints"><bdi class="secno">5.6 </bdi>
+Service Endpoints
+      <a class="self-link" aria-label="§" href="#service-endpoints"></a></h3>
+
+      <p>
+In addition to publication of authentication and authorization
+mechanisms, the other primary purpose of a DID Document is to enable
+discovery of <a href="#dfn-service-endpoints" class="internalDFN" data-link-type="dfn">service endpoints</a> for the subject. A service
+endpoint <em class="rfc2119" title="MAY">MAY</em> represent any type of service the subject wishes to
+advertise, including decentralized identity management services for
+further discovery, authentication, authorization, or interaction. The
+rules for service endpoints are:
+      </p>
+
+      <ol start="1">
+        <li>
+A DID Document <em class="rfc2119" title="MAY">MAY</em> include a <code>service</code> property.
+        </li>
+
+        <li>
+The value of the <code>service</code> property <em class="rfc2119" title="SHOULD">SHOULD</em> be an array
+of service endpoints.
+        </li>
+
+        <li>
+Each service endpoint <em class="rfc2119" title="MUST">MUST</em> include <code>id</code>,
+<code>type</code>, and <code>serviceEndpoint</code> properties, and
+<em class="rfc2119" title="MAY">MAY</em> include additional properties.
+        </li>
+
+        <li>
+The service endpoint protocol <em class="rfc2119" title="SHOULD">SHOULD</em> be published in an open
+standard specification.
+        </li>
+
+        <li>
+The value of the <code>serviceEndpoint</code> property <em class="rfc2119" title="MUST">MUST</em> be a
+JSON-LD object or a valid URI conforming to [<cite><a class="bibref" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax" data-link-type="biblio">RFC3986</a></cite>] and
+normalized according to the rules in section 6 of [<cite><a class="bibref" href="#bib-rfc3986" title="Uniform Resource Identifier (URI): Generic Syntax" data-link-type="biblio">RFC3986</a></cite>] and to
+any normalization rules in its applicable URI scheme specification.
+        </li>
+      </ol>
+
+      <p>
+Example:
+      </p>
+
+      <div class="example" id="example-12-various-service-endpoints">
+          <div class="marker">
+      <a class="self-link" href="#example-12-various-service-endpoints">Example<bdi> 12</bdi></a><span class="example-title">: Various service endpoints</span>
+    </div> <pre class="nohighlight">{
+  "service": [{
+    "id": "did:example:123456789abcdefghi#openid",
+    "type": "OpenIdConnectVersion1.0Service",
+    "serviceEndpoint": "https://openid.example.com/"
+  }, {
+    "id": "did:example:123456789abcdefghi#vcr",
+    "type": "CredentialRepositoryService",
+    "serviceEndpoint": "https://repository.example.com/service/8377464"
+  }, {
+    "id": "did:example:123456789abcdefghi#xdi",
+    "type": "XdiService",
+    "serviceEndpoint": "https://xdi.example.com/8377464"
+  }, {
+    "id": "did:example:123456789abcdefghi#agent",
+    "type": "AgentService",
+    "serviceEndpoint": "https://agent.example.com/8377464"
+  }, {
+    "id": "did:example:123456789abcdefghi#hub",
+    "type": "IdentityHub",
+    "publicKey": "did:example:123456789abcdefghi#key-1",
+    "serviceEndpoint": {
+      "@context": "https://schema.identity.foundation/hub",
+      "type": "UserHubEndpoint",
+      "instances": ["did:example:456", "did:example:789"]
+    }
+  }, {
+    "id": "did:example:123456789abcdefghi#messages",
+    "type": "MessagingService",
+    "serviceEndpoint": "https://example.com/messages/8377464"
+  }, {
+    "id": "did:example:123456789abcdefghi#inbox",
+    "type": "SocialWebInboxService",
+    "serviceEndpoint": "https://social.example.com/83hfh37dj",
+    "description": "My public social inbox",
+    "spamCost": {
+      "amount": "0.50",
+      "currency": "USD"
+    }
+  }, {
+    "id": "did:example:123456789abcdefghi#authpush",
+    "type": "DidAuthPushModeVersion1",
+    "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefg"
+  }]
+}</pre>
+        </div>
+      <p>
+See Sections <a href="#did-method-schemes" class="sec-ref">§&nbsp;<bdi class="secno">7.1 </bdi>
+DID Method Schemes
+      </a>
+and <a href="#authentication" class="sec-ref">§&nbsp;<bdi class="secno">5.4 </bdi>
+Authentication
+      </a> for further security
+considerations regarding authentication service endpoints.
+      </p>
+    </section>
+
+    <section id="created-optional">
+      <h3 id="x5-7-created-optional"><bdi class="secno">5.7 </bdi>
+Created (Optional)
+      <a class="self-link" aria-label="§" href="#created-optional"></a></h3>
+
+      <p>
+Standard metadata for identifier records includes a timestamp of the
+original creation. The rules for including a creation timestamp are:
+      </p>
+
+      <ol start="1">
+        <li>
+A DID Document <em class="rfc2119" title="MUST">MUST</em> have zero or one property representing a
+creation timestamp. It is <em class="rfc2119" title="RECOMMENDED">RECOMMENDED</em> to include this property.
+        </li>
+
+        <li>
+The key for this property <em class="rfc2119" title="MUST">MUST</em> be created.
+        </li>
+
+        <li>
+The value of this key <em class="rfc2119" title="MUST">MUST</em> be a valid XML datetime value as
+defined in section 3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition
+Language (XSD) 1.1 Part 2: Datatypes</a> [<cite><a class="bibref" href="#bib-xmlschema11-2" title="W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes" data-link-type="biblio">XMLSCHEMA11-2</a></cite>].
+        </li>
+
+        <li>
+This datetime value <em class="rfc2119" title="MUST">MUST</em> be normalized to UTC 00:00 as indicated
+by the trailing "Z".
+        </li>
+
+        <li>
+Method specifications that rely on DLTs <em class="rfc2119" title="SHOULD">SHOULD</em> require time
+values that are after the known <a href="https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki">"median
+time past" (defined in Bitcoin BIP 113)</a>, when the DLT supports
+such a notion.
+        </li>
+      </ol>
+
+      <p>
+Example:
+      </p>
+
+      <div class="example" id="example-13">
+          <div class="marker">
+      <a class="self-link" href="#example-13">Example<bdi> 13</bdi></a>
+    </div> <pre class="nohighlight">{
+  "created": "2002-10-10T17:00:00Z"
+}</pre>
+        </div>
+    </section>
+
+    <section id="updated-optional">
+      <h3 id="x5-8-updated-optional"><bdi class="secno">5.8 </bdi>
+Updated (Optional)
+      <a class="self-link" aria-label="§" href="#updated-optional"></a></h3>
+
+      <p>
+Standard metadata for identifier records includes a timestamp of the
+most recent change. The rules for including an updated timestamp are:
+      </p>
+
+      <ol start="1">
+        <li>
+A DID Document <em class="rfc2119" title="MUST">MUST</em> have zero or one property representing an
+updated timestamp. It is <em class="rfc2119" title="RECOMMENDED">RECOMMENDED</em> to include this property.
+        </li>
+
+        <li>
+The key for this property <em class="rfc2119" title="MUST">MUST</em> be updated.
+        </li>
+
+        <li>
+The value of this key <em class="rfc2119" title="MUST">MUST</em> follow the formatting rules (3, 4, 5)
+from Section <a href="#created-optional" class="sec-ref">§&nbsp;<bdi class="secno">5.7 </bdi>
+Created (Optional)
+      </a>.
+        </li>
+      </ol>
+
+      <p>
+Example:
+      </p>
+
+      <div class="example" id="example-14">
+          <div class="marker">
+      <a class="self-link" href="#example-14">Example<bdi> 14</bdi></a>
+    </div> <pre class="nohighlight">{
+  "updated": "2016-10-17T02:41:00Z"
+}</pre>
+        </div>
+    </section>
+
+    <section id="proof-optional">
+      <h3 id="x5-9-proof-optional"><bdi class="secno">5.9 </bdi>
+Proof (Optional)
+      <a class="self-link" aria-label="§" href="#proof-optional"></a></h3>
+
+      <p>
+A <code>proof</code> on a DID Document is cryptographic proof of the
+integrity of the DID Document according to either:
+      </p>
+
+      <ol start="1">
+        <li>
+The subject as defined in Section <a href="#did-subject" class="sec-ref">§&nbsp;<bdi class="secno">5.2 </bdi>
+DID Subject
+      </a>, or:
+        </li>
+
+        <li>
+The controller as defined in Section <a href="#authorization-and-delegation" class="sec-ref">§&nbsp;<bdi class="secno">5.5 </bdi>
+Authorization and Delegation
+      </a>, if present.
+        </li>
+      </ol>
+
+      <p>
+This proof is NOT proof of the binding between a DID and a DID
+Document. See Section <a href="#binding-of-identity" class="sec-ref">§&nbsp;<bdi class="secno">9.3 </bdi>
+Binding of Identity
+      </a>. The rules
+for a proof are:
+      </p>
+
+      <ol start="1">
+        <li>
+A DID Document <em class="rfc2119" title="MAY">MAY</em> have exactly one property representing a
+proof.
+        </li>
+
+        <li>
+The key for this property <em class="rfc2119" title="MUST">MUST</em> be <code>proof</code>.
+        </li>
+
+        <li>
+The value of this key <em class="rfc2119" title="MUST">MUST</em> be a valid JSON-LD proof as defined by
+<a href="https://w3c-dvcg.github.io/ld-signatures/">Linked Data
+Proofs</a>.
+        </li>
+      </ol>
+
+      <p>
+Example:
+      </p>
+
+      <div class="example" id="example-15-a-signature-based-proof">
+          <div class="marker">
+      <a class="self-link" href="#example-15-a-signature-based-proof">Example<bdi> 15</bdi></a><span class="example-title">: A signature-based proof</span>
+    </div> <pre class="nohighlight">{
+  "proof": {
+    "type": "LinkedDataSignature2015",
+    "created": "2016-02-08T16:02:20Z",
+    "creator": "did:example:8uQhQMGzWxR8vw5P3UWH1ja#keys-1",
+    "signatureValue": "QNB13Y7Q9...1tzjn4w=="
+  }
+}</pre>
+        </div>
+    </section>
+
+    <section id="extensibility">
+      <h3 id="x5-10-extensibility"><bdi class="secno">5.10 </bdi>
+Extensibility
+      <a class="self-link" aria-label="§" href="#extensibility"></a></h3>
+
+      <p>
+One of the goals of the Decentralized Identifiers Data Model is to
+enable permissionless innovation. This requires that the data model
+is extensible in a number of different ways:
+      </p>
+
+      <ul>
+        <li>
+The requirement to model complex multi-entity relationships is
+provided through the use of a graph-based data model.
+        </li>
+
+        <li>
+The requirement to enable extending the machine-readable
+vocabularies used to describe information in the data model —
+without relying on a centralized system — is accomplished via
+the use of [<cite><a class="bibref" href="#bib-linked-data" title="Linked Data Design Issues" data-link-type="biblio">LINKED-DATA</a></cite>].
+        </li>
+
+        <li>
+The requirement to support multiple types of cryptographic proof
+formats is accomplished via the use of Linked Data Proofs
+[<cite><a class="bibref" href="#bib-ld-proofs" title="Linked Data Proofs" data-link-type="biblio">LD-PROOFS</a></cite>], Linked Data Signatures [<cite><a class="bibref" href="#bib-ld-signatures" title="Linked Data Signatures" data-link-type="biblio">LD-SIGNATURES</a></cite>], and a
+variety of signature suites.
+        </li>
+
+        <li>
+The requirement to provide all of the extensibility mechanisms
+outlined above in a data format that is popular among software
+developers and web page authors is enabled via the use of
+[<cite><a class="bibref" href="#bib-json-ld" title="JSON-LD 1.0" data-link-type="biblio">JSON-LD</a></cite>].
+        </li>
+      </ul>
+
+      <p>
+This approach to data modeling is often called an "open world
+assumption", meaning that anyone can say anything about any other
+thing. This approach often feels in conflict with building simple
+and predictable software systems. Balancing extensibility with
+program correctness is always more challenging with an open world
+assumption than it is with closed software systems.
+      </p>
+
+      <p>
+The rest of this section describes how both extensibility and program
+correctness are achieved through a series of examples.
+      </p>
+
+      <p>
+Let us assume that we start with the following <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a>:
+      </p>
+
+      <div class="example" id="example-16-a-simple-did-document">
+          <div class="marker">
+      <a class="self-link" href="#example-16-a-simple-did-document">Example<bdi> 16</bdi></a><span class="example-title">: A simple DID Document</span>
+    </div> <pre class="nohighlight">{
+  "@context": "https://example.org/example-method/v1",
+  "id": "did:example:123456789abcdefghi",
+  "publicKey": [{ <span class="comment">...</span> }],
+  "authentication": [{ <span class="comment">...</span> }],
+  "service": [{ <span class="comment">...</span> }]
+}</pre>
+        </div>
+      <p>
+The contents of the <code>publicKey</code>,
+<code>authentication</code>, and <code>service</code> properties are
+not important for the purposes of this section. What is important is
+that the object above is a valid <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a>. Let's assume
+that a developer wanted to extend the <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a> to express
+an additional piece of information: the subject's public photo
+stream.
+      </p>
+
+      <p>
+The first thing that a developer would do is create a JSON-LD Context
+containing the new term:
+      </p>
+
+      <div class="example" id="example-17-an-example-json-ld-context">
+          <div class="marker">
+      <a class="self-link" href="#example-17-an-example-json-ld-context">Example<bdi> 17</bdi></a><span class="example-title">: An example JSON-LD Context</span>
+    </div> <pre class="nohighlight">{
+  "@context": {
+    "PhotoStreamService": "https://example.com/vocab#PhotoStreamService"
+  }
+}</pre>
+        </div>
+      <p>
+Now that the JSON-LD Context has been created, the developer <em class="rfc2119" title="MUST">MUST</em>
+publish it somewhere that is accessible to any <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a>
+processor. For this example, let us assume that the JSON-LD Context
+above is published at the following URL:
+<code>did:example:contexts:987654321</code>. At this point, extending
+the first example in this section is a simple matter of including the
+context above and adding the new property to the <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a>.
+      </p>
+
+      <div class="example" id="example-18-a-did-document-with-a-custom-extension">
+          <div class="marker">
+      <a class="self-link" href="#example-18-a-did-document-with-a-custom-extension">Example<bdi> 18</bdi></a><span class="example-title">: A DID Document with a custom extension</span>
+    </div> <pre class="nohighlight">{
+  "@context": "https://example.org/example-method/v1",
+  "id": "did:example:123456789abcdefghi",
+  "authentication": [ <span class="comment">...</span> ],
+  "service": [<span class="highlight">{
+    "@context": "did:example:contexts:987654321",
+    "id": "did:example:123456789abcdefghi#photos",
+    "type": "PhotoStreamService",
+    "serviceEndpoint": "https://example.org/photos/379283"
+  }</span>]
+}</pre>
+        </div>
+      <p>
+The examples so far have shown that it is easy to extend the
+Decentralized Identifiers Data Model in a permissionless and
+decentralized way. The mechanism also ensures that Decentralized
+Identifiers created in this way prevent namespace conflicts and
+semantic ambiguity.
+      </p>
+
+      <p>
+An extensibility model that is this dynamic does increase
+implementation burden. Software written for such a system will have
+to determine if accepting <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a>s with extensions is
+acceptable based on the risk profile of the application. Some
+applications may choose to accept but ignore extensions, others may
+choose to only accept certain extensions, while highly secure
+environments may disallow extensions. These decisions are up to the
+application developers and are specifically not the domain of this
+specification.
+      </p>
+
+      <p>
+Implementations <em class="rfc2119" title="MUST">MUST</em> produce an error when an extension JSON-LD
+Context overrides the expanded URL for a term specified in this
+specification. To avoid the possibility of accidentally overriding
+terms, developers <em class="rfc2119" title="SHOULD">SHOULD</em> scope their extensions. For example,
+the following extension scopes the new
+<code>PhotoStreamService</code> term so that it may only be used
+within the <code>service</code> property:
+      </p>
+
+      <div class="example" id="example-19-scoping-terms-in-a-json-ld-context">
+          <div class="marker">
+      <a class="self-link" href="#example-19-scoping-terms-in-a-json-ld-context">Example<bdi> 19</bdi></a><span class="example-title">: Scoping terms in a JSON-LD Context</span>
+    </div> <pre class="nohighlight">{
+  "@context": {
+    <span class="highlight">"service": {
+      "@id": "https://w3id.org/did#service",
+      "@context": {
+        "PhotoStreamService": "https://example.com/vocab#PhotoStreamService"
+      }
+    }</span>
+  }
+}</pre>
+        </div>
+      <p>
+Developers are urged to ensure that extension JSON-LD Contexts are
+highly available. Implementations that cannot fetch a context will
+produce an error. Strategies for ensuring that extension JSON-LD
+Contexts are always available include using content-addressed URLs
+for contexts, bundling context documents with implementations, or
+enabling aggressive caching of contexts.
+      </p>
+    </section>
+  </section>
+
+  <section id="did-document-syntax">
+    <h2 id="x6-did-document-syntax"><bdi class="secno">6. </bdi>
+DID Document Syntax
+    <a class="self-link" aria-label="§" href="#did-document-syntax"></a></h2>
+        <p>
+A DID Document <em class="rfc2119" title="MUST">MUST</em> be a single JSON object conforming to [<cite><a class="bibref" href="#bib-rfc8259" title="The JavaScript Object Notation (JSON) Data Interchange Format" data-link-type="biblio">RFC8259</a></cite>].
+Many of the concepts in this document were introduced by example using the
+JSON-LD syntax, a format for mapping JSON data into the RDF semantic graph model as defined by
+[<cite><a class="bibref" href="#bib-json-ld" title="JSON-LD 1.0" data-link-type="biblio">JSON-LD</a></cite>]. This section formalizes how the data model (described in Sections
+<a href="#data-model" class="sec-ref">§&nbsp;<bdi class="secno">3. </bdi>
+Data Model
+    </a> and <a href="#did-documents" class="sec-ref">§&nbsp;<bdi class="secno">5. </bdi>
+DID Documents
+    </a>) is realized in JSON-LD.
+        </p>
+        <p>
+Although syntactic mappings are provided for JSON and JSON-LD only, applications and
+services can use any other data representation syntax, such as JXD (JSON XDI Data, a serialization format for
+the <a href="http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">
+XDI graph model</a>), XML, YAML, or CBOR, that is capable of expressing the data model.
+        </p>
+
+      <section id="json">
+        <h3 id="x6-1-json"><bdi class="secno">6.1 </bdi>JSON<a class="self-link" aria-label="§" href="#json"></a></h3>
+
+        <p>
+The data model as described in Section <a href="#data-model" class="sec-ref">§&nbsp;<bdi class="secno">3. </bdi>
+Data Model
+    </a> can be
+encoded in Javascript Object Notation (JSON) [<cite><a class="bibref" href="#bib-rfc8259" title="The JavaScript Object Notation (JSON) Data Interchange Format" data-link-type="biblio">RFC8259</a></cite>] by mapping property
+values to JSON types as follows:
+        </p>
+
+        <ul>
+          <li>
+Numeric values representable as IEEE754 <em class="rfc2119" title="SHOULD">SHOULD</em> be represented as a Number type.
+          </li>
+          <li>
+Boolean values <em class="rfc2119" title="SHOULD">SHOULD</em> be represented as a Boolean type.
+          </li>
+          <li>
+Sequence value <em class="rfc2119" title="SHOULD">SHOULD</em> be represented as an Array type.
+          </li>
+          <li>
+Unordered sets of values <em class="rfc2119" title="SHOULD">SHOULD</em> be represented as an Array type.
+          </li>
+          <li>
+Sets of properties <em class="rfc2119" title="SHOULD">SHOULD</em> be represented as an Object type.
+          </li>
+          <li>
+Empty values <em class="rfc2119" title="SHOULD">SHOULD</em> be represented as a null value.
+          </li>
+          <li>
+Other values <em class="rfc2119" title="MUST">MUST</em> be represented as a String type.
+          </li>
+        </ul>
+      </section>
+
+    <section id="json-ld">
+      <h3 id="x6-2-json-ld"><bdi class="secno">6.2 </bdi>
+JSON-LD
+      <a class="self-link" aria-label="§" href="#json-ld"></a></h3>
+
+      <p>
+[<cite><a class="bibref" href="#bib-json-ld" title="JSON-LD 1.0" data-link-type="biblio">JSON-LD</a></cite>] is a JSON-based format used to serialize
+<a href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a>. The
+syntax is designed to easily integrate into deployed systems already using
+JSON, and provides a smooth upgrade path from JSON to JSON-LD. It is primarily
+intended to be a way to use Linked Data in Web-based programming environments,
+to build interoperable Web services, and to store Linked Data in JSON-based
+storage engines.
+      </p>
+
+      <p>
+JSON-LD is useful when extending the data model described in this
+specification. Instances of the data model are encoded in JSON-LD in the same
+way they are encoded in JSON (Section <a href="#json" class="sec-ref">§&nbsp;<bdi class="secno">6.1 </bdi>JSON</a>), with the addition
+of the <code>@context</code> property. The
+<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
+is described in detail in the [<cite><a class="bibref" href="#bib-json-ld" title="JSON-LD 1.0" data-link-type="biblio">JSON-LD</a></cite>] specification and its use is
+elaborated on in Section <a href="#extensibility" class="sec-ref">§&nbsp;<bdi class="secno">5.10 </bdi>
+Extensibility
+      </a>.
+      </p>
+
+      <p>
+In general, the data model and syntaxes described in this document are
+designed such that developers can copy and paste examples into their software systems. The design goal of
+this approach is to provide a low barrier to entry while still ensuring global
+interoperability between a heterogeneous set of software systems. This section
+describes some of these approaches, which will likely go unnoticed by most
+developers, but whose details will be of interest to implementers. The most
+noteworthy syntactic sugars provided by JSON-LD are:
+      </p>
+
+      <ul>
+        <li>
+The <code>@id</code> and <code>@type</code> keywords are aliased to
+<code>id</code> and <code>type</code> respectively, enabling developers to use
+this specification as idiomatic JSON.
+        </li>
+        <li>
+Data types, such as integers, dates, units of measure, and URLs, are
+automatically typed to provide stronger type guarantees for use cases that
+require them.
+        </li>
+        <li>
+The <code>@protected</code> properties feature of JSON-LD 1.1 is used to ensure
+that terms defined by this specification cannot be overridden. This means
+that as long as the same <code>@context</code> declaration is made at the top
+of a <a href="#dfn-did-document" class="internalDFN" data-link-type="dfn">DID Document</a>, that interoperability is guaranteed between implementations
+which use a JSON-LD processor and implementations which do not.
+        </li>
+      </ul>
+    </section>
+  </section>
+
+  <section id="did-methods">
+    <h2 id="x7-did-methods"><bdi class="secno">7. </bdi>
+DID Methods
+    <a class="self-link" aria-label="§" href="#did-methods"></a></h2>
+
+    <section id="did-method-schemes">
+      <h3 id="x7-1-did-method-schemes"><bdi class="secno">7.1 </bdi>
+DID Method Schemes
+      <a class="self-link" aria-label="§" href="#did-method-schemes"></a></h3>
+
+      <p>
+A DID method specification <em class="rfc2119" title="MUST">MUST</em> define exactly one specific DID
+scheme identified by exactly one method name (the <code>method-name</code> rule in
+Section <a href="#generic-did-syntax" class="sec-ref">§&nbsp;<bdi class="secno">4.1 </bdi>
+Generic DID Syntax
+      </a>).
+      </p>
+
+      <p>
+Since the method name is part of the DID, it <em class="rfc2119" title="SHOULD">SHOULD</em> be as short as
+practical. A method name of five characters or less is <em class="rfc2119" title="RECOMMENDED">RECOMMENDED</em>.
+The method name <em class="rfc2119" title="MAY">MAY</em> reflect the name of the <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID
+Registry</a> to which the DID method specification applies.
+      </p>
+
+      <p>
+The DID method specification for the specific DID scheme <em class="rfc2119" title="MUST">MUST</em> specify
+how to generate the <code>method-specific-id</code> component of a DID. The
+<code>method-specific-id</code> value <em class="rfc2119" title="MUST">MUST</em> be able to be generated without the use
+of a centralized registry service. The <code>method-specific-id</code> value <em class="rfc2119" title="SHOULD">SHOULD</em>
+be globally unique by itself. The DID as defined by the <code>did</code> rule
+in Section <a href="#generic-did-syntax" class="sec-ref">§&nbsp;<bdi class="secno">4.1 </bdi>
+Generic DID Syntax
+      </a> <em class="rfc2119" title="MUST">MUST</em> be globally unique.
+      </p>
+
+      <p>
+If needed, a specific DID scheme <em class="rfc2119" title="MAY">MAY</em> define multiple specific
+<code>method-specific-id</code> formats. It is <em class="rfc2119" title="RECOMMENDED">RECOMMENDED</em> that a specific DID
+scheme define as few <code>method-specific-id</code> formats as possible.
+      </p>
+    </section>
+
+    <section id="did-operations">
+      <h3 id="x7-2-did-operations"><bdi class="secno">7.2 </bdi>
+DID Operations
+      <a class="self-link" aria-label="§" href="#did-operations"></a></h3>
+
+      <p>
+To enable the full functionality of DIDs and DID Documents on a
+particular <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registry</a>, a
+DID method specification <em class="rfc2119" title="MUST">MUST</em> specify how each of the following
+<a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">
+CRUD</a> operations is performed by a client. Each operation <em class="rfc2119" title="MUST">MUST</em> be
+specified to the level of detail necessary to build and test
+interoperable client implementations with the target system.
+The specification document for a DID method that does not support specific
+operations such as Update and Deactivate <em class="rfc2119" title="MUST">MUST</em> clearly specify these
+limitations. Note that, due to the specified contents of DID Documents,
+these operations can effectively be used to perform all the operations
+required of a CKMS (cryptographic key management system), e.g.:
+      </p>
+
+      <ul>
+        <li>
+Key registration
+        </li>
+
+        <li>
+Key replacement
+        </li>
+
+        <li>
+Key rotation
+        </li>
+
+        <li>
+Key recovery
+        </li>
+
+        <li>
+Key expiration
+        </li>
+      </ul>
+
+      <section id="create">
+        <h4 id="x7-2-1-create"><bdi class="secno">7.2.1 </bdi>
+Create
+        <a class="self-link" aria-label="§" href="#create"></a></h4>
+
+        <p>
+The DID method specification <em class="rfc2119" title="MUST">MUST</em> specify how a client creates a DID
+and its associated DID Document on the <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registry</a>, including all
+cryptographic operations necessary to establish proof of control.
+        </p>
+      </section>
+
+      <section id="read-verify">
+        <h4 id="x7-2-2-read-verify"><bdi class="secno">7.2.2 </bdi>
+Read/Verify
+        <a class="self-link" aria-label="§" href="#read-verify"></a></h4>
+
+        <p>
+The DID method specification <em class="rfc2119" title="MUST">MUST</em> specify how a client uses a DID to
+request a DID Document from the <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registry</a>, including how the
+client can verify the authenticity of the response.
+        </p>
+      </section>
+
+      <section id="update">
+        <h4 id="x7-2-3-update"><bdi class="secno">7.2.3 </bdi>
+Update
+        <a class="self-link" aria-label="§" href="#update"></a></h4>
+
+        <p>
+The DID method specification <em class="rfc2119" title="MUST">MUST</em> specify how a client can update a
+DID Document on the <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registry</a>,
+including all cryptographic operations necessary to establish proof
+of control, <em>or</em>  state that updates are not possible.
+        </p>
+      </section>
+
+      <section id="deactivate">
+        <h4 id="x7-2-4-deactivate"><bdi class="secno">7.2.4 </bdi>
+Deactivate
+        <a class="self-link" aria-label="§" href="#deactivate"></a></h4>
+
+        <p>
+Although a core feature of distributed ledgers is immutability, the
+DID method specification <em class="rfc2119" title="MUST">MUST</em> specify how a client can deactivate a DID
+on the <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registry</a>, including all cryptographic
+operations necessary to establish proof of deactivation <em>or</em> state that
+deactivation is not possible.
+        </p>
+      </section>
+    </section>
+
+    <section class="informative" id="unique-did-method-names">
+      <h3 id="x7-3-unique-did-method-names"><bdi class="secno">7.3 </bdi>
+Unique DID Method Names
+      <a class="self-link" aria-label="§" href="#unique-did-method-names"></a></h3><p><em>This section is non-normative.</em></p>
+      <p>
+The authors of a new DID method specification
+<em class="rfc2119" title="SHOULD">SHOULD</em> use a method name that is unique among all DID method
+names known to them at the time of publication.
+      </p>
+      <p>
+Because there is no central authority for allocating or approving DID
+method names, there is no way to know for certain if a particular DID method
+name is unique. To help with this challenge, the
+<a href="https://www.w3.org/community/credentials/">W3C Credentials Community
+Group</a> maintains a non-authoritative list of known DID
+method names and their associated specifications (see Appendix
+<a href="#registries" class="sec-ref">§&nbsp;<bdi class="secno">A. </bdi>
+Registries
+    </a>).
+      </p>
+      <p>
+The [<cite><a class="bibref" href="#bib-did-method-registry" title="The Decentralized Identifier Method Registry" data-link-type="biblio">DID-METHOD-REGISTRY</a></cite>] is a tool for implementors to use when coming
+to consensus on a new method name, as well as an informative reference for
+software developers implementing <a href="#did-resolvers" class="sec-ref">§&nbsp;<bdi class="secno">8. </bdi>
+DID Resolvers
+    </a> for different
+DID methods.
+The [<cite><a class="bibref" href="#bib-did-method-registry" title="The Decentralized Identifier Method Registry" data-link-type="biblio">DID-METHOD-REGISTRY</a></cite>] is not a definitive or official list of DID
+methods. Nonetheless, adding DID method names to the [<cite><a class="bibref" href="#bib-did-method-registry" title="The Decentralized Identifier Method Registry" data-link-type="biblio">DID-METHOD-REGISTRY</a></cite>] is
+encouraged so that other implementors and members of the community have a
+place to see an overview of existing DID methods. The lightweight criteria for
+inclusion are documented in the [<cite><a class="bibref" href="#bib-did-method-registry" title="The Decentralized Identifier Method Registry" data-link-type="biblio">DID-METHOD-REGISTRY</a></cite>].
+      </p>
+    </section>
+
+  </section>
+
+  <section id="did-resolvers">
+    <h2 id="x8-did-resolvers"><bdi class="secno">8. </bdi>
+DID Resolvers
+    <a class="self-link" aria-label="§" href="#did-resolvers"></a></h2>
+
+    <p>
+A DID Resolver is a software or hardware component with an API for resolving
+<a href="#dfn-did" class="internalDFN" data-link-type="dfn">DIDs</a> of at least one <a href="#dfn-did-method" class="internalDFN" data-link-type="dfn">DID method</a>. It
+executes the corresponding DID method's <a href="#read-verify">Read</a> operation to
+obtain the authoritative DID Document.
+    </p>
+
+    <p>
+The interfaces and algorithms for resolving <a href="#dfn-did" class="internalDFN" data-link-type="dfn">DIDs</a> and dereferencing <a href="#dfn-did-url" class="internalDFN" data-link-type="dfn">DID URLs</a> are
+specified in [<cite><a class="bibref" href="#bib-did-resolution" title="Decentralized Identifier Resolution" data-link-type="biblio">DID-RESOLUTION</a></cite>].
+    </p>
+
+  </section>
+
+  <section class="informative" id="security-considerations">
+    <h2 id="x9-security-considerations"><bdi class="secno">9. </bdi>
+Security Considerations
+    <a class="self-link" aria-label="§" href="#security-considerations"></a></h2><p><em>This section is non-normative.</em></p>
+
+    <p>
+NOTE TO IMPLEMENTERS: During the Implementer’s Draft stage, this
+section focuses on security topics that should be important in early
+implementations. The editors are also seeking feedback on threats and
+threat mitigations that should be reflected in this section or
+elsewhere in the spec. As the root identifier records for decentralized
+identifiers, DIDs and DID Documents are a vital component of
+decentralized identity management. They are also the foundational
+building blocks of DPKI (decentralized public key infrastructure) as an
+augmentation to conventional X.509 certificates. As such, DIDs are
+designed to operate under the general Internet threat model used by
+many IETF standards. We assume uncompromised endpoints, but allow
+messages to be read or corrupted on the network. Protecting against an
+attack when a system is compromised requires external key-signing
+hardware. See also Section <a href="#key-revocation-and-recovery" class="sec-ref">§&nbsp;<bdi class="secno">9.8 </bdi>
+Key Revocation and Recovery
+      </a>
+regarding key revocation and recovery. For their part, the DLTs hosting
+DIDs and DID Documents have special security properties for preventing
+active attacks. Their design uses public/private key cryptography to
+allow operation on passively monitored networks without risking
+compromise of private keys. This is what makes DID architecture and
+decentralized identity possible.
+    </p>
+
+    <section id="requirements-of-did-method-specifications">
+      <h3 id="x9-1-requirements-of-did-method-specifications"><bdi class="secno">9.1 </bdi>
+Requirements of DID Method Specifications
+      <a class="self-link" aria-label="§" href="#requirements-of-did-method-specifications"></a></h3>
+
+      <ol start="1">
+        <li>
+DID method specifications <em class="rfc2119" title="MUST">MUST</em> include their own Security
+Considerations sections.
+        </li>
+
+        <li>
+This section <em class="rfc2119" title="MUST">MUST</em> consider all the requirements mentioned in
+section 5 of [<cite><a class="bibref" href="#bib-rfc3552" title="Guidelines for Writing RFC Text on Security Considerations" data-link-type="biblio">RFC3552</a></cite>] (page 27) for the DID operations defined in
+the specification. In particular:
+        </li>
+      </ol>
+
+      <div class="issue" id="issue-container-generatedID-7"><div role="heading" class="issue-title marker" id="h-issue-2" aria-level="4"><span>Issue</span></div><p class="">
+Discussions at Rebooting the Web of Trust 5 resulted in consensus to
+move Authorization to DID Method specifications. It is currently
+expected that there will be an attempt to create a generalized
+authorization mechanism that is build on object capabilities.
+      </p></div>
+
+      <p>
+At least the following forms of attack <em class="rfc2119" title="MUST">MUST</em> be considered:
+eavesdropping, replay, message insertion, deletion, modification, and
+man-in-the-middle. Potential denial of service attacks <em class="rfc2119" title="MUST">MUST</em> be
+identified as well. If the protocol incorporates cryptographic
+protection mechanisms, it should be clearly indicated which portions
+of the data are protected and what the protections are (i.e.,
+integrity only, confidentiality, and/or endpoint authentication,
+etc.). Some indication should also be given to what sorts of attacks
+the cryptographic protection is susceptible. Data which should be
+held secret (keying material, random seeds, etc.) should be clearly
+labeled. If the technology involves authentication, particularly
+user-host authentication, the security of the authentication method
+<em class="rfc2119" title="MUST">MUST</em> be clearly specified.
+      </p>
+
+      <ol start="3">
+        <li>
+This section <em class="rfc2119" title="MUST">MUST</em> also discuss, per Section 5 of [<cite><a class="bibref" href="#bib-rfc3552" title="Guidelines for Writing RFC Text on Security Considerations" data-link-type="biblio">RFC3552</a></cite>],
+residual risks (such as the risks from compromise in a related
+protocol, incorrect implementation, or cipher) after threat
+mitigation has been deployed.
+        </li>
+
+        <li>
+This section <em class="rfc2119" title="MUST">MUST</em> provide integrity protection and update
+authentication for all operations required by
+Section <a href="#did-operations" class="sec-ref">§&nbsp;<bdi class="secno">7.2 </bdi>
+DID Operations
+      </a>.
+        </li>
+
+        <li>
+Where DID methods make use of peer-to-peer computing resources
+(such as with all known DLTs), the expected burdens of those
+resources <em class="rfc2119" title="SHOULD">SHOULD</em> be discussed in relation to denial of service.
+        </li>
+
+        <li>
+Method-specific endpoint authentication <em class="rfc2119" title="MUST">MUST</em> be discussed. Where
+DID methods make use of DLTs with varying network topology, sometimes
+offered as "light node" or "<a href="https://en.bitcoin.it/wiki/Thin_Client_Security">thin client</a>"
+implementations to reduce required computing resources, the security
+assumptions of the topology available to implementations of the DID
+method <em class="rfc2119" title="MUST">MUST</em> be discussed.
+        </li>
+
+        <li>
+DID methods <em class="rfc2119" title="MUST">MUST</em> discuss the policy mechanism by which DIDs are
+proven to be uniquely assigned. A DID fits the functional definition
+of a URN as defined in [<cite><a class="bibref" href="#bib-rfc8141" title="Uniform Resource Names (URNs)" data-link-type="biblio">RFC8141</a></cite>] — a persistent identifier that is
+assigned once to a resource and never reassigned. In a security
+context this is particularly important since a DID may be used to
+identify a specific party subject to a specific set of authorization
+rights.
+        </li>
+
+        <li>
+DID methods that introduce new authentication service endpoint
+types (Section <a href="#service-endpoints" class="sec-ref">§&nbsp;<bdi class="secno">5.6 </bdi>
+Service Endpoints
+      </a>) <em class="rfc2119" title="SHOULD">SHOULD</em> consider the
+security requirements of the supported authentication protocol.
+        </li>
+      </ol>
+    </section>
+
+    <section id="choosing-did-resolvers">
+      <h3 id="x9-2-choosing-did-resolvers"><bdi class="secno">9.2 </bdi>
+Choosing DID Resolvers
+      <a class="self-link" aria-label="§" href="#choosing-did-resolvers"></a></h3>
+
+      <p>
+The [<cite><a class="bibref" href="#bib-did-method-registry" title="The Decentralized Identifier Method Registry" data-link-type="biblio">DID-METHOD-REGISTRY</a></cite>] is an informative list of DID method names
+and their corresponding DID Method specifications.
+Implementors should bear in mind that there is no central authority to
+mandate which DID Method specification must be used with any particular
+DID Method name, but can use the [<cite><a class="bibref" href="#bib-did-method-registry" title="The Decentralized Identifier Method Registry" data-link-type="biblio">DID-METHOD-REGISTRY</a></cite>] to make an
+informed decision when choosing which <a href="#did-resolvers" class="sec-ref">§&nbsp;<bdi class="secno">8. </bdi>
+DID Resolvers
+    </a>
+implementations to use.
+      </p>
+    </section>
+
+    <section id="binding-of-identity">
+      <h3 id="x9-3-binding-of-identity"><bdi class="secno">9.3 </bdi>
+Binding of Identity
+      <a class="self-link" aria-label="§" href="#binding-of-identity"></a></h3>
+
+      <section id="proving-control-of-a-did-and-did-document">
+        <h4 id="x9-3-1-proving-control-of-a-did-and-did-document"><bdi class="secno">9.3.1 </bdi>
+Proving Control of a DID and DID Document
+        <a class="self-link" aria-label="§" href="#proving-control-of-a-did-and-did-document"></a></h4>
+
+        <p>
+Signatures are one method to allow DID Documents to be
+cryptographically verifiable.
+        </p>
+
+        <p>
+By itself, a verified signature on a self-signed DID Document does
+not prove control of a DID. It only proves the following:
+        </p>
+
+        <ol start="1">
+          <li>
+The DID Document has not been tampered with since it was
+registered.
+          </li>
+
+          <li>
+The controller of the DID Document controlled the private key used
+for the signature at the time the signature was generated.
+          </li>
+        </ol>
+
+        <p>
+Proving control of a DID, i.e., the binding between the DID and
+the DID Document that describes it, requires a two step process:
+        </p>
+
+        <ol start="1">
+          <li>
+Resolving the DID to a DID Document according to its DID method
+specification.
+          </li>
+
+          <li>
+Verifying that the id property of the resulting DID Document
+matches the DID that was resolved.
+          </li>
+        </ol>
+
+        <p>
+It should be noted that this process proves control of a DID and
+DID Document regardless of whether the DID Document is signed.
+        </p>
+
+        <p>
+Signatures on DID Documents are optional. DID Method Specs <em class="rfc2119" title="SHOULD">SHOULD</em>
+explain and specify their implementation if applicable.
+        </p>
+
+        <p>
+It is <em class="rfc2119" title="RECOMMENDED">RECOMMENDED</em> to combine timestamps with signatures.
+        </p>
+      </section>
+
+      <section id="proving-control-of-a-public-key">
+        <h4 id="x9-3-2-proving-control-of-a-public-key"><bdi class="secno">9.3.2 </bdi>
+Proving Control of a Public Key
+        <a class="self-link" aria-label="§" href="#proving-control-of-a-public-key"></a></h4>
+
+        <p>
+There are two methods for proving control of the private key
+corresponding to a public key description in the DID Document:
+static and dynamic. The static method is to sign the DID Document
+with the private key. This proves control of the private key at a
+time no later than the DID Document was registered. If the DID
+Document is not signed, control of a public key described in the
+DID Document may still be proven dynamically as follows:
+        </p>
+
+        <ol start="1">
+          <li>
+Send a challenge message containing a public key description
+from the DID Document and a nonce to an appropriate service
+endpoint described in the DID Document.
+          </li>
+
+          <li>
+Verify the signature of the response message against the public
+key description.
+          </li>
+        </ol>
+      </section>
+
+      <section id="authentication-and-verifiable-claims">
+        <h4 id="x9-3-3-authentication-and-verifiable-claims"><bdi class="secno">9.3.3 </bdi>
+Authentication and Verifiable Claims
+        <a class="self-link" aria-label="§" href="#authentication-and-verifiable-claims"></a></h4>
+
+        <p>
+A DID and DID Document do not inherently carry any
+<a href="https://en.wikipedia.org/wiki/Personally_identifiable_information">
+PII</a> (personally-identifiable information). The process of
+binding a DID to something in the real-world such as a person or company,
+for example with credentials with the same subject as that DID, is out
+of scope for this specification. However this topic is the focus of the
+<a href="https://w3c.github.io/vctf/">verifiable claims</a>
+standardization work at the W3C (where the term "DID" originated).
+        </p>
+      </section>
+    </section>
+
+    <section id="authentication-service-endpoints">
+      <h3 id="x9-4-authentication-service-endpoints"><bdi class="secno">9.4 </bdi>
+Authentication Service Endpoints
+      <a class="self-link" aria-label="§" href="#authentication-service-endpoints"></a></h3>
+
+      <p>
+If a DID Document publishes a service endpoint intended for
+authentication or authorization of the subject (section
+<a href="#service-endpoints" class="sec-ref">§&nbsp;<bdi class="secno">5.6 </bdi>
+Service Endpoints
+      </a>), it is the responsibility of the service
+endpoint provider, subject, and/or relying party to comply with the
+requirements of the authentication protocol(s) supported at that
+service endpoint.
+      </p>
+    </section>
+
+    <section id="non-repudiation">
+      <h3 id="x9-5-non-repudiation"><bdi class="secno">9.5 </bdi>
+Non-Repudiation
+      <a class="self-link" aria-label="§" href="#non-repudiation"></a></h3>
+
+      <p>
+Non-repudiation of DIDs and DID Document updates is supported under
+the assumption that: (1) the subject is monitoring for unauthorized
+updates (see Section <a href="#notification-of-did-document-changes" class="sec-ref">§&nbsp;<bdi class="secno">9.6 </bdi>
+Notification of DID Document Changes
+      </a>)
+and (2) the subject has had adequate opportunity to revert malicious updates
+according to the DID method's access control mechanism (section
+<a href="#authentication" class="sec-ref">§&nbsp;<bdi class="secno">5.4 </bdi>
+Authentication
+      </a>).
+This capability is further supported if timestamps are included (sections
+<a href="#created-optional" class="sec-ref">§&nbsp;<bdi class="secno">5.7 </bdi>
+Created (Optional)
+      </a> and <a href="#updated-optional" class="sec-ref">§&nbsp;<bdi class="secno">5.8 </bdi>
+Updated (Optional)
+      </a>) and the
+target DLT system supports timestamps.
+      </p>
+    </section>
+
+    <section id="notification-of-did-document-changes">
+      <h3 id="x9-6-notification-of-did-document-changes"><bdi class="secno">9.6 </bdi>
+Notification of DID Document Changes
+      <a class="self-link" aria-label="§" href="#notification-of-did-document-changes"></a></h3>
+
+      <p>
+One mitigation against unauthorized changes to a DID Document is
+monitoring and actively notifying the subject when there are changes.
+This is analogous to helping prevent account takeover on conventional
+username/password accounts by sending password reset notifications to
+the email addresses on file. In the case of a DID, where there is no
+intermediary registrar or account provider to generate the
+notification, the following approaches are <em class="rfc2119" title="RECOMMENDED">RECOMMENDED</em>:
+      </p>
+
+      <ol start="1">
+        <li>
+Subscriptions. If the <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registry</a> on which the DID is
+registered directly supports change notifications, this service can
+be offered to <a href="#dfn-did-controller" class="internalDFN" data-link-type="dfn">DID controllers</a>. Notifications <em class="rfc2119" title="MAY">MAY</em> be sent directly to the
+relevant service endpoints listed in an existing DID.
+        </li>
+
+        <li>
+Self-monitoring. A <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID subject</a> <em class="rfc2119" title="MAY">MAY</em> employ their own local or online
+agent to periodically monitor for changes to a DID Document.
+        </li>
+
+        <li>
+Third-party monitoring. A <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID subject</a> <em class="rfc2119" title="MAY">MAY</em> rely on a third party
+monitoring service, however this introduces another vector of attack.
+        </li>
+      </ol>
+    </section>
+
+    <section id="key-and-signature-expiration">
+      <h3 id="x9-7-key-and-signature-expiration"><bdi class="secno">9.7 </bdi>
+Key and Signature Expiration
+      <a class="self-link" aria-label="§" href="#key-and-signature-expiration"></a></h3>
+
+      <p>
+In a decentralized identifier architecture, there are no centralized
+authorities to enforce key or signature expiration policies.
+Therefore DID resolvers and other client applications <em class="rfc2119" title="SHOULD">SHOULD</em> validate
+that keys were not expired at the time they were used. Since some use cases
+may have legitimate reasons why already-expired keys can be extended, a key
+expiration <em class="rfc2119" title="SHOULD NOT">SHOULD NOT</em> prevent any further use of the key, and implementations
+of a resolver <em class="rfc2119" title="SHOULD">SHOULD</em> be compatible with such extension behavior.
+      </p>
+    </section>
+
+    <section id="key-revocation-and-recovery">
+      <h3 id="x9-8-key-revocation-and-recovery"><bdi class="secno">9.8 </bdi>
+Key Revocation and Recovery
+      <a class="self-link" aria-label="§" href="#key-revocation-and-recovery"></a></h3>
+
+      <p>
+Section <a href="#did-operations" class="sec-ref">§&nbsp;<bdi class="secno">7.2 </bdi>
+DID Operations
+      </a> specifies the DID operations
+that must be supported by a DID method specification, including
+deactivation of a DID Document by replacing it with an updated DID
+Document. In general, checking for key revocation on DLT-based
+methods is expected to be handled in a manner similar to checking the
+balance of a cryptocurrency account on a distributed ledger: if the
+balance is empty, the entire DID is deactivated. DID method
+specifications <em class="rfc2119" title="SHOULD">SHOULD</em> enable support for a quorum of trusted parties
+to enable key recovery. Some of the facilities to do so are suggested
+in section 6.5, Authorization. Note that not all DID method
+specifications will recognize control from DIDs registered using
+other DID methods and they <em class="rfc2119" title="MAY">MAY</em> restrict third-party control to DIDs
+that use the same method. Access control and key recovery in a DID
+method specification <em class="rfc2119" title="MAY">MAY</em> also include a time lock feature to protect
+against key compromise by maintaining a second track of control for
+recovery. Further specification of this type of control is a matter
+for future work (see Section <a href="#time-locks-and-did-document-recovery" class="sec-ref">§&nbsp;<bdi class="secno">11.4 </bdi>
+Time Locks and DID Document Recovery
+      </a>).
+      </p>
+    </section>
+
+    <section id="the-role-of-human-friendly-identifiers">
+      <h3 id="x9-9-the-role-of-human-friendly-identifiers"><bdi class="secno">9.9 </bdi>
+The Role of Human-Friendly Identifiers
+      <a class="self-link" aria-label="§" href="#the-role-of-human-friendly-identifiers"></a></h3>
+
+      <p>
+DIDs achieve global uniqueness without the need for a central
+registration authority. This comes, however, at the cost of human
+memorability. The algorithms capable of generating globally unique
+identifiers automatically produce random strings of characters that
+have no human meaning. This demonstrates the axiom about
+identifiers known as <a href="https://en.wikipedia.org/wiki/Zooko%27s_triangle">Zooko's
+Triangle</a>: "human-meaningful, decentralized, secure — pick any
+two".
+      </p>
+
+      <p>
+There are of course many use cases where it is desirable to
+discover a DID when starting from a human-friendly identifier — a
+natural language name, a domain name, or a conventional address for
+a <a href="#dfn-did-controller" class="internalDFN" data-link-type="dfn">DID controller</a> such as a mobile telephone number, email address,
+Twitter handle, or blog URL. However, the problem of mapping
+human-friendly identifiers to DIDs (and doing so in a way that can
+be verified and trusted) is out-of-scope for this specification.
+      </p>
+
+      <p>
+Solutions to this problem (and there are many) should be defined in
+separate specifications that reference this specification. It is
+strongly recommended that such specifications carefully consider:
+(a) the numerous security attacks based on deceiving users about
+the true human-friendly identifier for a target entity, and (b) the
+privacy consequences of using human-friendly identifiers that are
+inherently correlatable, especially if they are globally unique.
+      </p>
+
+      <div class="note" role="note" id="issue-container-generatedID-8"><div role="heading" class="note-title marker" id="h-note-7" aria-level="4"><span>Note</span></div><p class="">
+A draft specification for discovering a DID from domain names and
+e-mail addresses using DNS lookups is available at [<cite><a class="bibref" href="#bib-dns-did" title="The Decentralized Identifier (DID) in the DNS" data-link-type="biblio">DNS-DID</a></cite>].
+	  </p></div>
+    </section>
+
+    <section id="immutability">
+        <h3 id="x9-10-immutability"><bdi class="secno">9.10 </bdi>
+Immutability
+        <a class="self-link" aria-label="§" href="#immutability"></a></h3>
+
+        <p>
+Many cybersecurity abuses hinge on exploiting gaps between reality and
+the assumptions of rational, good-faith actors. Like any ecosystem, the
+DID ecosystem has some potential for this to occur. Because this spec is
+focused on a data model rather than a protocol, it offers no opinion about
+many aspects of how that model is put to use. However, individual DID methods
+may wish to consider constraints that would eliminate behaviors or semantics
+they don't need. The more "locked down" a DID method is, while providing the
+same set of features, the less it can be manipulated by malicious actors.
+        </p>
+        <p>
+As an example, consider the flexibility that the data model offers with respect
+to updating. A single edit to a DID Document can change anything and everything except
+the root <code>id</code> property of the document — and any individual JSON object
+in the data model can change all of its properties except its <code>id</code>.
+But is it actually desirable for a service endpoint to change its <code>type</code>
+once it's been defined? Or for a key to change its value? Or would it be better
+to require a new <code>id</code> when certain fundamental properties of an
+object change? Malicious takeovers of a web site often aim for an outcome where the
+site keeps its identifier (the host name), but gets subtle, dangerous changes
+underneath. If certain properties of the site were required by spec to be immutable
+(e.g., the <a target="_blank" href="https://en.wikipedia.org/wiki/Autonomous_system_(Internet)">
+ASN</a> associated with its IP address), such attacks might be much harder and
+more expensive to carry out — and anomaly detection would be easier.
+        </p>
+        <p>
+The notion that immutability may provide some cybersecurity benefits is particularly
+relevant because of caching. For DID methods tied to a global source of truth, a
+direct, just-in-time lookup of the latest version of a DID Document is always possible.
+However, it seems likely that layers of cache might eventually sit between a client
+and that source of truth. If they do, believing the attributes of an object in the
+DID Document to have a given state, when they are actually subtly different, may invite
+exploits. This is particularly true if some lookups are of a full DID Document,
+and others are of partial data, where the larger context is assumed.
+        </p>
+    </section>
+
+  </section>
+
+  <section class="informative" id="privacy-considerations">
+    <h2 id="x10-privacy-considerations"><bdi class="secno">10. </bdi>
+Privacy Considerations
+    <a class="self-link" aria-label="§" href="#privacy-considerations"></a></h2><p><em>This section is non-normative.</em></p>
+
+    <p>
+It is critically important to apply the principles of Privacy by Design
+to all aspects of decentralized identifier architecture, because DIDs
+and DID Documents are — by design — administered directly by their controllers.
+There is no registrar, hosting company, or other intermediate service
+provider to recommend or apply additional privacy safeguards. The
+authors of this specification have applied all seven Privacy by Design
+principles throughout its development. For example, privacy in this
+specification is preventative not remedial, and privacy is an embedded
+default. Furthermore, decentralized identifier architecture by itself
+embodies principle #7, "Respect for user privacy — keep it user-centric."
+This section lists additional privacy considerations that implementers,
+delegates, and <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID subjects</a> should bear in mind.
+    </p>
+
+    <section id="requirements-of-did-method-specifications-0">
+      <h3 id="x10-1-requirements-of-did-method-specifications"><bdi class="secno">10.1 </bdi>
+Requirements of DID Method Specifications
+      <a class="self-link" aria-label="§" href="#requirements-of-did-method-specifications-0"></a></h3>
+
+      <ol start="1">
+        <li>
+DID method specifications <em class="rfc2119" title="MUST">MUST</em> include their own Privacy
+Considerations sections, if only to point to the general privacy
+considerations in this section.
+        </li>
+
+        <li>
+The DID method privacy section <em class="rfc2119" title="MUST">MUST</em> discuss any subsection of
+section 5 of [<cite><a class="bibref" href="#bib-rfc6973" title="Privacy Considerations for Internet Protocols" data-link-type="biblio">RFC6973</a></cite>] that could apply in a method-specific
+manner. The subsections to consider are: surveillance, stored data
+compromise, unsolicited traffic, misattribution, correlation,
+identification, secondary use, disclosure, exclusion.
+        </li>
+      </ol>
+    </section>
+
+    <section id="keep-personally-identifiable-information-pii-private">
+      <h3 id="x10-2-keep-personally-identifiable-information-pii-private"><bdi class="secno">10.2 </bdi>
+Keep Personally-Identifiable Information (PII) Private
+      <a class="self-link" aria-label="§" href="#keep-personally-identifiable-information-pii-private"></a></h3>
+
+      <p>
+If a DID method specification is written for a public <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID
+Registry</a> where all DIDs and DID Documents will be publicly available,
+it is STRONGLY <em class="rfc2119" title="RECOMMENDED">RECOMMENDED</em> that DID Documents contain no PII. All PII
+should be kept behind service endpoints under the control
+of the subject. With this privacy architecture, PII may be exchanged
+on a private, peer-to-peer basis using communications channels
+identified and secured by key descriptions in DID Documents. This also
+enables subjects and relying parties to implement the
+<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>
+<a href="https://en.wikipedia.org/wiki/Right_to_be_forgotten">right
+to be forgotten</a>, as no PII will be written to an immutable
+ledger.
+      </p>
+    </section>
+
+    <section id="did-correlation-risks-and-pseudonymous-dids">
+      <h3 id="x10-3-did-correlation-risks-and-pseudonymous-dids"><bdi class="secno">10.3 </bdi>
+DID Correlation Risks and Pseudonymous DIDs
+      <a class="self-link" aria-label="§" href="#did-correlation-risks-and-pseudonymous-dids"></a></h3>
+
+      <p>
+Like any type of globally unique identifier, DIDs may be used for
+correlation. <a href="#dfn-did-controller" class="internalDFN" data-link-type="dfn">DID controllers</a> can mitigate this privacy risk by using
+pairwise unique DIDs, i.e., by sharing a different private DID for
+every relationship. In effect, each DID acts as a pseudonym. A
+pseudonymous DID need only be shared with more than one party when
+the subject explicitly authorizes correlation between those parties.
+If pseudonymous DIDs are the default, then the only need for a public
+DID — a DID published openly or shared with a large number of
+parties — is when the subject explicitly desires public identification.
+      </p>
+    </section>
+
+    <section id="did-document-correlation-risks">
+      <h3 id="x10-4-did-document-correlation-risks"><bdi class="secno">10.4 </bdi>
+DID Document Correlation Risks
+      <a class="self-link" aria-label="§" href="#did-document-correlation-risks"></a></h3>
+
+      <p>
+The anti-correlation protections of pseudonymous DIDs are easily
+defeated if the data in the corresponding DID Documents can be
+correlated. For example, using same public key descriptions or
+bespoke service endpoints in multiple DID Documents can provide as
+much correlation information as using the same DID. Therefore the DID
+Document for a pseudonymous DID <em class="rfc2119" title="SHOULD">SHOULD</em> also use pairwise-unique
+public keys.
+
+It might seem natural to also use pairwise-unique service endpoints
+in the DID Document for a pseudonymous DID. However, unique endpoints
+allow all traffic between to DIDs to be isolated perfectly into
+unique buckets, where timing correlation and similar analysis is easy.
+Therefore, a better strategy for endpoint privacy may be to share an
+endpoint among thousands or millions of DIDs controlled by many different
+subjects.
+      </p>
+    </section>
+
+    <section id="herd-privacy">
+      <h3 id="x10-5-herd-privacy"><bdi class="secno">10.5 </bdi>
+Herd Privacy
+      <a class="self-link" aria-label="§" href="#herd-privacy"></a></h3>
+
+      <p>
+When a <a href="#dfn-did-subject" class="internalDFN" data-link-type="dfn">DID subject</a> is indistinguishable from others in the herd, privacy
+is available. When the act of engaging privately with another party
+is by itself a recognizable flag, privacy is greatly diminished. DIDs
+and DID methods <em class="rfc2119" title="SHOULD">SHOULD</em> work to improve herd privacy, particularly for
+those who legitimately need it most. Choose technologies and human
+interfaces that default to preserving anonymity and pseudonymity. In
+order to reduce <a href="https://en.wikipedia.org/wiki/Device_fingerprint">digital
+fingerprints</a>, share common settings across client
+implementations, keep negotiated options to a minimum on wire
+protocols, use encrypted transport layers, and pad messages to
+standard lengths.
+      </p>
+    </section>
+  </section>
+
+  <section class="informative" id="future-work">
+    <h2 id="x11-future-work"><bdi class="secno">11. </bdi>
+Future Work
+    <a class="self-link" aria-label="§" href="#future-work"></a></h2><p><em>This section is non-normative.</em></p>
+
+    <section id="upper-limits-on-did-character-length">
+      <h3 id="x11-1-upper-limits-on-did-character-length"><bdi class="secno">11.1 </bdi>
+Upper Limits on DID Character Length
+      <a class="self-link" aria-label="§" href="#upper-limits-on-did-character-length"></a></h3>
+
+      <p>
+The current specification does not take a position on maximum length
+of a DID. The maximum interoperable URL length is currently about 2K
+characters. QR codes can handle about 4K characters. Clients using
+DIDs will be responsible for storing many DIDs, and some methods
+would be able to externalize some of their costs onto clients by
+relying on more complicated signature schemes or by adding state into
+DIDs intended for temporary use. A future version of this
+specification should set reasonable limits on DID character length to
+minimize externalities.
+      </p>
+    </section>
+
+    <section id="equivalence">
+      <h3 id="x11-2-equivalence"><bdi class="secno">11.2 </bdi>
+Equivalence
+      <a class="self-link" aria-label="§" href="#equivalence"></a></h3>
+
+      <p>
+Including an equivalence property, such as equivID, in DID Documents
+whose value is an array of DIDs would allow subjects to assert two or
+more DIDs that represent the same subject. This capability has
+numerous uses, including supporting migration between <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID Registries</a> and
+providing forward compatibility of existing DIDs to future <a href="#dfn-did-registry" class="internalDFN" data-link-type="dfn">DID
+Registries</a>. In
+theory, equivalent DIDs should have the same identifier rights,
+allowing <a href="https://w3c.github.io/vctf/">verifiable claims</a>
+made against one DID to apply to equivalent DIDs. Equivalence was not
+included in the current specification due to the complexity of
+verifying equivalence across different DLTs and different DID
+methods, and also of aggregating properties of equivalent DID
+Documents. However equivalence should be supported in a future
+version of this specification.
+      </p>
+    </section>
+
+    <section id="timestamps">
+      <h3 id="x11-3-timestamps"><bdi class="secno">11.3 </bdi>
+Timestamps
+      <a class="self-link" aria-label="§" href="#timestamps"></a></h3>
+
+      <p>
+Verifiable timestamps have significant utility for identifier
+records. This is a good fit for DLTs, since most offer some type of
+timestamp mechanism. Despite some transactional cost, they are the
+most censorship-resistant transaction ordering systems in the world,
+so they are nearly ideal for DID Document timestamping. In some cases
+a DLT's immediate timing is approximate, however their sense of
+<a href="https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki%23Abstract">
+"median time past" (see Bitcoin BIP 113)</a> can be precisely
+defined. A generic DID Document timestamping mechanism could would
+work across all DLTs and might operate via a mechanism including
+either individual transactions or transaction batches. The generic
+mechanism was deemed out of scope for this version, although it may
+be included in a future version of this specification.
+      </p>
+    </section>
+
+    <section id="time-locks-and-did-document-recovery">
+      <h3 id="x11-4-time-locks-and-did-document-recovery"><bdi class="secno">11.4 </bdi>
+Time Locks and DID Document Recovery
+      <a class="self-link" aria-label="§" href="#time-locks-and-did-document-recovery"></a></h3>
+
+      <p>
+Section <a href="#key-revocation-and-recovery" class="sec-ref">§&nbsp;<bdi class="secno">9.8 </bdi>
+Key Revocation and Recovery
+      </a> mentions one
+possible clever use of time locks to recover control of a DID after a
+key compromise. The technique relies on an ability to override the
+most recent update to a DID Document with Authorization applied by an
+earlier version of the DID Document in order to defeat the attacker.
+This protection depends on adding a <a href="https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki%23Abstract">
+time lock (see Bitcoin BIP 65)</a> to protect part of the transaction
+chain, enabling a Authorization block to be used to recover control.
+We plan to add support for time locks in a future version of this
+specification.
+      </p>
+    </section>
+
+    <section id="smart-signatures">
+      <h3 id="x11-5-smart-signatures"><bdi class="secno">11.5 </bdi>
+Smart Signatures
+      <a class="self-link" aria-label="§" href="#smart-signatures"></a></h3>
+
+      <p>
+Not all DLTs can support the Authorization logic in section 6.5.
+Therefore, in this version of the specification, all Authorization
+logic <em class="rfc2119" title="MUST">MUST</em> be delegated to DID method specifications. A potential
+future solution is a <a href="http://www.weboftrust.info/downloads/smart-signatures.pdf">Smart
+Signature</a> specification that specifies the code any conformant
+DLT may implement to process signature control logic.
+      </p>
+    </section>
+
+    <section id="verifiable-claims">
+      <h3 id="x11-6-verifiable-claims"><bdi class="secno">11.6 </bdi>
+Verifiable Claims
+      <a class="self-link" aria-label="§" href="#verifiable-claims"></a></h3>
+
+      <p>
+Although DIDs and DID Documents form a foundation for decentralized
+identity, they are only the first step in describing their subjects. The
+rest of the descriptive power comes through collecting and
+selectively using <a href="https://w3c.github.io/vctf/">verifiable
+claims</a>. Future versions of the specification will describe in
+more detail how DIDs and DID Document can be integrated with — and help
+enable — the verifiable claims ecosystem.
+      </p>
+    </section>
+
+    <section id="alternate-serializations-and-graph-models">
+      <h3 id="x11-7-alternate-serializations-and-graph-models"><bdi class="secno">11.7 </bdi>
+Alternate Serializations and Graph Models
+      <a class="self-link" aria-label="§" href="#alternate-serializations-and-graph-models"></a></h3>
+
+      <p>
+This version of the specification relies on JSON-LD and the RDF graph
+model for expressing a DID Document. Future versions of this
+specification <em class="rfc2119" title="MAY">MAY</em> specify other semantic graph formats for a DID
+Document, such as JXD (JSON XDI Data), a serialization format for the
+XDI graph model as defined by the <a href="http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">
+OASIS XDI Core 1.0 specification</a>.
+      </p>
+    </section>
+  </section>
+
+  <section class="appendix" id="registries">
+    <h2 id="a-registries"><bdi class="secno">A. </bdi>
+Registries
+    <a class="self-link" aria-label="§" href="#registries"></a></h2>
+
+    <p>
+There are multiple registries that define DID Methods and extensions to
+this specification. These registries are:
+    </p>
+
+    <table class="simple">
+      <thead>
+        <tr>
+          <th>
+Registry
+          </th>
+          <th>
+Purpose
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+<a href="https://w3c-ccg.github.io/did-method-registry/">DID
+Method Registry</a>
+          </td>
+          <td>
+Lists all known DID Methods and contains links to their
+specifications.
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+<a href="https://w3c-ccg.github.io/ld-cryptosuite-registry/">Linked Data
+Cryptography Suite Registry</a>
+          </td>
+          <td>
+Defines all known Linked Data Cryptography Suites and Key
+Formats.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="appendix" id="real-world-example">
+    <h2 id="b-real-world-example"><bdi class="secno">B. </bdi>
+Real World Example
+    <a class="self-link" aria-label="§" href="#real-world-example"></a></h2>
+
+    <p>
+A future-facing real-world context is provided below:
+    </p>
+
+    <div class="example" id="example-20-advanced-did-document-example">
+          <div class="marker">
+      <a class="self-link" href="#example-20-advanced-did-document-example">Example<bdi> 20</bdi></a><span class="example-title">: Advanced DID Document example</span>
+    </div> <pre class="nohighlight">{
+  "@context": "https://w3id.org/future-method/v1",
+  "id": "did:example:123456789abcdefghi",
+
+  "publicKey": [{
+    "id": "did:example:123456789abcdefghi#keys-1",
+    "type": "RsaVerificationKey2018",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }, {
+    "id": "did:example:123456789abcdefghi#keys-3",
+    "type": "Ieee2410VerificationKey2018",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }],
+
+  "authentication": [
+    <span class="comment">// this mechanism can be used to authenticate as did:...fghi</span>
+    "did:example:123456789abcdefghi#keys-1",
+    <span class="comment">// this mechanism can be used to biometrically authenticate as did:...fghi</span>
+    "did:example:123456789abcdefghi#keys-3",
+    <span class="comment">// this mechanism is *only* authorized for authentication, it may not</span>
+    <span class="comment">// be used for any other proof purpose, so its full description is</span>
+    <span class="comment">// embedded here rather than using only a reference</span>
+    {
+      "id": "did:example:123456789abcdefghi#keys-2",
+      "type": "Ed25519VerificationKey2018",
+      "controller": "did:example:123456789abcdefghi",
+      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    }
+  ],
+
+  "service": [{
+    "id": "did:example:123456789abcdefghi#oidc",
+    "type": "OpenIdConnectVersion1.0Service",
+    "serviceEndpoint": "https://openid.example.com/"
+  }, {
+    "id": "did:example:123456789abcdefghi#vcStore",
+    "type": "CredentialRepositoryService",
+    "serviceEndpoint": "https://repository.example.com/service/8377464"
+  }, {
+    "id": "did:example:123456789abcdefghi#xdi",
+    "type": "XdiService",
+    "serviceEndpoint": "https://xdi.example.com/8377464"
+  }, {
+    "id": "did:example:123456789abcdefghi#hub",
+    "type": "HubService",
+    "serviceEndpoint": "https://hub.example.com/.identity/did:example:0123456789abcdef/"
+  }, {
+    "id": "did:example:123456789abcdefghi#messaging",
+    "type": "MessagingService",
+    "serviceEndpoint": "https://example.com/messages/8377464"
+  }, {
+    "type": "SocialWebInboxService",
+    "id": "did:example:123456789abcdefghi#inbox",
+    "serviceEndpoint": "https://social.example.com/83hfh37dj",
+    "description": "My public social inbox",
+    "spamCost": {
+      "amount": "0.50",
+      "currency": "USD"
+    }
+  }, {
+    "type": "DidAuthPushModeVersion1",
+    "id": "did:example:123456789abcdefghi#push",
+    "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefghi"
+  }, {
+    "id": "did:example:123456789abcdefghi#bops",
+    "type": "BopsService",
+    "serviceEndpoint": "https://bops.example.com/enterprise/"
+  }]
+}</pre>
+        </div>
+  </section>
+
+
+
+<section id="references" class="appendix">
+      <h2 id="c-references"><bdi class="secno">C. </bdi>References<a class="self-link" aria-label="§" href="#references"></a></h2>
+
+    <section id="normative-references">
+        <h3 id="c-1-normative-references"><bdi class="secno">C.1 </bdi>Normative references<a class="self-link" aria-label="§" href="#normative-references"></a></h3>
+      <dl class="bibliography">
+        <dt id="bib-json-ld">[JSON-LD]</dt><dd><a href="https://www.w3.org/TR/json-ld/"><cite>JSON-LD 1.0</cite></a>. Manu Sporny; Gregg Kellogg; Markus Lanthaler.  W3C. 16 January 2014. W3C Recommendation. URL: <a href="https://www.w3.org/TR/json-ld/">https://www.w3.org/TR/json-ld/</a></dd>
+      </dl></section><section id="informative-references">
+        <h3 id="c-2-informative-references"><bdi class="secno">C.2 </bdi>Informative references<a class="self-link" aria-label="§" href="#informative-references"></a></h3>
+      <dl class="bibliography">
+        <dt id="bib-did-method-registry">[DID-METHOD-REGISTRY]</dt><dd><a href="https://w3c-ccg.github.io/did-method-registry/"><cite>The Decentralized Identifier Method Registry</cite></a>. Manu Sporny; Drummond Reed.  Digital Verification Community Group. CG-DRAFT. URL: <a href="https://w3c-ccg.github.io/did-method-registry/">https://w3c-ccg.github.io/did-method-registry/</a></dd><dt id="bib-did-resolution">[DID-RESOLUTION]</dt><dd><a href="https://w3c-ccg.github.io/did-resolution/"><cite>Decentralized Identifier Resolution</cite></a>. Markus Sabadello; Dmitri Zagidulin.  Credentials Community Group. Draft Community Group Report. URL: <a href="https://w3c-ccg.github.io/did-resolution/">https://w3c-ccg.github.io/did-resolution/</a></dd><dt id="bib-dns-did">[DNS-DID]</dt><dd><a href="https://datatracker.ietf.org/doc/draft-mayrhofer-did-dns/"><cite>The Decentralized Identifier (DID) in the DNS</cite></a>. Alexander Mayrhofer; Dimitrij Klesev; Markus Sabadello. February 2019. Internet-Draft. URL: <a href="https://datatracker.ietf.org/doc/draft-mayrhofer-did-dns/">https://datatracker.ietf.org/doc/draft-mayrhofer-did-dns/</a></dd><dt id="bib-hashlink">[HASHLINK]</dt><dd><a href="https://tools.ietf.org/html/draft-sporny-hashlink-02"><cite>Cryptographic Hyperlinks</cite></a>. Manu Sporny.  IETF. December 2018. Internet-Draft. URL: <a href="https://tools.ietf.org/html/draft-sporny-hashlink-02">https://tools.ietf.org/html/draft-sporny-hashlink-02</a></dd><dt id="bib-iana-uri-schemes">[IANA-URI-SCHEMES]</dt><dd><a href="https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml"><cite>Uniform Resource Identifier (URI) Schemes</cite></a>.  IANA. URL: <a href="https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml">https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml</a></dd><dt id="bib-ld-proofs">[LD-PROOFS]</dt><dd><a href="https://w3c-dvcg.github.io/ld-proofs/"><cite>Linked Data Proofs</cite></a>. Manu Sporny; Dave Longley.  Digital Verification Community Group. CG-DRAFT. URL: <a href="https://w3c-dvcg.github.io/ld-proofs/">https://w3c-dvcg.github.io/ld-proofs/</a></dd><dt id="bib-ld-signatures">[LD-SIGNATURES]</dt><dd><a href="https://w3c-dvcg.github.io/ld-signatures/"><cite>Linked Data Signatures</cite></a>. Manu Sporny; Dave Longley.  Digital Verification Community Group. CG-DRAFT. URL: <a href="https://w3c-dvcg.github.io/ld-signatures/">https://w3c-dvcg.github.io/ld-signatures/</a></dd><dt id="bib-linked-data">[LINKED-DATA]</dt><dd><a href="https://www.w3.org/DesignIssues/LinkedData.html"><cite>Linked Data Design Issues</cite></a>. Tim Berners-Lee.  W3C. 27 July 2006. W3C-Internal Document. URL: <a href="https://www.w3.org/DesignIssues/LinkedData.html">https://www.w3.org/DesignIssues/LinkedData.html</a></dd><dt id="bib-matrix-uris">[MATRIX-URIS]</dt><dd><a href="https://www.w3.org/DesignIssues/MatrixURIs.html"><cite>Matrix URIs - Ideas about Web Architecture</cite></a>. Tim Berners-Lee. December 1996. Personal View. URL: <a href="https://www.w3.org/DesignIssues/MatrixURIs.html">https://www.w3.org/DesignIssues/MatrixURIs.html</a></dd><dt id="bib-rfc3552">[RFC3552]</dt><dd><a href="https://tools.ietf.org/html/rfc3552"><cite>Guidelines for Writing RFC Text on Security Considerations</cite></a>. E. Rescorla; B. Korver.  IETF. July 2003. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc3552">https://tools.ietf.org/html/rfc3552</a></dd><dt id="bib-rfc3986">[RFC3986]</dt><dd><a href="https://tools.ietf.org/html/rfc3986"><cite>Uniform Resource Identifier (URI): Generic Syntax</cite></a>. T. Berners-Lee; R. Fielding; L. Masinter.  IETF. January 2005. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc3986">https://tools.ietf.org/html/rfc3986</a></dd><dt id="bib-rfc4122">[RFC4122]</dt><dd><a href="https://tools.ietf.org/html/rfc4122"><cite>A Universally Unique IDentifier (UUID) URN Namespace</cite></a>. P. Leach; M. Mealling; R. Salz.  IETF. July 2005. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc4122">https://tools.ietf.org/html/rfc4122</a></dd><dt id="bib-rfc5234">[RFC5234]</dt><dd><a href="https://tools.ietf.org/html/rfc5234"><cite>Augmented BNF for Syntax Specifications: ABNF</cite></a>. D. Crocker, Ed.; P. Overell.  IETF. January 2008. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc5234">https://tools.ietf.org/html/rfc5234</a></dd><dt id="bib-rfc6901">[RFC6901]</dt><dd><a href="https://tools.ietf.org/html/rfc6901"><cite>JavaScript Object Notation (JSON) Pointer</cite></a>. P. Bryan, Ed.; K. Zyp; M. Nottingham, Ed..  IETF. April 2013. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc6901">https://tools.ietf.org/html/rfc6901</a></dd><dt id="bib-rfc6973">[RFC6973]</dt><dd><a href="https://tools.ietf.org/html/rfc6973"><cite>Privacy Considerations for Internet Protocols</cite></a>. A. Cooper; H. Tschofenig; B. Aboba; J. Peterson; J. Morris; M. Hansen; R. Smith.  IETF. July 2013. Informational. URL: <a href="https://tools.ietf.org/html/rfc6973">https://tools.ietf.org/html/rfc6973</a></dd><dt id="bib-rfc7230">[RFC7230]</dt><dd><a href="https://httpwg.org/specs/rfc7230.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</cite></a>. R. Fielding, Ed.; J. Reschke, Ed..  IETF. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7230.html">https://httpwg.org/specs/rfc7230.html</a></dd><dt id="bib-rfc8141">[RFC8141]</dt><dd><a href="https://tools.ietf.org/html/rfc8141"><cite>Uniform Resource Names (URNs)</cite></a>. P. Saint-Andre; J. Klensin.  IETF. April 2017. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc8141">https://tools.ietf.org/html/rfc8141</a></dd><dt id="bib-rfc8259">[RFC8259]</dt><dd><a href="https://tools.ietf.org/html/rfc8259"><cite>The JavaScript Object Notation (JSON) Data Interchange Format</cite></a>. T. Bray, Ed..  IETF. December 2017. Internet Standard. URL: <a href="https://tools.ietf.org/html/rfc8259">https://tools.ietf.org/html/rfc8259</a></dd><dt id="bib-vc-data-model">[VC-DATA-MODEL]</dt><dd><a href="https://www.w3.org/TR/verifiable-claims-data-model/"><cite>Verifiable Credentials Data Model</cite></a>. Manu Sporny; Dave Longley; Grant Noble; David Chadwick; Daniel C. Burnett.  Verifiable Claims Working Group. W3C First Public Working Draft. URL: <a href="https://www.w3.org/TR/verifiable-claims-data-model/">https://www.w3.org/TR/verifiable-claims-data-model/</a></dd><dt id="bib-xmlschema11-2">[XMLSCHEMA11-2]</dt><dd><a href="https://www.w3.org/TR/xmlschema11-2/"><cite>W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</cite></a>. David Peterson; Sandy Gao; Ashok Malhotra; Michael Sperberg-McQueen; Henry Thompson; Paul V. Biron et al.  W3C. 5 April 2012. W3C Recommendation. URL: <a href="https://www.w3.org/TR/xmlschema11-2/">https://www.w3.org/TR/xmlschema11-2/</a></dd>
+      </dl></section></section><p role="navigation" id="back-to-top"><a href="#title"><abbr title="Back to Top">↑</abbr></a></p><script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script></body></html>
