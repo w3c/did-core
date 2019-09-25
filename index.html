@@ -49,9 +49,7 @@
     },
     includePermalinks: false,
 
-    // if there a publicly available Editor's Draft, this is the link
-    edDraftURI: "https://w3c-ccg.github.io/did-spec/",
-
+  
     // if this is a LCWD, uncomment and set the end of its review period
     // lcEnd: "2009-08-05",
 
@@ -560,7 +558,7 @@ For more information see <a href="#service-endpoints"></a>.
 
   </section>
 
-  <section>
+  <section class="normative">
     <h1>
 Decentralized Identifiers (DIDs)
     </h1>
@@ -593,11 +591,11 @@ Generic DID Syntax
 
       <p>
 The generic <a>DID scheme</a> is a URI scheme conformant with
-[[RFC3986]]. The DID scheme specializes only the scheme and
+[[!RFC3986]]. The DID scheme specializes only the scheme and
 authority components of a DID URI &mdash; the <code>path-abempty</code>,
 <code>query</code>, and <code>fragment</code> components are
 identical to the ABNF rules defined
-in [[RFC3986]].
+in [[!RFC3986]].
       </p>
 
       <p class="note">
@@ -611,7 +609,7 @@ be located.
       </p>
 
       <p>
-The following is the ABNF definition using the syntax in [[RFC5234]]
+The following is the ABNF definition using the syntax in [[!RFC5234]]
 which defines <code>ALPHA</code> and <code>DIGIT</code>. All other
 rule names not defined in this ABNF are defined in [[RFC3986]].
       </p>
@@ -631,7 +629,7 @@ param-char         = ALPHA / DIGIT / "." / "-" / "_" / ":" /
                      pct-encoded
 </pre>
 
-      <p class="issue" data-number="198">
+      <p class="issue" data-number="34">
 The grammar currently allows an empty <code>method-specific-id</code>,
 e.g., <code>did:example:</code> would be a valid DID that could identify
 the DID method itself.
@@ -766,7 +764,7 @@ this method and this method-specific parameter would be:
 <code>did:foo:21tDAKCERh95uGgKbJNHYp;foo:bar=high</code>
       </p>
 
-      <p class="issue" data-number="199">
+      <p class="issue" data-number="35">
 Consider using kebab-case style instead of colon separator,
 e.g., <code>foo-bar</code> instead of <code>foo:bar</code>.
       </p>
@@ -801,7 +799,7 @@ illustrates both:
       </p>
     </section>
 
-      <p class="issue" data-number="200">
+      <p class="issue" data-number="36">
 Review what exactly we want to say about method-specific parameters
 defined by one method but used in a DID URL with a different method.
 Also discuss hierarchical method namespaces in DID parameter names.
@@ -814,7 +812,7 @@ Path
 
       <p>
 A generic <a>DID path</a> is identical to a URI path and MUST
-conform to the <code>path-abempty</code> ABNF rule in [[RFC3986]]. A
+conform to the <code>path-abempty</code> ABNF rule in [[!RFC3986]]. A
 DID path SHOULD be used to address resources available via a DID
 service endpoint. See Section <a href="#service-endpoints"></a>.
       </p>
@@ -835,7 +833,7 @@ Query
 
       <p>
 A generic <a>DID query</a> is identical to a URI query and MUST
-conform to the <code>query</code> ABNF rule in [[RFC3986]]. A
+conform to the <code>query</code> ABNF rule in [[!RFC3986]]. A
 DID query SHOULD be used to address resources available via a DID
 service endpoint. See Section <a href="#service-endpoints"></a>.
       </p>
@@ -878,7 +876,7 @@ metadata contained directly in the DID Document or the service resource
 given by the target URL without needing to rely on graph-based processing.
       </p>
       <p>
-Implementations SHOULD NOT prevent the use of JSON pointers ([[RFC6901]]).
+Implementations SHOULD NOT prevent the use of JSON pointers ([[!RFC6901]]).
       </p>
       <pre class="example nohighlight">
 did:example:123456#oidc
@@ -954,7 +952,7 @@ equivalent of a single persistent abstract DID. See Future Work
     </section>
   </section>
 
-  <section>
+  <section class="normative">
     <h1>
 DID Documents
     </h1>
@@ -1578,7 +1576,7 @@ The key for this property MUST be created.
         <li>
 The value of this key MUST be a valid XML datetime value as
 defined in section 3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition
-Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]].
+Language (XSD) 1.1 Part 2: Datatypes</a> [[!XMLSCHEMA11-2]].
         </li>
 
         <li>
@@ -1865,12 +1863,12 @@ enabling aggressive caching of contexts.
     </section>
   </section>
 
-  <section>
+  <section class="normative">
     <h1>
 DID Document Syntax
     </h1>
         <p>
-A DID Document MUST be a single JSON object conforming to [[RFC8259]].
+A DID Document MUST be a single JSON object conforming to [[!RFC8259]].
 Many of the concepts in this document were introduced by example using the
 JSON-LD syntax, a format for mapping JSON data into the RDF semantic graph model as defined by
 [[!JSON-LD]]. This section formalizes how the data model (described in Sections
@@ -1979,7 +1977,7 @@ which use a JSON-LD processor and implementations which do not.
 DID Methods
     </h1>
 
-    <section>
+    <section class="normative">
       <h2>
 DID Method Schemes
       </h2>
@@ -2140,7 +2138,7 @@ inclusion are documented in the [[DID-METHOD-REGISTRY]].
 
   </section>
 
-  <section>
+  <section class='normative'> 
     <h1>
 DID Resolvers
     </h1>
