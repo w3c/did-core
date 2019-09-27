@@ -38,6 +38,7 @@
     "delegator": {"@id": "sec:delegator", "@type": "@id"},
     "domain": "sec:domain",
     "expirationDate": {"@id": "sec:expiration", "@type": "xsd:dateTime"},
+    "ethereumAddress": "sec:ethereumAddress",
     "invocationTarget": {"@id": "sec:invocationTarget", "@type": "@id"},
     "invoker": {"@id": "sec:invoker", "@type": "@id"},
     "jws": "sec:jws",
