@@ -572,12 +572,21 @@ which depend on what type of key it is.
 Services
       </h2>
       <p>
-A <a>DID Document</a> can contain pointers to services using the <code>
-service</code> property. Services can be anything the <a>DID Subject</a>
-wishes to advertise, for example other ways to interact with
-the <a>DID Subject</a>. Each service has its own <code>id</code> and
-<code>type</code>, as well as a <code>serviceEndpoint</code> with a
-URI or further properties describing the service.
+Service descriptions are used in DID Documents to express ways in which one can
+communicate with the subject of the DID or associated entities. Services listed
+in the DID Document can contain information about privacy preserving messaging
+services, or more public information such as social media accounts, personal
+websites, and email addresses. The metadata associated with services are often
+service specific. For example, the metadata associated with an encrypted
+messaging service can express how to initiate the encrypted link before
+messaging begins.
+      </p>
+
+      <p>
+Pointers to services are expressed using the <code>service</code> property.
+Each service has its own <code>id</code> and <code>type</code>, as well as a
+<code>serviceEndpoint</code> with a URI or further properties describing the
+service.
       </p>
       <p>
 For more information see <a href="#service-endpoints"></a>.
