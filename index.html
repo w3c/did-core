@@ -177,7 +177,7 @@ The emergence of distributed ledger technology (DLT), sometimes
 referred to as blockchain technology, provides the opportunity for
 fully <a>decentralized identity management</a>. In a decentralized
 identity system, entities (in the sense of discrete identifiable units
-such as &mdash; but not limited to &mdash; people, organizations, and 
+such as &mdash; but not limited to &mdash; people, organizations, and
 things) are free to use any shared root of trust.
 Globally distributed ledgers, decentralized P2P networks, or other systems
 with similar capabilities, provide the means for managing a root of
@@ -214,7 +214,7 @@ management &mdash; the standard pattern in hierarchical
 <a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI
 (public key infrastructure</a>). In cases where the <a>DID Registry</a>
 is a distributed ledger, each entity may serve as its own root authority
-&mdash; an architecture referred to as 
+&mdash; an architecture referred to as
 <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">DPKI
 (decentralized PKI)</a>.
       </p>
@@ -546,12 +546,21 @@ depend on what type of key it is.
 Services
       </h2>
       <p>
-A <a>DID Document</a> can contain pointers to services using the <code>
-service</code> property. Services can be anything the <a>DID Subject</a>
-wishes to advertise, for example other ways to interact with
-the <a>DID Subject</a>. Each service has its own <code>id</code> and
-<code>type</code>, as well as a <code>serviceEndpoint</code> with a
-URI or further properties describing the service.
+Service descriptions are used in DID Documents to express ways in which one can
+communicate with the subject of the DID or associated entities. Services listed
+in the DID Document can contain information about privacy preserving messaging
+services, or more public information such as social media accounts, personal
+websites, and email addresses. The metadata associated with services are often
+service specific. For example, the metadata associated with an encrypted
+messaging service can express how to initiate the encrypted link before
+messaging begins.
+      </p>
+
+      <p>
+Pointers to services are expressed using the <code>service</code> property.
+Each service has its own <code>id</code> and <code>type</code>, as well as a
+<code>serviceEndpoint</code> with a URI or further properties describing the
+service.
       </p>
       <p>
 For more information see <a href="#service-endpoints"></a>.
