@@ -544,27 +544,26 @@ the applicable <a href="#did-methods"></a>.
 
     <section>
       <h2>
-Verification Methods
+Cryptographic Keys
       </h2>
       <p>
-A DID Document can contain verification methods, such as
-cryptographic keys, and other material that can be
-used to authenticate or authorize interactions with the subject of the DID or
-associated parties. These verification methods often contain identifiers that allow them to be
-referenced in a global network. They also contain public information, such as the public
-parameters of a cryptographic key, which are often used to verify digital signatures. Other
-information can include status information for the key, such as if it has been
-suspended or revoked, or other information that enables one to verify if it is a
-hardware-backed cryptographic key.
+A DID Document can express cryptographic keys and other verification methods
+that can be used to authenticate or authorize interactions with the subject of
+the DID or associated parties. The information expressed often includes globally
+unambiguous identifiers and public key material which can be used to verify
+digital signatures. Other information can be expressed such as status
+information for the key, such as if it has been suspended or revoked, or other
+attributes that enable one to verify if it is a hardware-backed cryptographic
+key.
       </p>
 
       <p>
-With respect to cryptographic key material, <a href="#public-keys"></a> can be included in a <a>DID
-Document</a> using, for example, the <code>publicKey</code> or <code>authentication</code>
-properties depending on what they are to be used for. Each public key
-has an identifier (<code>id</code>) of its own, a <code>type</code>,
-and a <code>controller</code>, as well as other properties which
-depend on what type of key it is.
+With respect to cryptographic key material, <a href="#public-keys"></a> can be
+included in a <a>DID Document</a> using, for example, the <code>publicKey</code>
+or <code>authentication</code> properties depending on what they are to be used
+for. Each public key has an identifier (<code>id</code>) of its own, a
+<code>type</code>, and a <code>controller</code>, as well as other properties
+which depend on what type of key it is.
       </p>
     </section>
 
