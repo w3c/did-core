@@ -518,13 +518,18 @@ use with other Internet-based identifiers.
     </section>
     <section>
       <h2>
-Document
+DID Document
       </h2>
+     <p>
+A DID Document is the resource that is associated with a
+<a>decentralized identifier</a>. The DID Document typically contains a
+list of public keys and services that can be used to interact with an entity
+that is associated with a DID.
+      </p>
+
       <p>
-A DID resolves to a <a>DID Document</a>. This is the concrete serialization of
-the data model, according to a particular syntax (see
-<a href="#did-document-syntax"></a>). The <a>DID Document</a> contains attributes
-or claims about the <a href="#did-subject"></a>, and the DID itself is
+A DID Document is serialized according to a particular syntax (see
+<a href="#did-document-syntax"></a>). The DID itself is
 contained in the <code>id</code> property.
       </p>
       <p>
