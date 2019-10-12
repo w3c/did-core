@@ -799,13 +799,13 @@ The exact processing rules for these parameters are specified in [[DID-RESOLUTIO
 
       <p class="note">
 Note that there may be additional parameters or options that are not part
-of the <a>DID URL</a> but instead passed to a DID resolver "out of band", i.e.,
+of the DID URL but instead passed to a <a>DID Resolver</a> "out of band", i.e.,
 using a resolution protocol or some other mechanism. Such options could
 for example control caching or the desired format of a resolution result.
 This is similar to HTTP, where caching or result format are expressed as
 HTTP headers rather than as part of an HTTP URL. The important distinction
 is that DID parameters that are part of the <a>DID URL</a> specify what resource
-is being identified, whereas DID resolver options that are not part of the
+is being identified, whereas <a>DID Resolver</a> options that are not part of the
 <a>DID URL</a> control how that resource is dereferenced.
       </p>
     </section>
@@ -1392,7 +1392,7 @@ using a key's position in a tree.
 
       <p class="note">
 Caching and expiration of the keys in a <a>DID document</a> is entirely the
-responsibility of DID resolvers and other clients. See Section
+responsibility of <a>DID Resolvers</a> and other clients. See Section
 <a href="#did-resolvers"></a>.
       </p>
     </section>
@@ -2224,7 +2224,7 @@ DID Resolvers
     </h1>
 
     <p>
-A DID resolver is a software or hardware component with an API for resolving
+A <a>DID Resolver</a> is a software or hardware component with an API for resolving
 <a>DIDs</a> of at least one <a>DID method</a>. It
 executes the corresponding <a>DID method</a>'s <a href="#read-verify">Read</a> operation to
 obtain the authoritative <a>DID document</a>.
@@ -2556,7 +2556,7 @@ Key and Signature Expiration
       <p>
 In a <a>decentralized identifier</a> architecture, there are no centralized
 authorities to enforce key or signature expiration policies.
-Therefore DID resolvers and other client applications SHOULD validate
+Therefore <a>DID Resolvers</a> and other client applications SHOULD validate
 that keys were not expired at the time they were used. Since some use cases
 may have legitimate reasons why already-expired keys can be extended, a key
 expiration SHOULD NOT prevent any further use of the key, and implementations
