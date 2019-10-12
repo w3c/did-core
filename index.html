@@ -111,12 +111,12 @@ verifiable, decentralized digital identity. These new identifiers
 are designed to enable the controller of a DID to prove control over
 it and to be implemented independently of any centralized registry,
 identity provider, or certificate authority. DIDs are URLs that relate
-a <a>DID subject</a> to means for trustable interactions with that subject.
+a <a>DID Subject</a> to means for trustable interactions with that subject.
 DIDs resolve to DID Documents &mdash; simple documents that describe how to
 use that specific DID. Each DID Document may express cryptographic
 material, verification methods, and/or service endpoints. These provide
-a set of mechanisms which enable a <a>DID controller</a> to prove control of the
-DID. Service endpoints enable trusted interactions with the <a>DID subject</a>.
+a set of mechanisms which enable a <a>DID Controller</a> to prove control of the
+DID. Service endpoints enable trusted interactions with the <a>DID Subject</a>.
     </p>
     <p>
 This document specifies a common data model, format, and operations that
@@ -190,7 +190,7 @@ Entities are identified by decentralized identifiers (DIDs), and
 may authenticate via proofs (e.g., digital signatures,
 privacy-preserving biometric protocols, etc.). DIDs point to DID
 Documents. A DID Document contains a set of service endpoints for
-interacting with the entity the DID identifies (aka the <a>DID subject</a>).
+interacting with the entity the DID identifies (aka the <a>DID Subject</a>).
 Following the dictums of
 <a href="https://en.wikipedia.org/wiki/Privacy_by_design">Privacy by
 Design</a>, any entity may have as many DIDs as necessary (and
@@ -210,7 +210,7 @@ This design eliminates dependence on centralized registries for
 identifiers as well as centralized certificate authorities for key
 management &mdash; the standard pattern in hierarchical
 <a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI
-(public key infrastructure</a>). In cases where the <a>DID Registry</a>
+(public key infrastructure</a>). In cases where the <a>DID registry</a>
 is a distributed ledger, each entity may serve as its own root authority
 &mdash; an architecture referred to as
 <a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">DPKI
@@ -228,12 +228,12 @@ centralized, federated, and decentralized identifiers.
       <p>
 The first purpose of this specification is to define the generic
 DID scheme and a generic set of operations on DID Documents that can be
-implemented for any <a>DID Registry</a>. The second
+implemented for any <a>DID registry</a>. The second
 purpose of this specification is to
 define the conformance requirements for a DID method
 specification &mdash; a separate specification that defines a specific DID
 scheme and specific set of DID Document operations for a specific
-<a>DID Registry</a>.
+<a>DID registry</a>.
       </p>
 
       <p class="note">
@@ -244,10 +244,10 @@ generic URI specification ([[RFC3986]]) and a specific URI scheme
 specified in [[RFC7230]]). It is also similar to the relationship
 of the IETF generic URN specification ([[RFC8141]]) and a specific URN
 namespace definition (such as the UUID URN namespace defined in
-[[RFC4122]]). The difference is that a DID Method specification, in
+[[RFC4122]]). The difference is that a DID method specification, in
 addition to defining a specific DID scheme, also specifies the
 methods for resolving and deactivating DIDs and writing DID Documents on the
-appropriate <a>DID Registry</a>.
+appropriate <a>DID registry</a>.
       </p>
       <p>
 The hierarchical design of a generic DID specification with specific DID method
@@ -276,8 +276,8 @@ website, or tracking which email address belongs to which relationship.
           </li>
         </ul>
       <p>
-For a list of DID Methods and their corresponding specifications,
-see the DID Method Registry [[DID-METHOD-REGISTRY]].
+For a list of DID methods and their corresponding specifications,
+see the DID method Registry [[DID-METHOD-REGISTRY]].
       </p>
 
   <section class="informative">
@@ -288,7 +288,7 @@ A Simple Example
     <p>
 A DID is a simple text string that consists of three parts: 1) the URL scheme
 identifier (<code>did</code>), 2) the identifier for the
-DID Method, and 3) the DID Method-specific identifier.
+DID method, and 3) the DID method-specific identifier.
     </p>
 
     <pre class="example nohighlight" title="A simple example of a Decentralized Identifier (DID)">
@@ -399,7 +399,7 @@ assurance.
 Proof-based
             </td>
             <td>
-Enable the <a>DID subject</a> to provide
+Enable the <a>DID Subject</a> to provide
 cryptographic proof when interacting with other entities.
             </td>
           </tr>
@@ -433,7 +433,7 @@ Portability
             <td>
 Be system and network-independent and
 enable entities to use their digital identifiers with any
-system that supports DIDs and DID Methods.
+system that supports DIDs and DID methods.
             </td>
           </tr>
 
@@ -618,7 +618,7 @@ A DID is similar to a UUID except: (a) like a URL, it can be resolved
 or dereferenced to a standard resource describing the subject (a <a>DID
 Document</a> &mdash; see Section <a href="#did-documents"></a>), and (b) unlike
 a URL, the DID Document typically contains cryptographic material that
-enables authentication of the <a>DID subject</a>.
+enables authentication of the <a>DID Subject</a>.
     </p>
 
     <section>
@@ -638,7 +638,7 @@ in [[!RFC3986]].
       <p class="note">
 The term <a>DID</a> refers only to the URI
 conforming to the <code>did</code> rule in the ABNF below. A
-DID always identifies the <a>DID subject</a>. The term <a>DID URL</a>,
+DID always identifies the <a>DID Subject</a>. The term <a>DID URL</a>,
 defined by the <code>did-url</code> rule,
 refers to a URL that begins with a DID followed by one or more
 additional components. A DID URL always identifies the resource to
@@ -1071,12 +1071,12 @@ DID Subject
       <p>
 The <a>DID Subject</a> is the entity that the DID Document is about, i.e.,
 it is the entity identified by the DID and described by the DID Document.
-The rules for a <a>DID subject</a> are:
+The rules for a <a>DID Subject</a> are:
       </p>
 
       <ol start="1">
         <li>
-A DID Document MUST have exactly one DID subject.
+A DID Document MUST have exactly one DID Subject.
         </li>
 
         <li>
@@ -1089,7 +1089,7 @@ The value of this key MUST be a valid DID.
 
         <li>
 When this DID Document is registered with the target <a>DID
-Registry</a>, the registered DID MUST match this DID subject
+Registry</a>, the registered DID MUST match this DID Subject
 value.
         </li>
       </ol>
@@ -1104,7 +1104,7 @@ Example:
 }
 </pre>
       <p class="note">
-DID Method specifications MAY create intermediate representations of
+DID method specifications MAY create intermediate representations of
 a DID Document that do not contain the <code>id</code> key, such as
 when a DID Resolver is performing resolution. However, the fully
 resolved DID Document MUST contain a valid <code>id</code> property.
@@ -1190,7 +1190,7 @@ or establishing secure communication with <a>service endpoints</a>
 (see Section <a href="#service-endpoints"></a>). In addition, public
 keys may play a role in authorization mechanisms of DID CRUD
 operations (see Section <a href="#did-operations"></a>). This may be
-defined by DID Method specifications.
+defined by DID method specifications.
       </p>
 
       <p>
@@ -1198,7 +1198,7 @@ If a public key does not exist in the DID Document, it MUST be
 assumed the key has been revoked or is invalid. The DID Document MAY
 contain revoked keys. A DID Document that contains a revoked key MUST
 also contain or refer to the revocation information for the key (e.g.,
-a revocation list). Each DID Method specification is expected to
+a revocation list). Each DID method specification is expected to
 detail how revocation is performed and tracked.
       </p>
 
@@ -1434,7 +1434,7 @@ Authorization and Delegation
 
       <p>
 Authorization is the mechanism used to state how operations may be
-performed on behalf of the <a>DID subject</a>. Delegation is the
+performed on behalf of the <a>DID Subject</a>. Delegation is the
 mechanism that the subject may use to authorize others to act
 on their behalf. Note that Authorization is separate from
 Authentication as explained in Section <a href="#authentication"></a>.
@@ -1446,7 +1446,7 @@ Section <a href="#security-considerations"></a>.
       </p>
 
       <p>
-Each DID Method MUST define how authorization and delegation are
+Each DID method MUST define how authorization and delegation are
 implemented, including any necessary cryptographic operations.
       </p>
 
@@ -1457,14 +1457,14 @@ Authorization and Delegation, which may be layered:
 
       <ol>
         <li>
-A <a>DID Registry</a> could implement a coarse
+A <a>DID registry</a> could implement a coarse
 grained <code>controller</code> pattern by enabling DID Documents to
-express the DID of another <a>DID controller</a> that controls it, or
+express the DID of another <a>DID Controller</a> that controls it, or
 additionally,
         </li>
 
         <li>
-A <a>DID Registry</a> could implement a
+A <a>DID registry</a> could implement a
 Capabilities-based approach that enables further fine-grained control
 of authorization and delegation.
         </li>
@@ -1498,7 +1498,7 @@ In addition to publication of authentication and authorization
 mechanisms, the other primary purpose of a DID Document is to enable
 discovery of <a>service endpoints</a> for the subject. A service
 endpoint MAY represent any type of service the subject wishes to
-advertise, including decentralized identity management services for
+advertise, including <a>decentralized identity management</a> services for
 further discovery, authentication, authorization, or interaction. The
 rules for service endpoints are:
       </p>
@@ -2016,7 +2016,7 @@ DID Methods
 
     <section class="normative">
       <h2>
-DID Method Schemes
+DID Method schemes
       </h2>
 
       <p>
@@ -2055,7 +2055,7 @@ DID Operations
 
       <p>
 To enable the full functionality of DIDs and DID Documents on a
-particular <a>DID Registry</a>, a
+particular <a>DID registry</a>, a
 DID method specification MUST specify how each of the following
 <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">
 CRUD</a> operations is performed by a client. Each operation MUST be
@@ -2097,7 +2097,7 @@ Create
 
         <p>
 The DID method specification MUST specify how a client creates a DID
-and its associated DID Document on the <a>DID Registry</a>, including all
+and its associated DID Document on the <a>DID registry</a>, including all
 cryptographic operations necessary to establish proof of control.
         </p>
       </section>
@@ -2109,7 +2109,7 @@ Read/Verify
 
         <p>
 The DID method specification MUST specify how a client uses a DID to
-request a DID Document from the <a>DID Registry</a>, including how the
+request a DID Document from the <a>DID registry</a>, including how the
 client can verify the authenticity of the response.
         </p>
       </section>
@@ -2121,7 +2121,7 @@ Update
 
         <p>
 The DID method specification MUST specify how a client can update a
-DID Document on the <a>DID Registry</a>,
+DID Document on the <a>DID registry</a>,
 including all cryptographic operations necessary to establish proof
 of control, <em>or</em>  state that updates are not possible.
         </p>
@@ -2133,9 +2133,9 @@ Deactivate
         </h3>
 
         <p>
-Although a core feature of distributed ledgers is immutability, the
+Although a core feature of <a>distributed ledgers</a> is immutability, the
 DID method specification MUST specify how a client can deactivate a DID
-on the <a>DID Registry</a>, including all cryptographic
+on the <a>DID registry</a>, including all cryptographic
 operations necessary to establish proof of deactivation <em>or</em> state that
 deactivation is not possible.
         </p>
@@ -2206,7 +2206,7 @@ implementations. The editors are also seeking feedback on threats and
 threat mitigations that should be reflected in this section or
 elsewhere in the spec. As the root identifier records for decentralized
 identifiers, DIDs and DID Documents are a vital component of
-decentralized identity management. They are also the foundational
+<a>decentralized identity management</a>. They are also the foundational
 building blocks of DPKI (decentralized public key infrastructure) as an
 augmentation to conventional X.509 certificates. As such, DIDs are
 designed to operate under the general Internet threat model used by
@@ -2224,7 +2224,7 @@ decentralized identity possible.
 
     <section>
       <h2>
-Requirements of DID Method Specifications
+Requirements of DID method Specifications
       </h2>
 
       <ol start="1">
@@ -2242,7 +2242,7 @@ the specification. In particular:
 
       <p class="issue">
 Discussions at Rebooting the Web of Trust 5 resulted in consensus to
-move Authorization to DID Method specifications. It is currently
+move Authorization to DID method specifications. It is currently
 expected that there will be an attempt to create a generalized
 authorization mechanism that is build on object capabilities.
       </p>
@@ -2317,10 +2317,10 @@ Choosing DID Resolvers
 
       <p>
 The [[DID-METHOD-REGISTRY]] is an informative list of DID method names
-and their corresponding DID Method specifications.
+and their corresponding DID method specifications.
 Implementors should bear in mind that there is no central authority to
-mandate which DID Method specification must be used with any particular
-DID Method name, but can use the [[DID-METHOD-REGISTRY]] to make an
+mandate which DID method specification must be used with any particular
+DID method name, but can use the [[DID-METHOD-REGISTRY]] to make an
 informed decision when choosing which <a href="#did-resolvers"></a>
 implementations to use.
       </p>
@@ -2381,7 +2381,7 @@ DID Document regardless of whether the DID Document is signed.
         </p>
 
         <p>
-Signatures on DID Documents are optional. DID Method Specs SHOULD
+Signatures on DID Documents are optional. DID method Specs SHOULD
 explain and specify their implementation if applicable.
         </p>
 
@@ -2487,19 +2487,19 @@ notification, the following approaches are RECOMMENDED:
 
       <ol start="1">
         <li>
-Subscriptions. If the <a>DID Registry</a> on which the DID is
+Subscriptions. If the <a>DID registry</a> on which the DID is
 registered directly supports change notifications, this service can
-be offered to <a>DID controllers</a>. Notifications MAY be sent directly to the
+be offered to <a>DID Controllers</a>. Notifications MAY be sent directly to the
 relevant service endpoints listed in an existing DID.
         </li>
 
         <li>
-Self-monitoring. A <a>DID subject</a> MAY employ their own local or online
+Self-monitoring. A <a>DID Subject</a> MAY employ their own local or online
 agent to periodically monitor for changes to a DID Document.
         </li>
 
         <li>
-Third-party monitoring. A <a>DID subject</a> MAY rely on a third party
+Third-party monitoring. A <a>DID Subject</a> MAY rely on a third party
 monitoring service, however this introduces another vector of attack.
         </li>
       </ol>
@@ -2567,7 +2567,7 @@ two".
 There are of course many use cases where it is desirable to
 discover a DID when starting from a human-friendly identifier &mdash; a
 natural language name, a domain name, or a conventional address for
-a <a>DID controller</a> such as a mobile telephone number, email address,
+a <a>DID Controller</a> such as a mobile telephone number, email address,
 Twitter handle, or blog URL. However, the problem of mapping
 human-friendly identifiers to DIDs (and doing so in a way that can
 be verified and trusted) is out-of-scope for this specification.
@@ -2650,12 +2650,12 @@ specification is preventative not remedial, and privacy is an embedded
 default. Furthermore, decentralized identifier architecture by itself
 embodies principle #7, "Respect for user privacy &mdash; keep it user-centric."
 This section lists additional privacy considerations that implementers,
-delegates, and <a>DID subjects</a> should bear in mind.
+delegates, and <a>DID Subjects</a> should bear in mind.
     </p>
 
     <section>
       <h2>
-Requirements of DID Method Specifications
+Requirements of DID method Specifications
       </h2>
 
       <ol start="1">
@@ -2703,7 +2703,7 @@ DID Correlation Risks and Pseudonymous DIDs
 
       <p>
 Like any type of globally unique identifier, DIDs may be used for
-correlation. <a>DID controllers</a> can mitigate this privacy risk by using
+correlation. <a>DID Controllers</a> can mitigate this privacy risk by using
 pairwise unique DIDs, i.e., by sharing a different private DID for
 every relationship. In effect, each DID acts as a pseudonym. A
 pseudonymous DID need only be shared with more than one party when
@@ -2744,7 +2744,7 @@ Herd Privacy
       </h2>
 
       <p>
-When a <a>DID subject</a> is indistinguishable from others in the herd, privacy
+When a <a>DID Subject</a> is indistinguishable from others in the herd, privacy
 is available. When the act of engaging privately with another party
 is by itself a recognizable flag, privacy is greatly diminished. DIDs
 and DID methods SHOULD work to improve herd privacy, particularly for
@@ -2899,7 +2899,7 @@ Registries
     </h1>
 
     <p>
-There are multiple registries that define DID Methods and extensions to
+There are multiple registries that define DID methods and extensions to
 this specification. These registries are:
     </p>
 
@@ -2922,7 +2922,7 @@ Purpose
 Method Registry</a>
           </td>
           <td>
-Lists all known DID Methods and contains links to their
+Lists all known DID methods and contains links to their
 specifications.
           </td>
         </tr>
