@@ -1,6 +1,6 @@
 <p>
 This document attempts to communicate the concepts outlined in the
-Decentralized Identifier space by using specialized terms to discuss specific
+<a>decentralized identifier</a> space by using specialized terms to discuss specific
 concepts. This terminology is included below and linked to throughout the
 document to aid the reader:
 </p>
@@ -19,7 +19,7 @@ the term "blockchain" is sometimes used to refer specifically to the Bitcoin
 ledger.
   </dd>
 
-  <dt><dfn data-lt="DID|DIDs|decentralized identifiers">Decentralized Identifier</dfn> (DID)</dt>
+  <dt><dfn data-lt="DID|DIDs|decentralized identifiers">decentralized identifier</dfn> (DID)</dt>
 
   <dd>
 A globally unique identifier that does
@@ -51,11 +51,11 @@ deactivation of <a>Decentralized Identifiers</a>.
 A DID registry is a type of Verifiable Data Registry (see [[VC-DATA-MODEL]]).
   </dd>
 
-  <dt><dfn data-lt="">Decentralized Public Key Infrastructure</dfn> (DPKI)</dt>
+  <dt><dfn data-lt="">decentralized public key infrastructure</dfn> (DPKI)</dt>
 
   <dd>
 Public key infrastructure based on
-decentralized identifiers and identity records (e.g., DID Documents) containing
+decentralized identifiers and identity records (e.g., DID documents) containing
 verifiable public key descriptions.
   </dd>
 
@@ -72,22 +72,22 @@ a position to control the private keys. A dependent becomes an
 
 
 
-  <dt><dfn data-lt="did controller|did controllers">DID Controller</dfn></dt>
+  <dt><dfn data-lt="did controller|did controllers">DID controller</dfn></dt>
 
   <dd>
-The entity, or a group of entities, in control of a DID and/or <a>DID Document</a>.
-Note that the DID Controller may or may not include the <a>DID Subject</a>.
+The entity, or a group of entities, in control of a DID and/or <a>DID document</a>.
+Note that the DID controller may or may not include the <a>DID subject</a>.
   </dd>
 
 
 
-  <dt><dfn data-lt="">DID Document</dfn></dt>
+  <dt><dfn data-lt="">DID document</dfn></dt>
 
   <dd>
 A set of data that describes the subject of a
 <a>DID</a>, including mechanisms, such as public keys and
-pseudonymous biometrics, that the DID Subject can use to authenticate itself
-and prove their association with the DID. A DID Document MAY also contain other
+pseudonymous biometrics, that the DID subject can use to authenticate itself
+and prove their association with the DID. A DID document MAY also contain other
 <a href="https://en.wikipedia.org/wiki/Attribute_(computing)">attributes</a> or
 <a href="https://en.wikipedia.org/wiki/Claims-based_identity">claims</a>
 describing the subject. These documents are graph-based data structures that
@@ -111,7 +111,7 @@ fragment. See Section <a href="#fragment"></a>.
   <dd>
 A definition of how a specific DID scheme can be implemented
 on a specific distributed ledger or network, including the precise
-method(s) by which DIDs are resolved and deactivated and DID Documents
+method(s) by which DIDs are resolved and deactivated and DID documents
 are written and updated.
   </dd>
 
@@ -137,10 +137,10 @@ See Section <a href="#query"></a>.
 
 
 
-  <dt><dfn data-lt="did subject|did subjects">DID Subject</dfn></dt>
+  <dt><dfn data-lt="did subject|did subjects">DID subject</dfn></dt>
   <dd>
-The DID Subject is the entity that the DID Document is about, i.e.,
-it is the entity identified by the DID and described by the DID Document.
+The DID subject is the entity that the DID document is about, i.e.,
+it is the entity identified by the DID and described by the DID document.
   </dd>
 
 
@@ -163,7 +163,7 @@ define a specific <a>DID scheme</a> that works with that specific DID method.
 
 
 
-  <dt><dfn data-lt="DLT">distributed ledger</dfn> (aka DLT)</dt>
+  <dt><dfn data-lt="DLT">distributed ledger</dfn> (DLT)</dt>
 
   <dd>
 A <a href=
@@ -182,7 +182,7 @@ cryptographically signed and chained to the previous transaction.
 An entity who creates a DID and associated DID document for a <a>dependent</a> who
 does not yet have the capacity to control the private keys. The
 dependent must rely on the delegate to safeguard the private keys until
-the dependent can assume control as the DID Subject.
+the dependent can assume control as the DID subject.
   </dd>
 
 
@@ -192,8 +192,8 @@ the dependent can assume control as the DID Subject.
   <dd>
 The natural person, party, organization, or thing whose
 identity is represented by a <a>DID</a> and who directly controls the
-private keys to control the <a>DID Document</a>.
-(Note: this specification avoids the term "user" since a DID Subject is not
+private keys to control the <a>DID document</a>.
+(Note: this specification avoids the term "user" since a DID subject is not
 always an individual person.)
   </dd>
 
@@ -207,7 +207,7 @@ within a JavaScript Object Notation (JSON) document as defined in [[RFC6901]]
   <dt><dfn data-lt="">key description</dfn></dt>
 
   <dd>
-A JSON object contained inside a DID Document that contains all
+A JSON object contained inside a DID document that contains all
 the metadata necessary to use a public key or verification key. A list
 of standard key descriptions is included in
 Appendix <a href="#standard-key-descriptions"></a>.
@@ -219,7 +219,7 @@ Appendix <a href="#standard-key-descriptions"></a>.
 
   <dd>
 A network address at which a service operates on
-behalf of a DID Subject. Examples of specific services include
+behalf of a DID subject. Examples of specific services include
 discovery services, social networks, file storage services, and
 verifiable claim repository services. Service endpoints may also be provided
 by a generalized data interchange protocol such as
@@ -236,7 +236,7 @@ Universally Unique Identifier as specified by <a href=
   </dd>
 
 
-  <dt><dfn data-lt="XDI">extensible data interchange</dfn> (aka XDI)</dt>
+  <dt><dfn data-lt="XDI">extensible data interchange</dfn> (XDI)</dt>
 
   <dd>
 A semantic
