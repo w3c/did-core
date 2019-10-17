@@ -1403,14 +1403,14 @@ Authentication
       </h2>
 
       <p>
-Authentication is the mechanism by which the controller(s) of a <a>DID</a> can
-cryptographically prove that they are associated with that <a>DID</a>.
+Authentication is the mechanism by which <a>DID controller(s)</a can
+cryptographically prove that they are associated with that DID.
 See Section <a href="#binding-of-identity"></a>. Note
-that Authentication is separate from Authorization because the controllers
-may wish to enable others to update their <a>DID document</a> (for
-example, to assist with key recovery as discussed in Section
+that Authentication is separate from Authorization because the 
+<a>DID controller(s)</a> may wish to enable others to update their DID Document 
+(for example, to assist with key recovery as discussed in Section
 <a href="#key-revocation-and-recovery"></a>) without enabling them to prove
-control (and thus be able to impersonate the controllers).
+control (and thus be able to impersonate the <a>DID controller</a>).
       </p>
 
       <p>
@@ -1476,8 +1476,8 @@ on their behalf. Note that Authorization is separate from
 Authentication as explained in Section <a href="#authentication"></a>.
 This is particularly important for key
 recovery in the case of key loss, when the subject no longer has
-access to their keys, or key compromise, where the controller’s trusted
-third parties need to override malicious activity by an attacker. See
+access to their keys, or key compromise, where the <a>DID controller</a>'s
+trusted third parties need to override malicious activity by an attacker. See
 Section <a href="#security-considerations"></a>.
       </p>
 
@@ -2396,7 +2396,7 @@ registered.
           </li>
 
           <li>
-The controller of the <a>DID document</a> controlled the private key used
+The <a>DID controller(s)</a> controlled the private key used
 for the signature at the time the signature was generated.
           </li>
         </ol>
@@ -2683,9 +2683,9 @@ Privacy Considerations
 
     <p>
 It is critically important to apply the principles of Privacy by Design
-to all aspects of <a>decentralized identifier</a> architecture, because <a>DIDs</a>
-and <a>DID documents</a> are &mdash; by design &mdash; administered directly
-by their controllers.
+to all aspects of decentralized identifier architecture, because DIDs
+and DID Documents are &mdash; by design &mdash; administered directly by 
+the <a>DID controller(s)</a>.
 There is no registrar, hosting company, or other intermediate service
 provider to recommend or apply additional privacy safeguards. The
 authors of this specification have applied all seven Privacy by Design
