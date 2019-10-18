@@ -1184,7 +1184,8 @@ Cryptographic Suite Registry</a>.
         <li>
 Each public key SHOULD include an <code>id</code> property. The array
 of public keys MUST NOT contain multiple entries with the same
-<code>id</code>.
+<code>id</code>. A DID document processor MUST produce an error in that
+case.
         </li>
 
         <li>
@@ -1484,7 +1485,8 @@ of service endpoints.
         <li>
 Each service endpoint SHOULD include an <code>id</code> property.
 The array of service endpoints MUST NOT contain multiple entries
-with the same <code>id</code>.
+with the same <code>id</code>. A DID document processor MUST
+produce an error in that case.
         </li>
 
         <li>
