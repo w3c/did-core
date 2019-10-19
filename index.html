@@ -1249,9 +1249,15 @@ Cryptographic Suite Registry</a>.
         </li>
 
         <li>
-Each public key MUST include <code>id</code> and <code>type</code>
-properties, and exactly one value property. The array of public keys
-MUST NOT contain duplicate entries with the same <code>id</code>.
+Each public key SHOULD include an <code>id</code> property. The array
+of public keys MUST NOT contain multiple entries with the same
+<code>id</code>. A <a>DID document</a> processor MUST produce an error in that
+case.
+        </li>
+
+        <li>
+Each public key MUST include a <code>type</code> property
+and exactly one public key value, and MAY include additional properties.
         </li>
 
         <li>
@@ -1544,9 +1550,16 @@ of <a>service endpoints</a>.
         </li>
 
         <li>
-Each <a>service endpoint</a> MUST include <code>id</code>,
-<code>type</code>, and <code>serviceEndpoint</code> properties, and
-MAY include additional properties.
+Each <a>service endpoint</a> SHOULD include an <code>id</code> property.
+The array of <a>service endpoints</a> MUST NOT contain multiple entries
+with the same <code>id</code>. A <a>DID document</a> processor MUST
+produce an error in that case.
+        </li>
+
+        <li>
+Each service endpoint MUST include <code>type</code> and
+<code>serviceEndpoint</code> properties, and MAY include additional
+properties.
         </li>
 
         <li>
