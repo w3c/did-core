@@ -937,11 +937,11 @@ are more restrictive than the generic rules in this section.
       </p>
 
       <p>
-It is desirable that we enable tree-based processing of <a>DIDs</a> that include
-<a>DID fragments</a> (which resolve directly within the <a>DID document</a>) to locate
-metadata contained directly in the <a>DID document</a> or the service resource
-given by the target URL without needing to rely on graph-based processing.
+Implementations need not rely on graph-based processing of <a>DID documents</a>
+to locate metadata contained in the <a>DID document</a> when the <a>DID</a> includes
+a <a>DID fragment</a>. Tree-based processing can be used instead.
       </p>
+
       <p>
 Implementations SHOULD NOT prevent the use of <a>JSON Pointer</a> ([[!RFC6901]]).
       </p>
@@ -2026,8 +2026,8 @@ designed such that developers can copy and paste examples into their software sy
 this approach is to provide a low barrier to entry while still ensuring global
 interoperability between a heterogeneous set of software systems. This section
 describes some of these approaches, which will likely go unnoticed by most
-developers, but whose details will be of interest to implementers. The most
-noteworthy syntactic sugars provided by JSON-LD are:
+developers, but whose details will be of interest to implementers. 
+Noteworthy features provided by JSON-LD are:
       </p>
 
       <ul>
