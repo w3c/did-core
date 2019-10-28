@@ -16,3 +16,12 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md), about licensing contributions.
 ## Code of Conduct
 
 W3C functions under a [code of conduct](https://www.w3.org/Consortium/cepc/).
+
+## DID Working Group Repositories
+
+* [W3C Decentralized Identifier Specification v1.0](https://github.com/w3c/did-core)
+* [Home page of the Decentralized Identifier Working Group](https://github.com/w3c/did-wg)
+* [Specs and documentation for all DID-related /.well-known resources](https://github.com/decentralized-identity/.well-known)
+* [W3C Decentralized Characteristics Rubric v1.0](https://github.com/w3c/did-rubric)
+* [Decentralized Identifier Use Cases v1.0](https://github.com/w3c/did-use-cases)
+* [W3C DID Test Suite and Implementation Report](https://github.com/w3c/did-test-suite)
