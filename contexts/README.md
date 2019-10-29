@@ -2,7 +2,7 @@
 
 ## Background
 
-JSON-LD Context versioning (and schema versioning in general) is a complex 
+JSON-LD context versioning (and schema versioning in general) is a complex 
 topic, involving the need to balance security with developer convenience.
 
 On one end of the spectrum, some use cases require cryptographically bound and 
