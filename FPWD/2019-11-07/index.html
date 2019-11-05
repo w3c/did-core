@@ -1168,7 +1168,7 @@ used to interact with the entity.
           <div class="marker">
       <a class="self-link" href="#example-2-minimal-self-managed-did-document">Example<bdi> 2</bdi></a><span class="example-title">: Minimal self-managed DID document</span>
     </div> <pre class="nohighlight">{
-  "@context": "https://www.w3.org/2019/did/v1",
+  "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   "authentication": [{
     <span class="comment">// used to authenticate as did:...fghi</span>
@@ -2146,7 +2146,7 @@ use must mean the same thing to each other. This specification uses the
           <dd>
 The value of the <code>@context</code> property <em class="rfc2119" title="MUST">MUST</em> be one or more
 <a href="#dfn-uri" class="internalDFN" data-link-type="dfn">URIs</a>, where the value of the first <a href="#dfn-uri" class="internalDFN" data-link-type="dfn">URI</a> is
-<code>https://www.w3.org/2019/did/v1</code>. If more than one
+<code>https://www.w3.org/ns/did/v1</code>. If more than one
 <a href="#dfn-uri" class="internalDFN" data-link-type="dfn">URI</a> is provided, the <a href="#dfn-uri" class="internalDFN" data-link-type="dfn">URIs</a> <em class="rfc2119" title="MUST">MUST</em> be interpreted as an ordered set.
 It is <em class="rfc2119" title="RECOMMENDED">RECOMMENDED</em> that dereferencing the <a href="#dfn-uri" class="internalDFN" data-link-type="dfn">URIs</a> results in a document
 containing machine-readable information about the context.
@@ -2171,7 +2171,7 @@ The key for this property <em class="rfc2119" title="MUST">MUST</em> be <code>@c
 
         <li>
 The value of this key <em class="rfc2119" title="MUST">MUST</em> be the URL for the generic <a href="#dfn-did" class="internalDFN" data-link-type="dfn">DID</a> context:
-<code>https://www.w3.org/2019/did/v1</code>.
+<code>https://www.w3.org/ns/did/v1</code>.
         </li>
       </ol>
 
@@ -2183,7 +2183,7 @@ Example (using an example URL):
           <div class="marker">
       <a class="self-link" href="#example-6">Example<bdi> 6</bdi></a>
     </div> <pre class="nohighlight">{
-  "@context": "https://www.w3.org/2019/did/v1"
+  "@context": "https://www.w3.org/ns/did/v1"
 }</pre>
         </div>
       <p>
@@ -2332,7 +2332,7 @@ Example:
           <div class="marker">
       <a class="self-link" href="#example-8-various-public-keys">Example<bdi> 8</bdi></a><span class="example-title">: Various public keys</span>
     </div> <pre class="nohighlight">{
-  "@context": ["https://www.w3.org/2019/did/v1", "https://w3id.org/security/v1"],
+  "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "publicKey": [{
@@ -2500,7 +2500,7 @@ Example:
           <div class="marker">
       <a class="self-link" href="#example-10-authentication-field-containing-three-verification-methods">Example<bdi> 10</bdi></a><span class="example-title">: Authentication field containing three verification methods</span>
     </div> <pre class="nohighlight">{
-  "@context": "https://www.w3.org/2019/did/v1",
+  "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "authentication": [
@@ -2578,7 +2578,7 @@ Example:
           <div class="marker">
       <a class="self-link" href="#example-11-did-document-with-a-controller-property">Example<bdi> 11</bdi></a><span class="example-title">: DID document with a controller property</span>
     </div> <pre class="nohighlight">{
-  "@context": "https://www.w3.org/2019/did/v1",
+  "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   "controller": "did:example:bcehfew7h32f32h7af3",
   "service": [{

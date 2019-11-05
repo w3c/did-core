@@ -361,7 +361,7 @@ used to interact with the entity.
 
     <pre class="example nohighlight" title="Minimal self-managed DID document">
 {
-  "@context": "https://www.w3.org/2019/did/v1",
+  "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   "authentication": [{
     <span class="comment">// used to authenticate as did:...fghi</span>
@@ -1074,7 +1074,7 @@ use must mean the same thing to each other. This specification uses the
           <dd>
 The value of the <code>@context</code> property MUST be one or more
 <a>URIs</a>, where the value of the first <a>URI</a> is
-<code>https://www.w3.org/2019/did/v1</code>. If more than one
+<code>https://www.w3.org/ns/did/v1</code>. If more than one
 <a>URI</a> is provided, the <a>URIs</a> MUST be interpreted as an ordered set.
 It is RECOMMENDED that dereferencing the <a>URIs</a> results in a document
 containing machine-readable information about the context.
@@ -1099,7 +1099,7 @@ The key for this property MUST be <code>@context</code>.
 
         <li>
 The value of this key MUST be the URL for the generic <a>DID</a> context:
-<code>https://www.w3.org/2019/did/v1</code>.
+<code>https://www.w3.org/ns/did/v1</code>.
         </li>
       </ol>
 
@@ -1109,7 +1109,7 @@ Example (using an example URL):
 
       <pre class="example nohighlight">
 {
-  "@context": "https://www.w3.org/2019/did/v1"
+  "@context": "https://www.w3.org/ns/did/v1"
 }
 </pre>
       <p>
@@ -1211,7 +1211,7 @@ Example:
         </p>
 <pre class="example nohighlight" title="Basic DID document">
 {
-"@context": "https://www.w3.org/2019/did/v1",
+"@context": "https://www.w3.org/ns/did/v1",
 "id": "did:example:123456789abcdefghi",
 "authorizationCapability": [{
   // this entity is a delegate and may update any field in this
@@ -1311,7 +1311,7 @@ Example:
 
       <pre class="example nohighlight" title="Various public keys">
 {
-  "@context": ["https://www.w3.org/2019/did/v1", "https://w3id.org/security/v1"],
+  "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "publicKey": [{
@@ -1467,7 +1467,7 @@ Example:
 
       <pre class="example nohighlight" title="Authentication field containing three verification methods">
 {
-  "@context": "https://www.w3.org/2019/did/v1",
+  "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "authentication": [
@@ -1539,7 +1539,7 @@ Example:
 
       <pre class="example nohighlight" title="DID document with a controller property">
 {
-  "@context": "https://www.w3.org/2019/did/v1",
+  "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   "controller": "did:example:bcehfew7h32f32h7af3",
   "service": [{
