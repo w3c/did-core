@@ -1,0 +1,4 @@
+# ECHIDNA configuration
+index.html?specStatus=WD&shortName=did-core respec
+contexts/did-v0.11.jsonld
+contexts/did-v1.jsonld
