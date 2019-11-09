@@ -95,7 +95,7 @@ var ccg = {
         "Drummond Reed"
       ],
       status: "CG-DRAFT",
-      publisher: "Digital Verification Community Group"
+      publisher: "Credentials Community Group"
     },
     "MATRIX-URIS": {
       title: "Matrix URIs - Ideas about Web Architecture",
