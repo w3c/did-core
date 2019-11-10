@@ -1399,6 +1399,19 @@ cause the DID Document Processor to raise an error.
           </tr>
           <tr>
             <td>
+ed25519
+            </td>
+            <td>
+ed25519 key values MAY be expressed as the raw 32-byte value encoded in
+base58-btc format using the <code>publicKeyBase58</code> property or
+MAY be encoded in JSON Web Key (JWK) format using the <code>publicKeyJwk</code>
+property. Both the raw 32-byte base58-btc format and JWK format MUST be
+supported by DID Document Processors. The use of other key formats for RSA MUST
+cause the DID Document Processor to raise an error.
+            </td>
+          </tr>
+          <tr>
+            <td>
 secp256k1
             </td>
             <td>
