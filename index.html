@@ -1330,10 +1330,38 @@ All public key properties MUST be from the Linked Data Cryptographic Suite Regis
 A registry of key types and formats is available in Appendix <a href="#registries"></a>
       </p>
 
-
       <p>
 The following table summarizes the key formats supported by this specification:
       </p>
+
+      <table class="simple">
+        <thead>
+          <tr>
+            <th>
+Key&nbsp;Type
+            </th>
+            <th>
+Support
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+RSA
+            </td>
+            <td>
+RSA public key values MAY be encoded in Privacy Enhanced Mail (PEM) format using
+the <code>publicKeyPem</code> property or MAY be encoded in JSON Web Key (JWK)
+format using the <code>publicKeyJwk</code> property. At least PEM format or
+JWK format MUST be supported by DID Document Processors. The use of other
+key formats for RSA public keys MUST NOT be used.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       <p>
 Example:
       </p>
