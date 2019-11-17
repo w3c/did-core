@@ -1352,11 +1352,10 @@ Support
 RSA
             </td>
             <td>
-RSA public key values MAY be encoded in Privacy Enhanced Mail (PEM) format using
-the <code>publicKeyPem</code> property or MAY be encoded in JSON Web Key (JWK)
-format using the <code>publicKeyJwk</code> property. At least PEM format or
-JWK format MUST be supported by DID Document Processors. The use of other
-key formats for RSA public keys MUST NOT be used.
+RSA public key values MUST be encoded in either JSON Web Key (JWK)
+format using the <code>publicKeyJwk</code> property or Privacy Enhanced Mail
+(PEM) format using the <code>publicKeyPem</code> property. Other RSA public
+key formats MUST NOT be used.
             </td>
           </tr>
         </tbody>
