@@ -1054,7 +1054,7 @@ DID Documents
     <p>
 A <a>DID</a> points to a <a>DID document</a>. <a>DID documents</a> are the
 serialization of the <a href="#data-model"></a>.
-The following sections define the properties of the <a>DID document</a>,
+The following sections define the properties in a <a>DID document</a>,
 including whether these properties are required or optional.
     </p>
 
@@ -1062,11 +1062,20 @@ including whether these properties are required or optional.
       <h2>Contexts</h2>
 
         <p>
-When two software systems need to exchange data, they must use terminology and
-a protocol that both systems understand. As an analogy, consider how two
-people communicate. Both people must use the same language and the words they
-use must mean the same thing to each other. This specification uses the
-<code>@context</code> property to express the context of a conversation.
+When two software systems need to exchange data, they need to use terminology
+and a protocol that both systems understand. The <code>@context</code>
+property ensures that two systems operating on the same DID document are using
+mutually agreed terminology.
+        </p>
+
+        <p>
+<a>DID documents</a> MUST include the <code>@context</code> property.
+        </p>
+
+        <p class="note" title="The JSON-LD Context">
+More information about the
+<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
+in general can be found in the [[!JSON-LD]] specification.
         </p>
 
         <dl>
@@ -1082,29 +1091,7 @@ containing machine-readable information about the context.
         </dl>
 
       <p>
-<a>DID documents</a> MUST include the <code>@context</code> property. The
-<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
-is described in detail in the [[!JSON-LD]] specification. The rules for this
-statement are:
-      </p>
-
-      <ol start="1">
-        <li>
-A <a>DID document</a> MUST have exactly one top-level context statement.
-        </li>
-
-        <li>
-The key for this property MUST be <code>@context</code>.
-        </li>
-
-        <li>
-The value of this key MUST be the URL for the generic <a>DID</a> context:
-<code>https://www.w3.org/ns/did/v1</code>.
-        </li>
-      </ol>
-
-      <p>
-Example (using an example URL):
+Example:
       </p>
 
       <pre class="example nohighlight">
@@ -1126,30 +1113,21 @@ DID Subject
       </h2>
 
       <p>
-The <a>DID subject</a> is the entity that the <a>DID document</a> is about, i.e.,
+The <a>DID subject</a> is denoted with the <code>id</code> property.
+This is the entity that the <a>DID document</a> is about, i.e.,
 it is the entity identified by the <a>DID</a> and described by the <a>DID document</a>.
-The rules for a <a>DID subject</a> are:
       </p>
 
-      <ol start="1">
-        <li>
-A <a>DID document</a> MUST have exactly one <a>DID subject</a>.
-        </li>
+      <p>
+<a>DID documents</a> MUST include the <code>id</code> property.
+      </p>
 
-        <li>
-The key for this property MUST be id.
-        </li>
-
-        <li>
-The value of this key MUST be a valid <a>DID</a>.
-        </li>
-
-        <li>
-When this <a>DID document</a> is registered with the target <a>DID
-registry</a>, the registered <a>DID</a> MUST match this <a>DID subject</a>
-value.
-        </li>
-      </ol>
+      <dl>
+          <dt><dfn>id</dfn></dt>
+          <dd>
+The value of <code>id</code> MUST be a single valid <a>DID</a>.
+          </dd>
+      </dl>
 
       <p>
 Example:
@@ -1159,12 +1137,14 @@ Example:
 {
   "id": "did:example:21tDAKCERh95uGgKbJNHYp"
 }
-</pre>
+      </pre>
       <p class="note">
-<a>DID method</a> specifications MAY create intermediate representations of
+<a>DID method</a> specifications can create intermediate representations of
 a <a>DID document</a> that do not contain the <code>id</code> key, such as
 when a <a>DID resolver</a> is performing resolution. However, the fully
-resolved <a>DID document</a> MUST contain a valid <code>id</code> property.
+resolved <a>DID document</a> always contains a valid <code>id</code> property.
+The value of <code>id</code> in the resolved <a>DID document</a> is expected
+to match the <a>DID</a> that was resolved.
       </p>
     </section>
     <!-- section>
@@ -1246,8 +1226,54 @@ such as authentication (see Section <a href="#authentication"></a>)
 or establishing secure communication with <a>service endpoints</a>
 (see Section <a href="#service-endpoints"></a>). In addition, public
 keys may play a role in authorization mechanisms of <a>DID</a> CRUD
-operations (see Section <a href="#did-operations"></a>). This may be
+operations (see Section <a href="#did-operations"></a>), which can be
 defined by <a>DID method</a> specifications.
+      </p>
+      
+      <p>
+A <a>DID document</a> MAY include a <code>publicKey</code> property. If so:
+      </p>
+
+      <dl>
+          <dt><dfn>publicKey</dfn></dt>
+          <dd>
+The value of the <code>publicKey</code> property MUST be an array of
+public key objects. Each public key object MUST have the
+<code>type</code>, <code>controller</code>, and specific public key
+properties, and SHOULD have an <code>id</code> property. The object
+MAY include additional properties.
+          </dd>
+      </dl>
+
+      <p>
+The value of the <code>id</code> property (if present) MUST be a URI. The array
+of public keys MUST NOT contain multiple entries with the same
+<code>id</code>. A <a>DID document</a> processor MUST produce an error in that
+case.
+      </p>
+
+      <p>
+The value of the <code>type</code> property MUST be exactly one public key value
+(see available key types in Appendix <a href="#registries"></a>).
+      </p>
+
+      <p>
+The value of the <code>controller</code> property, which identifies the
+controller of the corresponding private key, MUST be a valid DID.
+      </p>
+
+      <p>
+All public key properties MUST be from the Linked Data Cryptographic Suite Registry.
+A registry of key types and formats is available in Appendix <a href="#registries"></a>
+      </p>
+
+      <p class="note">
+        The following is a non-exhaustive list of public key
+        properties used by the community:
+        <code>publicKeyPem</code>, <code>publicKeyJwk</code>,
+        <code>publicKeyHex</code>, <code>publicKeyBase64</code>,
+        <code>publicKeyBase58</code>, <code>publicKeyMultibase</code>,
+        <code>ethereumAddress</code>.
       </p>
 
       <p>
@@ -1259,52 +1285,6 @@ a revocation list). Each <a>DID method</a> specification is expected to
 detail how revocation is performed and tracked.
       </p>
 
-      <p>
-The rules for public keys are:
-      </p>
-
-      <ol start="1">
-        <li>
-A <a>DID document</a> MAY include a <code>publicKey</code> property.
-        </li>
-
-        <li>
-The value of the <code>publicKey</code> property MUST be an array of
-public keys, and every public key property MUST be in the
-<a href="https://w3c-ccg.github.io/ld-cryptosuite-registry">Linked Data
-Cryptographic Suite Registry</a>.
-        </li>
-
-        <li>
-Each public key SHOULD include an <code>id</code> property. The array
-of public keys MUST NOT contain multiple entries with the same
-<code>id</code>. A <a>DID document</a> processor MUST produce an error in that
-case.
-        </li>
-
-        <li>
-Each public key MUST include a <code>type</code> property
-and exactly one public key value, and MAY include additional properties.
-        </li>
-
-        <li>
-Each public key MUST include a <code>controller</code> property, which
-identifies the controller of the corresponding private key.
-        </li>
-
-        <li>
-A registry of key types and formats is available in Appendix
-<a href="#registries"></a>.
-        </li>
-      </ol>
-      <p class="note">
-        The following is a non-exhaustive list of public key
-        properties used by the community:
-        <code>publicKeyPem</code>, <code>publicKeyJwk</code>,
-        <code>publicKeyHex</code>, <code>publicKeyBase64</code>,
-        <code>publicKeyBase58</code>, <code>publicKeyMultibase</code>,
-        <code>ethereumAddress</code>.
-      </p>
       <p>
 Example:
       </p>
@@ -1431,9 +1411,9 @@ Authentication
 
       <p>
 Authentication is the mechanism by which the <a>DID controller(s)</a> can
-cryptographically prove that they are associated with that DID.
-See Section <a href="#binding-of-identity"></a>. Note
-that Authentication is separate from Authorization because the
+cryptographically prove that they are associated with that DID (see Section
+<a href="#binding-of-identity"></a>).
+Authentication is separate from Authorization because the
 <a>DID controller(s)</a> may wish to enable others to update their DID Document
 (for example, to assist with key recovery as discussed in Section
 <a href="#key-revocation-and-recovery"></a>) without enabling them to prove
@@ -1441,25 +1421,18 @@ control (and thus be able to impersonate the <a>DID controller(s)</a>).
       </p>
 
       <p>
-The rules for Authentication are:
-      </p>
-
-      <ol start="1">
-        <li>
 A <a>DID document</a> MAY include an <code>authentication</code>
-property.
-        </li>
-
-        <li>
+property. If so:
+      </p>
+      <dl>
+          <dt><dfn>authentication</dfn></dt>
+          <dd>
 The value of the <code>authentication</code> property SHOULD be
-an array of verification methods.
-        </li>
-
-        <li>
-Each verification method MAY be embedded or referenced. An example of
-a verification method is a public key (see Section <a href="#public-keys"></a>).
-        </li>
-      </ol>
+an array of verification methods. Each verification method MAY be embedded
+or referenced. An example of a verification method is a public key (see
+Section <a href="#public-keys"></a>).
+          </dd>
+      </dl>
 
       <p>
 Example:
@@ -1498,7 +1471,7 @@ Authorization and Delegation
       <p>
 Authorization is the mechanism used to state how operations may be
 performed on behalf of the <a>DID subject</a>. Delegation is the
-mechanism that the subject may use to authorize others to act
+mechanism that the subject uses to authorize others to act
 on their behalf. Note that Authorization is separate from
 Authentication as explained in Section <a href="#authentication"></a>.
 This is particularly important for key
@@ -1557,50 +1530,46 @@ Service Endpoints
       </h2>
 
       <p>
-In addition to publication of authentication and authorization
-mechanisms, the other primary purpose of a <a>DID document</a> is to enable
-discovery of <a>service endpoints</a> for the <a>DID subject</a>. A <a>service
-endpoint</a> MAY represent any type of service the <a>DID subject</a> wishes to
+One of the primary purposes of a <a>DID document</a> is to enable
+discovery of <a>service endpoints</a>. A <a>service
+endpoint</a> can be any type of service the <a>DID subject</a> wishes to
 advertise, including <a>decentralized identity management</a> services for
-further discovery, authentication, authorization, or interaction. The
-rules for <a>service endpoints</a> are:
+further discovery, authentication, authorization, or interaction.
       </p>
 
-      <ol start="1">
-        <li>
-A <a>DID document</a> MAY include a <code>service</code> property.
-        </li>
+      <p>
+A <a>DID document</a> MAY include a <code>service</code> property. If so:
+      </p>
 
-        <li>
+      <dl>
+          <dt><dfn>service</dfn></dt>
+          <dd>
 The value of the <code>service</code> property SHOULD be an array
-of <a>service endpoints</a>.
-        </li>
+of <a>service endpoint</a> objects. Each service endpoint MUST
+have <code>type</code> and <code>serviceEndpoint</code> properties,
+SHOULD have an <code>id</code> property, and MAY include additional
+properties.
+          </dd>
+      </dl>
 
-        <li>
-Each <a>service endpoint</a> SHOULD include an <code>id</code> property.
+      <p>
+The value of the <code>id</code> property (if present) MUST be a URI.
 The array of <a>service endpoints</a> MUST NOT contain multiple entries
 with the same <code>id</code>. A <a>DID document</a> processor MUST
 produce an error in that case.
-        </li>
+      </p>
 
-        <li>
-Each service endpoint MUST include <code>type</code> and
-<code>serviceEndpoint</code> properties, and MAY include additional
-properties.
-        </li>
-
-        <li>
-The <a>service endpoint</a> protocol SHOULD be published in an open
-standard specification.
-        </li>
-
-        <li>
+      <p>
 The value of the <code>serviceEndpoint</code> property MUST be a
 JSON-LD object or a valid <a>URI</a> conforming to [[RFC3986]] and
 normalized according to the rules in section 6 of [[RFC3986]] and to
 any normalization rules in its applicable URI scheme specification.
-        </li>
-      </ol>
+      </p>
+
+      <p>
+It is expected that the <a>service endpoint</a> protocol is
+published in an open standard specification.
+      </p>
 
       <p>
 Example:
@@ -1662,42 +1631,22 @@ considerations regarding authentication <a>service endpoints</a>.
 
     <section>
       <h2>
-Created (Optional)
+Created
       </h2>
 
       <p>
-Standard metadata for identifier records includes a timestamp of the
-original creation. The rules for including a creation timestamp are:
+A <a>DID document</a> SHOULD include a <code>created</code> property. If so:
       </p>
 
-      <ol start="1">
-        <li>
-A <a>DID document</a> MUST have zero or one property representing a
-creation timestamp. It is RECOMMENDED to include this property.
-        </li>
-
-        <li>
-The key for this property MUST be created.
-        </li>
-
-        <li>
-The value of this key MUST be a valid XML datetime value as
-defined in section 3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition
-Language (XSD) 1.1 Part 2: Datatypes</a> [[!XMLSCHEMA11-2]].
-        </li>
-
-        <li>
-This datetime value MUST be normalized to UTC 00:00 as indicated
-by the trailing "Z".
-        </li>
-
-        <li>
-Method specifications that rely on <a>DLTs</a> SHOULD require time
-values that are after the known <a href="https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki">"median
-time past" (defined in Bitcoin BIP 113)</a>, when the <a>DLT</a> supports
-such a notion.
-        </li>
-      </ol>
+      <dl>
+          <dt><dfn>created</dfn></dt>
+          <dd>
+The value of <code>created</code> MUST be a valid XML datetime value as
+defined in section 3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">
+W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a> [[!XMLSCHEMA11-2]].
+This datetime value MUST be normalized to UTC 00:00 as indicated by the trailing "Z".
+          </dd>
+      </dl>
 
       <p>
 Example:
@@ -1712,29 +1661,25 @@ Example:
 
     <section>
       <h2>
-Updated (Optional)
+Updated
       </h2>
 
       <p>
 Standard metadata for identifier records includes a timestamp of the
-most recent change. The rules for including an updated timestamp are:
+most recent change.
       </p>
 
-      <ol start="1">
-        <li>
-A <a>DID document</a> MUST have zero or one property representing an
-updated timestamp. It is RECOMMENDED to include this property.
-        </li>
+      <p>
+A <a>DID document</a> SHOULD include an <code>updated</code> property. If so:
+      </p>
 
-        <li>
-The key for this property MUST be updated.
-        </li>
-
-        <li>
-The value of this key MUST follow the formatting rules (3, 4, 5)
-from Section <a href="#created-optional"></a>.
-        </li>
-      </ol>
+      <dl>
+          <dt><dfn>updated</dfn></dt>
+          <dd>
+The value <code>updated</code> MUST follow the same formatting rules as the
+<code>created</code> property (see Section <a href="#created"></a>).
+          </dd>
+      </dl>
 
       <p>
 Example:
@@ -1749,7 +1694,7 @@ Example:
 
     <section>
       <h2>
-Proof (Optional)
+Proof
       </h2>
 
       <p>
@@ -1769,26 +1714,20 @@ The <a>DID controller</a> as defined in Section <a href="#authorization-and-dele
 
       <p>
 This proof is NOT proof of the binding between a <a>DID</a> and a <a>DID
-document</a>. See Section <a href="#binding-of-identity"></a>. The rules
-for a proof are:
+document</a> (see Section <a href="#binding-of-identity"></a>).
       </p>
 
-      <ol start="1">
-        <li>
-A <a>DID document</a> MAY have exactly one property representing a
-proof.
-        </li>
+      <p>
+A <a>DID document</a> MAY include a <code>proof</code> property. If so:
+      </p>
 
-        <li>
-The key for this property MUST be <code>proof</code>.
-        </li>
-
-        <li>
-The value of this key MUST be a valid JSON-LD proof as defined by
-<a href="https://w3c-dvcg.github.io/ld-signatures/">Linked Data
-Proofs</a>.
-        </li>
-      </ol>
+      <dl>
+          <dt><dfn>proof</dfn></dt>
+          <dd>
+The value of <code>proof</code> MUST be a valid JSON-LD proof as defined by
+<a href="https://w3c-dvcg.github.io/ld-signatures/">Linked Data Proofs</a>.
+          </dd>
+      </dl>
 
       <p>
 Example:
@@ -2090,20 +2029,20 @@ DID Method Schemes
       </h2>
 
       <p>
-A <a>DID method</a> specification MUST define exactly one specific <a>DID
+A <a>DID method</a> specification MUST define exactly one method-specific <a>DID
 scheme</a> identified by exactly one method name (the <code>method-name</code> rule in
 Section <a href="#generic-did-syntax"></a>).
       </p>
 
       <p>
-Since the method name is part of the <a>DID</a>, it SHOULD be as short as
-practical. A method name of five characters or less is RECOMMENDED.
-The method name MAY reflect the name of the <a>DID
-registry</a> to which the <a>DID method</a> specification applies.
+Since the method name is part of the <a>DID</a>, short method names are preferred;
+the method name SHOULD be five characters or less. The method name might reflect the name
+of the <a>DID registry</a> to which the <a>DID method</a> specification applies.
+See also Section <a href="#unique-did-method-names"></a>.
       </p>
 
       <p>
-The <a>DID method</a> specification for the specific <a>DID scheme</a> MUST specify
+The <a>DID method</a> specification for the method-specific <a>DID scheme</a> MUST specify
 how to generate the <code>method-specific-id</code> component of a <a>DID</a>. The
 <code>method-specific-id</code> value MUST be able to be generated without the use
 of a centralized registry service. The <code>method-specific-id</code> value SHOULD
@@ -2112,9 +2051,9 @@ in Section <a href="#generic-did-syntax"></a> MUST be globally unique.
       </p>
 
       <p>
-If needed, a specific <a>DID scheme</a> MAY define multiple specific
-<code>method-specific-id</code> formats. It is RECOMMENDED that a specific <a>DID
-scheme</a> define as few <code>method-specific-id</code> formats as possible.
+If needed, a method-specific <a>DID scheme</a> MAY define multiple 
+<code>method-specific-id</code> formats. It is RECOMMENDED that a method-specific
+<a>DID scheme</a> define as few <code>method-specific-id</code> formats as possible.
       </p>
     </section>
 
@@ -2125,40 +2064,19 @@ DID Operations
 
       <p>
 To enable the full functionality of <a>DIDs</a> and <a>DID documents</a> on a
-particular <a>DID registry</a>, a
-<a>DID method</a> specification MUST specify how each of the following
-<a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">
-CRUD</a> operations is performed by a client. Each operation MUST be
-specified to the level of detail necessary to build and test
-interoperable client implementations with the target system.
-The specification document for a <a>DID method</a> that does not support
-specific operations such as Update and Deactivate MUST clearly specify these
-limitations. Note that, due to the specified contents of <a>DID documents</a>,
-these operations can effectively be used to perform all the operations
-required of a CKMS (cryptographic key management system), e.g.,:
+particular <a>DID registry</a>, a <a>DID method</a> specification MUST specify how
+each of the following <abbr title="Create, Read, Update, Delete">CRUD</abbr>
+operations is performed by a client. Each operation ought to be specified to the level
+of detail necessary to build and test interoperable client implementations with the
+<a>DID registry</a>. These operations can effectively be used to perform all the operations
+required of a CKMS (cryptographic key management system), e.g.: key registration,
+key replacement, key rotation, key recovery, and key expiration.
+
       </p>
-
-      <ul>
-        <li>
-Key registration
-        </li>
-
-        <li>
-Key replacement
-        </li>
-
-        <li>
-Key rotation
-        </li>
-
-        <li>
-Key recovery
-        </li>
-
-        <li>
-Key expiration
-        </li>
-      </ul>
+      <p>
+Any <a>DID method</a> specification that does not support specific operations,
+such as Update and Deactivate, MUST clearly state these limitations.
+      </p>
 
       <section>
         <h3>
@@ -2203,8 +2121,7 @@ Deactivate
         </h3>
 
         <p>
-Although a core feature of <a>distributed ledgers</a> is immutability, the
-<a>DID method</a> specification MUST specify how a client can deactivate a
+The <a>DID method</a> specification MUST specify how a client can deactivate a
 <a>DID</a> on the <a>DID registry</a>, including all cryptographic
 operations necessary to establish proof of deactivation <em>or</em> state that
 deactivation is not possible.
