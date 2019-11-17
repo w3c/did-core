@@ -1379,12 +1379,11 @@ Privacy Enhanced Mail (PEM) format using the <code>publicKeyPem</code> property.
 secp256k1
             </td>
             <td>
-Secp256k1 key values MAY be expressed as the raw 32-byte value encoded in
-base58-btc format using the <code>publicKeyBase58</code> property or
-MAY be encoded in JSON Web Key (JWK) format using the <code>publicKeyJwk</code>
-property. Both the raw 32-byte base58-btc format and JWK format MUST be
-supported by DID Document Processors. The use of other key formats for RSA MUST
-cause the DID Document Processor to raise an error.
+Secp256k1 public key values MUST be encoded in either JSON Web Key (JWK)
+format using the <code>publicKeyJwk</code> property or as the raw 32-byte
+public key value encoded in Base58 Bitcoin format using the
+<code>publicKeyBase58</code> property. Other Secp256k1 public key formats
+MUST NOT be used.
             </td>
           </tr>
         </tbody>
