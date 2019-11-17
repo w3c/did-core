@@ -1376,6 +1376,18 @@ Privacy Enhanced Mail (PEM) format using the <code>publicKeyPem</code> property.
           </tr>
           <tr>
             <td>
+secp256r1
+            </td>
+            <td>
+Secp256r1 public key values MUST be encoded in either JSON Web Key (JWK)
+format using the <code>publicKeyJwk</code> property or as the raw 32-byte
+public key value encoded in Base58 Bitcoin format using the
+<code>publicKeyBase58</code> property. Other secp256r1 public key formats
+MUST NOT be used.
+            </td>
+          </tr>
+          <tr>
+            <td>
 ed25519
             </td>
             <td>
