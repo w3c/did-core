@@ -2186,8 +2186,8 @@ specified in [[DID-RESOLUTION]].
 Security Considerations
     </h1>
 
-    <p>
-NOTE TO IMPLEMENTERS: During the Implementer’s Draft stage, this
+    <p class="note" title="Note to implementers">
+During the Implementer’s Draft stage, this
 section focuses on security topics that should be important in early
 implementations. The editors are also seeking feedback on threats and
 threat mitigations that should be reflected in this section or
@@ -2373,7 +2373,7 @@ SHOULD explain and specify their implementation if applicable.
         </p>
 
         <p>
-It is RECOMMENDED to combine timestamps with signatures.
+It is good practice to combine timestamps with signatures.
         </p>
       </section>
 
@@ -2417,9 +2417,7 @@ A <a>DID</a> and <a>DID document</a> do not inherently carry any
 PII</a> (personally-identifiable information). The process of
 binding a <a>DID</a> to something in the real-world such as a person or company,
 for example with credentials with the same subject as that <a>DID</a>, is out
-of scope for this specification. However this topic is the focus of the
-<a href="https://w3c.github.io/vctf/">verifiable claims</a>
-standardization work at the W3C (where the term "DID" originated).
+of scope for this specification. See the [[VC-DATA-MODEL]] instead.
         </p>
       </section>
     </section>
@@ -2469,24 +2467,24 @@ This is analogous to helping prevent account takeover on conventional
 username/password accounts by sending password reset notifications to
 the email addresses on file. In the case of a <a>DID</a>, where there is no
 intermediary registrar or account provider to generate the
-notification, the following approaches are RECOMMENDED:
+notification, the following approaches are suggested:
       </p>
 
       <ol start="1">
         <li>
 Subscriptions. If the <a>DID registry</a> on which the <a>DID</a> is
 registered directly supports change notifications, this service can
-be offered to <a>DID controllers</a>. Notifications MAY be sent directly to the
+be offered to <a>DID controllers</a>. Notifications could be sent directly to the
 relevant <a>service endpoints</a> listed in an existing <a>DID</a>.
         </li>
 
         <li>
-Self-monitoring. A <a>DID subject</a> MAY employ their own local or online
+Self-monitoring. A <a>DID subject</a> can employ their own local or online
 agent to periodically monitor for changes to a <a>DID document</a>.
         </li>
 
         <li>
-Third-party monitoring. A <a>DID subject</a> MAY rely on a third party
+Third-party monitoring. A <a>DID subject</a> could rely on a third party
 monitoring service, however this introduces another vector of attack.
         </li>
       </ol>
@@ -2500,11 +2498,11 @@ Key and Signature Expiration
       <p>
 In a <a>decentralized identifier</a> architecture, there are no centralized
 authorities to enforce key or signature expiration policies.
-Therefore <a>DID resolvers</a> and other client applications SHOULD validate
+Therefore <a>DID resolvers</a> and other client applications need to validate
 that keys were not expired at the time they were used. Since some use cases
 may have legitimate reasons why already-expired keys can be extended, a key
-expiration SHOULD NOT prevent any further use of the key, and implementations
-of a resolver SHOULD be compatible with such extension behavior.
+expiration shouldn't prevent any further use of the key, and implementations
+of a resolver ought to be compatible with such extension behavior.
       </p>
     </section>
 
@@ -2521,13 +2519,13 @@ document</a>. In general, checking for key revocation on <a>DLT</a>-based
 methods is expected to be handled in a manner similar to checking the
 balance of a cryptocurrency account on a <a>distributed ledger</a>: if the
 balance is empty, the entire <a>DID</a> is deactivated. <a>DID method</a>
-specifications SHOULD enable support for a quorum of trusted parties
+specifications are expected to enable support for a quorum of trusted parties
 to enable key recovery. Some of the facilities to do so are suggested
-in section 6.5, Authorization. Note that not all <a>DID method</a>
+in section <a href="#authorization-and-delegation"></a>. Not all <a>DID method</a>
 specifications will recognize control from <a>DIDs</a> registered using
-other <a>DID methods</a> and they MAY restrict third-party control to <a>DIDs</a>
+other <a>DID methods</a> and they might restrict third-party control to <a>DIDs</a>
 that use the same method. Access control and key recovery in a <a>DID
-method</a> specification MAY also include a time lock feature to protect
+method</a> specification can also include a time lock feature to protect
 against key compromise by maintaining a second track of control for
 recovery. Further specification of this type of control is a matter
 for future work (see Section <a href="#time-locks-and-did-document-recovery"></a>).
@@ -2672,7 +2670,7 @@ Keep Personally-Identifiable Information (PII) Private
       <p>
 If a <a>DID method</a> specification is written for a public <a>DID
 registry</a> where all <a>DIDs</a> and <a>DID documents</a> will be publicly available,
-it is STRONGLY RECOMMENDED that <a>DID documents</a> contain no PII. All PII
+it is <em>critical</em> that <a>DID documents</a> contain no PII. All PII
 should be kept behind <a>service endpoints</a> under the control
 of the <a>DID subject</a>. With this privacy architecture, PII may be exchanged
 on a private, peer-to-peer basis using communications channels identified and
@@ -2714,7 +2712,7 @@ defeated if the data in the corresponding <a>DID documents</a> can be
 correlated. For example, using same <a>public key descriptions</a> or
 bespoke <a>service endpoints</a> in multiple <a>DID documents</a> can provide
 as much correlation information as using the same <a>DID</a>. Therefore the <a>DID
-document</a> for a pseudonymous <a>DID</a> SHOULD also use pairwise-unique
+document</a> for a pseudonymous <a>DID</a> also needs to use pairwise-unique
 public keys.
 
 It might seem natural to also use pairwise-unique <a>service endpoints</a>
@@ -2736,7 +2734,7 @@ Herd Privacy
 When a <a>DID subject</a> is indistinguishable from others in the herd, privacy
 is available. When the act of engaging privately with another party
 is by itself a recognizable flag, privacy is greatly diminished. <a>DIDs</a>
-and <a>DID methods</a> SHOULD work to improve herd privacy, particularly for
+and <a>DID methods</a> need to work to improve herd privacy, particularly for
 those who legitimately need it most. Choose technologies and human
 interfaces that default to preserving anonymity and pseudonymity. In
 order to reduce <a href="https://en.wikipedia.org/wiki/Device_fingerprint">digital
@@ -2841,9 +2839,10 @@ Smart Signatures
       </h2>
 
       <p>
-Not all <a>DLTs</a> can support the Authorization logic in section 6.5.
+Not all <a>DLTs</a> can support the Authorization logic in section
+<a href="#authorization-and-delegation"></a>.
 Therefore, in this version of the specification, all Authorization
-logic MUST be delegated to <a>DID method</a> specifications. A potential
+logic is delegated to <a>DID method</a> specifications. A potential
 future solution is a <a href="http://www.weboftrust.info/downloads/smart-signatures.pdf">Smart
 Signature</a> specification that specifies the code any conformant
 <a>DLT</a> may implement to process signature control logic.
@@ -2874,10 +2873,8 @@ Alternate Serializations and Graph Models
       <p>
 This version of the specification relies on JSON-LD and the RDF graph
 model for expressing a <a>DID document</a>. Future versions of this
-specification MAY specify other semantic graph formats for a <a>DID
-document</a>, such as JXD (JSON XDI Data), a serialization format for the
-XDI graph model as defined by the <a href="http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">
-OASIS XDI Core 1.0 specification</a>.
+specification might specify other semantic graph formats for a <a>DID
+document</a>.
       </p>
     </section>
   </section>
