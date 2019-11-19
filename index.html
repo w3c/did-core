@@ -1676,7 +1676,7 @@ A <a>DID document</a> SHOULD include an <code>updated</code> property. If so:
       <dl>
           <dt><dfn>updated</dfn></dt>
           <dd>
-The value <code>updated</code> MUST follow the same formatting rules as the
+The <code>updated</code> value MUST follow the same formatting rules as the
 <code>created</code> property (see Section <a href="#created"></a>).
           </dd>
       </dl>
@@ -2074,8 +2074,8 @@ key replacement, key rotation, key recovery, and key expiration.
 
       </p>
       <p>
-Any <a>DID method</a> specification that does not support specific operations,
-such as Update and Deactivate, MUST clearly state these limitations.
+Any <a>DID method</a> specification that does not support a specific operation,
+such as Update or Deactivate, MUST clearly state these limitations.
       </p>
 
       <section>
@@ -2123,7 +2123,7 @@ Deactivate
         <p>
 The <a>DID method</a> specification MUST specify how a client can deactivate a
 <a>DID</a> on the <a>DID registry</a>, including all cryptographic
-operations necessary to establish proof of deactivation <em>or</em> state that
+operations necessary to establish proof of deactivation, <em>or</em> state that
 deactivation is not possible.
         </p>
       </section>
