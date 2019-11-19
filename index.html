@@ -580,104 +580,115 @@ Terminology
     <h1>
 Data Model
     </h1>
+
     <p>
 This section outlines the <a>decentralized identifier</a> data model concepts,
-in particular how keys, services, and the <a>DID subject</a> are related to the
+specifically, how keys, services, and the <a>DID subject</a> are related to the
 <a>DID document</a>.
     </p>
+
     <p>
-For information about how the data model can be extended, see
+For more information about how the data model can be extended, see Section
 <a href="#extensibility"></a>.
     </p>
 
-    <section>
-      <h2>
+  <section>
+    <h2>
 Identifier
-      </h2>
-      <p>
+    </h2>
+
+    <p>
 Identifiers are used in the data model to identify specific instances of people,
 organizations, devices, keys, services, and things in general. Identifiers are
-typically URLs, or more generally, <a>URIs</a>. Non-URI based identifiers are not
-advised as, while the data model supports them, they tend to not be easy to
-use with other Internet-based identifiers.
-      </p>
-    </section>
-    <section>
-      <h2>
+typically URLs, or more generally, <a>URIs</a>. Non-<a>URI</a>-based identifiers
+are not advised because, while the data model supports them, they are not easy
+to use with other Internet-based identifiers.
+    </p>
+  </section>
+
+  <section>
+    <h2>
 DID Document
-      </h2>
-     <p>
-A <a>DID document</a> is the resource that is associated with a <a>decentralized
-identifier</a> (DID). The <a>DID document</a> typically expresses verification methods (such
-as public keys) and services that can be used to interact with a
-<a>DID controller</a>.
-      </p>
+    </h2>
 
-      <p>
-A <a>DID document</a> is serialized according to a particular syntax (see
-<a href="#did-document-syntax"></a>). The <a>DID</a> itself is
-contained in the <code>id</code> property.
-      </p>
-      <p>
-The properties that can be present in a <a>DID document</a> are detailed
-further in <a href="#did-documents"></a>.
-      </p>
-      <p>
+   <p>
+A <a>DID document</a> is the resource that is associated with a
+<a>decentralized identifier</a> (DID). <a>DID documents</a> typically express
+verification methods (such as public keys) and services that can be used to
+interact with a <a>DID controller</a>.
+    </p>
+
+    <p>
+A <a>DID document</a> is serialized according to a particular syntax, as
+outlined in Section <a href="#did-document-syntax"></a>). The <a>DID</a> itself
+is contained in the <code>id</code> property.
+    </p>
+
+    <p>
+The properties that can be present in a <a>DID document</a> are outlined in
+Section <a href="#did-documents"></a>.
+    </p>
+
+    <p>
 The properties present in a <a>DID document</a> can be updated according to
-the applicable <a href="#did-methods"></a>.
-      </p>
-    </section>
+the applicable methods outlined in Section <a href="#did-methods"></a>.
+    </p>
+  </section>
 
-    <section>
-      <h2>
+  <section>
+    <h2>
 Cryptographic Keys and Other Verification Methods
-      </h2>
-      <p>
-A <a>DID document</a> can express cryptographic keys and other verification methods
-that can be used to authenticate or authorize interactions with the <a>DID subject</a>
-or associated parties. The information expressed often includes globally
-unambiguous identifiers and public key material which can be used to verify
-digital signatures. Other information can be expressed such as status
-information for the key, such as if it has been suspended or revoked, or other
-attributes that enable one to determine whether it is a hardware-backed
-cryptographic key.
-      </p>
+    </h2>
 
-      <p>
-With respect to cryptographic key material, <a href="#public-keys"></a> can be
-included in a <a>DID document</a> using, for example, the <code>publicKey</code>
-or <code>authentication</code> properties depending on what they are to be used
+    <p>
+A <a>DID document</a> can express cryptographic keys and other verification
+methods, which can be used to authenticate or authorize interactions with the
+<a>DID subject</a> or associated parties. The information expressed often
+includes globally unambiguous identifiers and public key material, which can be
+used to verify digital signatures. Other information can be expressed, such as
+status information for the key (for example, whether it is suspended or
+revoked), or other attributes that enable one to determine whether it is a
+hardware-backed cryptographic key.
+    </p>
+
+    <p>
+Regarding cryptographic key material, public keys can be included in a
+<a>DID document</a> using, for example, the <code>publicKey</code> or
+<code>authentication</code> properties, depending on what they are to be used
 for. Each public key has an identifier (<code>id</code>) of its own, a
 <code>type</code>, and a <code>controller</code>, as well as other properties
-which depend on what type of key it is.
-      </p>
-    </section>
+that depend on the type of key it is. For more information, see Section
+<a href="#public-keys"></a>.
+    </p>
+  </section>
 
-    <section>
-      <h2>
+  <section>
+    <h2>
 Services
-      </h2>
-      <p>
-<a>Service endpoints</a> are used in <a>DID documents</a> to express ways in which one can
-communicate with the <a>DID subject</a> or associated entities. Services listed
-in the <a>DID document</a> can contain information about privacy preserving messaging
-services, or more public information such as social media accounts, personal
-websites, and email addresses. The metadata associated with services are often
-service specific. For example, the metadata associated with an encrypted
-messaging service can express how to initiate the encrypted link before
-messaging begins.
-      </p>
+    </h2>
 
-      <p>
+    <p>
+<a>Service endpoints</a> are used in <a>DID documents</a> to express ways of
+communicating with the <a>DID subject</a> or associated entities. Services
+listed in the <a>DID document</a> can contain information about privacy
+preserving messaging services, or more public information, such as social media
+accounts, personal websites, and email addresses. The metadata associated with
+services are often service-specific. For example, the metadata associated with
+an encrypted messaging service can express how to initiate the encrypted link
+before messaging begins.
+    </p>
+
+    <p>
 Pointers to services are expressed using the <code>service</code> property.
 Each service has its own <code>id</code> and <code>type</code>, as well as a
-<code>serviceEndpoint</code> with a <a>URI</a> or further properties describing the
-service.
-      </p>
-      <p>
-For more information see <a href="#service-endpoints"></a>.
-      </p>
-    </section>
+<code>serviceEndpoint</code> with a <a>URI</a> or other properties describing
+the service.
+    </p>
+
+    <p>
+For more information, see Section <a href="#service-endpoints"></a>.
+    </p>
+  </section>
 
   </section>
 
