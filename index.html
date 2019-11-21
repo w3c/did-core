@@ -1053,42 +1053,42 @@ DID Documents
 
     <p>
 A <a>DID</a> points to a <a>DID document</a>. <a>DID documents</a> are the
-serialization of the <a href="#data-model"></a>.
-The following sections define the properties of the <a>DID document</a>,
-including whether these properties are required or optional.
+serialization of the <a>DID</a> data model, as outlined in Section
+<a href="#data-model"></a>. The following sections define the properties of the
+<a>DID document</a>, including whether the properties are required or optional.
     </p>
 
     <section>
       <h2>Contexts</h2>
 
-        <p>
-When two software systems need to exchange data, they must use terminology and
-a protocol that both systems understand. As an analogy, consider how two
+      <p>
+When two software systems need to exchange data, they need to use terminology
+and a protocol that both systems understand. As an analogy, consider how two
 people communicate. Both people must use the same language and the words they
 use must mean the same thing to each other. This specification uses the
-<code>@context</code> property to express the context of a conversation.
-        </p>
+<code>@context</code> property to express the <em>context of a conversation</em>.
+      </p>
 
-        <dl>
-          <dt><dfn>@context</dfn></dt>
-          <dd>
-The value of the <code>@context</code> property MUST be one or more
-<a>URIs</a>, where the value of the first <a>URI</a> is
-<code>https://www.w3.org/ns/did/v1</code>. If more than one
-<a>URI</a> is provided, the <a>URIs</a> MUST be interpreted as an ordered set.
-It is RECOMMENDED that dereferencing the <a>URIs</a> results in a document
-containing machine-readable information about the context.
-          </dd>
-        </dl>
+      <dl>
+        <dt><dfn>@context</dfn></dt>
+        <dd>
+The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
+where the value of the first <a>URI</a> is
+<code>https://www.w3.org/ns/did/v1</code>. If more than one <a>URI</a> is
+provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
+RECOMMENDED that dereferencing the <a>URIs</a> results in a document containing
+machine-readable information about the context.
+        </dd>
+      </dl>
 
       <p>
 <a>DID documents</a> MUST include the <code>@context</code> property. The
-<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
-is described in detail in the [[!JSON-LD]] specification. The rules for this
+<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD context</a> is
+described in detail in the [[!JSON-LD]] specification. The rules for this
 statement are:
       </p>
 
-      <ol start="1">
+      <ul>
         <li>
 A <a>DID document</a> MUST have exactly one top-level context statement.
         </li>
@@ -1098,25 +1098,23 @@ The key for this property MUST be <code>@context</code>.
         </li>
 
         <li>
-The value of this key MUST be the URL for the generic <a>DID</a> context:
+The value of this key MUST be the URL for the generic <a>DID</a> context,
 <code>https://www.w3.org/ns/did/v1</code>.
         </li>
-      </ol>
-
-      <p>
-Example (using an example URL):
-      </p>
+      </ul>
 
       <pre class="example nohighlight">
 {
   "@context": "https://www.w3.org/ns/did/v1"
 }
-</pre>
+      </pre>
+
       <p>
-<a>DID method</a> specifications MAY define their own JSON-LD contexts.
-However it is NOT RECOMMENDED to define a new context unless
-necessary to properly implement the method. Method-specific contexts
-MUST NOT override the terms defined in the generic <a>DID</a> context.
+<a>DID method</a> specifications MAY define their own
+<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD contexts</a>.
+However it is NOT RECOMMENDED to define a new context unless it is necessary to
+properly implement the method. Method-specific contexts MUST NOT override the
+terms defined in the generic <a>DID</a> context.
       </p>
     </section>
 
@@ -1126,18 +1124,18 @@ DID Subject
       </h2>
 
       <p>
-The <a>DID subject</a> is the entity that the <a>DID document</a> is about, i.e.,
-it is the entity identified by the <a>DID</a> and described by the <a>DID document</a>.
-The rules for a <a>DID subject</a> are:
+The <a>DID subject</a> is the entity that the <a>DID document</a> is about. That
+is, it is the entity identified by the <a>DID</a> and described by the
+<a>DID document</a>. The rules for a <a>DID subject</a> are:
       </p>
 
-      <ol start="1">
+      <ul>
         <li>
 A <a>DID document</a> MUST have exactly one <a>DID subject</a>.
         </li>
 
         <li>
-The key for this property MUST be id.
+The key for this property MUST be <code>id</code>.
         </li>
 
         <li>
@@ -1145,26 +1143,22 @@ The value of this key MUST be a valid <a>DID</a>.
         </li>
 
         <li>
-When this <a>DID document</a> is registered with the target <a>DID
-registry</a>, the registered <a>DID</a> MUST match this <a>DID subject</a>
-value.
+When this <a>DID document</a> is registered with the target <a>DID registry</a>,
+the registered <a>DID</a> MUST match this <a>DID subject</a> value.
         </li>
-      </ol>
-
-      <p>
-Example:
-      </p>
+      </ul>
 
       <pre class="example nohighlight">
 {
   "id": "did:example:21tDAKCERh95uGgKbJNHYp"
 }
-</pre>
+      </pre>
+
       <p class="note">
-<a>DID method</a> specifications MAY create intermediate representations of
-a <a>DID document</a> that do not contain the <code>id</code> key, such as
-when a <a>DID resolver</a> is performing resolution. However, the fully
-resolved <a>DID document</a> MUST contain a valid <code>id</code> property.
+<a>DID method</a> specifications MAY create intermediate representations of a
+<a>DID document</a> that do not contain the <code>id</code> key, such as
+when a <a>DID resolver</a> is performing resolution. However, the fully resolved
+<a>DID document</a> MUST contain a valid <code>id</code> property.
       </p>
     </section>
     <!-- section>
@@ -1240,74 +1234,92 @@ Public Keys
       </h2>
 
       <p>
-Public keys are used for digital signatures, encryption and other
-cryptographic operations, which in turn are the basis for purposes
-such as authentication (see Section <a href="#authentication"></a>)
-or establishing secure communication with <a>service endpoints</a>
-(see Section <a href="#service-endpoints"></a>). In addition, public
-keys may play a role in authorization mechanisms of <a>DID</a> CRUD
-operations (see Section <a href="#did-operations"></a>). This may be
-defined by <a>DID method</a> specifications.
+Public keys are used for digital signatures, encryption, and other cryptographic
+operations, which in turn are the basis for purposes such as authentication
+(see Section <a href="#authentication"></a>) or establishing secure
+communication with <a>service endpoints</a> (see Section
+<a href="#service-endpoints"></a>). Also, public keys can play a role in
+authorization mechanisms of <a>DID</a> CRUD operations (see Section
+<a href="#did-operations"></a>). This might be defined by <a>DID method</a>
+specifications.
       </p>
 
       <p>
-If a public key does not exist in the <a>DID document</a>, it MUST be
-assumed the key has been revoked or is invalid. The <a>DID document</a> MAY
-contain revoked keys. A <a>DID document</a> that contains a revoked key MUST
-also contain or refer to the revocation information for the key (e.g.,
-a revocation list). Each <a>DID method</a> specification is expected to
-detail how revocation is performed and tracked.
+If a public key does not exist in the <a>DID document</a>, it MUST be assumed
+the key was revoked or is invalid. The <a>DID document</a> MAY contain revoked
+keys. A <a>DID document</a> containing a revoked key MUST also contain or refer
+to the revocation information for the key (for example, a revocation list). Each
+<a>DID method</a> specification is expected to detail how revocation is
+performed and tracked.
       </p>
 
       <p>
 The rules for public keys are:
       </p>
 
-      <ol start="1">
+      <ul>
         <li>
 A <a>DID document</a> MAY include a <code>publicKey</code> property.
         </li>
 
         <li>
-The value of the <code>publicKey</code> property MUST be an array of
-public keys, and every public key property MUST be in the
-<a href="https://w3c-ccg.github.io/ld-cryptosuite-registry">Linked Data
-Cryptographic Suite Registry</a>.
+The value of the <code>publicKey</code> property MUST be an array of public
+keys, and every public key property MUST be in the
+<a href="https://w3c-ccg.github.io/ld-cryptosuite-registry">Linked Data Cryptographic Suite Registry</a>.
         </li>
 
         <li>
-Each public key SHOULD include an <code>id</code> property. The array
-of public keys MUST NOT contain multiple entries with the same
-<code>id</code>. A <a>DID document</a> processor MUST produce an error in that
-case.
+Each public key SHOULD include an <code>id</code> property. The array of public
+keys MUST NOT contain multiple entries with the same <code>id</code>. A
+<a>DID document</a> processor MUST produce an error if the array contains
+multiple entries with the same <code>id</code>.
         </li>
 
         <li>
-Each public key MUST include a <code>type</code> property
-and exactly one public key value, and MAY include additional properties.
+Each public key MUST include a <code>type</code> property and exactly one public
+key value, and MAY include additional properties.
         </li>
 
         <li>
 Each public key MUST include a <code>controller</code> property, which
 identifies the controller of the corresponding private key.
         </li>
+      </ul>
 
-        <li>
+        <p>
 A registry of key types and formats is available in Appendix
 <a href="#registries"></a>.
-        </li>
-      </ol>
-      <p class="note">
-        The following is a non-exhaustive list of public key
-        properties used by the community:
-        <code>publicKeyPem</code>, <code>publicKeyJwk</code>,
-        <code>publicKeyHex</code>, <code>publicKeyBase64</code>,
-        <code>publicKeyBase58</code>, <code>publicKeyMultibase</code>,
-        <code>ethereumAddress</code>.
+        </p>
+
+      <aside class="note">
+        <p>
+The following is a non-exhaustive list of public key properties used by the
+community:
       </p>
-      <p>
-Example:
-      </p>
+        <ul>
+          <li>
+<code>publicKeyPem</code>
+          </li>
+          <li>
+<code>publicKeyJwk</code>
+          </li>
+          <li>
+<code>publicKeyHex</code>
+          </li>
+          <li>
+<code>publicKeyBase64</code>
+          </li>
+          <li>
+<code>publicKeyBase58</code>
+          </li>
+          <li>
+<code>publicKeyMultibase</code>
+          </li>
+          <li>
+<code>ethereumAddress</code>.
+          </li>
+        </ul>
+      </aside>
 
       <pre class="example nohighlight" title="Various public keys">
 {
@@ -1332,11 +1344,12 @@ Example:
   }],
   <span class="comment">...</span>
 }
-</pre>
+      </pre>
+
       <p>
-A key MAY be <em>embedded</em> or <em>referenced</em> in a <a>DID
-document</a>. For example, the <code>authentication</code> property
-may refer to keys in both ways:
+A key MAY be <em>embedded</em> or <em>referenced</em> in a <a>DID document</a>.
+For example, the <code>authentication</code> property can refer to keys in both
+ways.
       </p>
 
       <pre class="example nohighlight" title="Various public keys">
@@ -1357,70 +1370,64 @@ may refer to keys in both ways:
 
 <span class="comment">...</span>
 }
-</pre>
+      </pre>
+
       <p>
-The algorithm to use when processing a <code>publicKey</code>
-property in a <a>DID document</a> is:
+The algorithm to use when processing a <code>publicKey</code> property in a
+<a>DID document</a> is:
       </p>
 
       <ol class="algorithm">
         <li>
-Let <em>value</em> be the data associated with the
-        <code>publicKey</code> property and initialize <em>result</em> to
-        <code>null</code>.
+Let <em>value</em> be the data associated with the <code>publicKey</code>
+property and initialize <em>result</em> to <code>null</code>.
         </li>
 
         <li>
 If <em>value</em> is an object, the key material is embedded. Set
-        <em>result</em> to <em>value</em>.
+<em>result</em> to <em>value</em>.
         </li>
 
         <li>
-If <em>value</em> is a string, the key is included by reference.
-Assume <em>value</em> is a URL.
+If <em>value</em> is a string, the key is included by reference. Assume
+<em>value</em> is a URL.
           <ol>
             <li>
-Dereference the URL and retrieve the <code>publicKey</code>
-properties associated with the URL (e.g., process the
-<code>publicKey</code> property at the top-level of the
-dereferenced document).
+Dereference the URL and retrieve the <code>publicKey</code> properties
+associated with the URL. For example, process the <code>publicKey</code>
+property at the top-level of the dereferenced document.
             </li>
 
             <li>
-Iterate through each public key object.
-              <ol>
-                <li>
-If the <code>id</code> property of the object matches
-<em>value</em>, set <em>result</em> to the object.
-                </li>
-              </ol>
+Iterate through each public key object. If the <code>id</code> property of the
+object matches <em>value</em>, set <em>result</em> to the object.
             </li>
           </ol>
         </li>
 
         <li>
 If <em>result</em> does not contain at least the <code>id</code>,
-<code>type</code>, and <code>controller</code> properties as well as any
-mandatory public cryptographic material, as determined by the
-<em>result</em>'s <code>type</code> property, throw an error.
+<code>type</code>, and <code>controller</code> properties, as well as any
+mandatory public cryptographic material, as determined by the <code>type</code>
+property for the <em>result</em>, throw an error.
         </li>
       </ol>
 
       <p class="note">
-While the <code>controller</code> field may seem redundant in some of the
-examples above, keys may be expressed in a <a>DID document</a> where the
+While the <code>controller</code> field might seem redundant in some of the
+examples above, keys can be expressed in a <a>DID document</a> where the
 controller is described in another <a>DID document</a>. Linked Data Proof
-libraries typically expect the <code>controller</code> field to always
-exist and may throw an exception if it is missing. Furthermore, per
-the requirement that <a>DID documents</a> be interpretable as either a graph
-or a tree, a default <code>controller</code> field cannot be inferred by
-using a key's position in a tree.
+libraries typically expect the <code>controller</code> field to always exist and
+might throw an exception if it is missing. Furthermore, based on the requirement
+that <a>DID documents</a> be interpretable as either a graph or a tree, a
+default <code>controller</code> field cannot be inferred by using a key's
+position in a tree.
       </p>
 
       <p class="note">
 Caching and expiration of the keys in a <a>DID document</a> is entirely the
-responsibility of <a>DID resolvers</a> and other clients. See Section
-<a href="#did-resolvers"></a>.
+responsibility of <a>DID resolvers</a> and other clients. For more information,
+see Section <a href="#did-resolvers"></a>.
       </p>
     </section>
 
@@ -1431,39 +1438,38 @@ Authentication
 
       <p>
 Authentication is the mechanism by which the <a>DID controller(s)</a> can
-cryptographically prove that they are associated with that DID.
-See Section <a href="#binding-of-identity"></a>. Note
-that Authentication is separate from Authorization because the
-<a>DID controller(s)</a> may wish to enable others to update their DID Document
-(for example, to assist with key recovery as discussed in Section
-<a href="#key-revocation-and-recovery"></a>) without enabling them to prove
-control (and thus be able to impersonate the <a>DID controller(s)</a>).
+cryptographically prove that they are associated with that <a>DID</a>. For more
+information, see Section <a href="#binding-of-identity"></a>.
+      </p>
+
+      <p class="note">
+Authentication is separate from authorization because the
+<a>DID controller(s)</a> might want to enable others to update their
+<a>DID document</a> (for example, to assist with key recovery, as discussed in
+Section <a href="#key-revocation-and-recovery"></a>) without enabling them to
+prove control (and thus be able to impersonate the <a>DID controller(s)</a>).
       </p>
 
       <p>
-The rules for Authentication are:
+The rules for authentication are:
       </p>
 
-      <ol start="1">
+      <ul>
         <li>
-A <a>DID document</a> MAY include an <code>authentication</code>
-property.
+A <a>DID document</a> MAY include an <code>authentication</code> property.
         </li>
 
         <li>
-The value of the <code>authentication</code> property SHOULD be
-an array of verification methods.
+The value of the <code>authentication</code> property SHOULD be an array of
+verification methods.
         </li>
 
         <li>
-Each verification method MAY be embedded or referenced. An example of
-a verification method is a public key (see Section <a href="#public-keys"></a>).
+Each verification method MAY be embedded or referenced. An example of a
+verification method is a public key. For more information, see Section
+<a href="#public-keys"></a>.
         </li>
-      </ol>
-
-      <p>
-Example:
-      </p>
+      </ul>
 
       <pre class="example nohighlight" title="Authentication field containing three verification methods">
 {
@@ -1487,7 +1493,7 @@ Example:
   ],
   <span class="comment">...</span>
 }
-</pre>
+      </pre>
     </section>
 
     <section>
@@ -1496,16 +1502,18 @@ Authorization and Delegation
       </h2>
 
       <p>
-Authorization is the mechanism used to state how operations may be
-performed on behalf of the <a>DID subject</a>. Delegation is the
-mechanism that the subject may use to authorize others to act
-on their behalf. Note that Authorization is separate from
-Authentication as explained in Section <a href="#authentication"></a>.
-This is particularly important for key
-recovery in the case of key loss, when the subject no longer has
-access to their keys, or key compromise, where the <a>DID controller</a>'s
-trusted third parties need to override malicious activity by an attacker. See
-Section <a href="#security-considerations"></a>.
+Authorization is the mechanism used to state how operations can be performed on
+behalf of the <a>DID subject</a>. Delegation is the mechanism that the subject
+can use to authorize others to act on their behalf.
+      </p>
+
+      <p class="note">
+Authorization is separate from authentication, as explained in Section
+<a href="#authentication"></a>. This is particularly important for key recovery
+in the case of key loss, when the subject cannot access their keys, or key
+compromise, where the <a>DID controller's</a> trusted third parties need to
+override malicious activity by an attacker. For more information, see Section
+<a href="#security-considerations"></a>.
       </p>
 
       <p>
@@ -1514,28 +1522,22 @@ implemented, including any necessary cryptographic operations.
       </p>
 
       <p>
-There are at least two suggested methods for implementing
-Authorization and Delegation, which may be layered:
+There are at least two suggested methods for implementing authorization and
+delegation, which can be layered:
       </p>
 
-      <ol>
+      <ul>
         <li>
-A <a>DID registry</a> could implement a coarse
-grained <code>controller</code> pattern by enabling <a>DID documents</a> to
-express the <a>DID</a> of another <a>DID controller</a> that controls it, or
-additionally,
+A <a>DID registry</a> could implement a coarse-grained <code>controller</code>
+pattern by enabling <a>DID documents</a> to express the <a>DID</a> of another
+<a>DID controller</a> that controls it.
         </li>
 
         <li>
-A <a>DID registry</a> could implement a
-Capabilities-based approach that enables further fine-grained control
-of authorization and delegation.
+A <a>DID registry</a> could implement a capabilities-based approach that enables
+a more fine-grained control of authorization and delegation.
         </li>
-      </ol>
-
-      <p>
-Example:
-      </p>
+      </ul>
 
       <pre class="example nohighlight" title="DID document with a controller property">
 {
@@ -1557,54 +1559,49 @@ Service Endpoints
       </h2>
 
       <p>
-In addition to publication of authentication and authorization
-mechanisms, the other primary purpose of a <a>DID document</a> is to enable
-discovery of <a>service endpoints</a> for the <a>DID subject</a>. A <a>service
-endpoint</a> MAY represent any type of service the <a>DID subject</a> wishes to
-advertise, including <a>decentralized identity management</a> services for
-further discovery, authentication, authorization, or interaction. The
-rules for <a>service endpoints</a> are:
+As well as the publication of authentication and authorization mechanisms, the
+other primary purpose of a <a>DID document</a> is to enable discovery of
+<a>service endpoints</a> for the <a>DID subject</a>. A <a>service endpoint</a>
+MAY represent any type of service the <a>DID subject</a> wants to advertise,
+including <a>decentralized identity management</a> services for further
+discovery, authentication, authorization, or interaction. The rules for
+<a>service endpoints</a> are:
       </p>
 
-      <ol start="1">
+      <ul>
         <li>
 A <a>DID document</a> MAY include a <code>service</code> property.
         </li>
 
         <li>
-The value of the <code>service</code> property SHOULD be an array
-of <a>service endpoints</a>.
+The value of the <code>service</code> property SHOULD be an array of
+<a>service endpoints</a>.
         </li>
 
         <li>
-Each <a>service endpoint</a> SHOULD include an <code>id</code> property.
-The array of <a>service endpoints</a> MUST NOT contain multiple entries
-with the same <code>id</code>. A <a>DID document</a> processor MUST
-produce an error in that case.
+Each <a>service endpoint</a> SHOULD include an <code>id</code> property. The
+array of <a>service endpoints</a> MUST NOT contain multiple entries with the
+same <code>id</code>. A <a>DID document</a> processor MUST produce an error if
+the array contains multiple entries with the same <code>id</code>.
         </li>
 
         <li>
 Each service endpoint MUST include <code>type</code> and
-<code>serviceEndpoint</code> properties, and MAY include additional
-properties.
+<code>serviceEndpoint</code> properties, and MAY include additional properties.
         </li>
 
         <li>
-The <a>service endpoint</a> protocol SHOULD be published in an open
-standard specification.
+The <a>service endpoint</a> protocol SHOULD be published in an open standard
+specification.
         </li>
 
         <li>
-The value of the <code>serviceEndpoint</code> property MUST be a
-JSON-LD object or a valid <a>URI</a> conforming to [[RFC3986]] and
-normalized according to the rules in section 6 of [[RFC3986]] and to
-any normalization rules in its applicable URI scheme specification.
+The value of the <code>serviceEndpoint</code> property MUST be a [[!JSON-LD]]
+object or a valid <a>URI</a> conforming to [[RFC3986]] and normalized according
+to the rules in section 6 of [[RFC3986]] and to any normalization rules in its
+applicable <a>URI</a> scheme specification.
         </li>
-      </ol>
-
-      <p>
-Example:
-      </p>
+      </ul>
 
       <pre class="example nohighlight" title="Various service endpoints">
 {
@@ -1652,11 +1649,11 @@ Example:
     "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefg"
   }]
 }
-</pre>
+      </pre>
+
       <p>
-See Sections <a href="#did-method-schemes"></a>
-and <a href="#authentication"></a> for further security
-considerations regarding authentication <a>service endpoints</a>.
+For more information about the security considerations regarding authentication
+<a>service endpoints</a>, see Sections <a href="#did-method-schemes"></a>.
       </p>
     </section>
 
@@ -1666,14 +1663,14 @@ Created (Optional)
       </h2>
 
       <p>
-Standard metadata for identifier records includes a timestamp of the
-original creation. The rules for including a creation timestamp are:
+Standard metadata for identifier records includes a timestamp of the original
+creation. The rules for including a creation timestamp are:
       </p>
 
-      <ol start="1">
+      <ul start="1">
         <li>
-A <a>DID document</a> MUST have zero or one property representing a
-creation timestamp. It is RECOMMENDED to include this property.
+A <a>DID document</a> MUST have zero or one property representing a creation
+timestamp. It is RECOMMENDED to include this property.
         </li>
 
         <li>
@@ -1681,27 +1678,23 @@ The key for this property MUST be created.
         </li>
 
         <li>
-The value of this key MUST be a valid XML datetime value as
-defined in section 3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition
-Language (XSD) 1.1 Part 2: Datatypes</a> [[!XMLSCHEMA11-2]].
+The value of this key MUST be a valid XML datetime value, as defined in section
+3.3.7 of
+<a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a> [[!XMLSCHEMA11-2]].
         </li>
 
         <li>
-This datetime value MUST be normalized to UTC 00:00 as indicated
-by the trailing "Z".
+The datetime value MUST be normalized to UTC 00:00, as indicated by the trailing
+"Z".
         </li>
 
         <li>
-Method specifications that rely on <a>DLTs</a> SHOULD require time
-values that are after the known <a href="https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki">"median
-time past" (defined in Bitcoin BIP 113)</a>, when the <a>DLT</a> supports
-such a notion.
+Method specifications that rely on <a>DLTs</a> SHOULD require time values that
+are after the known
+<a href="https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki">"median time past" (defined in Bitcoin BIP 113)</a>,
+when the <a>DLT</a> supports such a notion.
         </li>
-      </ol>
-
-      <p>
-Example:
-      </p>
+      </ul>
 
       <pre class="example nohighlight">
 {
@@ -1716,14 +1709,14 @@ Updated (Optional)
       </h2>
 
       <p>
-Standard metadata for identifier records includes a timestamp of the
-most recent change. The rules for including an updated timestamp are:
+Standard metadata for identifier records includes a timestamp of the most recent
+change. The rules for including an updated timestamp are:
       </p>
 
-      <ol start="1">
+      <ul>
         <li>
-A <a>DID document</a> MUST have zero or one property representing an
-updated timestamp. It is RECOMMENDED to include this property.
+A <a>DID document</a> MUST have zero or one property representing an updated
+timestamp. It is RECOMMENDED to include this property.
         </li>
 
         <li>
@@ -1731,20 +1724,16 @@ The key for this property MUST be updated.
         </li>
 
         <li>
-The value of this key MUST follow the formatting rules (3, 4, 5)
-from Section <a href="#created-optional"></a>.
+The value of this key MUST follow the same formatting rules outlined in Section
+<a href="#created-optional"></a>.
         </li>
-      </ol>
-
-      <p>
-Example:
-      </p>
+      </ul>
 
       <pre class="example nohighlight">
 {
   "updated": "2016-10-17T02:41:00Z"
 }
-</pre>
+      </pre>
     </section>
 
     <section>
@@ -1754,29 +1743,33 @@ Proof (Optional)
 
       <p>
 A <code>proof</code> on a <a>DID document</a> is cryptographic proof of the
-integrity of the <a>DID document</a> according to either:
+integrity of the <a>DID document</a> according to either the:
       </p>
 
-      <ol start="1">
+      <ul>
         <li>
-The <a>DID subject</a> as defined in Section <a href="#did-subject"></a>, or:
+<a>DID subject</a>, as defined in Section <a href="#did-subject"></a>.
         </li>
 
         <li>
-The <a>DID controller</a> as defined in Section <a href="#authorization-and-delegation"></a>, if present.
+<a>DID controller</a>, if present, as defined in Section
+<a href="#authorization-and-delegation"></a>.
         </li>
-      </ol>
+      </ul>
 
       <p>
-This proof is NOT proof of the binding between a <a>DID</a> and a <a>DID
-document</a>. See Section <a href="#binding-of-identity"></a>. The rules
-for a proof are:
+This proof is NOT proof of the binding between a <a>DID</a> and a
+<a>DID document</a>. For more information, see Section
+<a href="#binding-of-identity"></a>.
       </p>
 
-      <ol start="1">
+      <p>
+The rules for a proof are:
+      </p>
+
+      <ul>
         <li>
-A <a>DID document</a> MAY have exactly one property representing a
-proof.
+A <a>DID document</a> MAY have exactly one property representing a proof.
         </li>
 
         <li>
@@ -1784,15 +1777,11 @@ The key for this property MUST be <code>proof</code>.
         </li>
 
         <li>
-The value of this key MUST be a valid JSON-LD proof as defined by
+The value of this key MUST be a valid [[!JSON-LD]] proof, as defined by
 <a href="https://w3c-dvcg.github.io/ld-signatures/">Linked Data
 Proofs</a>.
         </li>
-      </ol>
-
-      <p>
-Example:
-      </p>
+      </ul>
 
       <pre class="example nohighlight" title="A signature-based proof">
 {
@@ -1803,7 +1792,7 @@ Example:
     "signatureValue": "QNB13Y7Q9...1tzjn4w=="
   }
 }
-</pre>
+      </pre>
     </section>
 
     <section>
@@ -1814,44 +1803,41 @@ Extensibility
       <p>
 One of the goals of the <a>decentralized identifiers</a> data model is to
 enable permissionless innovation. This requires that the data model
-is extensible in a number of different ways:
+is extensible in the following ways:
       </p>
 
       <ul>
         <li>
-The requirement to model complex multi-entity relationships is
-provided through the use of a graph-based data model.
+Modelling complex multi-entity relationships is provided through the use of a
+graph-based data model.
         </li>
 
         <li>
-The requirement to enable extending the machine-readable
-vocabularies used to describe information in the data model &mdash;
-without relying on a centralized system &mdash; is accomplished via
+Extension of the machine-readable vocabularies used to describe information in
+the data model, without relying on a centralized system, is accomplished through
 the use of [[LINKED-DATA]].
         </li>
 
         <li>
-The requirement to support multiple types of cryptographic proof
-formats is accomplished via the use of Linked Data Proofs
-[[LD-PROOFS]], Linked Data Signatures [[LD-SIGNATURES]], and a
-variety of signature suites.
+Support for multiple types of cryptographic proof formats is accomplished
+through the use of Linked Data Proofs [[LD-PROOFS]], Linked Data Signatures
+[[LD-SIGNATURES]], and a variety of signature suites.
         </li>
 
         <li>
-The requirement to provide all of the extensibility mechanisms
-outlined above in a data format that is popular among software
-developers and web page authors is enabled via the use of
-[[!JSON-LD]].
+Providing all of the extensibility mechanisms outlined above in a data format
+that is popular among software developers and web page authors that is enabled
+through the use of [[!JSON-LD]].
         </li>
       </ul>
 
       <p>
-This approach to data modeling is often called an "open world
-assumption", meaning that anyone can say anything about any other
-thing. This approach often feels in conflict with building simple
-and predictable software systems. Balancing extensibility with
-program correctness is always more challenging with an open world
-assumption than it is with closed software systems.
+This approach to data modeling is often called an
+<em>open world assumption</em>, meaning that anyone can say anything about any
+other thing. This approach often feels in conflict with building simple and
+predictable software systems. Balancing extensibility with program correctness
+is always more challenging with an open world assumption than it is with closed
+software systems.
       </p>
 
       <p>
@@ -1872,18 +1858,19 @@ Let us assume that we start with the following <a>DID document</a>:
   "service": [{ <span class="comment">...</span> }]
 }
       </pre>
+
       <p>
-The contents of the <code>publicKey</code>,
-<code>authentication</code>, and <code>service</code> properties are
-not important for the purposes of this section. What is important is
-that the object above is a valid <a>DID document</a>. Let's assume
-that a developer wanted to extend the <a>DID document</a> to express
-an additional piece of information: the subject's public photo
-stream.
+The contents of the <code>publicKey</code>, <code>authentication</code>, and
+<code>service</code> properties are not important for the purposes of this
+section. What is important is that the object above is a valid
+<a>DID document</a>. Let us assume that a developer wants to extend the
+<a>DID document</a> to express an additional piece of information, the subject's
+public photo stream.
       </p>
 
       <p>
-The first thing that a developer would do is create a JSON-LD Context
+The first thing that a developer would do is create a
+<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
 containing the new term:
       </p>
 
@@ -1894,14 +1881,16 @@ containing the new term:
   }
 }
       </pre>
+
       <p>
-Now that the JSON-LD Context has been created, the developer MUST
-publish it somewhere that is accessible to any <a>DID document</a>
-processor. For this example, let us assume that the JSON-LD Context
-above is published at the following URL:
-<code>did:example:contexts:987654321</code>. At this point, extending
-the first example in this section is a simple matter of including the
-context above and adding the new property to the <a>DID document</a>.
+Now that the
+<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
+is created, the developer needs to publish it somewhere that is accessible to
+any <a>DID document</a> processor. For this example, let us assume that the
+<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a> above
+is published at <code>did:example:contexts:987654321</code>. At this point,
+extending the first example in this section requires including the context above
+and adding the new property to the <a>DID document</a>.
       </p>
 
       <pre class="example nohighlight" title="A DID document with a custom extension">
@@ -1917,34 +1906,33 @@ context above and adding the new property to the <a>DID document</a>.
   }</span>]
 }
       </pre>
+
       <p>
-The examples so far have shown that it is easy to extend the
-<a>decentralized identifiers</a> data model in a permissionless and
-decentralized way. The mechanism also ensures that <a>decentralized
-identifiers</a> created in this way prevent namespace conflicts and
-semantic ambiguity.
+The examples so far show how to extend the <a>decentralized identifiers</a> data
+model in a permissionless and decentralized way. The mechanism also ensures that
+<a>decentralized identifiers</a> created in this way prevent namespace conflicts
+and semantic ambiguity.
       </p>
 
       <p>
-An extensibility model that is this dynamic does increase
-implementation burden. Software written for such a system will have
-to determine if accepting <a>DID document</a>s with extensions is
-acceptable based on the risk profile of the application. Some
-applications may choose to accept but ignore extensions, others may
-choose to only accept certain extensions, while highly secure
-environments may disallow extensions. These decisions are up to the
+An extensibility model that is this dynamic does increase implementation burden.
+Software written for such a system has to determine if accepting
+<a>DID documents</a> with extensions is acceptable based on the risk profile of
+the application. Some applications might choose to accept but ignore extensions,
+others might choose to only accept certain extensions, while highly secure
+environments might disallow extensions. These decisions are up to the
 application developers and are specifically not the domain of this
 specification.
       </p>
 
       <p>
-Implementations MUST produce an error when an extension JSON-LD
-Context overrides the expanded URL for a term specified in this
-specification. To avoid the possibility of accidentally overriding
-terms, developers SHOULD scope their extensions. For example,
-the following extension scopes the new
-<code>PhotoStreamService</code> term so that it may only be used
-within the <code>service</code> property:
+Implementations MUST produce an error when an extension
+<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
+overrides the expanded URL for a term specified in this specification. To avoid
+the possibility of accidentally overriding terms, developers SHOULD scope their
+extensions. For example, the following extension scopes the new
+<code>PhotoStreamService</code> term so that it can only be used within the
+<code>service</code> property:
       </p>
 
       <pre class="example nohighlight" title="Scoping terms in a JSON-LD Context">
@@ -1959,13 +1947,16 @@ within the <code>service</code> property:
   }
 }
       </pre>
+
       <p>
-Developers are urged to ensure that extension JSON-LD Contexts are
-highly available. Implementations that cannot fetch a context will
-produce an error. Strategies for ensuring that extension JSON-LD
-Contexts are always available include using content-addressed URLs
-for contexts, bundling context documents with implementations, or
-enabling aggressive caching of contexts.
+Developers are urged to ensure that extension
+<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Contexts</a> are
+highly available. Implementations that cannot fetch a context will produce an
+error. Strategies for ensuring that extension
+<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a> are
+always available include using content-addressed URLs for contexts, bundling
+context documents with implementations, or enabling aggressive caching of
+contexts.
       </p>
     </section>
   </section>
