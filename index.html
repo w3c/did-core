@@ -1347,6 +1347,19 @@ The value of the <code>controller</code> property, which identifies the
 controller of the corresponding private key, MUST be a valid <a>DID</a>.
       </p>
 
+      <p class="note" title="This is not the DID Controller">
+The <code>controller</code> property denotes a <a>DID controller</a>
+only when it appears at the <em>top level</em> of the <a>DID document</a>.
+The <code> controller</code> property when it appears as part of a <a>public
+key description</a> denotes the controller of the <em>corresponding
+private key</em> only, which may or may not be described in another
+<a>DID document</a>. A default <code>controller</code> field cannot
+be inferred by using a key's position in a tree, and so is explicitly
+included for each key. Linked Data Proof libraries typically expect the
+<code>controller</code> field to always exist and may throw an exception
+if it is missing.
+      </p>
+
       <p>
 All public key properties MUST be from the Linked Data Cryptographic Suite
 Registry. For a registry of key types and formats, see Appendix
@@ -1544,17 +1557,6 @@ property of <em>result</em>, throw an error.
       </ol>
 
       <p class="note">
-While the <code>controller</code> field might seem redundant in some of the
-examples above, keys can be expressed in a <a>DID document</a> where the
-controller is described in another <a>DID document</a>. Linked Data Proof
-libraries typically expect the <code>controller</code> field to always
-exist and might throw an exception if it is missing. Furthermore, as described
-by the requirement that <a>DID documents</a> be interpretable as either a graph
-or a tree, a default <code>controller</code> field cannot be inferred by using a
-key's position in a tree.
-      </p>
-
-      <p class="note">
 Caching and expiration of the keys in a <a>DID document</a> is entirely the
 responsibility of <a>DID resolvers</a> and other clients. For more information,
 see Section <a href="#did-resolvers"></a>.
@@ -1639,6 +1641,22 @@ access to their keys, or key compromise, where the <a>DID controller</a>'s
 trusted third parties need to override malicious activity by an attacker. For
 more information, see Section <a href="#security-considerations"></a>.
       </p>
+
+      <p>
+A DID document MAY include a <code>controller</code> property to indicate
+that there are <a>DID controller(s)</a> other than the <a>DID subject</a>.
+If so:
+      </p>
+
+      <dl>
+          <dt><dfn>controller</dfn></dt>
+          <dd>
+The value of the <code>controller</code> property MUST be a valid <a>DID</a>
+or an array of valid <a>DIDs</a>. The corresponding <a>DID document</a>(s)
+SHOULD contain authorization relations that explicitly permit the use of
+certain verification methods for specific purposes.
+          </dd>
+      </dl>
 
       <p>
 Each <a>DID method</a> MUST define how authorization and delegation are
