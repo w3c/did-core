@@ -186,6 +186,14 @@ by a <a>DID</a> and who directly controls the private keys to control the
 since a <a>DID subject</a> is not always an individual person.
   </dd>
 
+  <dt><dfn data-lt="proofPurpose">proof purpose</dfn></dt>
+
+  <dd>
+The specific intent for a proof, the reason why an entity created it.
+Acts as a safeguard to prevent the proof from being misused for a purpose
+other than the one it was intended for. 
+  </dd>
+
   <dt><dfn>JSON Pointer</dfn></dt>
 
   <dd>
@@ -216,6 +224,13 @@ might also be provided by a generalized data interchange protocol, such as
 An identifier, as defined by [[RFC3986]].
   </dd>
 
+  <dt><dfn data-lt="">verification method</dfn></dt>
+
+  <dd>
+A set of parameters required to independently verify a proof, such
+as an identifier for a public/private key pair that would be used in the
+proof.
+  </dd>
   <dt><dfn data-lt="UUID|UUIDs">Universally Unique Identifier</dfn> (UUID)</dt>
 
   <dd>
