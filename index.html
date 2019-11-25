@@ -1304,6 +1304,7 @@ Public Keys
       </h2>
 
       <p>
+A public key is a <a>verification method</a>.
 Public keys are used for digital signatures, encryption and other cryptographic
 operations, which in turn are the basis for purposes such as authentication
 (see Section <a href="#authentication"></a>) or establishing secure
@@ -1312,6 +1313,19 @@ communication with <a>service endpoints</a> (see Section
 authorization mechanisms of <a>DID</a> CRUD operations (see Section
 <a href="#did-operations"></a>), which can be defined by <a>DID method</a>
 specifications.
+      </p>
+
+      <p class="note" title="Verification methods">
+A public key is just one type of <a>verification method</a>. Ideally,
+public keys are expressed in a <a>DID document</a> according to what
+they are authorized for: <code>authentication</code>, <code>
+capabilityInvocation</code>, <code>capabilityDelegation</code>,
+<code>keyAgreement</code>, <code>assertionMethod</code>, and <em>not</em>
+just listed using the <code>publicKey</code> property. The latter
+implies the <a>DID controller</a> has authorized any key therein for any
+purpose. It's an ambient authority model which is dangerous. Instead, the
+<a>DID controller</a> should be explicit about what the keys can be used
+for using these relations; see <a href="#authentication"></a>.
       </p>
 
       <p>
