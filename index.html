@@ -1964,25 +1964,30 @@ enabling aggressive caching of contexts.
     <h1>
 DID Document Syntax
     </h1>
-        <p>
+
+      <p>
 A <a>DID document</a> MUST be a single JSON object conforming to [[!RFC8259]].
 Many of the concepts in this document were introduced by example using the
-JSON-LD syntax, a format for mapping JSON data into the RDF semantic graph model as defined by
-[[!JSON-LD]]. This section formalizes how the data model (described in Sections
-<a href="#data-model"></a> and <a href="#did-documents"></a>) is realized in JSON-LD.
-        </p>
-        <p>
-Although syntactic mappings are provided for JSON and JSON-LD only, applications and
-services can use any other data representation syntax, such as JXD (JSON XDI Data, a serialization format for
-the <a href="http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">
-XDI graph model</a>), XML, YAML, or CBOR, that is capable of expressing the data model.
-        </p>
+JSON-LD syntax, a format for mapping JSON data into the RDF semantic graph
+model, as defined by [[!JSON-LD]]. This section formalizes how the data model
+(described in Sections <a href="#data-model"></a> and
+<a href="#did-documents"></a>) is realized in JSON-LD.
+      </p>
+      <p>
+Although syntactic mappings are provided for JSON and JSON-LD only, applications
+and services can use any other data representation syntax, such as JXD (JSON XDI
+Data, a serialization format for the
+<a href="http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">XDI graph model</a>),
+XML, YAML, or CBOR, that is capable of expressing the data model.
+      </p>
 
-      <section>
-        <h3>JSON</h3>
+    <section>
+      <h2>
+JSON
+      </h2>
 
         <p>
-The data model as described in Section <a href="#data-model"></a> can be
+The data model, as described in Section <a href="#data-model"></a>, can be
 encoded in Javascript Object Notation (JSON) [[RFC8259]] by mapping property
 values to JSON types as follows:
         </p>
@@ -2010,14 +2015,14 @@ Empty values SHOULD be represented as a null value.
 Other values MUST be represented as a String type.
           </li>
         </ul>
-      </section>
+    </section>
 
     <section>
       <h2>
 JSON-LD
       </h2>
 
-      <p>
+        <p>
 [[!JSON-LD]] is a JSON-based format used to serialize
 <a href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a>. The
 syntax is designed to easily integrate into deployed systems already using
@@ -2025,47 +2030,47 @@ JSON, and provides a smooth upgrade path from JSON to JSON-LD. It is primarily
 intended to be a way to use Linked Data in Web-based programming environments,
 to build interoperable Web services, and to store Linked Data in JSON-based
 storage engines.
-      </p>
+        </p>
 
-      <p>
-JSON-LD is useful when extending the data model described in this
-specification. Instances of the data model are encoded in JSON-LD in the same
-way they are encoded in JSON (Section <a href="#json"></a>), with the addition
-of the <code>@context</code> property. The
+        <p>
+JSON-LD is useful when extending the data model described in this specification.
+Instances of the data model are encoded in JSON-LD in the same way they are
+encoded in JSON (see Section <a href="#json"></a>), with the addition of the
+<code>@context</code> property. The
 <a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
 is described in detail in the [[!JSON-LD]] specification and its use is
 elaborated on in Section <a href="#extensibility"></a>.
-      </p>
+        </p>
 
-      <p>
-In general, the data model and syntaxes described in this document are
-designed such that developers can copy and paste examples into their software systems. The design goal of
-this approach is to provide a low barrier to entry while still ensuring global
-interoperability between a heterogeneous set of software systems. This section
-describes some of these approaches, which will likely go unnoticed by most
-developers, but whose details will be of interest to implementers.
-Noteworthy features provided by JSON-LD are:
-      </p>
+        <p>
+In general, the data model and syntaxes described in this document are designed
+such that developers can copy and paste examples into their software systems.
+The design goal of this approach is to provide a low barrier to entry while
+still ensuring global interoperability between a heterogeneous set of software
+systems. This section describes some of these approaches, which will likely go
+unnoticed by most developers, but whose details will be of interest to
+implementers. Noteworthy features provided by JSON-LD are:
+        </p>
 
-      <ul>
-        <li>
+        <ul>
+          <li>
 The <code>@id</code> and <code>@type</code> keywords are aliased to
 <code>id</code> and <code>type</code> respectively, enabling developers to use
 this specification as idiomatic JSON.
-        </li>
-        <li>
+          </li>
+          <li>
 Data types, such as integers, dates, units of measure, and URLs, are
 automatically typed to provide stronger type guarantees for use cases that
 require them.
-        </li>
-        <li>
+          </li>
+          <li>
 The <code>@protected</code> properties feature of JSON-LD 1.1 is used to ensure
-that terms defined by this specification cannot be overridden. This means
-that as long as the same <code>@context</code> declaration is made at the top
-of a <a>DID document</a>, that interoperability is guaranteed between implementations
-which use a JSON-LD processor and implementations which do not.
-        </li>
-      </ul>
+that terms defined by this specification cannot be overridden. This means that
+as long as the same <code>@context</code> declaration is made at the top of a
+<a>DID document</a>, interoperability is guaranteed between implementations
+that use a JSON-LD processor and implementations that do not.
+          </li>
+        </ul>
     </section>
   </section>
 
