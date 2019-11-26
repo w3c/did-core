@@ -1364,14 +1364,11 @@ controller of the corresponding private key, MUST be a valid <a>DID</a>.
       <p class="note" title="This is not the DID Controller">
 The <code>controller</code> property denotes a <a>DID controller</a>
 only when it appears at the <em>top level</em> of the <a>DID document</a>.
-The <code> controller</code> property when it appears as part of a <a>public
+The <code>controller</code> property when it appears as part of a <a>public
 key description</a> denotes the controller of the <em>corresponding
-private key</em> only, which may or may not be described in another
-<a>DID document</a>. A default <code>controller</code> field cannot
-be inferred by using a key's position in a tree, and so is explicitly
-included for each key. Linked Data Proof libraries typically expect the
-<code>controller</code> field to always exist and may throw an exception
-if it is missing.
+private key</em> only, which may or may not be <em>also</em> be the
+<a>DID controller</a> or <a>DID subject</a>, and may described in another
+<a>DID document</a>.
       </p>
 
       <p>
@@ -1583,23 +1580,25 @@ Authentication
       </h2>
 
       <p>
-Authentication is a mechanism by which a <a>DID method</a> can establish
-the authority of the party attempting to authenticate. The
-<em>verifier</em> of an authentication attempt can check if the
-authenticating party is presenting a valid proof of authentication, that is,
-that they are who they say they are.
+Authentication is a mechanism by which an entity can prove it is the
+<a>DID subject</a>. The <em>verifier</em> of an authentication attempt
+can check if the authenticating party is presenting a valid proof of
+authentication, that is, that they are who they say they are. Note that
+a successful authentication on its own may or may not confer authority;
+that is up to the verifying application. 
       </p>
 
       <p class="note" title="Uses of authentication">
-If authority is established, it is up to the <a>DID method</a> to decide
-what to do with that information. A particular <a>DID method</a> could
-decide that authenticating as a <a>DID controller</a> is sufficient to,
-for example, update or delete the <a>DID document</a>. Another <a>DID
-method</a> could require different keys, or a different verification method
-entirely, to be presented in order to update or delete the <a>DID document</a>
-than that used to authenticate. In other words, what is done <em>after</em>
-the authentication check is out of scope for the DID data model, but <a>DID
-methods</a> are expected to define this themselves.
+If authentication is established, it is up to the <a>DID method</a> or other
+application to decide what to do with that information. A particular <a>DID
+method</a> could decide that authenticating as a <a>DID controller</a> is
+sufficient to, for example, update or delete the <a>DID document</a>. Another
+<a>DID method</a> could require different keys, or a different verification
+method entirely, to be presented in order to update or delete the <a>DID
+document</a> than that used to authenticate. In other words, what is done
+<em>after</em> the authentication check is out of scope for the DID data
+model, but <a>DID methods</a> and applications are expected to define this
+themselves.
       </p>
 
       <p>
@@ -2279,15 +2278,13 @@ DID Operations
 
       <p>
 To enable the full functionality of <a>DIDs</a> and <a>DID documents</a> on a
-particular <a>DID registry</a>, a <a>DID method</a> specification MUST specify
-how each of the following <abbr title="Create, Read, Update, Delete">CRUD</abbr>
-operations is performed by a client. Specify each operation to the level of
-detail necessary to build and test interoperable client implementations with the
+particular <a>DID registry</a>, a <a>DID method</a> specification MUST specify how
+each of the following <abbr title="Create, Read, Update, Delete">CRUD</abbr>
+operations is performed by a client. Each operation ought to be specified to the level
+of detail necessary to build and test interoperable client implementations with the
 <a>DID registry</a>. These operations can effectively be used to perform all the
-operations required of a CKMS (cryptographic key management system). For
-example, key registration, key replacement, key rotation, key recovery, and key
-expiration.
-      </p>
+operations required of a CKMS (cryptographic key management system), e.g.: key
+registration, key replacement, key rotation, key recovery, and key expiration.
 
       <p>
 Any <a>DID method</a> specification that does not support a specific operation,
@@ -2300,13 +2297,17 @@ For example, a <a>DID method</a> MAY:
       </p>
       <ul>
         <li>
-use the <a>verification methods</a> listed under <a>authentication</a> to decide whether an update/deactivate operation is allowed; or
+use the <a>verification methods</a> listed under <a>authentication</a> to
+decide whether an update/deactivate operation is allowed; or
         </li>
         <li>
-use other constructs in the <a>DID Document</a> to decide this; or
+use other constructs in the <a>DID Document</a> to decide this, for example,
+a verification method specified under capabilityInvocation could be used to
+verify the invocation of a capability to update the DID Document.; or
         </li>
         <li>
-not use the <a>DID Document</a> at all to decide this, but have rules that are are "built into" the method.
+not use the <a>DID Document</a> at all to decide this, but have rules that are
+are "built into" the method.
         </li>
       </ul>
 
