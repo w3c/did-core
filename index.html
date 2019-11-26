@@ -1361,14 +1361,17 @@ The value of the <code>controller</code> property, which identifies the
 controller of the corresponding private key, MUST be a valid <a>DID</a>.
       </p>
 
-      <p class="note" title="This is not the DID Controller">
-The <code>controller</code> property denotes a <a>DID controller</a>
-only when it appears at the <em>top level</em> of the <a>DID document</a>.
-The <code>controller</code> property when it appears as part of a <a>public
-key description</a> denotes the controller of the <em>corresponding
-private key</em> only, which may or may not be <em>also</em> be the
-<a>DID controller</a> or <a>DID subject</a>, and may described in another
-<a>DID document</a>.
+      <p class="note" title="Key controller(s) and DID controller(s)">
+The semantics of the <code>controller</code> property are the same when the
+subject of the relationship is the <a>DID document</a> as when the subject
+of the relationship is a key. Since a key can't control itself, and the
+key controller cannot be inferred from the <a>DID document</a>, it is
+necessary to expicitly express the controller of the key is a
+(which may be the <a>DID controller</a> or <a>DID subject</a>). The
+difference is that the value of <code>controller</code> on a key is not
+necessarily a <a>DID controller</a>. <a>DID controller(s)</a> are
+expressed using the <code>controller</code> property on the top level of
+the <a>DID document</a>; see Section <a href="#authorization-and-delegation"></a>.
       </p>
 
       <p>
