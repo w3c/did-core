@@ -141,22 +141,22 @@
 <body>
   <section id='abstract'>
     <p>
-<a>Decentralized identifiers</a> (DIDs) are a new type of identifier for
-verifiable, decentralized digital identity. These new identifiers
-are designed to enable the controller of a <a>DID</a> to prove control over
-it and to be implemented independently of any centralized registry,
-identity provider, or certificate authority. <a>DIDs</a> are URLs that relate
-a <a>DID subject</a> to means for trustable interactions with that subject by way
-of a <a>DID document</a>. <a>DID documents</a> are simple documents that describe how
-to use that specific <a>DID</a>. Each <a>DID document</a> may express cryptographic
-material, verification methods, and/or <a>service endpoints</a>. These provide
-a set of mechanisms which enable a <a>DID controller</a> to prove control of the
-<a>DID</a>. <a>Service endpoints</a> enable trusted interactions with the <a>DID
-subject</a>.
+<a>Decentralized identifiers</a> (DIDs) are a new type of identifier to
+provide verifiable, decentralized digital identity. These new identifiers are
+designed to enable the controller of a <a>DID</a> to prove control over
+it and to be implemented independently of any centralized registry, identity
+provider, or certificate authority. <a>DIDs</a> are URLs that relate a
+<a>DID subject</a> to a <a>DID document</a> allowing trustable interactions with
+that subject. <a>DID documents</a> are simple documents describing how to use
+that specific <a>DID</a>. Each <a>DID document</a> can express cryptographic
+material, verification methods, or <a>service endpoints</a>, which. provide a
+set of mechanisms enabling a <a>DID controller</a> to prove control of the
+<a>DID</a>. <a>Service endpoints</a> enable trusted interactions with the
+<a>DID subject</a>.
     </p>
     <p>
-This document specifies a common data model, a URL format, and a set of operations for
-<a>DIDs</a>, DID documents, and DID methods.
+This document specifies a common data model, a URL format, and a set of
+operations for <a>DIDs</a>, <a>DID documents</a>, and <a>DID methods</a>.
     </p>
   </section>
 
@@ -212,127 +212,127 @@ Heather Vescent.
 Introduction
     </h1>
 
-      <p>
-Conventional <a href="https://en.wikipedia.org/wiki/Identity_management">identity
-management</a> systems are based on centralized authorities such as
-corporate <a href="https://en.wikipedia.org/wiki/Directory_service">directory
-services</a>, <a href="https://en.wikipedia.org/wiki/Certificate_authority">certificate
-authorities</a>, or <a href="https://en.wikipedia.org/wiki/Domain_name_registry">domain name
-registries</a>. From the standpoint of cryptographic trust
-verification, each of these centralized authorities serves as its own
-<a href="https://en.wikipedia.org/wiki/Trust_anchor">root of
-trust</a>. To make identity management work across these systems
-requires implementing <a href="https://en.wikipedia.org/wiki/Federated_identity">federated identity
-management</a>.
-      </p>
+    <p>
+Conventional <a href="https://en.wikipedia.org/wiki/Identity_management">identity management</a>
+systems are based on centralized authorities such as corporate
+<a href="https://en.wikipedia.org/wiki/Directory_service">directory services</a>, 
+<a href="https://en.wikipedia.org/wiki/Certificate_authority">certificate authorities</a>,
+or <a href="https://en.wikipedia.org/wiki/Domain_name_registry">domain name registries</a>.
+From the standpoint of cryptographic trust verification, each of these
+centralized authorities serves as its own 
+<a href="https://en.wikipedia.org/wiki/Trust_anchor">root of trust</a>. To make
+identity management work across these systems requires implementing
+<a href="https://en.wikipedia.org/wiki/Federated_identity">federated identity management</a>.
+    </p>
 
-      <p>
-The emergence of <a>distributed ledger technology</a> (DLT), sometimes
-referred to as <a>blockchain technology</a>, provides the opportunity for
-fully <a>decentralized identity management</a>. In a decentralized
-identity system, entities (in the sense of discrete identifiable units
-such as &mdash; but not limited to &mdash; people, organizations, and
-things) are free to use any shared root of trust.
+    <p>
+The emergence of <a>distributed ledger technology</a> (DLT) and
+<a>blockchain technology</a> provides the opportunity for fully
+<a>decentralized identity management</a>. In a decentralized identity system,
+entities (that is, discrete identifiable units such as, but not limited to,
+people, organizations, and things) are free to use any shared root of trust.
 Globally distributed ledgers, decentralized P2P networks, or other systems
 with similar capabilities, provide the means for managing a root of
 trust without introducing a centralized authority or a single point of
-failure. In combination, <a>DLTs</a> and <a>decentralized identity management</a>
-systems enable any entity to create and manage their own identifiers on any
-number of distributed, independent roots of trust.
-      </p>
+failure. In combination, <a>DLTs</a> and
+<a>decentralized identity management</a> systems enable any entity to create and
+manage their own identifiers on any number of distributed, independent roots of
+trust.
+    </p>
 
-      <p>
-Entities are identified by <a>decentralized identifiers</a> (DIDs), and
-may authenticate via proofs (e.g., digital signatures,
-privacy-preserving biometric protocols, etc.). <a>DIDs</a> point to <a>DID
-documents</a>. A <a>DID document</a> contains a set of <a>service endpoints</a>
-for interacting with the entity the <a>DID</a> identifies (aka the <a>DID
-subject</a>). Following the dictums of
+    <p>
+Entities are identified by <a>decentralized identifiers</a> (<a>DIDs</a>), and
+can authenticate using proofs (for example, digital signatures,
+privacy-preserving biometric protocols, and so on). <a>DIDs</a> point to
+<a>DID documents</a>. A <a>DID document</a> contains a set of
+<a>service endpoints</a> for interacting with the entity that the <a>DID</a>
+identifies (that is, the <a>DID subject</a>). Following the guidelines of
 <a href="https://en.wikipedia.org/wiki/Privacy_by_design">Privacy by
-Design</a>, any entity may have as many <a>DIDs</a> as necessary (and
-corresponding <a>DID documents</a> and <a>service endpoints</a>), to respect the
-entity’s desired separation of identities, personas, and contexts
-(in the everyday sense of these words).
-      </p>
+Design</a>, any entity can have as many <a>DIDs</a> (and corresponding
+<a>DID documents</a> and <a>service endpoints</a>) as necessary to respect the
+entity’s desired separation of identities, personas, and contexts (in the
+everyday sense of these words).
+    </p>
 
-      <p>
-<a>DID methods</a> are the mechanism by which a <a>DID</a> and its associated <a>DID
-document</a> are created, read, updated, and deactivated on a specific
-<a>distributed ledger</a> or network. <a>DID methods</a> are defined using separate
-<a>DID method</a> specifications.
-      </p>
+    <p>
+<a>DID methods</a> are the mechanism by which a <a>DID</a> and its associated
+<a>DID document</a> are created, read, updated, and deactivated on a specific
+<a>distributed ledger</a> or network. <a>DID methods</a> are defined using
+separate <a>DID method</a> specifications.
+    </p>
 
-      <p>
+    <p>
 This design eliminates dependence on centralized registries for
 identifiers as well as centralized certificate authorities for key
-management &mdash; the standard pattern in hierarchical
-<a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI
-(public key infrastructure</a>). In cases where the <a>DID registry</a>
-is a <a>distributed ledger</a>, each entity may serve as its own root authority
-&mdash; an architecture referred to as
-<a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">DPKI
-(decentralized PKI)</a>.
-      </p>
+management, which is the standard in hierarchical
+<a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI (public key infrastructure</a>).
+In cases where the <a>DID registry</a> is a <a>distributed ledger</a>, each
+entity can serve as its own root authority. This architecture is referred to as
+<a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">DPKI (decentralized PKI)</a>.
+    </p>
 
-      <p>
-Note that <a>DID methods</a> may also be developed for identifiers
-registered in federated or centralized identity management systems.
-For their part, all types of identifier systems may add support for
-<a>DIDs</a>. This creates an interoperability bridge between the worlds of
-centralized, federated, and <a>decentralized identifiers</a>.
-      </p>
+    <p class="note">
+<a>DID methods</a> can also be developed for identifiers registered in federated
+or centralized identity management systems. Indeed, all types of identifier
+systems can add support for <a>DIDs</a>. This creates an interoperability bridge
+between the worlds of centralized, federated, and
+<a>decentralized identifiers</a>.
+    </p>
 
-      <p>
+    <p>
 The first purpose of this specification is to define the generic
 <a>DID scheme</a> and a generic set of operations on <a>DID documents</a> that
-can be implemented for any <a>DID registry</a>. The second
-purpose of this specification is to
-define the conformance requirements for a <a>DID method</a>
-specification &mdash; a separate specification that defines a specific <a>DID
-scheme</a> and specific set of <a>DID document</a> operations for a specific
-<a>DID registry</a>.
-      </p>
+can be implemented for any <a>DID registry</a>. The second purpose of this
+specification is to define the conformance requirements for a <a>DID method</a>
+specification. The <a>DID method</a> specification is a separate document that
+defines a specific <a>DID scheme</a> and specific set of <a>DID document</a>
+operations for a specific <a>DID registry</a>.
+    </p>
 
-      <p class="note">
-Conceptually, the relationship of this specification and a <a>DID
-method</a> specification is similar to the relationship of the IETF
+    <p class="note">
+Conceptually, the relationship between this specification and a
+<a>DID method</a> specification is similar to the relationship between the IETF
 generic <a>URI</a> specification ([[RFC3986]]) and a specific <a>URI</a> scheme
-          ([[IANA-URI-SCHEMES]] (such as the http: and https: schemes
-specified in [[RFC7230]]). It is also similar to the relationship
-of the IETF generic URN specification ([[RFC8141]]) and a specific URN
-namespace definition (such as the <a>UUID</a> URN namespace defined in
-[[RFC4122]]). The difference is that a <a>DID method</a> specification, in
-addition to defining a specific <a>DID scheme</a>, also specifies the
-methods for resolving and deactivating <a>DIDs</a> on, and writing <a>DID
-documents</a> to, the appropriate <a>DID registry</a>.
-      </p>
-      <p>
-The hierarchical design of a generic <a>DID</a> specification with specific <a>DID method</a>
-specifications introduces some of the same concepts as the <a>URI</a> specification:
-      </p>
-        <ul>
-          <li>
-<a>DIDs</a> from different <a>DID methods</a> may not be interoperable, just as
-<a>URIs</a> from different URI schemes may not be interoperable.
-          </li>
-          <li>
-Entities may need multiple <a>DIDs</a> to support different relationships, as the other
-party may only support certain <a>DID methods</a>, just as some browsers may only
-support certain URI schemes.
-          </li>
-          <li>
-Entities may need multiple <a>DIDs</a> to support the different cryptographic schemes
-of different <a>DID methods</a>, as not all parties will support the same cryptographic
-schemes, just as not all browsers support the same URI schemes.
-          </li>
-          <li>
-Managing multiple <a>DIDs</a>, and tracking which <a>DID</a> belongs to which relationship,
-under which cryptographic scheme, introduces similar logistical challenges as
-managing multiple web addresses and tracking which address belongs to which
-website, or tracking which email address belongs to which relationship.
-          </li>
-        </ul>
-      <p>
+([[IANA-URI-SCHEMES]] (such as the http: and https: schemes specified in
+[[RFC7230]]). It is also similar to the relationship between the IETF generic
+URN specification ([[RFC8141]]) and a specific URN namespace definition, (such
+as the <a>UUID</a> URN namespace defined in [[RFC4122]]). The difference is that
+a <a>DID method</a> specification, as well as defining a specific
+<a>DID scheme</a>, also specifies the methods for resolving and deactivating
+<a>DIDs</a> on, and writing <a>DID documents</a> to, the appropriate
+<a>DID registry</a>.
+    </p>
+
+    <p>
+The hierarchical design of a generic <a>DID</a> specification with specific
+<a>DID method</a> specifications introduces some of the same concepts as the
+<a>URI</a> specification:
+    </p>
+      <ul>
+        <li>
+<a>DIDs</a> from different <a>DID methods</a> might not be interoperable, just
+as <a>URIs</a> from different URI schemes might not be interoperable.
+        </li>
+        <li>
+Entities might need multiple <a>DIDs</a> to support different relationships
+because the other party might only support certain <a>DID methods</a>, in the
+same way that some browsers might only support certain URI schemes.
+        </li>
+        <li>
+Entities might need multiple <a>DIDs</a> to support the different cryptographic
+schemes of different <a>DID methods</a> because not all parties will support the
+same cryptographic schemes, in the same way that not all browsers support the
+same URI schemes.
+        </li>
+        <li>
+Managing multiple <a>DIDs</a>, and tracking which <a>DID</a> belongs to which
+relationship, under which cryptographic scheme, introduces similar logistical
+challenges as managing multiple web addresses and tracking which address belongs
+to which website, or tracking which email address belongs to which relationship.
+        </li>
+      </ul>
+
+    <p>
 For a list of <a>DID methods</a> and their corresponding specifications,
 see the DID Method Registry [[DID-METHOD-REGISTRY]].
       </p>
@@ -343,20 +343,29 @@ A Simple Example
     </h2>
 
     <p>
-A <a>DID</a> is a simple text string that consists of three parts: 1) the URL scheme
-identifier (<code>did</code>), 2) the identifier for the
-<a>DID method</a>, and 3) the DID method-specific identifier.
+A <a>DID</a> is a simple text string consisting of three parts, the:
     </p>
+      <ul> 
+        <li>
+URL scheme identifier (<code>did</code>)
+        </li>
+        <li>
+Identifier for the <a>DID method</a>
+        </li>
+        <li>
+DID method-specific identifier.
+        </li>
+      </ul> 
 
     <pre class="example nohighlight" title="A simple example of a decentralized identifier (DID)">
 did:example:123456789abcdefghi
     </pre>
 
     <p>
-The <a>DID</a> above resolves to a <a>DID document</a>. A <a>DID document</a>
-contains information associated with the <a>DID</a> such as ways to cryptographically
-authenticate the entity in control of the <a>DID</a>, as well as services that can be
-used to interact with the entity.
+The example <a>DID</a> above resolves to a <a>DID document</a>. A
+<a>DID document</a> contains information associated with the <a>DID</a>, such as
+ways to cryptographically authenticate the entity in control of the <a>DID</a>,
+as well as services that can be used to interact with the entity.
     </p>
 
     <pre class="example nohighlight" title="Minimal self-managed DID document">
@@ -377,162 +386,182 @@ used to interact with the entity.
     "serviceEndpoint": "https://example.com/vc/"
   }]
 }
-      </pre>
-    </section>
+    </pre>
+  </section>
 
-    <section class="informative">
-      <h2>
+  <section class="informative">
+    <h2>
 Design Goals
-      </h2>
+    </h2>
 
-      <p>
+    <p>
 <a>Decentralized Identifiers</a> are a component of larger systems, such as
-the Verifiable Credentials ecosystem [[?VC-DATA-MODEL]], which have driven
-the design goals for this specification. This section summarizes the
-primary design goals for this specification.
-      </p>
+the Verifiable Credentials ecosystem [[?VC-DATA-MODEL]], which drove the design
+goals for this specification. This section summarizes the primary design goals
+for this specification.
+    </p>
 
-      <table class="simple">
-        <thead>
-          <tr>
-            <th>
+    <table class="simple">
+      <thead>
+        <tr>
+          <th>
 Goal
-            </th>
-            <th>
+          </th>
+          <th>
 Description
-            </th>
-          </tr>
-        </thead>
+          </th>
+        </tr>
+      </thead>
 
-        <tbody>
-          <tr>
-            <td>
+      <tbody>
+        <tr>
+          <td>
 Decentralization
-            </td>
-            <td>
-Eliminate the requirement for
-centralized authorities or single points of failure in
-identifier management, including the registration of globally
-unique identifiers, public verification keys, <a>service
-endpoints</a>, and other metadata.
-            </td>
-          </tr>
+          </td>
+          <td>
+Eliminate the requirement for centralized authorities or single point
+failure in identifier management, including the registration of globally unique
+identifiers, public verification keys, <a>service endpoints</a>, and other
+metadata.
+          </td>
+        </tr>
 
-          <tr>
-            <td>
+        <tr>
+          <td>
 Control
-            </td>
-            <td>
-Give entities, both human and
-non-human, the power to directly control their digital
-identifiers without the need to rely on external authorities.
-            </td>
-          </tr>
+          </td>
+          <td>
+Give entities, both human and non-human, the power to directly control their
+digital identifiers without the need to rely on external authorities.
+          </td>
+        </tr>
 
-          <tr>
-            <td>
+        <tr>
+          <td>
 Privacy
-            </td>
-            <td>
-Enable entities to control the privacy
-of their information, including minimal, selective, and
-progressive disclosure of attributes or other data.
-            </td>
-          </tr>
+          </td>
+          <td>
+Enable entities to control the privacy of their information, including minimal,
+selective, and progressive disclosure of attributes or other data.
+          </td>
+        </tr>
 
-          <tr>
-            <td>
+        <tr>
+          <td>
 Security
-            </td>
-            <td>
-Enable sufficient security for relying
-parties to depend on <a>DID documents</a> for their required level of
-assurance.
-            </td>
-          </tr>
+          </td>
+          <td>
+Enable sufficient security for relying parties to depend on <a>DID documents</a>
+for their required level of assurance.
+          </td>
+        </tr>
 
-          <tr>
+        <tr>
             <td>
 Proof-based
-            </td>
-            <td>
-Enable the <a>DID subject</a> to provide
-cryptographic proof when interacting with other entities.
-            </td>
-          </tr>
+          </td>
+          <td>
+Enable <a>DID subjects</a> to provide cryptographic proof when interacting with
+other entities.
+          </td>
+        </tr>
 
-          <tr>
-            <td>
+        <tr>
+          <td>
 Discoverability
-            </td>
-            <td>
-Make it possible for entities to
-discover <a>DIDs</a> for other entities to learn more about or
-interact with those entities.
-            </td>
-          </tr>
+          </td>
+          <td>
+Make it possible for entities to discover <a>DIDs</a> for other entities to
+learn more about or interact with those entities.
+          </td>
+        </tr>
 
-          <tr>
-            <td>
+        <tr>
+          <td>
 Interoperability
-            </td>
-            <td>
-Use interoperable standards so <a>DID</a>
-infrastructure can make use of existing tools and software
-libraries designed for interoperability.
-            </td>
-          </tr>
+          </td>
+          <td>
+Use interoperable standards so <a>DID</a> infrastructure can make use of
+existing tools and software libraries designed for interoperability.
+          </td>
+        </tr>
 
-          <tr>
-            <td>
+        <tr>
+          <td>
 Portability
-            </td>
-            <td>
-Be system and network-independent and
-enable entities to use their digital identifiers with any
-system that supports <a>DIDs</a> and <a>DID methods</a>.
-            </td>
-          </tr>
+          </td>
+          <td>
+Be system and network-independent and enable entities to use their digital
+identifiers with any system that supports <a>DIDs</a> and <a>DID methods</a>.
+          </td>
+        </tr>
 
-          <tr>
-            <td>
+        <tr>
+          <td>
 Simplicity
-            </td>
-            <td>
-Favor a reduced set of simple features in order to make the technology
-easier to understand, implement, and deploy.
-            </td>
-          </tr>
+          </td>
+          <td>
+Favor a reduced set of simple features to make the technology easier to
+understand, implement, and deploy.
+          </td>
+        </tr>
 
-          <tr>
-            <td>
+        <tr>
+          <td>
 Extensibility
-            </td>
-            <td>
-When possible, enable extensibility
-provided it does not greatly hinder interoperability,
-portability, or simplicity.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+          </td>
+          <td>
+Where possible, enable extensibility provided it does not greatly hinder
+interoperability, portability, or simplicity.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-    <section>
-      <h3>Interoperability</h3>
-          <p>Interoperability of implementations for <a>DIDs</a> and <a>DID documents</a> will be tested by evaluating an implementation's ability to create and parse <a>DIDs</a> and <a>DID documents</a> that conform to the specification. Interoperability for <a>DID methods</a> will be determined by evaluating each <a>DID method</a>'s specification to determine, at a minimum, </p>
-          <ol>
-              <li> the <a>DID method</a> name is unique and not used by an existing, incompatible <a>DID method</a>, </li>
-              <li> the required operations are supported,</li>
-              <li> operations requiring descriptions are described,</li>
-              <li> the specification is specific, detailed, and complete enough for independent implementation, and</li>
-              <li> the specification contains sections describing security and privacy considerations.</li>
-          </ol>
+  <section>
+    <h3>
+Interoperability
+    </h3>
 
+    <p>
+Interoperability of implementations for <a>DIDs</a> and <a>DID documents</a>
+will be tested by evaluating an implementation's ability to create and parse
+<a>DIDs</a> and <a>DID documents</a> that conform to the specification.
+Interoperability for <a>DID methods</a> will be determined by evaluating each
+<a>DID method</a> specification to determine, at a minimum, that the:
+    </p>
+      <ul>
+        <li>
+<a>DID method</a> name is unique and not used by an existing, incompatible
+<a>DID method</a>.
+        </li>
+        <li>
+Required operations are supported.
+        </li>
+        <li>
+Operations requiring descriptions are described.
+        </li>
+        <li>
+Specification is specific, detailed, and complete enough for independent
+implementation.
+        </li>
+        <li>
+Specification contains sections describing security and privacy considerations.
+        </li>
+      </ul>
 
-          <p>Interoperability for producers and consumers of <a>DIDs</a> and <a>DID documents</a> is provided by ensuring the <a>DIDs</a> and <a>DID documents</a> conform. Interoperability for method specifications is provided by the details in each method specification. It is understood that, just like a web browser is not required to implement all known URI schemes, conformant software that works with <a>DIDs</a> is not required to implement all known <a>DID methods</a>. However, all implementations of a given <a>DID method</a> must be interoperable for that method.</p>
-
-</section>
+    <p>
+Interoperability for producers and consumers of <a>DIDs</a> and
+<a>DID documents</a> is provided by ensuring the <a>DIDs</a> and 
+<a>DID documents</a> conform. Interoperability for <a>DID method</a>
+specifications is provided by the details in each <a>DID method</a>
+specification. It is understood that, in the same way that a web browser is not
+required to implement all known URI schemes, conformant software that works
+with <a>DIDs</a> is not required to implement all known <a>DID methods</a>.
+However, all implementations of a given <a>DID method</a> must be interoperable
+for that method.
+    </p>
   </section>
 
   </section>
