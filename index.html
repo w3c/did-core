@@ -687,25 +687,31 @@ Decentralized Identifiers (DIDs)
     </h1>
 
     <p>
-The concept of a globally unique <a>decentralized identifier</a> is not
-new; <a>Universally
-Unique Identifiers</a> (UUIDs) were first developed in the 1980s and
-later became a standard feature of the Open Software Foundation’s
-<a href="https://en.wikipedia.org/wiki/Distributed_Computing_Environment">Distributed
-Computing Environment</a>. <a>UUIDs</a> achieve global uniqueness without a
-centralized registry service by using an algorithm that generates
-128-bit values with sufficient entropy that the chance of collision are
-infinitesimally small. <a>UUIDs</a> are formally specified in [[RFC4122]] as a
-specific type of Unified Resource Name (URN).
+The concept of a globally unique <a>decentralized identifier</a> is not new.
+<a>Universally Unique Identifiers</a> (UUIDs) were first developed in the 1980s
+and later became a standard feature of the Open Software Foundation’s
+<a href="https://en.wikipedia.org/wiki/Distributed_Computing_Environment">Distributed Computing Environment</a>.
+<a>UUIDs</a> achieve global uniqueness without a centralized registry service by
+using an algorithm that generates 128-bit values with sufficient entropy that
+the chance of collision are infinitesimally small. <a>UUIDs</a> are formally
+specified in [[RFC4122]] as a specific type of Unified Resource Name (URN).
     </p>
 
     <p>
-A <a>DID</a> is similar to a <a>UUID</a> except: (a) like a URL, it can be resolved
-or dereferenced to a standard resource describing the subject (a <a>DID
-document</a> &mdash; see Section <a href="#did-documents"></a>), and (b) unlike
-a URL, the <a>DID document</a> typically contains cryptographic material that
-enables authentication of the <a>DID subject</a>.
+A <a>DID</a> is similar to a <a>UUID</a> except that:
     </p>
+      <ul>
+        <li>
+Like a URL, it can be resolved or dereferenced to a standard resource describing
+the subject. That is, a <a>DID document</a>. For more information, see Section
+<a href="#did-documents"></a>.
+        </li>
+        <li>
+Unlike most resources returned when dereferencing URLs, a <a>DID document</a>
+usually contains cryptographic material enabling authentication of the
+<a>DID subject</a>.
+        </li>
+      <ul>
 
     <section>
       <h2>
@@ -713,28 +719,26 @@ Generic DID Syntax
       </h2>
 
       <p>
-The generic <a>DID scheme</a> is a URI scheme conformant with
-[[!RFC3986]]. The <a>DID scheme</a> specializes only the scheme and
-authority components of a <a>DID URL</a> &mdash; the <code>path-abempty</code>,
-<code>query</code>, and <code>fragment</code> components are
-identical to the ABNF rules defined
-in [[!RFC3986]].
+The generic <a>DID scheme</a> is a URI scheme conformant with [[!RFC3986]]. The
+<a>DID scheme</a> specializes only the scheme and authority components of a
+<a>DID URL</a>. The <code>path-abempty</code>, <code>query</code>, and
+<code>fragment</code> components are identical to the ABNF rules defined in
+[[!RFC3986]].
       </p>
 
       <p class="note">
-The term <a>DID</a> refers only to the <a>URI</a>
-conforming to the <code>did</code> rule in the ABNF below. A
-<a>DID</a> always identifies the <a>DID subject</a>. The term <a>DID URL</a>,
-defined by the <code>did-url</code> rule,
-refers to a URL that begins with a <a>DID</a> followed by one or more
+The term <a>DID</a> refers only to the <a>URI</a> conforming to the
+<code>did</code> rule in the ABNF below. A <a>DID</a> always identifies the
+<a>DID subject</a>. The term <a>DID URL</a>, defined by the <code>did-url</code>
+rule, refers to a URL that begins with a <a>DID</a> followed by one or more
 additional components. A <a>DID URL</a> always identifies the resource to
 be located.
       </p>
 
       <p>
-The following is the ABNF definition using the syntax in [[!RFC5234]]
-which defines <code>ALPHA</code> and <code>DIGIT</code>. All other
-rule names not defined in this ABNF are defined in [[RFC3986]].
+The following is the ABNF definition using the syntax in [[!RFC5234]], which
+defines <code>ALPHA</code> and <code>DIGIT</code>. All other rule names not
+defined in this ABNF are defined in [[RFC3986]].
       </p>
 
       <pre class="nohighlight">
@@ -750,7 +754,7 @@ param-name         = 1*param-char
 param-value        = *param-char
 param-char         = ALPHA / DIGIT / "." / "-" / "_" / ":" /
                      pct-encoded
-</pre>
+      </pre>
 
       <p class="issue" data-number="34">
 The grammar currently allows an empty <code>method-specific-id</code>,
@@ -768,7 +772,8 @@ Method-Specific Syntax
       <p>
 A <a>DID method</a> specification MUST further restrict the generic <a>DID</a>
 syntax by defining its own <code>method-name</code> and its own
-<code>method-specific-id</code> syntax. See Section <a href="#did-methods"></a>.
+<code>method-specific-id</code> syntax. For more information, see Section
+<a href="#did-methods"></a>.
       </p>
     </section>
 
@@ -778,32 +783,34 @@ Generic DID Parameter Names
       </h2>
 
       <p>
-<a>DID URL</a> syntax supports a simple, generalized format for parameters based on the
-matrix parameter syntax ([[MATRIX-URIS]]).
-The ABNF above does not specify any parameter names (the <code>param-name</code>
-rule).
+The <a>DID URL</a> syntax supports a simple, generalized format for parameters
+based on the matrix parameter syntax ([[MATRIX-URIS]]). The ABNF above does not
+specify any parameter names (the <code>param-name</code> rule).
       </p>
       <p>
-Some generic DID parameter names (e.g., for service selection) are completely
-independent of any specific <a>DID method</a> and MUST always function the same way
-for all <a>DIDs</a>.
-Others (e.g., for versioning) MAY be supported by
-certain <a>DID methods</a>, but MUST operate uniformly across those <a>DID methods</a>
-that do support them.
+Some generic DID parameter names (for example, for service selection) are
+completely independent of any specific <a>DID method</a> and MUST always
+function the same way for all <a>DIDs</a>. Other DID parameter names (for
+example, for versioning) MAY be supported by certain <a>DID methods</a>, but
+MUST operate uniformly across those <a>DID methods</a> that do support them.
       </p>
       <p>
-Parameter names that are completely method-specific are covered in
+Parameter names that are completely method-specific are described in Section
 <a href="#method-specific-did-parameter-names"></a>.
       </p>
       <p>
-The following table defines a set of generic DID parameter names:
+The following table defines a set of generic DID parameter names.
       </p>
 
       <table class="simple">
         <thead>
           <tr>
-            <th>Generic DID Parameter Name</th>
-            <th>Description</th>
+            <th>
+Generic DID Parameter Name
+            </th>
+            <th>
+Description
+            </th>
           </tr>
         </thead>
 
@@ -813,8 +820,8 @@ The following table defines a set of generic DID parameter names:
 <code>hl</code>
             </td>
             <td>
-A resource hash of the <a>DID document</a> to add integrity
-protection, as specified in [[HASHLINK]].
+A resource hash of the <a>DID document</a> to add integrity protection, as
+specified in [[HASHLINK]].
             </td>
           </tr>
           <tr>
@@ -830,9 +837,9 @@ Identifies a service from the <a>DID document</a> by service ID.
 <code>version-id</code>
             </td>
             <td>
-Identifies a specific version of a <a>DID document</a> to be resolved (the version ID
-could be sequential, or a <a>UUID</a>, or method-specific). Note: This parameter may
-not be supported by all <a>DID methods</a>.
+Identifies a specific version of a <a>DID document</a> to be resolved (the
+version ID could be sequential, or a <a>UUID</a>, or method-specific). Note that
+this parameter might not be supported by all <a>DID methods</a>.
             </td>
           </tr>
 
@@ -841,27 +848,28 @@ not be supported by all <a>DID methods</a>.
 <code>version-time</code>
             </td>
             <td>
-Identifies a certain version timestamp of a <a>DID document</a> to be resolved
-(i.e., the <a>DID document</a> that was valid for a <a>DID</a> at a certain time).
-Note: This parameter may not be supported by all <a>DID methods</a>.
+Identifies a certain version timestamp of a <a>DID document</a> to be resolved.
+That is, the <a>DID document</a> that was valid for a <a>DID</a> at a certain
+time. Note that this parameter might not be supported by all <a>DID methods</a>.
             </td>
           </tr>
         </tbody>
       </table>
 
       <p>
-The exact processing rules for these parameters are specified in [[DID-RESOLUTION]].
+The exact processing rules for these parameters are specified in
+[[DID-RESOLUTION]].
       </p>
 
       <p class="note">
-Note that there may be additional parameters or options that are not part
-of the DID URL but instead passed to a <a>DID resolver</a> "out of band", i.e.,
-using a resolution protocol or some other mechanism. Such options could
-for example control caching or the desired format of a resolution result.
-This is similar to HTTP, where caching or result format are expressed as
-HTTP headers rather than as part of an HTTP URL. The important distinction
-is that DID parameters that are part of the <a>DID URL</a> specify what resource
-is being identified, whereas <a>DID resolver</a> options that are not part of the
+There might be additional parameters or options that are not part of the DID
+URL, but instead passed to a <a>DID resolver</a> <em>out-of-band</em>, that is,
+using a resolution protocol or some other mechanism. Such options could for
+example, control caching or the desired format of a resolution result. This is
+similar to HTTP, where caching or result format are expressed as HTTP headers
+instead of as part of an HTTP URL. The important distinction is that DID
+parameters that are part of the <a>DID URL</a> specify what resource is being
+identified, whereas <a>DID resolver</a> options that are not part of the
 <a>DID URL</a> control how that resource is dereferenced.
       </p>
     </section>
@@ -872,20 +880,20 @@ Method-Specific DID Parameter Names
       </h2>
 
       <p>
-A <a>DID method</a> specification MAY specify additional method-specific parameter
-names. A method-specific parameter name MUST be prefixed by the method name
-as defined by the <code>method-name</code> rule.
+A <a>DID method</a> specification MAY specify additional method-specific
+parameter names. A method-specific parameter name MUST be prefixed by the method
+name, as defined by the <code>method-name</code> rule.
       </p>
 
       <p>
-For example, if the method <code>did:foo:</code> defines the parameter bar,
-the parameter name must be <code>foo:bar</code>. An example <a>DID URL</a> using
-this method and this method-specific parameter would be:
+For example, if the method <code>did:foo:</code> defines the parameter bar, the
+parameter name must be <code>foo:bar</code>. An example <a>DID URL</a> using
+this method and this method-specific parameter would be as shown below.
       </p>
 
-      <p>
-<code>did:foo:21tDAKCERh95uGgKbJNHYp;foo:bar=high</code>
-      </p>
+      <pre class="example nohighlight">
+did:foo:21tDAKCERh95uGgKbJNHYp;foo:bar=high
+      </pre>
 
       <p class="issue" data-number="35">
 Consider using kebab-case style instead of colon separator,
@@ -893,33 +901,33 @@ e.g., <code>foo-bar</code> instead of <code>foo:bar</code>.
       </p>
 
       <p>
-A method-specific parameter name defined by one <a>DID method</a> MAY
-be used by other <a>DID methods</a>. For example:
+A method-specific parameter name defined by one <a>DID method</a> MAY be used by
+other <a>DID methods</a>.
       </p>
 
-      <p>
-<code>did:example:21tDAKCERh95uGgKbJNHYp;foo:bar=low</code>
-      </p>
+      <pre class="example nohighlight">
+did:example:21tDAKCERh95uGgKbJNHYp;foo:bar=low
+      </pre>
 
       <p>
-Method-specific parameter names MAY be combined with generic parameter
-names in any order.
+Method-specific parameter names MAY be combined with generic parameter names in
+any order.
       </p>
 
-      <p>
-<code>did:example:21tDAKCERh95uGgKbJNHYp;service=agent;foo:bar=high</code>
-      </p>
+      <pre class="example nohighlight">
+did:example:21tDAKCERh95uGgKbJNHYp;service=agent;foo:bar=high
+      </pre>
 
       <p>
-Both <a>DID method</a> namespaces and method-specific parameter
-namespaces MAY include colons, so they may be partitioned hierarchically
-as defined by a <a>DID method</a> specification. Here is an example <a>DID
-URL</a> that illustrates both:
+Both <a>DID method</a> namespaces and method-specific parameter namespaces MAY
+include colons, so they might be partitioned hierarchically, as defined by a
+<a>DID method</a> specification. The following example <a>DID URL</a>
+illustrates both.
       </p>
 
-      <p>
-<code>did:foo:baz:21tDAKCERh95uGgKbJNHYp;foo:baz:hex=b612</code>
-      </p>
+      <pre class="example nohighlight">
+did:foo:baz:21tDAKCERh95uGgKbJNHYp;foo:baz:hex=b612
+      </pre>
     </section>
 
       <p class="issue" data-number="36">
@@ -934,16 +942,17 @@ Path
       </h2>
 
       <p>
-A generic <a>DID path</a> is identical to a URI path and MUST
-conform to the <code>path-abempty</code> ABNF rule in [[!RFC3986]]. A
-<a>DID path</a> SHOULD be used to address resources available via a
-<a>service endpoint</a>. See Section <a href="#service-endpoints"></a>.
+A generic <a>DID path</a> is identical to a URI path and MUST conform to the 
+<code>path-abempty</code> ABNF rule in [[!RFC3986]]. A <a>DID path</a> SHOULD be
+used to address resources available through a <a>service endpoint</a>. For more
+information, see Section <a href="#service-endpoints"></a>.
       </p>
 
       <p>
-A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID paths</a> that are
-more restrictive than the generic rules in this section.
+A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID paths</a> that
+are more restrictive than the generic rules in this section.
       </p>
+
       <pre class="example nohighlight">
 did:example:123456/path
       </pre>
@@ -955,16 +964,17 @@ Query
       </h2>
 
       <p>
-A generic <a>DID query</a> is identical to a URI query and MUST
-conform to the <code>query</code> ABNF rule in [[!RFC3986]]. A
-<a>DID query</a> SHOULD be used to address resources available via a
-<a>service endpoint</a>. See Section <a href="#service-endpoints"></a>.
+A generic <a>DID query</a> is identical to a URI query and MUST conform to the
+<code>query</code> ABNF rule in [[!RFC3986]]. A <a>DID query</a> SHOULD be used
+to address resources available through a <a>service endpoint</a>. For more
+information, see Section <a href="#service-endpoints"></a>.
       </p>
 
       <p>
-A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID queries</a> that are
-more restrictive than the generic rules in this section.
+A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID queries</a> that
+are more restrictive than the generic rules in this section.
       </p>
+
       <pre class="example nohighlight">
 did:example:123456?query=true
       </pre>
@@ -976,31 +986,34 @@ Fragment
       </h2>
 
       <p>
-A generic <a>DID fragment</a> is identical to a URI
-fragment and MUST conform to the <code>fragment</code> ABNF rule in
-[[RFC3986]]. Implementers are strongly discouraged from using a <a>DID fragment</a>
-for anything other than a method-independent
-reference into the <a>DID document</a> to identify a component of a <a>DID
-document</a> (e.g., a unique <a>public key description</a> or <a>service endpoint</a>). To resolve
-this reference, the complete <a>DID URL</a> including the <a>DID fragment</a> MUST be used as
-input to the <a>DID URL</a> dereferencing algorithm (see [[DID-RESOLUTION]]) for the
-target component in the <a>DID document</a> object.
+A generic <a>DID fragment</a> is identical to a URI fragment and MUST conform to
+the <code>fragment</code> ABNF rule in [[RFC3986]]. Implementers are strongly
+discouraged from using a <a>DID fragment</a> for anything other than a
+method-independent reference into the <a>DID document</a> to identify a
+component of a <a>DID document</a> (for example, a unique
+<a>public key description</a> or <a>service endpoint</a>). To resolve this
+reference, the complete <a>DID URL</a> including the <a>DID fragment</a> MUST be
+used as input to the <a>DID URL</a> dereferencing algorithm for the
+target component in the <a>DID document</a> object. For more information, see
+[[DID-RESOLUTION]].
       </p>
 
       <p>
-A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID fragments</a> that
-are more restrictive than the generic rules in this section.
+A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID fragments</a>
+that are more restrictive than the generic rules in this section.
       </p>
 
       <p>
 Implementations need not rely on graph-based processing of <a>DID documents</a>
-to locate metadata contained in the <a>DID document</a> when the <a>DID</a> includes
-a <a>DID fragment</a>. Tree-based processing can be used instead.
+to locate metadata contained in the <a>DID document</a> when the <a>DID</a>
+includes a <a>DID fragment</a>. Tree-based processing can be used instead.
       </p>
 
       <p>
-Implementations SHOULD NOT prevent the use of <a>JSON Pointer</a> ([[!RFC6901]]).
+Implementations SHOULD NOT prevent the use of <a>JSON Pointer</a>
+([[!RFC6901]]).
       </p>
+
       <pre class="example nohighlight">
 did:example:123456#oidc
       </pre>
@@ -1012,25 +1025,25 @@ Normalization
       </h2>
 
       <p>
-For the broadest interoperability, <a>DID</a> normalization should be as
-simple and universal as possible. Therefore:
+For the broadest interoperability, make <a>DID</a> normalization as simple and
+universal as possible:
       </p>
+        <ul>
+          <li>
+The <a>DID scheme</a> name MUST be lowercase.
+          </li>
 
-      <ol start="1">
-        <li>
-The did: scheme name MUST be lowercase.
-        </li>
+          <li>
+The <a>DID method</a> name MUST be lowercase.
+          </li>
 
-        <li>
-The method name MUST be lowercase.
-        </li>
-
-        <li>
+          <li>
 Case sensitivity and normalization of the value of the
-<code>method-specific-id</code> rule in Section <a href="#generic-did-syntax">
-          </a> MUST be defined by the governing <a>DID method</a> specification.
-        </li>
-      </ol>
+<code>method-specific-id</code> rule in Section
+<a href="#generic-did-syntax"></a> MUST be defined by the governing
+<a>DID method</a> specification.
+          </li>
+        </ul>
     </section>
 
     <section>
@@ -1039,38 +1052,36 @@ Persistence
       </h2>
 
       <p>
-A <a>DID</a> is expected to be persistent and immutable, i.e., bound exclusively
-and permanently to its one and only subject. Even after a <a>DID</a> has been
-deactivated, it is intended that it never be repurposed.
+A <a>DID</a> is expected to be persistent and immutable. That is, a <a>DID</a>
+is bound exclusively and permanently to its one and only subject. Even after a
+<a>DID</a> is deactivated, it is intended that it never be repurposed.
       </p>
 
       <p>
-Ideally a <a>DID</a> would be a completely
-abstract decentralized identifier (like a <a>UUID</a>) that could be bound
-to multiple underlying <a>DID registries</a> over time,
-thus maintaining its persistence independent of any particular system.
-However registering the same identifier on multiple
+Ideally, a <a>DID</a> would be a completely abstract decentralized identifier
+(like a <a>UUID</a>) that could be bound to multiple underlying
+<a>DID registries</a> over time, thus maintaining its persistence independent of
+any particular system. However, registering the same identifier on multiple
 <a>DID registries</a> introduces extremely hard entityship and
 <a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">start-of-authority</a>
-(SOA) problems. It also greatly increases implementation complexity
-for developers.
+(SOA) problems. It also greatly increases implementation complexity for
+developers.
       </p>
 
       <p>
-To avoid these issues, it is RECOMMENDED that <a>DID method</a>
-specifications only produce <a>DIDs</a> and <a>DID methods</a> bound to strong,
-stable <a>DID registries</a> capable of making the highest level of
-commitment to persistence of the <a>DID</a> and <a>DID method</a> over time.
+To avoid these issues, it is RECOMMENDED that <a>DID method</a> specifications
+only produce <a>DIDs</a> and <a>DID methods</a> bound to strong, stable
+<a>DID registries</a> capable of making the highest level of commitment to
+persistence of the <a>DID</a> and <a>DID method</a> over time.
       </p>
 
       <p class="note">
-Although not included in this version, future versions of this
-specification may support a <a>DID document</a> <code>equivID</code> property
-to establish verifiable equivalence relations between <a>DIDs</a>
-representing the same subject on multiple <a>DID
-registries</a>. Such equivalence relations can produce the practical
-equivalent of a single persistent abstract <a>DID</a>. See Future Work
-(Section <a href="#future-work"></a>).
+Although not included in this version, future versions of this specification
+might support a <a>DID document</a> <code>equivID</code> property to establish
+verifiable equivalence relations between <a>DIDs</a> representing the same
+subject on multiple <a>DID registries</a>. Such equivalence relations can
+produce the practical equivalent of a single persistent abstract <a>DID</a>. For
+more information, see Section <a href="#future-work"></a>.
       </p>
     </section>
   </section>
