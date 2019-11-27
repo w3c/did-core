@@ -1340,7 +1340,9 @@ detail how revocation is performed and tracked.
       </p>
 
       <p>
-The following table summarizes the key formats supported by this specification:
+All public key formats MUST be expressed in either JSON Web Key (JWK)
+format using the <code>publicKeyJwk</code> property or one of the native
+formats listed in the table below. All other key formats MUST NOT be used.
       </p>
 
       <table class="simple">
@@ -1361,10 +1363,9 @@ Support
 RSA
             </td>
             <td>
-RSA public key values MUST be encoded in either JSON Web Key (JWK)
-format using the <code>publicKeyJwk</code> property or Privacy Enhanced Mail
-(PEM) format using the <code>publicKeyPem</code> property. Other RSA public
-key formats MUST NOT be used.
+RSA public key values MUST be encoded in Privacy Enhanced Mail
+(PEM) format using the <code>publicKeyPem</code> property if they are not
+encoded in JWK format.
             </td>
           </tr>
         </tbody>
