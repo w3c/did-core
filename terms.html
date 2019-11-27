@@ -1,254 +1,225 @@
 <p>
 This document attempts to communicate the concepts outlined in the
-<a>decentralized identifier</a> space by using specialized terms to discuss specific
-concepts. This terminology is included below and linked to throughout the
-document to aid the reader:
+<a>decentralized identifier</a> space by using specialized terms to discuss
+specific concepts. This terminology is included below and linked to throughout
+the document to aid the reader:
 </p>
 
 <dl class="termlist">
 
-  <dt><dfn data-lt="blockchain|blockchain technology">blockchain</dfn></dt>
+  <dt><dfn data-lt="blockchains|blockchain technology">blockchain</dfn></dt>
 
   <dd>
-A specific type of <a>distributed ledger technology</a> (DLT) that
-stores ledger entries in blocks of transactions that are grouped
-together and hashed into a cryptographic chain. Because this type of <a>DLT</a>
-was introduced by
-<a href="https://en.wikipedia.org/wiki/Bitcoin">Bitcoin</a>,
-the term "blockchain" is sometimes used to refer specifically to the Bitcoin
+A specific type of <a>distributed ledger technology</a> (DLT) that stores ledger
+entries in blocks of transactions, which are grouped together and hashed into a
+cryptographic chain. Because this type of <a>DLT</a> was introduced by
+<a href="https://en.wikipedia.org/wiki/Bitcoin">Bitcoin</a>, the term
+<em>blockchain</em> is sometimes used to refer specifically to the Bitcoin
 ledger.
   </dd>
 
-
-  <dt><dfn data-lt="DID|DIDs">decentralized identifier</dfn> (DID)</dt>
+  <dt><dfn data-lt="decentralized identifiers|DID|DIDs">decentralized identifier</dfn> (DID)</dt>
 
   <dd>
-A globally unique identifier that does
-not require a centralized registration authority because it is
-registered with <a>distributed ledger technology</a> (DLT) or other form of
-decentralized network. The generic format of a DID is defined in this
-specification. A specific <a>DID scheme</a> is defined in a
+A globally unique identifier that does not require a centralized registration
+authority because it is registered with <a>distributed ledger technology</a>
+(DLT) or other form of decentralized network. The generic format of a DID is
+defined in this specification. A specific <a>DID scheme</a> is defined in a
 <a>DID method</a> specification.
   </dd>
 
-
-  <dt><dfn data-lt="">decentralized identity management</dfn></dt>
+  <dt><dfn>decentralized identity management</dfn></dt>
 
   <dd>
 <a href="https://en.wikipedia.org/wiki/Identity_management">Identity
-management</a> based on <a>decentralized identifiers</a>.
-Decentralized identity management extends the identifier creation authority
-beyond the traditional roots of trust
-required by <a href="https://en.wikipedia.org/wiki/X.500">X.500
-directory services</a>, the <a href=
-  "https://en.wikipedia.org/wiki/Domain_Name_System">Domain Name
-System</a>, and most national ID systems.
+management</a> based on <a>decentralized identifiers</a>. Decentralized identity
+management extends the identifier creation authority beyond the traditional
+roots of trust required by
+<a href="https://en.wikipedia.org/wiki/X.500">X.500 directory services</a>,
+the <a href="https://en.wikipedia.org/wiki/Domain_Name_System">Domain Name System</a>,
+and most national identification systems.
   </dd>
 
-
-  <dt><dfn data-lt="">decentralized public key infrastructure</dfn> (DPKI)</dt>
+  <dt><dfn>decentralized public key infrastructure</dfn> (DPKI)</dt>
 
   <dd>
-Public key infrastructure based on <a>decentralized identifiers</a>
-and identity records (e.g., <a>DID documents</a>) containing verifiable
+Public key infrastructure based on <a>decentralized identifiers</a> and identity
+records (for example, <a>DID documents</a>) containing verifiable
 <a>public key descriptions</a>.
   </dd>
 
-
-  <dt><dfn data-lt="">delegate</dfn></dt>
+  <dt><dfn data-lt="delegates">delegate</dfn></dt>
 
   <dd>
-An entity who creates a <a>DID</a> and associated <a>DID document</a>
-for a <a>dependent</a> who does not yet have the capacity to control
-the private keys. The dependent is expected to rely on the delegate to safeguard
-the private keys until the dependent can assume control as the <a>DID
-subject</a>.
+An entity who creates a <a>DID</a> and associated <a>DID document</a> for a
+<a>dependent</a> who does not yet have the capacity to control the private keys.
+The <a>dependent</a> is expected to rely on the delegate to safeguard the
+private keys until the <a>dependent</a> can assume control as the
+<a>DID subject</a>.
   </dd>
 
-
-  <dt><dfn data-lt="">dependent</dfn></dt>
+  <dt><dfn data-lt="dependents">dependent</dfn></dt>
 
   <dd>
-A person, organization, or thing whose <a>DID</a> is
-registered and maintained by a delegate because the dependent is not in
-a position to control the private keys. A dependent becomes an
-<a>identity owner</a> when the dependent takes control of the private keys.
+A person, organization, or thing whose <a>DID</a> is registered and maintained
+by a <a>delegate</a> because the dependent is not in a position to control the
+private keys. A dependent becomes an <a>identity owner</a> when the dependent
+takes control of the private keys.
   </dd>
 
-
-  <dt><dfn data-lt="did controller(s)">DID controller</dfn></dt>
+  <dt><dfn data-lt="did controllers|did controller(s)">DID controller</dfn></dt>
 
   <dd>
-The entity, or a group of entities, in control of a DID and/or <a>DID document</a>.
-Note that the <a>DID controller</a> might include the <a>DID subject</a>.
+The entity, or a group of entities, in control of a <a>DID</a> or
+<a>DID document</a>. Note that the <a>DID controller</a> might include the
+<a>DID subject</a>.
   </dd>
 
-
-  <dt><dfn data-lt="">DID document</dfn></dt>
+  <dt><dfn data-lt="DID documents">DID document</dfn></dt>
 
   <dd>
-A set of data that describes the <a>DID subject</a>,
-including mechanisms, such as public keys and
-pseudonymous biometrics, that the <a>DID subject</a> can use to authenticate itself
-and prove their association with the DID. A DID document MAY also contain other
+A set of data describing the <a>DID subject</a>, including mechanisms, such as
+public keys and pseudonymous biometrics, that the <a>DID subject</a> can use to
+authenticate itself and prove their association with the <a>DID</a>. A DID
+document might also contain other
 <a href="https://en.wikipedia.org/wiki/Attribute_(computing)">attributes</a> or
 <a href="https://en.wikipedia.org/wiki/Claims-based_identity">claims</a>
 describing the subject. These documents are graph-based data structures that
-are typically expressed using [[JSON-LD]], but may be expressed using other
+are typically expressed using [[JSON-LD]], but can be expressed using other
 compatible graph-based data formats.
   </dd>
 
-
-  <dt><dfn data-lt="">DID fragment</dfn></dt>
-
-  <dd>
-The portion of a <a>DID URL</a> that follows the first hash
-sign character (<code>#</code>). DID fragment syntax is identical to URI
-fragment syntax.
-  </dd>
-
-
-  <dt><dfn data-lt="">DID method</dfn></dt>
+  <dt><dfn data-lt="DID fragments">DID fragment</dfn></dt>
 
   <dd>
-A definition of how a specific <a>DID scheme</a> can be implemented
-on a specific <a>distributed ledger</a> or network, including the precise
-method(s) by which <a>DIDs</a> are resolved and deactivated and <a>DID
-documents</a> are written and updated.
+The portion of a <a>DID URL</a> that follows the first hash sign character
+(<code>#</code>). DID fragment syntax is identical to the URI fragment syntax.
   </dd>
 
+  <dt><dfn data-lt="DID methods">DID method</dfn></dt>
 
-  <dt><dfn data-lt="">DID path</dfn></dt>
+  <dd>
+A definition of how a specific <a>DID scheme</a> can be implemented on a
+specific <a>distributed ledger</a> or network, including the precise methods by
+which <a>DIDs</a> are resolved and deactivated and <a>DID documents</a> are
+written and updated.
+  </dd>
+
+  <dt><dfn data-lt="DID paths">DID path</dfn></dt>
 
   <dd>
 The portion of a <a>DID URL</a> that begins with and includes the first forward
-slash character (<code>/</code>). DID path syntax is identical to URI path syntax.
+slash character (<code>/</code>). DID path syntax is identical to the URI path
+syntax.
   </dd>
 
+  <dt><dfn data-lt="DID queries">DID query</dfn></dt>
 
-  <dt><dfn data-lt="decentralized identifier registry|decentralized identifier registries">DID registry</dfn></dt>
+  <dd>
+The portion of a <a>DID URL</a> that follows the first question mark character
+(<code>?</code>). DID query syntax is identical to the URI query syntax.
+  </dd>
+
+  <dt><dfn data-lt="decentralized identifier registry|decentralized identifier registries|DID registries">DID registry</dfn></dt>
 
   <dd>
 A role a system performs to mediate the creation, verification, updating, and
-deactivation of <a>decentralized identifiers</a>.
-A DID registry is a type of verifiable data registry (see [[VC-DATA-MODEL]]).
+deactivation of <a>decentralized identifiers</a>. A DID registry is a type of
+verifiable data registry. For more information, see [[VC-DATA-MODEL]].
   </dd>
 
-
-  <dt><dfn data-lt="">DID query</dfn></dt>
-
-  <dd>
-The portion of a <a>DID URL</a> that follows the first question
-mark character (<code>?</code>). DID query syntax is identical to URI query syntax.
-  </dd>
-
-  <dt><dfn data-lt="">DID resolver</dfn></dt>
+  <dt><dfn data-lt="DID resolvers">DID resolver</dfn></dt>
 
   <dd>
-A system that is capable of retrieving a <a>DID document</a> for a given <a>DID</a>.
-These systems are specified in the DID Resolution specification
+A system that is capable of retrieving a <a>DID document</a> for a given
+<a>DID</a>. These systems are specified in the DID Resolution specification
 [[DID-RESOLUTION]].
   </dd>
   </dt>
 
-  <dt><dfn data-lt="">DID subject</dfn></dt>
+  <dt><dfn data-lt="DID schemes">DID scheme</dfn></dt>
 
   <dd>
-The DID subject is the entity that the <a>DID document</a> is about, i.e.,
-it is the entity identified by the <a>DID</a> and described by the <a>DID
-document</a>.
-  </dd>
-
-  <dt><dfn data-lt="">DID URL</dfn></dt>
-
-  <dd>
-A DID plus an optional <a>DID path</a>, optional <code>?</code> character followed by a
-<a>DID query</a>, and optional <code>#</code> character followed by a <a>DID fragment</a>.
-  </dd>
-
-
-  <dt><dfn data-lt="">DID scheme</dfn></dt>
-
-  <dd>
-The formal syntax of a <a>decentralized identifier</a>. The generic DID
-scheme is defined in this specification. Separate <a>DID method</a> specifications
+The formal syntax of a <a>decentralized identifier</a>. The generic DID scheme
+is defined in this specification. Separate <a>DID method</a> specifications
 define a specific DID scheme that works with that specific <a>DID method</a>.
   </dd>
 
+  <dt><dfn data-lt="DID subjects">DID subject</dfn></dt>
+
+  <dd>
+The entity the <a>DID document</a> is about. That is, the entity identified by
+the <a>DID</a> and described by the <a>DID document</a>.
+  </dd>
+
+  <dt><dfn data-lt="DID URLs">DID URL</dfn></dt>
+
+  <dd>
+A <a>DID</a> plus an optional <a>DID path</a>, optional <code>?</code> character
+followed by a <a>DID query</a>, and optional <code>#</code> character followed
+by a <a>DID fragment</a>.
+  </dd>
 
   <dt><dfn data-lt="distributed ledger technology|DLT">distributed ledger</dfn> (DLT)</dt>
 
   <dd>
-A <a href=
-  "https://en.wikipedia.org/wiki/Distributed_database">distributed
-database</a> in which the various nodes use a <a href=
-  "https://en.wikipedia.org/wiki/Consensus_(computer_science)">consensus
-protocol</a> to maintain a shared ledger in which each transaction is
-cryptographically signed and chained to the previous transaction.
+A <a href="https://en.wikipedia.org/wiki/Distributed_database">distributed database</a>
+in which the various nodes use a
+<a href="https://en.wikipedia.org/wiki/Consensus_(computer_science)">consensus protocol</a>
+to maintain a shared ledger in which each transaction is cryptographically
+signed and chained to the previous transaction.
   </dd>
-
-
-  <dt><dfn data-lt="">identity owner</dfn></dt>
-
-  <dd>
-The natural person, party, organization, or thing whose
-identity is represented by a <a>DID</a> and who directly controls the
-private keys to control the <a>DID document</a>.
-(Note: this specification avoids the term "user" since a <a>DID subject</a>
-is not always an individual person.)
-  </dd>
-
-
-  <dt><dfn data-lt="">JSON Pointer</dfn></dt>
-
-  <dd>
-JSON Pointer defines a string syntax for identifying a specific value
-within a JavaScript Object Notation (JSON) document as defined in [[RFC6901]]
-  </dd>
-
-
-  <dt><dfn data-lt="">public key description</dfn></dt>
-
-  <dd>
-A JSON object contained inside a <a>DID document</a> that contains all
-the metadata necessary to use a public key or verification key.
-  </dd>
-
-
-  <dt><dfn data-lt="">service endpoint</dfn></dt>
-
-  <dd>
-A network address at which a service operates on
-behalf of a <a>DID subject</a>. Examples of specific services include
-discovery services, social networks, file storage services, and
-verifiable claim repository services. Service endpoints may also be provided
-by a generalized data interchange protocol such as
-<a>extensible data interchange</a>.
-  </dd>
-
-
-  <dt><dfn data-lt="URI">Uniform Resource Identifier</dfn> (URI)</dt>
-
-  <dd>
-An identifier as defined by [[RFC3986]].
-  </dd>
-
-
-  <dt><dfn data-lt="UUID">Universally Unique Identifier</dfn> (UUID)</dt>
-
-  <dd>
-An identifier as defined by [[RFC4122]].
-  </dd>
-
 
   <dt><dfn data-lt="XDI">extensible data interchange</dfn> (XDI)</dt>
 
   <dd>
-A semantic
-graph format and semantic data interchange protocol defined by the
-  <a href="https://www.oasis-open.org/committees/xdi/">OASIS XDI Technical
-Committee</a>.
+A semantic graph format and semantic data interchange protocol defined by the
+<a href="https://www.oasis-open.org/committees/xdi/">OASIS XDI Technical Committee</a>.
   </dd>
 
+  <dt><dfn data-lt="identity owners">identity owner</dfn></dt>
+
+  <dd>
+The natural person, party, organization, or thing whose identity is represented
+by a <a>DID</a> and who directly controls the private keys to control the
+<a>DID document</a>. Note that this specification avoids the term <em>user</em>
+since a <a>DID subject</a> is not always an individual person.
+  </dd>
+
+  <dt><dfn>JSON Pointer</dfn></dt>
+
+  <dd>
+Defines a string syntax for identifying a specific value within a JavaScript
+Object Notation (JSON) document, as defined in [[RFC6901]].
+  </dd>
+
+  <dt><dfn>public key description</dfn></dt>
+
+  <dd>
+A JSON object contained inside a <a>DID document</a> that contains all the
+metadata necessary to use a public key or verification key.
+  </dd>
+
+  <dt><dfn data-lt="service endpoints">service endpoint</dfn></dt>
+
+  <dd>
+A network address at which a service operates on behalf of a <a>DID subject</a>.
+Examples of specific services include discovery services, social networks, file
+storage services, and verifiable claim repository services. Service endpoints
+might also be provided by a generalized data interchange protocol, such as
+<a>extensible data interchange</a>.
+  </dd>
+
+  <dt><dfn data-lt="URI|URIs">Uniform Resource Identifier</dfn> (URI)</dt>
+
+  <dd>
+An identifier, as defined by [[RFC3986]].
+  </dd>
+
+  <dt><dfn data-lt="UUID|UUIDs">Universally Unique Identifier</dfn> (UUID)</dt>
+
+  <dd>
+An identifier, as defined by [[RFC4122]].
+  </dd>
 
 </dl>
