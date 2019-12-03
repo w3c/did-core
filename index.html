@@ -1347,9 +1347,9 @@ formats listed in the table below. All other key formats MUST NOT be used.
 
       <p class="issue">
 The Working Group is still debating whether the default base encoding format
-will be Base58 (Bitcoin) or base64url. The entries in the table below
-currently assume Base58 (Bitcoin), but may change to base64url once the
-group achieves consensus on this particular issue.
+will be Base58 (Bitcoin) [[BASE58]] or base64url [[RFC4648]]. The entries in the
+table below currently assume Base58 (Bitcoin), but may change to base64url once
+the group achieves consensus on this particular issue.
       </p>
 
       <table class="simple">
@@ -1370,9 +1370,8 @@ Support
 RSA
             </td>
             <td>
-RSA public key values MUST be encoded in Privacy Enhanced Mail
-(PEM) format using the <code>publicKeyPem</code> property if they are not
-encoded in JWK format.
+RSA public key values MUST either be encoded as a JWK or be encoded in
+Privacy Enhanced Mail (PEM) format using the <code>publicKeyPem</code> property.
             </td>
           </tr>
         </tbody>
