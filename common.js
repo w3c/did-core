@@ -116,6 +116,17 @@ var ccg = {
       status: "Internet-Draft",
       publisher: "IETF"
     },
+    "BASE58": {
+      title: "The Base58 Encoding Scheme",
+      date: "December 2019",
+      href: "https://tools.ietf.org/html/draft-msporny-base58",
+      authors: [
+        "Satoshi Nakamoto",
+        "Manu Sporny"
+      ],
+      status: "Internet-Draft",
+      publisher: "IETF"
+    },
     "DNS-DID": {
       title: "The Decentralized Identifier (DID) in the DNS",
       date: "February 2019",
