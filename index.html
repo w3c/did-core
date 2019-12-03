@@ -1399,9 +1399,34 @@ raw 32-byte public key value in Base58 Bitcoin format using the
 secp256r1
             </td>
             <td>
-Secp256r1 public key values MUST be encoded as the raw 32-byte public key value
-encoded in Base58 Bitcoin format using the <code>publicKeyBase58</code> property
-if they are not encoded in JWK format.
+Secp256r1 public key values MUST either be encoded as a JWK or be encoded as
+the raw 32-byte public key value encoded in Base58 Bitcoin format using the
+<code>publicKeyBase58</code> property.
+            </td>
+          </tr>
+          <tr>
+            <td>
+ed25519
+            </td>
+            <td>
+Ed25519 public key values MUST be encoded in either JSON Web Key (JWK)
+format using the <code>publicKeyJwk</code> property or as the raw 32-byte
+public key value encoded in Base58 Bitcoin format using the
+<code>publicKeyBase58</code> property. Other Ed25519 public key formats
+MUST NOT be used.
+            </td>
+          </tr>
+          <tr>
+            <td>
+secp256k1
+            </td>
+            <td>
+Secp256k1 key values MAY be expressed as the raw 32-byte value encoded in
+base58-btc format using the <code>publicKeyBase58</code> property or
+MAY be encoded in JSON Web Key (JWK) format using the <code>publicKeyJwk</code>
+property. Both the raw 32-byte base58-btc format and JWK format MUST be
+supported by DID Document Processors. The use of other key formats for RSA MUST
+cause the DID Document Processor to raise an error.
             </td>
           </tr>
         </tbody>
