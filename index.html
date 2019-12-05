@@ -2085,31 +2085,35 @@ DID Method Schemes
       </h2>
 
       <p>
-A <a>DID method</a> specification MUST define exactly one method-specific <a>DID
-scheme</a> identified by exactly one method name (the <code>method-name</code> rule in
-Section <a href="#generic-did-syntax"></a>).
+A <a>DID method</a> specification MUST define exactly one method-specific
+<a>DID scheme</a>, identified by exactly one method name. For more information,
+see the <code>method-name</code> rule in Section
+<a href="#generic-did-syntax"></a>.
       </p>
 
       <p>
-Since the method name is part of the <a>DID</a>, short method names are preferred;
-the method name SHOULD be five characters or less. The method name might reflect the name
-of the <a>DID registry</a> to which the <a>DID method</a> specification applies.
-See also Section <a href="#unique-did-method-names"></a>.
+Because the method name is part of the <a>DID</a>, short method names are
+preferred; the method name SHOULD be five characters or less. The method name
+might reflect the name of the <a>DID registry</a> to which the <a>DID method</a>
+specification applies. For more information, see Section
+<a href="#unique-did-method-names"></a>.
       </p>
 
       <p>
-The <a>DID method</a> specification for the method-specific <a>DID scheme</a> MUST specify
-how to generate the <code>method-specific-id</code> component of a <a>DID</a>. The
-<code>method-specific-id</code> value MUST be able to be generated without the use
-of a centralized registry service. The <code>method-specific-id</code> value SHOULD
-be globally unique by itself. The <a>DID</a> as defined by the <code>did</code> rule
-in Section <a href="#generic-did-syntax"></a> MUST be globally unique.
+The <a>DID method</a> specification for the method-specific <a>DID scheme</a>
+MUST specify how to generate the <code>method-specific-id</code> component of a
+<a>DID</a>. The <code>method-specific-id</code> value MUST be able to be
+generated without the use of a centralized registry service. The
+<code>method-specific-id</code> value SHOULD be globally unique by itself. The
+<a>DID</a>, as defined by the <code>did</code> rule in Section
+<a href="#generic-did-syntax"></a>, MUST be globally unique.
       </p>
 
       <p>
 If needed, a method-specific <a>DID scheme</a> MAY define multiple 
-<code>method-specific-id</code> formats. It is RECOMMENDED that a method-specific
-<a>DID scheme</a> define as few <code>method-specific-id</code> formats as possible.
+<code>method-specific-id</code> formats. It is RECOMMENDED that a
+method-specific <a>DID scheme</a> define as few <code>method-specific-id</code>
+formats as possible.
       </p>
     </section>
 
@@ -2120,18 +2124,19 @@ DID Operations
 
       <p>
 To enable the full functionality of <a>DIDs</a> and <a>DID documents</a> on a
-particular <a>DID registry</a>, a <a>DID method</a> specification MUST specify how
-each of the following <abbr title="Create, Read, Update, Delete">CRUD</abbr>
-operations is performed by a client. Each operation ought to be specified to the level
-of detail necessary to build and test interoperable client implementations with the
-<a>DID registry</a>. These operations can effectively be used to perform all the operations
-required of a CKMS (cryptographic key management system), e.g.: key registration,
-key replacement, key rotation, key recovery, and key expiration.
+particular <a>DID registry</a>, a <a>DID method</a> specification MUST specify
+how each of the following <abbr title="Create, Read, Update, Delete">CRUD</abbr>
+operations is performed by a client. Specify each operation to the level of
+detail necessary to build and test interoperable client implementations with the
+<a>DID registry</a>. These operations can effectively be used to perform all the
+operations required of a CKMS (cryptographic key management system). For
+example, key registration, key replacement, key rotation, key recovery, and key
+expiration.
 
       </p>
       <p>
 Any <a>DID method</a> specification that does not support a specific operation,
-such as Update or Deactivate, MUST clearly state these limitations.
+such as update or deactivate, MUST clearly state these limitations.
       </p>
 
       <section>
@@ -2140,9 +2145,9 @@ Create
         </h3>
 
         <p>
-The <a>DID method</a> specification MUST specify how a client creates a <a>DID</a>
-and its associated <a>DID document</a> on the <a>DID registry</a>, including
-all cryptographic operations necessary to establish proof of control.
+The <a>DID method</a> specification MUST specify how a client creates a
+<a>DID</a> and its associated <a>DID document</a> on the <a>DID registry</a>,
+including all cryptographic operations necessary to establish proof of control.
         </p>
       </section>
 
@@ -2152,8 +2157,8 @@ Read/Verify
         </h3>
 
         <p>
-The <a>DID method</a> specification MUST specify how a client uses a <a>DID</a> to
-request a <a>DID document</a> from the <a>DID registry</a>, including how the
+The <a>DID method</a> specification MUST specify how a client uses a <a>DID</a>
+to request a <a>DID document</a> from the <a>DID registry</a>, including how the
 client can verify the authenticity of the response.
         </p>
       </section>
@@ -2165,9 +2170,9 @@ Update
 
         <p>
 The <a>DID method</a> specification MUST specify how a client can update a
-<a>DID document</a> on the <a>DID registry</a>,
-including all cryptographic operations necessary to establish proof
-of control, <em>or</em>  state that updates are not possible.
+<a>DID document</a> on the <a>DID registry</a>, including all cryptographic
+operations necessary to establish proof of control, <em>or</em> state that
+updates are not possible.
         </p>
       </section>
 
@@ -2178,8 +2183,8 @@ Deactivate
 
         <p>
 The <a>DID method</a> specification MUST specify how a client can deactivate a
-<a>DID</a> on the <a>DID registry</a>, including all cryptographic
-operations necessary to establish proof of deactivation, <em>or</em> state that
+<a>DID</a> on the <a>DID registry</a>, including all cryptographic operations
+necessary to establish proof of deactivation, <em>or</em> state that
 deactivation is not possible.
         </p>
       </section>
@@ -2190,29 +2195,30 @@ deactivation is not possible.
 Unique DID Method Names
       </h2>
       <p>
-The authors of a new <a>DID method</a> specification
-SHOULD use a method name that is unique among all <a>DID method</a>
-names known to them at the time of publication.
+The authors of a new <a>DID method</a> specification SHOULD use a method name
+that is unique among all <a>DID method</a> names known to them at the time of
+publication.
       </p>
       <p>
-Because there is no central authority for allocating or approving <a>DID
-method</a> names, there is no way to know for certain if a particular <a>DID method</a>
-name is unique. To help with this challenge, the
-<a href="https://www.w3.org/community/credentials/">W3C Credentials Community
-Group</a> maintains a non-authoritative list of known <a>DID
-method</a> names and their associated specifications (see Appendix
-<a href="#registries"></a>).
+Because there is no central authority for allocating or approving
+<a>DID method</a> names, there is no way to know for certain if a specific
+<a>DID method</a> name is unique. To help with this challenge, the
+<a href="https://www.w3.org/community/credentials/">W3C Credentials Community Group</a>
+maintains a non-authoritative list of known <a>DID method</a> names and their
+associated specifications. For more information, see Appendix
+<a href="#registries"></a>.
       </p>
       <p>
-The [[DID-METHOD-REGISTRY]] is a tool for implementors to use when coming
-to consensus on a new method name, as well as an informative reference for
-software developers implementing <a href="#did-resolvers"></a> for different
-<a>DID methods</a>.
-The [[DID-METHOD-REGISTRY]] is not a definitive or official list of <a>DID
-methods</a>. Nonetheless, adding <a>DID method</a> names to the [[DID-METHOD-REGISTRY]] is
-encouraged so that other implementors and members of the community have a
-place to see an overview of existing <a>DID methods</a>. The lightweight criteria for
-inclusion are documented in the [[DID-METHOD-REGISTRY]].
+The [[DID-METHOD-REGISTRY]] is a tool for implementors to use when coming to
+consensus on a new method name, as well as an informative reference for software
+developers implementing <a>DID resolvers</a> for different <a>DID methods</a>.
+For more information about <a>DID resolvers</a> see Section
+<a href="#did-resolvers"></a>. The [[DID-METHOD-REGISTRY]] is not a definitive
+or official list of <a>DID methods</a>. Nonetheless, adding <a>DID method</a>
+names to the [[DID-METHOD-REGISTRY]] is encouraged so that other implementors
+and members of the community have a place to see an overview of existing
+<a>DID methods</a>. The lightweight criteria for inclusion are documented in the
+[[DID-METHOD-REGISTRY]].
       </p>
     </section>
 
