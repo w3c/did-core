@@ -121,7 +121,6 @@ var ccg = {
       date: "December 2019",
       href: "https://tools.ietf.org/html/draft-msporny-base58",
       authors: [
-        "Satoshi Nakamoto",
         "Manu Sporny"
       ],
       status: "Internet-Draft",
