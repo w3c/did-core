@@ -2277,18 +2277,19 @@ decentralized identity possible.
 Requirements of DID Method Specifications
       </h2>
 
-      <ol start="1">
+      <p>
+The requirements for <a>DID method</a> specifications are as follows:
+      </p>
+      <ul>
         <li>
-<a>DID method</a> specifications MUST include their own Security
-Considerations sections.
+<a>DID method</a> specifications MUST include their own Security Considerations
+section.
         </li>
 
         <li>
-This section MUST consider all the requirements mentioned in
-section 5 of [[RFC3552]] (page 27) for the <a>DID</a> operations defined in
-the specification. In particular:
-        </li>
-      </ol>
+This section MUST consider all the requirements mentioned in Section 5 of
+[[RFC3552]] (page 27) for the <a>DID</a> operations defined in the
+specification. In particular:
 
       <p class="issue">
 Discussions at Rebooting the Web of Trust 5 resulted in consensus to
@@ -2297,67 +2298,79 @@ expected that there will be an attempt to create a generalized
 authorization mechanism that is build on object capabilities.
       </p>
 
-      <p>
-At least the following forms of attack MUST be considered:
-eavesdropping, replay, message insertion, deletion, modification, and
-man-in-the-middle. Potential denial of service attacks MUST be
-identified as well. If the protocol incorporates cryptographic
-protection mechanisms, it should be clearly indicated which portions
-of the data are protected and what the protections are (i.e.,
-integrity only, confidentiality, and/or endpoint authentication,
-etc.). Some indication should also be given to what sorts of attacks
-the cryptographic protection is susceptible. Data which should be
-held secret (keying material, random seeds, etc.) should be clearly
-labeled. If the technology involves authentication, particularly
-user-host authentication, the security of the authentication method
-MUST be clearly specified.
-      </p>
-
-      <ol start="3">
-        <li>
-This section MUST also discuss, per Section 5 of [[RFC3552]],
-residual risks (such as the risks from compromise in a related
-protocol, incorrect implementation, or cipher) after threat
-mitigation has been deployed.
+          <ul>
+            <li>
+At least the following forms of attack MUST be considered: eavesdropping,
+replay, message insertion, deletion, modification, and man-in-the-middle.
+            </li>
+            <li>
+Potential denial of service attacks MUST be identified as well. 
+            </li>
+            <li>
+If the protocol incorporates cryptographic protection mechanisms, clearly
+indicate which portions of the data are protected and what the protections are.
+For example, integrity only, confidentiality, endpoint authentication, and so
+on.
+            </li>
+            <li>
+Give an indication to what sorts of attacks the cryptographic protection is
+susceptible. 
+            </li>
+            <li>
+Data which is to be held secret (keying material, random seeds, and so on) is to
+be clearly labeled.
+            </li>
+            <li>
+If the technology involves authentication, particularly user-host
+authentication, the security of the authentication method MUST be clearly
+specified.
+            </li>
+          </ul>
         </li>
 
         <li>
-This section MUST provide integrity protection and update
-authentication for all operations required by
-Section <a href="#did-operations"></a>.
+This section MUST discuss, per Section 5 of [[RFC3552]], residual risks (such as
+the risks from compromise in a related protocol, incorrect implementation, or
+cipher) after threat mitigation was deployed.
         </li>
 
         <li>
-Where <a>DID methods</a> make use of peer-to-peer computing resources
-(such as with all known <a>DLTs</a>), the expected burdens of those
-resources SHOULD be discussed in relation to denial of service.
+This section MUST provide integrity protection and update authentication for all
+operations required by Section <a href="#did-operations"></a>.
+        </li>
+
+        <li>
+Where <a>DID methods</a> make use of peer-to-peer computing resources, such as
+with all known <a>DLTs</a>, the expected burdens of those resources SHOULD be
+discussed in relation to denial of service.
         </li>
 
         <li>
 Method-specific endpoint authentication MUST be discussed. Where
-<a>DID methods</a> make use of <a>DLTs</a> with varying network topology, sometimes
-offered as "light node" or "<a href="https://en.bitcoin.it/wiki/Thin_Client_Security">thin client</a>"
-implementations to reduce required computing resources, the security
-assumptions of the topology available to implementations of the <a>DID
-method</a> MUST be discussed.
+<a>DID methods</a> make use of <a>DLTs</a> with varying network topology,
+sometimes offered as <em>light node</em> or
+<em><a href="https://en.bitcoin.it/wiki/Thin_Client_Security">thin client</a></em>
+implementations to reduce required computing resources, the security assumptions
+of the topology available to implementations of the <a>DID method</a> MUST be
+discussed.
         </li>
 
         <li>
 <a>DID methods</a> MUST discuss the policy mechanism by which <a>DIDs</a> are
 proven to be uniquely assigned. A <a>DID</a> fits the functional definition
-of a URN as defined in [[RFC8141]] &mdash; a persistent identifier that is
-assigned once to a resource and never reassigned. In a security
-context this is particularly important since a <a>DID</a> may be used to
-identify a specific party subject to a specific set of authorization
-rights.
+of a URN, as defined in [[RFC8141]]. That is, a <a>DID</a> is a persistent
+identifier that is assigned once to a resource and never reassigned to a
+different resource. This is particularly important in a security context because
+a <a>DID</a> might be used to identify a specific party subject to a specific
+set of authorization rights.
         </li>
 
         <li>
 <a>DID methods</a> that introduce new authentication <a>service endpoint</a>
-types (Section <a href="#service-endpoints"></a>) SHOULD consider the
+types (see Section <a href="#service-endpoints"></a>) SHOULD consider the
 security requirements of the supported authentication protocol.
         </li>
-      </ol>
+      </ul>
     </section>
 
     <section>
@@ -2367,12 +2380,12 @@ Choosing DID Resolvers
 
       <p>
 The [[DID-METHOD-REGISTRY]] is an informative list of <a>DID method</a> names
-and their corresponding <a>DID method</a> specifications.
-Implementors should bear in mind that there is no central authority to
-mandate which <a>DID method</a> specification must be used with any particular
+and their corresponding <a>DID method</a> specifications. Implementors need to
+bear in mind that there is no central authority to mandate which
+<a>DID method</a> specification is to be used with any specific
 <a>DID method</a> name, but can use the [[DID-METHOD-REGISTRY]] to make an
-informed decision when choosing which <a>DID resolver</a>
-implementations to use.
+informed decision when choosing which <a>DID resolver</a> implementations to
+use.
       </p>
     </section>
 
@@ -2381,42 +2394,46 @@ implementations to use.
 Binding of Identity
       </h2>
 
+      <p>
+The following sections describe binding identities to <a>DIDs</a> and
+<a>DID documents</a>.
+      </p>
+
       <section>
         <h3>
 Proving Control of a DID and DID Document
         </h3>
 
         <p>
-Signatures are one method to allow <a>DID documents</a> to be
-cryptographically verifiable.
+Signatures are one way to allow <a>DID documents</a> to be cryptographically
+verifiable.
         </p>
 
         <p>
-By itself, a verified signature on a self-signed <a>DID document</a> does
-not prove control of a <a>DID</a>. It only proves the following:
+By itself, a verified signature on a self-signed <a>DID document</a> does not
+prove control of a <a>DID</a>. It only proves that the:
         </p>
 
-        <ol start="1">
+        <ul>
           <li>
-The <a>DID document</a> has not been tampered with since it was
-registered.
+<a>DID document</a> was not tampered with since it was registered.
           </li>
 
           <li>
-The <a>DID controller(s)</a> controlled the private key used
-for the signature at the time the signature was generated.
+<a>DID controller(s)</a> controlled the private key used for the signature at
+the time the signature was generated.
           </li>
-        </ol>
+        </ul>
 
         <p>
-Proving control of a <a>DID</a>, i.e., the binding between the <a>DID</a> and
+Proving control of a <a>DID</a>, that is, the binding between the <a>DID</a> and
 the <a>DID document</a> that describes it, requires a two step process:
         </p>
 
         <ol start="1">
           <li>
-Resolving the <a>DID</a> to a <a>DID document</a> according to its <a>DID method</a>
-specification.
+Resolving the <a>DID</a> to a <a>DID document</a> according to its
+<a>DID method</a> specification.
           </li>
 
           <li>
@@ -2431,8 +2448,8 @@ It should be noted that this process proves control of a <a>DID</a> and
         </p>
 
         <p>
-Signatures on <a>DID documents</a> are optional. <a>DID method</a> specifications
-SHOULD explain and specify their implementation if applicable.
+Signatures on <a>DID documents</a> are optional. <a>DID method</a>
+specifications SHOULD explain and specify their implementation if applicable.
         </p>
 
         <p>
@@ -2446,25 +2463,28 @@ Proving Control of a Public Key
         </h3>
 
         <p>
-There are two methods for proving control of the private key
-corresponding to a <a>public key description</a> in the <a>DID document</a>:
-static and dynamic. The static method is to sign the <a>DID document</a>
-with the private key. This proves control of the private key at a
-time no later than the <a>DID document</a> was registered. If the <a>DID
-document</a> is not signed, control of a public key described in the
-<a>DID document</a> may still be proven dynamically as follows:
+There are two methods for proving control of the private key corresponding to a
+<a>public key description</a> in the <a>DID document</a>: static and dynamic.
+        </p>
+
+        <p>
+The static method is to sign the <a>DID document</a> with the private key. This
+proves control of the private key at a time no later than the
+<a>DID document</a> was registered. If the <a>DID document</a> is not signed,
+control of a public key described in the <a>DID document</a> can still be proven
+dynamically as follows:
         </p>
 
         <ol start="1">
           <li>
-Send a challenge message containing a <a>public key description</a>
-from the <a>DID document</a> and a nonce to an appropriate <a>service
-endpoint</a> described in the <a>DID document</a>.
+Send a challenge message containing a <a>public key description</a> from the
+<a>DID document</a> and a nonce to an appropriate <a>service endpoint</a>
+described in the <a>DID document</a>.
           </li>
 
           <li>
-Verify the signature of the response message against the <a>public
-key description</a>.
+Verify the signature of the response message against the
+<a>public key description</a>.
           </li>
         </ol>
       </section>
@@ -2476,11 +2496,11 @@ Authentication and Verifiable Claims
 
         <p>
 A <a>DID</a> and <a>DID document</a> do not inherently carry any
-<a href="https://en.wikipedia.org/wiki/Personally_identifiable_information">
-PII</a> (personally-identifiable information). The process of
-binding a <a>DID</a> to something in the real-world such as a person or company,
-for example with credentials with the same subject as that <a>DID</a>, is out
-of scope for this specification. See the [[VC-DATA-MODEL]] instead.
+<a href="https://en.wikipedia.org/wiki/Personally_identifiable_information">PII</a>
+(personally-identifiable information). The process of binding a <a>DID</a> to
+something in the real world, such as a person or a company, for example with
+credentials with the same subject as that <a>DID</a>, is out of scope for this
+specification. For more information, see the [[VC-DATA-MODEL]] instead.
         </p>
       </section>
     </section>
@@ -2492,10 +2512,10 @@ Authentication Service Endpoints
 
       <p>
 If a <a>DID document</a> publishes a <a>service endpoint</a> intended for
-authentication or authorization of the <a>DID subject</a> (section
-<a href="#service-endpoints"></a>), it is the responsibility of the <a>service
-endpoint</a> provider, subject, and/or relying party to comply with the
-requirements of the authentication protocol(s) supported at that
+authentication or authorization of the <a>DID subject</a> (see Section
+<a href="#service-endpoints"></a>), it is the responsibility of the
+<a>service endpoint</a> provider, subject, or relying party to comply with the
+requirements of the authentication protocols supported at that
 <a>service endpoint</a>.
       </p>
     </section>
@@ -2507,14 +2527,25 @@ Non-Repudiation
 
       <p>
 Non-repudiation of <a>DIDs</a> and <a>DID document</a> updates is supported
-under the assumption that: (1) the subject is monitoring for unauthorized
-updates (see Section <a href="#notification-of-did-document-changes"></a>)
-and (2) the subject has had adequate opportunity to revert malicious updates
-according to the <a>DID method</a>'s access control mechanism (section
+under the assumption that the subject:
+      </p>
+
+      <ul>
+        <li>
+Is monitoring for unauthorized updates (see Section
+<a href="#notification-of-did-document-changes"></a>).
+        </li>
+        <li>
+Has had adequate opportunity to revert malicious updates according to the 
+access control mechanism for the <a>DID method</a> (see Section
 <a href="#authentication"></a>).
-This capability is further supported if timestamps are included (sections
-<a href="#created"></a> and <a href="#updated"></a>) and the
-target <a>DLT</a> system supports timestamps.
+        </li>
+      <ul>
+
+      <p>
+Non-repudiation is further supported if timestamps are included (see Sections
+<a href="#created"></a> and <a href="#updated"></a>) and the target <a>DLT</a>
+system supports timestamps.
       </p>
     </section>
 
@@ -2527,30 +2558,30 @@ Notification of DID Document Changes
 One mitigation against unauthorized changes to a <a>DID document</a> is
 monitoring and actively notifying the <a>DID subject</a> when there are changes.
 This is analogous to helping prevent account takeover on conventional
-username/password accounts by sending password reset notifications to
-the email addresses on file. In the case of a <a>DID</a>, where there is no
-intermediary registrar or account provider to generate the
-notification, the following approaches are suggested:
+username/password accounts by sending password reset notifications to the email
+addresses on file. In the case of a <a>DID</a>, where there is no intermediary
+registrar or account provider to generate the notification, the following
+approaches are suggested:
       </p>
 
-      <ol start="1">
+      <ul>
         <li>
-Subscriptions. If the <a>DID registry</a> on which the <a>DID</a> is
-registered directly supports change notifications, this service can
-be offered to <a>DID controllers</a>. Notifications could be sent directly to the
-relevant <a>service endpoints</a> listed in an existing <a>DID</a>.
+Subscriptions. If the <a>DID registry</a> on which the <a>DID</a> is registered
+directly supports change notifications, this service can be offered to
+<a>DID controllers</a>. Notifications could be sent directly to the relevant
+<a>service endpoints</a> listed in an existing <a>DID</a>.
         </li>
 
         <li>
-Self-monitoring. A <a>DID subject</a> can employ their own local or online
-agent to periodically monitor for changes to a <a>DID document</a>.
+Self-monitoring. A <a>DID subject</a> can employ their own local or online agent
+to periodically monitor for changes to a <a>DID document</a>.
         </li>
 
         <li>
-Third-party monitoring. A <a>DID subject</a> could rely on a third party
+Third-party monitoring. A <a>DID subject</a> could rely on a third-party
 monitoring service, however this introduces another vector of attack.
         </li>
-      </ol>
+      </ul>
     </section>
 
     <section>
@@ -2560,11 +2591,11 @@ Key and Signature Expiration
 
       <p>
 In a <a>decentralized identifier</a> architecture, there are no centralized
-authorities to enforce key or signature expiration policies.
-Therefore <a>DID resolvers</a> and other client applications need to validate
-that keys were not expired at the time they were used. Since some use cases
-may have legitimate reasons why already-expired keys can be extended, a key
-expiration shouldn't prevent any further use of the key, and implementations
+authorities to enforce key or signature expiration policies. Therefore
+<a>DID resolvers</a> and other client applications need to validate that keys
+were not expired at the time they were used. Because some use cases might have
+legitimate reasons why already-expired keys can be extended, make sure a key
+expiration does not prevent any further use of the key, and implementations
 of a resolver ought to be compatible with such extension behavior.
       </p>
     </section>
@@ -2575,23 +2606,23 @@ Key Revocation and Recovery
       </h2>
 
       <p>
-Section <a href="#did-operations"></a> specifies the <a>DID</a> operations
-that must be supported by a <a>DID method</a> specification, including
-deactivation of a <a>DID document</a> by replacing it with an updated <a>DID
-document</a>. In general, checking for key revocation on <a>DLT</a>-based
-methods is expected to be handled in a manner similar to checking the
-balance of a cryptocurrency account on a <a>distributed ledger</a>: if the
-balance is empty, the entire <a>DID</a> is deactivated. <a>DID method</a>
-specifications are expected to enable support for a quorum of trusted parties
-to enable key recovery. Some of the facilities to do so are suggested
-in section <a href="#authorization-and-delegation"></a>. Not all <a>DID method</a>
-specifications will recognize control from <a>DIDs</a> registered using
-other <a>DID methods</a> and they might restrict third-party control to <a>DIDs</a>
-that use the same method. Access control and key recovery in a <a>DID
-method</a> specification can also include a time lock feature to protect
-against key compromise by maintaining a second track of control for
-recovery. Further specification of this type of control is a matter
-for future work (see Section <a href="#time-locks-and-did-document-recovery"></a>).
+Section <a href="#did-operations"></a> specifies the <a>DID</a> operations to be
+supported by a <a>DID method</a> specification, including deactivation of a
+<a>DID document</a> by replacing it with an updated <a>DID document</a>. In
+general, checking for key revocation on <a>DLT</a>-based methods is expected to
+be handled in a manner similar to checking the balance of a cryptocurrency
+account on a <a>distributed ledger</a>. That is, if the balance is empty, the
+entire <a>DID</a> is deactivated. <a>DID method</a> specifications are expected
+to enable support for a quorum of trusted parties to enable key recovery. Some
+of the facilities to do so are suggested in Section
+<a href="#authorization-and-delegation"></a>. Not all <a>DID method</a>
+specifications will recognize control from <a>DIDs</a> registered using other
+<a>DID methods</a> and they might restrict third-party control to <a>DIDs</a>
+that use the same method. Access control and key recovery in a <a>DID method</a>
+specification can also include a time lock feature to protect against key
+compromise by maintaining a second track of control for recovery. Further
+specification of this type of control is a matter for future work (see Section
+<a href="#time-locks-and-did-document-recovery"></a>).
       </p>
     </section>
 
@@ -2602,38 +2633,44 @@ The Role of Human-Friendly Identifiers
 
       <p>
 <a>DIDs</a> achieve global uniqueness without the need for a central
-registration authority. This comes, however, at the cost of human
-memorability. The algorithms capable of generating globally unique
-identifiers automatically produce random strings of characters that
-have no human meaning. This demonstrates the axiom about
-identifiers known as <a href="https://en.wikipedia.org/wiki/Zooko%27s_triangle">Zooko's
-Triangle</a>: "human-meaningful, decentralized, secure &mdash; pick any
-two".
+registration authority. This comes, however, at the cost of human memorability.
+The algorithms capable of generating globally unique identifiers automatically
+produce random strings of characters that have no human meaning. This
+demonstrates the axiom about identifiers described in
+<a href="https://en.wikipedia.org/wiki/Zooko%27s_triangle">Zooko's Triangle</a>:
+"human-meaningful, decentralized, secure &mdash; pick any two".
       </p>
 
       <p>
 There are of course many use cases where it is desirable to
-discover a <a>DID</a> when starting from a human-friendly identifier &mdash; a
-natural language name, a domain name, or a conventional address for
-a <a>DID controller</a> such as a mobile telephone number, email address,
-Twitter handle, or blog URL. However, the problem of mapping
-human-friendly identifiers to <a>DIDs</a> (and doing so in a way that can
-be verified and trusted) is out-of-scope for this specification.
+discover a <a>DID</a> when starting from a human-friendly identifier. For
+example, a natural language name, a domain name, or a conventional address for
+a <a>DID controller</a>, such as a mobile telephone number, email address,
+Twitter handle, or blog URL. However, the problem of mapping human-friendly
+identifiers to <a>DIDs</a> (and doing so in a way that can be verified and
+trusted) is outside the scope of this specification.
       </p>
 
       <p>
-Solutions to this problem (and there are many) should be defined in
-separate specifications that reference this specification. It is
-strongly recommended that such specifications carefully consider:
-(a) the numerous security attacks based on deceiving users about
-the true human-friendly identifier for a target entity, and (b) the
-privacy consequences of using human-friendly identifiers that are
-inherently correlatable, especially if they are globally unique.
+Solutions to this problem (and there are many) should be defined in separate
+specifications that reference this specification. It is strongly recommended
+that such specifications carefully consider the:
       </p>
 
+      <ul>
+        <li>
+Numerous security attacks based on deceiving users about the true human-friendly
+identifier for a target entity.
+        </li>
+        <li>
+Privacy consequences of using human-friendly identifiers that are inherently
+correlatable, especially if they are globally unique.
+        </li>
+      <ul>
+
       <p class="note">
-A draft specification for discovering a <a>DID</a> from domain names and
-e-mail addresses using DNS lookups is available at [[DNS-DID]].
+A draft specification for discovering a <a>DID</a> from domain names and email
+addresses using DNS lookups is available at [[DNS-DID]].
 	  </p>
     </section>
 
@@ -2643,39 +2680,42 @@ Immutability
         </h2>
 
         <p>
-Many cybersecurity abuses hinge on exploiting gaps between reality and
-the assumptions of rational, good-faith actors. Like any ecosystem, the
-<a>DID</a> ecosystem has some potential for this to occur. Because this spec is
-focused on a data model rather than a protocol, it offers no opinion about
-many aspects of how that model is put to use. However, individual <a>DID methods</a>
-may wish to consider constraints that would eliminate behaviors or semantics
-they don't need. The more "locked down" a <a>DID method</a> is, while providing the
-same set of features, the less it can be manipulated by malicious actors.
+Many cybersecurity abuses hinge on exploiting gaps between reality and the
+assumptions of rational, good-faith actors. Like any ecosystem, the <a>DID</a>
+ecosystem has some potential for this to occur. Because this specification is
+focused on a data model instead of a protocol, it offers no opinion about many
+aspects of how that model is put to use. However, individual <a>DID methods</a>
+might want to consider constraints that would eliminate behaviors or semantics
+they do not need. The more <em>locked down</em> a <a>DID method</a> is, while
+providing the same set of features, the less it can be manipulated by malicious
+actors.
         </p>
         <p>
 As an example, consider the flexibility that the data model offers with respect
-to updating. A single edit to a <a>DID document</a> can change anything and everything except
-the root <code>id</code> property of the document &mdash; and any individual JSON object
-in the data model can change all of its properties except its <code>id</code>.
-But is it actually desirable for a <a>service endpoint</a> to change its <code>type</code>
-once it's been defined? Or for a key to change its value? Or would it be better
-to require a new <code>id</code> when certain fundamental properties of an
-object change? Malicious takeovers of a web site often aim for an outcome where the
-site keeps its identifier (the host name), but gets subtle, dangerous changes
-underneath. If certain properties of the site were required by spec to be immutable
-(e.g., the <a target="_blank" href="https://en.wikipedia.org/wiki/Autonomous_system_(Internet)">
-ASN</a> associated with its IP address), such attacks might be much harder and
-more expensive to carry out &mdash; and anomaly detection would be easier.
+to updating. A single edit to a <a>DID document</a> can change anything and
+everything except the root <code>id</code> property of the document. And any
+individual JSON object in the data model can change all of its properties except
+its <code>id</code>. But is it actually desirable for a <a>service endpoint</a>
+to change its <code>type</code> after it is defined? Or for a key to change its
+value? Or would it be better to require a new <code>id</code> when certain
+fundamental properties of an object change? Malicious takeovers of a web site
+often aim for an outcome where the site keeps its identifier (the host name),
+but gets subtle, dangerous changes underneath. If certain properties of the site
+were required by the specification to be immutable (for example, the
+<a target="_blank" href="https://en.wikipedia.org/wiki/Autonomous_system_(Internet)">ASN</a>
+associated with its IP address), such attacks might be much harder and more
+expensive to carry out, and anomaly detection would be easier.
         </p>
         <p>
-The notion that immutability may provide some cybersecurity benefits is particularly
-relevant because of caching. For <a>DID methods</a> tied to a global source of truth, a
-direct, just-in-time lookup of the latest version of a <a>DID document</a> is always possible.
-However, it seems likely that layers of cache might eventually sit between a client
-and that source of truth. If they do, believing the attributes of an object in the
-<a>DID document</a> to have a given state, when they are actually subtly different, may invite
-exploits. This is particularly true if some lookups are of a full <a>DID document</a>,
-and others are of partial data, where the larger context is assumed.
+The notion that immutability provides some cybersecurity benefits is
+particularly relevant because of caching. For <a>DID methods</a> tied to a
+global source of truth, a direct, just-in-time lookup of the latest version of a
+<a>DID document</a> is always possible. However, it seems likely that layers of
+cache might eventually sit between a client and that source of truth. If they
+do, believing the attributes of an object in the <a>DID document</a> to have a
+given state, when they are actually subtly different, might invite exploits.
+This is particularly true if some lookups are of a full <a>DID document</a>, and
+others are of partial data, where the larger context is assumed.
         </p>
     </section>
 
