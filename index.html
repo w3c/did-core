@@ -1341,7 +1341,7 @@ detail how revocation is performed and tracked.
 
       <p>
 All public key formats MUST be expressed in either JSON Web Key (JWK)
-format using the <code>publicKeyJwk</code> property or one of the 
+format using the <code>publicKeyJwk</code> property or one of the
 formats listed in the table below. Public key expression MUST NOT use any other key format.
       </p>
 
@@ -1350,6 +1350,13 @@ The Working Group is still debating whether the base encoding format used
 will be Base58 (Bitcoin) [[BASE58]], base64url [[RFC4648]] or base16 (hex) [[RFC4648]]. The entries in the
 table below currently assume PEM and Base58 (Bitcoin), but may change to base64url and/or base16 (hex) once
 the group achieves consensus on this particular issue.
+      </p>
+
+
+      <p class="issue">
+The Working Group is still debating whether secp256k1 Schnorr public key values
+will be elaborated upon in this specification and if so, how they will be
+expressed and encoded.
       </p>
 
       <table class="simple">
@@ -1386,11 +1393,11 @@ the raw 32-byte public key value in Base58 Bitcoin format using the
           </tr>
           <tr>
             <td>
-secp256k1
+secp256k1-koblitz
             </td>
             <td>
-Secp256k1 public key values MUST either be encoded as a JWK or be encoded as the
-raw 32-byte public key value in Base58 Bitcoin format using the
+Secp256k1 Koblitz public key values MUST either be encoded as a JWK or be
+encoded as the raw 33-byte public key value in Base58 Bitcoin format using the
 <code>publicKeyBase58</code> property.
             </td>
           </tr>
