@@ -1132,10 +1132,10 @@ mutually agreed terminology.
       </p>
 
       <p>
-<a>DID Documents</a> contain a number of value-value pairs, where the names  are
-globally identified using <a>URIs</a>. However, those <a>URIs</a> can be  long
-and not very human-friendly. In such cases, short-form human-friendly  aliases
-can be more helpful. This specification uses the <code>@context</code>
+<a>DID Documents</a> contain a number of property-value pairs, where the names
+are globally identified using <a>URIs</a>. However, those <a>URIs</a> can be
+long and not very human-friendly. In such cases, short-form human-friendly
+aliases can be more helpful. This specification uses the <code>@context</code>
 <a>property</a> to map such short-form aliases to the URIs used by specific
 <a>DID Documents</a>.
      </p>
@@ -1183,12 +1183,33 @@ Example:
 
       <pre class="example nohighlight">
 {
-  "@context": [
+  <span class="highlight">"@context": [
     "https://www.w3.org/ns/did/v1",
     "https://www.w3.org/ns/did/example/v1"
-  ]
+  ]</span>,
+  "authentication": [{
+    "id": "did:example:123456789abcdefghi#keys-1",
+    "type": "Ed25519VerificationKey2018",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+  }]
 }
       </pre>
+
+      <p>
+The example above uses the base context <a>URI</a>
+(<code>https://www.w3.org/ns/did/v1</code>) to establish that the
+conversation is about a <a>DID Document</a>. The second <a>URI</a>
+(<code>https://www.w3.org/ns/did/example/v1</code>) establishes that
+the conversation is also about the Example DID Method.
+      </p>
+
+      <p class="note">
+This document uses the example context <a>URI</a>
+(<code>https://www.w3.org/ns/did/v1</code>) for the purpose of demonstrating
+examples. Implementations are expected to not use this <a>URI</a> for any other
+purpose, such as in pilot or production systems.
+      </p>
 
       <p>
 <a>DID method</a> specifications MAY define their own JSON-LD contexts.
