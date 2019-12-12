@@ -1124,37 +1124,37 @@ including whether these properties are required or optional.
     <section>
       <h2>Contexts</h2>
 
-        <p>
+      <p>
 When two software systems need to exchange data, they need to use terminology
 and a protocol that both systems understand. The <code>@context</code>
 property ensures that two systems operating on the same DID document are using
 mutually agreed terminology.
-        </p>
+      </p>
 
-        <p>
+      <p>
 <a>DID Documents</a> contain a number of value-value pairs, where the names  are
 globally identified using <a>URIs</a>. However, those <a>URIs</a> can be  long
 and not very human-friendly. In such cases, short-form human-friendly  aliases
 can be more helpful. This specification uses the <code>@context</code>
 <a>property</a> to map such short-form aliases to the URIs used by specific
 <a>DID Documents</a>.
-       </p>
+     </p>
 
-       <p class="note">
+     <p class="note">
 In JSON-LD, the <code>@context</code> <a>property</a> can also be used to
 communicate other details, such as datatype information, language information,
 transformation rules, and so on, which are used by some DID Methods. For more
 information, see <a href="https://www.w3.org/TR/json-ld11/#the-context">Section
 3.1: The Context</a> of the [[JSON-LD]] specification.
-        </p>
+      </p>
 
-        <p>
+      <p>
 <a>DID documents</a> MUST include the <code>@context</code> property.
-        </p>
+      </p>
 
-        <dl>
-          <dt><dfn>@context</dfn></dt>
-          <dd>
+      <dl>
+        <dt><dfn>@context</dfn></dt>
+        <dd>
 The value of the <code>@context</code> <a>property</a> MUST be an ordered set
 where the first item is a <a>URI</a> with the value
 <code>https://www.w3.org/ns/did/v1</code>. For reference, a copy of the base
@@ -1163,8 +1163,19 @@ in the array MUST express context information and be composed of any combination
 of <a>URIs</a> or objects. It is RECOMMENDED that each <a>URI</a> in the
 <code>@context</code> be one which, if dereferenced, results in a document
 containing machine-readable information about the <code>@context</code>.
-          </dd>
-        </dl>
+        </dd>
+      </dl>
+
+      <p class="note">
+Though this specification requires that a <code>@context</code> <a>property</a>
+be present, it is not required that the value of the <code>@context</code>
+<a>property</a> be processed using JSON-LD. This is to support constrained
+processing environments using plain JSON libraries. All libraries or processors
+MUST ensure that the order of the values in the <code>@context</code>
+<a>property</a> is what is expected for the specific application. Libraries or
+processors that support JSON-LD can process the <code>@context</code>
+<a>property</a> using full JSON-LD processing as expected.
+      </p>
 
       <p>
 Example:
@@ -1172,9 +1183,13 @@ Example:
 
       <pre class="example nohighlight">
 {
-  "@context": "https://www.w3.org/ns/did/v1"
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://www.w3.org/ns/did/example/v1"
+  ]
 }
-</pre>
+      </pre>
+
       <p>
 <a>DID method</a> specifications MAY define their own JSON-LD contexts.
 However it is NOT RECOMMENDED to define a new context unless
