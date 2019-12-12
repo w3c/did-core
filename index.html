@@ -1132,6 +1132,15 @@ mutually agreed terminology.
         </p>
 
         <p>
+<a>DID Documents</a> contain a number of value-value pairs, where the names  are
+globally identified using <a>URIs</a>. However, those <a>URIs</a> can be  long
+and not very human-friendly. In such cases, short-form human-friendly  aliases
+can be more helpful. This specification uses the <code>@context</code>
+<a>property</a> to map such short-form aliases to the URIs used by specific
+<a>DID Documents</a>.
+       </p>
+
+        <p>
 <a>DID documents</a> MUST include the <code>@context</code> property.
         </p>
 
@@ -2392,7 +2401,7 @@ At least the following forms of attack MUST be considered: eavesdropping,
 replay, message insertion, deletion, modification, and man-in-the-middle.
             </li>
             <li>
-Potential denial of service attacks MUST be identified as well. 
+Potential denial of service attacks MUST be identified as well.
             </li>
             <li>
 If the protocol incorporates cryptographic protection mechanisms, clearly
@@ -2402,7 +2411,7 @@ on.
             </li>
             <li>
 Give an indication to what sorts of attacks the cryptographic protection is
-susceptible. 
+susceptible.
             </li>
             <li>
 Data which is to be held secret (keying material, random seeds, and so on) is to
@@ -2624,7 +2633,7 @@ Is monitoring for unauthorized updates (see Section
 <a href="#notification-of-did-document-changes"></a>).
         </li>
         <li>
-Has had adequate opportunity to revert malicious updates according to the 
+Has had adequate opportunity to revert malicious updates according to the
 access control mechanism for the <a>DID method</a> (see Section
 <a href="#authentication"></a>).
         </li>
