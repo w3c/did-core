@@ -1152,21 +1152,17 @@ information, see <a href="https://www.w3.org/TR/json-ld11/#the-context">Section
 <a>DID documents</a> MUST include the <code>@context</code> property.
         </p>
 
-        <p class="note" title="The JSON-LD Context">
-More information about the
-<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
-in general can be found in the [[!JSON-LD]] specification.
-        </p>
-
         <dl>
           <dt><dfn>@context</dfn></dt>
           <dd>
-The value of the <code>@context</code> property MUST be one or more
-<a>URIs</a>, where the value of the first <a>URI</a> is
-<code>https://www.w3.org/ns/did/v1</code>. If more than one
-<a>URI</a> is provided, the <a>URIs</a> MUST be interpreted as an ordered set.
-It is RECOMMENDED that dereferencing the <a>URIs</a> results in a document
-containing machine-readable information about the context.
+The value of the <code>@context</code> <a>property</a> MUST be an ordered set
+where the first item is a <a>URI</a> with the value
+<code>https://www.w3.org/ns/did/v1</code>. For reference, a copy of the base
+context is provided in Appendix <a href="#base-context"></a>. Subsequent items
+in the array MUST express context information and be composed of any combination
+of <a>URIs</a> or objects. It is RECOMMENDED that each <a>URI</a> in the
+<code>@context</code> be one which, if dereferenced, results in a document
+containing machine-readable information about the <code>@context</code>.
           </dd>
         </dl>
 
