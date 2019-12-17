@@ -807,8 +807,9 @@ Generic DID Parameter Names
 
       <p>
 The <a>DID URL</a> syntax supports a simple, generalized format for parameters
-based on the matrix parameter syntax ([[MATRIX-URIS]]). The ABNF above does not
-specify any parameter names (the <code>param-name</code> rule).
+based on the matrix parameter syntax ([[MATRIX-URIS]]). The ABNF above
+specifies the basic syntax (the <code>param-name</code> rule) but does not
+specify any concrete parameter names.
       </p>
       <p>
 Some generic DID parameter names (for example, for service selection) are
@@ -884,16 +885,37 @@ The exact processing rules for these parameters are specified in
 [[DID-RESOLUTION]].
       </p>
 
-      <p class="note">
-There might be additional parameters or options that are not part of the DID
-URL, but instead passed to a <a>DID resolver</a> <em>out-of-band</em>, that is,
-using a resolution protocol or some other mechanism. Such options could for
-example, control caching or the desired format of a resolution result. This is
-similar to HTTP, where caching or result format are expressed as HTTP headers
-instead of as part of an HTTP URL. The important distinction is that DID
-parameters that are part of the <a>DID URL</a> specify what resource is being
-identified, whereas <a>DID resolver</a> options that are not part of the
-<a>DID URL</a> control how that resource is dereferenced.
+      <p>
+Adding a DID parameter to a DID URL means that the parameter becomes part of
+an identifier for a resource (the DID document or other). Alternatively, the
+DID resolution and the DID URL dereferencing processes can also be influenced
+by passing options to a <a>DID resolver</a> that are not part of the DID URL.
+Such options could for example control caching or the desired encoding of a
+resolution result. This is comparable to HTTP, where certain parameters could
+either be included in an HTTP URL, or alternatively passed as HTTP headers
+during the dereferencing process. The important distinction is that DID
+parameters that are part of the <a>DID URL</a> should be used to specify
+<i>what resource is being identified</i>, whereas <a>DID resolver</a> options
+that are not part of the <a>DID URL</a> should be use to control <i>how that
+resource is dereferenced</i>.
+      </p>
+
+      <p>
+DID parameters MAY be used if there is a clear use case where
+the parameter needs to be part of a URI that can be used as a link, or
+as a resource in RDF / JSON-LD documents.
+      </p>
+
+      <p>
+DID parameters SHOULD NOT be used if there are already other, equivalent
+ways of constructing URIs that fulfill the same purpose (for example, using
+other syntactical constructs such as URI query strings or URI fragments).
+      </p>
+
+      <p>
+DID parameters SHOULD NOT be used if the same functionality can be expressed
+by passing options to a <a>DID resolver</a>, and if there is no need to
+construct a URI for use as a link, or as a resource in RDF / JSON-LD documents.
       </p>
     </section>
 
