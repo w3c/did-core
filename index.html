@@ -370,7 +370,6 @@ as well as services that can be used to interact with the entity.
 
     <pre class="example nohighlight" title="Minimal self-managed DID document">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   "authentication": [{
     <span class="comment">// used to authenticate as did:...fghi</span>
@@ -1122,55 +1121,6 @@ including whether these properties are required or optional.
     </p>
 
     <section>
-      <h2>Contexts</h2>
-
-        <p>
-When two software systems need to exchange data, they need to use terminology
-and a protocol that both systems understand. The <code>@context</code>
-property ensures that two systems operating on the same DID document are using
-mutually agreed terminology.
-        </p>
-
-        <p>
-<a>DID documents</a> MUST include the <code>@context</code> property.
-        </p>
-
-        <p class="note" title="The JSON-LD Context">
-More information about the
-<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
-in general can be found in the [[!JSON-LD]] specification.
-        </p>
-
-        <dl>
-          <dt><dfn>@context</dfn></dt>
-          <dd>
-The value of the <code>@context</code> property MUST be one or more
-<a>URIs</a>, where the value of the first <a>URI</a> is
-<code>https://www.w3.org/ns/did/v1</code>. If more than one
-<a>URI</a> is provided, the <a>URIs</a> MUST be interpreted as an ordered set.
-It is RECOMMENDED that dereferencing the <a>URIs</a> results in a document
-containing machine-readable information about the context.
-          </dd>
-        </dl>
-
-      <p>
-Example:
-      </p>
-
-      <pre class="example nohighlight">
-{
-  "@context": "https://www.w3.org/ns/did/v1"
-}
-</pre>
-      <p>
-<a>DID method</a> specifications MAY define their own JSON-LD contexts.
-However it is NOT RECOMMENDED to define a new context unless
-necessary to properly implement the method. Method-specific contexts
-MUST NOT override the terms defined in the generic <a>DID</a> context.
-      </p>
-    </section>
-
-    <section>
       <h2>
 DID Subject
       </h2>
@@ -1254,7 +1204,6 @@ Example:
         </p>
 <pre class="example nohighlight" title="Basic DID document">
 {
-"@context": "https://www.w3.org/ns/did/v1",
 "id": "did:example:123456789abcdefghi",
 "authorizationCapability": [{
   // this entity is a delegate and may update any field in this
@@ -1430,7 +1379,6 @@ Example:
 
       <pre class="example nohighlight" title="Various public keys">
 {
-  "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "publicKey": [{
@@ -1579,7 +1527,6 @@ Example:
 
       <pre class="example nohighlight" title="Authentication field containing three verification methods">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "authentication": [
@@ -1651,7 +1598,6 @@ Example:
 
       <pre class="example nohighlight" title="DID document with a controller property">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   "controller": "did:example:bcehfew7h32f32h7af3",
   "service": [{
@@ -1897,6 +1843,15 @@ is extensible in a number of different ways:
 
       <ul>
         <li>
+The requirement to enable extensible data description is provided 
+through the use of [[!JSON]], which allows description of objects,
+lists, and literals in a human and machine readable fashion. JSON
+objects allow extensions through the addition of properties within
+the object. A data processor MAY ignore any fields that it doesn't
+understand.
+        </li>
+
+        <li>
 The requirement to model complex multi-entity relationships is
 provided through the use of a graph-based data model.
         </li>
@@ -1919,12 +1874,12 @@ variety of signature suites.
 The requirement to provide all of the extensibility mechanisms
 outlined above in a data format that is popular among software
 developers and web page authors is enabled via the use of
-[[!JSON-LD]].
+[[!JSON]].
         </li>
       </ul>
 
       <p>
-This approach to data modeling is often called an "open world
+One approach to data modeling is often called an "open world
 assumption", meaning that anyone can say anything about any other
 thing. This approach often feels in conflict with building simple
 and predictable software systems. Balancing extensibility with
@@ -1934,7 +1889,9 @@ assumption than it is with closed software systems.
 
       <p>
 The rest of this section describes how both extensibility and program
-correctness are achieved through a series of examples.
+correctness are achieved through a series of examples using [[!JSON-LD]].
+Note that key JSON-LD fields such as @context are considered extensions
+themselves and MUST be ignored by any processor not using JSON-LD.
       </p>
 
       <p>
@@ -1943,7 +1900,6 @@ Let us assume that we start with the following <a>DID document</a>:
 
       <pre class="example nohighlight" title="A simple DID document">
 {
-  "@context": "https://example.org/example-method/v1",
   "id": "did:example:123456789abcdefghi",
   "publicKey": [{ <span class="comment">...</span> }],
   "authentication": [{ <span class="comment">...</span> }],
@@ -1955,7 +1911,7 @@ The contents of the <code>publicKey</code>,
 <code>authentication</code>, and <code>service</code> properties are
 not important for the purposes of this section. What is important is
 that the object above is a valid <a>DID document</a>. Let's assume
-that a developer wanted to extend the <a>DID document</a> to express
+that a developer wanted to extend the <a>DID document</a> using JSON-LD to express
 an additional piece of information: the subject's public photo
 stream.
       </p>
