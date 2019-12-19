@@ -370,7 +370,6 @@ as well as services that can be used to interact with the entity.
 
     <pre class="example nohighlight" title="Minimal self-managed DID document">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   "authentication": [{
     <span class="comment">// used to authenticate as did:...fghi</span>
@@ -1122,55 +1121,6 @@ including whether these properties are required or optional.
     </p>
 
     <section>
-      <h2>Contexts</h2>
-
-        <p>
-When two software systems need to exchange data, they need to use terminology
-and a protocol that both systems understand. The <code>@context</code>
-property ensures that two systems operating on the same DID document are using
-mutually agreed terminology.
-        </p>
-
-        <p>
-<a>DID documents</a> MUST include the <code>@context</code> property.
-        </p>
-
-        <p class="note" title="The JSON-LD Context">
-More information about the
-<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
-in general can be found in the [[!JSON-LD]] specification.
-        </p>
-
-        <dl>
-          <dt><dfn>@context</dfn></dt>
-          <dd>
-The value of the <code>@context</code> property MUST be one or more
-<a>URIs</a>, where the value of the first <a>URI</a> is
-<code>https://www.w3.org/ns/did/v1</code>. If more than one
-<a>URI</a> is provided, the <a>URIs</a> MUST be interpreted as an ordered set.
-It is RECOMMENDED that dereferencing the <a>URIs</a> results in a document
-containing machine-readable information about the context.
-          </dd>
-        </dl>
-
-      <p>
-Example:
-      </p>
-
-      <pre class="example nohighlight">
-{
-  "@context": "https://www.w3.org/ns/did/v1"
-}
-</pre>
-      <p>
-<a>DID method</a> specifications MAY define their own JSON-LD contexts.
-However it is NOT RECOMMENDED to define a new context unless
-necessary to properly implement the method. Method-specific contexts
-MUST NOT override the terms defined in the generic <a>DID</a> context.
-      </p>
-    </section>
-
-    <section>
       <h2>
 DID Subject
       </h2>
@@ -1254,7 +1204,6 @@ Example:
         </p>
 <pre class="example nohighlight" title="Basic DID document">
 {
-"@context": "https://www.w3.org/ns/did/v1",
 "id": "did:example:123456789abcdefghi",
 "authorizationCapability": [{
   // this entity is a delegate and may update any field in this
@@ -1430,7 +1379,6 @@ Example:
 
       <pre class="example nohighlight" title="Various public keys">
 {
-  "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "publicKey": [{
@@ -1579,7 +1527,6 @@ Example:
 
       <pre class="example nohighlight" title="Authentication field containing three verification methods">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "authentication": [
@@ -1651,7 +1598,6 @@ Example:
 
       <pre class="example nohighlight" title="DID document with a controller property">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   "controller": "did:example:bcehfew7h32f32h7af3",
   "service": [{
@@ -1700,7 +1646,7 @@ produce an error in that case.
 
       <p>
 The value of the <code>serviceEndpoint</code> property MUST be a
-JSON-LD object or a valid <a>URI</a> conforming to [[RFC3986]] and
+JSON object or a valid <a>URI</a> conforming to [[RFC3986]] and
 normalized according to the rules in section 6 of [[RFC3986]] and to
 any normalization rules in its applicable URI scheme specification.
       </p>
@@ -1737,7 +1683,6 @@ Example:
     "type": "IdentityHub",
     "publicKey": "did:example:123456789abcdefghi#key-1",
     "serviceEndpoint": {
-      "@context": "https://schema.identity.foundation/hub",
       "type": "UserHubEndpoint",
       "instances": ["did:example:456", "did:example:789"]
     }
@@ -1863,8 +1808,9 @@ A <a>DID document</a> MAY include a <code>proof</code> property. If so:
       <dl>
           <dt><dfn>proof</dfn></dt>
           <dd>
-The value of <code>proof</code> MUST be a valid JSON-LD proof as defined by
-<a href="https://w3c-dvcg.github.io/ld-signatures/">Linked Data Proofs</a>.
+The value of <code>proof</code> MUST be a valid proof as defined by
+<a href="https://w3c-dvcg.github.io/ld-signatures/">Linked Data Proofs</a>
+or other specifications.
           </dd>
       </dl>
 
@@ -1891,45 +1837,15 @@ Extensibility
 
       <p>
 One of the goals of the <a>decentralized identifiers</a> data model is to
-enable permissionless innovation. This requires that the data model
-is extensible in a number of different ways:
+enable simple implementations and simple extensions.
+These can take the form of new JSON members, new cryptographic algorithms,
+and new proof methods, among others.
       </p>
 
-      <ul>
-        <li>
-The requirement to model complex multi-entity relationships is
-provided through the use of a graph-based data model.
-        </li>
-
-        <li>
-The requirement to enable extending the machine-readable
-vocabularies used to describe information in the data model &mdash;
-without relying on a centralized system &mdash; is accomplished via
-the use of [[LINKED-DATA]].
-        </li>
-
-        <li>
-The requirement to support multiple types of cryptographic proof
-formats is accomplished via the use of Linked Data Proofs
-[[LD-PROOFS]], Linked Data Signatures [[LD-SIGNATURES]], and a
-variety of signature suites.
-        </li>
-
-        <li>
-The requirement to provide all of the extensibility mechanisms
-outlined above in a data format that is popular among software
-developers and web page authors is enabled via the use of
-[[!JSON-LD]].
-        </li>
-      </ul>
-
       <p>
-This approach to data modeling is often called an "open world
-assumption", meaning that anyone can say anything about any other
-thing. This approach often feels in conflict with building simple
-and predictable software systems. Balancing extensibility with
-program correctness is always more challenging with an open world
-assumption than it is with closed software systems.
+The key to extending JSON is that new member names
+that are not understood by an implementation MUST be ignored;
+their inclusion MUST NOT cause processing to fail.
       </p>
 
       <p>
@@ -1943,7 +1859,6 @@ Let us assume that we start with the following <a>DID document</a>:
 
       <pre class="example nohighlight" title="A simple DID document">
 {
-  "@context": "https://example.org/example-method/v1",
   "id": "did:example:123456789abcdefghi",
   "publicKey": [{ <span class="comment">...</span> }],
   "authentication": [{ <span class="comment">...</span> }],
@@ -1961,91 +1876,37 @@ stream.
       </p>
 
       <p>
-The first thing that a developer would do is create a JSON-LD Context
-containing the new term:
-      </p>
-
-      <pre class="example nohighlight" title="An example JSON-LD Context">
-{
-  "@context": {
-    "PhotoStreamService": "https://example.com/vocab#PhotoStreamService"
-  }
-}
-      </pre>
-      <p>
-Now that the JSON-LD Context has been created, the developer MUST
-publish it somewhere that is accessible to any <a>DID document</a>
-processor. For this example, let us assume that the JSON-LD Context
-above is published at the following URL:
-<code>did:example:contexts:987654321</code>. At this point, extending
-the first example in this section is a simple matter of including the
-context above and adding the new property to the <a>DID document</a>.
+The developer would do this by defining a new value to include
+in the <a>DID document</a> to express this value,
+in this case, named <code>photoStreamService</code>.
       </p>
 
       <pre class="example nohighlight" title="A DID document with a custom extension">
 {
-  "@context": "https://example.org/example-method/v1",
   "id": "did:example:123456789abcdefghi",
   "authentication": [ <span class="comment">...</span> ],
-  "service": [<span class="highlight">{
-    "@context": "did:example:contexts:987654321",
-    "id": "did:example:123456789abcdefghi#photos",
-    "type": "PhotoStreamService",
-    "serviceEndpoint": "https://example.org/photos/379283"
+  "photoStreamService": "https://example.org/photos/379283"
   }</span>]
 }
       </pre>
       <p>
-The examples so far have shown that it is easy to extend the
-<a>decentralized identifiers</a> data model in a permissionless and
-decentralized way. The mechanism also ensures that <a>decentralized
-identifiers</a> created in this way prevent namespace conflicts and
-semantic ambiguity.
-      </p>
-
-      <p>
-An extensibility model that is this dynamic does increase
-implementation burden. Software written for such a system will have
-to determine if accepting <a>DID document</a>s with extensions is
-acceptable based on the risk profile of the application. Some
-applications may choose to accept but ignore extensions, others may
-choose to only accept certain extensions, while highly secure
-environments may disallow extensions. These decisions are up to the
-application developers and are specifically not the domain of this
-specification.
-      </p>
-
-      <p>
-Implementations MUST produce an error when an extension JSON-LD
-Context overrides the expanded URL for a term specified in this
-specification. To avoid the possibility of accidentally overriding
-terms, developers SHOULD scope their extensions. For example,
-the following extension scopes the new
-<code>PhotoStreamService</code> term so that it may only be used
-within the <code>service</code> property:
-      </p>
-
-      <pre class="example nohighlight" title="Scoping terms in a JSON-LD Context">
-{
-  "@context": {
-    <span class="highlight">"service": {
-      "@id": "https://w3id.org/did#service",
-      "@context": {
-        "PhotoStreamService": "https://example.com/vocab#PhotoStreamService"
-      }
-    }</span>
-  }
-}
-      </pre>
-      <p>
-Developers are urged to ensure that extension JSON-LD Contexts are
-highly available. Implementations that cannot fetch a context will
-produce an error. Strategies for ensuring that extension JSON-LD
-Contexts are always available include using content-addressed URLs
-for contexts, bundling context documents with implementations, or
-enabling aggressive caching of contexts.
+Implementations that understand the <code>photoStreamService</code>
+value can use it.  Those that don't simply ignore it.
       </p>
     </section>
+
+    <section>
+      <h2>
+Reserved @context property
+      </h2>
+
+      <p>
+The <code>@context</code> property name is reserved and MUST NOT be included in a <a>DID document</a>,
+unless the document is being treated as being JSON-LD. The encoding and extensibility model for JSON-LD
+is defined in Appendix A of this specification.
+      </p>
+    </section>
+
   </section>
 
   <section class="normative">
@@ -2056,14 +1917,13 @@ DID Document Syntax
       <p>
 A <a>DID document</a> MUST be a single JSON object conforming to [[!RFC8259]].
 Many of the concepts in this document were introduced by example using the
-JSON-LD syntax, a format for mapping JSON data into the RDF semantic graph
-model, as defined by [[!JSON-LD]]. This section formalizes how the data model
+This section formalizes how the data model
 (described in Sections <a href="#data-model"></a> and
-<a href="#did-documents"></a>) is realized in JSON-LD.
+<a href="#did-documents"></a>) is realized in JSON.
       </p>
       <p>
-Although syntactic mappings are provided for JSON and JSON-LD only, applications
-and services can use any other data representation syntax, such as JXD (JSON XDI
+Although a syntactic mapping is provided for JSON only, applications
+and services can use any other data representation syntax, such as JSON-LD, JXD (JSON XDI
 Data, a serialization format for the
 <a href="http://docs.oasis-open.org/xdi/xdi-core/v1.0/csd01/xdi-core-v1.0-csd01.xml">XDI graph model</a>),
 XML, YAML, or CBOR, that is capable of expressing the data model.
@@ -2105,61 +1965,6 @@ Other values MUST be represented as a String type.
         </ul>
     </section>
 
-    <section>
-      <h2>
-JSON-LD
-      </h2>
-
-        <p>
-[[!JSON-LD]] is a JSON-based format used to serialize
-<a href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a>. The
-syntax is designed to easily integrate into deployed systems already using
-JSON, and provides a smooth upgrade path from JSON to JSON-LD. It is primarily
-intended to be a way to use Linked Data in Web-based programming environments,
-to build interoperable Web services, and to store Linked Data in JSON-based
-storage engines.
-        </p>
-
-        <p>
-JSON-LD is useful when extending the data model described in this specification.
-Instances of the data model are encoded in JSON-LD in the same way they are
-encoded in JSON (see Section <a href="#json"></a>), with the addition of the
-<code>@context</code> property. The
-<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
-is described in detail in the [[!JSON-LD]] specification and its use is
-elaborated on in Section <a href="#extensibility"></a>.
-        </p>
-
-        <p>
-In general, the data model and syntaxes described in this document are designed
-such that developers can copy and paste examples into their software systems.
-The design goal of this approach is to provide a low barrier to entry while
-still ensuring global interoperability between a heterogeneous set of software
-systems. This section describes some of these approaches, which will likely go
-unnoticed by most developers, but whose details will be of interest to
-implementers. Noteworthy features provided by JSON-LD are:
-        </p>
-
-        <ul>
-          <li>
-The <code>@id</code> and <code>@type</code> keywords are aliased to
-<code>id</code> and <code>type</code> respectively, enabling developers to use
-this specification as idiomatic JSON.
-          </li>
-          <li>
-Data types, such as integers, dates, units of measure, and URLs, are
-automatically typed to provide stronger type guarantees for use cases that
-require them.
-          </li>
-          <li>
-The <code>@protected</code> properties feature of JSON-LD 1.1 is used to ensure
-that terms defined by this specification cannot be overridden. This means that
-as long as the same <code>@context</code> declaration is made at the top of a
-<a>DID document</a>, interoperability is guaranteed between implementations
-that use a JSON-LD processor and implementations that do not.
-          </li>
-        </ul>
-    </section>
   </section>
 
   <section>
@@ -3062,9 +2867,9 @@ Alternate Serializations and Graph Models
       </h2>
 
       <p>
-This version of the specification relies on JSON-LD and the RDF graph
-model for expressing a <a>DID document</a>. Future versions of this
-specification might specify other semantic graph formats for a <a>DID
+This version of the specification relies on JSON
+for expressing a <a>DID document</a>. Future versions of this
+specification might specify other formats for a <a>DID
 document</a>.
       </p>
     </section>
@@ -3142,16 +2947,6 @@ specifications.
           </td>
         </tr>
 
-        <tr>
-          <td>
-<a href="https://w3c-ccg.github.io/ld-cryptosuite-registry/">Linked Data
-Cryptography Suite Registry</a>
-          </td>
-          <td>
-Defines all known Linked Data Cryptography Suites and Key
-Formats.
-          </td>
-        </tr>
       </tbody>
     </table>
   </section>
@@ -3162,12 +2957,11 @@ Real World Example
     </h1>
 
     <p>
-A future-facing real-world context is provided below:
+A future-facing real-world example is provided below:
     </p>
 
     <pre class="example nohighlight" title="Advanced DID document example">
 {
-  "@context": "https://w3id.org/future-method/v1",
   "id": "did:example:123456789abcdefghi",
 
   "publicKey": [{
