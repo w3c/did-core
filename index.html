@@ -1172,7 +1172,7 @@ The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
 where the value of the first <a>URI</a> is
 <code>https://www.w3.org/ns/did/v1</code>. If more than one <a>URI</a> is
 provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
-RECOMMENDED that dereferencing the <a>URIs</a> results in a document containing
+RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
 machine-readable information about the context.
         </dd>
       </dl>
@@ -1335,8 +1335,8 @@ error.
       </p>
 
       <p>
-The value of the <code>type</code> property MUST be exactly one public key
-value. For a registry of available key types and formats, see Appendix
+The value of the <code>type</code> property MUST be exactly one public key type.
+For a registry of available key types and formats, see Appendix
 <a href="#registries"></a>.
       </p>
 
@@ -1361,7 +1361,7 @@ performed and tracked.
       </p>
 
       <p>
-All public key formats MUST be expressed in either JSON Web Key (JWK) format
+Public keys of all types MUST be expressed in either JSON Web Key (JWK) format
 using the <code>publicKeyJwk</code> property or one of the formats listed in the
 table below. Public key expression MUST NOT use any other key format.
       </p>
@@ -1632,7 +1632,7 @@ on their behalf.
       <p class="note">
 Authorization is separate from authentication, as explained in
 Section <a href="#authentication"></a>. This is particularly important for key
-recovery, in the case of key loss when the subject no longer has
+recovery, in the case of key loss, when the subject no longer has
 access to their keys, or key compromise, where the <a>DID controller</a>'s
 trusted third parties need to override malicious activity by an attacker. For
 more information, see Section <a href="#security-considerations"></a>.
@@ -1650,7 +1650,7 @@ Delegation, which may be layered:
 
       <ul>
         <li>
-A <a>DID registry</a> could implement a coarse grained <code>controller</code>
+A <a>DID registry</a> could implement a coarse-grained <code>controller</code>
 pattern by enabling <a>DID documents</a> to express the <a>DID</a> of another
 <a>DID controller</a> that controls it, or
 additionally,
