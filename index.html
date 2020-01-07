@@ -2838,18 +2838,20 @@ Privacy Considerations
 
     <p>
 It is critically important to apply the principles of Privacy by Design
-to all aspects of decentralized identifier architecture, because DIDs
-and DID Documents are &mdash; by design &mdash; administered directly by
-the <a>DID controller(s)</a>.
-There is no registrar, hosting company, or other intermediate service
-provider to recommend or apply additional privacy safeguards. The
-authors of this specification have applied all seven Privacy by Design
-principles throughout its development. For example, privacy in this
-specification is preventative not remedial, and privacy is an embedded
-default. Furthermore, <a>decentralized identifier</a> architecture by itself
-embodies principle #7, "Respect for user privacy &mdash; keep it user-centric."
+to all aspects of the <a>decentralized identifier</a> architecture, because
+<a>DIDs</a> and <a>DID documents</a> are, by design, administered directly by
+the <a>DID controller(s)</a>. There is no registrar, hosting company, or other
+intermediate service provider to recommend or apply additional privacy
+safeguards. The authors of this specification have applied all seven Privacy by
+Design principles throughout its development. For example, privacy in this
+specification is preventative not remedial, and privacy is an embedded default.
+Furthermore, the <a>decentralized identifier</a> architecture by itself embodies
+principle #7, "Respect for user privacy &mdash; keep it user-centric."
+    </p>
+
+    <p>
 This section lists additional privacy considerations that implementers,
-delegates, and <a>DID subjects</a> should bear in mind.
+delegates, and <a>DID subjects</a> should keep in mind.
     </p>
 
     <section>
@@ -2857,22 +2859,25 @@ delegates, and <a>DID subjects</a> should bear in mind.
 Requirements of DID Method Specifications
       </h2>
 
-      <ol start="1">
+    <p>
+The privacy requirements for <a>DID method</a> specifications are as follows:
+    </p>
+
+      <ul>
         <li>
-<a>DID method</a> specifications MUST include their own Privacy
-Considerations sections, if only to point to the general privacy
-considerations in this section.
+<a>DID method</a> specifications MUST include their own Privacy Considerations
+sections, if only to point to the general privacy considerations in this
+section.
         </li>
 
         <li>
-The <a>DID method</a> specification's Privacy Considerations section
-MUST discuss any subsection of
-section 5 of [[RFC6973]] that could apply in a method-specific
-manner. The subsections to consider are: surveillance, stored data
-compromise, unsolicited traffic, misattribution, correlation,
-identification, secondary use, disclosure, exclusion.
+The Privacy Considerations section for the <a>DID method</a> specifications
+MUST discuss any subsection of section 5 of [[RFC6973]] that could apply in a
+method-specific manner. The subsections to consider are: surveillance, stored
+data compromise, unsolicited traffic, misattribution, correlation,
+identification, secondary use, disclosure, and exclusion.
         </li>
-      </ol>
+      </ul>
     </section>
 
     <section>
@@ -2881,18 +2886,17 @@ Keep Personally-Identifiable Information (PII) Private
       </h2>
 
       <p>
-If a <a>DID method</a> specification is written for a public <a>DID
-registry</a> where all <a>DIDs</a> and <a>DID documents</a> will be publicly available,
-it is <em>critical</em> that <a>DID documents</a> contain no PII. All PII
-should be kept behind <a>service endpoints</a> under the control
-of the <a>DID subject</a>. With this privacy architecture, PII may be exchanged
-on a private, peer-to-peer basis using communications channels identified and
-secured by <a>public key descriptions</a> in <a>DID documents</a>. This also
-enables <a>DID subjects</a> and relying parties to implement the
+If a <a>DID method</a> specification is written for a public <a>DID registry</a>
+where all <a>DIDs</a> and <a>DID documents</a> are publicly available, it is
+<em>critical</em> that <a>DID documents</a> contain no PII. All PII should be
+kept behind <a>service endpoints</a> under the control of the
+<a>DID subject</a>. With this privacy architecture, PII can be exchanged on a
+private, peer-to-peer basis using communications channels identified and secured
+by <a>public key descriptions</a> in <a>DID documents</a>. This also enables
+<a>DID subjects</a> and relying parties to implement the
 <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>
-<a href="https://en.wikipedia.org/wiki/Right_to_be_forgotten">right
-to be forgotten</a>, as no PII will be written to an immutable
-<a>distributed ledger</a>.
+<a href="https://en.wikipedia.org/wiki/Right_to_be_forgotten">right to be forgotten</a>,
+because no PII is written to an immutable <a>distributed ledger</a>.
       </p>
     </section>
 
@@ -2902,15 +2906,16 @@ DID Correlation Risks and Pseudonymous DIDs
       </h2>
 
       <p>
-Like any type of globally unique identifier, <a>DIDs</a> may be used for
+Like any type of globally unique identifier, <a>DIDs</a> might be used for
 correlation. <a>DID controllers</a> can mitigate this privacy risk by using
-pairwise unique <a>DIDs</a>, i.e., by sharing a different private <a>DID</a> for
+pairwise unique <a>DIDs</a>, that is, sharing a different private <a>DID</a> for
 every relationship. In effect, each <a>DID</a> acts as a pseudonym. A
 pseudonymous <a>DID</a> need only be shared with more than one party when
 the <a>DID subject</a> explicitly authorizes correlation between those parties.
 If pseudonymous <a>DIDs</a> are the default, then the only need for a public
-<a>DID</a> &mdash; a <a>DID</a> published openly or shared with a large number of
-parties &mdash; is when the <a>DID subject</a> explicitly desires public identification.
+<a>DID</a> (a <a>DID</a> published openly or shared with a large number of
+parties) is when the <a>DID subject</a> explicitly desires public
+identification.
       </p>
     </section>
 
@@ -2920,21 +2925,20 @@ DID Document Correlation Risks
       </h2>
 
       <p>
-The anti-correlation protections of pseudonymous <a>DIDs</a> are easily
-defeated if the data in the corresponding <a>DID documents</a> can be
-correlated. For example, using same <a>public key descriptions</a> or
-bespoke <a>service endpoints</a> in multiple <a>DID documents</a> can provide
-as much correlation information as using the same <a>DID</a>. Therefore the <a>DID
-document</a> for a pseudonymous <a>DID</a> also needs to use pairwise-unique
-public keys.
+The anti-correlation protections of pseudonymous <a>DIDs</a> are easily defeated
+if the data in the corresponding <a>DID documents</a> can be correlated. For
+example, using same <a>public key descriptions</a> or bespoke
+<a>service endpoints</a> in multiple <a>DID documents</a> can provide as much
+correlation information as using the same <a>DID</a>. Therefore the
+<a>DID document</a> for a pseudonymous <a>DID</a> also needs to use pairwise
+unique public keys.
 
-It might seem natural to also use pairwise-unique <a>service endpoints</a>
-in the <a>DID document</a> for a pseudonymous <a>DID</a>. However, unique
-endpoints allow all traffic between to <a>DIDs</a> to be isolated perfectly into
-unique buckets, where timing correlation and similar analysis is easy.
-Therefore, a better strategy for endpoint privacy may be to share an
-endpoint among thousands or millions of <a>DIDs</a> controlled by many different
-subjects.
+It might seem natural to also use pairwise unique <a>service endpoints</a> in
+the <a>DID document</a> for a pseudonymous <a>DID</a>. However, unique endpoints
+allow all traffic between two <a>DIDs</a> to be isolated perfectly into unique
+buckets, where timing correlation and similar analysis is easy. Therefore, a
+better strategy for endpoint privacy might be to share an endpoint among
+thousands or millions of <a>DIDs</a> controlled by many different subjects.
       </p>
     </section>
 
@@ -2948,12 +2952,11 @@ When a <a>DID subject</a> is indistinguishable from others in the herd, privacy
 is available. When the act of engaging privately with another party
 is by itself a recognizable flag, privacy is greatly diminished. <a>DIDs</a>
 and <a>DID methods</a> need to work to improve herd privacy, particularly for
-those who legitimately need it most. Choose technologies and human
-interfaces that default to preserving anonymity and pseudonymity. In
-order to reduce <a href="https://en.wikipedia.org/wiki/Device_fingerprint">digital
-fingerprints</a>, share common settings across client
-implementations, keep negotiated options to a minimum on wire
-protocols, use encrypted transport layers, and pad messages to
+those who legitimately need it most. Choose technologies and human interfaces
+that default to preserving anonymity and pseudonymity. To reduce
+<a href="https://en.wikipedia.org/wiki/Device_fingerprint">digital fingerprints</a>,
+share common settings across client implementations, keep negotiated options to
+a minimum on wire protocols, use encrypted transport layers, and pad messages to
 standard lengths.
       </p>
     </section>
