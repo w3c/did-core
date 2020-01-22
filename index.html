@@ -2217,8 +2217,8 @@ detail necessary to build and test interoperable client implementations with the
 operations required of a CKMS (cryptographic key management system). For
 example, key registration, key replacement, key rotation, key recovery, and key
 expiration.
-
       </p>
+
       <p>
 Any <a>DID method</a> specification that does not support a specific operation,
 such as update or deactivate, MUST clearly state these limitations.
@@ -2307,6 +2307,104 @@ and members of the community have a place to see an overview of existing
       </p>
     </section>
 
+    <section>
+      <h2>
+Security requirements
+      </h2>
+
+      <p class="issue">
+Discussions at Rebooting the Web of Trust 5 resulted in consensus to
+move Authorization to <a>DID method</a> specifications. It is currently
+expected that there will be an attempt to create a generalized
+authorization mechanism that is build on object capabilities.
+      </p>
+
+      <p>
+<a>DID method</a> specifications MUST include their own Security
+Considerations sections. This section MUST consider all the requirements
+mentioned in section 5 of [[RFC3552]] (page 27) for the <a>DID</a> operations
+defined in the specification.
+      </p>
+      <p>
+At least the following forms of attack MUST be considered: eavesdropping,
+replay, message insertion, deletion, modification, and man-in-the-middle.
+Potential denial of service attacks MUST be identified as well. 
+      </p>
+      <p>
+If the protocol incorporates cryptographic protection mechanisms, the 
+<a>DID method</a> specification MUST clearly indicate which portions of the
+data are protected and what the protections are, and SHOULD give an indication
+to what sorts of attacks the cryptographic protection is susceptible.
+For example, integrity only, confidentiality, endpoint authentication, and so
+on.  
+      <p>    
+Data which is to be held secret (keying material, random seeds, and so on) SHOULD
+be clearly labeled.
+      </p>
+      <p>
+If the technology involves authentication, particularly user-host
+authentication, the security of the authentication method MUST be clearly
+specified.
+      </p>
+      <p>
+This section MUST discuss, per Section 5 of [[RFC3552]], residual risks (such as
+the risks from compromise in a related protocol, incorrect implementation, or
+cipher) after threat mitigation was deployed.
+      </p>
+      <p>
+This section MUST provide integrity protection and update authentication for all
+operations required by Section <a href="#did-operations"></a>.
+      </p>
+      <p>
+Where <a>DID methods</a> make use of peer-to-peer computing resources, such as
+with all known <a>DLTs</a>, the expected burdens of those resources SHOULD be
+discussed in relation to denial of service.
+      </p> 
+      <p>
+Method-specific endpoint authentication MUST be discussed. Where
+<a>DID methods</a> make use of <a>DLTs</a> with varying network topology,
+sometimes offered as <em>light node</em> or
+<em><a href="https://en.bitcoin.it/wiki/Thin_Client_Security">thin client</a></em>
+implementations to reduce required computing resources, the security assumptions
+of the topology available to implementations of the <a>DID method</a> MUST be
+discussed.
+      </p>
+      <p>
+<a>DID methods</a> MUST discuss the policy mechanism by which <a>DIDs</a> are
+proven to be uniquely assigned. A <a>DID</a> fits the functional definition
+of a URN, as defined in [[RFC8141]]. That is, a <a>DID</a> is a persistent
+identifier that is assigned once to a resource and never reassigned to a
+different resource. This is particularly important in a security context because
+a <a>DID</a> might be used to identify a specific party subject to a specific
+set of authorization rights.
+      </p>
+      <p>
+<a>DID methods</a> that introduce new authentication <a>service endpoint</a>
+types (see Section <a href="#service-endpoints"></a>) SHOULD consider the
+security requirements of the supported authentication protocol.
+      </p>
+
+    </section>
+
+    <section class='normative'>
+      <h2>
+Privacy Requirements
+      </h2>
+
+      <p>
+<a>DID method</a> specifications MUST include their own Privacy
+Considerations sections, if only to point to
+<a href="#privacy-considerations"></a>.
+      </p>
+
+      <p>
+The <a>DID method</a> specification's Privacy Considerations section
+MUST discuss any subsection of section 5 of [[RFC6973]] that could
+apply in a method-specific manner. The subsections to consider are:
+surveillance, stored data compromise, unsolicited traffic, misattribution,
+correlation, identification, secondary use, disclosure, exclusion.    
+      </p>
+    </section>
   </section>
 
   <section class='normative'>
@@ -2356,107 +2454,6 @@ allow operation on passively monitored networks without risking
 compromise of private keys. This is what makes <a>DID</a> architecture and
 decentralized identity possible.
     </p>
-
-    <section>
-      <h2>
-Requirements of DID Method Specifications
-      </h2>
-
-      <p>
-The requirements for <a>DID method</a> specifications are as follows:
-      </p>
-      <ul>
-        <li>
-<a>DID method</a> specifications MUST include their own Security Considerations
-section.
-        </li>
-
-        <li>
-This section MUST consider all the requirements mentioned in Section 5 of
-[[RFC3552]] (page 27) for the <a>DID</a> operations defined in the
-specification. In particular:
-
-      <p class="issue">
-Discussions at Rebooting the Web of Trust 5 resulted in consensus to
-move Authorization to <a>DID method</a> specifications. It is currently
-expected that there will be an attempt to create a generalized
-authorization mechanism that is build on object capabilities.
-      </p>
-
-          <ul>
-            <li>
-At least the following forms of attack MUST be considered: eavesdropping,
-replay, message insertion, deletion, modification, and man-in-the-middle.
-            </li>
-            <li>
-Potential denial of service attacks MUST be identified as well. 
-            </li>
-            <li>
-If the protocol incorporates cryptographic protection mechanisms, clearly
-indicate which portions of the data are protected and what the protections are.
-For example, integrity only, confidentiality, endpoint authentication, and so
-on.
-            </li>
-            <li>
-Give an indication to what sorts of attacks the cryptographic protection is
-susceptible. 
-            </li>
-            <li>
-Data which is to be held secret (keying material, random seeds, and so on) is to
-be clearly labeled.
-            </li>
-            <li>
-If the technology involves authentication, particularly user-host
-authentication, the security of the authentication method MUST be clearly
-specified.
-            </li>
-          </ul>
-        </li>
-
-        <li>
-This section MUST discuss, per Section 5 of [[RFC3552]], residual risks (such as
-the risks from compromise in a related protocol, incorrect implementation, or
-cipher) after threat mitigation was deployed.
-        </li>
-
-        <li>
-This section MUST provide integrity protection and update authentication for all
-operations required by Section <a href="#did-operations"></a>.
-        </li>
-
-        <li>
-Where <a>DID methods</a> make use of peer-to-peer computing resources, such as
-with all known <a>DLTs</a>, the expected burdens of those resources SHOULD be
-discussed in relation to denial of service.
-        </li>
-
-        <li>
-Method-specific endpoint authentication MUST be discussed. Where
-<a>DID methods</a> make use of <a>DLTs</a> with varying network topology,
-sometimes offered as <em>light node</em> or
-<em><a href="https://en.bitcoin.it/wiki/Thin_Client_Security">thin client</a></em>
-implementations to reduce required computing resources, the security assumptions
-of the topology available to implementations of the <a>DID method</a> MUST be
-discussed.
-        </li>
-
-        <li>
-<a>DID methods</a> MUST discuss the policy mechanism by which <a>DIDs</a> are
-proven to be uniquely assigned. A <a>DID</a> fits the functional definition
-of a URN, as defined in [[RFC8141]]. That is, a <a>DID</a> is a persistent
-identifier that is assigned once to a resource and never reassigned to a
-different resource. This is particularly important in a security context because
-a <a>DID</a> might be used to identify a specific party subject to a specific
-set of authorization rights.
-        </li>
-
-        <li>
-<a>DID methods</a> that introduce new authentication <a>service endpoint</a>
-types (see Section <a href="#service-endpoints"></a>) SHOULD consider the
-security requirements of the supported authentication protocol.
-        </li>
-      </ul>
-    </section>
 
     <section>
       <h2>
@@ -2828,32 +2825,6 @@ principle #7, "Respect for user privacy &mdash; keep it user-centric."
 This section lists additional privacy considerations that implementers,
 delegates, and <a>DID subjects</a> should keep in mind.
     </p>
-
-    <section>
-      <h2>
-Requirements of DID Method Specifications
-      </h2>
-
-    <p>
-The privacy requirements for <a>DID method</a> specifications are as follows:
-    </p>
-
-      <ul>
-        <li>
-<a>DID method</a> specifications MUST include their own Privacy Considerations
-sections, if only to point to the general privacy considerations in this
-section.
-        </li>
-
-        <li>
-The Privacy Considerations section for the <a>DID method</a> specifications
-MUST discuss any subsection of section 5 of [[RFC6973]] that could apply in a
-method-specific manner. The subsections to consider are: surveillance, stored
-data compromise, unsolicited traffic, misattribution, correlation,
-identification, secondary use, disclosure, and exclusion.
-        </li>
-      </ul>
-    </section>
 
     <section>
       <h2>
