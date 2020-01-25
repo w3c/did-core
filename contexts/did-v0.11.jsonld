@@ -50,6 +50,8 @@
     "publicKey": {"@id": "sec:publicKey", "@type": "@id", "@container": "@set"},
     "publicKeyBase58": "sec:publicKeyBase58",
     "publicKeyPem": "sec:publicKeyPem",
+    "publicKeyJwk": "sec:publicKeyJwk",
+    "publicKeyHex": "sec:publicKeyHex",
     "revoked": {"@id": "sec:revoked", "@type": "xsd:dateTime"},
     "service": {"@id": "didv:service", "@type": "@id", "@container": "@set"},
     "serviceEndpoint": {"@id": "didv:serviceEndpoint", "@type": "@id"},
