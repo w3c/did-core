@@ -2525,26 +2525,14 @@ Security Considerations
     </h1>
 
     <p class="note" title="Note to implementers">
-During the Implementer’s Draft stage, this
-section focuses on security topics that should be important in early
-implementations. The editors are also seeking feedback on threats and
-threat mitigations that should be reflected in this section or
-elsewhere in the spec. As the root identifier records for <a>decentralized
-identifiers</a> (DIDs) and <a>DID documents</a> are a vital component of
-<a>decentralized identity management</a>. They are also the foundational
-building blocks of <a>decentralized public key infrastructure</a> (DPKI)
-as an augmentation to conventional X.509 certificates. As such, <a>DIDs</a> are
-designed to operate under the general Internet threat model used by
-many IETF standards. We assume uncompromised endpoints, but allow
-messages to be read or corrupted on the network. Protecting against an
-attack when a system is compromised requires external key-signing
-hardware. See also Section <a href="#key-revocation-and-recovery"></a>
-regarding key revocation and recovery. For their part, the <a>DLTs</a> hosting
-<a>DIDs</a> and <a>DID documents</a> have special security properties for preventing
-active attacks. Their design uses public/private key cryptography to
-allow operation on passively monitored networks without risking
-compromise of private keys. This is what makes <a>DID</a> architecture and
-decentralized identity possible.
+During the Working Draft stage, this section focuses on security topics that
+should be important in early implementations. The editors are seeking feedback
+on threats and threat mitigations that should be reflected in this section or
+elsewhere in the spec. <a>DIDs</a> are designed to operate under the general
+Internet threat model used by many IETF standards. We assume uncompromised
+endpoints, but anticipate that messages could be read or corrupted on the network.
+Protecting against an attack when a system is compromised requires external
+key-signing hardware (see Section <a href="#key-revocation-and-recovery"></a>).
     </p>
 
     <section>
