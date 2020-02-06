@@ -2890,177 +2890,6 @@ standard lengths.
     </section>
   </section>
 
-  <section class="informative">
-    <h1>
-Future Work
-    </h1>
-
-    <section>
-      <h2>
-Upper Limits on DID Character Length
-      </h2>
-
-      <p>
-The current specification does not take a position on maximum length
-of a <a>DID</a>. The maximum interoperable URL length is currently about 2K
-characters. QR codes can handle about 4K characters. Clients using
-<a>DIDs</a> will be responsible for storing many <a>DIDs</a>, and some methods
-would be able to externalize some of their costs onto clients by
-relying on more complicated signature schemes or by adding state into
-<a>DIDs</a> intended for temporary use. A future version of this
-specification should set reasonable limits on <a>DID</a> character length to
-minimize externalities.
-      </p>
-    </section>
-
-    <section>
-      <h2>
-Equivalence
-      </h2>
-
-      <p>
-Including an equivalence property, such as <code>equivID</code>, in <a>DID documents</a>
-whose value is an array of <a>DIDs</a> would allow subjects to assert two or
-more <a>DIDs</a> that represent the same subject. This capability has
-numerous uses, including supporting migration between <a>DID registries</a> and
-providing forward compatibility of existing <a>DIDs</a> to future <a>DID
-registries</a>. In
-theory, equivalent <a>DIDs</a> should have the same identifier rights,
-allowing <a href="https://w3c.github.io/vctf/">verifiable claims</a>
-made against one <a>DID</a> to apply to equivalent <a>DIDs</a>. Equivalence was not
-included in the current specification due to the complexity of
-verifying equivalence across different <a>DLTs</a> and different <a>DID
-methods</a>, and also of aggregating properties of equivalent <a>DID
-documents</a>. However equivalence should be supported in a future
-version of this specification.
-      </p>
-    </section>
-
-    <section>
-      <h2>
-Timestamps
-      </h2>
-
-      <p>
-Verifiable timestamps have significant utility for identifier
-records. This is a good fit for <a>DLTs</a>, since most offer some type of
-timestamp mechanism. Despite some transactional cost, they are the
-most censorship-resistant transaction ordering systems in the world,
-so they are nearly ideal for <a>DID document</a> timestamping. In some cases
-a <a>DLT</a>'s immediate timing is approximate, however their sense of
-<a href="https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki%23Abstract">
-"median time past" (see Bitcoin BIP 113)</a> can be precisely
-defined. A generic <a>DID document</a> timestamping mechanism could would
-work across all <a>DLTs</a> and might operate via a mechanism including
-either individual transactions or transaction batches. The generic
-mechanism was deemed out of scope for this version, although it may
-be included in a future version of this specification.
-      </p>
-    </section>
-
-    <section>
-      <h2>
-Time Locks and DID Document Recovery
-      </h2>
-
-      <p>
-Section <a href="#key-revocation-and-recovery"></a> mentions one
-possible clever use of time locks to recover control of a <a>DID</a> after a
-key compromise. The technique relies on an ability to override the
-most recent update to a <a>DID document</a> with Authorization applied by an
-earlier version of the <a>DID document</a> in order to defeat the attacker.
-This protection depends on adding a <a href="https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki%23Abstract">
-time lock (see Bitcoin BIP 65)</a> to protect part of the transaction
-chain, enabling a Authorization block to be used to recover control.
-We plan to add support for time locks in a future version of this
-specification.
-      </p>
-    </section>
-
-    <section>
-      <h2>
-Smart Signatures
-      </h2>
-
-      <p>
-Not all <a>DLTs</a> can support the Authorization logic in section
-<a href="#authorization-and-delegation"></a>.
-Therefore, in this version of the specification, all Authorization
-logic is delegated to <a>DID method</a> specifications. A potential
-future solution is a <a href="http://www.weboftrust.info/downloads/smart-signatures.pdf">Smart
-Signature</a> specification that specifies the code any conformant
-<a>DLT</a> may implement to process signature control logic.
-      </p>
-    </section>
-
-    <section>
-      <h2>
-Verifiable Claims
-      </h2>
-
-      <p>
-Although <a>DIDs</a> and <a>DID documents</a> form a foundation for decentralized
-identity, they are only the first step in describing their subjects. The
-rest of the descriptive power comes through collecting and
-selectively using <a href="https://w3c.github.io/vctf/">verifiable
-claims</a>. Future versions of the specification will describe in
-more detail how <a>DIDs</a> and <a>DID document</a> can be integrated with &mdash; and help
-enable &mdash; the verifiable claims ecosystem.
-      </p>
-    </section>
-
-    <section>
-      <h2>
-Alternate Serializations and Graph Models
-      </h2>
-
-      <p>
-This version of the specification relies on JSON-LD and the RDF graph
-model for expressing a <a>DID document</a>. Future versions of this
-specification might specify other semantic graph formats for a <a>DID
-document</a>.
-      </p>
-    </section>
-  </section>
-
-  <section class="appendix">
-    <h1>Current Issues</h1>
-
-    <p>
-The list of issues below are under active discussion and are likely to
-result in changes to this specification.
-    </p>
-
-    <div class="issue" data-number="85">Syntactially differentiate data about the DID versus application data</div>
-    <div class="issue" data-number="84">Add `initial-values` matrix parameter to Generic DID Parameters</div>
-    <div class="issue" data-number="80">Define conformance classes such as "DID document processor"</div>
-    <div class="issue" data-number="76">Bikeshed the DID specification short name</div>
-    <div class="issue" data-number="75">tracking revocation of public keys</div>
-    <div class="issue" data-number="72">Privacy Considerations - Specifically call out GDPR</div>
-    <div class="issue" data-number="70">Enable instant DID use/resolution for DID Methods that include a propagation delay</div>
-    <div class="issue" data-number="69">How to integrate certificates with DIDs?</div>
-    <div class="issue" data-number="68">When do we publish a FPWD?</div>
-    <div class="issue" data-number="67">Supported public key formats?</div>
-    <div class="issue" data-number="65">Does DID Document metadata belong in the Document?</div>
-    <div class="issue" data-number="64">Encrypted serviceEndpoint values?</div>
-    <div class="issue" data-number="63">Add publicKeyHex as a valid publicKey format</div>
-    <div class="issue" data-number="62">Add "service-type" DID URL matrix parameter.</div>
-    <div class="issue" data-number="61">Add "content-type" and "content-id" DID URL matrix parameters.</div>
-    <div class="issue" data-number="60">Add "key-type" DID URL matrix parameter.</div>
-    <div class="issue" data-number="59">Add "key" DID URL matrix parameter.</div>
-    <div class="issue" data-number="58">Registry handling</div>
-    <div class="issue" data-number="57">Clarification of other verification methods in authentication section missing</div>
-    <div class="issue" data-number="56">Added support for ethereumAddress in context - fixed #55</div>
-    <div class="issue" data-number="55">Add support for ethereumAddress public key type in @context</div>
-    <div class="issue" data-number="53">Normative vs. non-normative references</div>
-    <div class="issue" data-number="52">(Minor note) update the IANA file</div>
-    <div class="issue" data-number="51">[Convention] Method `0` (zero) become a well-known method for retrieving properties/metadata from/about a particular DID Server</div>
-    <div class="issue" data-number="49">If an existing DID Document has a Service Endpoint fragment, what are the primary keys to be used if that Service Endpoint needs to be replaced, updated, or deleted?</div>
-    <div class="issue" data-number="48">Some comments by Steven Rowat</div>
-    <div class="issue" data-number="46">It would be useful to have `services` as a mapping instead of an `array`</div>
-    <div class="issue" data-number="45">Is method-specific-id supposed to be equivalent to param-char?</div>
-  </section>
-
   <section class="appendix">
     <h1>
 Interoperability Registries
@@ -3191,6 +3020,177 @@ A future-facing real-world context is provided below:
   }]
 }
 </pre>
+  </section>
+
+  <section class="appendix">
+    <h1>Current Issues</h1>
+
+    <p>
+The list of issues below are under active discussion and are likely to
+result in changes to this specification.
+    </p>
+
+    <div class="issue" data-number="85">Syntactially differentiate data about the DID versus application data</div>
+    <div class="issue" data-number="84">Add `initial-values` matrix parameter to Generic DID Parameters</div>
+    <div class="issue" data-number="80">Define conformance classes such as "DID document processor"</div>
+    <div class="issue" data-number="76">Bikeshed the DID specification short name</div>
+    <div class="issue" data-number="75">tracking revocation of public keys</div>
+    <div class="issue" data-number="72">Privacy Considerations - Specifically call out GDPR</div>
+    <div class="issue" data-number="70">Enable instant DID use/resolution for DID Methods that include a propagation delay</div>
+    <div class="issue" data-number="69">How to integrate certificates with DIDs?</div>
+    <div class="issue" data-number="68">When do we publish a FPWD?</div>
+    <div class="issue" data-number="67">Supported public key formats?</div>
+    <div class="issue" data-number="65">Does DID Document metadata belong in the Document?</div>
+    <div class="issue" data-number="64">Encrypted serviceEndpoint values?</div>
+    <div class="issue" data-number="63">Add publicKeyHex as a valid publicKey format</div>
+    <div class="issue" data-number="62">Add "service-type" DID URL matrix parameter.</div>
+    <div class="issue" data-number="61">Add "content-type" and "content-id" DID URL matrix parameters.</div>
+    <div class="issue" data-number="60">Add "key-type" DID URL matrix parameter.</div>
+    <div class="issue" data-number="59">Add "key" DID URL matrix parameter.</div>
+    <div class="issue" data-number="58">Registry handling</div>
+    <div class="issue" data-number="57">Clarification of other verification methods in authentication section missing</div>
+    <div class="issue" data-number="56">Added support for ethereumAddress in context - fixed #55</div>
+    <div class="issue" data-number="55">Add support for ethereumAddress public key type in @context</div>
+    <div class="issue" data-number="53">Normative vs. non-normative references</div>
+    <div class="issue" data-number="52">(Minor note) update the IANA file</div>
+    <div class="issue" data-number="51">[Convention] Method `0` (zero) become a well-known method for retrieving properties/metadata from/about a particular DID Server</div>
+    <div class="issue" data-number="49">If an existing DID Document has a Service Endpoint fragment, what are the primary keys to be used if that Service Endpoint needs to be replaced, updated, or deleted?</div>
+    <div class="issue" data-number="48">Some comments by Steven Rowat</div>
+    <div class="issue" data-number="46">It would be useful to have `services` as a mapping instead of an `array`</div>
+    <div class="issue" data-number="45">Is method-specific-id supposed to be equivalent to param-char?</div>
+  </section>
+
+  <section class="appendix">
+    <h1>
+Future Work
+    </h1>
+
+    <section>
+      <h2>
+Upper Limits on DID Character Length
+      </h2>
+
+      <p>
+The current specification does not take a position on maximum length
+of a <a>DID</a>. The maximum interoperable URL length is currently about 2K
+characters. QR codes can handle about 4K characters. Clients using
+<a>DIDs</a> will be responsible for storing many <a>DIDs</a>, and some methods
+would be able to externalize some of their costs onto clients by
+relying on more complicated signature schemes or by adding state into
+<a>DIDs</a> intended for temporary use. A future version of this
+specification should set reasonable limits on <a>DID</a> character length to
+minimize externalities.
+      </p>
+    </section>
+
+    <section>
+      <h2>
+Equivalence
+      </h2>
+
+      <p>
+Including an equivalence property, such as <code>equivID</code>, in <a>DID documents</a>
+whose value is an array of <a>DIDs</a> would allow subjects to assert two or
+more <a>DIDs</a> that represent the same subject. This capability has
+numerous uses, including supporting migration between <a>DID registries</a> and
+providing forward compatibility of existing <a>DIDs</a> to future <a>DID
+registries</a>. In
+theory, equivalent <a>DIDs</a> should have the same identifier rights,
+allowing <a href="https://w3c.github.io/vctf/">verifiable claims</a>
+made against one <a>DID</a> to apply to equivalent <a>DIDs</a>. Equivalence was not
+included in the current specification due to the complexity of
+verifying equivalence across different <a>DLTs</a> and different <a>DID
+methods</a>, and also of aggregating properties of equivalent <a>DID
+documents</a>. However equivalence should be supported in a future
+version of this specification.
+      </p>
+    </section>
+
+    <section>
+      <h2>
+Timestamps
+      </h2>
+
+      <p>
+Verifiable timestamps have significant utility for identifier
+records. This is a good fit for <a>DLTs</a>, since most offer some type of
+timestamp mechanism. Despite some transactional cost, they are the
+most censorship-resistant transaction ordering systems in the world,
+so they are nearly ideal for <a>DID document</a> timestamping. In some cases
+a <a>DLT</a>'s immediate timing is approximate, however their sense of
+<a href="https://github.com/bitcoin/bips/blob/master/bip-0113.mediawiki%23Abstract">
+"median time past" (see Bitcoin BIP 113)</a> can be precisely
+defined. A generic <a>DID document</a> timestamping mechanism could would
+work across all <a>DLTs</a> and might operate via a mechanism including
+either individual transactions or transaction batches. The generic
+mechanism was deemed out of scope for this version, although it may
+be included in a future version of this specification.
+      </p>
+    </section>
+
+    <section>
+      <h2>
+Time Locks and DID Document Recovery
+      </h2>
+
+      <p>
+Section <a href="#key-revocation-and-recovery"></a> mentions one
+possible clever use of time locks to recover control of a <a>DID</a> after a
+key compromise. The technique relies on an ability to override the
+most recent update to a <a>DID document</a> with Authorization applied by an
+earlier version of the <a>DID document</a> in order to defeat the attacker.
+This protection depends on adding a <a href="https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki%23Abstract">
+time lock (see Bitcoin BIP 65)</a> to protect part of the transaction
+chain, enabling a Authorization block to be used to recover control.
+We plan to add support for time locks in a future version of this
+specification.
+      </p>
+    </section>
+
+    <section>
+      <h2>
+Smart Signatures
+      </h2>
+
+      <p>
+Not all <a>DLTs</a> can support the Authorization logic in section
+<a href="#authorization-and-delegation"></a>.
+Therefore, in this version of the specification, all Authorization
+logic is delegated to <a>DID method</a> specifications. A potential
+future solution is a <a href="http://www.weboftrust.info/downloads/smart-signatures.pdf">Smart
+Signature</a> specification that specifies the code any conformant
+<a>DLT</a> may implement to process signature control logic.
+      </p>
+    </section>
+
+    <section>
+      <h2>
+Verifiable Credentials
+      </h2>
+
+      <p>
+Although <a>DIDs</a> and <a>DID documents</a> form a foundation for
+decentralized identity, they are only the first step in describing their
+subjects. The rest of the descriptive power comes through collecting and
+selectively using Verifiable Credentials [[!VC-DATA-MODEL]]. Future versions of
+the specification will describe in more detail how <a>DIDs</a> and <a>DID
+document</a> can be integrated with &mdash; and help enable &mdash; the
+Verifiable Credentials ecosystem.
+      </p>
+    </section>
+
+    <section>
+      <h2>
+Alternate Serializations and Graph Models
+      </h2>
+
+      <p>
+This version of the specification relies on JSON-LD and the RDF graph
+model for expressing a <a>DID document</a>. Future versions of this
+specification might specify other semantic graph formats for a <a>DID
+document</a>.
+      </p>
+    </section>
   </section>
 
 </body>
