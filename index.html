@@ -686,10 +686,132 @@ the <a>DID method</a> itself.
 
     <section>
       <h2>Method-Specific Syntax</h2>
+
+      <p>
+A <a>DID method</a> specification MUST further restrict the generic <a>DID</a>
+syntax by defining its own <code>method-name</code> and its own
+<code>method-specific-id</code> syntax. For more information, see Section
+<a href="#did-methods"></a>.
+      </p>
+
     </section>
 
     <section>
       <h2>Generic DID Parameters</h2>
+
+      <p>
+The <a>DID URL</a> syntax supports a simple, generalized format for parameters
+based on the matrix parameter syntax ([[MATRIX-URIS]]). The ABNF above
+specifies the basic syntax (the <code>param-name</code> rule) but does not
+specify any concrete parameter names.
+      </p>
+      <p>
+Some generic DID parameter names (for example, for service selection) are
+completely independent of any specific <a>DID method</a> and MUST always
+function the same way for all <a>DIDs</a>. Other DID parameter names (for
+example, for versioning) MAY be supported by certain <a>DID methods</a>, but
+MUST operate uniformly across those <a>DID methods</a> that do support them.
+      </p>
+      <p>
+Parameter names that are completely method-specific are described in Section
+<a href="#method-specific-did-parameter-names"></a>.
+      </p>
+      <p>
+The following table defines a set of generic DID parameter names.
+      </p>
+
+      <table class="simple">
+        <thead>
+          <tr>
+            <th>
+Generic DID Parameter Name
+            </th>
+            <th>
+Description
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+<code>hl</code>
+            </td>
+            <td>
+A resource hash of the <a>DID document</a> to add integrity protection, as
+specified in [[HASHLINK]].
+            </td>
+          </tr>
+          <tr>
+            <td>
+<code>service</code>
+            </td>
+            <td>
+Identifies a service from the <a>DID document</a> by service ID.
+            </td>
+          </tr>
+          <tr>
+            <td>
+<code>version-id</code>
+            </td>
+            <td>
+Identifies a specific version of a <a>DID document</a> to be resolved (the
+version ID could be sequential, or a <a>UUID</a>, or method-specific). Note that
+this parameter might not be supported by all <a>DID methods</a>.
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+<code>version-time</code>
+            </td>
+            <td>
+Identifies a certain version timestamp of a <a>DID document</a> to be resolved.
+That is, the <a>DID document</a> that was valid for a <a>DID</a> at a certain
+time. Note that this parameter might not be supported by all <a>DID methods</a>.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+The exact processing rules for these parameters are specified in
+[[DID-RESOLUTION]].
+      </p>
+
+      <p>
+Adding a DID parameter to a DID URL means that the parameter becomes part of
+an identifier for a resource (the DID document or other). Alternatively, the
+DID resolution and the DID URL dereferencing processes can also be influenced
+by passing options to a <a>DID resolver</a> that are not part of the DID URL.
+Such options could for example control caching or the desired encoding of a
+resolution result. This is comparable to HTTP, where certain parameters could
+either be included in an HTTP URL, or alternatively passed as HTTP headers
+during the dereferencing process. The important distinction is that DID
+parameters that are part of the <a>DID URL</a> should be used to specify
+<i>what resource is being identified</i>, whereas <a>DID resolver</a> options
+that are not part of the <a>DID URL</a> should be use to control <i>how that
+resource is dereferenced</i>.
+      </p>
+
+      <p>
+DID parameters MAY be used if there is a clear use case where
+the parameter needs to be part of a URI that can be used as a link, or
+as a resource in RDF / JSON-LD documents.
+      </p>
+
+      <p>
+DID parameters SHOULD NOT be used if there are already other, equivalent
+ways of constructing URIs that fulfill the same purpose (for example, using
+other syntactical constructs such as URI query strings or URI fragments).
+      </p>
+
+      <p>
+DID parameters SHOULD NOT be used if the same functionality can be expressed
+by passing options to a <a>DID resolver</a>, and if there is no need to
+construct a URI for use as a link, or as a resource in RDF / JSON-LD documents.
+      </p>
+
     </section>
 
     <section>
@@ -885,12 +1007,6 @@ Decentralized Identifiers (DIDs)
 Method-Specific Syntax
       </h2>
 
-      <p>
-A <a>DID method</a> specification MUST further restrict the generic <a>DID</a>
-syntax by defining its own <code>method-name</code> and its own
-<code>method-specific-id</code> syntax. For more information, see Section
-<a href="#did-methods"></a>.
-      </p>
     </section>
 
     <section>
@@ -898,118 +1014,6 @@ syntax by defining its own <code>method-name</code> and its own
 Generic DID Parameter Names
       </h2>
 
-      <p>
-The <a>DID URL</a> syntax supports a simple, generalized format for parameters
-based on the matrix parameter syntax ([[MATRIX-URIS]]). The ABNF above
-specifies the basic syntax (the <code>param-name</code> rule) but does not
-specify any concrete parameter names.
-      </p>
-      <p>
-Some generic DID parameter names (for example, for service selection) are
-completely independent of any specific <a>DID method</a> and MUST always
-function the same way for all <a>DIDs</a>. Other DID parameter names (for
-example, for versioning) MAY be supported by certain <a>DID methods</a>, but
-MUST operate uniformly across those <a>DID methods</a> that do support them.
-      </p>
-      <p>
-Parameter names that are completely method-specific are described in Section
-<a href="#method-specific-did-parameter-names"></a>.
-      </p>
-      <p>
-The following table defines a set of generic DID parameter names.
-      </p>
-
-      <table class="simple">
-        <thead>
-          <tr>
-            <th>
-Generic DID Parameter Name
-            </th>
-            <th>
-Description
-            </th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>
-<code>hl</code>
-            </td>
-            <td>
-A resource hash of the <a>DID document</a> to add integrity protection, as
-specified in [[HASHLINK]].
-            </td>
-          </tr>
-          <tr>
-            <td>
-<code>service</code>
-            </td>
-            <td>
-Identifies a service from the <a>DID document</a> by service ID.
-            </td>
-          </tr>
-          <tr>
-            <td>
-<code>version-id</code>
-            </td>
-            <td>
-Identifies a specific version of a <a>DID document</a> to be resolved (the
-version ID could be sequential, or a <a>UUID</a>, or method-specific). Note that
-this parameter might not be supported by all <a>DID methods</a>.
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-<code>version-time</code>
-            </td>
-            <td>
-Identifies a certain version timestamp of a <a>DID document</a> to be resolved.
-That is, the <a>DID document</a> that was valid for a <a>DID</a> at a certain
-time. Note that this parameter might not be supported by all <a>DID methods</a>.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>
-The exact processing rules for these parameters are specified in
-[[DID-RESOLUTION]].
-      </p>
-
-      <p>
-Adding a DID parameter to a DID URL means that the parameter becomes part of
-an identifier for a resource (the DID document or other). Alternatively, the
-DID resolution and the DID URL dereferencing processes can also be influenced
-by passing options to a <a>DID resolver</a> that are not part of the DID URL.
-Such options could for example control caching or the desired encoding of a
-resolution result. This is comparable to HTTP, where certain parameters could
-either be included in an HTTP URL, or alternatively passed as HTTP headers
-during the dereferencing process. The important distinction is that DID
-parameters that are part of the <a>DID URL</a> should be used to specify
-<i>what resource is being identified</i>, whereas <a>DID resolver</a> options
-that are not part of the <a>DID URL</a> should be use to control <i>how that
-resource is dereferenced</i>.
-      </p>
-
-      <p>
-DID parameters MAY be used if there is a clear use case where
-the parameter needs to be part of a URI that can be used as a link, or
-as a resource in RDF / JSON-LD documents.
-      </p>
-
-      <p>
-DID parameters SHOULD NOT be used if there are already other, equivalent
-ways of constructing URIs that fulfill the same purpose (for example, using
-other syntactical constructs such as URI query strings or URI fragments).
-      </p>
-
-      <p>
-DID parameters SHOULD NOT be used if the same functionality can be expressed
-by passing options to a <a>DID resolver</a>, and if there is no need to
-construct a URI for use as a link, or as a resource in RDF / JSON-LD documents.
-      </p>
     </section>
 
     <section>
