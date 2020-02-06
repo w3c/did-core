@@ -942,7 +942,38 @@ did:example:123456?query=true
     <section>
       <h2>Fragment</h2>
 
+      <p>
+A generic <a>DID fragment</a> is identical to a URI fragment and MUST conform to
+the <code>fragment</code> ABNF rule in [[RFC3986]]. Implementers are strongly
+discouraged from using a <a>DID fragment</a> for anything other than a
+method-independent reference into the <a>DID document</a> to identify a
+component of a <a>DID document</a> (for example, a unique
+<a>public key description</a> or <a>service endpoint</a>). To resolve this
+reference, the complete <a>DID URL</a> including the <a>DID fragment</a> MUST be
+used as input to the <a>DID URL</a> dereferencing algorithm for the
+target component in the <a>DID document</a> object. For more information, see
+[[DID-RESOLUTION]].
+      </p>
 
+      <p>
+A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID fragments</a>
+that are more restrictive than the generic rules in this section.
+      </p>
+
+      <p>
+Implementations need not rely on graph-based processing of <a>DID documents</a>
+to locate metadata contained in the <a>DID document</a> when the <a>DID</a>
+includes a <a>DID fragment</a>. Tree-based processing can be used instead.
+      </p>
+
+      <p>
+Implementations SHOULD NOT prevent the use of <a>JSON Pointer</a>
+([[!RFC6901]]).
+      </p>
+
+      <pre class="example nohighlight">
+did:example:123456#oidc
+      </pre>
     </section>
 
     <section>
@@ -1337,38 +1368,6 @@ Decentralized Identifiers (DIDs)
 Fragment
       </h2>
 
-      <p>
-A generic <a>DID fragment</a> is identical to a URI fragment and MUST conform to
-the <code>fragment</code> ABNF rule in [[RFC3986]]. Implementers are strongly
-discouraged from using a <a>DID fragment</a> for anything other than a
-method-independent reference into the <a>DID document</a> to identify a
-component of a <a>DID document</a> (for example, a unique
-<a>public key description</a> or <a>service endpoint</a>). To resolve this
-reference, the complete <a>DID URL</a> including the <a>DID fragment</a> MUST be
-used as input to the <a>DID URL</a> dereferencing algorithm for the
-target component in the <a>DID document</a> object. For more information, see
-[[DID-RESOLUTION]].
-      </p>
-
-      <p>
-A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID fragments</a>
-that are more restrictive than the generic rules in this section.
-      </p>
-
-      <p>
-Implementations need not rely on graph-based processing of <a>DID documents</a>
-to locate metadata contained in the <a>DID document</a> when the <a>DID</a>
-includes a <a>DID fragment</a>. Tree-based processing can be used instead.
-      </p>
-
-      <p>
-Implementations SHOULD NOT prevent the use of <a>JSON Pointer</a>
-([[!RFC6901]]).
-      </p>
-
-      <pre class="example nohighlight">
-did:example:123456#oidc
-      </pre>
     </section>
 
     <section>
