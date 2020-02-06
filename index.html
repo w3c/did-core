@@ -923,6 +923,281 @@ types of key formats that are supported in this specification are listed in <a
 href="#public-keys"></a>.
       </p>
 
+      <p>
+A public key is a <a>verification method</a>.
+Public keys are used for digital signatures, encryption and other cryptographic
+operations, which in turn are the basis for purposes such as authentication
+(see Section <a href="#authentication"></a>) or establishing secure
+communication with <a>service endpoints</a> (see Section
+<a href="#service-endpoints"></a>). As well, public keys can play a role in
+authorization mechanisms of <a>DID</a> CRUD operations (see Section
+<a href="#did-operations"></a>), which can be defined by <a>DID method</a>
+specifications.
+      </p>
+
+      <p class="note" title="Verification methods">
+A public key is just one type of <a>verification method</a>.  A <a>DID
+document</a> expresses the relationship between the <a>DID subject</a> and a
+<a>verification method</a> using a <dfn>verification relationship</dfn>.
+Examples of <a>verification relationship</a>s include:
+<code>authentication</code>, <code> capabilityInvocation</code>,
+<code>capabilityDelegation</code>, <code>keyAgreement</code>, and
+<code>assertionMethod</code>. A <a>DID controller</a> MUST be explicit about the
+<a>verification relationship</a> between the DID subject and the <a>verification
+method</a>. <a>Verification methods</a> that are not associated with a
+particular <a>verification relationship</a> MUST NOT be used for that
+<a>verification relationship</a>. See Section <a href="#authentication"></a>
+for a more detailed example of a <a>verification relationship</a>.
+      </p>
+
+      <p>
+A <a>DID document</a> MAY include a <code>publicKey</code> property.
+      </p>
+
+      <dl>
+        <dt><dfn>publicKey</dfn></dt>
+        <dd>
+If a <a>DID document</a> includes a <code>publicKey</code> property, the value
+of the property MUST be an array of public key objects. Each public key object
+MUST have the <code>type</code>, <code>controller</code>, and specific public
+key properties, and SHOULD have an <code>id</code> property. The public key
+objects MAY include additional properties.
+        </dd>
+      </dl>
+
+      <p>
+The value of the <code>id</code> property, if present, MUST be a <a>URI</a>. The
+array of public keys MUST NOT contain multiple entries with the same
+<code>id</code>. In this case, a <a>DID document</a> processor MUST produce an
+error.
+      </p>
+
+      <p>
+The value of the <code>type</code> property MUST be exactly one public key type.
+For a registry of available key types and formats, see Appendix
+<a href="#registries"></a>.
+      </p>
+
+      <p>
+The value of the <code>controller</code> property, which identifies the
+controller of the corresponding private key, MUST be a valid <a>DID</a>.
+      </p>
+
+      <p class="note" title="Key controller(s) and DID controller(s)">
+The semantics of the <code>controller</code> property are the same when the
+subject of the relationship is the <a>DID document</a> as when the subject
+of the relationship is a key. Since a key can't control itself, and the
+key controller cannot be inferred from the <a>DID document</a>, it is
+necessary to explicitly express the identity of the controller of the key
+(which may be the <a>DID controller</a> or <a>DID subject</a>). The
+difference is that the value of <code>controller</code> on a key is not
+necessarily a <a>DID controller</a>. <a>DID controller(s)</a> are
+expressed using the <code>controller</code> property on the top level of
+the <a>DID document</a>; see Section <a href="#authorization-and-delegation"></a>.
+      </p>
+
+      <p>
+All public key properties MUST be from the Linked Data Cryptographic Suite
+Registry. For a registry of key types and formats, see Appendix
+<a href="#registries"></a>.
+      </p>
+
+      <p>
+If a public key does not exist in the <a>DID document</a>, it MUST be assumed
+the key was revoked or is invalid. The <a>DID document</a> MAY contain revoked
+keys. A <a>DID document</a> containing a revoked key MUST also contain or refer
+to the revocation information for the key (for example, a revocation list). Each
+<a>DID method</a> specification is expected to detail how revocation is
+performed and tracked.
+      </p>
+
+      <p>
+Public keys of all types MUST be expressed in either JSON Web Key (JWK) format
+using the <code>publicKeyJwk</code> property or one of the formats listed in the
+table below. Public key expression MUST NOT use any other key format.
+      </p>
+
+      <p class="issue">
+The Working Group is still debating whether the base encoding format used will be
+Base58 (Bitcoin) [[BASE58]], base64url [[RFC7515]], or base16 (hex) [[RFC4648]].
+The entries in the table below currently assume PEM and Base58 (Bitcoin), but might
+change to base64url and/or base16 (hex) after the group achieves consensus on this
+particular issue.
+      </p>
+
+      <p class="issue">
+The Working Group is still debating whether secp256k1 Schnorr public key values
+will be elaborated upon in this specification and if so, how they will be
+expressed and encoded.
+      </p>
+
+      <table class="simple">
+        <thead>
+          <tr>
+            <th>
+Key&nbsp;Type
+            </th>
+            <th>
+Support
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+RSA
+            </td>
+            <td>
+RSA public key values MUST either be encoded as a JWK or be encoded in
+Privacy Enhanced Mail (PEM) format using the <code>publicKeyPem</code> property.
+            </td>
+          </tr>
+          <tr>
+            <td>
+ed25519
+            </td>
+            <td>
+Ed25519 public key values MUST either be encoded as a JWK or be encoded as
+the raw 32-byte public key value in Base58 Bitcoin format using the
+<code>publicKeyBase58</code> property.
+            </td>
+          </tr>
+          <tr>
+            <td>
+secp256k1-koblitz
+            </td>
+            <td>
+Secp256k1 Koblitz public key values MUST either be encoded as a JWK or be
+encoded as the raw 33-byte public key value in Base58 Bitcoin format using the
+<code>publicKeyBase58</code> property.
+            </td>
+          </tr>
+          <tr>
+            <td>
+secp256r1
+            </td>
+            <td>
+Secp256r1 public key values MUST either be encoded as a JWK or be encoded as
+the raw 32-byte public key value encoded in Base58 Bitcoin format using the
+<code>publicKeyBase58</code> property.
+            </td>
+          </tr>
+          <tr>
+            <td>
+Curve25519
+            </td>
+            <td>
+Curve25519 (also known as X25519) public key values MUST either be encoded as
+a JWK or be encoded as the raw 32-byte public key value in Base58 Bitcoin format
+using the <code>publicKeyBase58</code> property.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+Example:
+      </p>
+
+      <pre class="example nohighlight" title="Various public keys">
+{
+  "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
+  "id": "did:example:123456789abcdefghi",
+  <span class="comment">...</span>
+  "publicKey": [{
+    "id": "did:example:123456789abcdefghi#keys-1",
+    "type": "RsaVerificationKey2018",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }, {
+    "id": "did:example:123456789abcdefghi#keys-2",
+    "type": "Ed25519VerificationKey2018",
+    "controller": "did:example:pqrstuvwxyz0987654321",
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+  }, {
+    "id": "did:example:123456789abcdefghi#keys-3",
+    "type": "Secp256k1VerificationKey2018",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyHex": "02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71"
+  }],
+  <span class="comment">...</span>
+}
+      </pre>
+
+      <p>
+A key MAY be <em>embedded</em> or <em>referenced</em> in a <a>DID document</a>.
+For example, the <code>authentication</code> property might refer to keys in
+both ways, as shown in the example below.
+      </p>
+
+      <pre class="example nohighlight" title="Various public keys">
+{
+<span class="comment">...</span>
+
+  "authentication": [
+    <span class="comment">// this key is referenced, it may be used for more than one proof purpose</span>
+    "did:example:123456789abcdefghi#keys-1",
+    <span class="comment">// this key is embedded and may *only* be used for authentication</span>
+    {
+      "id": "did:example:123456789abcdefghi#keys-2",
+      "type": "Ed25519VerificationKey2018",
+      "controller": "did:example:123456789abcdefghi",
+      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    }
+  ],
+
+<span class="comment">...</span>
+}
+      </pre>
+
+      <p>
+The steps to use when processing a <code>publicKey</code> property in a
+<a>DID document</a> are:
+      </p>
+
+      <ol class="algorithm">
+        <li>
+Let <em>value</em> be the data associated with the <code>publicKey</code>
+property and initialize <em>result</em> to <code>null</code>.
+        </li>
+
+        <li>
+If <em>value</em> is an object, the key material is embedded. Set
+<em>result</em> to <em>value</em>.
+        </li>
+
+        <li>
+If <em>value</em> is a string, the key is included by reference. Assume
+<em>value</em> is a URL.
+          <ol>
+            <li>
+Dereference the URL and retrieve the <code>publicKey</code> properties
+associated with the URL. For example, process the <code>publicKey</code>
+property at the top-level of the dereferenced document.
+            </li>
+
+            <li>
+Iterating through each public key object, if the <code>id</code> property of the
+object matches <em>value</em>, set <em>result</em> to the object.
+            </li>
+          </ol>
+        </li>
+
+        <li>
+If <em>result</em> does not contain at least the <code>id</code>,
+<code>type</code>, and <code>controller</code> properties, as well as any
+mandatory public cryptographic material, as determined by the <code>type</code>
+property of <em>result</em>, throw an error.
+        </li>
+      </ol>
+
+      <p class="note">
+Caching and expiration of the keys in a <a>DID document</a> is entirely the
+responsibility of <a>DID resolvers</a> and other clients. For more information,
+see Section <a href="#did-resolvers"></a>.
+      </p>
+
     </section>
 
     <section>
@@ -1376,280 +1651,6 @@ Example:
 Public Keys
       </h2>
 
-      <p>
-A public key is a <a>verification method</a>.
-Public keys are used for digital signatures, encryption and other cryptographic
-operations, which in turn are the basis for purposes such as authentication
-(see Section <a href="#authentication"></a>) or establishing secure
-communication with <a>service endpoints</a> (see Section
-<a href="#service-endpoints"></a>). As well, public keys can play a role in
-authorization mechanisms of <a>DID</a> CRUD operations (see Section
-<a href="#did-operations"></a>), which can be defined by <a>DID method</a>
-specifications.
-      </p>
-
-      <p class="note" title="Verification methods">
-A public key is just one type of <a>verification method</a>.  A <a>DID
-document</a> expresses the relationship between the <a>DID subject</a> and a
-<a>verification method</a> using a <dfn>verification relationship</dfn>.
-Examples of <a>verification relationship</a>s include:
-<code>authentication</code>, <code> capabilityInvocation</code>,
-<code>capabilityDelegation</code>, <code>keyAgreement</code>, and
-<code>assertionMethod</code>. A <a>DID controller</a> MUST be explicit about the
-<a>verification relationship</a> between the DID subject and the <a>verification
-method</a>. <a>Verification methods</a> that are not associated with a
-particular <a>verification relationship</a> MUST NOT be used for that
-<a>verification relationship</a>. See Section <a href="#authentication"></a>
-for a more detailed example of a <a>verification relationship</a>.
-      </p>
-
-      <p>
-A <a>DID document</a> MAY include a <code>publicKey</code> property.
-      </p>
-
-      <dl>
-        <dt><dfn>publicKey</dfn></dt>
-        <dd>
-If a <a>DID document</a> includes a <code>publicKey</code> property, the value
-of the property MUST be an array of public key objects. Each public key object
-MUST have the <code>type</code>, <code>controller</code>, and specific public
-key properties, and SHOULD have an <code>id</code> property. The public key
-objects MAY include additional properties.
-        </dd>
-      </dl>
-
-      <p>
-The value of the <code>id</code> property, if present, MUST be a <a>URI</a>. The
-array of public keys MUST NOT contain multiple entries with the same
-<code>id</code>. In this case, a <a>DID document</a> processor MUST produce an
-error.
-      </p>
-
-      <p>
-The value of the <code>type</code> property MUST be exactly one public key type.
-For a registry of available key types and formats, see Appendix
-<a href="#registries"></a>.
-      </p>
-
-      <p>
-The value of the <code>controller</code> property, which identifies the
-controller of the corresponding private key, MUST be a valid <a>DID</a>.
-      </p>
-
-      <p class="note" title="Key controller(s) and DID controller(s)">
-The semantics of the <code>controller</code> property are the same when the
-subject of the relationship is the <a>DID document</a> as when the subject
-of the relationship is a key. Since a key can't control itself, and the
-key controller cannot be inferred from the <a>DID document</a>, it is
-necessary to explicitly express the identity of the controller of the key
-(which may be the <a>DID controller</a> or <a>DID subject</a>). The
-difference is that the value of <code>controller</code> on a key is not
-necessarily a <a>DID controller</a>. <a>DID controller(s)</a> are
-expressed using the <code>controller</code> property on the top level of
-the <a>DID document</a>; see Section <a href="#authorization-and-delegation"></a>.
-      </p>
-
-      <p>
-All public key properties MUST be from the Linked Data Cryptographic Suite
-Registry. For a registry of key types and formats, see Appendix
-<a href="#registries"></a>.
-      </p>
-
-      <p>
-If a public key does not exist in the <a>DID document</a>, it MUST be assumed
-the key was revoked or is invalid. The <a>DID document</a> MAY contain revoked
-keys. A <a>DID document</a> containing a revoked key MUST also contain or refer
-to the revocation information for the key (for example, a revocation list). Each
-<a>DID method</a> specification is expected to detail how revocation is
-performed and tracked.
-      </p>
-
-      <p>
-Public keys of all types MUST be expressed in either JSON Web Key (JWK) format
-using the <code>publicKeyJwk</code> property or one of the formats listed in the
-table below. Public key expression MUST NOT use any other key format.
-      </p>
-
-      <p class="issue">
-The Working Group is still debating whether the base encoding format used will be
-Base58 (Bitcoin) [[BASE58]], base64url [[RFC7515]], or base16 (hex) [[RFC4648]].
-The entries in the table below currently assume PEM and Base58 (Bitcoin), but might
-change to base64url and/or base16 (hex) after the group achieves consensus on this
-particular issue.
-      </p>
-
-      <p class="issue">
-The Working Group is still debating whether secp256k1 Schnorr public key values
-will be elaborated upon in this specification and if so, how they will be
-expressed and encoded.
-      </p>
-
-      <table class="simple">
-        <thead>
-          <tr>
-            <th>
-Key&nbsp;Type
-            </th>
-            <th>
-Support
-            </th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>
-RSA
-            </td>
-            <td>
-RSA public key values MUST either be encoded as a JWK or be encoded in
-Privacy Enhanced Mail (PEM) format using the <code>publicKeyPem</code> property.
-            </td>
-          </tr>
-          <tr>
-            <td>
-ed25519
-            </td>
-            <td>
-Ed25519 public key values MUST either be encoded as a JWK or be encoded as
-the raw 32-byte public key value in Base58 Bitcoin format using the
-<code>publicKeyBase58</code> property.
-            </td>
-          </tr>
-          <tr>
-            <td>
-secp256k1-koblitz
-            </td>
-            <td>
-Secp256k1 Koblitz public key values MUST either be encoded as a JWK or be
-encoded as the raw 33-byte public key value in Base58 Bitcoin format using the
-<code>publicKeyBase58</code> property.
-            </td>
-          </tr>
-          <tr>
-            <td>
-secp256r1
-            </td>
-            <td>
-Secp256r1 public key values MUST either be encoded as a JWK or be encoded as
-the raw 32-byte public key value encoded in Base58 Bitcoin format using the
-<code>publicKeyBase58</code> property.
-            </td>
-          </tr>
-          <tr>
-            <td>
-Curve25519
-            </td>
-            <td>
-Curve25519 (also known as X25519) public key values MUST either be encoded as
-a JWK or be encoded as the raw 32-byte public key value in Base58 Bitcoin format
-using the <code>publicKeyBase58</code> property.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>
-Example:
-      </p>
-
-      <pre class="example nohighlight" title="Various public keys">
-{
-  "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
-  "id": "did:example:123456789abcdefghi",
-  <span class="comment">...</span>
-  "publicKey": [{
-    "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaVerificationKey2018",
-    "controller": "did:example:123456789abcdefghi",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }, {
-    "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018",
-    "controller": "did:example:pqrstuvwxyz0987654321",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-  }, {
-    "id": "did:example:123456789abcdefghi#keys-3",
-    "type": "Secp256k1VerificationKey2018",
-    "controller": "did:example:123456789abcdefghi",
-    "publicKeyHex": "02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71"
-  }],
-  <span class="comment">...</span>
-}
-      </pre>
-
-      <p>
-A key MAY be <em>embedded</em> or <em>referenced</em> in a <a>DID document</a>.
-For example, the <code>authentication</code> property might refer to keys in
-both ways, as shown in the example below.
-      </p>
-
-      <pre class="example nohighlight" title="Various public keys">
-{
-<span class="comment">...</span>
-
-  "authentication": [
-    <span class="comment">// this key is referenced, it may be used for more than one proof purpose</span>
-    "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this key is embedded and may *only* be used for authentication</span>
-    {
-      "id": "did:example:123456789abcdefghi#keys-2",
-      "type": "Ed25519VerificationKey2018",
-      "controller": "did:example:123456789abcdefghi",
-      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-    }
-  ],
-
-<span class="comment">...</span>
-}
-      </pre>
-
-      <p>
-The steps to use when processing a <code>publicKey</code> property in a
-<a>DID document</a> are:
-      </p>
-
-      <ol class="algorithm">
-        <li>
-Let <em>value</em> be the data associated with the <code>publicKey</code>
-property and initialize <em>result</em> to <code>null</code>.
-        </li>
-
-        <li>
-If <em>value</em> is an object, the key material is embedded. Set
-<em>result</em> to <em>value</em>.
-        </li>
-
-        <li>
-If <em>value</em> is a string, the key is included by reference. Assume
-<em>value</em> is a URL.
-          <ol>
-            <li>
-Dereference the URL and retrieve the <code>publicKey</code> properties
-associated with the URL. For example, process the <code>publicKey</code>
-property at the top-level of the dereferenced document.
-            </li>
-
-            <li>
-Iterating through each public key object, if the <code>id</code> property of the
-object matches <em>value</em>, set <em>result</em> to the object.
-            </li>
-          </ol>
-        </li>
-
-        <li>
-If <em>result</em> does not contain at least the <code>id</code>,
-<code>type</code>, and <code>controller</code> properties, as well as any
-mandatory public cryptographic material, as determined by the <code>type</code>
-property of <em>result</em>, throw an error.
-        </li>
-      </ol>
-
-      <p class="note">
-Caching and expiration of the keys in a <a>DID document</a> is entirely the
-responsibility of <a>DID resolvers</a> and other clients. For more information,
-see Section <a href="#did-resolvers"></a>.
-      </p>
     </section>
 
     <section>
