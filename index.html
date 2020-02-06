@@ -608,6 +608,33 @@ Terminology
   <section>
     <h2>Identifier</h2>
 
+    <p>
+The concept of a globally unique <a>decentralized identifier</a> is not new.
+<a>Universally Unique Identifiers</a> (UUIDs) were first developed in the 1980s
+and later became a standard feature of the Open Software Foundation’s
+<a href="https://en.wikipedia.org/wiki/Distributed_Computing_Environment">Distributed Computing Environment</a>.
+<a>UUIDs</a> achieve global uniqueness without a centralized registry service by
+using an algorithm that generates 128-bit values with sufficient entropy that
+the chance of collision are infinitesimally small. <a>UUIDs</a> are formally
+specified in [[RFC4122]] as a specific type of Unified Resource Name (URN).
+    </p>
+
+    <p>
+A <a>DID</a> is similar to a <a>UUID</a> except that:
+    </p>
+    <ul>
+      <li>
+Like a URL, it can be resolved or dereferenced to a standard resource describing
+the subject. That is, a <a>DID document</a>. For more information, see Section
+<a href="#did-documents"></a>.
+      </li>
+      <li>
+Unlike most resources returned when dereferencing URLs, a <a>DID document</a>
+usually contains cryptographic material enabling authentication of the
+<a>DID subject</a>.
+      </li>
+    </ul>
+
     <section>
       <h2>Generic DID Syntax</h2>
 
@@ -852,32 +879,6 @@ For more information, see Section <a href="#service-endpoints"></a>.
 Decentralized Identifiers (DIDs)
     </h1>
 
-    <p>
-The concept of a globally unique <a>decentralized identifier</a> is not new.
-<a>Universally Unique Identifiers</a> (UUIDs) were first developed in the 1980s
-and later became a standard feature of the Open Software Foundation’s
-<a href="https://en.wikipedia.org/wiki/Distributed_Computing_Environment">Distributed Computing Environment</a>.
-<a>UUIDs</a> achieve global uniqueness without a centralized registry service by
-using an algorithm that generates 128-bit values with sufficient entropy that
-the chance of collision are infinitesimally small. <a>UUIDs</a> are formally
-specified in [[RFC4122]] as a specific type of Unified Resource Name (URN).
-    </p>
-
-    <p>
-A <a>DID</a> is similar to a <a>UUID</a> except that:
-    </p>
-      <ul>
-        <li>
-Like a URL, it can be resolved or dereferenced to a standard resource describing
-the subject. That is, a <a>DID document</a>. For more information, see Section
-<a href="#did-documents"></a>.
-        </li>
-        <li>
-Unlike most resources returned when dereferencing URLs, a <a>DID document</a>
-usually contains cryptographic material enabling authentication of the
-<a>DID subject</a>.
-        </li>
-      </ul>
 
     <section>
       <h2>
