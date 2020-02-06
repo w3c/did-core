@@ -1082,6 +1082,39 @@ to use with other Internet-based identifiers.
 
     <section>
       <h2>DID Subject</h2>
+
+      <p>
+The <a>DID subject</a> is denoted with the <code>id</code> property. The
+<a>DID subject</a> is the entity that the <a>DID document</a> is about. That is,
+it is the entity identified by the <a>DID</a> and described by the
+<a>DID document</a>.
+      </p>
+
+      <p>
+<a>DID documents</a> MUST include the <code>id</code> property.
+      </p>
+
+      <dl>
+        <dt><dfn>id</dfn></dt>
+        <dd>
+The value of <code>id</code> MUST be a single valid <a>DID</a>.
+        </dd>
+      </dl>
+
+      <pre class="example nohighlight">
+{
+  "id": "did:example:21tDAKCERh95uGgKbJNHYp"
+}
+      </pre>
+
+      <p class="note">
+<a>DID method</a> specifications can create intermediate representations of a
+<a>DID document</a> that do not contain the <code>id</code> key, such as when a
+<a>DID resolver</a> is performing resolution. However, the fully resolved
+<a>DID document</a> always contains a valid <code>id</code> property. The value
+of <code>id</code> in the resolved <a>DID document</a> is expected to match the
+<a>DID</a> that was resolved.
+      </p>
     </section>
 
     <section>
@@ -1444,38 +1477,6 @@ DID Documents
 DID Subject
       </h2>
 
-      <p>
-The <a>DID subject</a> is denoted with the <code>id</code> property. The
-<a>DID subject</a> is the entity that the <a>DID document</a> is about. That is,
-it is the entity identified by the <a>DID</a> and described by the
-<a>DID document</a>.
-      </p>
-
-      <p>
-<a>DID documents</a> MUST include the <code>id</code> property.
-      </p>
-
-      <dl>
-        <dt><dfn>id</dfn></dt>
-        <dd>
-The value of <code>id</code> MUST be a single valid <a>DID</a>.
-        </dd>
-      </dl>
-
-      <pre class="example nohighlight">
-{
-  "id": "did:example:21tDAKCERh95uGgKbJNHYp"
-}
-      </pre>
-
-      <p class="note">
-<a>DID method</a> specifications can create intermediate representations of a
-<a>DID document</a> that do not contain the <code>id</code> key, such as when a
-<a>DID resolver</a> is performing resolution. However, the fully resolved
-<a>DID document</a> always contains a valid <code>id</code> property. The value
-of <code>id</code> in the resolved <a>DID document</a> is expected to match the
-<a>DID</a> that was resolved.
-      </p>
     </section>
 
     <section>
