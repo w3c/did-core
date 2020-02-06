@@ -1426,54 +1426,6 @@ including whether these properties are required or optional.
 
     <section>
       <h2>
-Contexts
-      </h2>
-
-      <p>
-When two software systems need to exchange data, they need to use terminology
-and a protocol that both systems understand. The <code>@context</code>
-property ensures that two systems operating on the same DID document are using
-mutually agreed terminology.
-      </p>
-
-      <p>
-<a>DID documents</a> MUST include the <code>@context</code> property.
-      </p>
-
-      <p class="note" title="The JSON-LD Context">
-More information about the
-<a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a> in
-general can be found in the [[JSON-LD]] specification.
-      </p>
-
-      <dl>
-        <dt><dfn>@context</dfn></dt>
-        <dd>
-The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
-where the value of the first <a>URI</a> is
-<code>https://www.w3.org/ns/did/v1</code>. If more than one <a>URI</a> is
-provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
-RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
-machine-readable information about the context.
-        </dd>
-      </dl>
-
-      <pre class="example nohighlight">
-{
-  "@context": "https://www.w3.org/ns/did/v1"
-}
-      </pre>
-
-      <p>
-<a>DID method</a> specifications MAY define their own JSON-LD contexts. However,
-it is NOT RECOMMENDED to define a new context unless the context is necessary to
-properly implement the method. Method-specific contexts MUST NOT override the
-terms defined in the generic <a>DID</a> context.
-      </p>
-    </section>
-
-    <section>
-      <h2>
 Identifiers
       </h2>
       <p>
@@ -2197,7 +2149,7 @@ Other values MUST be represented as a String type.
 JSON-LD
       </h2>
 
-        <p>
+      <p>
 [[!JSON-LD]] is a JSON-based format used to serialize
 <a href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a>. The
 syntax is designed to easily integrate into deployed systems already using
@@ -2205,9 +2157,9 @@ JSON, and provides a smooth upgrade path from JSON to JSON-LD. It is primarily
 intended to be a way to use Linked Data in Web-based programming environments,
 to build interoperable Web services, and to store Linked Data in JSON-based
 storage engines.
-        </p>
+      </p>
 
-        <p>
+      <p>
 JSON-LD is useful when extending the data model described in this specification.
 Instances of the data model are encoded in JSON-LD in the same way they are
 encoded in JSON (see Section <a href="#json"></a>), with the addition of the
@@ -2215,9 +2167,9 @@ encoded in JSON (see Section <a href="#json"></a>), with the addition of the
 <a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
 is described in detail in the [[!JSON-LD]] specification and its use is
 elaborated on in Section <a href="#extensibility"></a>.
-        </p>
+      </p>
 
-        <p>
+      <p>
 In general, the data model and syntaxes described in this document are designed
 such that developers can copy and paste examples into their software systems.
 The design goal of this approach is to provide a low barrier to entry while
@@ -2225,27 +2177,75 @@ still ensuring global interoperability between a heterogeneous set of software
 systems. This section describes some of these approaches, which will likely go
 unnoticed by most developers, but whose details will be of interest to
 implementers. Noteworthy features provided by JSON-LD are:
-        </p>
+      </p>
 
-        <ul>
-          <li>
+      <ul>
+        <li>
 The <code>@id</code> and <code>@type</code> keywords are aliased to
 <code>id</code> and <code>type</code> respectively, enabling developers to use
 this specification as idiomatic JSON.
-          </li>
-          <li>
+        </li>
+        <li>
 Data types, such as integers, dates, units of measure, and URLs, are
 automatically typed to provide stronger type guarantees for use cases that
 require them.
-          </li>
-          <li>
+        </li>
+        <li>
 The <code>@protected</code> properties feature of JSON-LD 1.1 is used to ensure
 that terms defined by this specification cannot be overridden. This means that
 as long as the same <code>@context</code> declaration is made at the top of a
 <a>DID document</a>, interoperability is guaranteed between implementations
 that use a JSON-LD processor and implementations that do not.
-          </li>
-        </ul>
+        </li>
+      </ul>
+
+      <section>
+        <h2>
+  Contexts
+        </h2>
+
+        <p>
+  When two software systems need to exchange data, they need to use terminology
+  and a protocol that both systems understand. The <code>@context</code>
+  property ensures that two systems operating on the same DID document are using
+  mutually agreed terminology.
+        </p>
+
+        <p>
+  <a>DID documents</a> MUST include the <code>@context</code> property.
+        </p>
+
+        <p class="note" title="The JSON-LD Context">
+  More information about the
+  <a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a> in
+  general can be found in the [[JSON-LD]] specification.
+        </p>
+
+        <dl>
+          <dt><dfn>@context</dfn></dt>
+          <dd>
+  The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
+  where the value of the first <a>URI</a> is
+  <code>https://www.w3.org/ns/did/v1</code>. If more than one <a>URI</a> is
+  provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
+  RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
+  machine-readable information about the context.
+          </dd>
+        </dl>
+
+        <pre class="example nohighlight">
+  {
+    "@context": "https://www.w3.org/ns/did/v1"
+  }
+        </pre>
+
+        <p>
+  <a>DID method</a> specifications MAY define their own JSON-LD contexts. However,
+  it is NOT RECOMMENDED to define a new context unless the context is necessary to
+  properly implement the method. Method-specific contexts MUST NOT override the
+  terms defined in the generic <a>DID</a> context.
+        </p>
+      </section>
     </section>
 
     <section>
