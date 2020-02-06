@@ -578,12 +578,88 @@ Terminology
 
   </section>
 
+  <section>
+    <h1>Overall Architecture</h1>
+
+    <section>
+      <h2>DIDs</h2>
+    </section>
+
+    <section>
+      <h2>DID Registries</h2>
+    </section>
+
+    <section>
+      <h2>DID Documents</h2>
+    </section>
+
+    <section>
+      <h2>DID Resolvers and DID Resolution</h2>
+    </section>
+
+    <section>
+      <h2>Security and Privacy</h2>
+    </section>
+
+  </section>
+
   <section id="conformance"></section>
 
+  <section>
+    <h2>Identifier</h1>
+
+    <section>
+      <h2>Generic DID Syntax</h2>
+    </section>
+
+    <section>
+      <h2>Method-Specific Syntax</h2>
+    </section>
+
+    <section>
+      <h2>Generic DID Parameters</h2>
+    </section>
+
+    <section>
+      <h2>Method-Specific Parameters</h2>
+    </section>
+
+    <section>
+      <h2>Path</h2>
+    </section>
+
+    <section>
+      <h2>Query</h2>
+    </section>
+
+    <section>
+      <h2>Fragment</h2>
+    </section>
+
+    <section>
+      <h2>Normalization</h2>
+    </section>
+
+    <section>
+      <h2>Persistence</h2>
+    </section>
+
+  </section>
+
   <section class="informative">
-    <h1>
-Data Model
-    </h1>
+    <h1>Data Model</h1>
+
+    <section>
+      <h2>Definition</h2>
+    </section>
+
+    <section>
+      <h2>Extensibility</h2>
+    </section>
+
+    <section>
+      <h2>Representation Requirements</h2>
+    </section>
 
     <p>
 This section outlines the <a>decentralized identifier</a> data model concepts,
@@ -677,11 +753,25 @@ types of key formats that are supported in this specification are listed in <a
 href="#public-keys"></a>.
       </p>
     </section>
+  </section>
+
+  <section>
+    <h1>Core Properties</h1>
 
     <section>
-      <h2>
-Services
-    </h2>
+      <h2>DID Subject</h2>
+    </section>
+
+    <section>
+      <h2>Public Keys</h2>
+    </section>
+
+    <section>
+      <h2>Authentication</h2>
+    </section>
+
+    <section>
+      <h2>Service Endpoints</h2>
 
     <p>
 <a>Service endpoints</a> are used in <a>DID documents</a> to express ways of
@@ -704,7 +794,11 @@ the service.
     <p>
 For more information, see Section <a href="#service-endpoints"></a>.
     </p>
-  </section>
+    </section>
+
+    <section>
+      <h2>Proof</h2>
+    </section>
 
   </section>
 
@@ -2122,9 +2216,7 @@ with implementations, or enabling aggressive caching of contexts.
   </section>
 
   <section class="normative">
-    <h1>
-DID Document Syntax
-    </h1>
+    <h1>Core Representations</h1>
 
       <p>
 A <a>DID document</a> MUST be a single JSON object conforming to [[!RFC8259]].
@@ -2233,17 +2325,18 @@ that use a JSON-LD processor and implementations that do not.
           </li>
         </ul>
     </section>
+
+    <section>
+      <h2>CBOR</h2>
+    </section>
+
   </section>
 
   <section>
-    <h1>
-DID Methods
-    </h1>
+    <h1>Methods</h1>
 
     <section class="normative">
-      <h2>
-DID Method Schemes
-      </h2>
+      <h2>Method Schemes</h2>
 
       <p>
 A <a>DID method</a> specification MUST define exactly one method-specific
@@ -2279,9 +2372,7 @@ formats as possible.
     </section>
 
     <section>
-      <h2>
-DID Operations
-      </h2>
+      <h2>Method Operations</h2>
 
       <p>
 To enable the full functionality of <a>DIDs</a> and <a>DID documents</a> on a
@@ -2367,6 +2458,12 @@ necessary to establish proof of deactivation, <em>or</em> state that
 deactivation is not possible.
         </p>
       </section>
+    </section>
+
+    <section>
+      <h2>Extensibility</h2>
+    </section>
+
     </section>
 
     <section class="informative">
@@ -2503,7 +2600,7 @@ correlation, identification, secondary use, disclosure, exclusion.
 
   <section class='normative'>
     <h1>
-DID Resolvers
+Resolution
     </h1>
 
     <p>
@@ -3163,7 +3260,7 @@ result in changes to this specification.
 
   <section class="appendix">
     <h1>
-Registries
+Interoperability Registries
     </h1>
 
     <p>
