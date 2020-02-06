@@ -606,10 +606,55 @@ Terminology
   <section id="conformance"></section>
 
   <section>
-    <h2>Identifier</h1>
+    <h2>Identifier</h2>
 
     <section>
       <h2>Generic DID Syntax</h2>
+
+      <p>
+The generic <a>DID scheme</a> is a URI scheme conformant with [[!RFC3986]]. The
+<a>DID scheme</a> specializes only the scheme and authority components of a
+<a>DID URL</a>. The <code>path-abempty</code>, <code>query</code>, and
+<code>fragment</code> components are identical to the ABNF rules defined in
+[[!RFC3986]].
+      </p>
+
+      <p class="note">
+The term <a>DID</a> refers only to the <a>URI</a> conforming to the
+<code>did</code> rule in the ABNF below. A <a>DID</a> always identifies the
+<a>DID subject</a>. The term <a>DID URL</a>, defined by the <code>did-url</code>
+rule, refers to a URL that begins with a <a>DID</a> followed by one or more
+additional components. A <a>DID URL</a> always identifies the resource to
+be located.
+      </p>
+
+      <p>
+The following is the ABNF definition using the syntax in [[!RFC5234]], which
+defines <code>ALPHA</code> and <code>DIGIT</code>. All other rule names not
+defined in this ABNF are defined in [[RFC3986]].
+      </p>
+
+      <pre class="nohighlight">
+did                = "did:" method-name ":" method-specific-id
+method-name        = 1*method-char
+method-char        = %x61-7A / DIGIT
+method-specific-id = *idchar *( ":" *idchar )
+idchar             = ALPHA / DIGIT / "." / "-" / "_"
+did-url            = did *( ";" param ) path-abempty [ "?" query ]
+                     [ "#" fragment ]
+param              = param-name [ "=" param-value ]
+param-name         = 1*param-char
+param-value        = *param-char
+param-char         = ALPHA / DIGIT / "." / "-" / "_" / ":" /
+                     pct-encoded
+      </pre>
+
+      <p class="issue" data-number="34">
+The grammar currently allows an empty <code>method-specific-id</code>,
+e.g., <code>did:example:</code> would be a valid <a>DID</a> that could identify
+the <a>DID method</a> itself.
+      </p>
+
     </section>
 
     <section>
@@ -833,57 +878,6 @@ usually contains cryptographic material enabling authentication of the
 <a>DID subject</a>.
         </li>
       </ul>
-
-    <section>
-      <h2>
-Generic DID Syntax
-      </h2>
-
-      <p>
-The generic <a>DID scheme</a> is a URI scheme conformant with [[!RFC3986]]. The
-<a>DID scheme</a> specializes only the scheme and authority components of a
-<a>DID URL</a>. The <code>path-abempty</code>, <code>query</code>, and
-<code>fragment</code> components are identical to the ABNF rules defined in
-[[!RFC3986]].
-      </p>
-
-      <p class="note">
-The term <a>DID</a> refers only to the <a>URI</a> conforming to the
-<code>did</code> rule in the ABNF below. A <a>DID</a> always identifies the
-<a>DID subject</a>. The term <a>DID URL</a>, defined by the <code>did-url</code>
-rule, refers to a URL that begins with a <a>DID</a> followed by one or more
-additional components. A <a>DID URL</a> always identifies the resource to
-be located.
-      </p>
-
-      <p>
-The following is the ABNF definition using the syntax in [[!RFC5234]], which
-defines <code>ALPHA</code> and <code>DIGIT</code>. All other rule names not
-defined in this ABNF are defined in [[RFC3986]].
-      </p>
-
-      <pre class="nohighlight">
-did                = "did:" method-name ":" method-specific-id
-method-name        = 1*method-char
-method-char        = %x61-7A / DIGIT
-method-specific-id = *idchar *( ":" *idchar )
-idchar             = ALPHA / DIGIT / "." / "-" / "_"
-did-url            = did *( ";" param ) path-abempty [ "?" query ]
-                     [ "#" fragment ]
-param              = param-name [ "=" param-value ]
-param-name         = 1*param-char
-param-value        = *param-char
-param-char         = ALPHA / DIGIT / "." / "-" / "_" / ":" /
-                     pct-encoded
-      </pre>
-
-      <p class="issue" data-number="34">
-The grammar currently allows an empty <code>method-specific-id</code>,
-e.g., <code>did:example:</code> would be a valid <a>DID</a> that could identify
-the <a>DID method</a> itself.
-      </p>
-
-    </section>
 
     <section>
       <h2>
