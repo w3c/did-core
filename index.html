@@ -901,6 +901,22 @@ Also discuss hierarchical method namespaces in DID parameter names.
 
     <section>
       <h2>Path</h2>
+
+      <p>
+A generic <a>DID path</a> is identical to a URI path and MUST conform to the
+<code>path-abempty</code> ABNF rule in [[!RFC3986]]. A <a>DID path</a> SHOULD be
+used to address resources available through a <a>service endpoint</a>. For more
+information, see Section <a href="#service-endpoints"></a>.
+      </p>
+
+      <p>
+A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID paths</a> that
+are more restrictive than the generic rules in this section.
+      </p>
+
+      <pre class="example nohighlight">
+did:example:123456/path
+      </pre>
     </section>
 
     <section>
@@ -1297,33 +1313,6 @@ For more information, see Section <a href="#service-endpoints"></a>.
     <h1>
 Decentralized Identifiers (DIDs)
     </h1>
-
-    <section>
-      <h2>
-Method-Specific DID Parameter Names
-      </h2>
-
-    <section>
-      <h2>
-Path
-      </h2>
-
-      <p>
-A generic <a>DID path</a> is identical to a URI path and MUST conform to the
-<code>path-abempty</code> ABNF rule in [[!RFC3986]]. A <a>DID path</a> SHOULD be
-used to address resources available through a <a>service endpoint</a>. For more
-information, see Section <a href="#service-endpoints"></a>.
-      </p>
-
-      <p>
-A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID paths</a> that
-are more restrictive than the generic rules in this section.
-      </p>
-
-      <pre class="example nohighlight">
-did:example:123456/path
-      </pre>
-    </section>
 
     <section>
       <h2>
