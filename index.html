@@ -1431,65 +1431,6 @@ see Section <a href="#did-resolvers"></a>.
 
     <section>
       <h2>Authentication</h2>
-    </section>
-
-    <section>
-      <h2>Service Endpoints</h2>
-
-      <p>
-<a>Service endpoints</a> are used in <a>DID documents</a> to express ways of
-communicating with the <a>DID subject</a> or associated entities. Services
-listed in the <a>DID document</a> can contain information about privacy
-preserving messaging services, or more public information, such as social media
-accounts, personal websites, and email addresses. The metadata associated with
-services are often service-specific. For example, the metadata associated with
-an encrypted messaging service can express how to initiate the encrypted link
-before messaging begins.
-      </p>
-
-      <p>
-Pointers to services are expressed using the <code>service</code> property.
-Each service has its own <code>id</code> and <code>type</code>, as well as a
-<code>serviceEndpoint</code> with a <a>URI</a> or other properties describing
-the service.
-      </p>
-
-      <p>
-For more information, see Section <a href="#service-endpoints"></a>.
-      </p>
-    </section>
-
-    <section>
-      <h2>Proof</h2>
-    </section>
-
-  </section>
-
-  <section class="normative">
-    <h1>
-DID Documents
-    </h1>
-
-
-
-    <section>
-      <h2>
-DID Subject
-      </h2>
-
-    </section>
-
-    <section>
-      <h2>
-Public Keys
-      </h2>
-
-    </section>
-
-    <section>
-      <h2>
-Authentication
-      </h2>
 
       <p>
 Authentication is a mechanism by which an entity can prove it is the
@@ -1654,7 +1595,51 @@ further fine-grained control of authorization and delegation.
     "serviceEndpoint": "https://example.com/vc/"
   }]
 }
-        </pre>
+      </pre>
+    </section>
+
+    <section>
+      <h2>Service Endpoints</h2>
+
+      <p>
+<a>Service endpoints</a> are used in <a>DID documents</a> to express ways of
+communicating with the <a>DID subject</a> or associated entities. Services
+listed in the <a>DID document</a> can contain information about privacy
+preserving messaging services, or more public information, such as social media
+accounts, personal websites, and email addresses. The metadata associated with
+services are often service-specific. For example, the metadata associated with
+an encrypted messaging service can express how to initiate the encrypted link
+before messaging begins.
+      </p>
+
+      <p>
+Pointers to services are expressed using the <code>service</code> property.
+Each service has its own <code>id</code> and <code>type</code>, as well as a
+<code>serviceEndpoint</code> with a <a>URI</a> or other properties describing
+the service.
+      </p>
+
+      <p>
+For more information, see Section <a href="#service-endpoints"></a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Proof</h2>
+    </section>
+
+  </section>
+
+  <section class="normative">
+    <h1>
+DID Documents
+    </h1>
+
+    <section>
+      <h2>
+Authentication
+      </h2>
+
     </section>
 
     <section>
