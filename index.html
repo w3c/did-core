@@ -978,10 +978,64 @@ did:example:123456#oidc
 
     <section>
       <h2>Normalization</h2>
+
+      <p>
+For the broadest interoperability, make <a>DID</a> normalization as simple and
+universal as possible:
+      </p>
+      <ul>
+        <li>
+The <a>DID scheme</a> name MUST be lowercase.
+        </li>
+
+        <li>
+The <a>DID method</a> name MUST be lowercase.
+        </li>
+
+        <li>
+Case sensitivity and normalization of the value of the
+<code>method-specific-id</code> rule in Section
+<a href="#generic-did-syntax"></a> MUST be defined by the governing
+<a>DID method</a> specification.
+        </li>
+      </ul>
     </section>
 
     <section>
       <h2>Persistence</h2>
+
+      <p>
+A <a>DID</a> is expected to be persistent and immutable. That is, a <a>DID</a>
+is bound exclusively and permanently to its one and only subject. Even after a
+<a>DID</a> is deactivated, it is intended that it never be repurposed.
+      </p>
+
+      <p>
+Ideally, a <a>DID</a> would be a completely abstract decentralized identifier
+(like a <a>UUID</a>) that could be bound to multiple underlying
+<a>DID registries</a> over time, thus maintaining its persistence independent of
+any particular system. However, registering the same identifier on multiple
+<a>DID registries</a> introduces extremely hard entityship and
+<a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">start-of-authority</a>
+(SOA) problems. It also greatly increases implementation complexity for
+developers.
+      </p>
+
+      <p>
+To avoid these issues, it is RECOMMENDED that <a>DID method</a> specifications
+only produce <a>DIDs</a> and <a>DID methods</a> bound to strong, stable
+<a>DID registries</a> capable of making the highest level of commitment to
+persistence of the <a>DID</a> and <a>DID method</a> over time.
+      </p>
+
+      <p class="note">
+Although not included in this version, future versions of this specification
+might support a <a>DID document</a> <code>equivID</code> property to establish
+verifiable equivalence relations between <a>DIDs</a> representing the same
+subject on multiple <a>DID registries</a>. Such equivalence relations can
+produce the practical equivalent of a single persistent abstract <a>DID</a>. For
+more information, see Section <a href="#future-work"></a>.
+      </p>
     </section>
 
   </section>
@@ -1329,7 +1383,7 @@ see Section <a href="#did-resolvers"></a>.
     <section>
       <h2>Service Endpoints</h2>
 
-    <p>
+      <p>
 <a>Service endpoints</a> are used in <a>DID documents</a> to express ways of
 communicating with the <a>DID subject</a> or associated entities. Services
 listed in the <a>DID document</a> can contain information about privacy
@@ -1338,103 +1392,24 @@ accounts, personal websites, and email addresses. The metadata associated with
 services are often service-specific. For example, the metadata associated with
 an encrypted messaging service can express how to initiate the encrypted link
 before messaging begins.
-    </p>
+      </p>
 
-    <p>
+      <p>
 Pointers to services are expressed using the <code>service</code> property.
 Each service has its own <code>id</code> and <code>type</code>, as well as a
 <code>serviceEndpoint</code> with a <a>URI</a> or other properties describing
 the service.
-    </p>
+      </p>
 
-    <p>
+      <p>
 For more information, see Section <a href="#service-endpoints"></a>.
-    </p>
+      </p>
     </section>
 
     <section>
       <h2>Proof</h2>
     </section>
 
-  </section>
-
-  <section class="normative">
-    <h1>
-Decentralized Identifiers (DIDs)
-    </h1>
-
-    <section>
-      <h2>
-Fragment
-      </h2>
-
-    </section>
-
-    <section>
-      <h2>
-Normalization
-      </h2>
-
-      <p>
-For the broadest interoperability, make <a>DID</a> normalization as simple and
-universal as possible:
-      </p>
-        <ul>
-          <li>
-The <a>DID scheme</a> name MUST be lowercase.
-          </li>
-
-          <li>
-The <a>DID method</a> name MUST be lowercase.
-          </li>
-
-          <li>
-Case sensitivity and normalization of the value of the
-<code>method-specific-id</code> rule in Section
-<a href="#generic-did-syntax"></a> MUST be defined by the governing
-<a>DID method</a> specification.
-          </li>
-        </ul>
-    </section>
-
-    <section>
-      <h2>
-Persistence
-      </h2>
-
-      <p>
-A <a>DID</a> is expected to be persistent and immutable. That is, a <a>DID</a>
-is bound exclusively and permanently to its one and only subject. Even after a
-<a>DID</a> is deactivated, it is intended that it never be repurposed.
-      </p>
-
-      <p>
-Ideally, a <a>DID</a> would be a completely abstract decentralized identifier
-(like a <a>UUID</a>) that could be bound to multiple underlying
-<a>DID registries</a> over time, thus maintaining its persistence independent of
-any particular system. However, registering the same identifier on multiple
-<a>DID registries</a> introduces extremely hard entityship and
-<a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">start-of-authority</a>
-(SOA) problems. It also greatly increases implementation complexity for
-developers.
-      </p>
-
-      <p>
-To avoid these issues, it is RECOMMENDED that <a>DID method</a> specifications
-only produce <a>DIDs</a> and <a>DID methods</a> bound to strong, stable
-<a>DID registries</a> capable of making the highest level of commitment to
-persistence of the <a>DID</a> and <a>DID method</a> over time.
-      </p>
-
-      <p class="note">
-Although not included in this version, future versions of this specification
-might support a <a>DID document</a> <code>equivID</code> property to establish
-verifiable equivalence relations between <a>DIDs</a> representing the same
-subject on multiple <a>DID registries</a>. Such equivalence relations can
-produce the practical equivalent of a single persistent abstract <a>DID</a>. For
-more information, see Section <a href="#future-work"></a>.
-      </p>
-    </section>
   </section>
 
   <section class="normative">
