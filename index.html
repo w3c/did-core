@@ -33,7 +33,7 @@
     edDraftURI: "https://w3c.github.io/did-core/",
 
     // subtitle
-    subtitle: "Core Data Model and Syntaxes",
+    subtitle: "Core architecture, data model, and representations",
 
     // if you wish the publication date to be other than today, set this
     //publishDate:  "2019-11-07",
@@ -2178,6 +2178,33 @@ If needed, a method-specific <a>DID scheme</a> MAY define multiple
 method-specific <a>DID scheme</a> define as few <code>method-specific-id</code>
 formats as possible.
       </p>
+
+      <p>
+The authors of a new <a>DID method</a> specification SHOULD use a method name
+that is unique among all <a>DID method</a> names known to them at the time of
+publication.
+      </p>
+      <p>
+Because there is no central authority for allocating or approving
+<a>DID method</a> names, there is no way to know for certain if a specific
+<a>DID method</a> name is unique. To help with this challenge, the
+<a href="https://www.w3.org/community/credentials/">W3C Credentials Community Group</a>
+maintains a non-authoritative list of known <a>DID method</a> names and their
+associated specifications. For more information, see Appendix
+<a href="#registries"></a>.
+      </p>
+      <p>
+The [[DID-METHOD-REGISTRY]] is a tool for implementors to use when coming to
+consensus on a new method name, as well as an informative reference for software
+developers implementing <a>DID resolvers</a> for different <a>DID methods</a>.
+For more information about <a>DID resolvers</a> see Section
+<a href="#did-resolvers"></a>. The [[DID-METHOD-REGISTRY]] is not a definitive
+or official list of <a>DID methods</a>. Nonetheless, adding <a>DID method</a>
+names to the [[DID-METHOD-REGISTRY]] is encouraged so that other implementors
+and members of the community have a place to see an overview of existing
+<a>DID methods</a>. The lightweight criteria for inclusion are documented in the
+[[DID-METHOD-REGISTRY]].
+      </p>
     </section>
 
     <section>
@@ -2273,43 +2300,9 @@ deactivation is not possible.
       <h2>Extensibility</h2>
     </section>
 
-    </section>
-
-    <section class="informative">
-      <h2>
-Unique DID Method Names
-      </h2>
-      <p>
-The authors of a new <a>DID method</a> specification SHOULD use a method name
-that is unique among all <a>DID method</a> names known to them at the time of
-publication.
-      </p>
-      <p>
-Because there is no central authority for allocating or approving
-<a>DID method</a> names, there is no way to know for certain if a specific
-<a>DID method</a> name is unique. To help with this challenge, the
-<a href="https://www.w3.org/community/credentials/">W3C Credentials Community Group</a>
-maintains a non-authoritative list of known <a>DID method</a> names and their
-associated specifications. For more information, see Appendix
-<a href="#registries"></a>.
-      </p>
-      <p>
-The [[DID-METHOD-REGISTRY]] is a tool for implementors to use when coming to
-consensus on a new method name, as well as an informative reference for software
-developers implementing <a>DID resolvers</a> for different <a>DID methods</a>.
-For more information about <a>DID resolvers</a> see Section
-<a href="#did-resolvers"></a>. The [[DID-METHOD-REGISTRY]] is not a definitive
-or official list of <a>DID methods</a>. Nonetheless, adding <a>DID method</a>
-names to the [[DID-METHOD-REGISTRY]] is encouraged so that other implementors
-and members of the community have a place to see an overview of existing
-<a>DID methods</a>. The lightweight criteria for inclusion are documented in the
-[[DID-METHOD-REGISTRY]].
-      </p>
-    </section>
-
     <section>
       <h2>
-Security requirements
+Security Requirements
       </h2>
 
       <p class="issue">
@@ -2405,6 +2398,7 @@ surveillance, stored data compromise, unsolicited traffic, misattribution,
 correlation, identification, secondary use, disclosure, exclusion.
       </p>
     </section>
+  </section>
   </section>
 
   <section class='normative'>
