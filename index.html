@@ -921,10 +921,28 @@ did:example:123456/path
 
     <section>
       <h2>Query</h2>
+
+      <p>
+A generic <a>DID query</a> is identical to a URI query and MUST conform to the
+<code>query</code> ABNF rule in [[!RFC3986]]. A <a>DID query</a> SHOULD be used
+to address resources available through a <a>service endpoint</a>. For more
+information, see Section <a href="#service-endpoints"></a>.
+      </p>
+
+      <p>
+A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID queries</a> that
+are more restrictive than the generic rules in this section.
+      </p>
+
+      <pre class="example nohighlight">
+did:example:123456?query=true
+      </pre>
     </section>
 
     <section>
       <h2>Fragment</h2>
+
+
     </section>
 
     <section>
@@ -1313,28 +1331,6 @@ For more information, see Section <a href="#service-endpoints"></a>.
     <h1>
 Decentralized Identifiers (DIDs)
     </h1>
-
-    <section>
-      <h2>
-Query
-      </h2>
-
-      <p>
-A generic <a>DID query</a> is identical to a URI query and MUST conform to the
-<code>query</code> ABNF rule in [[!RFC3986]]. A <a>DID query</a> SHOULD be used
-to address resources available through a <a>service endpoint</a>. For more
-information, see Section <a href="#service-endpoints"></a>.
-      </p>
-
-      <p>
-A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID queries</a> that
-are more restrictive than the generic rules in this section.
-      </p>
-
-      <pre class="example nohighlight">
-did:example:123456?query=true
-      </pre>
-    </section>
 
     <section>
       <h2>
