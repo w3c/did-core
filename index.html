@@ -591,6 +591,30 @@ Terminology
 
     <section>
       <h2>DID Documents</h2>
+
+      <p>
+A <a>DID document</a> is the resource that is associated with a
+<a>decentralized identifier</a> (DID). <a>DID documents</a> typically express
+verification methods (such as public keys) and services that can be used to
+interact with a <a>DID controller</a>.
+      </p>
+
+      <p>
+A <a>DID document</a> is serialized according to a particular syntax, as
+outlined in Section <a href="#did-document-syntax"></a>). The <a>DID</a> itself
+is contained in the <code>id</code> property.
+      </p>
+
+      <p>
+The properties that can be present in a <a>DID document</a> are outlined in
+Section <a href="#did-documents"></a>.
+      </p>
+
+      <p>
+The properties present in a <a>DID document</a> can be updated according to
+the applicable operations outlined in Section <a href="#did-methods"></a>.
+      </p>
+
     </section>
 
     <section>
@@ -865,35 +889,6 @@ specifically, how keys, services, and the <a>DID subject</a> are related to the
 For more information about how the data model can be extended, see Section
 <a href="#extensibility"></a>.
     </p>
-
-  <section>
-    <h2>
-DID Document
-    </h2>
-
-   <p>
-A <a>DID document</a> is the resource that is associated with a
-<a>decentralized identifier</a> (DID). <a>DID documents</a> typically express
-verification methods (such as public keys) and services that can be used to
-interact with a <a>DID controller</a>.
-    </p>
-
-    <p>
-A <a>DID document</a> is serialized according to a particular syntax, as
-outlined in Section <a href="#did-document-syntax"></a>). The <a>DID</a> itself
-is contained in the <code>id</code> property.
-    </p>
-
-    <p>
-The properties that can be present in a <a>DID document</a> are outlined in
-Section <a href="#did-documents"></a>.
-    </p>
-
-    <p>
-The properties present in a <a>DID document</a> can be updated according to
-the applicable operations outlined in Section <a href="#did-methods"></a>.
-    </p>
-  </section>
 
   <section>
     <h2>
