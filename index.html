@@ -601,7 +601,7 @@ interact with a <a>DID controller</a>.
 
       <p>
 A <a>DID document</a> is serialized according to a particular syntax, as
-outlined in Section <a href="#did-document-syntax"></a>). The <a>DID</a> itself
+outlined in Section <a href="#core-representations"></a>). The <a>DID</a> itself
 is contained in the <code>id</code> property.
       </p>
 
@@ -612,7 +612,7 @@ Section <a href="#did-documents"></a>.
 
       <p>
 The properties present in a <a>DID document</a> can be updated according to
-the applicable operations outlined in Section <a href="#did-methods"></a>.
+the applicable operations outlined in Section <a href="#methods"></a>.
       </p>
 
     </section>
@@ -715,7 +715,7 @@ the <a>DID method</a> itself.
 A <a>DID method</a> specification MUST further restrict the generic <a>DID</a>
 syntax by defining its own <code>method-name</code> and its own
 <code>method-specific-id</code> syntax. For more information, see Section
-<a href="#did-methods"></a>.
+<a href="#methods"></a>.
       </p>
 
     </section>
@@ -738,7 +738,7 @@ MUST operate uniformly across those <a>DID methods</a> that do support them.
       </p>
       <p>
 Parameter names that are completely method-specific are described in Section
-<a href="#method-specific-did-parameter-names"></a>.
+<a href="#method-specific-parameters"></a>.
       </p>
       <p>
 The following table defines a set of generic DID parameter names.
@@ -1160,7 +1160,7 @@ operations, which in turn are the basis for purposes such as authentication
 communication with <a>service endpoints</a> (see Section
 <a href="#service-endpoints"></a>). As well, public keys can play a role in
 authorization mechanisms of <a>DID</a> CRUD operations (see Section
-<a href="#did-operations"></a>), which can be defined by <a>DID method</a>
+<a href="#method-operations"></a>), which can be defined by <a>DID method</a>
 specifications.
       </p>
 
@@ -1204,7 +1204,7 @@ error.
       <p>
 The value of the <code>type</code> property MUST be exactly one public key type.
 For a registry of available key types and formats, see Appendix
-<a href="#registries"></a>.
+<a href="#interoperability-registries"></a>.
       </p>
 
       <p>
@@ -1228,7 +1228,7 @@ the <a>DID document</a>; see Section <a href="#authorization-and-delegation"></a
       <p>
 All public key properties MUST be from the Linked Data Cryptographic Suite
 Registry. For a registry of key types and formats, see Appendix
-<a href="#registries"></a>.
+<a href="#interoperability-registries"></a>.
       </p>
 
       <p>
@@ -1424,7 +1424,7 @@ property of <em>result</em>, throw an error.
       <p class="note">
 Caching and expiration of the keys in a <a>DID document</a> is entirely the
 responsibility of <a>DID resolvers</a> and other clients. For more information,
-see Section <a href="#did-resolvers"></a>.
+see Section <a href="#resolution"></a>.
       </p>
 
     </section>
@@ -1710,7 +1710,7 @@ standard specification.
 
       <p>
 For more information about security considerations regarding authentication
-<a>service endpoints</a> see Sections <a href="#did-method-schemes"></a>
+<a>service endpoints</a> see Sections <a href="#method-schemes"></a>
 and <a href="#authentication"></a>.
       </p>
     </section>
@@ -2159,7 +2159,7 @@ Because the method name is part of the <a>DID</a>, short method names are
 preferred; the method name SHOULD be five characters or less. The method name
 might reflect the name of the <a>DID registry</a> to which the <a>DID method</a>
 specification applies. For more information, see Section
-<a href="#unique-did-method-names"></a>.
+<a href="#method-schemes"></a>.
       </p>
 
       <p>
@@ -2191,14 +2191,14 @@ Because there is no central authority for allocating or approving
 <a href="https://www.w3.org/community/credentials/">W3C Credentials Community Group</a>
 maintains a non-authoritative list of known <a>DID method</a> names and their
 associated specifications. For more information, see Appendix
-<a href="#registries"></a>.
+<a href="#interoperability-registries"></a>.
       </p>
       <p>
 The [[DID-METHOD-REGISTRY]] is a tool for implementors to use when coming to
 consensus on a new method name, as well as an informative reference for software
 developers implementing <a>DID resolvers</a> for different <a>DID methods</a>.
 For more information about <a>DID resolvers</a> see Section
-<a href="#did-resolvers"></a>. The [[DID-METHOD-REGISTRY]] is not a definitive
+<a href="#resolution"></a>. The [[DID-METHOD-REGISTRY]] is not a definitive
 or official list of <a>DID methods</a>. Nonetheless, adding <a>DID method</a>
 names to the [[DID-METHOD-REGISTRY]] is encouraged so that other implementors
 and members of the community have a place to see an overview of existing
@@ -2346,7 +2346,7 @@ cipher) after threat mitigation was deployed.
       </p>
       <p>
 This section MUST provide integrity protection and update authentication for all
-operations required by Section <a href="#did-operations"></a>.
+operations required by Section <a href="#method-operations"></a>.
       </p>
       <p>
 Where <a>DID methods</a> make use of peer-to-peer computing resources, such as
@@ -2670,7 +2670,7 @@ Key Revocation and Recovery
       </h2>
 
       <p>
-Section <a href="#did-operations"></a> specifies the <a>DID</a> operations to be
+Section <a href="#method-operations"></a> specifies the <a>DID</a> operations to be
 supported by a <a>DID method</a> specification, including deactivation of a
 <a>DID document</a> by replacing it with an updated <a>DID document</a>. In
 general, checking for key revocation on <a>DLT</a>-based methods is expected to
