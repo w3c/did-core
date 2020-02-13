@@ -2220,15 +2220,16 @@ and members of the community have a place to see an overview of existing
 
       <p>
 To enable the full functionality of <a>DIDs</a> and <a>DID documents</a> on a
-particular <a>DID registry</a>, a <a>DID method</a> specification MUST specify how
-each of the following <abbr title="Create, Read, Update, Delete">CRUD</abbr>
-operations is performed by a client. Each operation ought to be specified to the level
-of detail necessary to build and test interoperable client implementations.
-In the event that an operation is unsupported, such as Update or Deactivate, than
-it is strongly suggested that the <a>DID Method</a> specification state that it's
-not supported. These operations can effectively be used to perform all the operations
-required of a CKMS (cryptographic key management system), e.g.: key registration,
-key replacement, key rotation, key recovery, and key expiration.
+particular <a>DID registry</a>, a <a>DID method</a> specification MUST specify
+how a client might be used to perform the create, read, update, and deactivate
+operations. Each operation ought to be specified to the level of detail
+necessary to build and test interoperable client implementations. In the event
+that an operation is not supported, such as update or deactivate, then it is
+RECOMMENDED that the <a>DID Method</a> specification state that it is not
+supported. These operations can be used to perform all the operations required
+of a cryptographic key management system (CKMS), e.g.: key registration, key
+replacement, key rotation, key recovery, and key expiration.
+      </p>
 
       <p>
 Any <a>DID method</a> specification that does not support a specific operation,
