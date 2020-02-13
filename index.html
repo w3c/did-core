@@ -1373,7 +1373,7 @@ both ways, as shown in the example below.
 <span class="comment">...</span>
 
   "authentication": [
-    <span class="comment">// this key is referenced, it may be used for more than one proof purpose</span>
+    <span class="comment">// this key is referenced, it may be used with more than one verification relationship</span>
     "did:example:123456789abcdefghi#keys-1",
     <span class="comment">// this key is embedded and may *only* be used for authentication</span>
     {
@@ -2223,7 +2223,7 @@ To enable the full functionality of <a>DIDs</a> and <a>DID documents</a> on a
 particular <a>DID registry</a>, a <a>DID method</a> specification MUST specify how
 each of the following <abbr title="Create, Read, Update, Delete">CRUD</abbr>
 operations is performed by a client. Each operation ought to be specified to the level
-of detail necessary to build and test interoperable client implementations. 
+of detail necessary to build and test interoperable client implementations.
 In the event that an operation is unsupported, such as Update or Deactivate, than
 it is strongly suggested that the <a>DID Method</a> specification state that it's
 not supported. These operations can effectively be used to perform all the operations
