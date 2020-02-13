@@ -48,25 +48,6 @@ records (for example, <a>DID documents</a>) containing verifiable
 <a>public key descriptions</a>.
   </dd>
 
-  <dt><dfn data-lt="delegates">delegate</dfn></dt>
-
-  <dd>
-An entity who creates a <a>DID</a> and associated <a>DID document</a> for a
-<a>dependent</a> who does not yet have the capacity to control the private keys.
-The <a>dependent</a> is expected to rely on the delegate to safeguard the
-private keys until the <a>dependent</a> can assume control as the
-<a>DID subject</a>.
-  </dd>
-
-  <dt><dfn data-lt="dependents">dependent</dfn></dt>
-
-  <dd>
-A person, organization, or thing whose <a>DID</a> is registered and maintained
-by a <a>delegate</a> because the dependent is not in a position to control the
-private keys. A dependent becomes an <a>identity owner</a> when the dependent
-takes control of the private keys.
-  </dd>
-
   <dt><dfn data-lt="did controllers|did controller(s)">DID controller</dfn></dt>
 
   <dd>
@@ -75,6 +56,18 @@ A <a>DID</a> can have more than one controller. The <a>DID controller(s)</a>
 are denoted by the `controller` property on the top level of the <a>DID
 document</a>. Note that the <a>DID controller(s)</a> might include the
 <a>DID subject</a>.
+  </dd>
+
+  <dt><dfn>DID delegate</dfn></dt>
+
+  <dd>
+An entity that the <a>DID controller</a> has approved to use cryptographic
+material associated with the <a>DID document</a>. For example, a parent
+that controls a child's <a>DID document</a> might approve the child
+to use their personal device for authentication purposes. In this case, the
+child is the <a>DID delegate</a> and their personal device contains
+private cryptographic material to enable the child to authenticate as the DID,
+but not to add new personal devices without the parent's approval.
   </dd>
 
   <dt><dfn data-lt="DID documents">DID document</dfn></dt>
