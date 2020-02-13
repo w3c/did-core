@@ -635,7 +635,53 @@ the applicable operations outlined in Section <a href="#methods"></a>.
 
   </section>
 
-  <section id="conformance"></section>
+  <section id="conformance">
+
+    <p>
+This document contains examples that contain JSON, CBOR, and JSON-LD content.
+Some of these examples contain characters that are invalid, such as inline
+comments (<code>//</code>) and the use of ellipsis (<code>...</code>) to denote
+information that adds little value to the example. Implementers are cautioned to
+remove this content if they desire to use the information as valid JSON, CBOR,
+or JSON-LD.
+    </p>
+
+   <p>
+A <dfn>conforming DID</dfn> is any concrete expression of the rules
+specified in Section <a href="#identifier"></a> and MUST comply with relevant
+normative statements in that section.
+   </p>
+
+    <p>
+A <dfn>conforming DID Document</dfn> is any concrete expression of the data
+model described in this specification and MUST comply with the relevant
+normative statements in Sections <a href="#data-model"></a> and  <a
+href="#core-properties"></a>. A serialization format for the conforming document
+MUST be deterministic, bi-directional, and lossless as described in Section <a
+href="#core-representations"></a>. The <a>conforming DID document</a> MAY be
+transmitted or stored in any such serialization format.
+    </p>
+
+    <p>
+A <dfn>conforming DID Method</dfn> is any specification that complies with the
+relevant normative statements in Section <a href="#methods"></a>.
+    </p>
+
+    <p>
+A <dfn>conforming producer</dfn> is any algorithm realized as software and/or
+hardware that generates a <a>conforming DID</a> or <a>conforming DID
+Document</a>. Conforming producers MUST NOT produce non-conforming
+<a>DIDs</a> or <a>DID Documents</a>.
+    </p>
+
+    <p>
+A <dfn>conforming consumer</dfn> is any algorithm realized as software and/or
+hardware that consumes a <a>conforming DID</a> or <a>conforming DID
+Document</a>. Conforming processors MUST produce errors when consuming
+non-conforming <a>DIDs</a> or <a>DID Documents</a>.
+    </p>
+
+  </section>
 
   <section>
     <h2>Identifier</h2>
