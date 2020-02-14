@@ -3199,5 +3199,140 @@ document</a>.
     </section>
   </section>
 
+  <section class="appendix">
+    <h1>
+IANA Considerations
+    </h1>
+
+    <p>
+This section will be submitted to the Internet Engineering SteeringGroup (IESG)
+for review, approval, and registration with IANA.
+    </p>
+
+    <section>
+      <h2>application/did+json</h2>
+      <dl>
+        <dt>Type name:</dt>
+        <dd>application</dd>
+        <dt>Subtype name:</dt>
+        <dd>did+json</dd>
+        <dt>Required parameters:</dt>
+        <dd>None</dd>
+        <dt>Optional parameters:</dt>
+        <dd>None</dd>
+        <dt>Encoding considerations:</dt>
+        <dd>
+See <a data-cite="RFC8259#section-11">RFC&nbsp;8259, section 11</a>.
+        </dd>
+        <dt id="iana-security">Security considerations:</dt>
+        <dd>
+See <a data-cite="RFC8259#section-12">RFC&nbsp;8259, section 12</a> [[RFC8259]].
+        </dd>
+        <dt>Interoperability considerations:</dt>
+        <dd>Not Applicable</dd>
+        <dt>Published specification:</dt>
+        <dd>http://www.w3.org/TR/did-core/</dd>
+        <dt>Applications that use this media type:</dt>
+        <dd>
+Any application that requires an identifier that is decentralized, persistent,
+crytopgraphically verifiable, and resolvable. Applications typically consist of
+cryptographic identity systems, decentralized networks of devices, and
+websites that issue or verify W3C Verifiable Credentials.
+        </dd>
+        <dt>Additional information:</dt>
+        <dd>
+          <dl>
+            <dt>Magic number(s):</dt>
+            <dd>Not Applicable</dd>
+            <dt>File extension(s):</dt>
+            <dd>.did</dd>
+            <dt>Macintosh file type code(s):</dt>
+            <dd>TEXT</dd>
+          </dl>
+        </dd>
+        <dt>Person &amp; email address to contact for further information:</dt>
+        <dd>Ivan Herman &lt;ivan@w3.org&gt;</dd>
+        <dt>Intended usage:</dt>
+        <dd>Common</dd>
+        <dt>Restrictions on usage:</dt>
+        <dd>None</dd>
+        <dt>Author(s):</dt>
+        <dd>Drummond Reed, Manu Sporny, Markus Sabadello, Dave Longley, Christopher Allen</dd>
+        <dt>Change controller:</dt>
+        <dd>W3C</dd>
+      </dl>
+
+      <p>
+Fragment identifiers used with
+<a href="#application-did-json">application/did+json</a> are treated
+according to the rules defined in
+<a data-cite="DID-CORE#fragment">DID Core v1.0, Fragment</a> [[DID-CORE]].
+      </p>
+    </section>
+
+    <section>
+      <h2>application/did+ld+json</h2>
+      <dl>
+        <dt>Type name:</dt>
+        <dd>application</dd>
+        <dt>Subtype name:</dt>
+        <dd>did+ld+json</dd>
+        <dt>Required parameters:</dt>
+        <dd>None</dd>
+        <dt>Optional parameters:</dt>
+        <dd>None</dd>
+        <dt>Encoding considerations:</dt>
+        <dd>
+See <a data-cite="RFC8259#section-11">RFC&nbsp;8259, section 11</a>.
+        </dd>
+        <dt id="iana-security">Security considerations:</dt>
+        <dd>
+See <a data-cite="JSON-LD11#security">JSON-LD 1.1, Security Considerations</a>
+[[JSON-LD11]].
+        </dd>
+        <dt>Interoperability considerations:</dt>
+        <dd>Not Applicable</dd>
+        <dt>Published specification:</dt>
+        <dd>http://www.w3.org/TR/did-core/</dd>
+        <dt>Applications that use this media type:</dt>
+        <dd>
+Any application that requires an identifier that is decentralized, persistent,
+crytopgraphically verifiable, and resolvable. Applications typically consist of
+cryptographic identity systems, decentralized networks of devices, and
+websites that issue or verify W3C Verifiable Credentials.
+        </dd>
+        <dt>Additional information:</dt>
+        <dd>
+          <dl>
+            <dt>Magic number(s):</dt>
+            <dd>Not Applicable</dd>
+            <dt>File extension(s):</dt>
+            <dd>.did</dd>
+            <dt>Macintosh file type code(s):</dt>
+            <dd>TEXT</dd>
+          </dl>
+        </dd>
+        <dt>Person &amp; email address to contact for further information:</dt>
+        <dd>Ivan Herman &lt;ivan@w3.org&gt;</dd>
+        <dt>Intended usage:</dt>
+        <dd>Common</dd>
+        <dt>Restrictions on usage:</dt>
+        <dd>None</dd>
+        <dt>Author(s):</dt>
+        <dd>Drummond Reed, Manu Sporny, Markus Sabadello, Dave Longley, Christopher Allen</dd>
+        <dt>Change controller:</dt>
+        <dd>W3C</dd>
+      </dl>
+
+      <p>
+Fragment identifiers used with
+<a href="#application-did-ld-json">application/did+ld+json</a> are treated
+according to the rules defined in
+<a data-cite="DID-CORE#fragment">DID Core v1.0, Fragment</a> [[DID-CORE]].
+      </p>
+    </section>
+
+  </section>
+
 </body>
 </html>
