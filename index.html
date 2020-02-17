@@ -1893,19 +1893,27 @@ the bidirectional translation of a <a>DID document</a> both into and out of the
 representation in question. As a consequence, translation between any two representations
 MUST be done by parsing the source format into a <a>DID document</a> model
 (described in Sections <a href="#data-model"></a> and <a href="#did-documents"></a>)
-and then serializing the <a>DID document</a> model into the target representation.
+and then serializing the <a>DID document</a> model into the target representation. An
+implementation MUST NOT convert between representations without first parsing to a 
+<a>DID document</a> model. 
       </p>
 
       <p>
-Although syntactic mappings are provided for JSON and JSON-LD here, applications
-and services MAY use any other data representation syntax, such as
-XML, YAML, or CBOR, that is capable of expressing the data model.
+Although syntactic mappings are provided for JSON, JSON-LD, and CBOR here, applications
+and services MAY use any other data representation syntax that is capable of expressing 
+the data model, such as XML or YAML.
+      </p>
+      
+      <p>
+Producers MUST indicate which representation of a document has been used, and consumers
+MUST be made aware of which representation a document is in.
       </p>
       
       <p>
 The production and consumption rules in this section apply to all implementations
 seeking to be fully compatible with independent implementations of the specification.
-Deployments of this specification MAY use a custom agreed-upon representation.
+Deployments of this specification MAY use a custom agreed-upon representation, including
+localized rules for handling properties not listed in the registry.
 See section ?? on Extensibility for more information.
       </p>
 
@@ -1913,6 +1921,11 @@ See section ?? on Extensibility for more information.
       <h2>
 JSON
       </h2>
+      
+      <p>
+When producing and consuming DID documents that are in plain JSON (as noted by
+the document metadata), the following rules MUST be followed. 
+      </p>
 
 <section>
       <h3>Production</h3>
@@ -1951,12 +1964,14 @@ Other values MUST be represented as a String type.
         </ul>
 
         <p>
-All properties of the <a>DID document</a> MUST be included in the object.
+All applicable properties of the <a>DID document</a> MUST be included in
+the root object. Properties MAY define additional data sub structures subject
+to the value representation rules, above.
         </p>
 
         <p>
 The property name <code>@context</code> MUST NOT be used as this is reserved
-for JSON-LD processors. 
+for JSON-LD producers. 
         </p>
         
 </section>
@@ -1996,7 +2011,8 @@ depending on the definition of the property for this value.
         </ul>
 
   <p>
-The value of the <code>@context</code> field MUST be ignored.
+The value of the <code>@context</code> field MUST be ignored as this is 
+reserved for JSON-LD consumers. 
   </p>
   
   <p>
@@ -2014,9 +2030,14 @@ JSON-LD
 
       <p>
 [[!JSON-LD]] is a JSON-based format used to serialize
-<a href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a> in
-a JSON-based format.
+<a href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a>.
   </p>
+
+      <p>
+When producing and consuming DID documents that are in JSON-LD (as noted by
+the document metadata), the following rules MUST be followed. 
+      </p>
+
       <ul>
         <li>
 The <code>@id</code> and <code>@type</code> keywords are aliased to
