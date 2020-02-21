@@ -1941,7 +1941,7 @@ the document metadata), the following rules MUST be followed.
             <h3>Production</h3>
 
             <p>
-A <a>DID document</a> MUST be a single JSON object conforming to [[!RFC8259]]. All
+A <a>DID document</a> MUST be a single <a data-cite="RFC8259#section-4">JSON object</a> conforming to [[!RFC8259]]. All
 top-level properties of the <a>DID document</a> MUST be represented by using the
 property name as the name of the member of the JSON object. The values of
 properties of the data model described in Section <a href="#data-model"></a>, 
@@ -1957,25 +1957,25 @@ such aspects of a property of a DID document.
 
             <ul>
                 <li>
-Numeric values representable as IEEE754 MUST be represented as a Number type.
+Numeric values representable as IEEE754 MUST be represented as a <a data-cite="RFC8259#section-6">Number type</a>.
                 </li>
                 <li>
-Boolean values MUST be represented as a Boolean type.
+Boolean values MUST be represented as a <a data-cite="RFC8259#section-3">Boolean literal</a>.
                 </li>
                 <li>
-Sequence value MUST be represented as an Array type.
+Sequence value MUST be represented as an <a data-cite="RFC8259#section-5">Array type</a>.
                 </li>
                 <li>
-Unordered sets of values MUST be represented as an Array type.
+Unordered sets of values MUST be represented as an <a data-cite="RFC8259#section-5">Array type</a>.
                 </li>
                 <li>
-Sets of properties MUST be represented as an Object type.
+Sets of properties MUST be represented as an <a data-cite="RFC8259#section-4">Object type</a>.
                 </li>
                 <li>
-Empty values MUST be represented as a null value.
+Empty values MUST be represented as a <a data-cite="RFC8259#section-3">null literal</a>.
                 </li>
                 <li>
-Other values MUST be represented as a String type.
+Other values MUST be represented as a <a data-cite="RFC8259#section-7">String type</a>.
                 </li>
             </ul>
 
@@ -2012,24 +2012,25 @@ member value is interpreted as follows:
 
             <ul>
                 <li>
-Number types MUST interpreted as numeric values representable as IEEE754.
+<a data-cite="RFC8259#section-6">Number types</a> MUST interpreted as numeric values representable as IEEE754.
                 </li>
                 <li>
-Boolean types MUST be interpreted as a Boolean value.
+<a data-cite="RFC8259#section-3">Boolean literals</a> MUST be interpreted as a Boolean value.
                 </li>
                 <li>
-An Array type MUST be interpreted as a Sequence or Unordered set, depending on the
+An <a data-cite="RFC8259#section-5">Array type</a> MUST be interpreted as a Sequence or Unordered set, depending on the
 definition of the property for this value.
                 </li>
                 <li>
-An Object type MUST be interpreted as a sets of properties.
+An <a data-cite="RFC8259#section-4">Object type</a> MUST be interpreted as a sets of properties.
                 </li>
                 <li>
-A null type MUST be interpreted as an Empty value.
+A <a data-cite="RFC8259#section-3">null literal</a> MUST be interpreted as an Empty value.
                 </li>
                 <li>
-String types MUST be interpreted as Strings, which may be further parsed
-depending on the definition of the property for this value.
+<a data-cite="RFC8259#section-7">String types</a> MUST be interpreted as Strings, which may be further parsed
+depending on the definition of the property for this value into more specific data types such as URIs,
+date stamps, or other values.
                 </li>
             </ul>
 
@@ -2039,7 +2040,7 @@ value, but this is unclear.
             </p>
 
             <p>
-The value of the <code>@context</code> field MUST be ignored as this is 
+The value of the <code>@context</code> object member MUST be ignored as this is 
 reserved for JSON-LD consumers. 
             </p>
 
