@@ -951,16 +951,15 @@ did:example:123456?query=true
       <h2>Fragment</h2>
 
       <p>
-A generic <a>DID fragment</a> is identical to a URI fragment and MUST conform to
-the <code>fragment</code> ABNF rule in [[RFC3986]]. Implementers are strongly
-discouraged from using a <a>DID fragment</a> for anything other than a
-method-independent reference into the <a>DID document</a> to identify a
-component of a <a>DID document</a> (for example, a unique
-<a>public key description</a> or <a>service endpoint</a>). To resolve this
-reference, the complete <a>DID URL</a> including the <a>DID fragment</a> MUST be
-used as input to the <a>DID URL</a> dereferencing algorithm for the
-target component in the <a>DID document</a> object. For more information, see
-[[DID-RESOLUTION]].
+A <a>DID fragment</a> is used as method-independent reference into the <a>DID
+document</a> to identify a component of the document (for example, a unique
+<a>public key description</a> or <a>service endpoint</a>). <a>DID fragment</a>
+syntax and semantics are identical to a generic URI fragment and  MUST conform
+to <a data-cite="RFC3986#section-3.5">RFC&nbsp;3986, section 3.5</a>. To resolve
+a <a>DID fragment</a> reference, the complete <a>DID URL</a> including the
+<a>DID fragment</a> MUST be used as input to the <a>DID URL</a> dereferencing
+algorithm for the target component in the <a>DID document</a> object. For more
+information, see [[DID-RESOLUTION]].
       </p>
 
       <p>
@@ -980,8 +979,15 @@ Implementations SHOULD NOT prevent the use of <a>JSON Pointer</a>
       </p>
 
       <pre class="example nohighlight">
-did:example:123456#oidc
+did:example:123456#public-key-1
       </pre>
+
+      <p>
+Additional semantics for fragment identifiers, which are compatible with and
+layered upon the semantics in this section, are described for JSON-LD
+representations in Section <a href="#application-did-ld-json"></a>.
+      </p>
+
     </section>
 
     <section>
@@ -3328,8 +3334,9 @@ websites that issue or verify W3C Verifiable Credentials.
       <p>
 Fragment identifiers used with
 <a href="#application-did-ld-json">application/did+ld+json</a> are treated
-according to the rules defined in
-<a data-cite="DID-CORE#fragment">DID Core v1.0, Fragment</a> [[DID-CORE]].
+according to the rules associated with the
+<a data-cite="JSON-LD11#iana-considerations">JSON-LD 1.1: application/ld+json
+media type</a> [[JSON-LD11]].
       </p>
     </section>
 
