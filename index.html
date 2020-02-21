@@ -1909,7 +1909,7 @@ Producers MUST indicate which representation of a document has been used, and co
 MUST be made aware of which representation a document is in.
     </p>
 
-    <p class="issue" data-number="">
+    <p class="issue" data-number="203">
 This requirement depends on the return of DID document metadata that still needs to be
 defined by this specification. Once defined, that should be linked from here.
     </p>
@@ -1922,7 +1922,7 @@ localized rules for handling properties not listed in the registry.
 See section ?? on Extensibility for more information.
     </p>
 
-    <p class="issue" data-number="">
+    <p class="issue" data-number="207">
 A link to a section on extensibility and conformance as it applies to data representations
 should be added here once that section has been written.
     </p>
@@ -1949,6 +1949,12 @@ including all extensions, MUST be encoded in JSON[[RFC8259]] by mapping property
 values to JSON types as follows:
             </p>
 
+            <p class="issue" data-number="204">
+In this section we use the term "property name" to refer to the string that represents
+the property itself, but this specification still needs to define a concerete term for
+such aspects of a property of a DID document.
+            </p>
+
             <ul>
                 <li>
 Numeric values representable as IEEE754 MUST be represented as a Number type.
@@ -1973,7 +1979,7 @@ Other values MUST be represented as a String type.
                 </li>
             </ul>
 
-            <p class="issue" data-number="">
+            <p class="issue" data-number="204">
 An "empty" value is not specified by this document. It seems to imply a null
 value, but this is unclear.
             </p>
@@ -1985,7 +1991,7 @@ to the value representation rules, above.
             </p>
 
             <p>
-The property name <code>@context</code> MUST NOT be used as this is reserved
+The property <code>@context</code> MUST NOT be used as this is reserved
 for JSON-LD producers. 
             </p>
 
@@ -2027,7 +2033,7 @@ depending on the definition of the property for this value.
                 </li>
             </ul>
 
-            <p class="issue" data-number="">
+            <p class="issue" data-number="204">
 An "empty" value is not specified by this document. It seems to imply a null
 value, but this is unclear.
             </p>
@@ -2041,7 +2047,7 @@ reserved for JSON-LD consumers.
 Unknown object member names MUST be ignored as unknown properties.
             </p>
 
-            <p class="issue" data-number="">
+            <p class="issue" data-number="205">
 This specification needs to define clear and consistent rules for how to handle unknown
 data members on consumption, and this section needs to be updated with that decision.
             </p>
@@ -2077,8 +2083,11 @@ automatically typed to provide stronger type guarantees for use cases that
 require them.
             </li>
         </ul>
+
         <section>
-            <h2>Production</h2>
+            <h2>
+Production
+            </h2>
 
             <p>
 The <a>DID document</a> is serialized following the rules in the JSON processor, with
@@ -2095,7 +2104,7 @@ property MUST exist be in the DID properties extension registry.
                 </dd>
             </dl>
 
-            <p class="issue" data-number="">
+            <p class="issue" data-number="202">
 This specification defines globally interoperable documents, and the requirement that the
 context value be in the DID registry means that different JSON-LD processors can consume
 the document without having to dereference anything in the context field. However,
@@ -2133,28 +2142,34 @@ machine-readable information about the context.
 Unknown object member names MUST be ignored as unknown properties.
             </p>
 
-            <p class="issue" data-number="">
+            <p class="issue" data-number="205">
 This specification needs to define clear and consistent rules for how to handle unknown
 data members on consumption, and this section needs to be updated with that decision.
-        </p>
+            </p>
+
+        </section>
 
     </section>
 
-</section>
+    <section>
+        <h2>
+CBOR
+        </h2>
 
-<section>
-<h2>CBOR</h2>
+        <section>
+            <h3>
+Production
+            </h3>
+        </section>
 
-<section>
-<h3>Production</h3>
-</section>
+        <section>
+            <h3>
+Consumption
+            </h3>
+        </section>
 
-<section>
-<h3>Consumption</h3>
-</section>
-
-</section>
-</section>
+    </section>
+  </section>
 
   <section>
     <h1>Methods</h1>
@@ -3210,7 +3225,7 @@ document</a>.
 JSON LD Description and Extension
     </h2>
 
-    <p class="issue" data-number="">
+    <p class="issue" data-number="206">
 The following text was previously in the section on serialized representations. 
 It has been moved to this appendix to allow the text to be re-incorporated into
 the document in more appropriate sections or removed entirely, as required by
