@@ -1908,6 +1908,11 @@ the data model, such as XML or YAML.
 Producers MUST indicate which representation of a document has been used, and consumers
 MUST be made aware of which representation a document is in.
       </p>
+
+      <p class="issue" data-number="">
+This requirement depends on the return of DID document metadata that still needs to be
+defined by this specification. Once defined, that should be linked from here.
+      </p>
       
       <p>
 The production and consumption rules in this section apply to all implementations
@@ -1915,6 +1920,11 @@ seeking to be fully compatible with independent implementations of the specifica
 Deployments of this specification MAY use a custom agreed-upon representation, including
 localized rules for handling properties not listed in the registry.
 See section ?? on Extensibility for more information.
+      </p>
+      
+      <p class="issue" data-number="">
+A link to a section on extensibility and conformance as it applies to data representations
+should be added here once that section has been written.
       </p>
 
     <section>
@@ -1963,6 +1973,11 @@ Other values MUST be represented as a String type.
           </li>
         </ul>
 
+        <p class="issue" data-number="">
+An "empty" value is not specified by this document. It seems to imply a null
+value, but this is unclear.
+        </p>
+
         <p>
 All applicable properties of the <a>DID document</a> MUST be included in
 the root object. Properties MAY define additional data sub structures subject
@@ -2010,6 +2025,12 @@ depending on the definition of the property for this value.
           </li>
         </ul>
 
+        <p class="issue" data-number="">
+An "empty" value is not specified by this document. It seems to imply a null
+value, but this is unclear.
+        </p>
+
+
   <p>
 The value of the <code>@context</code> field MUST be ignored as this is 
 reserved for JSON-LD consumers. 
@@ -2019,11 +2040,16 @@ reserved for JSON-LD consumers.
 Unknown object member names MUST be ignored as unknown properties.
   </p>
   
+  <p class="issue" data-number="">
+This specification needs to define clear and consistent rules for how to handle unknown
+data members on consumption, and this section needs to be updated with that decision.
+  </p>
+
 </section>
       
-    </section>
+</section>
 
-    <section>
+<section>
       <h2>
 JSON-LD
       </h2>
@@ -2067,6 +2093,15 @@ one addition: <a>DID documents</a> MUST include the <code>@context</code> proper
   property MUST exist be in the DID properties extension registry. 
           </dd>
         </dl>
+
+        <p class="issue" data-number="">
+This specification defines globally interoperable documents, and the requirement that the
+context value be in the DID registry means that different JSON-LD processors can consume
+the document without having to dereference anything in the context field. However,
+a pair of producers and consumers can have local extension agreements. This needs to be
+clarified in a section on extensibility and linked here when available.
+        </p>
+
       </section>
 
       <section>
@@ -2098,6 +2133,12 @@ using JSON-LD processing under the rules of the defined <code>@context</code> fi
         <p>
       Unknown object member names MUST be ignored as unknown properties.
         </p>
+
+  <p class="issue" data-number="">
+This specification needs to define clear and consistent rules for how to handle unknown
+data members on consumption, and this section needs to be updated with that decision.
+  </p>
+
       </section>
       
     </section>
@@ -3170,7 +3211,7 @@ document</a>.
 JSON LD Description and Extension
     </h2>
 
-    <p class="issue" title="JSON-LD Description">
+    <p class="issue" data-number="">
 The following text was previously in the section on serialized representations. 
 It has been moved to this appendix to allow the text to be re-incorporated into
 the document in more appropriate sections or removed entirely, as required by
