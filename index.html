@@ -1885,7 +1885,7 @@ the property MUST be a valid JSON-LD proof, as defined by
   <section class="normative">
     <h1>Core Representations</h1>
 
-      <p>
+    <p>
 All concrete representations of a <a>DID document</a> MUST be serialized using a 
 deterministic mapping that is able to be unambiguously parsed into the data model
 defined in this specification. All serialization methods MUST define rules for 
@@ -1896,266 +1896,265 @@ MUST be done by parsing the source format into a <a>DID document</a> model
 and then serializing the <a>DID document</a> model into the target representation. An
 implementation MUST NOT convert between representations without first parsing to a 
 <a>DID document</a> model. 
-      </p>
+    </p>
 
-      <p>
+    <p>
 Although syntactic mappings are provided for JSON, JSON-LD, and CBOR here, applications
 and services MAY use any other data representation syntax that is capable of expressing 
 the data model, such as XML or YAML.
-      </p>
-      
-      <p>
+    </p>
+
+    <p>
 Producers MUST indicate which representation of a document has been used, and consumers
 MUST be made aware of which representation a document is in.
-      </p>
+    </p>
 
-      <p class="issue" data-number="">
+    <p class="issue" data-number="">
 This requirement depends on the return of DID document metadata that still needs to be
 defined by this specification. Once defined, that should be linked from here.
-      </p>
-      
-      <p>
+    </p>
+
+    <p>
 The production and consumption rules in this section apply to all implementations
 seeking to be fully compatible with independent implementations of the specification.
 Deployments of this specification MAY use a custom agreed-upon representation, including
 localized rules for handling properties not listed in the registry.
 See section ?? on Extensibility for more information.
-      </p>
-      
-      <p class="issue" data-number="">
+    </p>
+
+    <p class="issue" data-number="">
 A link to a section on extensibility and conformance as it applies to data representations
 should be added here once that section has been written.
-      </p>
+    </p>
 
     <section>
-      <h2>
+        <h2>
 JSON
-      </h2>
-      
-      <p>
-When producing and consuming DID documents that are in plain JSON (as noted by
-the document metadata), the following rules MUST be followed. 
-      </p>
-
-<section>
-      <h3>Production</h3>
+        </h2>
 
         <p>
+When producing and consuming DID documents that are in plain JSON (as noted by
+the document metadata), the following rules MUST be followed. 
+        </p>
+
+        <section>
+            <h3>Production</h3>
+
+            <p>
 A <a>DID document</a> MUST be a single JSON object conforming to [[!RFC8259]]. All
 top-level properties of the <a>DID document</a> MUST be represented by using the
 property name as the name of the member of the JSON object. The values of
 properties of the data model described in Section <a href="#data-model"></a>, 
 including all extensions, MUST be encoded in JSON[[RFC8259]] by mapping property
 values to JSON types as follows:
-        </p>
+            </p>
 
-        <ul>
-          <li>
+            <ul>
+                <li>
 Numeric values representable as IEEE754 MUST be represented as a Number type.
-          </li>
-          <li>
+                </li>
+                <li>
 Boolean values MUST be represented as a Boolean type.
-          </li>
-          <li>
+                </li>
+                <li>
 Sequence value MUST be represented as an Array type.
-          </li>
-          <li>
+                </li>
+                <li>
 Unordered sets of values MUST be represented as an Array type.
-          </li>
-          <li>
+                </li>
+                <li>
 Sets of properties MUST be represented as an Object type.
-          </li>
-          <li>
+                </li>
+                <li>
 Empty values MUST be represented as a null value.
-          </li>
-          <li>
+                </li>
+                <li>
 Other values MUST be represented as a String type.
-          </li>
-        </ul>
+                </li>
+            </ul>
 
-        <p class="issue" data-number="">
+            <p class="issue" data-number="">
 An "empty" value is not specified by this document. It seems to imply a null
 value, but this is unclear.
-        </p>
+            </p>
 
-        <p>
+            <p>
 All applicable properties of the <a>DID document</a> MUST be included in
 the root object. Properties MAY define additional data sub structures subject
 to the value representation rules, above.
-        </p>
+            </p>
 
-        <p>
+            <p>
 The property name <code>@context</code> MUST NOT be used as this is reserved
 for JSON-LD producers. 
-        </p>
-        
-</section>
+            </p>
 
-<section>
-  <h3>Consumption</h3>
-  
-    <p>
+        </section>
+
+        <section>
+            <h3>
+Consumption
+            </h3>
+
+            <p>
 The top-level element MUST be a JSON object. Any other data type at the top 
 level is an error and MUST be rejected. The top-level JSON object is taken 
 as the <a>DID document</a>. All members of this object are properties of the
 <a>DID document</a>. The object member name is the property name, and the
 member value is interpreted as follows:
-    </p>
+            </p>
 
-        <ul>
-          <li>
+            <ul>
+                <li>
 Number types MUST interpreted as numeric values representable as IEEE754.
-          </li>
-          <li>
+                </li>
+                <li>
 Boolean types MUST be interpreted as a Boolean value.
-          </li>
-          <li>
+                </li>
+                <li>
 An Array type MUST be interpreted as a Sequence or Unordered set, depending on the
 definition of the property for this value.
-          </li>
-          <li>
+                </li>
+                <li>
 An Object type MUST be interpreted as a sets of properties.
-          </li>
-          <li>
+                </li>
+                <li>
 A null type MUST be interpreted as an Empty value.
-          </li>
-          <li>
+                </li>
+                <li>
 String types MUST be interpreted as Strings, which may be further parsed
 depending on the definition of the property for this value.
-          </li>
-        </ul>
+                </li>
+            </ul>
 
-        <p class="issue" data-number="">
+            <p class="issue" data-number="">
 An "empty" value is not specified by this document. It seems to imply a null
 value, but this is unclear.
-        </p>
+            </p>
 
-
-  <p>
+            <p>
 The value of the <code>@context</code> field MUST be ignored as this is 
 reserved for JSON-LD consumers. 
-  </p>
-  
-  <p>
+            </p>
+
+            <p>
 Unknown object member names MUST be ignored as unknown properties.
-  </p>
-  
-  <p class="issue" data-number="">
+            </p>
+
+            <p class="issue" data-number="">
 This specification needs to define clear and consistent rules for how to handle unknown
 data members on consumption, and this section needs to be updated with that decision.
-  </p>
+            </p>
 
-</section>
-      
-</section>
+        </section>
 
-<section>
-      <h2>
+    </section>
+
+    <section>
+        <h2>
 JSON-LD
-      </h2>
+        </h2>
 
-      <p>
+        <p>
 [[!JSON-LD]] is a JSON-based format used to serialize
 <a href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a>.
-  </p>
+        </p>
 
-      <p>
+        <p>
 When producing and consuming DID documents that are in JSON-LD (as noted by
 the document metadata), the following rules MUST be followed. 
-      </p>
+        </p>
 
-      <ul>
-        <li>
+        <ul>
+            <li>
 The <code>@id</code> and <code>@type</code> keywords are aliased to
 <code>id</code> and <code>type</code> respectively, enabling developers to use
 this specification as idiomatic JSON.
-        </li>
-        <li>
+            </li>
+            <li>
 Data types, such as integers, dates, units of measure, and URLs, are
 automatically typed to provide stronger type guarantees for use cases that
 require them.
-        </li>
-      </ul>
-      <section>
-        <h2>Production</h2>
+            </li>
+        </ul>
+        <section>
+            <h2>Production</h2>
 
-        <p>
+            <p>
 The <a>DID document</a> is serialized following the rules in the JSON processor, with
 one addition: <a>DID documents</a> MUST include the <code>@context</code> property.
-        </p>
+            </p>
 
-        <dl>
-          <dt><dfn>@context</dfn></dt>
-          <dd>
-  The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
-  where the value of the one <a>URI</a> is
-  <code>https://www.w3.org/ns/did/v1</code>. All members of the <code>@context</code>
-  property MUST exist be in the DID properties extension registry. 
-          </dd>
-        </dl>
+            <dl>
+                <dt><dfn>@context</dfn></dt>
+                <dd>
+The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
+where the value of the one <a>URI</a> is
+<code>https://www.w3.org/ns/did/v1</code>. All members of the <code>@context</code>
+property MUST exist be in the DID properties extension registry. 
+                </dd>
+            </dl>
 
-        <p class="issue" data-number="">
+            <p class="issue" data-number="">
 This specification defines globally interoperable documents, and the requirement that the
 context value be in the DID registry means that different JSON-LD processors can consume
 the document without having to dereference anything in the context field. However,
 a pair of producers and consumers can have local extension agreements. This needs to be
 clarified in a section on extensibility and linked here when available.
-        </p>
+            </p>
 
-      </section>
+        </section>
 
-      <section>
-        <h2>
-  Consumption
-        </h2>
+        <section>
+            <h2>
+Consumption
+            </h2>
 
-    <p>
+            <p>
 The top-level element MUST be a JSON object. Any other data type at the top 
 level is an error and MUST be rejected. This top-level JSON object is interpreted
 using JSON-LD processing under the rules of the defined <code>@context</code> fields.
-    </p>
+            </p>
 
-        <p>
-        <dl>
-          <dt><dfn>@context</dfn></dt>
-          <dd>
-  The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
-  where the value of the one <a>URI</a> is
-  <code>https://www.w3.org/ns/did/v1</code>. If more than one <a>URI</a> is
-  provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
-  RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
-  machine-readable information about the context.
-          </dd>
-        </dl>
-        </p>
+            <dl>
+                <dt><dfn>@context</dfn></dt>
+                <dd>
+The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
+where the value of the one <a>URI</a> is
+<code>https://www.w3.org/ns/did/v1</code>. If more than one <a>URI</a> is
+provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
+RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
+machine-readable information about the context.
+                </dd>
+            </dl>
 
 
-        <p>
-      Unknown object member names MUST be ignored as unknown properties.
-        </p>
+            <p>
+Unknown object member names MUST be ignored as unknown properties.
+            </p>
 
-  <p class="issue" data-number="">
+            <p class="issue" data-number="">
 This specification needs to define clear and consistent rules for how to handle unknown
 data members on consumption, and this section needs to be updated with that decision.
-  </p>
-
-      </section>
-      
-    </section>
-
-    <section>
-      <h2>CBOR</h2>
-
-    <section>
-        <h3>Production</h3>
-    </section>
-
-    <section>
-        <h3>Consumption</h3>
-    </section>
+        </p>
 
     </section>
-  </section>
+
+</section>
+
+<section>
+<h2>CBOR</h2>
+
+<section>
+<h3>Production</h3>
+</section>
+
+<section>
+<h3>Consumption</h3>
+</section>
+
+</section>
+</section>
 
   <section>
     <h1>Methods</h1>
