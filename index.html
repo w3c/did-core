@@ -1905,9 +1905,10 @@ the data model, such as XML or YAML.
     </p>
 
     <p>
-Producers MUST indicate which representation of a document has been used, and consumers
-MUST be made aware of which representation a document is in, through use of document
-metadata.
+Producers MUST indicate which representation of a document has been used via a media type
+in the document's metadata. Consumers MUST determine which representation a document is in
+via a media type in the document's metadata. Consumers MUST NOT determine the representation
+of a document through its content alone.
     </p>
 
     <p class="issue" data-number="203">
