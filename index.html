@@ -1906,7 +1906,8 @@ the data model, such as XML or YAML.
 
     <p>
 Producers MUST indicate which representation of a document has been used, and consumers
-MUST be made aware of which representation a document is in.
+MUST be made aware of which representation a document is in, through use of document
+metadata.
     </p>
 
     <p class="issue" data-number="203">
@@ -1985,13 +1986,13 @@ value, but this is unclear.
             </p>
 
             <p>
-All applicable properties of the <a>DID document</a> MUST be included in
+All properties of the <a>DID document</a> MUST be included in
 the root object. Properties MAY define additional data sub structures subject
-to the value representation rules, above.
+to the value representation rules in the list above.
             </p>
 
             <p>
-The property <code>@context</code> MUST NOT be used as this is reserved
+The member name <code>@context</code> MUST NOT be used as this property is reserved
 for JSON-LD producers. 
             </p>
 
@@ -2002,10 +2003,17 @@ for JSON-LD producers.
 Consumption
             </h3>
 
+            <p class="issue" data-number="204">
+In this section and we use the term "property name" to refer to the string that represents
+the property itself, but this specification still needs to define a concerete term for
+such aspects of a property of a DID document. We also need a concrete term for "the document
+itself" as opposed to "the collection or properties of the document".
+            </p>
+
             <p>
 The top-level element MUST be a JSON object. Any other data type at the top 
-level is an error and MUST be rejected. The top-level JSON object is taken 
-as the <a>DID document</a>. All members of this object are properties of the
+level is an error and MUST be rejected. The top-level JSON object represents
+the <a>DID document</a>, and all members of this object are properties of the
 <a>DID document</a>. The object member name is the property name, and the
 member value is interpreted as follows:
             </p>
@@ -2099,7 +2107,7 @@ one addition: <a>DID documents</a> MUST include the <code>@context</code> proper
                 <dt><dfn>@context</dfn></dt>
                 <dd>
 The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
-where the value of the one <a>URI</a> is
+where the value of the first <a>URI</a> is
 <code>https://www.w3.org/ns/did/v1</code>. All members of the <code>@context</code>
 property MUST exist be in the DID properties extension registry. 
                 </dd>
@@ -2130,7 +2138,7 @@ using JSON-LD processing under the rules of the defined <code>@context</code> fi
                 <dt><dfn>@context</dfn></dt>
                 <dd>
 The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
-where the value of the one <a>URI</a> is
+where the value of the first <a>URI</a> is
 <code>https://www.w3.org/ns/did/v1</code>. If more than one <a>URI</a> is
 provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
 RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
