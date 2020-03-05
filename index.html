@@ -850,7 +850,7 @@ usually contains cryptographic material enabling authentication of the
         </pre>
     
       </section>
-  
+ 
       <section>
         <h2>Generic DID URL Parameters</h2>
   
@@ -968,6 +968,68 @@ usually contains cryptographic material enabling authentication of the
         </p>
   
       </section>
+
+      <section>
+        <h2>Method-Specific DID URL Parameters</h2>
+  
+        <p>
+  A <a>DID method</a> specification MAY specify additional method-specific
+  parameter names. A method-specific parameter name MUST be prefixed by the method
+  name, as defined by the <code>method-name</code> rule.
+        </p>
+  
+        <p>
+  For example, if the method <code>did:foo:</code> defines the parameter bar, the
+  parameter name must be <code>foo:bar</code>. An example <a>DID URL</a> using
+  this method and this method-specific parameter would be as shown below.
+        </p>
+  
+        <pre class="example nohighlight">
+  did:foo:21tDAKCERh95uGgKbJNHYp;foo:bar=high
+        </pre>
+  
+        <p class="issue" data-number="35">
+  Consider using kebab-case style instead of colon separator,
+  e.g., <code>foo-bar</code> instead of <code>foo:bar</code>.
+        </p>
+  
+        <p>
+  A method-specific parameter name defined by one <a>DID method</a> MAY be used by
+  other <a>DID methods</a>.
+        </p>
+  
+        <pre class="example nohighlight">
+  did:example:21tDAKCERh95uGgKbJNHYp;foo:bar=low
+        </pre>
+  
+        <p>
+  Method-specific parameter names MAY be combined with generic parameter names in
+  any order.
+        </p>
+  
+        <pre class="example nohighlight">
+  did:example:21tDAKCERh95uGgKbJNHYp;service=agent;foo:bar=high
+        </pre>
+  
+        <p>
+  Both <a>DID method</a> namespaces and method-specific parameter namespaces MAY
+  include colons, so they might be partitioned hierarchically, as defined by a
+  <a>DID method</a> specification. The following example <a>DID URL</a>
+  illustrates both.
+        </p>
+  
+        <pre class="example nohighlight">
+  did:foo:baz:21tDAKCERh95uGgKbJNHYp;foo:baz:hex=b612
+        </pre>
+  
+        <p class="issue" data-number="36">
+  Review what exactly we want to say about method-specific parameters
+  defined by one method but used in a <a>DID URL</a> with a different method.
+  Also discuss hierarchical method namespaces in DID parameter names.
+        </p>
+  
+      </section>
+
       <section>
         <h2>Path</h2>
   
