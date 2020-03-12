@@ -1113,6 +1113,59 @@ usually contains cryptographic material enabling authentication of the
 
       </section>
 
+      <section>
+        <h2>Relative DID URLs</h2>
+
+        <p>
+A relative DID URL is any URL value in a <a>DID document</a> that does not start
+with <code>did:&lt;method-name>:&lt;method-specific-id></code>. More
+specifically, it is any URL value that does not start with the ABNF defined  in
+Section <a href="#generic-did-syntax"></a>. The contents of the URL typically
+refers to a resource in the same <a>DID document</a>. Relative DID URLs MAY
+contain relative path components, query parameters, and fragment identifiers.
+        </p>
+
+        <p>
+When resolving a relative DID URL reference, the algorithm specified in <a
+data-cite="RFC3986#section-5">RFC3986 Section 5: Reference Resolution</a>  MUST
+be used. The <strong>base URI</strong> value is the <a>DID subject</a>.  The
+<strong>scheme</strong> is <code>did</code>. The <strong>authority</strong> is a
+combination of <code>&lt;method-name>:&lt;method-specific-id></code>, and the
+<strong>path</strong>, <strong>query</strong>, and <strong>fragment</strong>
+values are those defined in Section <a href="#path"></a>, Section <a
+href="#query"></a>, and Section <a href="#fragment"></a>, respectively.
+        </p>
+
+        <p>
+Relative DID URLs are often used to identify <a>verification methods</a> and
+<a>services</a> in a DID Document without having to use absolute URLs, which
+tend to be more verbose than necesary.
+        </p>
+
+        <pre class="example nohighlight" title="An example of a relative DID URL">
+{
+  "@context": "https://www.w3.org/ns/did/v1",
+  "id": "did:example:123456789abcdefghi",
+  "publicKey": [{
+    "id": "did:example:123456789abcdefghi#key-1",
+    "type": "RsaVerificationKey2018",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+  }, ...],
+  "authentication": [
+<span class="comment">    // relative DID URLs used to reference verification methods</span>
+    "<span class="highlight">#key-1</span>"
+  ]
+}
+        </pre>
+
+        <p>
+In the example above, the relative DID URL value will be transformed to an
+absolute DID URL value of <code>did:example:123456789abcdefghi#key-1</code>.
+
+        </p>
+      </section>
+
     </section>
 
   </section>
