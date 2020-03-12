@@ -719,20 +719,20 @@ usually contains cryptographic material enabling authentication of the
       <h3>DID Syntax</h3>
       <section>
         <h2 id="generic-did-syntax">Generic DID Syntax</h2>
-  
+
         <p>
-          The generic <a>DID scheme</a> is a URI scheme conformant with [[!RFC3986]]. 
-  
+          The generic <a>DID scheme</a> is a URI scheme conformant with [[!RFC3986]].
+
         <p class="note">
-            A <a>DID</a> always identifies the <a>DID subject</a>. 
+            A <a>DID</a> always identifies the <a>DID subject</a>.
          </p>
-  
+
         <p>
           The following is the ABNF definition using the syntax in [[!RFC5234]], which
           defines <code>ALPHA</code> and <code>DIGIT</code>. All other rule names not
           defined in this ABNF are defined in [[RFC3986]].
         </p>
-  
+
         <pre class="nohighlight">
   did                = "did:" method-name ":" method-specific-id
   method-name        = 1*method-char
@@ -740,7 +740,7 @@ usually contains cryptographic material enabling authentication of the
   method-specific-id = *( ":" *idchar ) 1*idchar
   idchar             = ALPHA / DIGIT / "." / "-" / "_"
         </pre>
-  
+
         <p class="issue" data-number="34">
   The grammar currently allows an empty <code>method-specific-id</code>,
   e.g., <code>did:example:</code> would be a valid <a>DID</a> that could identify
@@ -749,18 +749,18 @@ usually contains cryptographic material enabling authentication of the
       </section>
       <section id="method-specific-parameters">
         <h2>Method-Specific Syntax</h2>
-  
+
         <p>
   A <a>DID method</a> specification MUST further restrict the generic <a>DID</a>
   syntax by defining its own <code>method-name</code> and its own
   <code>method-specific-id</code> syntax. For more information, see Section
   <a href="#methods"></a>.
         </p>
-  
+
       </section>
       <section>
         <h2>Normalization</h2>
-  
+
         <p>
   For the broadest interoperability, make <a>DID</a> normalization as simple and
   universal as possible:
@@ -769,11 +769,11 @@ usually contains cryptographic material enabling authentication of the
           <li>
   The <a>DID scheme</a> name MUST be lowercase.
           </li>
-  
+
           <li>
   The <a>DID method</a> name MUST be lowercase.
           </li>
-  
+
           <li>
   Case sensitivity and normalization of the value of the
   <code>method-specific-id</code> rule in Section
@@ -782,16 +782,16 @@ usually contains cryptographic material enabling authentication of the
           </li>
         </ul>
       </section>
-  
+
       <section>
         <h2>Persistence</h2>
-  
+
         <p>
   A <a>DID</a> is expected to be persistent and immutable. That is, a <a>DID</a>
   is bound exclusively and permanently to its one and only subject. Even after a
   <a>DID</a> is deactivated, it is intended that it never be repurposed.
         </p>
-  
+
         <p>
   Ideally, a <a>DID</a> would be a completely abstract decentralized identifier
   (like a <a>UUID</a>) that could be bound to multiple underlying
@@ -802,14 +802,14 @@ usually contains cryptographic material enabling authentication of the
   (SOA) problems. It also greatly increases implementation complexity for
   developers.
         </p>
-  
+
         <p>
   To avoid these issues, it is RECOMMENDED that <a>DID method</a> specifications
   only produce <a>DIDs</a> and <a>DID methods</a> bound to strong, stable
   <a>DID registries</a> capable of making the highest level of commitment to
   persistence of the <a>DID</a> and <a>DID method</a> over time.
         </p>
-  
+
         <p class="note">
   Although not included in this version, future versions of this specification
   might support a <a>DID document</a> <code>equivID</code> property to establish
@@ -831,14 +831,14 @@ usually contains cryptographic material enabling authentication of the
           A <a>DID URL</a> always identifies a resource to
           be located. It can be used, for example, to identify a specific part of a DID document.
         </p>
-  
+
         <p>
   This following is the ABNF definition using the syntax in [[!RFC5324]]. It builds on the <code>did</code> scheme defined in <a href="#generic-did-syntax"></a>. The <code>path-abempty</code>, <code>query</code>, and
   <code>fragment</code> components are identical to the ABNF rules defined in
   [[!RFC3986]].
         </p>
-  
-  
+
+
         <pre class="nohighlight">
   did-url            = did *( ";" param ) path-abempty [ "?" query ]
                        [ "#" fragment ]
@@ -848,12 +848,12 @@ usually contains cryptographic material enabling authentication of the
   param-char         = ALPHA / DIGIT / "." / "-" / "_" / ":" /
                        pct-encoded
         </pre>
-    
+
       </section>
- 
+
       <section>
         <h2>Generic DID URL Parameters</h2>
-  
+
         <p>
   The <a>DID URL</a> syntax supports a simple, generalized format for parameters
   based on the matrix parameter syntax ([[MATRIX-URIS]]). The ABNF above
@@ -874,7 +874,7 @@ usually contains cryptographic material enabling authentication of the
         <p>
   The following table defines a set of generic DID parameter names.
         </p>
-  
+
         <table class="simple">
           <thead>
             <tr>
@@ -886,7 +886,7 @@ usually contains cryptographic material enabling authentication of the
               </th>
             </tr>
           </thead>
-  
+
           <tbody>
             <tr>
               <td>
@@ -915,7 +915,7 @@ usually contains cryptographic material enabling authentication of the
   this parameter might not be supported by all <a>DID methods</a>.
               </td>
             </tr>
-  
+
             <tr>
               <td>
   <code>version-time</code>
@@ -928,12 +928,12 @@ usually contains cryptographic material enabling authentication of the
             </tr>
           </tbody>
         </table>
-  
+
         <p>
   The exact processing rules for these parameters are specified in
   [[DID-RESOLUTION]].
         </p>
-  
+
         <p>
   Adding a DID parameter to a DID URL means that the parameter becomes part of
   an identifier for a resource (the DID document or other). Alternatively, the
@@ -948,131 +948,131 @@ usually contains cryptographic material enabling authentication of the
   that are not part of the <a>DID URL</a> should be use to control <i>how that
   resource is dereferenced</i>.
         </p>
-  
+
         <p>
   DID parameters MAY be used if there is a clear use case where
   the parameter needs to be part of a URI that can be used as a link, or
   as a resource in RDF / JSON-LD documents.
         </p>
-  
+
         <p>
   DID parameters SHOULD NOT be used if there are already other, equivalent
   ways of constructing URIs that fulfill the same purpose (for example, using
   other syntactical constructs such as URI query strings or URI fragments).
         </p>
-  
+
         <p>
   DID parameters SHOULD NOT be used if the same functionality can be expressed
   by passing options to a <a>DID resolver</a>, and if there is no need to
   construct a URI for use as a link, or as a resource in RDF / JSON-LD documents.
         </p>
-  
+
       </section>
 
       <section>
         <h2>Method-Specific DID URL Parameters</h2>
-  
+
         <p>
   A <a>DID method</a> specification MAY specify additional method-specific
   parameter names. A method-specific parameter name MUST be prefixed by the method
   name, as defined by the <code>method-name</code> rule.
         </p>
-  
+
         <p>
   For example, if the method <code>did:foo:</code> defines the parameter bar, the
   parameter name must be <code>foo:bar</code>. An example <a>DID URL</a> using
   this method and this method-specific parameter would be as shown below.
         </p>
-  
+
         <pre class="example nohighlight">
   did:foo:21tDAKCERh95uGgKbJNHYp;foo:bar=high
         </pre>
-  
+
         <p class="issue" data-number="35">
   Consider using kebab-case style instead of colon separator,
   e.g., <code>foo-bar</code> instead of <code>foo:bar</code>.
         </p>
-  
+
         <p>
   A method-specific parameter name defined by one <a>DID method</a> MAY be used by
   other <a>DID methods</a>.
         </p>
-  
+
         <pre class="example nohighlight">
   did:example:21tDAKCERh95uGgKbJNHYp;foo:bar=low
         </pre>
-  
+
         <p>
   Method-specific parameter names MAY be combined with generic parameter names in
   any order.
         </p>
-  
+
         <pre class="example nohighlight">
   did:example:21tDAKCERh95uGgKbJNHYp;service=agent;foo:bar=high
         </pre>
-  
+
         <p>
   Both <a>DID method</a> namespaces and method-specific parameter namespaces MAY
   include colons, so they might be partitioned hierarchically, as defined by a
   <a>DID method</a> specification. The following example <a>DID URL</a>
   illustrates both.
         </p>
-  
+
         <pre class="example nohighlight">
   did:foo:baz:21tDAKCERh95uGgKbJNHYp;foo:baz:hex=b612
         </pre>
-  
+
         <p class="issue" data-number="36">
   Review what exactly we want to say about method-specific parameters
   defined by one method but used in a <a>DID URL</a> with a different method.
   Also discuss hierarchical method namespaces in DID parameter names.
         </p>
-  
+
       </section>
 
       <section>
         <h2>Path</h2>
-  
+
         <p>
   A generic <a>DID path</a> is identical to a URI path and MUST conform to the
   <code>path-abempty</code> ABNF rule in [[!RFC3986]]. A <a>DID path</a> SHOULD be
   used to address resources available through a <a>service endpoint</a>. For more
   information, see Section <a href="#service-endpoints"></a>.
         </p>
-  
+
         <p>
   A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID paths</a> that
   are more restrictive than the generic rules in this section.
         </p>
-  
+
         <pre class="example nohighlight">
   did:example:123456/path
         </pre>
       </section>
-  
+
       <section>
         <h2>Query</h2>
-  
+
         <p>
   A generic <a>DID query</a> is identical to a URI query and MUST conform to the
   <code>query</code> ABNF rule in [[!RFC3986]]. A <a>DID query</a> SHOULD be used
   to address resources available through a <a>service endpoint</a>. For more
   information, see Section <a href="#service-endpoints"></a>.
         </p>
-  
+
         <p>
   A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID queries</a> that
   are more restrictive than the generic rules in this section.
         </p>
-  
+
         <pre class="example nohighlight">
   did:example:123456?query=true
         </pre>
       </section>
-  
+
       <section>
         <h2>Fragment</h2>
-  
+
         <p>
   A <a>DID fragment</a> is used as method-independent reference into the <a>DID
   document</a> to identify a component of the document (for example, a unique
@@ -1084,33 +1084,33 @@ usually contains cryptographic material enabling authentication of the
   algorithm for the target component in the <a>DID document</a> object. For more
   information, see [[DID-RESOLUTION]].
         </p>
-  
+
         <p>
   A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID fragments</a>
   that are more restrictive than the generic rules in this section.
         </p>
-  
+
         <p>
   Implementations need not rely on graph-based processing of <a>DID documents</a>
   to locate metadata contained in the <a>DID document</a> when the <a>DID</a>
   includes a <a>DID fragment</a>. Tree-based processing can be used instead.
         </p>
-  
+
         <p>
   Implementations SHOULD NOT prevent the use of <a>JSON Pointer</a>
   ([[!RFC6901]]).
         </p>
-  
+
         <pre class="example nohighlight">
   did:example:123456#public-key-1
         </pre>
-  
+
         <p>
   Additional semantics for fragment identifiers, which are compatible with and
   layered upon the semantics in this section, are described for JSON-LD
   representations in Section <a href="#application-did-ld-json"></a>.
         </p>
-  
+
       </section>
 
     </section>
@@ -1901,21 +1901,21 @@ the property MUST be a valid JSON-LD proof, as defined by
     <h1>Core Representations</h1>
 
     <p>
-All concrete representations of a <a>DID document</a> MUST be serialized using a 
+All concrete representations of a <a>DID document</a> MUST be serialized using a
 deterministic mapping that is able to be unambiguously parsed into the data model
-defined in this specification. All serialization methods MUST define rules for 
+defined in this specification. All serialization methods MUST define rules for
 the bidirectional translation of a <a>DID document</a> both into and out of the
 representation in question. As a consequence, translation between any two representations
 MUST be done by parsing the source format into a <a>DID document</a> model
 (described in Sections <a href="#data-model"></a> and <a href="#did-documents"></a>)
 and then serializing the <a>DID document</a> model into the target representation. An
-implementation MUST NOT convert between representations without first parsing to a 
-<a>DID document</a> model. 
+implementation MUST NOT convert between representations without first parsing to a
+<a>DID document</a> model.
     </p>
 
     <p>
 Although syntactic mappings are provided for JSON, JSON-LD, and CBOR here, applications
-and services MAY use any other data representation syntax that is capable of expressing 
+and services MAY use any other data representation syntax that is capable of expressing
 the data model, such as XML or YAML.
     </p>
 
@@ -1951,7 +1951,7 @@ JSON
 
         <p>
 When producing and consuming DID documents that are in plain JSON (as noted by
-the document metadata), the following rules MUST be followed. 
+the document metadata), the following rules MUST be followed.
         </p>
 
         <section>
@@ -1961,7 +1961,7 @@ the document metadata), the following rules MUST be followed.
 A <a>DID document</a> MUST be a single <a data-cite="RFC8259#section-4">JSON object</a> conforming to [[!RFC8259]]. All
 top-level properties of the <a>DID document</a> MUST be represented by using the
 property name as the name of the member of the JSON object. The values of
-properties of the data model described in Section <a href="#data-model"></a>, 
+properties of the data model described in Section <a href="#data-model"></a>,
 including all extensions, MUST be encoded in JSON[[RFC8259]] by mapping property
 values to JSON types as follows:
             </p>
@@ -2009,7 +2009,7 @@ to the value representation rules in the list above.
 
             <p>
 The member name <code>@context</code> MUST NOT be used as this property is reserved
-for JSON-LD producers. 
+for JSON-LD producers.
             </p>
 
         </section>
@@ -2027,7 +2027,7 @@ itself" as opposed to "the collection or properties of the document".
             </p>
 
             <p>
-The top-level element MUST be a JSON object. Any other data type at the top 
+The top-level element MUST be a JSON object. Any other data type at the top
 level is an error and MUST be rejected. The top-level JSON object represents
 the <a>DID document</a>, and all members of this object are properties of the
 <a>DID document</a>. The object member name is the property name, and the
@@ -2064,8 +2064,8 @@ value, but this is unclear.
             </p>
 
             <p>
-The value of the <code>@context</code> object member MUST be ignored as this is 
-reserved for JSON-LD consumers. 
+The value of the <code>@context</code> object member MUST be ignored as this is
+reserved for JSON-LD consumers.
             </p>
 
             <p>
@@ -2093,7 +2093,7 @@ JSON-LD
 
         <p>
 When producing and consuming DID documents that are in JSON-LD (as noted by
-the document metadata), the following rules MUST be followed. 
+the document metadata), the following rules MUST be followed.
         </p>
 
         <ul>
@@ -2120,12 +2120,12 @@ one addition: <a>DID documents</a> MUST include the <code>@context</code> proper
             </p>
 
             <dl>
-                <dt><dfn>@context</dfn></dt>
+                <dt>@context</dt>
                 <dd>
 The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
 where the value of the first <a>URI</a> is
 <code>https://www.w3.org/ns/did/v1</code>. All members of the <code>@context</code>
-property MUST exist be in the DID properties extension registry. 
+property MUST exist be in the DID properties extension registry.
                 </dd>
             </dl>
 
@@ -2145,13 +2145,13 @@ Consumption
             </h2>
 
             <p>
-The top-level element MUST be a JSON object. Any other data type at the top 
+The top-level element MUST be a JSON object. Any other data type at the top
 level is an error and MUST be rejected. This top-level JSON object is interpreted
 using JSON-LD processing under the rules of the defined <code>@context</code> fields.
             </p>
 
             <dl>
-                <dt><dfn>@context</dfn></dt>
+                <dt>@context</dt>
                 <dd>
 The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
 where the value of the first <a>URI</a> is
@@ -3251,7 +3251,7 @@ JSON LD Description and Extension
     </h2>
 
     <p class="issue" data-number="206">
-The following text was previously in the section on serialized representations. 
+The following text was previously in the section on serialized representations.
 It has been moved to this appendix to allow the text to be re-incorporated into
 the document in more appropriate sections or removed entirely, as required by
 the working group.
@@ -3270,7 +3270,7 @@ storage engines.
     <p>
 JSON-LD is useful when extending the data model described in this specification.
 Instances of the data model are encoded in JSON-LD in the same way they are
-encoded in JSON (see Section <a href="#pure-json"></a>), with the addition of
+encoded in JSON (see Section <a href="#json"></a>), with the addition of
 the <code>@context</code> property. The
 <a href="https://www.w3.org/TR/json-ld/#the-context">JSON-LD Context</a>
 is described in detail in the [[!JSON-LD]] specification and its use is
@@ -3510,8 +3510,8 @@ include using content-addressed URLs for contexts, bundling context documents
 with implementations, or enabling aggressive caching of contexts.
         </p>
     </section>
-</section>      
-    
+</section>
+
 
   <section class="appendix">
     <h1>
