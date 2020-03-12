@@ -2176,10 +2176,12 @@ formats as possible.
 The <code>method-specific-id</code> format MAY include colons, which might be
 used by <a>DID methods</a> for various purposes, such as establishing
 hierarchically partitioned namespaces, or identifying specific instances or
-parts of the <a>DID registry</a>. However, any such use of the colon in the
-<code>method-specific-id</code> format is entirely method-specific, and
-implementers are advised to avoid assuming any meanings or behaviors associated with a
-colon that are generically applicable to all <a>DID methods</a>.
+parts of the <a>DID registry</a>. However, as long as the use of colons
+complies syntactically with the <code>method-specific-id</code> ABNF rule,
+their use is entirely method-specific. Implementers are advised to avoid
+assuming any meanings or behaviors associated with a colon that are
+generically applicable to all <a>DID methods</a>.
+
       </p>
 
       <p>
