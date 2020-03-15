@@ -1504,6 +1504,47 @@ responsibility of <a>DID resolvers</a> and other clients. For more information,
 see Section <a href="#resolution"></a>.
       </p>
 
+<p>
+Revoked keys MUST NOT be present in the <code>publicKey</code> property of a <a>DID document</a>.<br/>
+Revoked keys MAY be present in the <code>revokedKey</code> property of a <a>DID document</a>.
+</p>
+
+<pre class="example nohighlight" title="Revoked public keys">
+{
+  "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
+  "id": "did:example:123456789abcdefghi",
+  <span class="comment">...</span>
+  "publicKey": [],
+  "revokedKey": [{
+    "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
+    "type": "JwsVerificationKey2020",
+    "controller": "did:example:123",
+    "publicKeyJwk": {
+      "crv": "Ed25519",
+      "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ",
+      "kty": "OKP",
+      "kid": "_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A"
+    },
+    "revocation": {
+      <span class="comment">...</span>
+    }
+  }, {
+    "id": "did:example:123#4SZ-StXrp5Yd4_4rxHVTCYTHyt4zyPfN1fIuYsm6k3A",
+    "type": "JwsVerificationKey2020",
+    "controller": "did:example:123",
+    "publicKeyJwk": {
+      "crv": "secp256k1",
+      "x": "Z4Y3NNOxv0J6tCgqOBFnHnaZhJF6LdulT7z8A-2D5_8",
+      "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk",
+      "kty": "EC",
+      "kid": "4SZ-StXrp5Yd4_4rxHVTCYTHyt4zyPfN1fIuYsm6k3A"
+    },
+    "revocation": "http://example.com/revocations"
+  }],
+  <span class="comment">...</span>
+}
+</pre>
+
     </section>
 
     <section>
