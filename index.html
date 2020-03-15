@@ -737,8 +737,8 @@ usually contains cryptographic material enabling authentication of the
   did                = "did:" method-name ":" method-specific-id
   method-name        = 1*method-char
   method-char        = %x61-7A / DIGIT
-  method-specific-id = *( ":" *idchar ) 1*idchar
-  idchar             = ALPHA / DIGIT / "." / "-" / "_"
+  method-specific-id = *id-char
+  id-char            = ALPHA / DIGIT / "." / "-" / "_" / ":"
         </pre>
 
         <p class="issue" data-number="34">
@@ -845,8 +845,7 @@ usually contains cryptographic material enabling authentication of the
   param              = param-name [ "=" param-value ]
   param-name         = 1*param-char
   param-value        = *param-char
-  param-char         = ALPHA / DIGIT / "." / "-" / "_" / ":" /
-                       pct-encoded
+  param-char         = ALPHA / DIGIT / "." / "-" / "_" / ":" / pct-encoded
         </pre>
 
       </section>
