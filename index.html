@@ -1302,6 +1302,14 @@ expressed using the <code>controller</code> property on the top level of
 the <a>DID document</a>; see Section <a href="#authorization-and-delegation"></a>.
       </p>
 
+      <p class="note" title="Key Identifiers">
+The value of the <code>id</code> property may be structured as a <a href="https://en.wikipedia.org/wiki/Compound_key">compound key</a>. 
+This is especially useful for integrating with existing key mangement systems and key formats such as <a href="https://tools.ietf.org/html/rfc7517">JWK</a>.
+When possible a thumbprint or fingerprint SHOULD be used in the construction of compound keys. 
+However, as is the case with <code>kid</code> in JWK, one cannot rely on the identifier to map directly to the key value.
+See the first key in <a href="#example-11-various-public-keys">EXAMPLE 11</a> for an example of a public key with a compound key identifier.
+      </p>
+
       <p>
 All public key properties MUST be from the Linked Data Cryptographic Suite
 Registry. For a registry of key types and formats, see Appendix
@@ -1412,6 +1420,16 @@ Example:
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "publicKey": [{
+    "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
+    "type": "JwsVerificationKey2020",
+    "controller": "did:example:123",
+    "publicKeyJwk": {
+      "crv": "Ed25519",
+      "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ",
+      "kty": "OKP",
+      "kid": "_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A"
+    }
+  }, {
     "id": "did:example:123456789abcdefghi#keys-1",
     "type": "RsaVerificationKey2018",
     "controller": "did:example:123456789abcdefghi",
