@@ -2847,6 +2847,28 @@ others are of partial data, where the larger context is assumed.
         </p>
     </section>
 
+    <section>
+      <h2>
+Encrypted Data in DID Documents
+      </h2>
+      <p>
+DID documents are typically publicly available. Implementers can assume that any
+encrypted data placed in a DID document will eventually be made available in clear
+text to the same audience to which the encrypted data is available.
+      </p>
+      <p>
+Encrypting all or parts of DID documents is <em>not</em> an appropriate means to protect data
+in the long term. Similarly, placing encrypted data in DID documents is not an appropriate
+means to include personally identifiable information in DID documents.
+      </p>
+      <p>
+Given the caveats above, if encrypted data is included in a DID document, it should not
+be encrypted with the public keys of entities that do not wish to be correlated with the
+DID.
+      </p>
+
+    </section>
+
   </section>
 
   <section class="informative">
