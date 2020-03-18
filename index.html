@@ -2736,12 +2736,11 @@ Key Revocation and Recovery
       <p>
 Section <a href="#method-operations"></a> specifies the <a>DID</a> operations to
 be supported by a <a>DID method</a> specification, including deactivation of a
-<a>DID document</a> by replacing it with an updated <a>DID document</a>. As an
-example, removal of a cryptographic key from a <a>DID document</a> is an
-indication that the key has been revoked and is no longer valid. That is, if the
-balance is empty, the entire <a>DID</a> is deactivated. <a>DID method</a>
-specifications are expected to enable support for a quorum of trusted parties to
-enable key recovery. Some of the facilities to do so are suggested in Section
+<a>DID document</a> by replacing it with an updated <a>DID document</a>. It's
+also up to the <a>DID Method</a> to define how revocation of cryptographic keys
+should occur. Additionally, <a>DID method</a> specifications are also expected
+to enable support for a quorum of trusted parties to enable key recovery. Some
+of the facilities to do so are suggested in Section
 <a href="#authorization-and-delegation"></a>. Not all <a>DID method</a>
 specifications will recognize control from <a>DIDs</a> registered using other
 <a>DID methods</a> and they might restrict third-party control to <a>DIDs</a>
@@ -2750,7 +2749,7 @@ specification can also include a time lock feature to protect against key
 compromise by maintaining a second track of control for recovery. Further
 specification of this type of control is a matter for future work (see Section
 <a href="#time-locks-and-did-document-recovery"></a>).
-      </p>
+</p>
     </section>
 
     <section>
