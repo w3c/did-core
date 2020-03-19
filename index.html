@@ -2852,7 +2852,9 @@ others are of partial data, where the larger context is assumed.
 Encrypted Data in DID Documents
       </h2>
       <p>
-DID documents are typically publicly available. Implementers can assume that any
+DID documents are typically publicly available. Encryption algorithms have been 
+known to fail due to advances in cryptography and computing power. 
+Implementers are advised to assume that any
 encrypted data placed in a DID document will eventually be made available in clear
 text to the same audience to which the encrypted data is available.
       </p>
