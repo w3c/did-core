@@ -1128,10 +1128,11 @@ contain relative path components, query parameters, and fragment identifiers.
         <p>
 When resolving a relative DID URL reference, the algorithm specified in <a
 data-cite="RFC3986#section-5">RFC3986 Section 5: Reference Resolution</a>  MUST
-be used. The <strong>base URI</strong> value is the <a>DID subject</a>.  The
-<strong>scheme</strong> is <code>did</code>. The <strong>authority</strong> is a
-combination of <code>&lt;method-name>:&lt;method-specific-id></code>, and the
-<strong>path</strong>, <strong>query</strong>, and <strong>fragment</strong>
+be used. The <strong>base URI</strong> value is the <a>DID</a> that is
+associated with the <a>DID subject</a>, see Section <a href="#did-subject"></a>.
+The <strong>scheme</strong> is <code>did</code>. The <strong>authority</strong>
+is a combination of <code>&lt;method-name>:&lt;method-specific-id></code>, and
+the <strong>path</strong>, <strong>query</strong>, and <strong>fragment</strong>
 values are those defined in Section <a href="#path"></a>, Section <a
 href="#query"></a>, and Section <a href="#fragment"></a>, respectively.
         </p>
