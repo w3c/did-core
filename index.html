@@ -2779,13 +2779,11 @@ Key Revocation and Recovery
       </h2>
 
       <p>
-Section <a href="#method-operations"></a> specifies the <a>DID</a> operations to be
-supported by a <a>DID method</a> specification, including deactivation of a
-<a>DID document</a> by replacing it with an updated <a>DID document</a>. In
-general, checking for key revocation on <a>DLT</a>-based methods is expected to
-be handled in a manner similar to checking the balance of a cryptocurrency
-account on a <a>distributed ledger</a>. That is, if the balance is empty, the
-entire <a>DID</a> is deactivated. <a>DID method</a> specifications are expected
+Section <a href="#method-operations"></a> specifies the <a>DID</a> operations to
+be supported by a <a>DID method</a> specification, including deactivation of a
+<a>DID document</a> by replacing it with an updated <a>DID document</a>. It is
+also up to the <a>DID method</a> to define how revocation of cryptographic keys
+might occur. Additionally, <a>DID method</a> specifications are also expected
 to enable support for a quorum of trusted parties to enable key recovery. Some
 of the facilities to do so are suggested in Section
 <a href="#authorization-and-delegation"></a>. Not all <a>DID method</a>
@@ -2796,7 +2794,7 @@ specification can also include a time lock feature to protect against key
 compromise by maintaining a second track of control for recovery. Further
 specification of this type of control is a matter for future work (see Section
 <a href="#time-locks-and-did-document-recovery"></a>).
-      </p>
+</p>
     </section>
 
     <section>
