@@ -1319,13 +1319,13 @@ A <a>DID document</a> MAY include a <code>publicKey</code> property.
 If a <a>DID document</a> includes a <code>publicKey</code> property, the value
 of the property MUST be an array of public key objects. Each public key object
 MUST have the <code>type</code>, <code>controller</code>, and specific public
-key properties, and SHOULD have an <code>id</code> property. The public key
+key properties, and MUST have an <code>id</code> property. The public key
 objects MAY include additional properties.
         </dd>
       </dl>
 
       <p>
-The value of the <code>id</code> property, if present, MUST be a <a>URI</a>. The
+The value of the <code>id</code> property MUST be a <a>URI</a>. The
 array of public keys MUST NOT contain multiple entries with the same
 <code>id</code>. In this case, a <a>DID document</a> processor MUST produce an
 error.
@@ -1785,13 +1785,13 @@ A <a>DID document</a> MAY include a <code>service</code> property.
         <dd>
 If a <a>DID document</a> includes a <code>service</code> property, the value of
 the property SHOULD be an array of <a>service endpoint</a> objects. Each
-<a>service endpoint</a> MUST have <code>type</code> and <code>serviceEndpoint</code> properties,
-SHOULD have an <code>id</code> property, and MAY include additional properties.
+<a>service endpoint</a> MUST have <code>id</code>, <code>type</code>, and
+<code>serviceEndpoint</code> properties, and MAY include additional properties.
         </dd>
       </dl>
 
       <p>
-The value of the <code>id</code> property (if present) MUST be a <a>URI</a>.
+The value of the <code>id</code> property MUST be a <a>URI</a>.
 The array of <a>service endpoints</a> MUST NOT contain multiple entries
 with the same <code>id</code>. In this case, a <a>DID document</a> processor
 MUST produce an error.
