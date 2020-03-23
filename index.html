@@ -1356,6 +1356,15 @@ the <a>DID document</a>; see Section <a href="#authorization-and-delegation"></a
       </p>
 
       <p>
+The value of the <code>id</code> property MAY be structured as a <a href="https://en.wikipedia.org/wiki/Compound_key">compound key</a>. 
+This is especially useful for integrating with existing key management systems and key formats such as <a href="https://tools.ietf.org/html/rfc7517">JWK</a>.
+It is RECOMMENDED that <a href="https://tools.ietf.org/html/rfc7517">JWK</a> <code>kid</code> values are set to the <a href="https://tools.ietf.org/html/rfc7638">public key fingerprint</a>. 
+It is RECOMMENDED that verification methods that use JWKs to represent their 
+public keys utilize the value of <code>kid</code> as their fragment identifier.
+See the first key in <a href="#example-11-various-public-keys">EXAMPLE 11</a> for an example of a public key with a compound key identifier.
+      </p>
+
+      <p>
 All public key properties MUST be from the Linked Data Cryptographic Suite
 Registry. For a registry of key types and formats, see Appendix
 <a href="#interoperability-registries"></a>.
@@ -1465,6 +1474,16 @@ Example:
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "publicKey": [{
+    "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
+    "type": "JwsVerificationKey2020",
+    "controller": "did:example:123",
+    "publicKeyJwk": {
+      "crv": "Ed25519",
+      "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ",
+      "kty": "OKP",
+      "kid": "_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A"
+    }
+  }, {
     "id": "did:example:123456789abcdefghi#keys-1",
     "type": "RsaVerificationKey2018",
     "controller": "did:example:123456789abcdefghi",
