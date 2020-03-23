@@ -2395,7 +2395,14 @@ Update
 The <a>DID method</a> specification MUST specify how a client can update a
 <a>DID document</a> on the <a>DID registry</a>, including all cryptographic
 operations necessary to establish proof of control, <em>or</em> state that
-updates are not possible.
+updates are not possible. 
+        </p>
+
+        <p>
+An update to a <a>DID</a> is any change, after creation, in the data used to produce a <a>DID document</a>. 
+<a>DID Method</a> implementers are responsible for defining what constitutes an update, 
+and what properties of the <a>DID document</a> are supported by a given <a>DID method</a>. 
+For example, an update operation which replaces key material without changing it could be a valid update that does not result in changes to the <a>DID document</a>.
         </p>
       </section>
 
