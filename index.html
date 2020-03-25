@@ -1169,19 +1169,66 @@ absolute DID URL value of <code>did:example:123456789abcdefghi#key-1</code>.
 
   </section>
 
-  <section class="informative">
+  <section>
     <h1>Data Model</h1>
-
+    <p>
+This specification defines an abstract data model for <a>DID documents</a> so it
+is independent of any specific representation. In this section we provide a
+high-level description of the data model, a set of requirements for
+representations, and a set of requirements for extensibility.
+    </p>
     <section>
       <h2>Definition</h2>
+      <p>
+A <a>DID document</a> consists of a collection of name-value pairs which will be
+referred to as properties in this document. The definitions of each of these
+properties are specified in section <a href="#core-properties"></a>. Specific
+representations are defined in section <a href="#core-representations"></a>.
+      </p>
     </section>
-
+    <section>
+      <h2>Representations</h2>
+      <p>
+Following are the requirements for conformant representations.
+      </p>
+      <ol>
+        <li>
+A representation MUST define an unambiguous encoding and decoding of all
+properties defined in this specification such that the value of any property
+may be losslessly converted into another representation.
+        </li>
+        <li>
+The representation MUST have an unambiguous MIME type.
+        </li>
+        <li>
+The representation MUST define fragment processing rules for its MIME type that
+are conformant with this specification.
+        </li>
+      </ol>
+    </section>
     <section>
       <h2>Extensibility</h2>
-    </section>
-
-    <section>
-      <h2>Representation Requirements</h2>
+      <p>
+The data model supports two types of extensibility.
+      </p>
+      <ol>
+        <li>
+Registry-based extensions are RECOMMENDED for maximum interoperability. The use
+of the registry for properties is the only guaranteed method for two independent
+implementations to be able to work together. Registry-based extensions MUST be
+losslessly convertible between all conformant representations. The official W3C
+extension registry is defined by the DID Core Registry specification.
+        </li>
+      <li>
+Decentralized extensibility mechanisms MAY be defined by the specification for a
+conformant representation. Decentralized extension mechanisms SHOULD be defined
+such that any conformant extension may be losslessly converted into any other
+conformant representation. However, it's always possible for two specific
+implementations to agree to use an extension property or a new representation,
+or for an implementation to use its own properties or representations
+internally.
+      </li>
+      </ol>
     </section>
 
   </section>
