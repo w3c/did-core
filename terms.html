@@ -123,12 +123,19 @@ deactivation of <a>decentralized identifiers</a>. A DID registry is a type of
 verifiable data registry. For more information, see [[VC-DATA-MODEL]].
   </dd>
 
-  <dt><dfn data-lt="DID resolvers">DID resolver</dfn></dt>
+  <dt><dfn>DID resolution</dt>
 
   <dd>
-A system that is capable of retrieving a <a>DID document</a> for a given
-<a>DID</a>. These systems are specified in the DID Resolution specification
-[[DID-RESOLUTION]].
+A function that takes a <a>DID</a> plus additional options as input and returns a <a>DID document</a>,
+plus optional metadata, as output. This function relies on the "Read" operation of the applicable
+<a>DID method</a>.
+  </dd>
+
+  <dt><dfn data-lt="DID resolvers|DID Resolver's">DID resolver</dt>
+
+  <dd>
+Software and/or hardware that is capable of executing the <a>DID resolution</a> and
+optionally the <a>DID URL dereferencing</a> functions for at least one <a>DID method</a>.
   </dd>
 
   <dt><dfn data-lt="DID schemes">DID scheme</dfn></dt>
@@ -152,6 +159,14 @@ the <a>DID</a> and described by the <a>DID document</a>.
 A <a>DID</a> plus an optional <a>DID path</a>, optional <code>?</code> character
 followed by a <a>DID query</a>, and optional <code>#</code> character followed
 by a <a>DID fragment</a>.
+  </dd>
+
+  <dt><dfn>DID URL dereferencing</dfn></dt>
+
+  <dd>
+A function that takes a <a>DID URL</a> plus additional options as input and returns a <a>DID document</a>,
+a part of a <a>DID document</a>, a service endpoint URL, or another resource, plus optional metadata, as output.
+This function relies on <a>DID resolution</a>.
   </dd>
 
   <dt><dfn data-lt="distributed ledger technology|DLT">distributed ledger</dfn> (DLT)</dt>
