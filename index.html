@@ -631,6 +631,70 @@ the applicable operations outlined in Section <a href="#methods"></a>.
 
     <section>
       <h2>DID Resolvers and DID Resolution</h2>
+
+      <p>
+A <a>DID resolver</a> is a software and/or hardware component that is capable
+of executing the <a>DID resolution</a> and optionally the <a>DID URL dereferencing</a>
+functions for at least one <a>DID method</a>.
+      </p>
+      <p>
+<a>DID resolution</a> is the process of obtaining a <a>DID document</a> for a given <a>DID</a>.
+      </p>
+      <p>
+Building on top of <a>DID resolution</a>, <a>DID URL dereferencing</a> is the process of retrieving a
+representation of a resource for a given <a>DID URL</a>.
+      </p>
+      <p>
+<a>DID resolution</a> and <a>DID URL dereferencing</a> are defined as abstract functions
+(see Section <a href="#resolving-a-did"></a> and Section <a href="#dereferencing-a-did-url"></a>).
+      </p>
+      <p>
+These abstract functions are implemented by <a>DID resolvers</a>. A <a>DID resolver</a> is invoked
+by a <a>client</a> via a <a>binding</a>. Bindings define how the abstract functions are realized
+using concrete programming or communication interfaces. It is possible to distinguish between
+<a>local bindings</a> and <a>remote bindings</a>.
+      </p>
+      <dl>
+        <dt><dfn>binding</dfn></dt>
+        <dd>A concrete mechanism through which a <a>client</a> invokes a <a>DID resolver</a>. This could be a <a>local binding</a> such as a local command line tool or library API, or a <a>remote binding</a> such as an HTTP(S) binding.</dd>
+      </dl>
+      <dl>
+        <dt><dfn>client</dfn></dt>
+        <dd>Software and/or hardware that invokes a <a>DID resolver</a> in order to execute the <a>DID resolution</a> and/or <a>DID URL dereferencing</a> functions. This invocation is done via a <a>binding</a>. The term <a>client</a> does not imply any specific network topology.</dd>
+      </dl>
+      <dl>
+        <dt><dfn>local binding</dfn></dt>
+        <dd>A <a>binding</a> where the <a>client</a> invokes a <a>DID resolver</a> that runs on the same network host, e.g. via a local command line tool or library API.
+        In this case, the <a>DID resolver</a> is sometimes also called a "local <a>DID resolver</a>".
+      </dl>
+      <dl>
+        <dt><dfn>remote binding</dfn></dt>
+        <dd>A <a>binding</a> where the <a>client</a> invokes a <a>DID resolver</a> that runs on a different network host, e.g. via an HTTP(S) binding.
+        In this case, the <a>DID resolver</a> is sometimes also called a "remote <a>DID resolver</a>".
+      </dl>
+      <p>
+        <figure id="figure-binding-local">
+          <img style="margin: auto; display: block; width: 100%;" src="diagrams/binding-local.png"
+            alt="Diagram showing a DID Resolver with a 'local binding'.">
+          <figcaption style="text-align: center;">
+A <a>local binding</a> for a <a>DID resolver</a>.
+          </figcaption>
+        </figure>
+        <figure id="figure-binding-remote">
+          <img style="margin: auto; display: block; width: 100%;" src="diagrams/binding-remote.png"
+            alt="Diagram showing a DID resolver with a 'remote binding'.">
+          <figcaption style="text-align: center;">
+A <a>remote binding</a> for a <a>DID resolver</a>.
+          </figcaption>
+        </figure>
+      </p>
+
+      <p>
+Additional considerations about architectures of the <a>DID resolution</a> and <a>DID URL
+dereferencing</a> functions, including concepts such as "proxied resolution" or "client-side
+dereferencing", can be found in [[?DID-RESOLUTION]].
+      </p>
+
     </section>
 
     <section>
@@ -940,8 +1004,9 @@ the use case.
         <p>
   Adding a DID parameter to a DID URL means that the parameter becomes part of
   an identifier for a <a>resource</a> (the DID document or other). Alternatively, the
-  DID resolution and the DID URL dereferencing processes can also be influenced
-  by passing options to a <a>DID resolver</a> that are not part of the DID URL.
+  <a>DID resolution</a> and the <a>DID URL dereferencing</a> processes can also
+  be influenced by passing input options to a <a>DID resolver</a> that are not
+  part of the <a>DID URL</a> (see Section <a href="#input-options"></a>).
   Such options could for example control caching or the desired encoding of a
   resolution result. This is comparable to HTTP, where certain parameters could
   either be included in an HTTP URL, or alternatively passed as HTTP headers
@@ -1076,9 +1141,9 @@ the use case.
   document</a> to identify a component of the document (for example, a unique
   <a>public key description</a> or <a>service endpoint</a>). <a>DID fragment</a>
   syntax and semantics are identical to a generic URI fragment and  MUST conform
-  to <a data-cite="RFC3986#section-3.5">RFC&nbsp;3986, section 3.5</a>. To resolve
+  to <a data-cite="RFC3986#section-3.5">RFC&nbsp;3986, section 3.5</a>. To dereference
   a <a>DID fragment</a> reference, the complete <a>DID URL</a> including the
-  <a>DID fragment</a> MUST be used as input to the <a>DID URL</a> dereferencing
+  <a>DID fragment</a> MUST be used as input to the <a>DID URL dereferencing</a>
   algorithm for the target component in the <a>DID document</a> object. For more
   information, see [[?DID-RESOLUTION]].
         </p>
@@ -2543,18 +2608,434 @@ correlation, identification, secondary use, disclosure, exclusion.
 Resolution
     </h1>
 
-    <p>
-A <a>DID resolver</a> is a software or hardware component with an API for
-resolving <a>DIDs</a> of at least one <a>DID method</a>. It executes the read
-operation for the <a>DID method</a> corresponding to the <a>DID</a> being
-resolved to obtain the authoritative <a>DID document</a>. For more information,
-see Section <a href="#read-verify"></a>.
+    <p class="info">
+This section defines the interfaces (or the "contracts") of the <a>DID resolution</a>
+and the <a>DID URL dereferencing</a> functions, including their inputs and results.
+For information about architectures, see Section <a href="#did-resolvers-and-did-resolution"></a>.
     </p>
 
-    <p>
-The interfaces and algorithms for resolving <a>DIDs</a> and dereferencing
-<a>DID URLs</a> are specified in [[?DID-RESOLUTION]].
-    </p>
+    <section>
+      <h2>
+Resolving a DID
+      </h2>
+
+      <p>
+This section defines the inputs and results of the <a>DID resolution</a> function.
+This function relies on the "Read" operation of the applicable <a>DID method</a>
+(see Section <a href="#read-verify"></a>).
+      </p>
+      <p>
+The abstract interface to this function is:</p>
+      </p>
+
+      <code>resolve ( did, options ) --> ( did-document, did-document-metadata, did-resolution-metadata )</code>
+
+      <section>
+        <h3>
+Inputs
+        </h3>
+
+        <p>
+The inputs of the <a>DID resolution</a> function are:
+        </p>
+        <ol>
+          <li>
+An <var>input <a>DID</a></var>.
+          </li>
+          <li>
+A set of <var>input options</var> (see Section <a href="#input-options"></a>).
+          </li>
+        </ol>
+        <p>
+The following rules apply to the above inputs:
+        </p>
+        <ol>
+          <li>
+The <var>input <a>DID</a></var> is REQUIRED for the <a>DID resolution</a> function.
+          </li>
+          <li>
+The <var>input options</var> are OPTIONAL for the <a>DID resolution</a> function.
+          </li>
+          <li>
+The `method-name` component of the <var>input <a>DID</a></var> is called the <var>input <a>DID method</a></var>.
+          </li>
+        </ol>
+
+      </section>
+
+      <section>
+        <h3>
+Results
+        </h3>
+
+        <p>
+The results of the <a>DID resolution</a> function are:
+        </p>
+        <ol>
+          <li>
+The authoritative <a>DID document</a> associated with the <var>input <a>DID</a></var>.
+          </li>
+          <li>
+Optional <a>DID document metadata</a> (see Section <a href="#did-document-metadata"></a>).
+          </li>
+          <li>
+Optional <a>DID resolution metadata</a> (see Section <a href="#did-resolution-metadata"></a>).
+          </li>
+        </ol>
+
+        <p>
+Implementation details and a concrete algorithm for this function can be found
+in [[DID-RESOLUTION]].
+        </p>
+
+      </section>
+
+    </section>
+
+    <section>
+      <h2>
+Dereferencing a DID URL
+      </h2>
+
+      <p>
+This section defines the inputs and results of the <a>DID URL dereferencing</a> function.
+This function relies on <a>DID resolution</a> (see Section <a href="#resolving-a-did"></a>).
+      </p>
+      <p>
+The abstract interface to this function is:</p>
+      </p>
+
+      <code>dereference ( did-url, options ) --> ( content, did-document-metadata, did-resolution-metadata )</code>
+
+      <section>
+        <h3>
+Inputs
+        </h3>
+
+        <p>
+The inputs of the <a>DID URL dereferencing</a> function are:
+        </p>
+        <ol>
+          <li>
+An <var>input <a>DID URL</a></var>.
+          </li>
+          <li>
+A set of <var>input options</var> (see Section <a href="#input-options"></a>).
+          </li>
+        </ol>
+        <p>
+The following rules apply to the above inputs:
+        </p>
+        <ol>
+          <li>
+The <var>input <a>DID URL</a></var> is REQUIRED for the <a>DID URL dereferencing</a> function.
+          </li>
+          <li>
+The <var>input options</var> are OPTIONAL for the <a>DID URL dereferencing</a> function.
+          </li>
+          <li>
+The `did` component of the <var>input <a>DID URL</a></var> is called the <var>input <a>DID</a></var>.
+          </li>
+          <li>
+The `method-name` component of the <var>input <a>DID</a></var> is called the <var>input <a>DID method</a></var>.
+          </li>
+        </ol>
+
+      </section>
+
+      <section>
+        <h3>
+Results
+        </h3>
+
+        <p>
+The results of the <a>DID URL dereferencing</a> function are:
+        </p>
+        <ol>
+          <li>
+A representation of the resource identified by the <var>input <a>DID URL</a></var>, e.g.:
+            <ul>
+              <li>
+A <a>DID document</a>, or
+              </li>
+              <li>
+A part of a <a>DID document</a>, or
+              </li>
+              <li>
+A <a>service endpoint</a> URL selected from a <a>DID document</a>, or
+              </li>
+              <li>
+Another resource as determined by the <var>input <a>DID method</a></var> and/or <a>DID controller</a>.
+              </li>
+            </ul>
+          </li>
+          <li>
+Optional <a>DID document metadata</a> (see Section <a href="#did-document-metadata"></a>).
+          </li>
+          <li>
+Optional <a>DID resolution metadata</a> (see Section <a href="#did-resolution-metadata"></a>).
+          </li>
+        </ol>
+
+        <p>
+The following table lists example <var>input <a>DID URLs</a></var> with the corresponding results
+of the <a>DID URL dereferencing</a> function:
+        </p>
+
+        <table class="example">
+          <thead>
+            <tr>
+              <th>
+Example Input DID URL
+              </th>
+              <th>
+Example Result
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+<code>did:example:1234</code>
+              </td>
+              <td>
+A DID document.
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+<code>did:example:1234#key-1</code>
+              </td>
+              <td>
+A part of a DID document.
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+<code>did:example:1234;service=agent</code>
+              </td>
+              <td>
+A service endpoint URL selected from a DID document.
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+<code>did:example:1234/path</code><br>
+<code>did:example:1234?query=value</code>
+<code>did:example:1234/path?query=value</code><br>
+              </td>
+              <td>
+Another resource as determined by the input DID method and/or DID controller.
+              </td>
+            </tr>
+        </table>
+
+        <p>
+Implementation details and a concrete algorithm for this function can be found
+in [[DID-RESOLUTION]].
+        </p>
+
+      </section>
+
+    </section>
+
+    <section>
+      <h2>
+Input Options
+      </h2>
+
+      <p>
+The <a>DID resolution</a> and <a>DID URL dereferencing</a> functions can
+OPTIONALLY support <dfn>input options</dfn> that control how the functions are executed.
+Input options are different from DID parameters (see Section
+<a href="#generic-did-url-parameters"></a>) insofar as they are not part of
+the <var>input <a>DID</a></var> or <var>input <a>DID URL</a></var> syntax.
+Input options can for example be used to control caching or content negotiation.
+      </p>
+
+      <p>
+<a>Input options</a> are expressed as a map of name-value string pairs.
+      </p>
+      <p>
+<a>Input options</a> MAY be method-independent or method-specific.
+      </p>
+      <p>
+The concrete representation of <a>input options</a> MUST be defined by the applicable <a>binding</a> of
+the <a>DID resolution</a> or <a>DID URL dereferencing</a> function.
+      </p>
+
+      <p class="note">
+For example, a concrete <a>binding</a> of the <a>DID resolution</a> or <a>DID URL
+dereferencing</a> function might define how input options are represented in the form
+of headers of a network protocol.
+      </p>
+
+      <p>
+This specification defines a single concrete <a>input option</a>:
+      </p>
+      <ul>
+        <li>
+The <code>accept</code> <var>input option</var> can be used to indicate the requested
+MIME type of the representation of the resource that is returned by the <a>DID resolution</a>
+or <a>DID URL dereferencing</a> function.
+          <ul>
+            <li>
+This <var>input option</var> is OPTIONAL.
+            </li>
+            <li>
+If this <var>input option</var> is supplied to the <a>DID resolution</a> function,
+or if it is supplied to the <a>DID URL dereferencing</a> function and the result is expected
+to be a <a>DID document</a>, then the value of this <var>input option</var> SHOULD be a
+MIME type associated with a compliant representation of the abstract data model for
+<a>DID documents</a> (see Section <a href="#representations"></a>).
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <p>
+A <a>DID resolver</a> MAY support additional <var>input options</var>.
+      </p>
+
+    </section>
+
+    <section>
+      <h2>
+Metadata
+      </h2>
+
+      <p>
+The <a>DID resolution</a> and <a>DID URL dereferencing</a> functions can OPTIONALLY
+return <a>DID document metadata</a> as well as <a>DID resolution metadata</a>.
+      </p>
+      <p>
+These sets of metadata are expressed as maps of name-value string pairs, referred
+to as <var>metadata properties</var>.
+      </p>
+      <p>
+<var>Metadata properties</var> MAY be method-independent or method-specific.
+      </p>
+      <p>
+The concrete representation of metadata MAY be defined by the applicable <a>binding</a> of
+the <a>DID resolution</a> or <a>DID URL dereferencing</a> function. It MAY
+also be defined by a compliant representation of the abstract data model for <a>DID
+documents</a> (see Section <a href="#representations"></a>).
+      </p>
+
+      <p class="note">
+For example, a concrete <a>binding</a> of the <a>DID resolution</a> or <a>DID URL
+dereferencing</a> function might define how metadata is represented in the form
+of headers of a network protocol. Or, a compliant representation of the abstract
+data model for <a>DID documents</a> might define a special section of a document
+structure that can contain metadata.
+      </p>
+
+      <section>
+        <h3>
+DID Document Metadata
+        </h3>
+
+        <p>
+<dfn>DID document metadata</dfn> contains information about the <var>input
+<a>DID</a></var> and its associated <a>DID document</a>. This metadata typically
+does not change between multiple <a>DID resolution</a> processes, for example:
+        </p>
+        <ol>
+          <li>
+Timestamps when the <a>DID</a> and <a>DID document</a> were created or last updated (see
+Sections <a href="#create"></a> and <a href="#update"></a>).
+          </li>
+          <li>
+A version identifier of the <a>DID document</a>.
+          </li>
+          <li>
+One or more <a>DID controller(s)</a> (see <a href="#authorization-and-delegation"></a>).
+          </li>
+          <li>
+Information related to authorization, delegation, capabilities (see <a href="#authorization-and-delegation"></a>).
+          </li>
+          <li>
+Proofs added by a <a>DID controller</a> and/or the <a>DID registry</a>, e.g. to establish
+control authority (see <a href="#proving-control-of-a-did-and-did-document"></a>).
+          </li>
+        </ol>
+
+        <p>
+The authoritative sources of this metadata are the <a>DID controller</a> and/or the <a>DID registry</a>.
+        </p>
+
+        <p class="issue">
+The following sections should be moved here: <a href="#created"></a>, <a href="#updated"></a>, <a href="#proof"></a>.
+These properties are not part of the abstract data model for DID documents, but rather constitute DID document metadata.
+        </p>
+
+      </section>
+
+      <section>
+        <h3>
+DID Resolution Metadata
+        </h3>
+
+        <p>
+<dfn>DID resolution metadata</dfn> contains information about the resolution process.
+This metadata is typically different between multiple <a>DID resolution</a>
+processes, for example:
+        </p>
+        <ol>
+          <li>
+A timestamp when the <var>input <a>DID</a></var> was resolved.
+          </li>
+          <li>
+Duration of the <a>DID resolution</a> or <a>DID URL dereferencing</a> process.
+          </li>
+          <li>
+Flags that indicate whether caching was used during resolution.
+          </li>
+          <li>
+Information about third-party services that were used for resolution.
+          </li>
+          <li>
+Version and other information of the <a>DID resolver</a> software and/or hardware.
+          </li>
+          <li>
+Proofs added by a <a>DID resolver</a>, e.g. to establish trusted resolution.
+          </li>
+        </ol>
+
+        <p>
+The authoritative source of this metadata is the <a>DID resolver</a>.
+        </p>
+
+        <p>
+This specification defines a single concrete <var>metadata property</var> for <a>DID resolution metadata</a>:
+        </p>
+        <ul>
+          <li>
+The <code>content-type</code> <var>metadata property</var> indicates the MIME type
+of the representation of the resource that is returned by the <a>DID resolution</a>
+or <a>DID URL dereferencing</a> function.
+            <ul>
+              <li>
+This <var>metadata property</var> is OPTIONAL.
+              </li>
+              <li>
+If the result of the <a>DID resolution</a> function or the <a>DID URL dereferencing</a>
+function and the resource is a <a>DID document</a>, then the value of this
+<var>metadata property</var> SHOULD be a MIME type associated with a compliant
+representation of the abstract data model for <a>DID documents</a> (see Section
+<a href="#representations"></a>).
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+      </section>
+
+    </section>
 
   </section>
 
