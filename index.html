@@ -2760,29 +2760,21 @@ One mitigation against unauthorized changes to a <a>DID document</a> is
 monitoring and actively notifying the <a>DID subject</a> when there are changes.
 This is analogous to helping prevent account takeover on conventional
 username/password accounts by sending password reset notifications to the email
-addresses on file. In the case of a <a>DID</a>, where there is no intermediary
-registrar or account provider to generate the notification, the following
-approaches are suggested:
+addresses on file.
       </p>
-
-      <ul>
-        <li>
-Subscriptions. If the <a>DID registry</a> on which the <a>DID</a> is registered
-directly supports change notifications, this service can be offered to
-<a>DID controllers</a>. Notifications could be sent directly to the relevant
-<a>service endpoints</a> listed in an existing <a>DID</a>.
-        </li>
-
-        <li>
-Self-monitoring. A <a>DID subject</a> can employ their own local or online agent
-to periodically monitor for changes to a <a>DID document</a>.
-        </li>
-
-        <li>
-Third-party monitoring. A <a>DID subject</a> could rely on a third-party
-monitoring service, however this introduces another vector of attack.
-        </li>
-      </ul>
+      <p>
+In the case of a <a>DID</a>, there is no intermediary registrar or account
+provider to generate such notification. However, if the <a>DID registry</a>
+on which the <a>DID</a> is registered directly supports change notifications,
+a subscription service can be offered to <a>DID controllers</a>. Notifications
+could be sent directly to the relevant <a>service endpoints</a> listed in an
+existing <a>DID</a>.
+      </p>
+      <p>
+If a <a>DID controller</a> chooses to rely on a third-party monitoring service
+(other than the <a>DID registry</a> itself), this introduces another vector of
+attack.
+      </p>
     </section>
 
     <section>
