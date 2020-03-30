@@ -1226,7 +1226,7 @@ it is the entity identified by the <a>DID</a> and described by the
       <dl>
         <dt><dfn>id</dfn></dt>
         <dd>
-The value of <code>id</code> MUST be a single valid <a>DID</a>.
+The value of <code>id</code> MUST be a single valid <a>DID</a>. 
         </dd>
       </dl>
 
@@ -2172,6 +2172,11 @@ the document metadata), the following rules MUST be followed.
 The <code>@id</code> and <code>@type</code> keywords are aliased to
 <code>id</code> and <code>type</code> respectively, enabling developers to use
 this specification as idiomatic JSON.
+            </li>
+            <li>
+Even though JSON-LD allows any IRI as node identifiers, <a>DID documents</a>
+are explicitly restricted to only describe DIDs. This means that the value of
+<code>id</code> MUST be a valid <a>DID</a> and not any other kind of IRI.
             </li>
             <li>
 Data types, such as integers, dates, units of measure, and URLs, are
