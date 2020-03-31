@@ -348,7 +348,7 @@ to which website, or tracking which email address belongs to which relationship.
 
     <p>
 For a list of <a>DID methods</a> and their corresponding specifications,
-see the DID Method Registry [[DID-METHOD-REGISTRY]].
+see the DID Method Registry [[?DID-METHOD-REGISTRY]].
       </p>
 
   <section class="informative">
@@ -410,7 +410,7 @@ Design Goals
 
     <p>
 <a>Decentralized Identifiers</a> are a component of larger systems, such as
-the Verifiable Credentials ecosystem [[?VC-DATA-MODEL]], which drove the design
+the Verifiable Credentials ecosystem [[VC-DATA-MODEL]], which drove the design
 goals for this specification. This section summarizes the primary design goals
 for this specification.
     </p>
@@ -809,7 +809,7 @@ usually contains cryptographic material enabling authentication of the
 
         <p class="note">
 To avoid these issues, developers should refer to the Decentralized Characteristics 
-Rubric [[DID-RUBRIC]] to decide which <a>DID method</a> best addresses the needs of 
+Rubric [[?DID-RUBRIC]] to decide which <a>DID method</a> best addresses the needs of 
 the use case.
         </p>
 
@@ -859,7 +859,7 @@ the use case.
 
         <p>
   The <a>DID URL</a> syntax supports a simple, generalized format for parameters
-  based on the matrix parameter syntax ([[MATRIX-URIS]]). The ABNF above
+  based on the matrix parameter syntax ([[?MATRIX-URIS]]). The ABNF above
   specifies the basic syntax (the <code>param-name</code> rule) but does not
   specify any concrete parameter names.
         </p>
@@ -897,7 +897,7 @@ the use case.
               </td>
               <td>
   A resource hash of the <a>DID document</a> to add integrity protection, as
-  specified in [[HASHLINK]].
+  specified in [[?HASHLINK]].
               </td>
             </tr>
             <tr>
@@ -934,7 +934,7 @@ the use case.
 
         <p>
   The exact processing rules for these parameters are specified in
-  [[DID-RESOLUTION]].
+  [[?DID-RESOLUTION]].
         </p>
 
         <p>
@@ -1080,7 +1080,7 @@ the use case.
   a <a>DID fragment</a> reference, the complete <a>DID URL</a> including the
   <a>DID fragment</a> MUST be used as input to the <a>DID URL</a> dereferencing
   algorithm for the target component in the <a>DID document</a> object. For more
-  information, see [[DID-RESOLUTION]].
+  information, see [[?DID-RESOLUTION]].
         </p>
 
         <p>
@@ -2030,7 +2030,7 @@ A <a>DID document</a> MUST be a single <a data-cite="RFC8259#section-4">JSON obj
 top-level properties of the <a>DID document</a> MUST be represented by using the
 property name as the name of the member of the JSON object. The values of
 properties of the data model described in Section <a href="#data-model"></a>,
-including all extensions, MUST be encoded in JSON[[RFC8259]] by mapping property
+including all extensions, MUST be encoded in JSON [[RFC8259]] by mapping property
 values to JSON types as follows:
             </p>
 
@@ -2328,16 +2328,16 @@ associated specifications. For more information, see Appendix
 <a href="#interoperability-registries"></a>.
       </p>
       <p>
-The [[DID-METHOD-REGISTRY]] is a tool for implementors to use when coming to
+The [[?DID-METHOD-REGISTRY]] is a tool for implementors to use when coming to
 consensus on a new method name, as well as an informative reference for software
 developers implementing <a>DID resolvers</a> for different <a>DID methods</a>.
 For more information about <a>DID resolvers</a> see Section
-<a href="#resolution"></a>. The [[DID-METHOD-REGISTRY]] is not a definitive
+<a href="#resolution"></a>. The [[?DID-METHOD-REGISTRY]] is not a definitive
 or official list of <a>DID methods</a>. Nonetheless, adding <a>DID method</a>
-names to the [[DID-METHOD-REGISTRY]] is encouraged so that other implementors
+names to the [[?DID-METHOD-REGISTRY]] is encouraged so that other implementors
 and members of the community have a place to see an overview of existing
 <a>DID methods</a>. The lightweight criteria for inclusion are documented in the
-[[DID-METHOD-REGISTRY]].
+[[?DID-METHOD-REGISTRY]].
       </p>
     </section>
 
@@ -2547,7 +2547,7 @@ see Section <a href="#read-verify"></a>.
 
     <p>
 The interfaces and algorithms for resolving <a>DIDs</a> and dereferencing
-<a>DID URLs</a> are specified in [[DID-RESOLUTION]].
+<a>DID URLs</a> are specified in [[?DID-RESOLUTION]].
     </p>
 
   </section>
@@ -2574,11 +2574,11 @@ Choosing DID Resolvers
       </h2>
 
       <p>
-The [[DID-METHOD-REGISTRY]] is an informative list of <a>DID method</a> names
+The [[?DID-METHOD-REGISTRY]] is an informative list of <a>DID method</a> names
 and their corresponding <a>DID method</a> specifications. Implementors need to
 bear in mind that there is no central authority to mandate which
 <a>DID method</a> specification is to be used with any specific
-<a>DID method</a> name, but can use the [[DID-METHOD-REGISTRY]] to make an
+<a>DID method</a> name, but can use the [[?DID-METHOD-REGISTRY]] to make an
 informed decision when choosing which <a>DID resolver</a> implementations to
 use.
       </p>
@@ -2863,7 +2863,7 @@ correlatable, especially if they are globally unique.
 
       <p class="note">
 A draft specification for discovering a <a>DID</a> from domain names and email
-addresses using DNS lookups is available at [[DNS-DID]].
+addresses using DNS lookups is available at [[?DNS-DID]].
       </p>
     </section>
 
@@ -3462,13 +3462,13 @@ graph-based data model.
             <li>
 Extending the machine-readable vocabularies used to describe information in the
 data model, without relying on a centralized system, is accomplished through
-the use of [[LINKED-DATA]].
+the use of [[?LINKED-DATA]].
             </li>
 
             <li>
 Support for multiple types of cryptographic proof formats is accomplished
-through the use of Linked Data Proofs [[LD-PROOFS]], Linked Data Signatures
-[[LD-SIGNATURES]], and a variety of signature suites.
+through the use of Linked Data Proofs [[?LD-PROOFS]], Linked Data Signatures
+[[?LD-SIGNATURES]], and a variety of signature suites.
             </li>
 
             <li>
