@@ -1194,15 +1194,18 @@ Following are the requirements for conformant representations.
       <ol>
         <li>
 A representation MUST define an unambiguous encoding and decoding of all
-properties defined in this specification such that the value of any property
-may be losslessly converted into another representation.
+properties defined in this specification. This definition MUST enable lossless
+conversion of the value of any property into another representation. This means
+anything you can represent in the DID document model can be represented in any
+compliant representation.
         </li>
         <li>
 The representation MUST have an unambiguous MIME type.
         </li>
         <li>
 The representation MUST define fragment processing rules for its MIME type that
-are conformant with this specification.
+are conformant with the fragment processing rules defined in section
+<a href="#fragment"></a> of this specification.
         </li>
       </ol>
     </section>
@@ -1214,10 +1217,11 @@ The data model supports two types of extensibility.
       <ol>
         <li>
 Registry-based extensions are RECOMMENDED for maximum interoperability. The use
-of the registry for properties is the only guaranteed method for two independent
-implementations to be able to work together. Registry-based extensions MUST be
-losslessly convertible between all conformant representations. The official W3C
-extension registry is defined by the DID Core Registry specification.
+of the registry for properties is the only specified method for two independent
+implementations to be able to work together. Registry-based extensions MUST
+enable lossless conversion between all conformant representations. The official
+W3C extension registry is defined by the DID Core Registry specification
+[[DID-CORE-REGISTRIES]].
         </li>
       <li>
 Decentralized extensibility mechanisms MAY be defined by the specification for a
