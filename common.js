@@ -10,7 +10,7 @@ var ccg = {
   // Extend or override global respec references
   localBiblio: {
     "DID-CORE-REGISTRIES": {
-      title: "Decentralized Identifiers Core Registries",
+      title: "Decentralized Identifiers Core and Extensions Registries",
       href: "https://w3c.github.io/did-core-registries/",
       authors: [
       	"Orie Steele",

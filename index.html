@@ -1219,23 +1219,27 @@ The data model supports two types of extensibility.
       </p>
       <ol>
         <li>
-Registry-based extensions are RECOMMENDED for maximum interoperability. The use
-of the registry for properties is the only specified method for two independent
-implementations to be able to work together. Registry-based extensions MUST
-enable lossless conversion between all conformant representations. The official
-W3C extension registry is defined by the DID Core Registry specification
-[[DID-CORE-REGISTRIES]].
+For maximum interoperability, it is RECOMMENDED that extensions use the official
+W3C registries defined by the DID Core and Extensions Registries specification
+[[DID-CORE-REGISTRIES]]. The use of this registry for new properties or other
+extensions is the only specified method for two independent implementations to
+be able to work together. Representations MUST process any extension in the DID
+Core and Extensions Registries according to the definition in the registry.
+Registry-based extensions MUST enable lossless conversion between all conformant
+representations.
         </li>
       <li>
-Decentralized extensibility mechanisms MAY be defined by the specification for a
-conformant representation. Decentralized extension mechanisms SHOULD be defined
-such that any conformant extension may be losslessly converted into any other
-conformant representation. However, it's always possible for two specific
-implementations to agree to use an extension property or a new representation,
-or for an implementation to use its own properties or representations
-internally.
+Representations MAY define other extensibility mechanisms including methods for
+decentralized extensions. Such extension mechanisms SHOULD support lossless
+conversion into any other conformant representation.
       </li>
       </ol>
+      <p class="note">
+It is always possible for two specific implementations to agree out-of-band to
+use a shared extension property or a new representation that is not recorded in
+the [[DID-CORE-REGISTRIES]]. However interoperability between such
+implementations may be less reliable.
+      </p>
     </section>
 
   </section>
