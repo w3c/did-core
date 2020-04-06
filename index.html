@@ -2640,7 +2640,7 @@ The inputs of the <a>DID resolution</a> function are:
 An <var>input <a>DID</a></var>.
           </li>
           <li>
-A set of <var>resolver options</var> (see Section <a href="#resolver-options"></a>).
+A set of <var>resolver options</var> (see Section <a href="#resolver-options"></a>). This component MAY be empty.
           </li>
         </ol>
         <p>
@@ -2673,10 +2673,10 @@ The results of the <a>DID resolution</a> function are:
 The authoritative <a>DID document</a> associated with the <var>input <a>DID</a></var>.
           </li>
           <li>
-Optional <a>DID document metadata</a> (see Section <a href="#did-document-metadata"></a>).
+<a>DID document metadata</a> (see Section <a href="#did-document-metadata"></a>). This component MAY be empty.
           </li>
           <li>
-Optional <a>DID resolution metadata</a> (see Section <a href="#did-resolution-metadata"></a>).
+<a>DID resolution metadata</a> (see Section <a href="#did-resolution-metadata"></a>).
           </li>
         </ol>
 
@@ -2717,7 +2717,7 @@ The inputs of the <a>DID URL dereferencing</a> function are:
 An <var>input <a>DID URL</a></var>.
           </li>
           <li>
-A set of <var>resolver options</var> (see Section <a href="#resolver-options"></a>).
+An optional set of <var>resolver options</var> (see Section <a href="#resolver-options"></a>).
           </li>
         </ol>
         <p>
@@ -2767,10 +2767,10 @@ Another resource as determined by the <var>input <a>DID method</a></var> and/or 
             </ul>
           </li>
           <li>
-Optional <a>DID document metadata</a> (see Section <a href="#did-document-metadata"></a>).
+Optional <a>DID document metadata</a> (see Section <a href="#did-document-metadata"></a>), if a <a>DID Document</a> or partial <a>DID Document</a> is returend. This component MAY be empty.
           </li>
           <li>
-Optional <a>DID resolution metadata</a> (see Section <a href="#did-resolution-metadata"></a>).
+<a>DID resolution metadata</a> (see Section <a href="#did-resolution-metadata"></a>).
           </li>
         </ol>
 
@@ -2906,21 +2906,23 @@ Metadata
       </h2>
 
       <p>
-The <a>DID resolution</a> and <a>DID URL dereferencing</a> functions can OPTIONALLY
+In addition to <a>DID Documents</a>, the <a>DID resolution</a> and <a>DID URL dereferencing</a> functions
 return <a>DID document metadata</a> as well as <a>DID resolution metadata</a>.
       </p>
       <p>
 These sets of metadata are expressed as maps of name-value string pairs, referred
-to as <var>metadata properties</var>.
+to as <var>metadata properties</var>. The keys of the map are unique and MUST NOT
+be repeated.
       </p>
       <p>
-<var>Metadata properties</var> MAY be method-independent or method-specific.
+Common fields are included here. Additional <var>Metadata properties</var> MAY be 
+method-independent or method-specific.
       </p>
       <p>
-The concrete representation of metadata MAY be defined by the applicable <a>binding</a> of
-the <a>DID resolution</a> or <a>DID URL dereferencing</a> function. It MAY
-also be defined by a compliant representation of the abstract data model for <a>DID
-documents</a> (see Section <a href="#representations"></a>).
+While the concrete representation of metadata MAY be defined by the applicable <a>binding</a> of
+the <a>DID resolution</a> or <a>DID URL dereferencing</a> function, the metadata
+MUST be made available to the caller of the <a>DID resolution</a> or <a>DID URL dereferencing</a>
+function as a map of associated plain string keys and values. 
       </p>
 
       <p class="note">
@@ -2928,7 +2930,9 @@ For example, a concrete <a>binding</a> of the <a>DID resolution</a> or <a>DID UR
 dereferencing</a> function might define how metadata is represented in the form
 of headers of a network protocol. Or, a compliant representation of the abstract
 data model for <a>DID documents</a> might define a special section of a document
-structure that can contain metadata.
+structure that can contain metadata. In both cases, the DID resolver has parse
+whatever the representation is and make the metadata available as a map of associated 
+plain string keys and values. 
       </p>
 
       <section>
@@ -3017,12 +3021,12 @@ of the representation of the resource that is returned by the <a>DID resolution<
 or <a>DID URL dereferencing</a> function.
             <ul>
               <li>
-This <var>metadata property</var> is OPTIONAL.
+This <var>metadata property</var> is REQUIRED.
               </li>
               <li>
 If the result of the <a>DID resolution</a> function or the <a>DID URL dereferencing</a>
 function and the resource is a <a>DID document</a>, then the value of this
-<var>metadata property</var> SHOULD be a MIME type associated with a compliant
+<var>metadata property</var> MUST be a MIME type associated with a compliant
 representation of the abstract data model for <a>DID documents</a> (see Section
 <a href="#representations"></a>).
               </li>
