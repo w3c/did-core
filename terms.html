@@ -123,12 +123,22 @@ deactivation of <a>decentralized identifiers</a>. A DID registry is a type of
 verifiable data registry. For more information, see [[VC-DATA-MODEL]].
   </dd>
 
+  <dt><dfn>DID resolution</dfn></dt>
+  
+  <dd>
+The function that takes as its input a <a>DID</a> and a set of resolution
+options and returns a <a>DID document</a> (in a conformant serialization)
+plus additional metadata. This function relies on the "Read" operation of the
+applicable <a>DID method</a>.
+  </dd>
+
   <dt><dfn data-lt="DID resolvers">DID resolver</dfn></dt>
 
   <dd>
-A system that is capable of retrieving a <a>DID document</a> for a given
-<a>DID</a>. These systems are specified in the DID Resolution specification
-[[DID-RESOLUTION]].
+A software and/or hardware system that is capable of executing the <a>DID resolution</a>
+function, retrieving a <a>DID document</a> for a given
+<a>DID</a>. The details of systems are specified in the DID Resolution specification
+[[?DID-RESOLUTION]].
   </dd>
 
   <dt><dfn data-lt="DID schemes">DID scheme</dfn></dt>
@@ -154,6 +164,26 @@ followed by a <a>DID query</a>, and optional <code>#</code> character followed
 by a <a>DID fragment</a>.
   </dd>
 
+  <dt><dfn>DID URL dereferencing</dfn></dt>
+  
+  <dd>
+The function that takes as its input a <a>DID URL</a>, a <a>DID document</a>, 
+and a set of dereferencing options and returns a resource, which may be 
+a <a>DID document</a>, plus additional metadata. This function can use the <a>DID resolution</a>
+function to fetch a <a>DID document</a> indicated by the <a>DID</a> within the <a>DID URL</a>.
+The dereferencing function then can perform additional processing on the <a>DID document</a> to return
+the dereferenced resource indicated by the <a>DID URL</a>.
+  </dd>
+
+  <dt><dfn data-lt"DID URL dereferencers">DID URL dereferencer</dfn></dt>
+  
+  <dd>
+A software and/or hardware system that is capable of executing the <a>DID URL dereferencing</a>
+function, retrieving some form of data (which may or may not be a <a>DID document</a>) for a given
+<a>DID URL</a>. The details of systems are specified in the DID Resolution specification
+[[?DID-RESOLUTION]].
+  </dd>
+  
   <dt><dfn data-lt="distributed ledger technology|DLT">distributed ledger</dfn> (DLT)</dt>
 
   <dd>
