@@ -129,7 +129,8 @@ verifiable data registry. For more information, see [[VC-DATA-MODEL]].
 The function that takes as its input a <a>DID</a> and a set of resolution
 options and returns a <a>DID document</a> (in a conformant serialization)
 plus additional metadata. This function relies on the "Read" operation of the
-applicable <a>DID method</a>.
+applicable <a>DID method</a>. The contract of this function is defined 
+in <a href="#did-resolution"></a>.
   </dd>
 
   <dt><dfn data-lt="DID resolvers">DID resolver</dfn></dt>
@@ -137,7 +138,7 @@ applicable <a>DID method</a>.
   <dd>
 A software and/or hardware system that is capable of executing the <a>DID resolution</a>
 function, retrieving a <a>DID document</a> for a given
-<a>DID</a>. The details of systems are specified in the DID Resolution specification
+<a>DID</a>. The details of such systems are discussed in the DID Resolution specification
 [[?DID-RESOLUTION]].
   </dd>
 
@@ -172,7 +173,8 @@ and a set of dereferencing options and returns a resource, which may be
 a <a>DID document</a>, plus additional metadata. This function can use the <a>DID resolution</a>
 function to fetch a <a>DID document</a> indicated by the <a>DID</a> within the <a>DID URL</a>.
 The dereferencing function then can perform additional processing on the <a>DID document</a> to return
-the dereferenced resource indicated by the <a>DID URL</a>.
+the dereferenced resource indicated by the <a>DID URL</a>. The contract of this 
+function is defined in <a href="#did-url-dereferencing"></a>.
   </dd>
 
   <dt><dfn data-lt"DID URL dereferencers">DID URL dereferencer</dfn></dt>
