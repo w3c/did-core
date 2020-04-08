@@ -154,18 +154,18 @@ better flow, this comment will be removed.
 <a>Decentralized identifiers</a> (DIDs) are a new type of identifier that
 enables verifiable, decentralized digital identity. A <a>DID</a> identifies
 any subject (e.g., a person, organization, thing, data model, abstract entity, etc.)
-that the controller of the <a>DID</a> decides that it 
-identifies. These new identifiers are designed to enable the controller 
-of a <a>DID</a> to prove control over it and to be implemented independently 
-of any centralized registry, identity provider, or certificate authority. 
-<a>DID</a>s are URLs that associate a <a>DID subject</a> with a 
-<a>DID document</a> allowing trustable interactions associated with that subject. 
-Each <a>DID document</a> can express cryptographic material, verification methods, 
-or <a>service endpoints</a>, which provide a set of mechanisms enabling a 
-<a>DID controller</a> to prove control of the <a>DID</a>. <a>Service 
-endpoints</a> enable trusted interactions associated with the <a>DID 
-subject</a>. A <a>DID document</a> might contain semantics about the subject 
-that it identifies. A <a>DID document</a> might contain the <a>DID subject</a> 
+that the controller of the <a>DID</a> decides that it
+identifies. These new identifiers are designed to enable the controller
+of a <a>DID</a> to prove control over it and to be implemented independently
+of any centralized registry, identity provider, or certificate authority.
+<a>DID</a>s are URLs that associate a <a>DID subject</a> with a
+<a>DID document</a> allowing trustable interactions associated with that subject.
+Each <a>DID document</a> can express cryptographic material, verification methods,
+or <a>service endpoints</a>, which provide a set of mechanisms enabling a
+<a>DID controller</a> to prove control of the <a>DID</a>. <a>Service
+endpoints</a> enable trusted interactions associated with the <a>DID
+subject</a>. A <a>DID document</a> might contain semantics about the subject
+that it identifies. A <a>DID document</a> might contain the <a>DID subject</a>
 itself (e.g. a data model).
     </p>
     <p>
@@ -630,7 +630,41 @@ the applicable operations outlined in Section <a href="#methods"></a>.
     </section>
 
     <section>
-      <h2>DID Resolvers and DID Resolution</h2>
+      <h2>DID Resolution and DID URL Dereferencing</h2>
+
+      <p>
+<a>DID resolution</a> is the function of processing a <a>DID</a> as
+defined by a <a>DID method</a> to return a <a>DID document</a>,
+and additional metadata, in a conformant representation.
+A <a>DID resolver</a> is a software and/or hardware component that is capable of
+executing the <a>DID resolution</a> function for at least one
+<a>DID method</a>.
+      </p>
+
+      <p>
+<a>DID URL dereferencing</a> is the function of processing a <a>DID URL</a> and returning
+a resource, which might or might not be a <a>DID document</a>, along with additional
+metadata. A <a>DID URL dereferencer</a> is a software and/or hardware component that
+is capable of executing the <a>DID URL dereferencing</a> function. Generally, a
+<a>DID URL dereferencer</a> executes <a>DID resolution</a> on the <a>DID</a> portion of a
+<a>DID URL</a> to obtain a <a>DID document</a>. The <a>DID URL dereferencer</a> then can perform
+additional dereferencing on the <a>DID document</a> using the full <a>DID URL</a>,
+if necessary.
+      </p>
+
+      <dl>
+        <dt><dfn>binding</dfn></dt>
+        <dd>
+A concrete mechanism through which a caller invokes a <a>DID resolver</a> or a <a>DID URL dereferencer</a>.
+This could be a local command line tool, a library API, or a network call such as an HTTP(S) request.
+        </dd>
+      </dl>
+
+      <p>
+The general inputs and outputs of the <a>DID resolution</a> and <a>DID URL dereferencing</a> functions
+are specified in the <a href="#resolution"></a> section of this document. Additional considerations
+for the implementation of these functions are covered in [[?DID-RESOLUTION]].
+      </p>
     </section>
 
     <section>
@@ -808,8 +842,8 @@ usually contains cryptographic material enabling authentication of the
         </p>
 
         <p class="note">
-To avoid these issues, developers should refer to the Decentralized Characteristics 
-Rubric [[?DID-RUBRIC]] to decide which <a>DID method</a> best addresses the needs of 
+To avoid these issues, developers should refer to the Decentralized Characteristics
+Rubric [[?DID-RUBRIC]] to decide which <a>DID method</a> best addresses the needs of
 the use case.
         </p>
 
@@ -938,18 +972,19 @@ the use case.
         </p>
 
         <p>
-  Adding a DID parameter to a DID URL means that the parameter becomes part of
-  an identifier for a <a>resource</a> (the DID document or other). Alternatively, the
-  DID resolution and the DID URL dereferencing processes can also be influenced
-  by passing options to a <a>DID resolver</a> that are not part of the DID URL.
+  Adding a DID parameter to a <a>DID URL</a> means that the parameter becomes part of
+  an identifier for a <a>resource</a> (the <a>DID document</a> or other). Alternatively, the
+  <a>DID resolution</a> and the <a>DID URL dereferencing</a> functions can also be influenced
+  by passing input metadata to a <a>DID resolver</a> that are not part of the DID URL.
+	(See <a href="#resolution-metadata"></a>).
   Such options could for example control caching or the desired encoding of a
   resolution result. This is comparable to HTTP, where certain parameters could
   either be included in an HTTP URL, or alternatively passed as HTTP headers
   during the dereferencing process. The important distinction is that DID
   parameters that are part of the <a>DID URL</a> should be used to specify
-  <i>what <a>resource</a> is being identified</i>, whereas <a>DID resolver</a> options
+  <i>what <a>resource</a> is being identified</i>, whereas <a>DID resolution</a> options
   that are not part of the <a>DID URL</a> should be use to control <i>how that
-  <a>resource</a> is dereferenced</i>.
+  <a>resource</a> is resolved or dereferenced</i>.
         </p>
 
         <p>
@@ -1076,11 +1111,11 @@ the use case.
   document</a> to identify a component of the document (for example, a unique
   <a>public key description</a> or <a>service endpoint</a>). <a>DID fragment</a>
   syntax and semantics are identical to a generic URI fragment and  MUST conform
-  to <a data-cite="RFC3986#section-3.5">RFC&nbsp;3986, section 3.5</a>. To resolve
+  to <a data-cite="RFC3986#section-3.5">RFC&nbsp;3986, section 3.5</a>. To dereference
   a <a>DID fragment</a> reference, the complete <a>DID URL</a> including the
-  <a>DID fragment</a> MUST be used as input to the <a>DID URL</a> dereferencing
-  algorithm for the target component in the <a>DID document</a> object. For more
-  information, see [[?DID-RESOLUTION]].
+  <a>DID fragment</a> MUST be used as input to the <a>DID URL dereferencing</a>
+  function for the target component in the <a>DID document</a> object. For more
+  information, see <a href="#did-url-dereferencing"></a>.
         </p>
 
         <p>
@@ -1238,7 +1273,7 @@ The value of <code>id</code> MUST be a single valid <a>DID</a>.
       <p class="note">
 <a>DID method</a> specifications can create intermediate representations of a
 <a>DID document</a> that do not contain the <code>id</code> key, such as when a
-<a>DID resolver</a> is performing resolution. However, the fully resolved
+<a>DID resolver</a> is performing <a>DID resolution</a>. However, the fully resolved
 <a>DID document</a> always contains a valid <code>id</code> property. The value
 of <code>id</code> in the resolved <a>DID document</a> is expected to match the
 <a>DID</a> that was resolved.
@@ -1352,10 +1387,10 @@ the <a>DID document</a>; see Section <a href="#authorization-and-delegation"></a
       </p>
 
       <p>
-The value of the <code>id</code> property MAY be structured as a <a href="https://en.wikipedia.org/wiki/Compound_key">compound key</a>. 
+The value of the <code>id</code> property MAY be structured as a <a href="https://en.wikipedia.org/wiki/Compound_key">compound key</a>.
 This is especially useful for integrating with existing key management systems and key formats such as <a href="https://tools.ietf.org/html/rfc7517">JWK</a>.
-It is RECOMMENDED that <a href="https://tools.ietf.org/html/rfc7517">JWK</a> <code>kid</code> values are set to the <a href="https://tools.ietf.org/html/rfc7638">public key fingerprint</a>. 
-It is RECOMMENDED that verification methods that use JWKs to represent their 
+It is RECOMMENDED that <a href="https://tools.ietf.org/html/rfc7517">JWK</a> <code>kid</code> values are set to the <a href="https://tools.ietf.org/html/rfc7638">public key fingerprint</a>.
+It is RECOMMENDED that verification methods that use JWKs to represent their
 public keys utilize the value of <code>kid</code> as their fragment identifier.
 See the first key in <a href="#example-12-various-public-keys">EXAMPLE 12</a> for an example of a public key with a compound key identifier.
       </p>
@@ -1991,7 +2026,8 @@ the data model, such as XML or YAML.
     <p>
 Producers MUST indicate which representation of a document has been used via a media type
 in the document's metadata. Consumers MUST determine which representation a document is in
-via a media type in the document's metadata. Consumers MUST NOT determine the representation
+via the <code>content-type</code> DID resolver metadata field. (See <a href="#did-resolution"></a>).
+Consumers MUST NOT determine the representation
 of a document through its content alone.
     </p>
 
@@ -2019,8 +2055,8 @@ JSON
         </h2>
 
         <p>
-When producing and consuming DID documents that are in plain JSON (as noted by
-the document metadata), the following rules MUST be followed.
+When producing and consuming DID documents that are in plain JSON (as indicated by
+a <code>content-type</code> of <code>application/json+did</code> in the resolver metadata), the following rules MUST be followed.
         </p>
 
         <section>
@@ -2161,8 +2197,8 @@ JSON-LD
         </p>
 
         <p>
-When producing and consuming DID documents that are in JSON-LD (as noted by
-the document metadata), the following rules MUST be followed.
+When producing and consuming DID documents that are in JSON-LD (as indicated by
+a <code>content-type</code> of <code>application/jsonld+did</code> in the resolver metadata), the following rules MUST be followed.
         </p>
 
         <ul>
@@ -2416,13 +2452,13 @@ Update
 The <a>DID method</a> specification MUST specify how a client can update a
 <a>DID document</a> on the <a>DID registry</a>, including all cryptographic
 operations necessary to establish proof of control, <em>or</em> state that
-updates are not possible. 
+updates are not possible.
         </p>
 
         <p>
-An update to a <a>DID</a> is any change, after creation, in the data used to produce a <a>DID document</a>. 
-<a>DID Method</a> implementers are responsible for defining what constitutes an update, 
-and what properties of the <a>DID document</a> are supported by a given <a>DID method</a>. 
+An update to a <a>DID</a> is any change, after creation, in the data used to produce a <a>DID document</a>.
+<a>DID Method</a> implementers are responsible for defining what constitutes an update,
+and what properties of the <a>DID document</a> are supported by a given <a>DID method</a>.
 For example, an update operation which replaces key material without changing it could be a valid update that does not result in changes to the <a>DID document</a>.
         </p>
       </section>
@@ -2544,17 +2580,34 @@ Resolution
     </h1>
 
     <p>
-A <a>DID resolver</a> is a software or hardware component with an API for
-resolving <a>DIDs</a> of at least one <a>DID method</a>. It executes the read
-operation for the <a>DID method</a> corresponding to the <a>DID</a> being
-resolved to obtain the authoritative <a>DID document</a>. For more information,
-see Section <a href="#read-verify"></a>.
+This section defines the inputs and outputs of the
+<a>DID resolution</a> and <a>DID URL dereferencing</a> functions. The
+exact implementation of these functions is out of scope for this specification,
+but some considerations for implementors are available in [[?DID-RESOLUTION]].
     </p>
 
     <p>
 The interfaces and algorithms for resolving <a>DIDs</a> and dereferencing
-<a>DID URLs</a> are specified in [[DID-RESOLUTION]].
+<a>DID URLs</a> are specified in [[?DID-RESOLUTION]].
     </p>
+
+    <section>
+        <h2>
+DID Resolution
+        </h2>
+    </section>
+
+    <section>
+        <h2>
+DID URL Dereferencing
+        </h2>
+    </section>
+
+    <section>
+        <h2>
+Resolution Metadata
+        </h2>
+    </section>
 
   </section>
 
@@ -2915,8 +2968,8 @@ others are of partial data, where the larger context is assumed.
 Encrypted Data in DID Documents
       </h2>
       <p>
-DID documents are typically publicly available. Encryption algorithms have been 
-known to fail due to advances in cryptography and computing power. 
+DID documents are typically publicly available. Encryption algorithms have been
+known to fail due to advances in cryptography and computing power.
 Implementers are advised to assume that any
 encrypted data placed in a <a>DID document</a> might eventually be made available in clear
 text to the same audience to which the encrypted data is available.
