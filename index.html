@@ -2034,7 +2034,8 @@ the data model, such as XML or YAML.
     <p>
 Producers MUST indicate which representation of a document has been used via a media type
 in the document's metadata. Consumers MUST determine which representation a document is in
-via a media type in the document's metadata. Consumers MUST NOT determine the representation
+via the <code>content-type</code> DID resolver metadata field. (See <a href="#did-resolution"></a>).
+Consumers MUST NOT determine the representation
 of a document through its content alone.
     </p>
 
@@ -2062,8 +2063,8 @@ JSON
         </h2>
 
         <p>
-When producing and consuming DID documents that are in plain JSON (as noted by
-the document metadata), the following rules MUST be followed.
+When producing and consuming DID documents that are in plain JSON (as indicated by
+a <code>content-type</code> of <code>application/json+did</code> in the resolver metadata), the following rules MUST be followed.
         </p>
 
         <section>
@@ -2204,8 +2205,8 @@ JSON-LD
         </p>
 
         <p>
-When producing and consuming DID documents that are in JSON-LD (as noted by
-the document metadata), the following rules MUST be followed.
+When producing and consuming DID documents that are in JSON-LD (as indicated by
+a <code>content-type</code> of <code>application/jsonld+did</code> in the resolver metadata), the following rules MUST be followed.
         </p>
 
         <ul>
@@ -2653,26 +2654,26 @@ can then parse and process the <a>DID document</a> from this byte stream.
         
         <p>
 When a <a>DID document</a> is returned, the DID document metadata is returned as a map of
-key-value string pairs as described in <a href="#metadata-structures"></a>. This metadata 
+key-value string pairs as described in <a href="#metadata-structure"></a>. This metadata 
 contains information about the input <a>DID</a> and the returned <a>DID document</a>. This metadata
 typically does not change between invocations of the <a>DID resolution</a> function. The keys and
 possible values for this metadata are defined by a registry (TBD). This component MAY be empty.
         </p>
 
         <p class="issue" data-number="203">
-The DID document metadata still needs to be defined within this document.
+The contents of the DID document metadata still needs to be defined within this document.
         </p>
 
         <p>
 The DID resolution metadata is returned as a map of key-value string pairs as described in
-<a href="#metadata-structures"></a>. This metadata contains information about the results of
+<a href="#metadata-structure"></a>. This metadata contains information about the results of
 the resolution process. This metadata typically changes between invocations of the <a>DID resolution</a>
 function. The keys and possible values for this metadata are defined by a registry (TBD). This
 specification defines the following keys and values:
 
             <dl>
                 <dt>content-type</dt>
-                <dd>The mime-type of the returned conformant representation of the <a>DID document<a> if successful.
+                <dd>The mime-type of the returned conformant representation of the <a>DID document</a> if successful.
                     The <a>DID resolver</a> MUST supply this value when a <a>DID document</a>
                     is returned. The <a>client</a> MUST use this value when determining how to
                     parse and process the byte stream returned by this function into
@@ -2687,7 +2688,7 @@ specification defines the following keys and values:
                     <dl>
                         <dt>invalid-did</dt>
                         <dd>The <a>DID</a> supplied to the <a>DID resolution</a> function does not
-                            conform to valid syntax.</dd>
+                            conform to valid syntax. (See <a href="#did-syntax"></a>.)</dd>
                             
                         <dt>unauthorized</dt>
                         <dd>The <a>client</a> is not authorized to resolve this <a>DID</a> with
@@ -2710,7 +2711,7 @@ DID URL Dereferencing
 The <a>DID URL dereferencing</a> function dereferences a <a>DID URL</a> into content
 represented by that <a>DID URL</a> based on the <a>DID document</a> represented by
 the <a>DID</a> within the <a>DID URL</a>. This content MAY be a <a>DID document</a>, a 
-service endpoint, or some other data. The details of the implementation of this function
+portion of a <a>DID document</a>, a service endpoint, or some other data. The details of the implementation of this function
 are outside the scope of this specification, but all implementations MUST provide
 a function of the following form:
         </p>
@@ -2722,7 +2723,7 @@ a function of the following form:
         
         <div class="note">
 It would be possible to define dereferencing in terms of a DID URL
-and a DID document, where the resolution process could happen externally
+and a fully parsed and modeled DID document, where the resolution process could happen externally
 to the dereferencer. The problem with this is that a client could potentially
 dereference a URL against a document that the DID within the DID URL does
 not represent.
@@ -2759,7 +2760,7 @@ required by the <a>DID URL</a>, the <a>DID document</a> is returned as the
         
         <p>
 The <code>DID dereference metadata</code> is returned as a map of key-value string pairs as described in
-<a href="#metadata-structures"></a>. This component is REQUIRED and MUST NOT be empty.
+<a href="#metadata-structure"></a>. This component is REQUIRED and MUST NOT be empty.
 This metadata contains information about the results of
 the dereferencing process. This metadata typically changes between invocations of the <a>DID URL dereferencing</a>
 function. The keys and possible values for this metadata are defined by a registry (TBD). This
@@ -2778,7 +2779,7 @@ specification defines the following keys and values:
                     <dl>
                         <dt>invalid-url</dt>
                         <dd>The <a>DID URL</a> supplied to the <a>DID URL dereferencing</a> function does not
-                            conform to valid syntax.</dd>
+                            conform to valid syntax. (See <a href="#did-url-syntax"></a>.)</dd>
                     </dl>
                     
                 </dd>
@@ -2788,8 +2789,9 @@ specification defines the following keys and values:
         
         <p>
 The <code>content</code> of this function's output is a byte stream of data. This byte stream MAY 
-represent a <a>DID document</a> in a conformant representation, the results of calling a service
-endpoint, or something else determined by the <a>DID method</a>. 
+represent a <a>DID document</a> in a conformant representation, a portion of a <a>DID document</a>
+in a conformant representation, the results of calling a service
+endpoint, or something else determined by the <a>DID method</a> and its services.
         </p>
         
         <p>
@@ -2824,7 +2826,8 @@ receive the map of key-value string pairs as described in this specification. Th
 exact representation of these metadata structures as part of a protocol or serialization
 is out of scope for this specification. For example, an HTTP-based binding can
 use HTTP headers of an HTTP request to convey input options and HTTP headers of an
-HTTP response to convey document and resolver metadata.
+HTTP response to convey document and resolver metadata. Alternatively, a fully
+JSON-based binding can use a JSON object to represent the metadata structures.
         </p>
         
         <p>
