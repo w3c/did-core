@@ -1751,12 +1751,13 @@ further fine-grained control of authorization and delegation.
 communicating with the <a>DID subject</a> or associated entities. Services
 listed in the <a>DID document</a> can contain information about privacy
 preserving messaging services, or more public information, such as social media
-accounts, personal websites, and email addresses. The metadata associated with
-services are often service-specific. For example, the metadata associated with
-an encrypted messaging service can express how to initiate the encrypted link
-before messaging begins.
-      </p>
-
+accounts, personal websites, and email addresses although this is discouraged.
+See <a href="#keep-personally-identifiable-information-pii-private"></a> for
+additional details. The metadata associated with services are often
+service-specific. For example, the metadata associated with an encrypted
+messaging service can express how to initiate the encrypted link before
+messaging begins.
+        </p>
       <p>
 Pointers to services are expressed using the <code>service</code> property.
 Each service has its own <code>id</code> and <code>type</code>, as well as a
@@ -2972,17 +2973,25 @@ Keep Personally-Identifiable Information (PII) Private
       </h2>
 
       <p>
-If a <a>DID method</a> specification is written for a public <a>DID registry</a>
-where all <a>DIDs</a> and <a>DID documents</a> are publicly available, it is
-<em>critical</em> that <a>DID documents</a> contain no PII. All PII should be
-kept behind <a>service endpoints</a> under the control of the
-<a>DID subject</a>. With this privacy architecture, PII can be exchanged on a
-private, peer-to-peer basis using communications channels identified and secured
-by <a>public key descriptions</a> in <a>DID documents</a>. This also enables
-<a>DID subjects</a> and relying parties to implement the
-<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>
-<a href="https://en.wikipedia.org/wiki/Right_to_be_forgotten">right to be forgotten</a>,
-because no PII is written to an immutable <a>distributed ledger</a>.
+If a <a>DID method</a> specification is written for a public <a>DID
+registry</a> where all <a>DIDs</a> and <a>DID documents</a> are publicly
+available, it is <em>critical</em> that <a>DID documents</a> contain no
+personal data. All personal data should be kept behind <a>service
+endpoints</a> under the control of the <a>DID subject</a>. Additional due
+diligence should be taken around the use of URLs in service endpoints as well
+to prevent leakage of unintentional personal data or correlation within a URL
+of a service endpoint. For example, a URL that contains a username is likely
+dangerous to include in a <a>DID Document</a> because the username is likely
+to be human-meaningful in a way that can unintentionally reveal information
+that the <a>DID subject</a> did not consent to sharing. With this privacy
+architecture, personal data can be exchanged on a private, peer-to-peer basis
+using communications channels identified and secured by <a>public key
+descriptions</a> in <a>DID documents</a>. This also enables <a>DID
+subjects</a> and relying parties to implement the <a
+href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a> <a
+href="https://en.wikipedia.org/wiki/Right_to_be_forgotten">right to be
+forgotten</a>, because no personal data is written to an immutable
+<a>distributed ledger</a>.
       </p>
     </section>
 
