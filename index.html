@@ -2619,7 +2619,9 @@ specification, but all implementations MUST implement a function in the form:
         
         <p>
 The inputs of this function are a <a>DID</a> and a set of input options. The 
-<a>DID</a> is REQUIRED and MUST NOT include a fragment component. The input options
+<a>DID</a> is REQUIRED. Note that if a client wishes to resolve a <a>DID URL</a>, 
+the client MUST first transform the <a>DID URL</a> into a bare <a>DID</a>, 
+including removal of any fragment component. The input options
 are a map of key-value string pairs as described in <a href="#metadata-structure"></a>.
 The input options are REQUIRED but the map MAY be empty. Concrete <a>bindings</a> MUST NOT
 define additional inputs to this function.
