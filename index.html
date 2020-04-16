@@ -643,7 +643,7 @@ executing the <a>DID resolution</a> function for at least one
       
       <p>
 <a>DID URL dereferencing</a> is the function of processing a <a>DID URL</a> and returning
-a resource, which may or may not be a <a>DID document</a>, along with additional
+a resource, which might or might not be a <a>DID document</a>, along with additional
 metadata. A <a>DID URL dereferencer</a> is a software and/or hardware component that
 is capable of executing the <a>DID URL dereferencing</a> function. Generally, a 
 <a>DID URL dereferencer</a> executes <a>DID resolution</a> on the <a>DID</a> portion of a
@@ -660,7 +660,9 @@ function in order to process a <a>DID</a> or <a>DID URL</a>, respectively.
       <dl>
         <dt><dfn>client</dfn></dt>
         <dd>
-Software and/or hardware that invokes a <a>DID resolver</a> in order to execute the <a>DID resolution</a> function and/or a <a>DID URL derfererencer</a> to execute the <a>DID URL dereferencing</a> function. 
+Software and/or hardware that invokes a <a>DID resolver</a> in order to execute 
+the <a>DID resolution</a> function and/or a <a>DID URL derfererencer</a> to 
+execute the <a>DID URL dereferencing</a> function. 
 This invocation is done via a <a>binding</a>. The term <a>client</a> does not imply any specific network topology.
         </dd>
         <dt><dfn>binding</dfn></dt>
@@ -2628,12 +2630,12 @@ define additional inputs to this function.
         </p>
         
         <p>
-The possible keys for the input options are defined by a registry (TBD). This specification
+The possible keys for the input options are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This specification
 defines the following keys and values:
 
             <dl>
                 <dt>accept</dt>
-                <dd>The mime-type of the preferred representation of the <a>DID document</a>. The <a>DID resolver</a> MAY 
+                <dd>The MIME type of the preferred representation of the <a>DID document</a>. The <a>DID resolver</a> MAY 
                     use this value to determine the representation of the returned <a>DID document</a> if such a 
                     representation is supported and available.</dd>
             </dl>
@@ -2659,7 +2661,7 @@ When a <a>DID document</a> is returned, the DID document metadata is returned as
 key-value string pairs as described in <a href="#metadata-structure"></a>. This metadata 
 contains information about the input <a>DID</a> and the returned <a>DID document</a>. This metadata
 typically does not change between invocations of the <a>DID resolution</a> function. The keys and
-possible values for this metadata are defined by a registry (TBD). This component MAY be empty.
+possible values for this metadata are defined in the DID Core Registry [[?DID-CORE-REGISTRY]]. The <a>DID Document metadata</a> MAY be empty.
         </p>
 
         <p class="issue" data-number="203">
@@ -2684,7 +2686,7 @@ specification defines the following keys and values:
                 <dt>error</dt>
                 <dd>The error code from the resolution process. The <a>DID resolver</a> MUST supply
                     this value when there is an error. The possible values
-                    this field are defined by a registry (TBD). This specification defines the following
+                    this field are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This specification defines the following
                     error values:
                     
                     <dl>
