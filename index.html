@@ -1180,23 +1180,21 @@ representations, and a set of requirements for extensibility.
     <section>
       <h2>Definition</h2>
       <p>
-A <a>DID document</a> consists of a collection of name-value pairs which will be
-referred to as properties in this document. The definitions of each of these
-properties are specified in section <a href="#core-properties"></a>. Specific
+A <a>DID document</a> consists of a collection of property-value pairs. The definitions 
+of each of these properties are specified in section <a href="#core-properties"></a>. Specific
 representations are defined in section <a href="#core-representations"></a>.
       </p>
     </section>
     <section>
       <h2>Representations</h2>
       <p>
-Following are the requirements for conformant representations.
+Following are the requirements for representations.
       </p>
       <ol>
         <li>
 A representation MUST define an unambiguous encoding and decoding of all
-properties defined in this specification. This definition MUST enable lossless
-conversion of the value of any property into another representation. This means
-anything you can represent in the DID document model can be represented in any
+properties and their associated values as defined in this specification. This means
+anything you can represent in the <a>DID document</a> data model can be represented in any
 compliant representation.
         </li>
         <li>
