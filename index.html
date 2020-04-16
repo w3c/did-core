@@ -652,28 +652,16 @@ additional dereferencing on the <a>DID document</a> using the full <a>DID URL</a
 if necessary.
       </p>
       
-      <p>
-A <a>client</a> can call the <a>DID resolution</a> function or the <a>DID URL dereferencing</a>
-function in order to process a <a>DID</a> or <a>DID URL</a>, respectively.
-      </p>
-      
       <dl>
-        <dt><dfn>client</dfn></dt>
-        <dd>
-Software and/or hardware that invokes a <a>DID resolver</a> in order to execute 
-the <a>DID resolution</a> function and/or a <a>DID URL derfererencer</a> to 
-execute the <a>DID URL dereferencing</a> function. 
-This invocation is done via a <a>binding</a>. The term <a>client</a> does not imply any specific network topology.
-        </dd>
         <dt><dfn>binding</dfn></dt>
         <dd>
-A concrete mechanism through which a <a>client</a> invokes a <a>DID resolver</a> or a <a>DID URL dereferencer</a>.
+A concrete mechanism through which a caller invokes a <a>DID resolver</a> or a <a>DID URL dereferencer</a>.
 This could be a local command line tool, a library API, or a network call such as an HTTP(S) request.
         </dd>
       </dl>
       
       <p>
-The general contracts of the <a>DID resolution</a> and <a>DID URL dereferencing</a> functions
+The general inputs and outputs of the <a>DID resolution</a> and <a>DID URL dereferencing</a> functions
 are specified in the <a href="#resolution"></a> section of this document. Additional considerations
 for the implementation of these functions are covered in [[?DID-RESOLUTION]].
       </p>
@@ -2590,7 +2578,7 @@ Resolution
     </h1>
 
     <p>
-This section defines the input and output contracts of the 
+This section defines the inputs and outputs of the 
 <a>DID resolution</a> and <a>DID URL dereferencing</a> functions. The
 exact implementation of these functions is out of scope for this specification,
 but some considerations for implementors are available in [[?DID-RESOLUTION]].
@@ -2621,8 +2609,8 @@ specification, but all implementations MUST implement a function in the form:
         
         <p>
 The inputs of this function are a <a>DID</a> and a set of input options. The 
-<a>DID</a> is REQUIRED. Note that if a client wishes to resolve a <a>DID URL</a>, 
-the client MUST first transform the <a>DID URL</a> into a bare <a>DID</a>, 
+<a>DID</a> is REQUIRED. Note that if the caller of this function wishes to resolve a <a>DID URL</a>, 
+the caller MUST first transform the <a>DID URL</a> into a bare <a>DID</a>, 
 including removal of any fragment. The input options are a map of key-value
 string pairs as described in <a href="#metadata-structure"></a>.
 The input options are REQUIRED but the map MAY be empty. Concrete <a>bindings</a> MUST NOT
@@ -2651,13 +2639,13 @@ the function results in an error, the outputs MUST contain a set of metadata for
         
         <p>
 The <a>DID document</a> is returned as a byte stream of a conformant representation
-as determined and supported by the <a>DID resolver</a>. The client of the <a>DID resolution</a> function
+as determined and supported by the <a>DID resolver</a>. The caller of the <a>DID resolution</a> function
 can then parse and process the <a>DID document</a> from this byte stream. The <a>DID document</a> is 
 REQUIRED unless an error is returned by the <a>DID resolution</a> function. 
         </p>
         
         <p>
-When a <a>DID document</a> is returned, the DID document metadata is returned as a map of
+When a <a>DID document</a> is returned, the <code>DID document metadata</code> is returned as a map of
 key-value string pairs as described in <a href="#metadata-structure"></a>. This metadata 
 contains information about the input <a>DID</a> and the returned <a>DID document</a>. This metadata
 typically does not change between invocations of the <a>DID resolution</a> function. The keys and
@@ -2670,7 +2658,7 @@ The contents of the DID document metadata still needs to be defined within this 
         </p>
 
         <p>
-The DID resolution metadata is returned as a map of key-value string pairs as described in
+The <code>DID resolution metadata</code> is returned as a map of key-value string pairs as described in
 <a href="#metadata-structure"></a>. This metadata contains information about the results of
 the resolution process. This metadata typically changes between invocations of the <a>DID resolution</a>
 function. The keys and possible values for this metadata are defined by a registry (TBD). This
@@ -2680,7 +2668,7 @@ specification defines the following keys and values:
                 <dt>content-type</dt>
                 <dd>The mime-type of the returned conformant representation of the <a>DID document</a> if successful.
                     The <a>DID resolver</a> MUST supply this value when a <a>DID document</a>
-                    is returned. The <a>client</a> MUST use this value when determining how to
+                    is returned. The caller of the resolution function MUST use this value when determining how to
                     parse and process the byte stream returned by this function into
                     <a>DID document</a>.</dd>
 
@@ -2696,7 +2684,7 @@ specification defines the following keys and values:
                             conform to valid syntax. (See <a href="#did-syntax"></a>.)</dd>
                             
                         <dt>unauthorized</dt>
-                        <dd>The <a>client</a> is not authorized to resolve this <a>DID</a> with
+                        <dd>The caller is not authorized to resolve this <a>DID</a> with
                             this <a>DID resolver</a>.</dd>
                     </dl>
                     
@@ -2729,7 +2717,7 @@ a function of the following form:
         <div class="note">
 It would be possible to define dereferencing in terms of a DID URL
 and a fully parsed and modeled DID document, where the resolution process could happen externally
-to the dereferencer. The problem with this is that a client could potentially
+to the dereferencer. The problem with this is that the caller could potentially
 dereference a URL against a document that the DID within the DID URL does
 not represent.
         </div>
@@ -2850,9 +2838,11 @@ in a binding:
 In this example, the key <code>content-type</code> has had the string <code>DID-</code>
 prepended to it and the key text is uppercased. When returned from the function, this transformation
 would be reversed to provide the value <code>application/json+did</code> under the key
-<code>content-type</code> to the client. In other words, the client MUST NOT need
-to know the underlying representation of the metadata used by the implementation of
-the function.
+<code>content-type</code> to the caller. Implementations of these functions MUST NOT
+require the caller to transform its inputs into the implementation's underlying
+transmission formats. In other words, the caller need not
+know the underlying representation of the metadata used by the implementation of
+the function in order to call the function.
         </p>
     </section>
 
