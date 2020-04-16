@@ -975,7 +975,8 @@ the use case.
   Adding a DID parameter to a <a>DID URL</a> means that the parameter becomes part of
   an identifier for a resource (the <a>DID document</a> or other). Alternatively, the
   <a>DID resolution</a> and the <a>DID URL dereferencing</a> functions can also be influenced
-  by passing input options to a <a>DID resolver</a> that are not part of the DID URL.
+  by passing input metadata to a <a>DID resolver</a> that are not part of the DID URL.
+	(See <a href="#meadata-structure"></a>).
   Such options could for example control caching or the desired encoding of a
   resolution result. This is comparable to HTTP, where certain parameters could
   either be included in an HTTP URL, or alternatively passed as HTTP headers
@@ -2604,21 +2605,21 @@ specification, but all implementations MUST implement a function in the form:
         </p>
         
         <p>
-<code>resolve ( did, input-options ) -> ( did-document, did-document-metadata, did-resolution-metadata )</code>
+<code>resolve ( did, input-metadata ) -> ( did-document, did-document-metadata, did-resolution-metadata )</code>
         </p>
         
         <p>
-The inputs of this function are a <a>DID</a> and a set of input options. The 
+The inputs of this function are a <a>DID</a> and a set of input metadata. The 
 <a>DID</a> is REQUIRED. Note that if the caller of this function wishes to resolve a <a>DID URL</a>, 
 the caller MUST first transform the <a>DID URL</a> into a bare <a>DID</a>, 
-including removal of any fragment. The input options are a map of key-value
+including removal of any fragment. The input metadata are a map of key-value
 string pairs as described in <a href="#metadata-structure"></a>.
-The input options are REQUIRED but the map MAY be empty. Concrete <a>bindings</a> MUST NOT
+The input metadata are REQUIRED but the map MAY be empty. Concrete <a>bindings</a> MUST NOT
 define additional inputs to this function.
         </p>
         
         <p>
-The possible keys for the input options are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This specification
+The possible keys for the input metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This specification
 defines the following keys and values:
 
             <dl>
@@ -2661,7 +2662,7 @@ The contents of the DID document metadata still needs to be defined within this 
 The <code>DID resolution metadata</code> is returned as a map of key-value string pairs as described in
 <a href="#metadata-structure"></a>. This metadata contains information about the results of
 the resolution process. This metadata typically changes between invocations of the <a>DID resolution</a>
-function. The keys and possible values for this metadata are defined by a registry (TBD). This
+function. The keys and possible values for this metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This
 specification defines the following keys and values:
 
             <dl>
@@ -2723,16 +2724,16 @@ not represent.
         </div>
         
         <p>
-The inputs to this function are a <a>DID URL</a> and a set of input options. The
+The inputs to this function are a <a>DID URL</a> and a set of input metadata. The
 <a>DID URL</a> is REQUIRED and MAY be any valid <a>DID URL</a>, including a fragment.
-The input options are a map of key-value string pairs as 
-described in <a href="#metadata-structure"></a>. The input options are REQUIRED but 
+The input metadata are a map of key-value string pairs as 
+described in <a href="#metadata-structure"></a>. The input metadata are REQUIRED but 
 the map MAY be empty. Concrete <a>bindings</a> MUST NOT define additional
 inputs to this function.
         </p>
 
         <p>
-The possible keys for the input options are defined by a registry (TBD).
+The possible keys for the input metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]].
         </p>
         
         <p>
@@ -2744,9 +2745,7 @@ from its conformant representation to allow for additional processing.
         
         <p>
 The <a>DID URL dereferencer</a> MUST perform any additional processing indicated
-by the <a>DID URL</a>, such as resolving a fragment into an element. The process
-for completing dereferencing is determined by the mime-type of the <a>DID document</a>
-returned from the <a>DID resolution</a> process. If no additional processing is
+by the <a>DID URL</a>, such as resolving a fragment into an element. If no additional processing is
 required by the <a>DID URL</a>, the <a>DID document</a> is returned as the 
 <code>content</code>.
         </p>
@@ -2756,7 +2755,7 @@ The <code>DID dereference metadata</code> is returned as a map of key-value stri
 <a href="#metadata-structure"></a>. The metadata structure is REQUIRED and MUST NOT be empty.
 This metadata contains information about the results of
 the dereferencing process. This metadata typically changes between invocations of the <a>DID URL dereferencing</a>
-function. The keys and possible values for this metadata are defined by a registry (TBD). This
+function. The keys and possible values for this metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This
 specification defines the following keys and values:
 
             <dl>
@@ -2766,7 +2765,7 @@ specification defines the following keys and values:
                 <dt>error</dt>
                 <dd>The error code from the dereferencing process. The <a>DID resolver</a> MUST supply
                     this value when there is an error. The possible values
-                    this field are defined by a registry (TBD). This specification defines the following
+                    this field are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This specification defines the following
                     error values:
                     
                     <dl>
@@ -2800,8 +2799,8 @@ Metadata structure
         </h2>
 
         <div class="issue" data-number="58">
-There needs to be a registry established for handling input options and rules defined for 
-how to handle an unknown input option. A similar issue applies for all metadata structures
+There needs to be a registry established for handling input metadata and rules defined for 
+how to handle an unknown input metadata name. A similar issue applies for all metadata structures
 returned from these functions. 
         </div>
         
@@ -2818,7 +2817,7 @@ All <a>bindings</a> MUST provide a way for the caller of the function to input o
 receive the map of key-value string pairs as described in this specification. The 
 exact representation of these metadata structures as part of a protocol or serialization
 is out of scope for this specification. For example, an HTTP-based binding can
-use HTTP headers of an HTTP request to convey input options and HTTP headers of an
+use HTTP headers of an HTTP request to convey input metadata and HTTP headers of an
 HTTP response to convey document and resolver metadata. Alternatively, a fully
 JSON-based binding can use a JSON object to represent the metadata structures.
         </p>
