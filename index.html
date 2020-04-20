@@ -633,11 +633,11 @@ the applicable operations outlined in Section <a href="#methods"></a>.
       <h2>DID Resolvers</h2>
 
       <p>
-A <a>DID resolver</a> is a software and/or hardware component that takes
-a <a>DID</a> as input and produces a <a>conforming DID document</a> as output.
-This process is called <a>DID resolution</a> and often includes
-resolution input options and resolution output metadata. The general process of
-DID Resolution is described in <a href="#did-resolution"></a>. The details of
+A <a>DID resolver</a> is a software and/or hardware component that takes a
+<a>DID</a> as input and produces a <a>conforming DID document</a> as output.
+This process is called <a>DID resolution</a> and often includes resolution input
+options and resolution output metadata. The general process of <a>DID
+resolution</a> is described in <a href="#did-resolution"></a>. The details of
 implementing a <a>DID resolver</a> is described in the DID Resolution
 specification [[?DID-RESOLUTION]].
       </p>
@@ -647,28 +647,31 @@ specification [[?DID-RESOLUTION]].
       <h2>DID Dereferencers</h2>
 
       <p>
-<a>DID URL dereferencing</a> is the function of processing a <a>DID URL</a> and returning
-a resource, which might or might not be a <a>DID document</a>, along with additional
-metadata. A <a>DID URL dereferencer</a> is a software and/or hardware component that
-is capable of executing the <a>DID URL dereferencing</a> function. Generally, a
-<a>DID URL dereferencer</a> executes <a>DID resolution</a> on the <a>DID</a> portion of a
-<a>DID URL</a> to obtain a <a>DID document</a>. The <a>DID URL dereferencer</a> then can perform
-additional dereferencing on the <a>DID document</a> using the full <a>DID URL</a>,
-if necessary.
+A <a>DID URL dereferencer</a> is a software and/or hardware component that takes
+a <a>DID URL</a> as input and produces a resource, which might or might not be a
+<a>conforming DID Document</a> as output. This process is called <a>DID URL
+dereferencing</a> and often includes dereferencing input options and
+dereferencing output metadata. Generally, a <a>DID URL dereferencer</a>  uses a
+<a>DID resolver</a> to execute <a>DID resolution</a> on the <a>DID</a> portion
+of a <a>DID URL</a> to obtain a <a>DID document</a>. The <a>DID URL
+dereferencer</a> can then perform additional dereferencing on the <a>DID
+document</a> using the absolute <a>DID URL</a>.
       </p>
 
       <dl>
         <dt><dfn>binding</dfn></dt>
         <dd>
-A concrete mechanism through which a caller invokes a <a>DID resolver</a> or a <a>DID URL dereferencer</a>.
-This could be a local command line tool, a library API, or a network call such as an HTTP(S) request.
+A concrete mechanism through which a caller invokes a <a>DID resolver</a> or a
+<a>DID URL dereferencer</a>. This could be a local command line tool, a
+software library, or a network call such as an HTTPS request.
         </dd>
       </dl>
 
       <p>
-The general inputs and outputs of the <a>DID resolution</a> and <a>DID URL dereferencing</a> functions
-are specified in the <a href="#resolution"></a> section of this document. Additional considerations
-for the implementation of these functions are covered in [[?DID-RESOLUTION]].
+The general process of <a>DID URL dereferencing</a> is described in <a
+href="#did-url-dereferencing"></a>. The details of implementing a <a>DID URL
+dereferencer</a> is described in the DID Resolution specification
+[[?DID-RESOLUTION]].
       </p>
     </section>
 
