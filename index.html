@@ -633,9 +633,9 @@ the applicable operations outlined in Section <a href="#methods"></a>.
       <h2>DID Resolution and DID URL Dereferencing</h2>
       
       <p>
-<a>DID resolution</a> is the function of processing a <a>DID</a> as 
-defined by a <a>DID method</a> to return a <a>DID document</a>,
-and additional metadata, in a conformant representation. 
+<a>DID resolution</a> is the function of processing a <a>DID</a> by
+executing a <a>DID method</a> to return a <a>DID document</a>
+and additional metadata, in a conformant representation.
 A <a>DID resolver</a> is a software and/or hardware component that is capable of
 executing the <a>DID resolution</a> function for at least one
 <a>DID method</a>.
@@ -651,14 +651,6 @@ is capable of executing the <a>DID URL dereferencing</a> function. Generally, a
 additional dereferencing on the <a>DID document</a> using the full <a>DID URL</a>, 
 if necessary.
       </p>
-      
-      <dl>
-        <dt><dfn>binding</dfn></dt>
-        <dd>
-A concrete mechanism through which a caller invokes a <a>DID resolver</a> or a <a>DID URL dereferencer</a>.
-This could be a local command line tool, a library API, or a network call such as an HTTP(S) request.
-        </dd>
-      </dl>
       
       <p>
 The general inputs and outputs of the <a>DID resolution</a> and <a>DID URL dereferencing</a> functions
