@@ -2782,12 +2782,104 @@ specification defines the following keys and values:
 DID URL Dereferencing
         </h2>
 
+        <p>
+The <a>DID URL dereferencing</a> function dereferences a <a>DID URL</a> into content
+represented by that <a>DID URL</a> based on the <a>DID document</a> represented by
+the <a>DID</a> within the <a>DID URL</a>. This content MAY be a <a>DID document</a>, a
+portion of a <a>DID document</a>, a service endpoint, or some other data. The details of the implementation of this function
+are outside the scope of this specification, but all implementations MUST provide
+a function of the following form:
+        </p>
+
+        <p>
+<code>dereference ( did-url, input-options ) -> ( content, did-document-metadata, did-dereference-metadata )</code>
+        </p>
+
+
+        <div class="note">
+It would be possible to define dereferencing in terms of a DID URL
+and a fully parsed and modeled DID document, where the resolution process could happen externally
+to the dereferencer. The problem with this is that the caller could potentially
+dereference a URL against a document that the DID within the DID URL does
+not represent.
+        </div>
+
+        <p>
+The inputs to this function are a <a>DID URL</a> and a set of input metadata. The
+<a>DID URL</a> is REQUIRED and MAY be any valid <a>DID URL</a>, including a fragment.
+The input metadata are a map of key-value string pairs as
+described in <a href="#resolution-metadata"></a>. The input metadata are REQUIRED but
+the map MAY be empty. Concrete <a>bindings</a> MUST NOT define additional
+inputs to this function.
+        </p>
+
+        <p>
+The possible keys for the input metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]].
+        </p>
+
+        <p>
+The <a>DID URL dereferencer</a> first MUST resolve the <a>DID</a> within the
+<a>DID URL</a> into a <a>DID document</a> using a <a>DID resolution</a> process.
+The <a>DID URL dereferencer</a> MUST parse the resulting <a>DID document</a>
+from its conformant representation to allow for additional processing.
+        </p>
+
+        <p>
+The <a>DID URL dereferencer</a> MUST perform any additional processing indicated
+by the <a>DID URL</a>, such as resolving a fragment into an element. If no additional processing is
+required by the <a>DID URL</a>, the <a>DID document</a> is returned as the
+<code>content</code>.
+        </p>
+
+        <p>
+The <code>DID dereference metadata</code> is returned as a map of key-value string pairs as described in
+<a href="#resolution-metadata"></a>. The metadata structure is REQUIRED and MUST NOT be empty.
+This metadata contains information about the results of
+the dereferencing process. This metadata typically changes between invocations of the <a>DID URL dereferencing</a>
+function. The keys and possible values for this metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This
+specification defines the following keys and values:
+
+            <dl>
+                <dt>content-type</dt>
+                <dd>The mime-type of the returned content if successful.</dd>
+
+                <dt>error</dt>
+                <dd>The error code from the dereferencing process. The <a>DID resolver</a> MUST supply
+                    this value when there is an error. The possible values
+                    this field are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This specification defines the following
+                    error values:
+
+                    <dl>
+                        <dt>invalid-url</dt>
+                        <dd>The <a>DID URL</a> supplied to the <a>DID URL dereferencing</a> function does not
+                            conform to valid syntax. (See <a href="#did-url-syntax"></a>.)</dd>
+                    </dl>
+
+                </dd>
+
+            </dl>
+        </p>
+
+        <p>
+The <code>content</code> of this function's output is a byte stream of data. This byte stream MAY
+represent a <a>DID document</a> in a conformant representation, a portion of a <a>DID document</a>
+in a conformant representation, the results of calling a service
+endpoint, or something else determined by the <a>DID method</a> and its services.
+        </p>
+
+        <p>
+If the returned <code>content</code> is a <a>DID document</a>, the <a>DID URL dereferencer</a> MAY
+return an additional set of DID document metadata, as described in <a href="#did-resolution"></a>.
+        </p>
+
     </section>
 
     <section>
         <h2>
 Metadata Structure
         </h2>
+
+    </section>
 
   </section>
 
