@@ -739,6 +739,21 @@ hardware and conforms to this specification if it consumes
 when consuming non-conforming <a>DIDs</a> or <a>DID Documents</a>.
     </p>
 
+    <p>
+A <dfn>conforming DID resolver</dfn> that is conformant with this specification
+MUST be capable of performing the <a>DID resolution</a> process, as described in
+<a href="#did-resolution"></a> for at least one <a>DID method</a> and MUST
+return a <a>conforming DID document</a> in at least one conformant
+representation.
+    </p>
+
+    <p>
+A <dfn>conforming DID URL dereferencer</dfn> that is conformant with this
+specification MUST implement the <a>DID URL dereferencing</a> process, as
+described in <a href="#did-url-dereferencing"></a> for at least one conformant
+representation.
+          </p>
+
   </section>
 
   <section>
@@ -2694,13 +2709,6 @@ functions is out of scope for this specification, but some considerations for
 implementors are available in [[?DID-RESOLUTION]].
     </p>
 
-    <p>
-All conformant <a>DID resolvers</a> MUST implement the <a>DID resolution</a> function
-for at least one <a>DID method</a> and be able to return a <a>DID document</a> in
-at least one conformant representation. All conformant <a>DID URL dereferencers</a>
-MUST implement dereferencing for at least one conformant representation type.
-    </p>
-
     <section>
         <h2>
 DID Resolution
@@ -2738,7 +2746,6 @@ defines the following keys and values:
                     representation is supported and available.</dd>
             </dl>
         </p>
-
 
         <p>
 The <a>DID resolver</a> executes the "Read" operation of the <a>DID method</a> as described in
@@ -2816,6 +2823,7 @@ DID URL Dereferencing
         <h2>
 Metadata Structure
         </h2>
+    </section>
 
   </section>
 
