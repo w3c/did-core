@@ -2691,7 +2691,7 @@ define additional inputs to this function.
         </p>
 
         <p>
-The possible keys for the input metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This specification
+The possible keys for the input metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRIES]]. This specification
 defines the following keys and values:
 
             <dl>
@@ -2721,7 +2721,7 @@ When a <a>DID document</a> is returned, the <code>DID document metadata</code> i
 key-value string pairs as described in <a href="#resolution-metadata"></a>. This metadata
 contains information about the input <a>DID</a> and the returned <a>DID document</a>. This metadata
 typically does not change between invocations of the <a>DID resolution</a> function. The keys and
-possible values for this metadata are defined in the DID Core Registry [[?DID-CORE-REGISTRY]].
+possible values for this metadata are defined in the DID Core Registry [[?DID-CORE-REGISTRIES]].
 The <a>DID Document metadata</a> MAY be empty.
         </p>
 
@@ -2733,7 +2733,7 @@ The contents of the DID document metadata still needs to be defined within this 
 The <code>DID resolution metadata</code> is returned as a map of key-value string pairs as described in
 <a href="#resolution-metadata"></a>. This metadata contains information about the results of
 the resolution process. This metadata typically changes between invocations of the <a>DID resolution</a>
-function. The keys and possible values for this metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This
+function. The keys and possible values for this metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRIES]]. This
 specification defines the following keys and values:
 
             <dl>
@@ -2747,7 +2747,7 @@ specification defines the following keys and values:
                 <dt>error</dt>
                 <dd>The error code from the resolution process. The <a>DID resolver</a> MUST supply
                     this value when there is an error. The possible values
-                    this field are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This specification defines the following
+                    this field are defined by the DID Core Registry [[?DID-CORE-REGISTRIES]]. This specification defines the following
                     error values:
 
                     <dl>

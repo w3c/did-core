@@ -41,6 +41,16 @@ var ccg = {
       status: "FPWD",
       publisher: "Verifiable Claims Working Group"
     },
+    "DID-CORE-REGISTRIES": {
+      title: "Decentralized Identifier Core Registries",
+      href: "https://w3c.github.io/did-core-registries/",
+      authors: [
+        "Orie Steele",
+        "Manu Sporny"
+      ],
+      status: "ED",
+      publisher: "Decentralized Identifier Working Group"
+    },
     "DID-USE-CASES": {
       title: "Decentralized Identifier Use Cases",
       href: "https://w3c.github.io/did-use-cases/",
