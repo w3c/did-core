@@ -605,7 +605,7 @@ Terminology
       <h2>DID Documents</h2>
 
       <p>
-A <a>DID document</a> is the resource that is associated with a
+A <a>DID document</a> is the <a>resource</a> that is associated with a
 <a>decentralized identifier</a> (DID). <a>DID documents</a> typically express
 verification methods (such as public keys) and services that can be used to
 interact with a <a>DID controller</a>.
@@ -708,12 +708,12 @@ A <a>DID</a> is similar to a <a>UUID</a> except that:
     </p>
     <ul>
       <li>
-Like a URL, it can be resolved or dereferenced to a standard resource describing
+Like a URL, it can be resolved or dereferenced to a standard <a>resource</a> describing
 the subject. That is, a <a>DID document</a>. For more information, see Section
 <a href="#did-documents"></a>.
       </li>
       <li>
-Unlike most resources returned when dereferencing URLs, a <a>DID document</a>
+Unlike most <a>resources</a> returned when dereferencing URLs, a <a>DID document</a>
 usually contains cryptographic material enabling authentication of the
 <a>DID subject</a>.
       </li>
@@ -831,8 +831,8 @@ the use case.
         <h2>Generic DID URL Syntax</h2>
 
         <p>
-          A <a>DID URL</a> always identifies a resource to
-          be located. It can be used, for example, to identify a specific part of a DID document.
+  A <a>DID URL</a> always identifies a <a>resource</a> to be located. It can be used,
+  for example, to identify a specific part of a <a>DID document</a>.
         </p>
 
         <p>
@@ -939,7 +939,7 @@ the use case.
 
         <p>
   Adding a DID parameter to a DID URL means that the parameter becomes part of
-  an identifier for a resource (the DID document or other). Alternatively, the
+  an identifier for a <a>resource</a> (the DID document or other). Alternatively, the
   DID resolution and the DID URL dereferencing processes can also be influenced
   by passing options to a <a>DID resolver</a> that are not part of the DID URL.
   Such options could for example control caching or the desired encoding of a
@@ -947,15 +947,15 @@ the use case.
   either be included in an HTTP URL, or alternatively passed as HTTP headers
   during the dereferencing process. The important distinction is that DID
   parameters that are part of the <a>DID URL</a> should be used to specify
-  <i>what resource is being identified</i>, whereas <a>DID resolver</a> options
+  <i>what <a>resource</a> is being identified</i>, whereas <a>DID resolver</a> options
   that are not part of the <a>DID URL</a> should be use to control <i>how that
-  resource is dereferenced</i>.
+  <a>resource</a> is dereferenced</i>.
         </p>
 
         <p>
   DID parameters MAY be used if there is a clear use case where
   the parameter needs to be part of a URI that can be used as a link, or
-  as a resource in RDF / JSON-LD documents.
+  as a <a>resource</a> in RDF / JSON-LD documents.
         </p>
 
         <p>
@@ -967,7 +967,7 @@ the use case.
         <p>
   DID parameters SHOULD NOT be used if the same functionality can be expressed
   by passing options to a <a>DID resolver</a>, and if there is no need to
-  construct a URI for use as a link, or as a resource in RDF / JSON-LD documents.
+  construct a URI for use as a link, or as a <a>resource</a> in RDF / JSON-LD documents.
         </p>
 
       </section>
@@ -1034,7 +1034,7 @@ the use case.
         <p>
   A generic <a>DID path</a> is identical to a URI path and MUST conform to the
   <code>path-abempty</code> ABNF rule in [[!RFC3986]]. A <a>DID path</a> SHOULD be
-  used to address resources available through a <a>service endpoint</a>. For more
+  used to address <a>resources</a> available through a <a>service endpoint</a>. For more
   information, see Section <a href="#service-endpoints"></a>.
         </p>
 
@@ -1054,7 +1054,7 @@ the use case.
         <p>
   A generic <a>DID query</a> is identical to a URI query and MUST conform to the
   <code>query</code> ABNF rule in [[!RFC3986]]. A <a>DID query</a> SHOULD be used
-  to address resources available through a <a>service endpoint</a>. For more
+  to address <a>resources</a> available through a <a>service endpoint</a>. For more
   information, see Section <a href="#service-endpoints"></a>.
         </p>
 
@@ -1119,7 +1119,7 @@ A relative DID URL is any URL value in a <a>DID document</a> that does not start
 with <code>did:&lt;method-name>:&lt;method-specific-id></code>. More
 specifically, it is any URL value that does not start with the ABNF defined  in
 Section <a href="#generic-did-syntax"></a>. The contents of the URL typically
-refers to a resource in the same <a>DID document</a>. Relative DID URLs MAY
+refers to a <a>resource</a> in the same <a>DID document</a>. Relative DID URLs MAY
 contain relative path components, query parameters, and fragment identifiers.
         </p>
 
