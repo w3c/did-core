@@ -2649,23 +2649,128 @@ exact implementation of these functions is out of scope for this specification,
 but some considerations for implementors are available in [[?DID-RESOLUTION]].
     </p>
 
+    <p>
+All conformant <a>DID resolvers</a> MUST implement the <a>DID resolution</a> function
+for at least one <a>DID method</a> and be able to return a <a>DID document</a> in
+at least one conformant representation. All conformant <a>DID URL dereferencers</a>
+MUST implement dereferencing for at least one conformant representation type.
+    </p>
+
     <section>
         <h2>
 DID Resolution
         </h2>
+
+        <p>
+The <a>DID resolution</a> function resolves a <a>DID</a> into a <a>DID document</a>
+by using the "Read" operation of the applicable <a>DID method</a>. (See <a href="#read-verify"></a>.)
+The details of how this process is accomplished is outside the scope of this
+specification, but all implementations MUST implement a function in the form:
+        </p>
+
+        <p>
+<code>resolve ( did, input-metadata ) -> ( did-document, did-document-metadata, did-resolution-metadata )</code>
+        </p>
+
+        <p>
+The inputs of this function are a <a>DID</a> and a set of input metadata. The
+<a>DID</a> is REQUIRED. Note that if the caller of this function wishes to resolve a <a>DID URL</a>,
+the caller MUST first transform the <a>DID URL</a> into a bare <a>DID</a>,
+including removal of any fragment. The input metadata are a map of key-value
+string pairs as described in <a href="#resolution-metadata"></a>.
+The input metadata are REQUIRED but the map MAY be empty. Concrete <a>bindings</a> MUST NOT
+define additional inputs to this function.
+        </p>
+
+        <p>
+The possible keys for the input metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This specification
+defines the following keys and values:
+
+            <dl>
+                <dt>accept</dt>
+                <dd>The MIME type of the preferred representation of the <a>DID document</a>. The <a>DID resolver</a> MAY
+                    use this value to determine the representation of the returned <a>DID document</a> if such a
+                    representation is supported and available.</dd>
+            </dl>
+        </p>
+
+
+        <p>
+The <a>DID resolver</a> executes the "Read" operation of the <a>DID method</a> as described in
+<a href="#read-verify"></a>. If successful, the outputs of this function MUST contain a <a>DID document</a>,
+a set of metadata for the DID document (which MAY be empty), and a set of metadata for the resolution process. If
+the function results in an error, the outputs MUST contain a set of metadata for the resolution process.
+        </p>
+
+        <p>
+The <a>DID document</a> is returned as a byte stream of a conformant representation
+as determined and supported by the <a>DID resolver</a>. The caller of the <a>DID resolution</a> function
+can then parse and process the <a>DID document</a> from this byte stream. The <a>DID document</a> is
+REQUIRED unless an error is returned by the <a>DID resolution</a> function.
+        </p>
+
+        <p>
+When a <a>DID document</a> is returned, the <code>DID document metadata</code> is returned as a map of
+key-value string pairs as described in <a href="#resolution-metadata"></a>. This metadata
+contains information about the input <a>DID</a> and the returned <a>DID document</a>. This metadata
+typically does not change between invocations of the <a>DID resolution</a> function. The keys and
+possible values for this metadata are defined in the DID Core Registry [[?DID-CORE-REGISTRY]].
+The <a>DID Document metadata</a> MAY be empty.
+        </p>
+
+        <p class="issue" data-number="203">
+The contents of the DID document metadata still needs to be defined within this document.
+        </p>
+
+        <p>
+The <code>DID resolution metadata</code> is returned as a map of key-value string pairs as described in
+<a href="#resolution-metadata"></a>. This metadata contains information about the results of
+the resolution process. This metadata typically changes between invocations of the <a>DID resolution</a>
+function. The keys and possible values for this metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This
+specification defines the following keys and values:
+
+            <dl>
+                <dt>content-type</dt>
+                <dd>The mime-type of the returned conformant representation of the <a>DID document</a> if successful.
+                    The <a>DID resolver</a> MUST supply this value when a <a>DID document</a>
+                    is returned. The caller of the resolution function MUST use this value when determining how to
+                    parse and process the byte stream returned by this function into
+                    <a>DID document</a>.</dd>
+
+                <dt>error</dt>
+                <dd>The error code from the resolution process. The <a>DID resolver</a> MUST supply
+                    this value when there is an error. The possible values
+                    this field are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This specification defines the following
+                    error values:
+
+                    <dl>
+                        <dt>invalid-did</dt>
+                        <dd>The <a>DID</a> supplied to the <a>DID resolution</a> function does not
+                            conform to valid syntax. (See <a href="#did-syntax"></a>.)</dd>
+
+                        <dt>unauthorized</dt>
+                        <dd>The caller is not authorized to resolve this <a>DID</a> with
+                            this <a>DID resolver</a>.</dd>
+                    </dl>
+
+                </dd>
+
+            </dl>
+        </p>
+
     </section>
 
     <section>
         <h2>
 DID URL Dereferencing
         </h2>
+
     </section>
 
     <section>
         <h2>
 Metadata Structure
         </h2>
-    </section>
 
   </section>
 
