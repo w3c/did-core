@@ -2670,10 +2670,13 @@ DID Resolution
         </h2>
 
         <p>
-The <a>DID resolution</a> function resolves a <a>DID</a> into a <a>DID document</a>
-by using the "Read" operation of the applicable <a>DID method</a>. (See <a href="#read-verify"></a>.)
-The details of how this process is accomplished is outside the scope of this
-specification, but all implementations MUST implement a function in the form:
+The <a>DID resolution</a> process takes a <a>DID</a> and
+resolution options as input, and produces a <a>DID document</a> and
+resolution metadata as output. The process utilizes the "Read" operation of
+the applicable <a>DID method</a>, as described in <a href="#read-verify"></a>.
+The <a>DID method</a>-specific details of how this process is accomplished is
+outside the scope of this specification, but all implementations MUST implement
+a function in the form:
         </p>
 
         <p>
