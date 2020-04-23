@@ -634,15 +634,14 @@ the applicable operations outlined in Section <a href="#methods"></a>.
 
       <p>
 A <a>DID resolver</a> is a software and/or hardware component that takes a
-<a>DID</a> as input and produces a <a>conforming DID document</a> as output.
-This process is called <a>DID resolution</a> and often includes resolution input
-options and resolution output metadata.
+<a>DID</a> (and associated options) as input and produces a <a>conforming 
+DID document</a> (and associated metadata) as output in a process 
+called <a>DID resolution</a>.
       </p>
       <p>
-The general process of <a>DID resolution</a> is described in
-<a href="#did-resolution"></a>. The details of implementing a
-<a>DID resolver</a> are described in the DID Resolution specification
-[[?DID-RESOLUTION]].
+The inputs and outputs of the <a>DID resolution</a> process are defined in
+<a href="#did-resolution"></a>. Additional considerations for implementing a
+<a>DID resolver</a> are discussed in [[?DID-RESOLUTION]].
       </p>
     </section>
 
@@ -651,21 +650,20 @@ The general process of <a>DID resolution</a> is described in
 
       <p>
 A <a>DID URL dereferencer</a> is a software and/or hardware component that takes
-a <a>DID URL</a> as input and produces a resource, which might or might not be a
-<a>conforming DID Document</a> as output. This process is called <a>DID URL
-dereferencing</a> and often includes dereferencing input options and
-dereferencing output metadata. Generally, a <a>DID URL dereferencer</a> uses a
+a <a>DID URL</a> as input (and associated options) and produces a resource (and
+associated metadata) as output in a process called <a>DID URL
+dereferencing</a>. The resource produced by <a>DID URL dereferencing</a> might or might not be a
+<a>conforming DID Document</a>. Generally, a <a>DID URL dereferencer</a> uses a
 <a>DID resolver</a> to execute <a>DID resolution</a> on the <a>DID</a> portion
 of a <a>DID URL</a> to obtain a <a>DID document</a>. The <a>DID URL
 dereferencer</a> can then perform additional dereferencing on the <a>DID
-document</a> using the absolute <a>DID URL</a>.
+document</a> using the complete <a>DID URL</a>.
       </p>
 
       <p>
-The general process of <a>DID URL dereferencing</a> is described in
-<a href="#did-url-dereferencing"></a>. The details of implementing a <a>DID URL
-dereferencer</a> are described in the DID Resolution specification
-[[?DID-RESOLUTION]].
+The inputs and outputs of the <a>DID URL dereferencing</a> process are defined in
+<a href="#did-url-dereferencing"></a>. Additional considerations for implementing a 
+<a>DID URL dereferencer</a> are discussed in [[?DID-RESOLUTION]].
       </p>
     </section>
 
@@ -1114,7 +1112,7 @@ the use case.
   <a>public key description</a> or <a>service endpoint</a>). <a>DID fragment</a>
   syntax and semantics are identical to a generic URI fragment and  MUST conform
   to <a data-cite="RFC3986#section-3.5">RFC&nbsp;3986, section 3.5</a>. To dereference
-  a <a>DID fragment</a> reference, the complete <a>DID URL</a> including the
+  a <a>DID fragment</a>, the complete <a>DID URL</a> including the
   <a>DID fragment</a> MUST be used as input to the <a>DID URL dereferencing</a>
   function for the target component in the <a>DID document</a> object. For more
   information, see <a href="#did-url-dereferencing"></a>.
@@ -2585,7 +2583,7 @@ Resolution
 
     <p>
 This section defines the inputs and outputs of the
-<a>DID resolution</a> and <a>DID URL dereferencing</a> functions. The
+<a>DID resolution</a> and <a>DID URL dereferencing</a> processes. The
 exact implementation of these functions is out of scope for this specification,
 but some considerations for implementors are available in [[?DID-RESOLUTION]].
     </p>
@@ -2611,7 +2609,7 @@ DID URL Dereferencing
 
     <section>
         <h2>
-Resolution Metadata
+Metadata Structure
         </h2>
     </section>
 
