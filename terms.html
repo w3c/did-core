@@ -133,20 +133,26 @@ verifiable data registry. For more information, see [[VC-DATA-MODEL]].
   <dt><dfn>DID resolution</dfn></dt>
 
   <dd>
-The function that takes as its input a <a>DID</a> and a set of resolution
-options and returns a <a>DID document</a> in a conforming representation
+The function that takes as its input a <a>DID</a> and a set of input
+metadata and returns a <a>DID document</a> in a conforming representation
 plus additional metadata. This function relies on the "Read" operation of the
-applicable <a>DID method</a>. The contract of this function is defined
+applicable <a>DID method</a>. The inputs and outputs of this function are defined
 in <a href="#did-resolution"></a>.
   </dd>
 
   <dt><dfn>DID resolution</dt>
 
   <dd>
+<<<<<<< HEAD
 A software and/or hardware system that is capable of executing the <a>DID resolution</a>
 function, retrieving a <a>DID document</a> for a given
 <a>DID</a>. The details of such systems are discussed in the DID Resolution specification
 [[?DID-RESOLUTION]].
+=======
+A <a>DID resolver</a> is a software and/or hardware component that takes
+a <a>DID</a> as input and produces a <a>conforming DID document</a> as
+output by performing <a>DID resolution</a>.
+>>>>>>> Apply non-normative DID Resolution suggestions from @jricher.
   </dd>
 
   <dt><dfn data-lt="DID schemes">DID scheme</dfn></dt>
@@ -188,8 +194,8 @@ and a set of dereferencing options and returns a resource, which might be
 a <a>DID document</a>, plus additional metadata. This function can use the <a>DID resolution</a>
 function to fetch a <a>DID document</a> indicated by the <a>DID</a> within the <a>DID URL</a>.
 The dereferencing function then can perform additional processing on the <a>DID document</a> to return
-the dereferenced resource indicated by the <a>DID URL</a>. The contract of this
-function is defined in <a href="#did-url-dereferencing"></a>.
+the dereferenced resource indicated by the <a>DID URL</a>. The inputs and outputs of this
+process are defined in <a href="#did-url-dereferencing"></a>.
   </dd>
 
   <dt><dfn data-lt"DID URL dereferencers">DID URL dereferencer</dfn></dt>
@@ -197,8 +203,7 @@ function is defined in <a href="#did-url-dereferencing"></a>.
   <dd>
 A software and/or hardware system that is capable of executing the <a>DID URL dereferencing</a>
 function, retrieving some form of data, which might or might not be a <a>DID document</a>) for a given
-<a>DID URL</a>. The details of systems are specified in the DID Resolution specification
-[[?DID-RESOLUTION]].
+<a>DID URL</a> by performing <a>DID URL dereferencing</a>.
   </dd>
 
   <dt><dfn data-lt="distributed ledger technology|DLT">distributed ledger</dfn> (DLT)</dt>
