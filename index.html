@@ -976,7 +976,7 @@ in [?DID-RESOLUTION].
   an identifier for a <a>resource</a> (the <a>DID document</a> or other). Alternatively, the
   <a>DID resolution</a> and the <a>DID URL dereferencing</a> functions can also be influenced
   by passing input metadata to a <a>DID resolver</a> that are not part of the DID URL.
-	(See <a href="#resolution-metadata"></a>).
+	(See <a href="#metadata-structure"></a>).
   Such options could for example control caching or the desired encoding of a
   resolution result. This is comparable to HTTP, where certain parameters could
   either be included in an HTTP URL, or alternatively passed as HTTP headers
@@ -2586,13 +2586,6 @@ This section defines the inputs and outputs of the
 <a>DID resolution</a> and <a>DID URL dereferencing</a> processes. The
 exact implementation of these functions is out of scope for this specification,
 but some considerations for implementors are available in [[?DID-RESOLUTION]].
-    </p>
-
-    <p>
-All conformant <a>DID resolvers</a> MUST implement the <a>DID resolution</a> function
-for at least one <a>DID method</a> and be able to return a <a>DID document</a> in
-at least one conformant representation. All conformant <a>DID URL dereferencers</a>
-MUST implement dereferencing for at least one conformant representation type.
     </p>
 
     <section>
