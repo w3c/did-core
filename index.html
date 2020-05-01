@@ -1134,6 +1134,14 @@ in [?DID-RESOLUTION].
         </pre>
 
         <p>
+In order to maximize interoperability, implementers are urged to ensure that
+<a>DID fragments</a> are interpreted in the same way across representations (as
+described in <a href="#core-representations"></a>). For example, while
+JSON Pointer [[?RFC6901]] can be used in a <a>DID fragment</a>, it will not
+be interpreted in the same way across representations.
+        </p>
+
+        <p>
   Additional semantics for fragment identifiers, which are compatible with and
   layered upon the semantics in this section, are described for JSON-LD
   representations in Section <a href="#application-did-ld-json"></a>.
@@ -1209,7 +1217,7 @@ representations, and a set of requirements for extensibility.
     <section>
       <h2>Definition</h2>
       <p>
-A <a>DID document</a> consists of a collection of property-value pairs. The definitions 
+A <a>DID document</a> consists of a collection of property-value pairs. The definitions
 of each of these properties are specified in section <a href="#core-properties"></a>. Specific
 representations are defined in section <a href="#core-representations"></a>.
       </p>
@@ -1247,7 +1255,7 @@ The data model supports two types of extensibility.
       <ol>
         <li>
 For maximum interoperability, it is RECOMMENDED that extensions use the official
-W3C DID Core Registries mechanism [[DID-CORE-REGISTRIES]]. 
+W3C DID Core Registries mechanism [[DID-CORE-REGISTRIES]].
 The use of this mechanism for new properties or other
 extensions is the only specified method that ensures that two different
 representations will be able to work together.
