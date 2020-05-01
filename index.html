@@ -2879,6 +2879,52 @@ return an additional set of DID document metadata, as described in <a href="#did
 Metadata Structure
         </h2>
 
+        <div class="issue" data-number="58">
+There needs to be a registry established for handling input metadata and rules defined for
+how to handle an unknown input metadata name. A similar issue applies for all metadata structures
+returned from these functions.
+        </div>
+
+        <p>
+Metadata structures are maps of key-value string pairs. All keys within this map
+MUST be UTF-8 unicode strings. The keys of this map MUST NOT be repeated within
+a given metadata structure. The keys of this map MUST be compared in a
+case-insensitive way and the case MAY be transformed. The values of this map
+MUST be retained as an exact string without transformation.
+        </p>
+
+        <p>
+All <a>bindings</a> MUST provide a way for the caller of the function to input or
+receive the map of key-value string pairs as described in this specification. The
+exact representation of these metadata structures as part of a protocol or serialization
+is out of scope for this specification. For example, an HTTP-based binding can
+use HTTP headers of an HTTP request to convey input metadata and HTTP headers of an
+HTTP response to convey document and resolver metadata. Alternatively, a fully
+JSON-based binding can use a JSON object to represent the metadata structures.
+        </p>
+
+        <p>
+The keys and values MAY be transformed by the <a>binding</a> for transport
+in a deterministic and reversible fashion. For example, the <code>content-type</code>
+<a>DID resolution</a> metadata element could be represented as a text header
+in a binding:
+        </p>
+
+        <p>
+<code>DID-CONTENT-TYPE: application/json+did</code>
+        </p>
+
+        <p>
+In this example, the key <code>content-type</code> has had the string
+<code>DID-</code> prepended to it and the key text is uppercased. When returned
+from the function, this transformation would be reversed to provide the value
+<code>application/json+did</code> under the key <code>content-type</code> to the
+caller. Implementations of these functions MUST NOT require the caller to
+transform its inputs into the implementation's underlying transmission formats.
+In other words, the caller need not know the underlying representation of the
+metadata used by the implementation of the function in order to call the
+function.
+        </p>
     </section>
 
   </section>
