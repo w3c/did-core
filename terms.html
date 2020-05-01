@@ -140,19 +140,12 @@ applicable <a>DID method</a>. The inputs and outputs of this function are define
 in <a href="#did-resolution"></a>.
   </dd>
 
-  <dt><dfn>DID resolution</dt>
+  <dt><dfn data-lt="DID resolvers">DID resolver</dfn></dt>
 
   <dd>
-<<<<<<< HEAD
-A software and/or hardware system that is capable of executing the <a>DID resolution</a>
-function, retrieving a <a>DID document</a> for a given
-<a>DID</a>. The details of such systems are discussed in the DID Resolution specification
-[[?DID-RESOLUTION]].
-=======
 A <a>DID resolver</a> is a software and/or hardware component that takes
 a <a>DID</a> as input and produces a <a>conforming DID document</a> as
 output by performing <a>DID resolution</a>.
->>>>>>> Apply non-normative DID Resolution suggestions from @jricher.
   </dd>
 
   <dt><dfn data-lt="DID schemes">DID scheme</dfn></dt>
@@ -176,14 +169,6 @@ the <a>DID</a> and described by the <a>DID document</a>.
 A <a>DID</a> plus an optional <a>DID path</a>, optional <code>?</code> character
 followed by a <a>DID query</a>, and optional <code>#</code> character followed
 by a <a>DID fragment</a>.
-  </dd>
-
-  <dt><dfn>DID URL dereferencing</dfn></dt>
-
-  <dd>
-A function that takes a <a>DID URL</a> plus additional options as input and returns a <a>DID document</a>,
-a part of a <a>DID document</a>, a service endpoint URL, or another resource, plus optional metadata, as output.
-This function relies on <a>DID resolution</a>.
   </dd>
 
   <dt><dfn>DID URL dereferencing</dfn></dt>
