@@ -1203,19 +1203,72 @@ absolute DID URL value of <code>did:example:123456789abcdefghi#key-1</code>.
 
   </section>
 
-  <section class="informative">
+  <section>
     <h1>Data Model</h1>
-
+    <p>
+This specification defines an abstract data model for <a>DID documents</a>,
+independent of any specific representation. This section provides a
+high-level description of the data model, a set of requirements for
+representations, and a set of requirements for extensibility.
+    </p>
     <section>
       <h2>Definition</h2>
+      <p>
+A <a>DID document</a> consists of a collection of property-value pairs. The definitions 
+of each of these properties are specified in section <a href="#core-properties"></a>. Specific
+representations are defined in section <a href="#core-representations"></a>.
+      </p>
     </section>
-
+    <section>
+      <h2>Representations</h2>
+      <p>
+Following are the requirements for representations.
+      </p>
+      <ol>
+        <li>
+A representation MUST define an unambiguous encoding and decoding of all
+properties and their associated values as defined in this specification. This means
+anything you can represent in the <a>DID document</a> data model can be represented in any
+compliant representation.
+        </li>
+        <li>
+The representation MUST be associated with an IANA-registered MIME type.
+        </li>
+        <li>
+The representation MUST define fragment processing rules for its MIME type that
+are conformant with the fragment processing rules defined in section
+<a href="#fragment"></a> of this specification.
+        </li>
+      </ol>
+        <p>
+The core representations are specified in section <a href="#core-representations"></a>.
+        </p>
+    </section>
     <section>
       <h2>Extensibility</h2>
-    </section>
-
-    <section>
-      <h2>Representation Requirements</h2>
+      <p>
+The data model supports two types of extensibility.
+      </p>
+      <ol>
+        <li>
+For maximum interoperability, it is RECOMMENDED that extensions use the official
+W3C DID Core Registries mechanism [[DID-CORE-REGISTRIES]]. 
+The use of this mechanism for new properties or other
+extensions is the only specified method that ensures that two different
+representations will be able to work together.
+        </li>
+      <li>
+Representations MAY define other extensibility mechanisms including methods for
+decentralized extensions. Such extension mechanisms MUST support lossless
+conversion into any other conformant representation.
+      </li>
+      </ol>
+      <p class="note">
+It is always possible for two specific implementations to agree out-of-band to
+use a mutually understood extension or representation that is not recorded in
+the DID Core Registries [[DID-CORE-REGISTRIES]]; interoperability between such
+implementations and the larger ecosystem will be less reliable.
+      </p>
     </section>
 
   </section>
