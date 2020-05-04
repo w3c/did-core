@@ -1229,9 +1229,10 @@ representations, and a set of requirements for extensibility.
     <section>
       <h2>Definition</h2>
       <p>
-A <a>DID document</a> consists of a collection of property-value pairs. The definitions
-of each of these properties are specified in section <a href="#core-properties"></a>. Specific
-representations are defined in section <a href="#core-representations"></a>.
+A <a>DID document</a> consists of a collection of property-value pairs. The
+definitions of each of these properties are specified in section
+<a href="#core-properties"></a>. Specific representations are defined in section
+<a href="#core-representations"></a>.
       </p>
     </section>
     <section>
@@ -1242,9 +1243,9 @@ Following are the requirements for representations.
       <ol>
         <li>
 A representation MUST define an unambiguous encoding and decoding of all
-properties and their associated values as defined in this specification. This means
-anything you can represent in the <a>DID document</a> data model can be represented in any
-compliant representation.
+properties and their associated values as defined in this specification. This
+means anything you can represent in the <a>DID document</a> data model can be
+represented in any compliant representation.
         </li>
         <li>
 The representation MUST be associated with an IANA-registered MIME type.
@@ -1256,7 +1257,8 @@ are conformant with the fragment processing rules defined in section
         </li>
       </ol>
         <p>
-The core representations are specified in section <a href="#core-representations"></a>.
+The core representations are specified in section
+<a href="#core-representations"></a>.
         </p>
     </section>
     <section>
@@ -1267,10 +1269,9 @@ The data model supports two types of extensibility.
       <ol>
         <li>
 For maximum interoperability, it is RECOMMENDED that extensions use the official
-W3C DID Core Registries mechanism [[DID-CORE-REGISTRIES]].
-The use of this mechanism for new properties or other
-extensions is the only specified method that ensures that two different
-representations will be able to work together.
+W3C DID Core Registries mechanism [[DID-CORE-REGISTRIES]]. The use of this
+mechanism for new properties or other extensions is the only specified method
+that ensures that two different representations will be able to work together.
         </li>
       <li>
 Representations MAY define other extensibility mechanisms including methods for
@@ -1341,10 +1342,10 @@ The value of <code>id</code> MUST be a single valid <a>DID</a>.
       <p class="note">
 <a>DID method</a> specifications can create intermediate representations of a
 <a>DID document</a> that do not contain the <code>id</code> key, such as when a
-<a>DID resolver</a> is performing <a>DID resolution</a>. However, the fully resolved
-<a>DID document</a> always contains a valid <code>id</code> property. The value
-of <code>id</code> in the resolved <a>DID document</a> is expected to match the
-<a>DID</a> that was resolved.
+<a>DID resolver</a> is performing <a>DID resolution</a>. However, the fully
+resolved <a>DID document</a> always contains a valid <code>id</code> property.
+The value of <code>id</code> in the resolved <a>DID document</a> is expected to
+match the <a>DID</a> that was resolved.
       </p>
     </section>
 
@@ -1424,10 +1425,9 @@ objects MAY include additional properties.
       </dl>
 
       <p>
-The value of the <code>id</code> property MUST be a <a>URI</a>. The
-array of public keys MUST NOT contain multiple entries with the same
-<code>id</code>. In this case, a <a>DID document</a> processor MUST produce an
-error.
+The value of the <code>id</code> property MUST be a <a>URI</a>. The array of
+public keys MUST NOT contain multiple entries with the same <code>id</code>. In
+this case, a <a>DID document</a> processor MUST produce an error.
       </p>
 
       <p>
@@ -1451,16 +1451,22 @@ necessary to explicitly express the identity of the controller of the key
 difference is that the value of <code>controller</code> on a key is not
 necessarily a <a>DID controller</a>. <a>DID controller(s)</a> are
 expressed using the <code>controller</code> property on the top level of
-the <a>DID document</a>; see Section <a href="#authorization-and-delegation"></a>.
+the <a>DID document</a>; see Section
+<a href="#authorization-and-delegation"></a>.
       </p>
 
       <p>
-The value of the <code>id</code> property MAY be structured as a <a href="https://en.wikipedia.org/wiki/Compound_key">compound key</a>.
-This is especially useful for integrating with existing key management systems and key formats such as <a href="https://tools.ietf.org/html/rfc7517">JWK</a>.
-It is RECOMMENDED that <a href="https://tools.ietf.org/html/rfc7517">JWK</a> <code>kid</code> values are set to the <a href="https://tools.ietf.org/html/rfc7638">public key fingerprint</a>.
-It is RECOMMENDED that verification methods that use JWKs to represent their
-public keys utilize the value of <code>kid</code> as their fragment identifier.
-See the first key in <a href="#example-12-various-public-keys">EXAMPLE 12</a> for an example of a public key with a compound key identifier.
+The value of the <code>id</code> property MAY be structured as a
+<a href="https://en.wikipedia.org/wiki/Compound_key">compound key</a>. This is
+especially useful for integrating with existing key management systems and key
+formats such as <a href="https://tools.ietf.org/html/rfc7517">JWK</a>. It is
+RECOMMENDED that <a href="https://tools.ietf.org/html/rfc7517">JWK</a>
+<code>kid</code> values are set to the
+<a href="https://tools.ietf.org/html/rfc7638">public key fingerprint</a>. It is
+RECOMMENDED that verification methods that use JWKs to represent their public
+keys utilize the value of <code>kid</code> as their fragment identifier. See the
+first key in <a href="#example-12-various-public-keys">EXAMPLE 12</a> for an
+example of a public key with a compound key identifier.
       </p>
 
       <p>
@@ -1485,11 +1491,11 @@ table below. Public key expression MUST NOT use any other key format.
       </p>
 
       <p class="issue">
-The Working Group is still debating whether the base encoding format used will be
-Base58 (Bitcoin) [[BASE58]], base64url [[RFC7515]], or base16 (hex) [[RFC4648]].
-The entries in the table below currently assume PEM and Base58 (Bitcoin), but might
-change to base64url and/or base16 (hex) after the group achieves consensus on this
-particular issue.
+The Working Group is still debating whether the base encoding format used will
+be Base58 (Bitcoin) [[BASE58]], base64url [[RFC7515]], or base16 (hex)
+[[RFC4648]]. The entries in the table below currently assume PEM and Base58
+(Bitcoin), but might change to base64url and/or base16 (hex) after the group
+achieves consensus on this particular issue.
       </p>
 
       <p class="issue">
@@ -1681,12 +1687,12 @@ see Section <a href="#resolution"></a>.
       <h2>Authentication</h2>
 
       <p>
-Authentication is a mechanism by which an entity can prove it is the
-<a>DID subject</a>. The <em>verifier</em> of an authentication attempt
-can check if the authenticating party is presenting a valid proof of
-authentication, that is, that they are who they say they are. Note that
-a successful authentication on its own may or may not confer authority;
-that is up to the verifying application.
+Authentication is a mechanism by which an entity can prove it is the <a>DID
+subject</a>. The <em>verifier</em> of an authentication attempt can check if the
+authenticating party is presenting a valid proof of authentication, that is,
+that they are who they say they are. Note that a successful authentication on
+its own may or may not confer authority; that is up to the verifying
+application.
       </p>
 
       <p class="note" title="Uses of authentication">
@@ -1709,24 +1715,24 @@ A <a>DID document</a> MAY include an <code>authentication</code> property.
       <dl>
           <dt><dfn>authentication</dfn></dt>
           <dd>
-The <code>authentication</code> property is a relationship between the
-<a>DID subject</a> and a set of verification methods (such as, but not
-limited to, public keys). It means that the <a>DID subject</a> has authorized
-some set of <a>verification methods</a> (per the value of the
-<code>authentication</code> property) for the purpose of authentication. The value
-of the <code>authentication</code> property SHOULD be an array of
-<a>verification methods</a>. Each <a>verification method</a> MAY be embedded
-or referenced. An example of a <a>verification method</a> is a public key
+The <code>authentication</code> property is a relationship between the <a>DID
+subject</a> and a set of verification methods (such as, but not limited to,
+public keys). It means that the <a>DID subject</a> has authorized some set of
+<a>verification methods</a> (per the value of the <code>authentication</code>
+property) for the purpose of authentication. The value of the
+<code>authentication</code> property SHOULD be an array of <a>verification
+methods</a>. Each <a>verification method</a> MAY be embedded or referenced. An
+example of a <a>verification method</a> is a public key
 (see Section <a href="#public-keys"></a>).
           </dd>
       </dl>
 
       <p>
-This statement is useful to any "authentication verifier" that needs to check
-to see if an entity that is attempting to authenticate is, in fact, presenting
-a valid proof of authentication. When a verifier receives some data (in some
-protocol-specific format) that contains a proof that was made for the purpose
-of "authentication", and that says that an entity is identified by the <a>DID</a>,
+This statement is useful to any "authentication verifier" that needs to check to
+see if an entity that is attempting to authenticate is, in fact, presenting a
+valid proof of authentication. When a verifier receives some data (in some
+protocol-specific format) that contains a proof that was made for the purpose of
+"authentication", and that says that an entity is identified by the <a>DID</a>,
 then that verifier checks to ensure that the proof can be verified using a
 <a>verification method</a> (e.g., public key) listed under
 <code>authentication</code> in the <a>DID Document</a>.
@@ -1778,10 +1784,9 @@ Authorization and Delegation
       </h2>
 
       <p>
-Authorization is the mechanism used to state how operations may be
-performed on behalf of the <a>DID subject</a>. Delegation is the
-mechanism that the subject uses to authorize others to act
-on their behalf.
+Authorization is the mechanism used to state how operations may be performed on
+behalf of the <a>DID subject</a>. Delegation is the mechanism that the subject
+uses to authorize others to act on their behalf.
       </p>
 
       <p class="note" title="Authorization vs authentication">
@@ -1789,7 +1794,8 @@ Note that Authorization is separate from <a href="#authentication"></a>.
 This is particularly important for key recovery in the case of key loss,
 when the subject no longer has access to their keys, or key compromise,
 where the <a>DID controller</a>'s trusted third parties need to override
-malicious activity by an attacker. See Section <a href="#security-considerations"></a>.
+malicious activity by an attacker. See Section
+<a href="#security-considerations"></a>.
       </p>
 
       <p>
@@ -1832,7 +1838,8 @@ further fine-grained control of authorization and delegation.
         </li>
       </ul>
 
-      <pre class="example nohighlight" title="DID document with a controller property">
+      <pre class="example nohighlight"
+        title="DID document with a controller property">
 {
   "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
@@ -1976,9 +1983,9 @@ A <a>DID document</a> SHOULD include a <code>created</code> property.
           <dd>
 If a <a>DID document</a> includes a <code>created</code> property, the value of
 the property MUST be a valid XML datetime value, as defined in section 3.3.7 of
-<a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition Language (XSD) 1.1 Part 2: Datatypes</a>
-[[!XMLSCHEMA11-2]]. This datetime value MUST be normalized to UTC 00:00, as
-indicated by the trailing "Z".
+<a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition
+Language (XSD) 1.1 Part 2: Datatypes</a> [[!XMLSCHEMA11-2]]. This datetime value
+MUST be normalized to UTC 00:00, as indicated by the trailing "Z".
           </dd>
       </dl>
 
