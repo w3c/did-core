@@ -225,28 +225,33 @@ Introduction
     </h1>
 
     <p>
-Conventional <a href="https://en.wikipedia.org/wiki/Identity_management">identity management</a>
+Conventional <a href="https://en.wikipedia.org/wiki/Identity_management">
+  identity management</a>
 systems are based on centralized authorities such as corporate
-<a href="https://en.wikipedia.org/wiki/Directory_service">directory services</a>,
-<a href="https://en.wikipedia.org/wiki/Certificate_authority">certificate authorities</a>,
-or <a href="https://en.wikipedia.org/wiki/Domain_name_registry">domain name registries</a>.
+<a href="https://en.wikipedia.org/wiki/Directory_service">
+  directory services</a>,
+<a href="https://en.wikipedia.org/wiki/Certificate_authority">
+  certificate authorities</a>,
+or <a href="https://en.wikipedia.org/wiki/Domain_name_registry">
+  domain name registries</a>.
 From the standpoint of cryptographic trust verification, each of these
 centralized authorities serves as its own
-<a href="https://en.wikipedia.org/wiki/Trust_anchor">root of trust</a>. To make
-identity management work across these systems requires implementing
-<a href="https://en.wikipedia.org/wiki/Federated_identity">federated identity management</a>.
+<a href="https://en.wikipedia.org/wiki/Trust_anchor">
+  root of trust</a>.
+To make identity management work across these systems requires implementing
+<a href="https://en.wikipedia.org/wiki/Federated_identity">
+  federated identity management</a>.
     </p>
 
     <p>
-The emergence of <a>distributed ledger technology</a> (DLT) and
-<a>blockchain technology</a> provides the opportunity for fully
-<a>decentralized identity management</a>. In a decentralized identity system,
-entities (that is, discrete identifiable units such as, but not limited to,
-people, organizations, and things) are free to use any shared root of trust.
-Globally distributed ledgers, decentralized P2P networks, or other systems
-with similar capabilities, provide the means for managing a root of
-trust without introducing a centralized authority or a single point of
-failure. In combination, <a>DLTs</a> and
+The emergence of <a>distributed ledger technology</a> (DLT) and <a>blockchain
+technology</a> provides the opportunity for fully <a>decentralized identity
+management</a>. In a decentralized identity system, entities (that is, discrete
+identifiable units such as, but not limited to, people, organizations, and
+things) are free to use any shared root of trust. Globally distributed ledgers,
+decentralized P2P networks, or other systems with similar capabilities, provide
+the means for managing a root of trust without introducing a centralized
+authority or a single point of failure. In combination, <a>DLTs</a> and
 <a>decentralized identity management</a> systems enable any entity to create and
 manage their own identifiers on any number of distributed, independent roots of
 trust.
@@ -255,15 +260,15 @@ trust.
     <p>
 Entities are identified by <a>decentralized identifiers</a> (<a>DIDs</a>), and
 can authenticate using proofs (for example, digital signatures,
-privacy-preserving biometric protocols, and so on). <a>DIDs</a> point to
-<a>DID documents</a>. A <a>DID document</a> contains a set of
-<a>service endpoints</a> for interacting with the entity that the <a>DID</a>
-identifies (that is, the <a>DID subject</a>). Following the guidelines of
-<a href="https://en.wikipedia.org/wiki/Privacy_by_design">Privacy by
-Design</a>, any entity can have as many <a>DIDs</a> (and corresponding
-<a>DID documents</a> and <a>service endpoints</a>) as necessary to respect the
-entity’s desired separation of identities, personas, and contexts (in the
-everyday sense of these words).
+privacy-preserving biometric protocols, and so on). <a>DIDs</a> point to <a>DID
+documents</a>. A <a>DID document</a> contains a set of <a>service endpoints</a>
+for interacting with the entity that the <a>DID</a> identifies (that is, the
+<a>DID subject</a>). Following the guidelines of
+<a href="https://en.wikipedia.org/wiki/Privacy_by_design">Privacy by Design</a>,
+any entity can have as many <a>DIDs</a> (and corresponding <a>DID documents</a>
+and <a>service endpoints</a>) as necessary to respect the entity’s desired
+separation of identities, personas, and contexts (in the everyday sense of these
+words).
     </p>
 
     <p>
@@ -274,27 +279,29 @@ separate <a>DID method</a> specifications.
     </p>
 
     <p>
-This design eliminates dependence on centralized registries for
-identifiers as well as centralized certificate authorities for key
-management, which is the standard in hierarchical
-<a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">PKI (public key infrastructure</a>).
+This design eliminates dependence on centralized registries for identifiers as
+well as centralized certificate authorities for key management, which is the
+standard in hierarchical <a
+href="https://en.wikipedia.org/wiki/Public_key_infrastructure">
+  PKI (public key infrastructure</a>).
 In cases where the <a>DID registry</a> is a <a>distributed ledger</a>, each
 entity can serve as its own root authority. This architecture is referred to as
-<a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">DPKI (decentralized PKI)</a>.
+<a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">
+  DPKI (decentralized PKI)</a>.
     </p>
 
     <p class="note">
 <a>DID methods</a> can also be developed for identifiers registered in federated
 or centralized identity management systems. Indeed, all types of identifier
 systems can add support for <a>DIDs</a>. This creates an interoperability bridge
-between the worlds of centralized, federated, and
-<a>decentralized identifiers</a>.
+between the worlds of centralized, federated, and <a>decentralized
+identifiers</a>.
     </p>
 
     <p>
-The first purpose of this specification is to define the generic
-<a>DID scheme</a> and a generic set of operations on <a>DID documents</a> that
-can be implemented for any <a>DID registry</a>. The second purpose of this
+The first purpose of this specification is to define the generic <a>DID
+scheme</a> and a generic set of operations on <a>DID documents</a> that can be
+implemented for any <a>DID registry</a>. The second purpose of this
 specification is to define the conformance requirements for a <a>DID method</a>
 specification. The <a>DID method</a> specification is a separate document that
 defines a specific <a>DID scheme</a> and specific set of <a>DID document</a>
@@ -302,17 +309,17 @@ operations for a specific <a>DID registry</a>.
     </p>
 
     <p class="note">
-Conceptually, the relationship between this specification and a
-<a>DID method</a> specification is similar to the relationship between the IETF
-generic <a>URI</a> specification ([[RFC3986]]) and a specific <a>URI</a> scheme
+Conceptually, the relationship between this specification and a <a>DID
+method</a> specification is similar to the relationship between the IETF generic
+<a>URI</a> specification ([[RFC3986]]) and a specific <a>URI</a> scheme
 ([[IANA-URI-SCHEMES]] (such as the http: and https: schemes specified in
 [[RFC7230]]). It is also similar to the relationship between the IETF generic
 URN specification ([[RFC8141]]) and a specific URN namespace definition, (such
 as the <a>UUID</a> URN namespace defined in [[RFC4122]]). The difference is that
-a <a>DID method</a> specification, as well as defining a specific
-<a>DID scheme</a>, also specifies the methods for resolving and deactivating
-<a>DIDs</a> on, and writing <a>DID documents</a> to, the appropriate
-<a>DID registry</a>.
+a <a>DID method</a> specification, as well as defining a specific <a>DID
+scheme</a>, also specifies the methods for resolving and deactivating
+<a>DIDs</a> on, and writing <a>DID documents</a> to, the appropriate <a>DID
+registry</a>.
     </p>
 
     <p>
@@ -369,15 +376,16 @@ DID method-specific identifier.
         </li>
       </ul>
 
-    <pre class="example nohighlight" title="A simple example of a decentralized identifier (DID)">
+    <pre class="example nohighlight"
+      title="A simple example of a decentralized identifier (DID)">
 did:example:123456789abcdefghi
     </pre>
 
     <p>
-The example <a>DID</a> above resolves to a <a>DID document</a>. A
-<a>DID document</a> contains information associated with the <a>DID</a>, such as
-ways to cryptographically authenticate the entity in control of the <a>DID</a>,
-as well as services that can be used to interact with the entity.
+The example <a>DID</a> above resolves to a <a>DID document</a>. A <a>DID
+document</a> contains information associated with the <a>DID</a>, such as ways
+to cryptographically authenticate the entity in control of the <a>DID</a>, as
+well as services that can be used to interact with the entity.
     </p>
 
     <pre class="example nohighlight" title="Minimal self-managed DID document">
