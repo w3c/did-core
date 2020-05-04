@@ -657,8 +657,8 @@ The inputs and outputs of the <a>DID resolution</a> process are defined in
       <p>
 A <a>DID URL dereferencer</a> is a software and/or hardware component that takes
 a <a>DID URL</a> as input (and associated options) and produces a resource (and
-associated metadata) as output in a process called <a>DID URL
-dereferencing</a>. The resource produced by <a>DID URL dereferencing</a> might or might not be a
+associated metadata) as output in a process called <a>DID URL dereferencing</a>.
+The resource produced by <a>DID URL dereferencing</a> might or might not be a
 <a>conforming DID Document</a>. Generally, a <a>DID URL dereferencer</a> uses a
 <a>DID resolver</a> to execute <a>DID resolution</a> on the <a>DID</a> portion
 of a <a>DID URL</a> to obtain a <a>DID document</a>. The <a>DID URL
@@ -667,9 +667,9 @@ document</a> using the complete <a>DID URL</a>.
       </p>
 
       <p>
-The inputs and outputs of the <a>DID URL dereferencing</a> process are defined in
-<a href="#did-url-dereferencing"></a>. Additional considerations for implementing a
-<a>DID URL dereferencer</a> are discussed in [[?DID-RESOLUTION]].
+The inputs and outputs of the <a>DID URL dereferencing</a> process are defined
+in <a href="#did-url-dereferencing"></a>. Additional considerations for
+implementing a <a>DID URL dereferencer</a> are discussed in [[?DID-RESOLUTION]].
       </p>
     </section>
 
@@ -736,7 +736,8 @@ when consuming non-conforming <a>DIDs</a> or <a>DID Documents</a>.
 The concept of a globally unique <a>decentralized identifier</a> is not new.
 <a>Universally Unique Identifiers</a> (UUIDs) were first developed in the 1980s
 and later became a standard feature of the Open Software Foundation’s
-<a href="https://en.wikipedia.org/wiki/Distributed_Computing_Environment">Distributed Computing Environment</a>.
+<a href="https://en.wikipedia.org/wiki/Distributed_Computing_Environment">
+  Distributed Computing Environment</a>.
 <a>UUIDs</a> achieve global uniqueness without a centralized registry service by
 using an algorithm that generates 128-bit values with sufficient entropy that
 the chance of collision are infinitesimally small. <a>UUIDs</a> are formally
@@ -748,14 +749,14 @@ A <a>DID</a> is similar to a <a>UUID</a> except that:
     </p>
     <ul>
       <li>
-Like a URL, it can be resolved or dereferenced to a standard <a>resource</a> describing
-the subject. That is, a <a>DID document</a>. For more information, see Section
-<a href="#did-documents"></a>.
+Like a URL, it can be resolved or dereferenced to a standard <a>resource</a>
+describing the subject. That is, a <a>DID document</a>. For more information,
+see Section <a href="#did-documents"></a>.
       </li>
       <li>
-Unlike most <a>resources</a> returned when dereferencing URLs, a <a>DID document</a>
-usually contains cryptographic material enabling authentication of the
-<a>DID subject</a>.
+Unlike most <a>resources</a> returned when dereferencing URLs, a <a>DID
+document</a> usually contains cryptographic material enabling authentication of
+the <a>DID subject</a>.
       </li>
     </ul>
 
