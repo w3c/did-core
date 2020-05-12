@@ -1360,8 +1360,7 @@ methods, which can be used to authenticate or authorize interactions with the
 <a>DID subject</a> or associated parties. The information expressed often
 includes globally unambiguous identifiers and public key material, which can be
 used to verify digital signatures. Other information can be expressed, such as
-status information for the key (for example, whether it is suspended or
-revoked), or other attributes that enable one to determine whether it is a
+attributes that enable one to determine whether it is a
 hardware-backed cryptographic key.
       </p>
 
@@ -1479,9 +1478,9 @@ Registry. For a registry of key types and formats, see Appendix
 
       <p>
 If a public key does not exist in the <a>DID document</a>, it MUST be assumed
-the key was revoked or is invalid. The <a>DID document</a> MAY contain revoked
-keys. A <a>DID document</a> containing a revoked key MUST also contain or refer
-to the revocation information for the key (for example, a revocation list). Each
+the key was revoked or is invalid.
+The <a>DID document</a> MAY NOT contain revoked keys.
+Each
 <a>DID method</a> specification is expected to detail how revocation is
 performed and tracked.
       </p>
