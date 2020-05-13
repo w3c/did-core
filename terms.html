@@ -261,9 +261,15 @@ An identifier, as defined by [[RFC3986]].
   <dt><dfn data-lt="">verification method</dfn></dt>
 
   <dd>
-A set of parameters required to independently verify a proof, such
-as an identifier for a public/private key pair that would be used in the
-proof.
+A set of parameters that can be used to independently verify a proof according to
+a particular method. For example, a public key can be used as a verification
+method with respect to a digital signature; in such usage, it verifies that the
+signer possessed the associated private key. Although cryptographic keys are commonly
+used with DIDs, verification methods need not be cryptographic; the email address of
+a friend that will attest to something is a conceivable verification method (though
+perhaps not a strong one). Likewise, these methods need not consist of single parameters;
+a set of five cryptographic keys from which any three must provide input to a threshold
+signature scheme is a more complex example.
   </dd>
   <dt><dfn data-lt="UUID|UUIDs">Universally Unique Identifier</dfn> (UUID)</dt>
 
