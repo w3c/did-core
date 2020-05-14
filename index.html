@@ -2808,7 +2808,7 @@ not represent.
 The inputs to this function are a <a>DID URL</a> and a set of input metadata. The
 <a>DID URL</a> is REQUIRED and MAY be any valid <a>DID URL</a>, including a fragment.
 The input metadata are a map of name-value properties as
-described in <a href="#resolution-metadata"></a>. The input metadata are REQUIRED but
+described in <a href="#resolution-metadata"></a>. The input metadata is REQUIRED but
 the map MAY be empty. Concrete <a>bindings</a> MUST NOT define additional
 inputs to this function.
         </p>
@@ -2818,7 +2818,7 @@ The possible properties for the input metadata are defined by the DID Core Regis
         </p>
 
         <p>
-The <a>DID URL dereferencer</a> first MUST resolve the <a>DID</a> within the
+The <a>DID URL dereferencer</a> MUST first resolve the <a>DID</a> within the
 <a>DID URL</a> into a <a>DID document</a> using a <a>DID resolution</a> process.
 The <a>DID URL dereferencer</a> MUST parse the resulting <a>DID document</a>
 from its conformant representation to allow for additional processing.
