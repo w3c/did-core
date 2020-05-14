@@ -2807,14 +2807,14 @@ not represent.
         <p>
 The inputs to this function are a <a>DID URL</a> and a set of input metadata. The
 <a>DID URL</a> is REQUIRED and MAY be any valid <a>DID URL</a>, including a fragment.
-The input metadata are a map of key-value string pairs as
+The input metadata are a map of name-value properties as
 described in <a href="#resolution-metadata"></a>. The input metadata are REQUIRED but
 the map MAY be empty. Concrete <a>bindings</a> MUST NOT define additional
 inputs to this function.
         </p>
 
         <p>
-The possible keys for the input metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]].
+The possible properties for the input metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]].
         </p>
 
         <p>
@@ -2832,12 +2832,12 @@ required by the <a>DID URL</a>, the <a>DID document</a> is returned as the
         </p>
 
         <p>
-The <code>DID dereference metadata</code> is returned as a map of key-value string pairs as described in
+The <code>DID dereference metadata</code> is returned as a map of name-value properties as described in
 <a href="#resolution-metadata"></a>. The metadata structure is REQUIRED and MUST NOT be empty.
 This metadata contains information about the results of
 the dereferencing process. This metadata typically changes between invocations of the <a>DID URL dereferencing</a>
-function. The keys and possible values for this metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This
-specification defines the following keys and values:
+function. The names and possible values for this metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This
+specification defines the following property names and values:
 
             <dl>
                 <dt>content-type</dt>
@@ -2846,7 +2846,7 @@ specification defines the following keys and values:
                 <dt>error</dt>
                 <dd>The error code from the dereferencing process. The <a>DID resolver</a> MUST supply
                     this value when there is an error. The possible values
-                    this field are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This specification defines the following
+                    this property are defined by the DID Core Registry [[?DID-CORE-REGISTRY]]. This specification defines the following
                     error values:
 
                     <dl>
