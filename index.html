@@ -888,21 +888,27 @@ used, for example, to identify a specific part of a <a>DID document</a>.
         <p>
 This following is the ABNF definition using the syntax in [[!RFC5324]]. It
 builds on the <code>did</code> scheme defined in
-<a href="#generic-did-syntax"></a>. The <code>path-abempty</code>,
-<code>query</code>, and <code>fragment</code> components are identical to the
-ABNF rules defined in [[!RFC3986]].
+<a href="#generic-did-syntax"></a>. The <code>path-abempty</code>
+and <code>fragment</code> components are identical to the
+ABNF rules defined in [[!RFC3986]], and the <code>did-query</code>
+component is derived from the <code>query</code> ABNF rule.
         </p>
 
 
         <pre class="nohighlight">
-did-url            = did *( ";" param ) path-abempty [ "?" query ]
+did-url            = did path-abempty [ "?" did-query ]
                      [ "#" fragment ]
-param              = param-name [ "=" param-value ]
-param-name         = 1*param-char
-param-value        = *param-char
-param-char         = ALPHA / DIGIT / "." / "-" / "_" / ":" /
-                     pct-encoded
+did-query          = param *( "&" param )
+param              = param-name "=" param-value
+param-name         = 1*pchar
+param-value        = *pchar
         </pre>
+
+        <p>
+This specification reserves the semicolon (<code>;</code>) character
+for possible future use as a sub-delimiter for parameters as
+described in [[?MATRIX-URIS]].
+        </p>
 
       </section>
 
@@ -911,8 +917,8 @@ param-char         = ALPHA / DIGIT / "." / "-" / "_" / ":" /
 
         <p>
 The <a>DID URL</a> syntax supports a simple, generalized format for parameters
-based on the matrix parameter syntax ([[?MATRIX-URIS]]). The ABNF above
-specifies the basic syntax (the <code>param-name</code> rule) but does not
+based on the query component (See <a href="#query"></a>). The ABNF above
+specifies the basic syntax (the <code>param</code> rule) but does not
 specify any concrete parameter names.
         </p>
         <p>
@@ -1042,7 +1048,7 @@ this method and this method-specific parameter would be as shown below.
         </p>
 
         <pre class="example nohighlight">
-did:foo:21tDAKCERh95uGgKbJNHYp;foo:bar=high
+did:foo:21tDAKCERh95uGgKbJNHYp?foo:bar=high
         </pre>
 
         <p>
@@ -1051,7 +1057,7 @@ other <a>DID methods</a>.
         </p>
 
         <pre class="example nohighlight">
-did:example:21tDAKCERh95uGgKbJNHYp;foo:bar=low
+did:example:21tDAKCERh95uGgKbJNHYp?foo:bar=low
         </pre>
 
         <p>
@@ -1060,7 +1066,7 @@ any order.
         </p>
 
         <pre class="example nohighlight">
-did:example:21tDAKCERh95uGgKbJNHYp;service=agent;foo:bar=high
+did:example:21tDAKCERh95uGgKbJNHYp?service=agent&foo:bar=high
         </pre>
 
         <p>
@@ -1071,7 +1077,7 @@ illustrates both.
         </p>
 
         <pre class="example nohighlight">
-did:foo:baz:21tDAKCERh95uGgKbJNHYp;foo:baz:hex=b612
+did:foo:baz:21tDAKCERh95uGgKbJNHYp?foo:baz:hex=b612
         </pre>
 
         <p class="issue" data-number="36">
@@ -1086,7 +1092,7 @@ Also discuss hierarchical method namespaces in DID parameter names.
         <h2>Path</h2>
 
         <p>
-A generic <a>DID path</a> is identical to a URI path and MUST conform to the
+A <a>DID path</a> is identical to a generic URI path and MUST conform to the
 <code>path-abempty</code> ABNF rule in [[!RFC3986]]. A <a>DID path</a> SHOULD be
 used to address <a>resources</a> available through a <a>service endpoint</a>.
 For more information, see Section <a href="#service-endpoints"></a>.
@@ -1106,10 +1112,11 @@ did:example:123456/path
         <h2>Query</h2>
 
         <p>
-A generic <a>DID query</a> is identical to a URI query and MUST conform to the
-<code>query</code> ABNF rule in [[!RFC3986]]. A <a>DID query</a> SHOULD be used
-to address <a>resources</a> available through a <a>service endpoint</a>. For
-more information, see Section <a href="#service-endpoints"></a>.
+A <a>DID query</a> is derived from a generic URI query and MUST conform to the
+<code>did-query</code> ABNF rule in Section <a href="#generic-did-url-syntax">
+</a>. If a <a>DID query</a> is present, it MUST be used
+as described in Sections <a href="#generic-did-url-parameters"></a> and
+<a href="#method-specific-did-url-parameters"></a>.
         </p>
 
         <p>
