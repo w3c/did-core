@@ -213,17 +213,17 @@ Sporny, Drummond Reed, Joe Andrieu, and Heather Vescent.
   </section>
 
   <section class="informative">
-    <h2>
+    <h1>
 Introduction
-    </h2>
+    </h1>
     <p>
 
     </p>
 
     <section class="informative">
-      <h3>
+      <h2>
 A Simple Example
-      </h3>
+      </h2>
 
       <p>
 A <a>DID</a> is a simple text string consisting of three parts, the:
@@ -274,9 +274,9 @@ well as services that can be used to interact with the entity.
     </section>
 
     <section class="informative">
-      <h3>
+      <h2>
 Design Goals
-      </h3>
+      </h2>
 
       <p>
 <a>Decentralized Identifiers</a> are a component of larger systems, such as
@@ -404,9 +404,9 @@ interoperability, portability, or simplicity.
     </section>
 
     <section>
-      <h3>
+      <h2>
 Architecture Overview
-      </h3>
+      </h2>
 
       <dl>
         <dt>DIDs</dt>
@@ -481,9 +481,9 @@ implementing a <a>DID URL dereferencer</a> are discussed in [[?DID-RESOLUTION]].
     </section>
 
     <section>
-      <h3>
+      <h2>
 Conformance
-      </h3>
+      </h2>
 
       <p>
 This document contains examples that contain JSON, CBOR, and JSON-LD content.
@@ -492,6 +492,22 @@ comments (<code>//</code>) and the use of ellipsis (<code>...</code>) to denote
 information that adds little value to the example. Implementers are cautioned to
 remove this content if they desire to use the information as valid JSON, CBOR,
 or JSON-LD.
+      </p>
+
+      <p>
+Interoperability of implementations for DIDs and DID documents will be tested by
+evaluating an implementation's ability to create and parse <a>DIDs</a> and
+<a>DID documents</a> that conform to the specification.
+      </p>
+
+      <p>
+Interoperability for producers and consumers of <a>DIDs</a> and <a>DID documents</a>
+is provided by ensuring the <a>DIDs</a> and <a>DID documents</a> conform.
+Interoperability for <a>DID method</a> specifications is provided by the details
+in each DID method specification. It is understood that, in the same way that a web
+browser is not required to implement all known URI schemes, conformant software
+that works with DIDs is not required to implement all known DID methods (however,
+all implementations of a given DID method must be interoperable for that method).
       </p>
 
      <p>
@@ -680,7 +696,7 @@ produce the practical equivalent of a single persistent abstract <a>DID</a>. For
 more information, see Section <a href="#future-work"></a>.
         </p>
       </section>
-     </section>
+    </section>
 
     <section>
       <h3>DID URL Syntax</h3>
@@ -2393,6 +2409,36 @@ necessary to establish proof of deactivation, <em>or</em> state that
 deactivation is not possible.
         </p>
       </section>
+    </section>
+
+    <section>
+      <h2>
+Interoperability
+      </h2>
+      <p>
+Interoperability for <a>DID methods</a> will be determined by evaluating each
+<a>DID method</a> specification to determine, at a minimum, that the:
+      </p>
+      <ul>
+        <li>
+<a>DID method</a> name is unique and not used by an existing, incompatible
+<a>DID method</a>.
+        </li>
+        <li>
+Required operations are supported.
+        </li>
+        <li>
+Operations requiring descriptions are described.
+        </li>
+        <li>
+Specification is specific, detailed, and complete enough for independent
+implementation.
+        </li>
+        <li>
+Specification contains sections describing security and privacy considerations.
+        </li>
+      </ul>
+
     </section>
 
     <section>
