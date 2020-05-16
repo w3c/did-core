@@ -18,6 +18,13 @@ cryptographic chain. Because this type of <a>DLT</a> was introduced by
 ledger.
   </dd>
 
+  <dt><dfn>binding</dfn></dt>
+  <dd>
+A concrete mechanism through which a caller invokes a <a>DID resolver</a> or a
+<a>DID URL dereferencer</a>. This could be a local command line tool, a
+software library, or a network call such as an HTTPS request.
+  </dd>
+
   <dt><dfn data-lt="decentralized identifiers|DID|DIDs">decentralized identifier</dfn> (DID)</dt>
 
   <dd>
@@ -123,12 +130,22 @@ deactivation of <a>decentralized identifiers</a>. A DID registry is a type of
 verifiable data registry. For more information, see [[VC-DATA-MODEL]].
   </dd>
 
+  <dt><dfn>DID resolution</dfn></dt>
+
+  <dd>
+The function that takes as its input a <a>DID</a> and a set of input
+metadata and returns a <a>DID document</a> in a conforming representation
+plus additional metadata. This function relies on the "Read" operation of the
+applicable <a>DID method</a>. The inputs and outputs of this function are defined
+in <a href="#did-resolution"></a>.
+  </dd>
+
   <dt><dfn data-lt="DID resolvers">DID resolver</dfn></dt>
 
   <dd>
-A system that is capable of retrieving a <a>DID document</a> for a given
-<a>DID</a>. These systems are specified in the DID Resolution specification
-[[DID-RESOLUTION]].
+A <a>DID resolver</a> is a software and/or hardware component that takes
+a <a>DID</a> as input and produces a <a>conforming DID document</a> as
+output by performing <a>DID resolution</a>.
   </dd>
 
   <dt><dfn data-lt="DID schemes">DID scheme</dfn></dt>
@@ -152,6 +169,26 @@ the <a>DID</a> and described by the <a>DID document</a>.
 A <a>DID</a> plus an optional <a>DID path</a>, optional <code>?</code> character
 followed by a <a>DID query</a>, and optional <code>#</code> character followed
 by a <a>DID fragment</a>.
+  </dd>
+
+  <dt><dfn>DID URL dereferencing</dfn></dt>
+
+  <dd>
+The function that takes as its input a <a>DID URL</a>, a <a>DID document</a>,
+and a set of dereferencing options and returns a resource, which might be
+a <a>DID document</a>, plus additional metadata. This function can use the <a>DID resolution</a>
+function to fetch a <a>DID document</a> indicated by the <a>DID</a> within the <a>DID URL</a>.
+The dereferencing function then can perform additional processing on the <a>DID document</a> to return
+the dereferenced resource indicated by the <a>DID URL</a>. The inputs and outputs of this
+process are defined in <a href="#did-url-dereferencing"></a>.
+  </dd>
+
+  <dt><dfn data-lt"DID URL dereferencers">DID URL dereferencer</dfn></dt>
+
+  <dd>
+A software and/or hardware system that is capable of executing the <a>DID URL dereferencing</a>
+function, retrieving some form of data, which might or might not be a <a>DID document</a>) for a given
+<a>DID URL</a> by performing <a>DID URL dereferencing</a>.
   </dd>
 
   <dt><dfn data-lt="distributed ledger technology|DLT">distributed ledger</dfn> (DLT)</dt>
@@ -188,18 +225,21 @@ Acts as a safeguard to prevent the proof from being misused for a purpose
 other than the one it was intended for.
   </dd>
 
-  <dt><dfn>JSON Pointer</dfn></dt>
-
-  <dd>
-Defines a string syntax for identifying a specific value within a JavaScript
-Object Notation (JSON) document, as defined in [[RFC6901]].
-  </dd>
-
   <dt><dfn>public key description</dfn></dt>
 
   <dd>
 A JSON object contained inside a <a>DID document</a> that contains all the
 metadata necessary to use a public key or verification key.
+  </dd>
+
+  <dt><dfn data-lt="resource">resource</dfn></dt>
+
+  <dd>
+The term resource is used in the same way as defined for HTTP in [[RFC7231]];
+that is, a resource is the target of a request and is identified by a URI.
+This specification does not limit the nature of a resource, but defines an
+interface that might be used to interact with resources when identified by
+a <a>DID</a>.
   </dd>
 
   <dt><dfn data-lt="service endpoints">service endpoint</dfn></dt>

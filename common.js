@@ -9,6 +9,16 @@ var ccg = {
   // Add as the respecConfig localBiblio variable
   // Extend or override global respec references
   localBiblio: {
+    "DID-CORE-REGISTRIES": {
+      title: "Decentralized Identifiers Core and Extensions Registries",
+      href: "https://w3c.github.io/did-core-registries/",
+      authors: [
+      	"Orie Steele",
+        "Manu Sporny"
+      ],
+      status: "ED",
+      publisher: "Decentralized Identifier Working Group"
+    },
     "REST": {
       title: "Architectural Styles and the Design of Network-based Software Architectures",
       date: "2000",
@@ -147,6 +157,15 @@ var ccg = {
       authors: [
         "Markus Sabadello",
         "Dmitri Zagidulin"
+      ],
+      status: "Draft Community Group Report",
+      publisher: "Credentials Community Group"
+    },
+    "DID-RUBRIC": {
+      title: "Decentralized Characteristics Rubric v1.0",
+      href: "https://w3c.github.io/did-rubric/",
+      authors: [
+        "Joe Andrieu"
       ],
       status: "Draft Community Group Report",
       publisher: "Credentials Community Group"
