@@ -2886,25 +2886,25 @@ returned from these functions.
         </div>
 
         <p>
-Metadata structures are maps of key-value string pairs. All keys within this map
-MUST be UTF-8 unicode strings. The keys of this map MUST NOT be repeated within
-a given metadata structure. The keys of this map MUST be compared in a
-case-insensitive way and the case MAY be transformed. The values of this map
+Metadata structures are maps of property name-value string pairs. All names within this map
+MUST be UTF-8 unicode strings. The names of this map MUST NOT be repeated within
+a given metadata structure. The names of this map MUST be compared using
+exact string matching and MUST NOT be transformed. The values of this map
 MUST be retained as an exact string without transformation.
         </p>
 
         <p>
 All <a>bindings</a> MUST provide a way for the caller of the function to input or
-receive the map of key-value string pairs as described in this specification. The
+receive the map of name-value properties as described in this specification. The
 exact representation of these metadata structures as part of a protocol or serialization
 is out of scope for this specification. For example, an HTTP-based binding can
 use HTTP headers of an HTTP request to convey input metadata and HTTP headers of an
-HTTP response to convey document and resolver metadata. Alternatively, a fully
+HTTP response to convey document and resolver metadata. Alternatively, a
 JSON-based binding can use a JSON object to represent the metadata structures.
         </p>
 
         <p>
-The keys and values MAY be transformed by the <a>binding</a> for transport
+The property names and values MAY be transformed by the <a>binding</a> for transport
 in a deterministic and reversible fashion. For example, the <code>content-type</code>
 <a>DID resolution</a> metadata element could be represented as a text header
 in a binding:
