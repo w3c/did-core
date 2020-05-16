@@ -2739,8 +2739,8 @@ define additional inputs to this function.
         </p>
 
         <p>
-The possible keys for the input metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRIES]]. This specification
-defines the following keys and values:
+The possible properties for the input metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRIES]]. This specification
+defines the following keys and values for these properties:
 
             <dl>
                 <dt>accept</dt>
@@ -2766,7 +2766,7 @@ REQUIRED unless an error is returned by the <a>DID resolution</a> function.
 
         <p>
 When a <a>DID document</a> is returned, the <code>DID document metadata</code> is returned as a map of
-key-value string pairs as described in <a href="#resolution-metadata"></a>. This metadata
+name-value properties as described in <a href="#resolution-metadata"></a>. This metadata
 contains information about the input <a>DID</a> and the returned <a>DID document</a>. This metadata
 typically does not change between invocations of the <a>DID resolution</a> function. The keys and
 possible values for this metadata are defined in the DID Core Registry [[?DID-CORE-REGISTRIES]].
@@ -2778,10 +2778,10 @@ The contents of the DID document metadata still needs to be defined within this 
         </p>
 
         <p>
-The <code>DID resolution metadata</code> is returned as a map of key-value string pairs as described in
+The <code>DID resolution metadata</code> is returned as a map of name-value properties as described in
 <a href="#resolution-metadata"></a>. This metadata contains information about the results of
 the resolution process. This metadata typically changes between invocations of the <a>DID resolution</a>
-function. The keys and possible values for this metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRIES]]. This
+function. The property names and possible values for this metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRIES]]. This
 specification defines the following keys and values:
 
             <dl>
