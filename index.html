@@ -2713,62 +2713,122 @@ DID Resolution
         </h2>
 
         <p>
-The <a>DID resolution</a> process takes a <a>DID</a> and
-resolution options as input, and produces a <a>DID document</a> and
-resolution metadata as output. The process utilizes the "Read" operation of
-the applicable <a>DID method</a>, as described in <a href="#read-verify"></a>.
-The <a>DID method</a>-specific details of how this process is accomplished is
-outside the scope of this specification, but all implementations MUST implement
-a function in the form:
+The <a>DID resolution</a> process takes a <a>DID</a> and resolution options as
+input, and produces a <a>DID document</a> and resolution metadata as output. The
+process utilizes the "Read" operation of the applicable <a>DID method</a>, as
+described in <a href="#read-verify"></a>. The <a>DID method</a>-specific details
+of how this process is accomplished is outside the scope of this specification.
         </p>
 
+        <section>
+          <h3>
+Generic DID Resolution Algorithm
+          </h3>
+
+          <p>
+The generic DID resolution algorithm takes a <a>conforming DID</a>
+(<em>did</em>) and resolution options (<em>resolutionOptions</em>) as input and
+produces a <a>conforming DID Document</a> (<em>didDocument</em>), DID Document
+Metadata (<em>didDocumentMetadata</em>), and resolution metadata
+(<em>resolutionMetadata</em>) as output.
+          <p>
+
+          <p>
+Any errors encountered during the execution of this algorithm MUST be expressed
+using the <strong>error</strong> property in <em>resolutionMetadata</em>.
+          </p>
+
+          <p>
+When resolving a <a>DID</a> to a <a>DID document</a>, the following algorithm,
+or one producing an equivalent result, MUST be used:
+          </p>
+
+          <ol>
+            <li>
+Ensure that the <em>did</em> conforms to <a href="#generic-did-syntax"></a>.
+If the <em>did</em> does not conform, an <code>invalid did</code> error MUST be
+returned.
+            </li>
+            <li>
+Ensure that the each value in <em>resolutionOptions</em> conforms to  <a
+href="#resolution-options"></a>. If an option does not conform, an <code>invalid
+resolution option</code> error MUST be returned.
+            </li>
+            <li>
+Execute the <a>DID method</a>-specific "Read" operation, from the concrete
+<a>binding</a>, as described in <a href="#read-verify"></a> using the
+<em>did</em> and <em>resolutionOptions</em> as input. If the operation
+operation is unsuccessful, a <code>resolution failure</code> error MUST be
+returned.
+            </li>
+            <li>
+If successful, store the resulting <a>DID document</a>
+(<em>didDocument</em>), the DID Document Metadata
+(<em>didDocumentMetadata</em>), and the resolution metadata
+(<em>resolutionMetadata</em>).
+            </li>
+            <li>
+Ensure that <em>didDocument</em> is a <a>conforming DID document</a>. If the
+<em>didDocument</em> does not conform, an <code>invalid did document</code>
+error MUST be returned.
+            </li>
+            <li>
+Ensure that the each value in <em>didDocumentMetadata</em> conforms to
+<a href="#did-document-metadata"></a>. If an option does not conform, an
+<code>invalid did document metadata</code> error MUST be returned.
+            </li>
+            <li>
+Ensure that the each value in <em>didResolutionMetadata</em> conforms to  <a
+href="#resolution-metadata"></a>. If an option does not conform, an
+<code>invalid did resolution metadata</code> error MUST be returned.
+            </li>
+            <li>
+Return the <a>conforming DID document</a> (<em>didDocument</em>), the DID
+Document Metadata (<em>didDocumentMetadata</em>), and the resolution metadata
+(<em>resolutionMetadata</em>).
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>
+Resolution Options
+          </h3>
+          <p>
+This specification defines the following properties that can be passed as
+resolution options into <a href="#generic-did-resolution-algorithm"></a>:
+          </p>
+
+          <dl>
+            <dt>accept</dt>
+            <dd>
+The MIME type of the preferred representation of the <a>DID document</a>. The
+<a>DID resolver</a> MUST use this value to generate the representation of the
+returned <a>DID document</a> if such a representation is supported and
+available. If the MIME type representation is not available, a <a>DID
+resolver</a> SHOULD produce an alternate representation.
+            </dd>
+          </dl>
+
         <p>
-<code>resolve ( did, input-metadata ) -> ( did-document, did-document-metadata, did-resolution-metadata )</code>
+Additional properties that can be passed to the DID Resolution algorithm
+are defined in the DID Core Registries [[?DID-CORE-REGISTRIES]].
         </p>
+      </section>
+
+      <section>
+        <h3>
+DID Document Metadata
+        </h3>
 
         <p>
-The inputs of this function are a <a>DID</a> and a set of input metadata. The
-<a>DID</a> is REQUIRED. Note that if the caller of this function wishes to resolve a <a>DID URL</a>,
-the caller MUST first transform the <a>DID URL</a> into a bare <a>DID</a>,
-including removal of any fragment. The input metadata are a map of key-value
-string pairs as described in <a href="#resolution-metadata"></a>.
-The input metadata are REQUIRED but the map MAY be empty. Concrete <a>bindings</a> MUST NOT
-define additional inputs to this function.
-        </p>
-
-        <p>
-The possible properties for the input metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRIES]]. This specification
-defines the following keys and values for these properties:
-
-            <dl>
-                <dt>accept</dt>
-                <dd>The MIME type of the preferred representation of the <a>DID document</a>. The <a>DID resolver</a> MAY
-                    use this value to determine the representation of the returned <a>DID document</a> if such a
-                    representation is supported and available.</dd>
-            </dl>
-        </p>
-
-        <p>
-The <a>DID resolver</a> executes the "Read" operation of the <a>DID method</a> as described in
-<a href="#read-verify"></a>. If successful, the outputs of this function MUST contain a <a>DID document</a>,
-a set of metadata for the DID document (which MAY be empty), and a set of metadata for the resolution process. If
-the function results in an error, the outputs MUST contain a set of metadata for the resolution process.
-        </p>
-
-        <p>
-The <a>DID document</a> is returned as a byte stream of a conformant representation
-as determined and supported by the <a>DID resolver</a>. The caller of the <a>DID resolution</a> function
-can then parse and process the <a>DID document</a> from this byte stream. The <a>DID document</a> is
-REQUIRED unless an error is returned by the <a>DID resolution</a> function.
-        </p>
-
-        <p>
-When a <a>DID document</a> is returned, the <code>DID document metadata</code> is returned as a map of
-name-value properties as described in <a href="#resolution-metadata"></a>. This metadata
-contains information about the input <a>DID</a> and the returned <a>DID document</a>. This metadata
-typically does not change between invocations of the <a>DID resolution</a> function. The keys and
-possible values for this metadata are defined in the DID Core Registry [[?DID-CORE-REGISTRIES]].
-The DID Document metadata MAY be empty.
+When a <a>DID document</a> is returned as a part of <a
+href="#generic-did-resolution-algorithm"></a>, the corresponding metadata
+associated with the <a>DID document</a> is also returned. This metadata
+contains information about the input <a>DID</a> and the returned <a>DID
+document</a>. The metadata typically does not change between invocations of the
+<a href="#generic-did-resolution-algorithm"></a>. This section defines common
+DID Document Metadata properties:
         </p>
 
         <p class="issue" data-number="203">
@@ -2776,41 +2836,64 @@ The contents of the DID document metadata still needs to be defined within this 
         </p>
 
         <p>
-The <code>DID resolution metadata</code> is returned as a map of name-value properties as described in
-<a href="#resolution-metadata"></a>. This metadata contains information about the results of
-the resolution process. This metadata typically changes between invocations of the <a>DID resolution</a>
-function. The property names and possible values for this metadata are defined by the DID Core Registry [[?DID-CORE-REGISTRIES]]. This
-specification defines the following keys and values:
+Additional DID Document Metadata properties can be found in
+[[DID-CORE-REGISTRIES]].
+        </p>
+      </section>
 
-            <dl>
-                <dt>content-type</dt>
-                <dd>The mime-type of the returned conformant representation of the <a>DID document</a> if successful.
-                    The <a>DID resolver</a> MUST supply this value when a <a>DID document</a>
-                    is returned. The caller of the resolution function MUST use this value when determining how to
-                    parse and process the byte stream returned by this function into
-                    <a>DID document</a>.</dd>
+      <section>
+        <h3>
+Resolution Metadata
+        </h3>
 
-                <dt>error</dt>
-                <dd>The error code from the resolution process. The <a>DID resolver</a> MUST supply
-                    this value when there is an error. The possible values
-                    this field are defined by the DID Core Registry [[?DID-CORE-REGISTRIES]]. This specification defines the following
-                    error values:
-
-                    <dl>
-                        <dt>invalid-did</dt>
-                        <dd>The <a>DID</a> supplied to the <a>DID resolution</a> function does not
-                            conform to valid syntax. (See <a href="#did-syntax"></a>.)</dd>
-
-                        <dt>unauthorized</dt>
-                        <dd>The caller is not authorized to resolve this <a>DID</a> with
-                            this <a>DID resolver</a>.</dd>
-                    </dl>
-
-                </dd>
-
-            </dl>
+        <p>
+DID resolution metadata is returned as a part of the <a
+href="#generic-did-resolution-algorithm"></a>. This metadata contains
+information about the results of the resolution process and typically changes
+between invocations of the <a href="#generic-did-resolution-algorithm"></a>.
         </p>
 
+        <p>
+This specification defines the following properties that can be passed as
+resolution options into the <a href="#generic-did-resolution-algorithm"></a>:
+        </p>
+
+        <dl>
+          <dt>content-type</dt>
+          <dd>
+The MIME type of the returned <a>conforming DID document</a>. The <a>DID
+resolver</a> MUST provide this value when a <a>DID document</a> is returned. The
+value MUST be used when determining how to parse and process the representation
+returned by the <a href="#generic-did-resolution-algorithm"></a>.
+            </dd>
+
+          <dt>error</dt>
+          <dd>
+The error code from the resolution process. The <a>DID resolver</a> MUST supply
+this value when there is an error. Additional values for this field are defined
+in the DID Core Registry [[?DID-CORE-REGISTRIES]]. This specification defines the
+following error values:
+
+            <dl>
+              <dt>invalid-did</dt>
+              <dd>
+The <a>DID</a> supplied to the <a>DID resolution</a> function does not conform
+to valid syntax. (See <a href="#did-syntax"></a>.)
+              </dd>
+
+              <dt>unauthorized</dt>
+              <dd>
+The caller is not authorized to resolve this <a>DID</a> with this <a>DID
+resolver</a>.</dd>
+            </dl>
+          </dd>
+        </dl>
+
+        <p>
+Additional Resolution Metadata properties can be found in
+[[DID-CORE-REGISTRIES]].
+        </p>
+      </section>
     </section>
 
     <section>
