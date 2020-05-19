@@ -689,34 +689,11 @@ Terminology
 
   <section>
     <h2>Identifier</h2>
-
     <p>
-The concept of a globally unique <a>decentralized identifier</a> is not new.
-<a>Universally Unique Identifiers</a> (UUIDs) were first developed in the 1980s
-and later became a standard feature of the Open Software Foundation’s
-<a href="https://en.wikipedia.org/wiki/Distributed_Computing_Environment">
-  Distributed Computing Environment</a>.
-<a>UUIDs</a> achieve global uniqueness without a centralized registry service by
-using an algorithm that generates 128-bit values with sufficient entropy that
-the chance of collision are infinitesimally small. <a>UUIDs</a> are formally
-specified in [[RFC4122]] as a specific type of Unified Resource Name (URN).
+This section describes the formal syntax for DIDs and DID URLs. The term "generic"
+is used to differentiate the syntax defined here from syntax defined by
+<em>specific</em> <a>DID methods</a> in their respective specifications.
     </p>
-
-    <p>
-A <a>DID</a> is similar to a <a>UUID</a> except that:
-    </p>
-    <ul>
-      <li>
-Like a URL, it can be resolved or dereferenced to a standard <a>resource</a>
-describing the subject. That is, a <a>DID document</a>. For more information,
-see Section <a href="#did-documents"></a>.
-      </li>
-      <li>
-Unlike most <a>resources</a> returned when dereferencing URLs, a <a>DID
-document</a> usually contains cryptographic material enabling authentication of
-the <a>DID subject</a>.
-      </li>
-    </ul>
 
     <section>
       <h3>DID Syntax</h3>
@@ -796,7 +773,8 @@ is bound exclusively and permanently to its one and only subject. Even after a
 <a>DID</a> is deactivated, it is intended that it never be repurposed.
         </p>
 
-        <p>
+        <div class="note">
+          <p>
 Ideally, a <a>DID</a> would be a completely abstract decentralized identifier
 (like a <a>UUID</a>) that could be bound to multiple underlying
 <a>DID registries</a> over time, thus maintaining its persistence independent of
@@ -805,13 +783,13 @@ any particular system. However, registering the same identifier on multiple
 <a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">start-of-authority</a>
 (SOA) problems. It also greatly increases implementation complexity for
 developers.
-        </p>
-
-        <p class="note">
+          </p>
+          <p>
 To avoid these issues, developers should refer to the Decentralized Characteristics
 Rubric [[?DID-RUBRIC]] to decide which <a>DID method</a> best addresses the needs of
 the use case.
-        </p>
+          </p>
+        </div>
 
         <p class="note">
 Although not included in this version, future versions of this specification
