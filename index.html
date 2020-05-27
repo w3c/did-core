@@ -2971,6 +2971,62 @@ specification, but all conformant implementations MUST implement a function in t
 resolve ( did, did-resolution-input-metadata ) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-resolution-metadata, did-document-stream, did-document-metadata )
         </code></p>
+
+        <p>
+The input variables of this function MUST be as follows:
+        </p>
+
+        <dl>
+            <dt>
+did
+            </dt>
+            <dd>
+A conformant <a>DID</a> as a single string. This is the <a>DID</a> to resolve.
+This input is REQUIRED.
+            </dd>
+            <dt>
+did-resolution-input-metadata
+            </dt>
+            <dd>
+A <a href="metadata-structure">metadata structure</a> consisting of input options to the <code>resolve</code>
+function in addition to the <code>did</code> itself.
+This input is REQUIRED, but the structure MAY be empty.
+            </dd>
+        </dl>
+
+        <p>
+The output variables of this function MUST be as follows:
+        </p>
+    
+        <dl>
+            <dt>
+did-resolution-metadata
+            </dt>
+            <dd>
+A <a href="metadata-structure">metadata structure</a> consisting of values relating to the results of the <a>DID resolution</a> process.
+This structure is REQUIRED and MUST NOT be empty.
+This metadata typically changes between invocations of the <code>resolve</code> function as it represents data about the resolution process itself.
+            </dd>
+            <dt>
+did-document-stream
+            </dt>
+            <dd>
+If the resolution is successful, this MUST be a byte stream of the resolved <a>DID document</a> in a single conformant <a>representation</a>.
+The byte stream MAY then be parsed by the caller of the <code>resolve</code> function into a <a>DID document</a> abstract data model, which
+can in turn be validated and processed.
+If the resolution is unsuccessful, this value MUST be an empty stream.
+            </dd>
+            <dt>
+did-document-metadata
+            </dt>
+            <dd>
+If the resolution is successful, this MUST be a <a href="metadata-structure">metadata structure</a>.
+This structure contains metadata about the <a>DID document</a> contained in the <code>did-document-stream</code>.
+This metadata typically does not change between invocations of the <code>resolve</code> function unless
+the <a>DID document</a> changes, as it represents data about the <a>DID document</a>.
+If the resolution is unsuccessful, this output MUST be an empty <a href="metadata-structure">metadata structure</a>.
+            </dd>
+        </dl>
     </section>
 
     <section>
