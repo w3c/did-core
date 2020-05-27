@@ -3034,7 +3034,9 @@ did-resolution-input-metadata
             <dd>
 A <a href="metadata-structure">metadata structure</a> consisting of input
 options to the <code>resolve</code> function in addition to the <code>did</code>
-itself. This input is REQUIRED, but the structure MAY be empty.
+itself.
+Properties defined by this specification are in <a href="#did-resolution-input-metadata-properties"></a>.
+This input is REQUIRED, but the structure MAY be empty.
             </dd>
         </dl>
 
@@ -3052,6 +3054,9 @@ relating to the results of the <a>DID resolution</a> process. This structure is
 REQUIRED and MUST NOT be empty. This metadata typically changes between
 invocations of the <code>resolve</code> function as it represents data about the
 resolution process itself.
+Properties defined by this specification are in <a href="#did-resolution-metadata-properties"></a>.
+If the resolution is successful, this structure MUST contain a <code>content-type</code> property containing the mime-type <a>representation</a> of the <code>did-document-stream</code> in this result.
+If the resolution is not successful, this structure MUST contain an <code>error</code> property describing the error.
             </dd>
             <dt>
 did-document-stream
@@ -3076,6 +3081,7 @@ between invocations of the <code>resolve</code> function unless the <a>DID
 document</a> changes, as it represents data about the <a>DID document</a>. If
 the resolution is unsuccessful, this output MUST be an empty <a
 href="metadata-structure">metadata structure</a>.
+Properties defined by this specification are in <a href="#did-document-metadata-properties"></a>.
             </dd>
         </dl>
 
@@ -3088,6 +3094,98 @@ MAY implement  and expose additional
 functions with different signatures in addition to the <code>resolve</code>
 function specified here.
         </p>
+
+        <section>
+            <h3>
+DID Resolution Input Metadata Properties
+            </h3>
+            
+            <p>
+The possible properties within this structure and their possible values are defined by [[DID-CORE-REGISTRIES]].
+This specification defines the following common properties.
+            </p>
+            
+            <dl>
+                <dt>
+accept
+                </dt>
+                <dd>
+The MIME type of the caller's preferred representation of the <a>DID document</a>. The <a>DID resolver</a> implementation 
+MAY use this value to determine the representation contained in the returned <code>did-document-stream</code> if such
+a representation is supported and available. This property is OPTIONAL.
+                </dd>
+            </dl>
+        </section>
+
+        <section>
+            <h3>
+DID Resolution Metadata Properties
+            </h3>
+            
+            <p>
+The possible properties within this structure and their possible values are defined by [[DID-CORE-REGISTRIES]].
+This specification defines the following common properties.
+            </p>
+
+            <dl>
+                <dt>
+content-type
+                </dt>
+                <dd>
+The mime-type of the returned conformant representation of the contained in the returned <code>did-document-stream</code>.
+This property is REQUIRED if resolution is successful and a <code>did-document-stream</code> is returned. 
+The caller of the <code>resolve</code> function MUST use this value when determining how to
+parse and process the <code>did-document-stream</code> returned by this function into a
+<a>DID document</a> abstract data model.
+                </dd>
+                <dt>
+error
+                </dt>
+                <dd>
+The error code from the resolution process. 
+This property is REQUIRED when there is an error in the resolution process.
+The value of this property is a single keyword string.
+The possible property values of this field are defined by the DID Core Registry [[DID-CORE-REGISTRY]]. 
+This specification defines the following error values:
+                    <dl>
+                        <dt>
+invalid-did
+                        </dt>
+                        <dd>
+The <a>DID</a> supplied to the <a>DID resolution</a> function does not
+conform to valid syntax. (See <a href="#did-syntax"></a>.)
+                        </dd>
+                        <dt>
+unauthorized
+                        </dt>
+                        <dd>
+The caller is not authorized to resolve this <a>DID</a> with
+this <a>DID resolver</a>.
+                        </dd>
+                        <dt>
+not-found
+                        </dt>
+                        <dd>
+The <a>DID resolver</a> was unable to return the <a>DID document</a>
+resulting from this resolution request.
+                        </dd>
+                    </dl>
+                </dd>
+            </dl>
+
+        </section>
+
+        <section>
+            <h3>
+DID Document Metadata Properties
+            </h3>
+            
+            <p>
+The possible properties within this structure and their possible values are defined by [[DID-CORE-REGISTRIES]].
+This specification defines the following common properties.
+            </p>
+
+        </section>
 
     </section>
 
