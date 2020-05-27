@@ -3027,6 +3027,14 @@ the <a>DID document</a> changes, as it represents data about the <a>DID document
 If the resolution is unsuccessful, this output MUST be an empty <a href="metadata-structure">metadata structure</a>.
             </dd>
         </dl>
+
+        <p>
+<a>DID resolver</a> implementations MUST NOT alter the signature of this function in any way. <a>DID resolver</a>
+implementations MAY map the <code>resolve</code> function to a method-specific internal function to perform the
+actual <a>DID resolution</a> process. <a>DID resolver</a> implementations <a>DID resolver</a> implementations MAY implement 
+and expose additional functions with different signatures in addition to the <code>resolve</code> function specified here.
+        </p>
+
     </section>
 
     <section>
