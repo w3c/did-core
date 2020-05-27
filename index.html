@@ -2909,6 +2909,29 @@ Property values MAY be repeated under different property names within a given se
 Property definitions MAY impose additional constraints on the property value, so long as
 those constraints allow for unambiguous representation as a single string.
         </p>
+        
+        <p>
+Properties within a <a href="metadata-structure">metadata structure</a> MAY be represented by an
+implementation in a variety of ways in an underlying protocol or system.
+For example, an implementation could represent a <a href="metadata-structure">metadata structure</a> with
+a set of HTTP-style headers, a JSON object, or an in-memory data map.
+Implementations MUST NOT require callers of functions to know the details of the underlying representation
+of the <a href="metadata-structure">metadata structure</a> in order to call the function.
+        </p>
+
+        <p>
+Properties within a <a href="metadata-structure">metadata structure</a> MAY be transformed by an
+implementation in order to facilitate their transmission in an underlying protocol or implementation.
+Any transformations MUST be bidirectional and lossless. 
+Implementations MUST NOT expose these transformations to callers of the <a>DID resolution</a> function and
+MUST NOT require callers of the <a>DID resolution</a> function to know about the transformations in order to call the function.
+For example, an implementation could prepend the string <code>DID-Document-</code> to the names of all <a href="did-document-metadata-properties"></a>
+to differentiate them in its underlying protocol, but the caller of the <a>DID resolution</a> function would refer to them only by their defined
+property names without the prefix.
+The details of such transformations are method-specific and are outside the scope of this specification,
+but considerations for implementors are discussed in [[?DID-RESOLUTION]].
+        </p>
+
     </section>
 
   </section>
