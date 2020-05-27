@@ -2947,13 +2947,30 @@ Resolution
 This section defines the inputs and outputs of the <a>DID resolution</a> and
 <a>DID URL dereferencing</a> processes. The exact implementation of these
 functions is out of scope for this specification, but some considerations for
-implementors are available in [[?DID-RESOLUTION]].
+implementors are discussed in [[?DID-RESOLUTION]].
+    </p>
+
+    <p>
+All conformant <a>DID resolvers</a> MUST implement the <a>DID resolution</a> function
+for at least one <a>DID method</a> and MUST be able to return a <a>DID document</a> in 
+at least one conformant representation.
     </p>
 
     <section>
         <h2>
 DID Resolution
         </h2>
+        <p>
+The <a>DID resolution</a> function resolves a <a>DID</a> into a <a>DID document</a>
+by using the "Read" operation of the applicable <a>DID method</a>. (See <a href="#read-verify"></a>.)
+The details of how this process is accomplished are outside the scope of this
+specification, but all conformant implementations MUST implement a function in the following form:
+        </p>
+
+        <p><code>
+resolve ( did, did-resolution-input-metadata ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-resolution-metadata, did-document-stream, did-document-metadata )
+        </code></p>
     </section>
 
     <section>
