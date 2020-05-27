@@ -2894,6 +2894,21 @@ within a <a>DID</a> or <a>DID document</a>, and therefore is best suited to carr
 metadata as an input or output to the function process.
         </p>
         
+        <p>
+A <a href="metadata-structure">metadata structure</a> consists of a set of properties.
+Each property has a single name and a single value.
+The name of the property MUST be a single string. 
+Property names MUST be unique within a given set. 
+Each property name MUST map unambiguously to a single value within the set.
+Property names MUST be compared by the exact byte value.
+The value of a property MUST be a single string.
+The value of a property MAY be an empty string.
+Properties with null or equivalent values MUST be treated as
+equivalent to omitted properties within a given set.
+Property values MAY be repeated under different property names within a given set.
+Property definitions MAY impose additional constraints on the property value, so long as
+those constraints allow for unambiguous representation as a single string.
+        </p>
     </section>
 
   </section>
