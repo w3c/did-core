@@ -3316,36 +3316,84 @@ The list of issues below are under active discussion and are likely to
 result in changes to this specification.
     </p>
 
-<div class="issue" data-number="300">Define resolution function with data types, property values, and full metadata structures, without transformation</div>
-<div class="issue" data-number="299">Define resolution function with data types, property values, and full metadata structures</div>
-<div class="issue" data-number="298">Define resolution function with data types, property values, and simple metadata structures</div>
-<div class="issue" data-number="297">Define resolution function with data types and property values</div>
-<div class="issue" data-number="296">Define resolution function with data types</div>
-<div class="issue" data-number="295">Define simple type-less resolution function</div>
-<div class="issue" data-number="294">Create a seperate top level block for defining proof purposes</div>
-<div class="issue" data-number="293">Remove `proof`</div>
-<div class="issue" data-number="292">Horizontal Review Tracking</div>
-<div class="issue" data-number="291">PING Horizontal Review</div>
-<div class="issue" data-number="289">Should DID Methods expose Proof Purposes for DID Operations?</div>
-<div class="issue" data-number="283">Verification method block should be a first citizen like public keys</div>
-<div class="issue" data-number="282">Added CBOR section </div>
-<div class="issue" data-number="281">Specifications needed for supported key representations publicKeyJwk, publcKeyPem, and publicKeyBase58</div>
-<div class="issue" data-number="280">Remove uses of publicKeyHex </div>
-<div class="issue" data-number="274">Ambiguity around necessity of populated top-level DID Document 'id' property</div>
-<div class="issue" data-number="273">invert mapping between proof purposes and verification methods?</div>
-<div class="issue" data-number="272">Remove all unspecified properties/functionality from the spec</div>
-<div class="issue" data-number="270">did parameter equivilance</div>
-<div class="issue" data-number="269">transfer of controllership and it's intersection with the subject of an identifier</div>
-<div class="issue" data-number="268">What degree should proof purposes be defined for specific application layer usages?</div>
-<div class="issue" data-number="267">Put key points up front</div>
-<div class="issue" data-number="266">Should DID support self-signed certificates?</div>
-<div class="issue" data-number="261">Definition of the term "client" in regard to SSI principles</div>
-<div class="issue" data-number="260">Clear explanation on how can A DID have more than one controller</div>
-<div class="issue" data-number="259">DIDs and JOSE: publicKey.id and publicKey.publicKeyJwk.kid</div>
-<div class="issue" data-number="258">List of early implementations conforming to spec?</div>
-<div class="issue" data-number="253">Added DID resolution and dereferencing contracts.</div>
-<div class="issue" data-number="249">How to mitigate the single source of failure wrt/ "Trust into the Universal Resolver"?</div>
-<div class="issue" data-number="248">Need term for relying party</div>
+    <div class="issue" data-number="5">Where will the DID contexts(s) live?</div>
+    <div class="issue" data-number="8">Leverage RFC7518 to specify cryptographic algorithms</div>
+    <div class="issue" data-number="9">Replace RsaSignature2017 by a standard JWA signature</div>
+    <div class="issue" data-number="10">Explain RsaSignature2018</div>
+    <div class="issue" data-number="14">Standardize the key revocation list </div>
+    <div class="issue" data-number="23">publicKeyJwk, publicKeyHex, publicKeyBase64, publicKeyBase58 missing from context.</div>
+    <div class="issue" data-number="33">Cheap DIDs and the option to migrate DIDs between ledgers using standard DID Deprecation Registries</div>
+    <div class="issue" data-number="36">Details on the use of method-specific DID parameters</div>
+    <div class="issue" data-number="55">Add support for ethereumAddress public key type in @context</div>
+    <div class="issue" data-number="57">Clarification of other verification methods in authentication section missing</div>
+    <div class="issue" data-number="58">Registry handling</div>
+    <div class="issue" data-number="65">Does DID Document metadata belong in the Document?</div>
+    <div class="issue" data-number="72">Privacy Considerations - Specifically call out GDPR</div>
+    <div class="issue" data-number="75">tracking revocation of public keys</div>
+    <div class="issue" data-number="85">Syntactially differentiate data about the DID versus application data</div>
+    <div class="issue" data-number="92">Add CBOR a valid type of DID document syntax similar to JSON and on par with JSON-LD</div>
+    <div class="issue" data-number="94">Create DID explainer</div>
+    <div class="issue" data-number="95">Document Structure</div>
+    <div class="issue" data-number="104">Horizontal Review: Internationalization self test</div>
+    <div class="issue" data-number="105">Horizontal Review: Accessibility self test</div>
+    <div class="issue" data-number="118">Specification needs to be compliant with WCAG 2.0</div>
+    <div class="issue" data-number="119">Horizontal Review: offer review opportunity to TAG</div>
+    <div class="issue" data-number="122">When is a DID subject not a DID controller (if ever)?</div>
+    <div class="issue" data-number="137">Should the DID parameters be normative in the spec?</div>
+    <div class="issue" data-number="151">Include discussion of eIDAS levels-of-assurance</div>
+    <div class="issue" data-number="154">Decoupling DID Core spec from LD-Proof / LDS specs</div>
+    <div class="issue" data-number="162">We should find a better term than "DID Registry" and better define what it refers to</div>
+    <div class="issue" data-number="163">Uses of terms defined in the specification should be links to their definitions</div>
+    <div class="issue" data-number="165">What are entityship and start-of-authority (SOA) problems?</div>
+    <div class="issue" data-number="169">Replace registries administered community groups with registries established by this specification</div>
+    <div class="issue" data-number="170">Public key "id" and "type" members duplicate JWK "kid" and "kty" members</div>
+    <div class="issue" data-number="171">Add public key examples using JWKs</div>
+    <div class="issue" data-number="174">Underspecified semantics of "updated" property</div>
+    <div class="issue" data-number="176">Unsubstantiated statement about protecting against attacks when compromised</div>
+    <div class="issue" data-number="178">Underspecified statement on combining timestamps with signatures</div>
+    <div class="issue" data-number="185">Supported ciphers in a DID document</div>
+    <div class="issue" data-number="190">What is being discussed in issue 4 (clarification of TERMX via use-cases, spec pointers, and PR)</div>
+    <div class="issue" data-number="195">Unclear which verification methods are authorized for did document operations </div>
+    <div class="issue" data-number="198">Add sections on DID Resolution</div>
+    <div class="issue" data-number="199">Clarification on what DIDs might identify</div>
+    <div class="issue" data-number="202">JSON-LD Contexts in Registry</div>
+    <div class="issue" data-number="203">Define DID Document Metadata</div>
+    <div class="issue" data-number="204">Define terminology for properties and values</div>
+    <div class="issue" data-number="205">How to treat unknown properties</div>
+    <div class="issue" data-number="207">Add section on extensibility and conformance</div>
+    <div class="issue" data-number="208">IETF did+ld+json media type registration</div>
+    <div class="issue" data-number="236">publicKeyHex format unused by spec currently</div>
+    <div class="issue" data-number="240">Should did-core restrict the use of JWK?</div>
+    <div class="issue" data-number="248">Need term for relying party</div>
+    <div class="issue" data-number="249">How to mitigate the single source of failure wrt/ "Trust into the Universal Resolver"?</div>
+    <div class="issue" data-number="253">Added DID resolution and dereferencing contracts.</div>
+    <div class="issue" data-number="258">List of early implementations conforming to spec?</div>
+    <div class="issue" data-number="259">DIDs and JOSE: publicKey.id and publicKey.publicKeyJwk.kid</div>
+    <div class="issue" data-number="260">Clear explanation on how can A DID have more than one controller</div>
+    <div class="issue" data-number="261">Definition of the term "client" in regard to SSI principles</div>
+    <div class="issue" data-number="266">Should DID support self-signed certificates?</div>
+    <div class="issue" data-number="267">Put key points up front</div>
+    <div class="issue" data-number="268">What degree should proof purposes be defined for specific application layer usages?</div>
+    <div class="issue" data-number="269">transfer of controllership and it's intersection with the subject of an identifier</div>
+    <div class="issue" data-number="270">did parameter equivilance</div>
+    <div class="issue" data-number="272">Remove all unspecified properties/functionality from the spec</div>
+    <div class="issue" data-number="273">invert mapping between proof purposes and verification methods?</div>
+    <div class="issue" data-number="274">Ambiguity around necessity of populated top-level DID Document 'id' property</div>
+    <div class="issue" data-number="280">Remove uses of publicKeyHex </div>
+    <div class="issue" data-number="281">Specifications needed for supported key representations publicKeyJwk, publcKeyPem, and publicKeyBase58</div>
+    <div class="issue" data-number="282">Added CBOR section </div>
+    <div class="issue" data-number="283">Verification method block should be a first citizen like public keys</div>
+    <div class="issue" data-number="289">Should DID Methods expose Proof Purposes for DID Operations?</div>
+    <div class="issue" data-number="291">PING Horizontal Review</div>
+    <div class="issue" data-number="292">Horizontal Review Tracking</div>
+    <div class="issue" data-number="293">Remove `proof`</div>
+    <div class="issue" data-number="294">Create a seperate top level block for defining proof purposes</div>
+    <div class="issue" data-number="295">Define simple type-less resolution function</div>
+    <div class="issue" data-number="296">Define resolution function with data types</div>
+    <div class="issue" data-number="297">Define resolution function with data types and property values</div>
+    <div class="issue" data-number="298">Define resolution function with data types, property values, and simple metadata structures</div>
+    <div class="issue" data-number="299">Define resolution function with data types, property values, and full metadata structures</div>
+    <div class="issue" data-number="300">Define resolution function with data types, property values, and full metadata structures, without transformation</div>
 
   </section>
 
