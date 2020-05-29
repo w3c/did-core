@@ -143,13 +143,6 @@
 </head>
 <body>
   <section id='abstract'>
-    <p class="issue">
-This document is undergoing a major structural refactoring and will not be easy
-to read. A <a href="https://www.w3.org/TR/2019/WD-did-core-20191209/">previously
-published version</a> that has a better topical flow may be a better read for
-people new to this work. When this document has been updated to have a
-better flow, this comment will be removed.
-    </p>
 
     <p>
 <a>Decentralized identifiers</a> (DIDs) are a new type of identifier that
@@ -223,180 +216,117 @@ Sporny, Drummond Reed, Joe Andrieu, and Heather Vescent.
     <h1>
 Introduction
     </h1>
-
     <p>
-Conventional <a href="https://en.wikipedia.org/wiki/Identity_management">
-  identity management</a>
-systems are based on centralized authorities such as corporate
-<a href="https://en.wikipedia.org/wiki/Directory_service">
-  directory services</a>,
-<a href="https://en.wikipedia.org/wiki/Certificate_authority">
-  certificate authorities</a>,
-or <a href="https://en.wikipedia.org/wiki/Domain_name_registry">
-  domain name registries</a>.
-From the standpoint of cryptographic trust verification, each of these
-centralized authorities serves as its own
-<a href="https://en.wikipedia.org/wiki/Trust_anchor">
-  root of trust</a>.
-To make identity management work across these systems requires implementing
-<a href="https://en.wikipedia.org/wiki/Federated_identity">
-  federated identity management</a>.
+As individuals and organizations, many of us use globally unique identifiers
+in a wide variety of contexts. They serve as communications addresses
+(telephone numbers, email addresses, usernames on social media), ID numbers
+(for passports, drivers licenses, tax IDs, health insurance), and product
+identifiers (serial numbers, barcodes, RFIDs).
+Resources on the Internet are identified by globally unique identifiers in the
+form of
+<abbr title="Media Access Control">MAC</abbr> addresses; URIs (Uniform Resource
+Identfiers) are used for resources on the Web and each web page you view in a
+browser has a globally unique URL (Uniform Resource Locators).
     </p>
-
     <p>
-The emergence of <a>distributed ledger technology</a> (DLT) and <a>blockchain
-technology</a> provides the opportunity for fully <a>decentralized identity
-management</a>. In a decentralized identity system, entities (that is, discrete
-identifiable units such as, but not limited to, people, organizations, and
-things) are free to use any shared root of trust. Globally distributed ledgers,
-decentralized P2P networks, or other systems with similar capabilities, provide
-the means for managing a root of trust without introducing a centralized
-authority or a single point of failure. In combination, <a>DLTs</a> and
-<a>decentralized identity management</a> systems enable any entity to create and
-manage their own identifiers on any number of distributed, independent roots of
-trust.
+The vast majority of these globally unique identifiers are not under our control.
+They are issued by external authorities that decide who or what they identify
+and when they can be revoked. They are useful only in certain contexts and
+recognised only by certain bodies (not of our choosing). They may disappear or
+cease to be valid with the failure of an organization. They may unnecessarily
+reveal personal information. And in many cases they can be fraudulently replicated
+and asserted by a malicious third-party ("identity theft").
     </p>
-
     <p>
-Entities are identified by <a>decentralized identifiers</a> (<a>DIDs</a>), and
-can authenticate using proofs (for example, digital signatures,
-privacy-preserving biometric protocols, and so on). <a>DIDs</a> point to <a>DID
-documents</a>. A <a>DID document</a> contains a set of <a>service endpoints</a>
-for interacting with the entity that the <a>DID</a> identifies (that is, the
-<a>DID subject</a>). Following the guidelines of
-<a href="https://en.wikipedia.org/wiki/Privacy_by_design">Privacy by Design</a>,
-any entity can have as many <a>DIDs</a> (and corresponding <a>DID documents</a>
-and <a>service endpoints</a>) as necessary to respect the entity’s desired
-separation of identities, personas, and contexts (in the everyday sense of these
-words).
+The Decentralized Identifiers (DIDs) defined in this specification are a new type
+of globally unique identifier designed to enable individuals and organizations to
+generate our own identifiers using systems we trust, and to prove control of those
+identifiers (authenticate) using cryptographic proofs (for example, digital
+signatures, privacy-preserving biometric protocols, and so on).
     </p>
-
     <p>
-<a>DID methods</a> are the mechanism by which a <a>DID</a> and its associated
-<a>DID document</a> are created, read, updated, and deactivated on a specific
-<a>distributed ledger</a> or network. <a>DID methods</a> are defined using
-separate <a>DID method</a> specifications.
+Because we control the generation and assertion of these identifiers, each of
+us can have as many DIDs as we need to respect our desired separation of
+identities, personas, and contexts (in the everyday sense of these words). We
+can scope the use of these identifiers to the most appropriate contexts. We can
+interact with other people, institutions or systems that require us to identify
+ourselves (or things we control) while maintaining control over how much
+personal or private data should be revealed, and without depending on a central
+authority to guarantee the continued existence of the identifier.
     </p>
-
     <p>
-This specification utilizes registries to enable interoperable definitions of
-<a>DID document</a> property names defined by this and other specifications,
-<a>DID method</a> names, DID parameter names,
-and cryptographic algorithm identifiers.
-Some of these registries are operated by the W3C DID Working group
-and others are operated by other standards organizations, including the IETF.
+This specification does not require any particular technology or cryptography
+to underpin the generation, persistence, resolution or interpretation of DIDs.
+Rather, it defines: a) the generic syntax for all DIDs, and b) the generic
+requirements for performing the four basic CRUD operations (create, read, update,
+deactivate) on the metadata associated with a DID (called the DID document).
     </p>
-
     <p>
-This design eliminates dependence on centralized identifier and key management
-systems, which is the standard in hierarchical <a
-href="https://en.wikipedia.org/wiki/Public_key_infrastructure">
-  PKI (public key infrastructure</a>).
-In cases where the <a>DID registry</a> is a <a>distributed ledger</a>, each
-entity can serve as its own root authority. This architecture is referred to as
-<a href="https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust/blob/master/final-documents/dpki.pdf">
-  DPKI (decentralized PKI)</a>.
+This enables implementers to design specific types of DIDs to work with the
+computing infrastructure they trust (e.g., blockchain, distributed ledger,
+decentralized file system, distributed database, peer-to-peer network). The
+specification for a specific type of DID is called a DID method. Implementers
+of applications or systems using DIDs can choose to support the DID methods
+most appropriate for their particular use cases.
     </p>
-
-    <p class="note">
-<a>DID methods</a> can also be developed for identifiers registered in federated
-or centralized identity management systems. Indeed, all types of identifier
-systems can add support for <a>DIDs</a>. This creates an interoperability bridge
-between the worlds of centralized, federated, and <a>decentralized
-identifiers</a>.
-    </p>
-
     <p>
-The first purpose of this specification is to define the generic <a>DID
-scheme</a> and a generic set of operations on <a>DID documents</a> that can be
-implemented for any <a>DID registry</a>. The second purpose of this
-specification is to define the conformance requirements for a <a>DID method</a>
-specification. The <a>DID method</a> specification is a separate document that
-defines a specific <a>DID scheme</a> and specific set of <a>DID document</a>
-operations for a specific <a>DID registry</a>.
+This specification is for:
+    </p>
+    <ul>
+      <li>
+Developers who want to enable users of their system to generate and assert
+their own identifiers (producers of DIDs);
+      </li>
+      <li>
+Developers who want to enable their systems to accept user-controlled identifiers
+(consumers of DIDs);
+      </li>
+      <li>
+Developers who wish to enable the use of DIDs with particular computing
+infrastructure (DID method developers).
+      </li>
+    </ul>
+
+    <p class="note" title="Diversity of DID systems">
+DID methods can also be developed for identifiers registered in federated or
+centralized identity management systems. Indeed, almost all types of identifier
+systems can add support for DIDs. This creates an interoperability bridge
+between the worlds of centralized, federated, and decentralized identifiers.
     </p>
 
-    <p class="note">
-Conceptually, the relationship between this specification and a <a>DID
-method</a> specification is similar to the relationship between the IETF generic
-<a>URI</a> specification ([[RFC3986]]) and a specific <a>URI</a> scheme
-([[IANA-URI-SCHEMES]] (such as the http: and https: schemes specified in
-[[RFC7230]]). It is also similar to the relationship between the IETF generic
-URN specification ([[RFC8141]]) and a specific URN namespace definition, (such
-as the <a>UUID</a> URN namespace defined in [[RFC4122]]). The difference is that
-a <a>DID method</a> specification, as well as defining a specific <a>DID
-scheme</a>, also specifies the methods for resolving and deactivating
-<a>DIDs</a> on, and writing <a>DID documents</a> to, the appropriate <a>DID
-registry</a>.
-    </p>
-
-    <p>
-The hierarchical design of a generic <a>DID</a> specification with specific
-<a>DID method</a> specifications introduces some of the same concepts as the
-<a>URI</a> specification:
-    </p>
-      <ul>
-        <li>
-<a>DIDs</a> from different <a>DID methods</a> might not be interoperable, just
-as <a>URIs</a> from different URI schemes might not be interoperable.
-        </li>
-        <li>
-Entities might need multiple <a>DIDs</a> to support different relationships
-because the other party might only support certain <a>DID methods</a>, in the
-same way that some browsers might only support certain URI schemes.
-        </li>
-        <li>
-Entities might need multiple <a>DIDs</a> to support the different cryptographic
-schemes of different <a>DID methods</a> because not all parties will support the
-same cryptographic schemes, in the same way that not all browsers support the
-same URI schemes.
-        </li>
-        <li>
-Managing multiple <a>DIDs</a>, and tracking which <a>DID</a> belongs to which
-relationship, under which cryptographic scheme, introduces similar logistical
-challenges as managing multiple web addresses and tracking which address belongs
-to which website, or tracking which email address belongs to which relationship.
-        </li>
-      </ul>
-
-    <p>
-For a list of <a>DID methods</a> and their corresponding specifications,
-see the DID Method Registry [[?DID-METHOD-REGISTRY]].
-      </p>
-
-  <section class="informative">
-    <h2>
+    <section class="informative">
+      <h2>
 A Simple Example
-    </h2>
+      </h2>
 
-    <p>
+      <p>
 A <a>DID</a> is a simple text string consisting of three parts, the:
-    </p>
-      <ul>
-        <li>
+      </p>
+        <ul>
+          <li>
 URL scheme identifier (<code>did</code>)
-        </li>
-        <li>
+          </li>
+          <li>
 Identifier for the <a>DID method</a>
-        </li>
-        <li>
+          </li>
+          <li>
 DID method-specific identifier.
-        </li>
-      </ul>
+          </li>
+        </ul>
 
-    <pre class="example nohighlight"
+      <pre class="example nohighlight"
       title="A simple example of a decentralized identifier (DID)">
 did:example:123456789abcdefghi
-    </pre>
+      </pre>
 
-    <p>
+      <p>
 The example <a>DID</a> above resolves to a <a>DID document</a>. A <a>DID
 document</a> contains information associated with the <a>DID</a>, such as ways
-to cryptographically authenticate the entity in control of the <a>DID</a>, as
-well as services that can be used to interact with the entity.
-    </p>
+to cryptographically authenticate the <a>DID controller</a>, as
+well as services that can be used to interact with the <a>DID subject</a>.
+      </p>
 
-    <pre class="example nohighlight" title="Minimal self-managed DID document">
+      <pre class="example nohighlight" title="Minimal self-managed DID document">
 {
   "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
@@ -414,297 +344,308 @@ well as services that can be used to interact with the entity.
     "serviceEndpoint": "https://example.com/vc/"
   }]
 }
-    </pre>
-  </section>
+      </pre>
+    </section>
 
-  <section class="informative">
-    <h2>
+    <section class="informative">
+      <h2>
 Design Goals
-    </h2>
+      </h2>
 
-    <p>
+      <p>
 <a>Decentralized Identifiers</a> are a component of larger systems, such as
 the Verifiable Credentials ecosystem [[VC-DATA-MODEL]], which drove the design
 goals for this specification. This section summarizes the primary design goals
 for this specification.
-    </p>
+      </p>
 
-    <table class="simple">
-      <thead>
-        <tr>
-          <th>
+      <table class="simple">
+        <thead>
+          <tr>
+            <th>
 Goal
-          </th>
-          <th>
+            </th>
+            <th>
 Description
-          </th>
-        </tr>
-      </thead>
+            </th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <tr>
-          <td>
+        <tbody>
+          <tr>
+            <td>
 Decentralization
-          </td>
-          <td>
+            </td>
+            <td>
 Eliminate the requirement for centralized authorities or single point
 failure in identifier management, including the registration of globally unique
 identifiers, public verification keys, <a>service endpoints</a>, and other
 metadata.
-          </td>
-        </tr>
+            </td>
+          </tr>
 
-        <tr>
-          <td>
+          <tr>
+            <td>
 Control
-          </td>
-          <td>
+            </td>
+            <td>
 Give entities, both human and non-human, the power to directly control their
 digital identifiers without the need to rely on external authorities.
-          </td>
-        </tr>
+            </td>
+          </tr>
 
-        <tr>
-          <td>
+          <tr>
+            <td>
 Privacy
-          </td>
-          <td>
+            </td>
+            <td>
 Enable entities to control the privacy of their information, including minimal,
 selective, and progressive disclosure of attributes or other data.
-          </td>
-        </tr>
+            </td>
+          </tr>
 
-        <tr>
-          <td>
+          <tr>
+            <td>
 Security
-          </td>
-          <td>
+            </td>
+            <td>
 Enable sufficient security for relying parties to depend on <a>DID documents</a>
 for their required level of assurance.
-          </td>
-        </tr>
+            </td>
+          </tr>
 
-        <tr>
+          <tr>
             <td>
 Proof-based
-          </td>
-          <td>
-Enable <a>DID subjects</a> to provide cryptographic proof when interacting with
+            </td>
+            <td>
+Enable <a>DID controllers</a> to provide cryptographic proof when interacting with
 other entities.
-          </td>
-        </tr>
+            </td>
+          </tr>
 
-        <tr>
-          <td>
+          <tr>
+            <td>
 Discoverability
-          </td>
-          <td>
-Make it possible for entities to discover <a>DIDs</a> for other entities to
+            </td>
+            <td>
+Make it possible for entities to discover <a>DIDs</a> for other entities, to
 learn more about or interact with those entities.
-          </td>
-        </tr>
+            </td>
+          </tr>
 
-        <tr>
-          <td>
+          <tr>
+            <td>
 Interoperability
-          </td>
-          <td>
+            </td>
+            <td>
 Use interoperable standards so <a>DID</a> infrastructure can make use of
 existing tools and software libraries designed for interoperability.
-          </td>
-        </tr>
+            </td>
+          </tr>
 
-        <tr>
-          <td>
+          <tr>
+            <td>
 Portability
-          </td>
-          <td>
-Be system and network-independent and enable entities to use their digital
+            </td>
+            <td>
+Be system- and network-independent and enable entities to use their digital
 identifiers with any system that supports <a>DIDs</a> and <a>DID methods</a>.
-          </td>
-        </tr>
+            </td>
+          </tr>
 
-        <tr>
-          <td>
+          <tr>
+            <td>
 Simplicity
-          </td>
-          <td>
+            </td>
+            <td>
 Favor a reduced set of simple features to make the technology easier to
 understand, implement, and deploy.
-          </td>
-        </tr>
+            </td>
+          </tr>
 
-        <tr>
-          <td>
+          <tr>
+            <td>
 Extensibility
-          </td>
-          <td>
+            </td>
+            <td>
 Where possible, enable extensibility provided it does not greatly hinder
 interoperability, portability, or simplicity.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h3>
-Interoperability
-    </h3>
-
-    <p>
-Interoperability of implementations for <a>DIDs</a> and <a>DID documents</a>
-will be tested by evaluating an implementation's ability to create and parse
-<a>DIDs</a> and <a>DID documents</a> that conform to the specification.
-Interoperability for <a>DID methods</a> will be determined by evaluating each
-<a>DID method</a> specification to determine, at a minimum, that the:
-    </p>
-      <ul>
-        <li>
-<a>DID method</a> name is unique and not used by an existing, incompatible
-<a>DID method</a>.
-        </li>
-        <li>
-Required operations are supported.
-        </li>
-        <li>
-Operations requiring descriptions are described.
-        </li>
-        <li>
-Specification is specific, detailed, and complete enough for independent
-implementation.
-        </li>
-        <li>
-Specification contains sections describing security and privacy considerations.
-        </li>
-      </ul>
-
-    <p>
-Interoperability for producers and consumers of <a>DIDs</a> and
-<a>DID documents</a> is provided by ensuring the <a>DIDs</a> and
-<a>DID documents</a> conform. Interoperability for <a>DID method</a>
-specifications is provided by the details in each <a>DID method</a>
-specification. It is understood that, in the same way that a web browser is not
-required to implement all known URI schemes, conformant software that works
-with <a>DIDs</a> is not required to implement all known <a>DID methods</a>.
-However, all implementations of a given <a>DID method</a> must be interoperable
-for that method.
-    </p>
-  </section>
-
-  </section>
-
-  <section class="informative">
-    <h1>
-Terminology
-    </h1>
-
-    <div data-include="terms.html" data-oninclude="restrictReferences">
-    </div>
-
-  </section>
-
-  <section>
-    <h1>Overall Architecture</h1>
-
-    <section>
-      <h2>DIDs</h2>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section>
-      <h2>DID Registries</h2>
-    </section>
-
-    <section>
-      <h2>DID Documents</h2>
+      <h2>
+Architecture Overview
+      </h2>
 
       <p>
-A <a>DID document</a> is the <a>resource</a> that is associated with a
-<a>decentralized identifier</a> (DID). <a>DID documents</a> typically express
-verification methods (such as public keys) and services that can be used to
-interact with a <a>DID controller</a>.
+This section provides a basic understanding of the major elements of DID
+architecture. Formal definitions of terms are provided in <a href="#terminology"></a>.
       </p>
 
-      <p>
-A <a>DID document</a> is serialized according to a particular syntax, as
-outlined in Section <a href="#core-representations"></a>). The <a>DID</a> itself
-is contained in the <code>id</code> property.
-      </p>
+      <dl>
+        <dt>
+DIDs and DID URLs
+        </dt>
+        <dd>
+A <a>DID</a>, or Decentralized Identifier, is a URI composed of three parts:
+the scheme "did:", a method identifier, and a unique, method-specific identifier
+generated by the <a>DID method</a>. DIDs are resolvable to <a>DID documents</a>.
+A <a>DID URL</a> extends the syntax of a basic DID to incorporate other standard
+URI components (path, query, fragment) in order to locate a particular
+resource&mdash;for example, a public key inside a <a>DID document</a>, or a resource
+available external to the <a>DID document</a>.
+        </dd>
 
-      <p>
-The properties that can be present in a <a>DID document</a> are outlined in
-Section <a href="#did-documents"></a>.
-      </p>
+        <dt>
+DID Subjects
+        </dt>
+        <dd>
+The subject of a <a>DID</a> is, by definition, the entity identified by the
+<a>DID</a>. The <a>DID subject</a> may also be the <a>DID controller</a>.
+Anything can be the subject of a DID: person, group, organization, physical
+thing, logical thing, etc.
+        </dd>
 
-      <p>
-The properties present in a <a>DID document</a> can be updated according to
-the applicable operations outlined in Section <a href="#methods"></a>.
-      </p>
+        <dt>
+DID Controllers
+        </dt>
+        <dd>
+The <a>controller</a> of a <a>DID</a> is the entity (person, organization, or autonomous software)
+that has the capability&mdash;as defined by a <a>DID method</a>&mdash;to make
+changes to a <a>DID document</a>. This capability is typically asserted by the
+control of a set of cryptographic keys used by software acting on behalf of the controller, though it may also be asserted via
+other mechanisms. Note that a DID may have more than one controller, and the
+controller(s) may include the <a>DID subject</a>.
+        </dd>
 
-    </section>
+        <dt>
+Verifiable Data Registries
+        </dt>
+        <dd>
+In order to be resolvable to <a>DID documents</a>, <a>DIDs</a> are typically
+recorded on an underlying system or network of some kind. Regardless of the
+specific technology used, any such system that supports recording DIDs and
+returning data necessary to produce <a>DID documents</a> is called a
+<a>verifiable data registry</a>. Examples include distributed ledgers,
+decentralized file systems, databases of any kind, peer-to-peer networks, and
+other forms of trusted data storage.
+        </dd>
 
-    <section>
-      <h2>DID Resolvers</h2>
+        <dt>
+DID documents
+        </dt>
+        <dd>
+<a>DID documents</a> contain metadata associated with a <a>DID</a>. They
+typically express verification methods (such as public keys) and services
+relevant to interactions with the DID subject. A DID document is serialized
+according to a particular syntax (see <a href="#core-representations"></a>).
+The <a>DID</a> itself is the value of the `id` property. The generic properties
+supported in a DID document are specified in <a href="#core-properties"></a>.
+The properties present in a DID document may be updated according to the
+applicable operations outlined in <a href="#methods"></a>.
+        </dd>
 
-      <p>
+        <dt>
+DID Methods
+        </dt>
+        <dd>
+<a>DID methods</a> are the mechanism by which a particular type of <a>DID</a>
+and its associated <a>DID document</a> are created, resolved, updated, and
+deactivated using a particular <a>verifiable data registry</a>. <a>DID methods</a>
+are defined using separate DID method specifications (see <a href="#methods"></a>).
+        </dd>
+
+        <p class="note">
+Conceptually, the relationship between this specification and a <a>DID method</a>
+specification is similar to the relationship between the IETF generic <a>URI</a>
+specification ([[RFC3986]]) and a specific <a>URI</a> scheme ([[IANA-URI-SCHEMES]]
+(such as the http: and https: schemes specified in [[RFC7230]]). It is also
+similar to the relationship between the IETF generic URN specification
+([[RFC8141]]) and a specific URN namespace definition, (such as the <a>UUID</a>
+URN namespace defined in [[RFC4122]]). The difference is that a DID method
+specification, as well as defining a specific DID scheme, also specifies the
+methods creating, resolving, updating, and deactivating <a>DIDs</a> and
+<a>DID documents</a> using a specific type of <a>verifiable data registry</a>.
+        </p>
+
+        <dt>
+DID resolvers and DID resolution
+        </dt>
+        <dd>
 A <a>DID resolver</a> is a software and/or hardware component that takes a
-<a>DID</a> (and associated options) as input and produces a <a>conforming
-DID document</a> (and associated metadata) as output in a process
-called <a>DID resolution</a>.
-      </p>
-      <p>
-The inputs and outputs of the <a>DID resolution</a> process are defined in
-<a href="#did-resolution"></a>. Additional considerations for implementing a
-<a>DID resolver</a> are discussed in [[?DID-RESOLUTION]].
-      </p>
+<a>DID</a> (and associated options) as input and produces a conforming <a>DID
+document</a> (and associated metadata) as output. This process is called
+<a>DID resolution.</a> The inputs and outputs of the DID resolution process
+are defined in <a href="#resolution"></a>. The specific steps for
+resolving a specific type of DID are defined by the relevant <a>DID method</a>
+specification. Additional considerations for implementing a DID resolver are
+discussed in [[DID-RESOLUTION]].
+        </dd>
+        <dt>
+DID URL dereferencers and DID URL dereferencing
+        </dt>
+        <dd>
+A <a>DID URL</a> dereferencer is a software and/or hardware component that
+takes a DID URL (and associated options) as input and produces a resource
+(and associated metadata) as output. This process is called DID URL dereferencing.
+The inputs and outputs of the DID URL dereferencing process are defined in
+<a href="#did-url-dereferencing"></a>. Additional considerations for
+implementing a DID URL dereferencer are discussed in [[DID-RESOLUTION]].
+        </dd>
+
+        <figure id="architecture">
+          <img src="diagrams/did_architecture_overview.svg" alt="
+Diagram showing that DIDs are recorded on a Verifiable Data Registry; DIDs
+resolve to DID documents; DIDs identify DID subjects; a DID controller can
+modify a DID document; a DID method generates a DID; a DID method instructs a
+DID resolver.
+          " >
+          <figcaption>
+The basic components of DID architecture.
+          </figcaption>
+        </figure>
+
     </section>
 
     <section>
-      <h2>DID Dereferencers</h2>
+      <h2>
+Conformance
+      </h2>
 
       <p>
-A <a>DID URL dereferencer</a> is a software and/or hardware component that takes
-a <a>DID URL</a> as input (and associated options) and produces a resource (and
-associated metadata) as output in a process called <a>DID URL dereferencing</a>.
-The resource produced by <a>DID URL dereferencing</a> might or might not be a
-<a>conforming DID Document</a>. Generally, a <a>DID URL dereferencer</a> uses a
-<a>DID resolver</a> to execute <a>DID resolution</a> on the <a>DID</a> portion
-of a <a>DID URL</a> to obtain a <a>DID document</a>. The <a>DID URL
-dereferencer</a> can then perform additional dereferencing on the <a>DID
-document</a> using the complete <a>DID URL</a>.
-      </p>
-
-      <p>
-The inputs and outputs of the <a>DID URL dereferencing</a> process are defined
-in <a href="#did-url-dereferencing"></a>. Additional considerations for
-implementing a <a>DID URL dereferencer</a> are discussed in [[?DID-RESOLUTION]].
-      </p>
-    </section>
-
-    <section>
-      <h2>Security and Privacy</h2>
-    </section>
-
-  </section>
-
-  <section id="conformance">
-
-    <p>
 This document contains examples that contain JSON, CBOR, and JSON-LD content.
 Some of these examples contain characters that are invalid, such as inline
 comments (<code>//</code>) and the use of ellipsis (<code>...</code>) to denote
 information that adds little value to the example. Implementers are cautioned to
 remove this content if they desire to use the information as valid JSON, CBOR,
 or JSON-LD.
-    </p>
+      </p>
 
-   <p>
+      <p>
+Interoperability of implementations for DIDs and DID documents will be tested by
+evaluating an implementation's ability to create and parse <a>DIDs</a> and
+<a>DID documents</a> that conform to the specification. Interoperability for
+producers and consumers of <a>DIDs</a> and <a>DID documents</a>
+is provided by ensuring the <a>DIDs</a> and <a>DID documents</a> conform.
+Interoperability for <a>DID method</a> specifications is provided by the details
+in each DID method specification. It is understood that, in the same way that a web
+browser is not required to implement all known URI schemes, conformant software
+that works with DIDs is not required to implement all known DID methods (however,
+all implementations of a given DID method must be interoperable for that method).
+      </p>
+
+     <p>
 A <dfn>conforming DID</dfn> is any concrete expression of the rules
 specified in Section <a href="#identifier"></a> and MUST comply with relevant
 normative statements in that section.
-   </p>
+     </p>
 
-    <p>
+      <p>
 A <dfn>conforming DID Document</dfn> is any concrete expression of the data
 model described in this specification and MUST comply with the relevant
 normative statements in Sections <a href="#data-model"></a> and  <a
@@ -712,61 +653,50 @@ href="#core-properties"></a>. A serialization format for the conforming document
 MUST be deterministic, bi-directional, and lossless as described in Section <a
 href="#core-representations"></a>. The <a>conforming DID document</a> MAY be
 transmitted or stored in any such serialization format.
-    </p>
+      </p>
 
-    <p>
+      <p>
 A <dfn>conforming DID Method</dfn> is any specification that complies with the
 relevant normative statements in Section <a href="#methods"></a>.
-    </p>
+      </p>
 
-    <p>
+      <p>
 A <dfn>producer</dfn> is any algorithm realized as software and/or
 hardware and conforms to this specification if it generates
 <a>conforming DID</a>s or <a>conforming DID Document</a>s.
 A <a>producer</a> that is conformant with this specification MUST NOT produce
 non-conforming <a>DIDs</a> or <a>DID Documents</a>.
-    </p>
+      </p>
 
-    <p>
+      <p>
 A <dfn>consumer</dfn> is any algorithm realized as software and/or
 hardware and conforms to this specification if it consumes
 <a>conforming DID</a>s or <a>conforming DID Document</a>s. A
 <a>consumer</a> that is conformant with this specification MUST produce errors
 when consuming non-conforming <a>DIDs</a> or <a>DID Documents</a>.
-    </p>
+      </p>
+
+    </section>
+
+  </section>
+
+  <section class="informative">
+    <h2>
+Terminology
+    </h2>
+
+    <div data-include="terms.html" data-oninclude="restrictReferences">
+    </div>
 
   </section>
 
   <section>
     <h2>Identifier</h2>
-
     <p>
-The concept of a globally unique <a>decentralized identifier</a> is not new.
-<a>Universally Unique Identifiers</a> (UUIDs) were first developed in the 1980s
-and later became a standard feature of the Open Software Foundation’s
-<a href="https://en.wikipedia.org/wiki/Distributed_Computing_Environment">
-  Distributed Computing Environment</a>.
-<a>UUIDs</a> achieve global uniqueness without a centralized registry service by
-using an algorithm that generates 128-bit values with sufficient entropy that
-the chance of collision are infinitesimally small. <a>UUIDs</a> are formally
-specified in [[RFC4122]] as a specific type of Unified Resource Name (URN).
+This section describes the formal syntax for DIDs and DID URLs. The term "generic"
+is used to differentiate the syntax defined here from syntax defined by
+<em>specific</em> <a>DID methods</a> in their respective specifications.
     </p>
-
-    <p>
-A <a>DID</a> is similar to a <a>UUID</a> except that:
-    </p>
-    <ul>
-      <li>
-Like a URL, it can be resolved or dereferenced to a standard <a>resource</a>
-describing the subject. That is, a <a>DID document</a>. For more information,
-see Section <a href="#did-documents"></a>.
-      </li>
-      <li>
-Unlike most <a>resources</a> returned when dereferencing URLs, a <a>DID
-document</a> usually contains cryptographic material enabling authentication of
-the <a>DID subject</a>.
-      </li>
-    </ul>
 
     <section>
       <h3>DID Syntax</h3>
@@ -846,7 +776,8 @@ is bound exclusively and permanently to its one and only subject. Even after a
 <a>DID</a> is deactivated, it is intended that it never be repurposed.
         </p>
 
-        <p>
+        <div class="note">
+          <p>
 Ideally, a <a>DID</a> would be a completely abstract decentralized identifier
 (like a <a>UUID</a>) that could be bound to multiple underlying
 <a>DID registries</a> over time, thus maintaining its persistence independent of
@@ -855,13 +786,13 @@ any particular system. However, registering the same identifier on multiple
 <a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">start-of-authority</a>
 (SOA) problems. It also greatly increases implementation complexity for
 developers.
-        </p>
-
-        <p class="note">
+          </p>
+          <p>
 To avoid these issues, developers should refer to the Decentralized Characteristics
 Rubric [[?DID-RUBRIC]] to decide which <a>DID method</a> best addresses the needs of
 the use case.
-        </p>
+          </p>
+        </div>
 
         <p class="note">
 Although not included in this version, future versions of this specification
@@ -872,7 +803,7 @@ produce the practical equivalent of a single persistent abstract <a>DID</a>. For
 more information, see Section <a href="#future-work"></a>.
         </p>
       </section>
-     </section>
+    </section>
 
     <section>
       <h3>DID URL Syntax</h3>
@@ -2585,6 +2516,36 @@ necessary to establish proof of deactivation, <em>or</em> state that
 deactivation is not possible.
         </p>
       </section>
+    </section>
+
+    <section>
+      <h2>
+Interoperability
+      </h2>
+      <p>
+Interoperability for <a>DID methods</a> will be determined by evaluating each
+<a>DID method</a> specification to determine, at a minimum, that the:
+      </p>
+      <ul>
+        <li>
+<a>DID method</a> name is unique and not used by an existing, incompatible
+<a>DID method</a>.
+        </li>
+        <li>
+Required operations are supported.
+        </li>
+        <li>
+Operations requiring descriptions are described.
+        </li>
+        <li>
+Specification is specific, detailed, and complete enough for independent
+implementation.
+        </li>
+        <li>
+Specification contains sections describing security and privacy considerations.
+        </li>
+      </ul>
+
     </section>
 
     <section>
