@@ -580,7 +580,7 @@ DID resolvers and DID resolution
 A <a>DID resolver</a> is a software and/or hardware component that takes a
 <a>DID</a> (and associated options) as input and produces a conforming <a>DID
 document</a> (and associated metadata) as output. This process is called
-<a>DID resolution.</a> The inputs and outputs of the DID resolution process
+<a>DID resolution</a>. The inputs and outputs of the DID resolution process
 are defined in <a href="#resolution"></a>. The specific steps for
 resolving a specific type of DID are defined by the relevant <a>DID method</a>
 specification. Additional considerations for implementing a DID resolver are
@@ -612,10 +612,7 @@ The basic components of DID architecture.
 
     </section>
 
-    <section>
-      <h2>
-Conformance
-      </h2>
+    <section id="conformance">
 
       <p>
 This document contains examples that contain JSON, CBOR, and JSON-LD content.
@@ -698,9 +695,9 @@ is used to differentiate the syntax defined here from syntax defined by
 <em>specific</em> <a>DID methods</a> in their respective specifications.
     </p>
 
-    <section>
+    <section class="normative">
       <h3>DID Syntax</h3>
-      <section>
+      <section class="normative">
         <h2 id="generic-did-syntax">Generic DID Syntax</h2>
 
         <p>
@@ -731,7 +728,7 @@ The grammar currently allows an empty <code>method-specific-id</code>, e.g.,
 <a>DID method</a> itself.
         </p>
       </section>
-      <section id="method-specific-parameters">
+      <section id="method-specific-parameters" class="normative">
         <h2>Method-Specific Syntax</h2>
 
         <p>
@@ -742,7 +739,7 @@ syntax by defining its own <code>method-name</code> and its own
         </p>
 
       </section>
-      <section>
+      <section class="normative">
         <h2>Normalization</h2>
 
         <p>
@@ -767,7 +764,7 @@ Case sensitivity and normalization of the value of the
         </ul>
       </section>
 
-      <section>
+      <section class="normative">
         <h2>Persistence</h2>
 
         <p>
@@ -805,7 +802,7 @@ more information, see Section <a href="#future-work"></a>.
       </section>
     </section>
 
-    <section>
+    <section class="normative">
       <h3>DID URL Syntax</h3>
 
       <section>
@@ -1910,7 +1907,7 @@ and <a href="#authentication"></a>.
       </p>
     </section>
 
-    <section>
+    <section class="normative">
       <h2>Created</h2>
 
       <p>
@@ -1923,7 +1920,7 @@ A <a>DID document</a> SHOULD include a <code>created</code> property.
 If a <a>DID document</a> includes a <code>created</code> property, the value of
 the property MUST be a valid XML datetime value, as defined in section 3.3.7 of
 <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition
-Language (XSD) 1.1 Part 2: Datatypes</a> [[!XMLSCHEMA11-2]]. This datetime value
+Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This datetime value
 MUST be normalized to UTC 00:00, as indicated by the trailing "Z".
           </dd>
       </dl>
@@ -2026,7 +2023,7 @@ for the bidirectional translation of a <a>DID document</a> both into and out of
 the representation in question. As a consequence, translation between any two
 representations MUST be done by parsing the source format into a <a>DID
 document</a> model (described in Sections <a href="#data-model"></a> and <a
-href="#did-documents"></a>) and then serializing the <a>DID document</a> model
+href="#core-properties"></a>) and then serializing the <a>DID document</a> model
 into the target representation. An implementation MUST NOT convert between
 representations without first parsing to a <a>DID document</a> model.
     </p>
@@ -3440,7 +3437,7 @@ Verifiable Credentials
 Although <a>DIDs</a> and <a>DID documents</a> form a foundation for
 decentralized identity, they are only the first step in describing their
 subjects. The rest of the descriptive power comes through collecting and
-selectively using Verifiable Credentials [[!VC-DATA-MODEL]]. Future versions of
+selectively using Verifiable Credentials [[VC-DATA-MODEL]]. Future versions of
 the specification will describe in more detail how <a>DIDs</a> and <a>DID
 document</a> can be integrated with &mdash; and help enable &mdash; the
 Verifiable Credentials ecosystem.
