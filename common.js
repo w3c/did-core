@@ -9,7 +9,7 @@ var ccg = {
   // Add as the respecConfig localBiblio variable
   // Extend or override global respec references
   localBiblio: {
-    "DID-CORE-REGISTRIES": {
+    "DID-SPEC-REGISTRIES": {
       title: "Decentralized Identifiers Core and Extensions Registries",
       href: "https://w3c.github.io/did-core-registries/",
       authors: [
@@ -100,16 +100,6 @@ var ccg = {
       ],
       status: "CG-DRAFT",
       publisher: "Digital Verification Community Group"
-    },
-    "DID-METHOD-REGISTRY": {
-      title: "The Decentralized Identifier Method Registry",
-      href: "https://w3c-ccg.github.io/did-method-registry/",
-      authors: [
-        "Manu Sporny",
-        "Drummond Reed"
-      ],
-      status: "CG-DRAFT",
-      publisher: "Credentials Community Group"
     },
     "MATRIX-URIS": {
       title: "Matrix URIs - Ideas about Web Architecture",

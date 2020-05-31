@@ -1375,8 +1375,7 @@ this case, a <a>DID document</a> processor MUST produce an error.
 
       <p>
 The value of the <code>type</code> property MUST be exactly one public key type.
-For a registry of available key types and formats, see Appendix
-<a href="#interoperability-registries"></a>.
+For a registry of available key types and formats, see [[DID-SPEC-REGISTRIES]].
       </p>
 
       <p>
@@ -1413,9 +1412,7 @@ example of a public key with a compound key identifier.
       </p>
 
       <p>
-All public key properties MUST be from the Linked Data Cryptographic Suite
-Registry. For a registry of key types and formats, see Appendix
-<a href="#interoperability-registries"></a>.
+All public key properties MUST be registered in the [[DID-SPEC-REGISTRIES]].
       </p>
 
       <p>
@@ -2405,24 +2402,21 @@ publication.
       <p>
 Because there is no central authority for allocating or approving <a>DID
 method</a> names, there is no way to know for certain if a specific <a>DID
-method</a> name is unique. To help with this challenge, the
-<a href="https://www.w3.org/community/credentials/">
-  W3C Credentials Community Group</a>
-maintains a non-authoritative list of known <a>DID method</a> names
-and their associated specifications. For more information, see Appendix <a
-href="#interoperability-registries"></a>.
+method</a> name is unique. To help with this challenge, a non-authoritative
+list of known <a>DID method</a> names and their associated specifications is
+maintained in the DID Methods Registry, which is part of [[?DID-SPEC-REGISTRIES]].
       </p>
       <p>
-The [[?DID-METHOD-REGISTRY]] is a tool for implementors to use when coming to
+The DID Methods Registry is a tool for implementors to use when coming to
 consensus on a new method name, as well as an informative reference for software
 developers implementing <a>DID resolvers</a> for different <a>DID methods</a>.
 For more information about <a>DID resolvers</a> see Section
-<a href="#resolution"></a>. The [[?DID-METHOD-REGISTRY]] is not a definitive
+<a href="#resolution"></a>. The DID Method Registry is not a definitive
 or official list of <a>DID methods</a>. Nonetheless, adding <a>DID method</a>
-names to the [[?DID-METHOD-REGISTRY]] is encouraged so that other implementors
+names to the DID Method Registry is encouraged so that other implementors
 and members of the community have a place to see an overview of existing
-<a>DID methods</a>. The lightweight criteria for inclusion are documented in the
-[[?DID-METHOD-REGISTRY]].
+<a>DID methods</a>. The lightweight criteria for inclusion are documented in
+[[?DID-SPEC-REGISTRIES]].
       </p>
     </section>
 
@@ -2704,11 +2698,11 @@ Choosing DID Resolvers
       </h2>
 
       <p>
-The [[?DID-METHOD-REGISTRY]] is an informative list of <a>DID method</a> names
+The DID Method Registry (see [[?DID-SPEC-REGISTRIES]] is an informative list of <a>DID method</a> names
 and their corresponding <a>DID method</a> specifications. Implementors need to
 bear in mind that there is no central authority to mandate which
 <a>DID method</a> specification is to be used with any specific
-<a>DID method</a> name, but can use the [[?DID-METHOD-REGISTRY]] to make an
+<a>DID method</a> name, but can use the DID Method Registry to make an
 informed decision when choosing which <a>DID resolver</a> implementations to
 use.
       </p>
@@ -3182,46 +3176,10 @@ Interoperability Registries
     </h1>
 
     <p>
-There are multiple registries that define <a>DID methods</a> and extensions to
-this specification. These registries are:
+The registries that list <a>DID methods</a> and extensions to this
+specification can be found in [[DID-SPEC-REGISTRIES]].
     </p>
 
-    <table class="simple">
-      <thead>
-        <tr>
-          <th>
-Registry
-          </th>
-          <th>
-Purpose
-          </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>
-<a href="https://w3c-ccg.github.io/did-method-registry/">DID
-Method Registry</a>
-          </td>
-          <td>
-Lists all known <a>DID methods</a> and contains links to their
-specifications.
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-<a href="https://w3c-ccg.github.io/ld-cryptosuite-registry/">Linked Data
-Cryptography Suite Registry</a>
-          </td>
-          <td>
-Defines all known Linked Data Cryptography Suites and Key
-Formats.
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </section>
 
   <section class="appendix">
