@@ -2030,56 +2030,6 @@ property, as outlined in Section <a href="#created"></a>.
       </pre>
     </section>
 
-    <section>
-      <h2>Proof</h2>
-
-      <p>
-A <code>proof</code> on a <a>DID document</a> is cryptographic proof of the
-integrity of the <a>DID document</a> according to either the:
-      </p>
-
-      <ul>
-        <li>
-<a>DID subject</a>, as defined in Section <a href="#did-subject"></a>
-        </li>
-
-        <li>
-<a>DID controller</a>, as defined in Section
-<a href="#authorization-and-delegation"></a>, if present.
-        </li>
-      </ul>
-
-      <p>
-This proof is NOT proof of the binding between a <a>DID</a> and a
-<a>DID document</a>. For more information, see Section
-<a href="#binding-of-identity"></a>.
-      </p>
-
-      <p>
-A <a>DID document</a> MAY include a <code>proof</code> property.
-      </p>
-
-      <dl>
-        <dt><dfn>proof</dfn></dt>
-        <dd>
-If a <a>DID document</a> includes a <code>proof</code> property, the value of
-the property MUST be a valid JSON-LD proof, as defined by Linked Data Proofs
-[[?LD-PROOFS]].
-        </dd>
-      </dl>
-
-      <pre class="example nohighlight" title="A signature-based proof">
-{
-  "proof": {
-    "type": "LinkedDataSignature2015",
-    "created": "2016-02-08T16:02:20Z",
-    "creator": "did:example:8uQhQMGzWxR8vw5P3UWH1ja#keys-1",
-    "signatureValue": "QNB13Y7Q9...1tzjn4w=="
-  }
-}
-      </pre>
-    </section>
-
   </section>
 
   <section class="normative">
