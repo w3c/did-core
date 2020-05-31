@@ -801,7 +801,7 @@ addresses the needs of the use case.
 Although not included in this version, future versions of this specification
 might support a <a>DID document</a> <code>equivID</code> property to establish
 verifiable equivalence relations between <a>DIDs</a> representing the same
-subject on multiple <a>DID registries</a>. Such equivalence relations can
+subject on multiple <a>verifiable data registries</a>. Such equivalence relations can
 produce the practical equivalent of a single persistent abstract <a>DID</a>. For
 more information, see Section <a href="#future-work"></a>.
         </p>
@@ -1769,14 +1769,14 @@ Delegation, which may be layered:
 
       <ul>
         <li>
-A <a>DID registry</a> could implement a coarse-grained <code>controller</code>
-pattern by enabling <a>DID documents</a> to express the <a>DID</a> of another
-<a>DID controller</a> that controls it, or
+A <a>verifiable data registry</a> could implement a coarse-grained
+<code>controller</code> pattern by enabling <a>DID documents</a> to express
+the <a>DID</a> of another <a>DID controller</a> that controls it, or
 additionally,
         </li>
 
         <li>
-A <a>DID registry</a> could implement a capabilities-based approach enabling
+A <a>verifiable data registry</a> could implement a capabilities-based approach enabling
 further fine-grained control of authorization and delegation.
         </li>
       </ul>
@@ -2280,7 +2280,7 @@ registry.
 
             <p class="issue" data-number="202">
 This specification defines globally interoperable documents, and the requirement
-that the context value be in the DID registry means that different JSON-LD
+that the context value be in the verifiable data registry means that different JSON-LD
 processors can consume the document without having to dereference anything in
 the context field. However, a pair of producers and consumers can have local
 extension agreements. This needs to be clarified in a section on extensibility
@@ -2364,8 +2364,8 @@ see the <code>method-name</code> rule in Section
       <p>
 Because the method name is part of the <a>DID</a>, short method names are
 preferred; the method name SHOULD be five characters or less. The method name
-might reflect the name of the <a>DID registry</a> to which the <a>DID method</a>
-specification applies. For more information, see Section
+might reflect the name of the <a>verifiable data registry</a> to which the
+<a>DID method</a> specification applies. For more information, see Section
 <a href="#method-schemes"></a>.
       </p>
 
@@ -2390,9 +2390,9 @@ formats as possible.
 The <code>method-specific-id</code> format MAY include colons, which might be
 used by <a>DID methods</a> for various purposes, such as establishing
 hierarchically partitioned namespaces, or identifying specific instances or
-parts of the <a>DID registry</a>. The use of colons MUST comply syntactically
-with the <code>method-specific-id</code> ABNF rule and their use is entirely
-method-specific. Implementers are advised to avoid
+parts of the <a>verifiable data registry</a>. The use of colons MUST comply
+syntactically with the <code>method-specific-id</code> ABNF rule and their use
+is entirely method-specific. Implementers are advised to avoid
 assuming any meanings or behaviors associated with a colon that are
 generically applicable to all <a>DID methods</a>.
       </p>
@@ -2431,15 +2431,15 @@ and members of the community have a place to see an overview of existing
 
       <p>
 To enable the full functionality of <a>DIDs</a> and <a>DID documents</a> on a
-particular <a>DID registry</a>, a <a>DID method</a> specification MUST specify
-how a client might be used to perform the create, read, update, and deactivate
-operations. Each operation ought to be specified to the level of detail
-necessary to build and test interoperable client implementations. In the event
-that an operation is not supported, such as update or deactivate, then it is
-RECOMMENDED that the <a>DID Method</a> specification state that it is not
-supported. These operations can be used to perform all the operations required
-of a cryptographic key management system (CKMS), e.g.: key registration, key
-replacement, key rotation, key recovery, and key expiration.
+particular <a>verifiable data registry</a>, a <a>DID method</a> specification
+MUST specify how a client might be used to perform the create, read, update,
+and deactivate operations. Each operation ought to be specified to the level
+of detail necessary to build and test interoperable client implementations. In
+the event that an operation is not supported, such as update or deactivate,
+then it is RECOMMENDED that the <a>DID Method</a> specification state that it
+is not supported. These operations can be used to perform all the operations
+required of a cryptographic key management system (CKMS), e.g.: key registration,
+key replacement, key rotation, key recovery, and key expiration.
       </p>
 
       <p>
@@ -2469,7 +2469,7 @@ Create
 
         <p>
 The <a>DID method</a> specification MUST specify how a client creates a
-<a>DID</a> and its associated <a>DID document</a> on the <a>DID registry</a>,
+<a>DID</a> and its associated <a>DID document</a> on the <a>verifiable data registry</a>,
 including all cryptographic operations necessary to establish proof of control.
         </p>
       </section>
@@ -2481,8 +2481,8 @@ Read/Verify
 
         <p>
 The <a>DID method</a> specification MUST specify how a client uses a <a>DID</a>
-to request a <a>DID document</a> from the <a>DID registry</a>, including how the
-client can verify the authenticity of the response.
+to request a <a>DID document</a> from the <a>verifiable data registry</a>,
+including how the client can verify the authenticity of the response.
         </p>
       </section>
 
@@ -2493,7 +2493,7 @@ Update
 
         <p>
 The <a>DID method</a> specification MUST specify how a client can update a
-<a>DID document</a> on the <a>DID registry</a>, including all cryptographic
+<a>DID document</a> on the <a>verifiable data registry</a>, including all cryptographic
 operations necessary to establish proof of control, <em>or</em> state that
 updates are not possible.
         </p>
@@ -2515,8 +2515,8 @@ Deactivate
 
         <p>
 The <a>DID method</a> specification MUST specify how a client can deactivate a
-<a>DID</a> on the <a>DID registry</a>, including all cryptographic operations
-necessary to establish proof of deactivation, <em>or</em> state that
+<a>DID</a> on the <a>verifiable data registry</a>, including all cryptographic
+operations necessary to establish proof of deactivation, <em>or</em> state that
 deactivation is not possible.
         </p>
       </section>
@@ -2888,7 +2888,7 @@ addresses on file.
       </p>
       <p>
 In the case of a <a>DID</a>, there is no intermediary registrar or account
-provider to generate such notifications. However, if the <a>DID registry</a>
+provider to generate such notifications. However, if the <a>verifiable data registry</a>
 on which the <a>DID</a> is registered directly supports change notifications,
 a subscription service can be offered to <a>DID controllers</a>. Notifications
 could be sent directly to the relevant <a>service endpoints</a> listed in an
@@ -2896,8 +2896,8 @@ existing <a>DID</a>.
       </p>
       <p>
 If a <a>DID controller</a> chooses to rely on a third-party monitoring service
-(other than the <a>DID registry</a> itself), this introduces another vector of
-attack.
+(other than the <a>verifiable data registry</a> itself), this introduces another
+vector of attack.
       </p>
     </section>
 
@@ -3342,7 +3342,6 @@ result in changes to this specification.
     <div class="issue" data-number="137">Should the DID parameters be normative in the spec?</div>
     <div class="issue" data-number="151">Include discussion of eIDAS levels-of-assurance</div>
     <div class="issue" data-number="154">Decoupling DID Core spec from LD-Proof / LDS specs</div>
-    <div class="issue" data-number="162">We should find a better term than "DID Registry" and better define what it refers to</div>
     <div class="issue" data-number="163">Uses of terms defined in the specification should be links to their definitions</div>
     <div class="issue" data-number="165">What are entityship and start-of-authority (SOA) problems?</div>
     <div class="issue" data-number="169">Replace registries administered community groups with registries established by this specification</div>
