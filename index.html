@@ -334,9 +334,9 @@ well as services that can be used to interact with the <a>DID subject</a>.
   "authentication": [{
     <span class="comment">// used to authenticate as did:...fghi</span>
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaVerificationKey2018",
+    "type": "Ed25519VerificationKey2018",
     "controller": "did:example:123456789abcdefghi",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }],
   "service": [{
     <span class="comment">// used to retrieve Verifiable Credentials associated with the DID</span>
@@ -1141,9 +1141,9 @@ tend to be more verbose than necessary.
   "id": "did:example:123456789abcdefghi",
   "publicKey": [{
     "id": "did:example:123456789abcdefghi#key-1",
-    "type": "RsaVerificationKey2018",
+    "type": "Ed25519VerificationKey2018",
     "controller": "did:example:123456789abcdefghi",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }, ...],
   "authentication": [
 <span class="comment">    // a relative DID URL used to reference a verification method above</span>
@@ -1530,16 +1530,11 @@ Example:
     }
   }, {
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaVerificationKey2018",
-    "controller": "did:example:123456789abcdefghi",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-  }, {
-    "id": "did:example:123456789abcdefghi#keys-2",
     "type": "Ed25519VerificationKey2018",
     "controller": "did:example:pqrstuvwxyz0987654321",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }, {
-    "id": "did:example:123456789abcdefghi#keys-3",
+    "id": "did:example:123456789abcdefghi#keys-2",
     "type": "Secp256k1VerificationKey2018",
     "controller": "did:example:123456789abcdefghi",
     "publicKeyHex": "02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71"
@@ -3198,9 +3193,15 @@ A future-facing real-world context is provided below:
 
   "publicKey": [{
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "RsaVerificationKey2018",
+    "type": "JwsVerificationKey2020",
     "controller": "did:example:123456789abcdefghi",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+    "publicKeyJwk": {
+      "crv": "Ed25519",
+      "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ",
+      "kty": "OKP",
+      "kid": "_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A"
+    }
+
   }, {
     "id": "did:example:123456789abcdefghi#keys-3",
     "type": "Ieee2410VerificationKey2018",
