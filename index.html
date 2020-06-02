@@ -1300,9 +1300,16 @@ A <a>DID document</a> can express <a>verification methods</a>, such as
 cryptographic keys, which can be used to authenticate or authorize interactions
 with the <a>DID subject</a> or associated parties. The information expressed
 often includes globally unambiguous identifiers and public key material, which
-can be used to verify digital signatures. Other information can be expressed,
-such as attributes that enable one to determine whether it is a hardware-backed
-cryptographic key.
+can be used to verify digital signatures. For example, a public key can be
+used as a verification method with respect to a digital signature; in such
+usage, it verifies that the signer possessed the associated private key.
+      </p>
+      <p>
+Verification methods might take many parameters. An example of this is a set
+of five cryptographic keys from which any three are required to contribute to
+a threshold signature. Methods need not be cryptographic. An example of this
+might be the contact information for a biometric service provider that compares
+a purported <a>DID controller</a> against a candidate biometric vector.
       </p>
 
       <p>
@@ -1360,7 +1367,7 @@ The verification method properties SHOULD be registered in the
         <h3>Verification relationships</h3>
 
         <p>
-A <dfn>verification relationship</dfn> expresses the relationship between the
+A <a>verification relationship</a> expresses the relationship between the
 <a>DID subject</a> and a <a>verification method</a>.
         </p>
         <p>
