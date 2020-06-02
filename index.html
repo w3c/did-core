@@ -1510,7 +1510,8 @@ All public key properties MUST be registered in the [[DID-SPEC-REGISTRIES]].
       <p>
 If a public key does not exist in the <a>DID document</a>, it MUST be assumed
 the key was revoked or is invalid.
-The <a>DID document</a> MAY NOT contain revoked keys.
+The <a>DID document</a> MUST NOT express revoked keys using a
+<a>verification relationship</a>.
 Each
 <a>DID method</a> specification is expected to detail how revocation is
 performed and tracked.
