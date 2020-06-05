@@ -1330,8 +1330,9 @@ verification method objects MAY include additional properties.
       <p>
 The value of the <code>id</code> property MUST be a <a>URI</a>. The array of
 verification methods MUST NOT contain multiple entries with the same
-<code>id</code>. In this case, a <a>DID document</a> processor MUST produce an
-error.
+<code>id</code>. If the array of <a>verification methods</a> contains multiple 
+entries with the same <code>id</code>, a <a>DID document</a> processor MUST 
+produce an error.
       </p>
 
       <p>
