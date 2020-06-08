@@ -184,7 +184,7 @@ the dereferenced resource indicated by the <a>DID URL</a>. The inputs and output
 process are defined in <a href="#did-url-dereferencing"></a>.
   </dd>
 
-  <dt><dfn data-lt"DID URL dereferencers">DID URL dereferencer</dfn></dt>
+  <dt><dfn data-lt="DID URL dereferencers">DID URL dereferencer</dfn></dt>
 
   <dd>
 A software and/or hardware system that is capable of executing the <a>DID URL dereferencing</a>
@@ -287,14 +287,18 @@ key for encryption. This guarantees the integrity of the key agreement process. 
 is thus another type of verification method, even though descriptions of the process
 might not use the words "verification" and "proof."
     </p>
+  </dd>
+
+  <dt><dfn data-lt="">verification relationship</dfn></dt>
+
+  <dd>
     <p>
-Verification methods might take many parameters. An example of this is a set of five
-cryptographic keys from which any three are required to contribute to a threshold signature. Methods
-need not be cryptographic. An example of this might be the contact information for a
-biometric service provider that compares a purported DID controller against a candidate
-biometric vector.
+A verification relationship expresses the relationship between the <a>DID
+subject</a> and a <a>verification method</a>. An example of a verification
+relationship is <a href="#authentication"></a>. 
     </p>
   </dd>
+
   <dt><dfn data-lt="UUID|UUIDs">Universally Unique Identifier</dfn> (UUID)</dt>
 
   <dd>

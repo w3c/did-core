@@ -1294,36 +1294,104 @@ match the <a>DID</a> that was resolved.
     </section>
 
     <section>
+      <h2>Verification Methods</h2>
+      <p>
+A <a>DID document</a> can express <a>verification methods</a>, such as
+cryptographic keys, which can be used to authenticate or authorize interactions
+with the <a>DID subject</a> or associated parties. The information expressed
+often includes globally unambiguous identifiers and public key material, which
+can be used to verify digital signatures. For example, a public key can be
+used as a verification method with respect to a digital signature; in such
+usage, it verifies that the signer possessed the associated private key.
+      </p>
+      <p>
+Verification methods might take many parameters. An example of this is a set
+of five cryptographic keys from which any three are required to contribute to
+a threshold signature. Methods need not be cryptographic. An example of this
+might be the contact information for a biometric service provider that compares
+a purported <a>DID controller</a> against a candidate biometric vector.
+      </p>
+
+      <p>
+A <a>DID document</a> MAY include a <code>verificationMethod</code> property.
+      </p>
+
+      <dl>
+        <dt><dfn>verificationMethod</dfn></dt>
+        <dd>
+If a <a>DID document</a> includes a <code>verificationMethod</code> property,
+the value of the property MUST be an array of verification method objects.
+Each verification method object MUST have the <code>id</code>, <code>type</code>,
+<code>controller</code>, and specific verification method properties. The
+verification method objects MAY include additional properties.
+        </dd>
+      </dl>
+
+      <p>
+The value of the <code>id</code> property MUST be a <a>URI</a>. The array of
+verification methods MUST NOT contain multiple entries with the same
+<code>id</code>. If the array of <a>verification methods</a> contains multiple 
+entries with the same <code>id</code>, a <a>DID document</a> processor MUST 
+produce an error.
+      </p>
+
+      <p>
+The value of the <code>type</code> property MUST be exactly one verification
+method type. In order to maximize global interoperability, the 
+<a>verification method</a> type SHOULD be registered in the
+[[DID-SPEC-REGISTRIES]].
+      </p>
+
+      <p>
+The value of the <code>controller</code> property, MUST be a valid <a>DID</a>.
+      </p>
+
+      <p>
+In order to maximize global interoperability, the verification method properties 
+SHOULD be registered in the [[DID-SPEC-REGISTRIES]].
+      </p>
+
+      <pre class="example" title="Example verification methods">
+{
+  "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
+  "id": "did:example:123456789abcdefghi",
+  <span class="comment">...</span>
+  "verificationMethod": [{
+    "id": <span class="comment">...</span>,
+    "type": <span class="comment">...</span>,
+    "controller": <span class="comment">...</span>,
+    <span class="comment">...</span>
+  ]}
+}
+      </pre>
+
+      <section>
+        <h3>Verification relationships</h3>
+
+        <p>
+A <a>verification relationship</a> expresses the relationship between the
+<a>DID subject</a> and a <a>verification method</a>.
+        </p>
+        <p>
+A <a>DID document</a> MAY include a property expressing a specific
+<a>verification relationship</a>. In order to maximize global interoperability, 
+the property SHOULD be registered in [[DID-SPEC-REGISTRIES]].
+        </p>
+        <p>
+A <a>DID controller</a> MUST be explicit about the <a>verification
+relationship</a> between the DID subject and the <a>verification method</a>.
+<a>Verification methods</a> that are not associated with a particular
+<a>verification relationship</a> MUST NOT be used for that <a>verification
+relationship</a>. See Section <a href="#authentication"></a> for a more
+detailed example of a <a>verification relationship</a>.
+        </p>
+
+      </section>
+
+    </section>
+
+    <section>
       <h2>Public Keys</h2>
-
-      <p>
-A <a>DID document</a> can express cryptographic keys and other verification
-methods, which can be used to authenticate or authorize interactions with the
-<a>DID subject</a> or associated parties. The information expressed often
-includes globally unambiguous identifiers and public key material, which can be
-used to verify digital signatures. Other information can be expressed, such as
-attributes that enable one to determine whether it is a
-hardware-backed cryptographic key.
-      </p>
-
-      <p>
-Regarding cryptographic key material, public keys can be included in a
-<a>DID document</a> using, for example, the <code>publicKey</code> or
-<code>authentication</code> properties, depending on what they are to be used
-for. Each public key has an identifier (<code>id</code>) of its own, a
-<code>type</code>, and a <code>controller</code>, as well as other properties
-that depend on the type of key it is.
-      </p>
-
-      <p>
-This specification strives to limit the number of formats for expressing public
-key material in a DID Document to the fewest possible, to increase the
-likelihood of interoperability. The fewer formats that implementers have to
-implement, the more likely it will be that they will support all of them. This
-approach attempts to strike a delicate balance between ease of implementation
-and supporting formats that have historically had broad deployment. The specific
-types of key formats that are supported in this specification are listed below.
-      </p>
 
       <p>
 A public key is a <a>verification method</a>.
@@ -1336,20 +1404,21 @@ authorization mechanisms of <a>DID</a> method operations (see Section
 <a href="#method-operations"></a>), which can be defined by <a>DID method</a>
 specifications.
       </p>
-
-      <p class="note" title="Verification methods">
-A public key is just one type of <a>verification method</a>.  A <a>DID
-document</a> expresses the relationship between the <a>DID subject</a> and a
-<a>verification method</a> using a <dfn>verification relationship</dfn>.
-Examples of <a>verification relationship</a>s include:
-<code>authentication</code>, <code> capabilityInvocation</code>,
-<code>capabilityDelegation</code>, <code>keyAgreement</code>, and
-<code>assertionMethod</code>. A <a>DID controller</a> MUST be explicit about the
-<a>verification relationship</a> between the DID subject and the <a>verification
-method</a>. <a>Verification methods</a> that are not associated with a
-particular <a>verification relationship</a> MUST NOT be used for that
-<a>verification relationship</a>. See Section <a href="#authentication"></a>
-for a more detailed example of a <a>verification relationship</a>.
+      <p>
+Public keys can be included in a <a>DID document</a> using the
+<code>publicKey</code> or <code>authentication</code> properties, depending on
+what they are to be used for. Each public key has an identifier (<code>id</code>)
+of its own, a <code>type</code>, and a <code>controller</code>, as well as
+other properties that depend on the type of key it is.
+      </p>
+      <p>
+This specification strives to limit the number of formats for expressing public
+key material in a DID Document to the fewest possible, to increase the
+likelihood of interoperability. The fewer formats that implementers have to
+implement, the more likely it will be that they will support all of them. This
+approach attempts to strike a delicate balance between ease of implementation
+and supporting formats that have historically had broad deployment. The specific
+types of key formats that are supported in this specification are listed below.
       </p>
 
       <p>
@@ -1645,6 +1714,8 @@ themselves.
 
       <p>
 A <a>DID document</a> MAY include an <code>authentication</code> property.
+The <code>authentication</code> property is an example of a <a>verification
+relationship</a>.
       </p>
 
       <dl>
