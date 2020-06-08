@@ -501,7 +501,7 @@ DID resolver.
 The basic components of DID architecture.
           </figcaption>
       </figure>
-      
+
       <dl>
         <dt>
 DIDs and DID URLs
@@ -782,13 +782,13 @@ is bound exclusively and permanently to its one and only subject. Even after a
         <div class="note">
           <p>
 Ideally, a <a>DID</a> would be a completely abstract decentralized identifier
-(like a <a>UUID</a>) that could be bound to multiple underlying <a>DID
-registries</a> over time, thus maintaining its persistence independent of any
-particular system. However, registering the same identifier on multiple <a>DID
-registries</a> introduces extremely hard entityship and
-<a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">start-of-authority</a>
-(SOA) problems. It also greatly increases implementation complexity for
-developers.
+(like a <a>UUID</a>) that could be bound to multiple underlying <a>verifiable
+data registries</a> over time, thus maintaining its persistence independent of
+any particular system. However, registering the same identifier on multiple
+<a>verifiable data registries</a> introduces extremely hard entityship and <a
+href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">
+start-of-authority</a> (SOA) problems. It also greatly increases implementation
+complexity for developers.
           </p>
           <p>
 To avoid these issues, developers should refer to the Decentralized
@@ -1226,7 +1226,7 @@ The data model supports two types of extensibility.
       <ol>
         <li>
 For maximum interoperability, it is RECOMMENDED that extensions use the official
-W3C DID Core Registries mechanism [[DID-CORE-REGISTRIES]]. The use of this
+W3C DID Core Registries mechanism [[DID-SPEC-REGISTRIES]]. The use of this
 mechanism for new properties or other extensions is the only specified method
 that ensures that two different representations will be able to work together.
         </li>
@@ -1239,7 +1239,7 @@ conversion into any other conformant representation.
       <p class="note">
 It is always possible for two specific implementations to agree out-of-band to
 use a mutually understood extension or representation that is not recorded in
-the DID Core Registries [[DID-CORE-REGISTRIES]]; interoperability between such
+the DID Core Registries [[DID-SPEC-REGISTRIES]]; interoperability between such
 implementations and the larger ecosystem will be less reliable.
       </p>
     </section>
@@ -1343,14 +1343,14 @@ verification method objects MAY include additional properties.
       <p>
 The value of the <code>id</code> property MUST be a <a>URI</a>. The array of
 verification methods MUST NOT contain multiple entries with the same
-<code>id</code>. If the array of <a>verification methods</a> contains multiple 
-entries with the same <code>id</code>, a <a>DID document</a> processor MUST 
+<code>id</code>. If the array of <a>verification methods</a> contains multiple
+entries with the same <code>id</code>, a <a>DID document</a> processor MUST
 produce an error.
       </p>
 
       <p>
 The value of the <code>type</code> property MUST be exactly one verification
-method type. In order to maximize global interoperability, the 
+method type. In order to maximize global interoperability, the
 <a>verification method</a> type SHOULD be registered in the
 [[DID-SPEC-REGISTRIES]].
       </p>
@@ -1360,7 +1360,7 @@ The value of the <code>controller</code> property, MUST be a valid <a>DID</a>.
       </p>
 
       <p>
-In order to maximize global interoperability, the verification method properties 
+In order to maximize global interoperability, the verification method properties
 SHOULD be registered in the [[DID-SPEC-REGISTRIES]].
       </p>
 
@@ -1387,7 +1387,7 @@ A <a>verification relationship</a> expresses the relationship between the
         </p>
         <p>
 A <a>DID document</a> MAY include a property expressing a specific
-<a>verification relationship</a>. In order to maximize global interoperability, 
+<a>verification relationship</a>. In order to maximize global interoperability,
 the property SHOULD be registered in [[DID-SPEC-REGISTRIES]].
         </p>
         <p>
@@ -1489,7 +1489,7 @@ RECOMMENDED that <a href="https://tools.ietf.org/html/rfc7517">JWK</a>
 <a href="https://tools.ietf.org/html/rfc7638">public key fingerprint</a>. It is
 RECOMMENDED that verification methods that use JWKs to represent their public
 keys utilize the value of <code>kid</code> as their fragment identifier. See the
-first key in <a href="#example-12-various-public-keys">EXAMPLE 12</a> for an
+first key in <a href="#example-15-various-public-keys">EXAMPLE 15</a> for an
 example of a public key with a compound key identifier.
       </p>
 
@@ -3114,7 +3114,7 @@ Keep Personally-Identifiable Information (PII) Private
       </h2>
 
       <p>
-If a <a>DID method</a> specification is written for a public <a>DID
+If a <a>DID method</a> specification is written for a public <a>verifiable data
 registry</a> where all <a>DIDs</a> and <a>DID documents</a> are publicly
 available, it is <em>critical</em> that <a>DID documents</a> contain no
 personal data. All personal data should be kept behind <a>service
@@ -3415,16 +3415,16 @@ Equivalence
 Including an equivalence property, such as <code>equivID</code>, in <a>DID
 documents</a> whose value is an array of <a>DIDs</a> would allow subjects to
 assert two or more <a>DIDs</a> that represent the same subject. This capability
-has numerous uses, including supporting migration between <a>DID registries</a>
-and providing forward compatibility of existing <a>DIDs</a> to future <a>DID
-registries</a>. In theory, equivalent <a>DIDs</a> should have the same
-identifier rights, allowing <a href="https://w3c.github.io/vctf/">verifiable
-claims</a> made against one <a>DID</a> to apply to equivalent <a>DIDs</a>.
-Equivalence was not included in the current specification due to the complexity
-of verifying equivalence across different <a>DLTs</a> and different <a>DID
-methods</a>, and also of aggregating properties of equivalent <a>DID
-documents</a>. However equivalence should be supported in a future version of
-this specification.
+has numerous uses, including supporting migration between <a>verifiable data
+registries</a> and providing forward compatibility of existing <a>DIDs</a> to
+future <a>verifiable data registries</a>. In theory, equivalent <a>DIDs</a>
+should have the same identifier rights, allowing verifiable credentials
+[[?VC-DATA-MODEL]] made against one <a>DID</a> to apply to equivalent
+<a>DIDs</a>. Equivalence was not included in the current specification due to
+the complexity of verifying equivalence across different <a>DLTs</a> and
+different <a>DID methods</a>, and also of aggregating properties of equivalent
+<a>DID documents</a>. However equivalence should be supported in a future
+version of this specification.
       </p>
     </section>
 
