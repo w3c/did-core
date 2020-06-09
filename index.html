@@ -2944,9 +2944,9 @@ Resolution
     </h1>
 
     <p>
-This section defines the inputs and outputs of the <a>DID resolution</a> and
-<a>DID URL dereferencing</a> processes. The exact implementation of these
-functions is out of scope for this specification, but some considerations for
+This section defines the inputs and outputs of <a>DID resolution</a> and
+<a>DID URL dereferencing</a>. These functions are defined in an abstract way.
+Their exact implementation is out of scope for this specification, but some considerations for
 implementors are discussed in [[?DID-RESOLUTION]].
     </p>
 
@@ -2964,7 +2964,7 @@ DID Resolution
 The <a>DID resolution</a> function resolves a <a>DID</a> into a <a>DID document</a>
 by using the "Read" operation of the applicable <a>DID method</a>. (See <a href="#read-verify"></a>.)
 The details of how this process is accomplished are outside the scope of this
-specification, but all conformant implementations MUST implement a function in the following form:
+specification, but all conformant implementations MUST implement a function which has the following abstract form:
         </p>
 
         <p><code>
