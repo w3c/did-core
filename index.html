@@ -123,6 +123,13 @@
         company: "Danube Tech",
         companyURL: "https://danubetech.com/",
         w3cid: 46729
+      }, 
+      {
+        name: "Jonathan Holt, DO, MS",
+        url: "https://www.linkedin.com/in/jonathan-holt-do-ms",
+        company: "ConsenSys Health",
+        companyURL: "https://www.consensyshealth.com",
+        w3cid: 95341
       }
     ]
     };
@@ -2357,24 +2364,281 @@ that decision.
 
     </section>
 
+
     <section>
-        <h2>
-CBOR
-        </h2>
+      <h2>CBOR</h2>
+   <p>
+Like Javascript Object Notation (JSON) <a>[[RFC8259]]</a>, Concise Binary Object Representation (CBOR) <a>[[RFC7049]]</a> 
+defines a set of formatting rules for the portable representation of structured data. CBOR is a more concise, machine-readable, language-independent data interchange format that is self-describing and has built-in semantics for interoperability.  With specific constraints, CBOR can support all JSON data types (including JSON-LD) for translation between the DID document model (described in <a>Data Model</a> and <a>DID Documents</a>) and other core representations.  
+  </p>
 
-        <section>
-            <h3>
-Production
-            </h3>
-        </section>
+  <p>Concise Data Definition Language (CDDL) [[RFC8610 ]] is a notation used to express Concise Binary Object Representation (CBOR), and by extension JSON Data Structures. The following notation expresses the DID Document model in CBOR representation with specific constraints for deterministic mappings between other core representations. </p>
 
-        <section>
-            <h3>
-Consumption
-            </h3>
-        </section>
+  <pre class="example nohighlight" title="DID Document data model for CBOR expressed in CDDL notation">
+    DID-document = {
+      ? @context : uri                     
+      id : did  
+      ? publicKey : [* publicKey ]
+      ? authentication :  [ *did // *publicKey // *tstr ]  
+      ? service : [ + service  ]
+      ? controller : did / [ *did ]    
+      ? created : time 
+      ? updated : time
+      proof :  any
+    }
+    
+    publicKey = {
+      id : did 
+      type : text
+      controller : uri 
+    }
+    
+    did = tstr .pcre "^did\\:(?<method-name>[a-z0-9]{2,})\\:(?<method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)"
+    
+    did-url =  tstr .pcre "^did\\:(?<method-name>[a-z0-9]{2,})\\:(?<method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)\\;(?<path>[A-Za-z0-9\\/)(?<query>\\?[a-z0-9\\=\\&])#(?<fragment>.+)"
+    
+    service = {
+      id : did-url 
+      type : text 
+      serviceEndpoint : uri 
+      ? description : text 
+      * tstr => any 
+    }
+   </pre>
 
-    </section>
+  <section>
+    <h4>Production</h4>
+<p>When producing DID Documents that are represented as CBOR, in addition to the suggestions in section 3.9 of the CBOR [[RFC7049]] specification for deterministic mappings, the following constraints of the DID Document model MUST be followed: </p>
+
+  <ul>
+  <li>Map keys MUST be strings.</li>  
+  <li>Integer encoding MUST be as short as possible.</li> 
+  <li>The expression of lengths in CBOR major types 2 through 5 MUST be as short as possible.</li>
+  <li>All floating point values MUST be encoded as 64-bits, even for integral values.</li> 
+  
+</ul>
+<pre class="example nohighlight" title="An example DID Document represented as contrained CBOR and exported in diagnostic annotation mode for easy readibility">
+    a7                                                   # map(7)
+    62                                                #   text(2)
+       6964                                           #     "id"
+    78 40                                             #   text(64)
+       6469643a6578616d706c653a31324433               #     "did:example:12D3"
+       4b6f6f574d4864727a6377706a626472               #     "KooWMHdrzcwpjbdr"
+       5a733547477145524176636771583362               #     "Zs5GGqERAvcgqX3b"
+       3564707550745061396f743639796577               #     "5dpuPtPa9ot69yew"
+    65                                                #   text(5)
+       70726f6f66                                     #     "proof"
+    a4                                                #   map(4)
+       64                                             #     text(4)
+          74797065                                    #       "type"
+       74                                             #     text(20)
+          656432353531395369676e617475726532303138    #       "ed25519Signature2018"
+       67                                             #     text(7)
+          63726561746564                              #       "created"
+       74                                             #     text(20)
+          323032302d30352d30315430333a30303a30325a    #       "2020-05-01T03:00:02Z"
+       67                                             #     text(7)
+          63726561746f72                              #       "creator"
+       78 8c                                          #     text(140)
+          6469643a6578616d706c653a31324433            #       "did:example:12D3"
+          4b6f6f574d4864727a6377706a626472            #       "KooWMHdrzcwpjbdr"
+          5a733547477145524176636771583362            #       "Zs5GGqERAvcgqX3b"
+          3564707550745061396f743639796577            #       "5dpuPtPa9ot69yew"
+          3b206578616d706c653a6b65793d6964            #       "; example:key=id"
+          3d626166797265696375627478357771            #       "=bafyreicubtx5wq"
+          6f336e6f73633463617a726b63746668            #       "o3nosc4cazrkctfh"
+          776436726577657a6770776f65347377            #       "wd6rewezgpwoe4sw"
+          69726c733465626468733269                    #       "irls4ebdhs2i"
+       6e                                             #     text(14)
+          7369676e617475726556616c7565                #       "signatureValue"
+       78 58                                          #     text(88)
+          6f3972364c78676f474e38466f616565            #       "o9r6LxgoGN8Foaee"
+          554136456444637631324776447a4645            #       "UA6EdDcv12GvDzFE"
+          6d43676a577a76707572325953517941            #       "mCgjWzvpur2YSQyA"
+          3857327230535357554b2b6e4835744d            #       "8W2r0SSWUK+nH5tM"
+          717a61464c756e3677775a31456f7433            #       "qzaFLun6wwZ1Eot3"
+          37616d4744673d3d                            #       "7amGDg=="
+    67                                                #   text(7)
+       63726561746564                                 #     "created"
+    74                                                #   text(20)
+       323031382d31322d30315430333a30303a30305a       #     "2018-12-01T03:00:00Z"
+    67                                                #   text(7)
+       75706461746564                                 #     "updated"
+    74                                                #   text(20)
+       323032302d30352d30315430333a30303a30305a       #     "2020-05-01T03:00:00Z"
+    68                                                #   text(8)
+       40636f6e74657874                               #     "@context"
+    78 1c                                             #   text(28)
+       68747470733a2f2f7777772e77332e6f               #     "https://www.w3.o"
+       72672f6e732f6469642f7631                       #     "rg/ns/did/v1"
+    69                                                #   text(9)
+       7075626c69634b6579                             #     "publicKey"
+    81                                                #   array(1)
+       a5                                             #     map(5)
+          62                                          #       text(2)
+             6964                                     #         "id"
+          78 85                                       #       text(133)
+             6261667972656963756274783577716f         #         "bafyreicubtx5wqo"
+             336e6f73633463617a726b6374666877         #         "3nosc4cazrkctfhw"
+             6436726577657a6770776f6534737769         #         "d6rewezgpwoe4swi"
+             726c7334656264687332693b6578616d         #         "rls4ebdhs2i;exam"
+             706c653a6b65793d6964626166797265         #         "ple:key=idbafyre"
+             6963756274783577716f336e6f736334         #         "icubtx5wqo3nosc4"
+             63617a726b6374666877643672657765         #         "cazrkctfhwd6rewe"
+             7a6770776f6534737769726c73346562         #         "zgpwoe4swirls4eb"
+             6468733269                               #         "dhs2i"
+          64                                          #       text(4)
+             74797065                                 #         "type"
+          6e                                          #       text(14)
+             45644473615075626c69634b6579             #         "EdDsaPublicKey"
+          65                                          #       text(5)
+             6375727665                               #         "curve"
+          67                                          #       text(7)
+             65643235353139                           #         "ed25519"
+          67                                          #       text(7)
+             65787069726573                           #         "expires"
+          74                                          #       text(20)
+             323031392d31322d30315430333a30303a30305a #         "2019-12-01T03:00:00Z"
+          6f                                          #       text(15)
+             7075626c69634b6579426173653634           #         "publicKeyBase64"
+          78 2c                                       #       text(44)
+             716d7a3774704c4e4b4b4b646c376344         #         "qmz7tpLNKKKdl7cD"
+             375062656a4469425670374f4e706d5a         #         "7PbejDiBVp7ONpmZ"
+             62666d633763454b396d673d                 #         "bfmc7cEK9mg="
+    6e                                                #   text(14)
+       61757468656e7469636174696f6e                   #     "authentication"
+    81                                                #   array(1)
+       78 83                                          #     text(131)
+          6469643a6578616d706c653a31324433            #       "did:example:12D3"
+          4b6f6f574d4864727a6377706a626472            #       "KooWMHdrzcwpjbdr"
+          5a733547477145524176636771583362            #       "Zs5GGqERAvcgqX3b"
+          3564707550745061396f743639796577            #       "5dpuPtPa9ot69yew"
+          3b6b65792d69643d6261667972656963            #       ";key-id=bafyreic"
+          756274783577716f336e6f7363346361            #       "ubtx5wqo3nosc4ca"
+          7a726b63746668776436726577657a67            #       "zrkctfhwd6rewezg"
+          70776f6534737769726c733465626468            #       "pwoe4swirls4ebdh"
+          733269                                      #       "s2i"
+  </pre>
+
+</section>
+
+
+
+<section>
+  <h4>Consumption</h4>
+<p>  When consuming DID Documents that are represented as CBOR, in addition to the suggestions in section 3.9 of the CBOR [[RFC7049]] specification for deterministic mappings the following constraints of the DID Document model MUST be followed:  </p> 
+  <ul>
+  <li>The keys in every map must be sorted lowest value to highest. Sorting is performed on the bytes of the representation of the keys.</li>
+  <li>Indefinite-length items must be made into definite-length items.</li>
+</ul>
+</section>
+
+<section>
+  <h4>CBOR Extensibility</h4>
+  <p>In CBOR, one point of extensibility is with the use of CBOR tags. [[RFC7049]]  defines a basic set of data types, as
+    well as a tagging mechanism that enables extending the set of data types supported via an IANA registry [[CBOR-TAG-Registry]]. This allows for tags to enhance the semantic description of the data that follows. 
+  </p>
+
+  <section>
+      <h2>DagCBOR</h2>
+     <p>DagCBOR is a further restricted subset of CBOR for representing the DID Document as a Directed Acyclic Graph model using canonical CBOR encoding as noted above with additional constraits.  DagCBOR requires that there exist a single way of encoding any given object, and that encoded forms contain no superfluous data that may be ignored or lost in a round-trip decode/encode. When producing and consuming DID Documents representing in DagCBOR the following rules MUST be followed</p>
+     
+     <ul>
+       <li>Use no CBOR tags other than the CID tag (42)</li>
+     </ul>
+     
+     <pre class="example nohighlight" title="DID Document as DagCBOR same as the previous example, but serialized to JSON for easy readability">{ "@context": "https://www.w3.org/ns/did/v1",
+  "authentication": [
+    "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew;key-id=bafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i"
+  ],
+  "created": "2018-12-01T03:00:00Z",
+  "id": "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew",
+  "proof": {
+    "created": "2020-05-01T03:00:02Z",
+    "creator": "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew; example:key=id=bafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i",
+    "signatureValue": "o9r6LxgoGN8FoaeeUA6EdDcv12GvDzFEmCgjWzvpur2YSQyA8W2r0SSWUK+nH5tMqzaFLun6wwZ1Eot37amGDg==",
+    "type": "ed25519Signature2018"
+  },
+  "publicKey": [
+    {
+      "curve": "ed25519",
+      "expires": "2019-12-01T03:00:00Z",
+      "id": "bafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i;example:key=idbafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i",
+      "publicKeyBase64": "qmz7tpLNKKKdl7cD7PbejDiBVp7ONpmZbfmc7cEK9mg=",
+      "type": "EdDsaPublicKey"
+    }
+  ],
+  "updated": "2020-05-01T03:00:00Z"
+}
+</pre>
+</section>
+
+
+<section>
+<h4>COSE signatures</h4>
+
+<p>A DID Document proof may be constructed using CBOR semantic tagging, such as tag 98 for CBOR Object Signing and Encryption (COSE) [[RFC8152]] </p>
+
+<pre class="example nohighlight" title="An example extensibility of COSE signature of CBOR using tag 98 and 42 expressed in diagnostic annotated form">
+  D8 62                                        # tag(98)
+  67                                           #   text(7)
+     7061796c6f6164                            #     "payload"
+  d8 2a                                        #   tag(42)
+     58 25                                     #     bytes(37)
+        00017112206c8fdc5c3d2302dda95034       #       "\x00\x01q\x12 l\x8f\xdc\\=#\x02\xdd\xa9P4"
+        f9de57a8591918ecb7d7789387c547f7       #       "\xf9\xdeW\xa8Y\x19\x18\xec\xb7\xd7x\x93\x87\xc5G\xf7"
+        a89d05e72f                             #       "\xa8\x9d\x05\xe7/"
+  69                                           #   text(9)
+     70726f746563746564                        #     "protected"
+  a0                                           #   map(0)
+  6a                                           #   text(10)
+     7369676e617475726573                      #     "signatures"
+  81                                           #   array(1)
+     a3                                        #     map(3)
+        69                                     #       text(9)
+           70726f746563746564                  #         "protected"
+        66                                     #       text(6)
+           613130313236                        #         "a10126"
+        69                                     #       text(9)
+           7369676e6174757265                  #         "signature"
+        78 80                                  #       text(128)
+           65326165616664343064363964313964    #         "e2aeafd40d69d19d"
+           66653665353230373763356437666634    #         "fe6e52077c5d7ff4"
+           65343038323832636265666235643036    #         "e408282cbefb5d06"
+           63626634313461663265313964393832    #         "cbf414af2e19d982"
+           61633435616339386238353434633930    #         "ac45ac98b8544c90"
+           38623435303764653165393062373137    #         "8b4507de1e90b717"
+           63336433343831366665393236613262    #         "c3d34816fe926a2b"
+           39386635336166643266613066333061    #         "98f53afd2fa0f30a"
+        6b                                     #       text(11)
+           756e70726f746563746564              #         "unprotected"
+        a1                                     #       map(1)
+           63                                  #         text(3)
+              6b6964                           #           "kid"
+           78 85                               #         text(133)
+              6469643a697069643a313244334b6f6f #           "did:ipid:12D3Koo"
+              574d4864727a6377706a6264725a7335 #           "WMHdrzcwpjbdrZs5"
+              47477145524176636771583362356470 #           "GGqERAvcgqX3b5dp"
+              7550745061396f7436397965773b6970 #           "uPtPa9ot69yew;ip"
+              69643a6b65792d69643d626166797265 #           "id:key-id=bafyre"
+              6963756274783577716f336e6f736334 #           "icubtx5wqo3nosc4"
+              63617a726b6374666877643672657765 #           "cazrkctfhwd6rewe"
+              7a6770776f6534737769726c73346562 #           "zgpwoe4swirls4eb"
+              6468733269                       #           "dhs2i"
+  6b                                           #   text(11)
+     756e70726f746563746564                    #     "unprotected"
+  a0                                           #   tag(0)
+</pre>
+
+</section>
+
+
+</section>
+
+</section>
+
+
+
   </section>
 
   <section>
@@ -3654,6 +3918,130 @@ according to the rules associated with the
 media type</a> [[JSON-LD11]].
       </p>
     </section>
+
+    <section>
+      <h2>application/did+cbor</h2>
+      <dl>
+        <dt>Type name:</dt>
+        <dd>application</dd>
+        <dt>Subtype name:</dt>
+        <dd>did+cbor</dd>
+        <dt>Required parameters:</dt>
+        <dd>None</dd>
+        <dt>Optional parameters:</dt>
+        <dd>None</dd>
+        <dt>Encoding considerations:</dt>
+        <dd>
+See <a data-cite="RFC7049#section-3.9">RFC&nbsp;7049, section 4.2</a>.
+        </dd>
+        <dt>Security considerations:</dt>
+        <dd>
+See <a data-cite="RFC7049#section-10">RFC&nbsp;7049, section 10</a> [[RFC7049]].
+        </dd>
+        <dt>Interoperability considerations:</dt>
+        <dd>Not Applicable</dd>
+        <dt>Published specification:</dt>
+        <dd>http://www.w3.org/TR/did-core/</dd>
+        <dt>Applications that use this media type:</dt>
+        <dd>
+Any application that requires an identifier that is decentralized, persistent,
+cryptographically verifiable, and resolvable. Applications typically consist of
+cryptographic identity systems, decentralized networks of devices, and
+websites that issue or verify W3C Verifiable Credentials.
+        </dd>
+        <dt>Additional information:</dt>
+        <dd>
+          <dl>
+            <dt>Magic number(s):</dt>
+            <dd>Not Applicable</dd>
+            <dt>File extension(s):</dt>
+            <dd>.did</dd>
+            <dt>Macintosh file type code(s):</dt>
+            <dd>TEXT</dd>
+          </dl>
+        </dd>
+        <dt>Person &amp; email address to contact for further information:</dt>
+        <dd>Ivan Herman &lt;ivan@w3.org&gt;</dd>
+        <dt>Intended usage:</dt>
+        <dd>Common</dd>
+        <dt>Restrictions on usage:</dt>
+        <dd>None</dd>
+        <dt>Author(s):</dt>
+        <dd>Drummond Reed, Manu Sporny, Markus Sabadello, Dave Longley, Christopher Allen, Jonathan Holt</dd>
+        <dt>Change controller:</dt>
+        <dd>W3C</dd>
+      </dl>
+
+       <p>
+Fragment identifiers used with
+<a href="#application-did-json">application/did+cbor</a> are treated
+according to the rules defined in
+<a data-cite="DID-CORE#fragment">DID Core v1.0, Fragment</a> [[DID-CORE]].
+      </p>
+    </section>
+
+     <section>
+      <h2>application/did+dag+cbor</h2>
+      <dl>
+        <dt>Type name:</dt>
+        <dd>application</dd>
+        <dt>Subtype name:</dt>
+        <dd>did+dag+cbor</dd>
+        <dt>Required parameters:</dt>
+        <dd>None</dd>
+        <dt>Optional parameters:</dt>
+        <dd>None</dd>
+        <dt>Encoding considerations:</dt>
+        <dd>
+See <a data-cite="RFC7049#section-4.2">RFC&nbsp;7049, section 4.2</a>.
+        </dd>
+        <dt>Security considerations:</dt>
+        <dd>
+See <a data-cite="RFC7049#section-10">RFC&nbsp;7049, section 10</a> [[RFC7049]].
+        </dd>
+        <dt>Interoperability considerations:</dt>
+        <dd>Not Applicable</dd>
+        <dt>Published specification:</dt>
+        <dd>http://www.w3.org/TR/did-core/</dd>
+        <dt>Applications that use this media type:</dt>
+        <dd>
+Any application that requires an identifier that is decentralized, persistent,
+cryptographically verifiable, and resolvable. Applications typically consist of
+cryptographic identity systems, decentralized networks of devices, and
+websites that issue or verify W3C Verifiable Credentials.
+        </dd>
+        <dt>Additional information:</dt>
+        <dd>
+          <dl>
+            <dt>Magic number(s):</dt>
+            <dd>Not Applicable</dd>
+            <dt>File extension(s):</dt>
+            <dd>.did</dd>
+            <dt>Macintosh file type code(s):</dt>
+            <dd>TEXT</dd>
+          </dl>
+        </dd>
+        <dt>Person &amp; email address to contact for further information:</dt>
+        <dd>Ivan Herman &lt;ivan@w3.org&gt;</dd>
+        <dt>Intended usage:</dt>
+        <dd>Common</dd>
+        <dt>Restrictions on usage:</dt>
+        <dd>None</dd>
+        <dt>Author(s):</dt>
+        <dd>Drummond Reed, Manu Sporny, Markus Sabadello, Dave Longley, Christopher Allen, Jonathan Holt</dd>
+        <dt>Change controller:</dt>
+        <dd>W3C</dd>
+      </dl>
+
+       <p>
+Fragment identifiers used with
+<a href="#application-did-json">application/did+cbor</a> are treated
+according to the rules defined in
+<a data-cite="DID-CORE#fragment">DID Core v1.0, Fragment</a> [[DID-CORE]].
+      </p>
+    </section>
+
+
 
   </section>
 
