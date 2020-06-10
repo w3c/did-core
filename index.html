@@ -1918,6 +1918,46 @@ Example:
 
       </section>
 
+      <h3>keyAgreement</h3>
+      <p>
+<code>keyAgreement<code> is a <a>verification relationship</a> which an entity can use to indicate that a <a>verification method</a> is authorized to perform key agreement protocols on behalf of the <a>DID subject</a>. The <em>counterparty(s)</em> in a key agreement protocol can use the <code>keyAgreement</code><a>verification relationship</a> to check whether a party performing a key agreement protocol on behalf of the <a>Did subject</a> is authorized by checking if the <a>verification method</a> used during the keyAgreement protocol is contained in the <code>keyAgreement<code> section of the <a>DID Document</a>.
+      </p>
+
+      <p class="note" title="Uses of keyAgreement">
+If keyAgreement is established, it is up to the verifying party to validate that the <a>verification method</a> used during a keyAgreement protocol is valid and is contained in the <code>keyAgreement</code> section. An example of how this might be used, is when a party wishes to establish a TLS session on behalf of the <a>DID Subject</a> to communicate with another party. In this case, the counterparty would want to check the <a>verification method</a> used during the protocol handshake is contained within the assertionMethod section of the <a>DID Document</a>.
+
+      <p>
+A <a>DID document</a> MAY include an <code>keyAgreement</code> property.
+The <code>keyAgreement</code> property is an additional example of a <a>verification relationship</a>.
+
+      <p>
+Example:
+      </p>
+
+      <pre class="example nohighlight" title="Authentication field containing three verification methods">
+{
+  "@context": "https://www.w3.org/ns/did/v1",
+  "id": "did:example:123456789abcdefghi",
+  <span class="comment">...</span>
+  "keyAgreement": [
+    <span class="comment">// this method can be used to assert statements as did:...fghi</span>
+    "did:example:123456789abcdefghi#keys-1",
+    <span class="comment">// this method can be used to assert statements as did:...fghi</span>
+    "did:example:123456789abcdefghi#biometric-1",
+    <span class="comment">// this method is *only* authorized for assertion of statements, it may not</span>
+    <span class="comment">// be used for any other verification relationship, so its full description is</span>
+    <span class="comment">// embedded here rather than using only a reference</span>
+    {
+      "id": "did:example:123#zC9ByQ8aJs8vrNXyDhPHHNNMSHPcaSgNpjjsBYpMMjsTdS",
+      "type": "X25519KeyAgreementKey2019",
+      "controller": "did:example:123",
+      "publicKeyBase58": "9hFgmPVfmBZwRvFEyniQDBkz9LmV7gDEqytWyGZLmDXE"
+    }
+  ],
+  <span class="comment">...</span>
+
+      </section>
+
     </section>
 
     <section>
