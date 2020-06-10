@@ -1386,31 +1386,6 @@ SHOULD be registered in the [[DID-SPEC-REGISTRIES]].
 }
       </pre>
 
-      <section>
-        <h3>Verification relationships</h3>
-
-        <p>
-A <a>verification relationship</a> expresses the relationship between the
-<a>DID subject</a> and a <a>verification method</a>.
-        </p>
-        <p>
-A <a>DID document</a> MAY include a property expressing a specific
-<a>verification relationship</a>. In order to maximize global interoperability,
-the property SHOULD be registered in [[DID-SPEC-REGISTRIES]].
-        </p>
-        <p>
-A <a>DID controller</a> MUST be explicit about the <a>verification
-relationship</a> between the DID subject and the <a>verification method</a>.
-<a>Verification methods</a> that are not associated with a particular
-<a>verification relationship</a> MUST NOT be used for that <a>verification
-relationship</a>. See Section <a href="#authentication"></a> for a more
-detailed example of a <a>verification relationship</a>.
-        </p>
-
-      </section>
-
-    </section>
-
     <section>
       <h2>Public Keys</h2>
 
@@ -1711,15 +1686,109 @@ see Section <a href="#resolution"></a>.
     </section>
 
     <section>
-      <h2>Authentication</h2>
+      <h2>
+Authorization and Delegation
+      </h2>
 
       <p>
-Authentication is a mechanism by which an entity can prove it is the <a>DID
-subject</a>. The <em>verifier</em> of an authentication attempt can check if the
-authenticating party is presenting a valid proof of authentication, that is,
-that they are who they say they are. Note that a successful authentication on
-its own may or may not confer authority; that is up to the verifying
-application.
+Authorization is the mechanism used to state how operations may be performed on
+behalf of the <a>DID subject</a>. Delegation is the mechanism that the subject
+uses to authorize others to act on their behalf.
+      </p>
+
+      <p class="note" title="Authorization vs authentication">
+Note that Authorization is separate from <a href="#authentication"></a>.
+This is particularly important for key recovery in the case of key loss,
+when the subject no longer has access to their keys, or key compromise,
+where the <a>DID controller</a>'s trusted third parties need to override
+malicious activity by an attacker. See Section
+<a href="#security-considerations"></a>.
+      </p>
+
+      <p>
+A DID document MAY include a <code>controller</code> property to indicate
+that there are <a>DID controller(s)</a> other than the <a>DID subject</a>.
+If so:
+      </p>
+
+      <dl>
+          <dt><dfn>controller</dfn></dt>
+          <dd>
+The value of the <code>controller</code> property MUST be a valid <a>DID</a>
+or an array of valid <a>DIDs</a>. The corresponding <a>DID document</a>(s)
+SHOULD contain authorization relations that explicitly permit the use of
+certain verification methods for specific purposes.
+          </dd>
+      </dl>
+
+      <p>
+Each <a>DID method</a> MUST define how authorization and delegation are
+implemented, including any necessary cryptographic operations.
+      </p>
+
+      <p>
+There are at least two suggested methods for implementing Authorization and
+Delegation, which may be layered:
+      </p>
+
+      <ul>
+        <li>
+A <a>verifiable data registry</a> could implement a coarse-grained
+<code>controller</code> pattern by enabling <a>DID documents</a> to express
+the <a>DID</a> of another <a>DID controller</a> that controls it, or
+additionally,
+        </li>
+
+        <li>
+A <a>verifiable data registry</a> could implement a capabilities-based approach enabling
+further fine-grained control of authorization and delegation.
+        </li>
+      </ul>
+
+      <pre class="example nohighlight"
+        title="DID document with a controller property">
+{
+  "@context": "https://www.w3.org/ns/did/v1",
+  "id": "did:example:123456789abcdefghi",
+  "controller": "did:example:bcehfew7h32f32h7af3",
+  "service": [{
+    <span class="comment">// used to retrieve Verifiable Credentials associated with the DID</span>
+    "type": "VerifiableCredentialService",
+    "serviceEndpoint": "https://example.com/vc/"
+  }]
+}
+      </pre>
+    </section>
+
+    <section>
+      <section>
+        <h2>Verification relationships</h2>
+
+        <p>
+A <a>verification relationship</a> expresses the relationship between the
+<a>DID subject</a> and a <a>verification method</a>.
+        </p>
+        <p>
+A <a>DID document</a> MAY include a property expressing a specific
+<a>verification relationship</a>. In order to maximize global interoperability,
+the property SHOULD be registered in [[DID-SPEC-REGISTRIES]].
+        </p>
+        <p>
+A <a>DID controller</a> MUST be explicit about the <a>verification
+relationship</a> between the DID subject and the <a>verification method</a>.
+<a>Verification methods</a> that are not associated with a particular
+<a>verification relationship</a> MUST NOT be used for that <a>verification
+relationship</a>. See the sections below for more
+detailed examples of a <a>verification relationship</a>.
+        </p>
+
+    </section>
+
+      <section>
+      <h3>Authentication</h3>
+
+      <p>
+Authentication is a <a>verification relationship</a> which an entity can use to prove it is the <a>DID subject</a>. The <em>verifier</em> of an authentication attempt can check if the authenticating party is presenting a valid proof of authentication, that is, that they are who they say they are. Note that a successful authentication on its own may or may not confer authority; that is up to the verifying application.
       </p>
 
       <p class="note" title="Uses of authentication">
@@ -1808,78 +1877,47 @@ Example:
     </section>
 
     <section>
-      <h2>
-Authorization and Delegation
-      </h2>
+      <h3>assertionMethod</h3>
+      <p>
+<code>assertionMethod<code> is a <a>verification relationship</a> which an entity can use to indicate that a <a>verification method</a> is authorized to assert a statement on behalf of the <a>DID subject</a>. The <em>verifier</em> of an <code>assertionMethod<code> attempt can check proof of a statement asserted on behalf of the <a> Did subject</a> by checking if the <a>verification method</a> used with the proof is contained in the <code>assertionMethod<code> of the <a>DID Document</a>.
+      </p>
+
+      <p class="note" title="Uses of assertionMethod">
+If assertionMethod is established, it is up to the verifying party to validate that the <a>verification method</a> used for providing proof of an assertion is valid and is contained in the assertionMethod section. An example of how this might be used, is when a verifier validates a verifiable credential has been signed on behalf of the <a>DID Subject</a> to issue a verifiable credential. In this case, the verifier would want to check the <a>verification method</a> used to assert proof on behalf of the <a>Did Subject</a> is contained within the assertionMethod section of the <a>DID Document</a>.
 
       <p>
-Authorization is the mechanism used to state how operations may be performed on
-behalf of the <a>DID subject</a>. Delegation is the mechanism that the subject
-uses to authorize others to act on their behalf.
-      </p>
-
-      <p class="note" title="Authorization vs authentication">
-Note that Authorization is separate from <a href="#authentication"></a>.
-This is particularly important for key recovery in the case of key loss,
-when the subject no longer has access to their keys, or key compromise,
-where the <a>DID controller</a>'s trusted third parties need to override
-malicious activity by an attacker. See Section
-<a href="#security-considerations"></a>.
-      </p>
+A <a>DID document</a> MAY include an <code>assertionMethod</code> property.
+The <code>assertionMethod</code> property is an example of a <a>verification
+relationship</a>.
 
       <p>
-A DID document MAY include a <code>controller</code> property to indicate
-that there are <a>DID controller(s)</a> other than the <a>DID subject</a>.
-If so:
+Example:
       </p>
 
-      <dl>
-          <dt><dfn>controller</dfn></dt>
-          <dd>
-The value of the <code>controller</code> property MUST be a valid <a>DID</a>
-or an array of valid <a>DIDs</a>. The corresponding <a>DID document</a>(s)
-SHOULD contain authorization relations that explicitly permit the use of
-certain verification methods for specific purposes.
-          </dd>
-      </dl>
-
-      <p>
-Each <a>DID method</a> MUST define how authorization and delegation are
-implemented, including any necessary cryptographic operations.
-      </p>
-
-      <p>
-There are at least two suggested methods for implementing Authorization and
-Delegation, which may be layered:
-      </p>
-
-      <ul>
-        <li>
-A <a>verifiable data registry</a> could implement a coarse-grained
-<code>controller</code> pattern by enabling <a>DID documents</a> to express
-the <a>DID</a> of another <a>DID controller</a> that controls it, or
-additionally,
-        </li>
-
-        <li>
-A <a>verifiable data registry</a> could implement a capabilities-based approach enabling
-further fine-grained control of authorization and delegation.
-        </li>
-      </ul>
-
-      <pre class="example nohighlight"
-        title="DID document with a controller property">
+      <pre class="example nohighlight" title="Authentication field containing three verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
-  "controller": "did:example:bcehfew7h32f32h7af3",
-  "service": [{
-    <span class="comment">// used to retrieve Verifiable Credentials associated with the DID</span>
-    "type": "VerifiableCredentialService",
-    "serviceEndpoint": "https://example.com/vc/"
-  }]
-}
-      </pre>
+  <span class="comment">...</span>
+  "assertionMethod": [
+    <span class="comment">// this method can be used to assert statements as did:...fghi</span>
+    "did:example:123456789abcdefghi#keys-1",
+    <span class="comment">// this method can be used to assert statements as did:...fghi</span>
+    "did:example:123456789abcdefghi#biometric-1",
+    <span class="comment">// this method is *only* authorized for assertion of statements, it may not</span>
+    <span class="comment">// be used for any other verification relationship, so its full description is</span>
+    <span class="comment">// embedded here rather than using only a reference</span>
+    {
+      "id": "did:example:123456789abcdefghi#keys-2",
+      "type": "Ed25519VerificationKey2018",
+      "controller": "did:example:123456789abcdefghi",
+      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    }
+  ],
+  <span class="comment">...</span>
+
+      </section>
+
     </section>
 
     <section>
