@@ -3101,7 +3101,7 @@ Proving Control of a DID and DID Document
         </h3>
 
         <p>
-Signatures are one way to allow <a>DID documents</a> to be cryptographically
+Signatures and <a>verifiable timestamps</a> allow <a>DID documents</a> to be cryptographically
 verifiable.
         </p>
 
@@ -3112,12 +3112,12 @@ prove control of a <a>DID</a>. It only proves that the:
 
         <ul>
           <li>
-<a>DID document</a> was not tampered with since it was registered.
+<a>DID document</a> was not tampered with since it was timestamped.
           </li>
 
           <li>
 <a>DID controller(s)</a> controlled the private key used for the signature at
-the time the signature was generated.
+the time the timestamp was created.
           </li>
         </ul>
 
@@ -3146,10 +3146,6 @@ It should be noted that this process proves control of a <a>DID</a> and
         <p>
 Signatures on <a>DID documents</a> are optional. <a>DID method</a>
 specifications SHOULD explain and specify their implementation if applicable.
-        </p>
-
-        <p>
-It is good practice to combine timestamps with signatures.
         </p>
       </section>
 
