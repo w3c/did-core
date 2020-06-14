@@ -2369,11 +2369,24 @@ that decision.
     <section>
       <h2>CBOR</h2>
    <p>
-Like Javascript Object Notation (JSON) [[RFC8259]], Concise Binary Object Representation (CBOR) [[RFC7049]]
-defines a set of formatting rules for the portable representation of structured data. CBOR is a more concise, machine-readable, language-independent data interchange format that is self-describing and has built-in semantics for interoperability.  With specific constraints, CBOR can support all JSON data types (including JSON-LD) for translation between the DID document model (described in <a href="#data-model">Data Model</a> and <a>DID Documents</a>) and other core representations.
+Like Javascript Object Notation (JSON) [[RFC8259]], Concise Binary Object
+Representation (CBOR) [[RFC7049]] defines a set of formatting rules for the
+portable representation of structured data. CBOR is a more concise,
+machine-readable, language-independent data interchange format that is
+self-describing and has built-in semantics for interoperability.  With specific
+constraints, CBOR can support all JSON data types (including JSON-LD) for
+translation between the DID document model (described in <a
+href="#data-model">Data Model</a> and <a>DID Documents</a>) and other core
+representations.
   </p>
 
-  <p>Concise Data Definition Language (CDDL) [[RFC8610]] is a notation used to express Concise Binary Object Representation (CBOR), and by extension JSON Data Structures. The following notation expresses the DID Document model in CBOR representation with specific constraints for deterministic mappings between other core representations. </p>
+  <p>
+Concise Data Definition Language (CDDL) [[RFC8610]] is a notation used to
+express Concise Binary Object Representation (CBOR), and by extension JSON Data
+Structures. The following notation expresses the DID Document model in CBOR
+representation with specific constraints for deterministic mappings between
+other core representations.
+  </p>
 
   <pre class="example nohighlight" title="DID Document data model for CBOR expressed in CDDL notation">
     DID-document = {
@@ -2409,15 +2422,29 @@ defines a set of formatting rules for the portable representation of structured 
 
   <section>
     <h4>Production</h4>
-<p>When producing DID Documents that are represented as CBOR, in addition to the suggestions in section 3.9 of the CBOR [[RFC7049]] specification for deterministic mappings, the following constraints of the DID Document model MUST be followed: </p>
+    <p>
+When producing DID Documents that are represented as CBOR, in addition to the
+suggestions in section 3.9 of the CBOR [[RFC7049]] specification for
+deterministic mappings, the following constraints of the DID Document model
+MUST be followed:
+    </p>
 
   <ul>
-  <li>Map keys MUST be strings.</li>
-  <li>Integer encoding MUST be as short as possible.</li>
-  <li>The expression of lengths in CBOR major types 2 through 5 MUST be as short as possible.</li>
-  <li>All floating point values MUST be encoded as 64-bits, even for integral values.</li>
+    <li>
+Map keys MUST be strings.
+    </li>
+    <li>
+Integer encoding MUST be as short as possible.
+    </li>
+    <li>
+The expression of lengths in CBOR major types 2 through 5 MUST be as short as
+possible.
+    </li>
+    <li>
+All floating point values MUST be encoded as 64-bits, even for integral values.
+    </li>
+  </ul>
 
-</ul>
 <pre class="example nohighlight" title="An example DID Document represented as contrained CBOR and exported in diagnostic annotation mode for easy readibility">
     a7                                                   # map(7)
     62                                                #   text(2)
@@ -2523,32 +2550,53 @@ defines a set of formatting rules for the portable representation of structured 
 
 </section>
 
-
-
 <section>
   <h4>Consumption</h4>
-<p>  When consuming DID Documents that are represented as CBOR, in addition to the suggestions in section 3.9 of the CBOR [[RFC7049]] specification for deterministic mappings the following constraints of the DID Document model MUST be followed:  </p>
+  <p>
+When consuming DID Documents that are represented as CBOR, in addition to the
+suggestions in section 3.9 of the CBOR [[RFC7049]] specification for
+deterministic mappings the following constraints of the DID Document model MUST
+be followed:
+  </p>
   <ul>
-  <li>The keys in every map must be sorted lowest value to highest. Sorting is performed on the bytes of the representation of the keys.</li>
-  <li>Indefinite-length items must be made into definite-length items.</li>
-</ul>
+    <li>
+The keys in every map must be sorted lowest value to highest. Sorting is
+performed on the bytes of the representation of the keys.
+    </li>
+    <li>
+Indefinite-length items must be made into definite-length items.
+    </li>
+  </ul>
 </section>
 
 <section>
   <h4>CBOR Extensibility</h4>
-  <p>In CBOR, one point of extensibility is with the use of CBOR tags. [[RFC7049]]  defines a basic set of data types, as
-    well as a tagging mechanism that enables extending the set of data types supported via the <a href="https://www.iana.org/assignments/cbor-tags/cbor-tags.xhtml">CBOR Tag Registry</a>. This allows for tags to enhance the semantic description of the data that follows.
+  <p>
+In CBOR, one point of extensibility is with the use of CBOR tags. [[RFC7049]]
+defines a basic set of data types, as well as a tagging mechanism that enables
+extending the set of data types supported via the <a
+href="https://www.iana.org/assignments/cbor-tags/cbor-tags.xhtml">CBOR Tag
+Registry</a>. This allows for tags to enhance the semantic description of the
+data that follows.
   </p>
 
   <section>
-      <h2>DagCBOR</h2>
-     <p>DagCBOR is a further restricted subset of CBOR for representing the DID Document as a Directed Acyclic Graph model using canonical CBOR encoding as noted above with additional constraits.  DagCBOR requires that there exist a single way of encoding any given object, and that encoded forms contain no superfluous data that may be ignored or lost in a round-trip decode/encode. When producing and consuming DID Documents representing in DagCBOR the following rules MUST be followed</p>
+    <h2>DagCBOR</h2>
+    <p>
+DagCBOR is a further restricted subset of CBOR for representing the DID Document
+as a Directed Acyclic Graph model using canonical CBOR encoding as noted above
+with additional constraits.  DagCBOR requires that there exist a single way of
+encoding any given object, and that encoded forms contain no superfluous data
+that may be ignored or lost in a round-trip decode/encode. When producing and
+consuming DID Documents representing in DagCBOR the following rules MUST be
+followed
+    </p>
 
-     <ul>
-       <li>Use no CBOR tags other than the CID tag (42)</li>
-     </ul>
+    <ul>
+      <li>Use no CBOR tags other than the CID tag (42)</li>
+    </ul>
 
-     <pre class="example nohighlight" title="DID Document as DagCBOR same as the previous example, but serialized to JSON for easy readability">{ "@context": "https://www.w3.org/ns/did/v1",
+    <pre class="example nohighlight" title="DID Document as DagCBOR same as the previous example, but serialized to JSON for easy readability">{ "@context": "https://www.w3.org/ns/did/v1",
   "authentication": [
     "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew;key-id=bafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i"
   ],
@@ -2571,16 +2619,17 @@ defines a set of formatting rules for the portable representation of structured 
   ],
   "updated": "2020-05-01T03:00:00Z"
 }
-</pre>
-</section>
+    </pre>
+  </section>
 
+  <section>
+    <h4>COSE signatures</h4>
 
-<section>
-<h4>COSE signatures</h4>
+    <p>
+    A DID Document proof may be constructed using CBOR semantic tagging, such as tag 98 for CBOR Object Signing and Encryption (COSE) [[RFC8152]]
+    </p>
 
-<p>A DID Document proof may be constructed using CBOR semantic tagging, such as tag 98 for CBOR Object Signing and Encryption (COSE) [[RFC8152]] </p>
-
-<pre class="example nohighlight" title="An example extensibility of COSE signature of CBOR using tag 98 and 42 expressed in diagnostic annotated form">
+    <pre class="example nohighlight" title="An example extensibility of COSE signature of CBOR using tag 98 and 42 expressed in diagnostic annotated form">
   D8 62                                        # tag(98)
   67                                           #   text(7)
      7061796c6f6164                            #     "payload"
@@ -2629,17 +2678,10 @@ defines a set of formatting rules for the portable representation of structured 
   6b                                           #   text(11)
      756e70726f746563746564                    #     "unprotected"
   a0                                           #   tag(0)
-</pre>
-
-</section>
-
-
-</section>
-
-</section>
-
-
-
+          </pre>
+        </section>
+      </section>
+    </section>
   </section>
 
   <section>
