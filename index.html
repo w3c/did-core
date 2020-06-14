@@ -2369,11 +2369,11 @@ that decision.
     <section>
       <h2>CBOR</h2>
    <p>
-Like Javascript Object Notation (JSON) <a>[[RFC8259]]</a>, Concise Binary Object Representation (CBOR) <a>[[RFC7049]]</a>
-defines a set of formatting rules for the portable representation of structured data. CBOR is a more concise, machine-readable, language-independent data interchange format that is self-describing and has built-in semantics for interoperability.  With specific constraints, CBOR can support all JSON data types (including JSON-LD) for translation between the DID document model (described in <a>Data Model</a> and <a>DID Documents</a>) and other core representations.
+Like Javascript Object Notation (JSON) [[RFC8259]], Concise Binary Object Representation (CBOR) [[RFC7049]]
+defines a set of formatting rules for the portable representation of structured data. CBOR is a more concise, machine-readable, language-independent data interchange format that is self-describing and has built-in semantics for interoperability.  With specific constraints, CBOR can support all JSON data types (including JSON-LD) for translation between the DID document model (described in <a href="#data-model">Data Model</a> and <a>DID Documents</a>) and other core representations.
   </p>
 
-  <p>Concise Data Definition Language (CDDL) [[RFC8610 ]] is a notation used to express Concise Binary Object Representation (CBOR), and by extension JSON Data Structures. The following notation expresses the DID Document model in CBOR representation with specific constraints for deterministic mappings between other core representations. </p>
+  <p>Concise Data Definition Language (CDDL) [[RFC8610]] is a notation used to express Concise Binary Object Representation (CBOR), and by extension JSON Data Structures. The following notation expresses the DID Document model in CBOR representation with specific constraints for deterministic mappings between other core representations. </p>
 
   <pre class="example nohighlight" title="DID Document data model for CBOR expressed in CDDL notation">
     DID-document = {
@@ -2537,7 +2537,7 @@ defines a set of formatting rules for the portable representation of structured 
 <section>
   <h4>CBOR Extensibility</h4>
   <p>In CBOR, one point of extensibility is with the use of CBOR tags. [[RFC7049]]  defines a basic set of data types, as
-    well as a tagging mechanism that enables extending the set of data types supported via an IANA registry [[CBOR-TAG-Registry]]. This allows for tags to enhance the semantic description of the data that follows.
+    well as a tagging mechanism that enables extending the set of data types supported via the <a href="https://www.iana.org/assignments/cbor-tags/cbor-tags.xhtml">CBOR Tag Registry</a>. This allows for tags to enhance the semantic description of the data that follows.
   </p>
 
   <section>
@@ -3016,7 +3016,7 @@ did-document-stream
             </dt>
             <dd>
 If the resolution is successful, this MUST be a byte stream of the resolved
-<a>DID document</a> in a single conformant <a>representation</a>. The byte
+<a>DID document</a> in one of the conformant <a href="#representations">representations</a>. The byte
 stream MAY then be parsed by the caller of the <code>resolve</code> function
 into a <a>DID document</a> abstract data model, which can in turn be validated
 and processed. If the resolution is unsuccessful, this value MUST be an empty
