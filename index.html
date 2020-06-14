@@ -123,7 +123,7 @@
         company: "Danube Tech",
         companyURL: "https://danubetech.com/",
         w3cid: 46729
-      }, 
+      },
       {
         name: "Jonathan Holt, DO, MS",
         url: "https://www.linkedin.com/in/jonathan-holt-do-ms",
@@ -2369,41 +2369,41 @@ that decision.
     <section>
       <h2>CBOR</h2>
    <p>
-Like Javascript Object Notation (JSON) <a>[[RFC8259]]</a>, Concise Binary Object Representation (CBOR) <a>[[RFC7049]]</a> 
-defines a set of formatting rules for the portable representation of structured data. CBOR is a more concise, machine-readable, language-independent data interchange format that is self-describing and has built-in semantics for interoperability.  With specific constraints, CBOR can support all JSON data types (including JSON-LD) for translation between the DID document model (described in <a>Data Model</a> and <a>DID Documents</a>) and other core representations.  
+Like Javascript Object Notation (JSON) <a>[[RFC8259]]</a>, Concise Binary Object Representation (CBOR) <a>[[RFC7049]]</a>
+defines a set of formatting rules for the portable representation of structured data. CBOR is a more concise, machine-readable, language-independent data interchange format that is self-describing and has built-in semantics for interoperability.  With specific constraints, CBOR can support all JSON data types (including JSON-LD) for translation between the DID document model (described in <a>Data Model</a> and <a>DID Documents</a>) and other core representations.
   </p>
 
   <p>Concise Data Definition Language (CDDL) [[RFC8610 ]] is a notation used to express Concise Binary Object Representation (CBOR), and by extension JSON Data Structures. The following notation expresses the DID Document model in CBOR representation with specific constraints for deterministic mappings between other core representations. </p>
 
   <pre class="example nohighlight" title="DID Document data model for CBOR expressed in CDDL notation">
     DID-document = {
-      ? @context : uri                     
-      id : did  
+      ? @context : uri
+      id : did
       ? publicKey : [* publicKey ]
-      ? authentication :  [ *did // *publicKey // *tstr ]  
+      ? authentication :  [ *did // *publicKey // *tstr ]
       ? service : [ + service  ]
-      ? controller : did / [ *did ]    
-      ? created : time 
+      ? controller : did / [ *did ]
+      ? created : time
       ? updated : time
       proof :  any
     }
-    
+
     publicKey = {
-      id : did 
+      id : did
       type : text
-      controller : uri 
+      controller : uri
     }
-    
+
     did = tstr .pcre "^did\\:(?<method-name>[a-z0-9]{2,})\\:(?<method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)"
-    
+
     did-url =  tstr .pcre "^did\\:(?<method-name>[a-z0-9]{2,})\\:(?<method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)\\;(?<path>[A-Za-z0-9\\/)(?<query>\\?[a-z0-9\\=\\&])#(?<fragment>.+)"
-    
+
     service = {
-      id : did-url 
-      type : text 
-      serviceEndpoint : uri 
-      ? description : text 
-      * tstr => any 
+      id : did-url
+      type : text
+      serviceEndpoint : uri
+      ? description : text
+      * tstr => any
     }
    </pre>
 
@@ -2412,11 +2412,11 @@ defines a set of formatting rules for the portable representation of structured 
 <p>When producing DID Documents that are represented as CBOR, in addition to the suggestions in section 3.9 of the CBOR [[RFC7049]] specification for deterministic mappings, the following constraints of the DID Document model MUST be followed: </p>
 
   <ul>
-  <li>Map keys MUST be strings.</li>  
-  <li>Integer encoding MUST be as short as possible.</li> 
+  <li>Map keys MUST be strings.</li>
+  <li>Integer encoding MUST be as short as possible.</li>
   <li>The expression of lengths in CBOR major types 2 through 5 MUST be as short as possible.</li>
-  <li>All floating point values MUST be encoded as 64-bits, even for integral values.</li> 
-  
+  <li>All floating point values MUST be encoded as 64-bits, even for integral values.</li>
+
 </ul>
 <pre class="example nohighlight" title="An example DID Document represented as contrained CBOR and exported in diagnostic annotation mode for easy readibility">
     a7                                                   # map(7)
@@ -2527,7 +2527,7 @@ defines a set of formatting rules for the portable representation of structured 
 
 <section>
   <h4>Consumption</h4>
-<p>  When consuming DID Documents that are represented as CBOR, in addition to the suggestions in section 3.9 of the CBOR [[RFC7049]] specification for deterministic mappings the following constraints of the DID Document model MUST be followed:  </p> 
+<p>  When consuming DID Documents that are represented as CBOR, in addition to the suggestions in section 3.9 of the CBOR [[RFC7049]] specification for deterministic mappings the following constraints of the DID Document model MUST be followed:  </p>
   <ul>
   <li>The keys in every map must be sorted lowest value to highest. Sorting is performed on the bytes of the representation of the keys.</li>
   <li>Indefinite-length items must be made into definite-length items.</li>
@@ -2537,17 +2537,17 @@ defines a set of formatting rules for the portable representation of structured 
 <section>
   <h4>CBOR Extensibility</h4>
   <p>In CBOR, one point of extensibility is with the use of CBOR tags. [[RFC7049]]  defines a basic set of data types, as
-    well as a tagging mechanism that enables extending the set of data types supported via an IANA registry [[CBOR-TAG-Registry]]. This allows for tags to enhance the semantic description of the data that follows. 
+    well as a tagging mechanism that enables extending the set of data types supported via an IANA registry [[CBOR-TAG-Registry]]. This allows for tags to enhance the semantic description of the data that follows.
   </p>
 
   <section>
       <h2>DagCBOR</h2>
      <p>DagCBOR is a further restricted subset of CBOR for representing the DID Document as a Directed Acyclic Graph model using canonical CBOR encoding as noted above with additional constraits.  DagCBOR requires that there exist a single way of encoding any given object, and that encoded forms contain no superfluous data that may be ignored or lost in a round-trip decode/encode. When producing and consuming DID Documents representing in DagCBOR the following rules MUST be followed</p>
-     
+
      <ul>
        <li>Use no CBOR tags other than the CID tag (42)</li>
      </ul>
-     
+
      <pre class="example nohighlight" title="DID Document as DagCBOR same as the previous example, but serialized to JSON for easy readability">{ "@context": "https://www.w3.org/ns/did/v1",
   "authentication": [
     "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew;key-id=bafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i"
@@ -2945,16 +2945,16 @@ Resolution
     </h1>
 
     <p>
-This section defines the inputs and outputs of <a>DID resolution</a> and
-<a>DID URL dereferencing</a>. These functions are defined in an abstract way.
-Their exact implementation is out of scope for this specification, but some considerations for
-implementors are discussed in [[?DID-RESOLUTION]].
+This section defines the inputs and outputs of <a>DID resolution</a> and <a>DID
+URL dereferencing</a>. These functions are defined in an abstract way. Their
+exact implementation is out of scope for this specification, but some
+considerations for implementors are discussed in [[?DID-RESOLUTION]].
     </p>
 
     <p>
-All conformant <a>DID resolvers</a> MUST implement the <a>DID resolution</a> function
-for at least one <a>DID method</a> and MUST be able to return a <a>DID document</a> in 
-at least one conformant representation.
+All conformant <a>DID resolvers</a> MUST implement the <a>DID resolution</a>
+function for at least one <a>DID method</a> and MUST be able to return a <a>DID
+document</a> in  at least one conformant representation.
     </p>
 
     <section>
@@ -2962,10 +2962,11 @@ at least one conformant representation.
 DID Resolution
         </h2>
         <p>
-The <a>DID resolution</a> function resolves a <a>DID</a> into a <a>DID document</a>
-by using the "Read" operation of the applicable <a>DID method</a>. (See <a href="#read-verify"></a>.)
-The details of how this process is accomplished are outside the scope of this
-specification, but all conformant implementations MUST implement a function which has the following abstract form:
+The <a>DID resolution</a> function resolves a <a>DID</a> into a <a>DID
+document</a> by using the "Read" operation of the applicable <a>DID method</a>.
+(See <a href="#read-verify"></a>.) The details of how this process is
+accomplished are outside the scope of this specification, but all conformant
+implementations MUST implement a function which has the following abstract form:
         </p>
 
         <p><code>
@@ -2989,51 +2990,61 @@ This input is REQUIRED.
 did-resolution-input-metadata
             </dt>
             <dd>
-A <a href="metadata-structure">metadata structure</a> consisting of input options to the <code>resolve</code>
-function in addition to the <code>did</code> itself.
-This input is REQUIRED, but the structure MAY be empty.
+A <a href="metadata-structure">metadata structure</a> consisting of input
+options to the <code>resolve</code> function in addition to the <code>did</code>
+itself. This input is REQUIRED, but the structure MAY be empty.
             </dd>
         </dl>
 
         <p>
 The output variables of this function MUST be as follows:
         </p>
-    
+
         <dl>
             <dt>
 did-resolution-metadata
             </dt>
             <dd>
-A <a href="metadata-structure">metadata structure</a> consisting of values relating to the results of the <a>DID resolution</a> process.
-This structure is REQUIRED and MUST NOT be empty.
-This metadata typically changes between invocations of the <code>resolve</code> function as it represents data about the resolution process itself.
+A <a href="metadata-structure">metadata structure</a> consisting of values
+relating to the results of the <a>DID resolution</a> process. This structure is
+REQUIRED and MUST NOT be empty. This metadata typically changes between
+invocations of the <code>resolve</code> function as it represents data about the
+resolution process itself.
             </dd>
             <dt>
 did-document-stream
             </dt>
             <dd>
-If the resolution is successful, this MUST be a byte stream of the resolved <a>DID document</a> in a single conformant <a>representation</a>.
-The byte stream MAY then be parsed by the caller of the <code>resolve</code> function into a <a>DID document</a> abstract data model, which
-can in turn be validated and processed.
-If the resolution is unsuccessful, this value MUST be an empty stream.
+If the resolution is successful, this MUST be a byte stream of the resolved
+<a>DID document</a> in a single conformant <a>representation</a>. The byte
+stream MAY then be parsed by the caller of the <code>resolve</code> function
+into a <a>DID document</a> abstract data model, which can in turn be validated
+and processed. If the resolution is unsuccessful, this value MUST be an empty
+stream.
             </dd>
             <dt>
 did-document-metadata
             </dt>
             <dd>
-If the resolution is successful, this MUST be a <a href="metadata-structure">metadata structure</a>.
-This structure contains metadata about the <a>DID document</a> contained in the <code>did-document-stream</code>.
-This metadata typically does not change between invocations of the <code>resolve</code> function unless
-the <a>DID document</a> changes, as it represents data about the <a>DID document</a>.
-If the resolution is unsuccessful, this output MUST be an empty <a href="metadata-structure">metadata structure</a>.
+If the resolution is successful, this MUST be a <a
+href="metadata-structure">metadata structure</a>. This structure contains
+metadata about the <a>DID document</a> contained in the
+<code>did-document-stream</code>. This metadata typically does not change
+between invocations of the <code>resolve</code> function unless the <a>DID
+document</a> changes, as it represents data about the <a>DID document</a>. If
+the resolution is unsuccessful, this output MUST be an empty <a
+href="metadata-structure">metadata structure</a>.
             </dd>
         </dl>
 
         <p>
-<a>DID resolver</a> implementations MUST NOT alter the signature of this function in any way. <a>DID resolver</a>
-implementations MAY map the <code>resolve</code> function to a method-specific internal function to perform the
-actual <a>DID resolution</a> process. <a>DID resolver</a> implementations <a>DID resolver</a> implementations MAY implement 
-and expose additional functions with different signatures in addition to the <code>resolve</code> function specified here.
+<a>DID resolver</a> implementations MUST NOT alter the signature of this
+function in any way. <a>DID resolver</a> implementations MAY map the
+<code>resolve</code> function to a method-specific internal function to perform
+the actual <a>DID resolution</a> process. <a>DID resolver</a> implementations
+<a>DID resolver</a> implementations MAY implement  and expose additional
+functions with different signatures in addition to the <code>resolve</code>
+function specified here.
         </p>
 
     </section>
