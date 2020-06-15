@@ -775,40 +775,34 @@ addresses the needs of the use case.
     <section class="normative">
       <h3>DID URL Syntax</h3>
 
-      <section>
-        <h2>Generic DID URL Syntax</h2>
-
-        <p>
+      <p>
 A <a>DID URL</a> always identifies a <a>resource</a> to be located. It can be
 used, for example, to identify a specific part of a <a>DID document</a>.
-        </p>
+      </p>
 
-        <p>
+      <p>
 This following is the ABNF definition using the syntax in [[!RFC5324]]. It
 builds on the <code>did</code> scheme defined in <a
-href="#generic-did-syntax"></a>. The <code>path-abempty</code> and
+href="#did-syntax"></a>. The <code>path-abempty</code> and
 <code>fragment</code> components are identical to the ABNF rules defined in
 [[!RFC3986]], and the <code>did-query</code> component is derived from the
 <code>query</code> ABNF rule.
-        </p>
+      </p>
 
-
-        <pre class="nohighlight">
+      <pre class="nohighlight">
 did-url            = did path-abempty [ "?" did-query ]
                      [ "#" fragment ]
 did-query          = param *( "&" param )
 param              = param-name "=" param-value
 param-name         = 1*pchar
 param-value        = *pchar
-        </pre>
+      </pre>
 
-        <p>
+      <p>
 This specification reserves the semicolon (<code>;</code>) character for
 possible future use as a sub-delimiter for parameters as described in
 [[?MATRIX-URIS]].
-        </p>
-
-      </section>
+      </p>
 
       <section>
         <h2>Generic DID URL Parameters</h2>
@@ -828,7 +822,7 @@ MUST operate uniformly across those <a>DID methods</a> that do support them.
         </p>
         <p>
 Parameter names that are completely method-specific are described in Section
-<a href="#method-specific-parameters"></a>.
+<a href="#method-specific-did-url-parameters"></a>.
         </p>
         <p>
 The following table defines a set of generic DID parameter names.
@@ -890,7 +884,7 @@ time. Note that this parameter might not be supported by all <a>DID methods</a>.
 
         <p>
 Additional considerations for processing these parameters are discussed in
-[?DID-RESOLUTION].
+[[?DID-RESOLUTION]].
         </p>
 
         <p>
@@ -1010,8 +1004,8 @@ For more information, see Section <a href="#service-endpoints"></a>.
         </p>
 
         <p>
-A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID paths</a> that
-are more restrictive than the generic rules in this section.
+A <a>DID method</a> specification MAY specify ABNF rules for <a>DID paths</a>
+that are more restrictive than the generic rules in this section.
         </p>
 
         <pre class="example nohighlight">
@@ -1024,15 +1018,15 @@ did:example:123456/path
 
         <p>
 A <a>DID query</a> is derived from a generic URI query and MUST conform to the
-<code>did-query</code> ABNF rule in Section <a href="#generic-did-url-syntax">
+<code>did-query</code> ABNF rule in Section <a href="#did-url-syntax">
 </a>. If a <a>DID query</a> is present, it MUST be used
 as described in Sections <a href="#generic-did-url-parameters"></a> and
 <a href="#method-specific-did-url-parameters"></a>.
         </p>
 
         <p>
-A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID queries</a> that
-are more restrictive than the generic rules in this section.
+A <a>DID method</a> specification MAY specify ABNF rules for <a>DID queries</a>
+that are more restrictive than the generic rules in this section.
         </p>
 
         <pre class="example nohighlight">
@@ -1056,7 +1050,7 @@ information, see <a href="#did-url-dereferencing"></a>.
         </p>
 
         <p>
-A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID fragments</a>
+A <a>DID method</a> specification MAY specify ABNF rules for <a>DID fragments</a>
 that are more restrictive than the generic rules in this section.
         </p>
 
@@ -1087,7 +1081,7 @@ representations in Section <a href="#application-did-ld-json"></a>.
 A relative DID URL is any URL value in a <a>DID document</a> that does not start
 with <code>did:&lt;method-name>:&lt;method-specific-id></code>. More
 specifically, it is any URL value that does not start with the ABNF defined  in
-Section <a href="#generic-did-syntax"></a>. The contents of the URL typically
+Section <a href="#did-syntax"></a>. The contents of the URL typically
 refers to a <a>resource</a> in the same <a>DID document</a>. Relative DID URLs
 MAY contain relative path components, query parameters, and fragment
 identifiers.
