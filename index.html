@@ -738,12 +738,6 @@ method-specific-id = *( ":" *idchar ) 1*idchar
 idchar             = ALPHA / DIGIT / "." / "-" / "_"
       </pre>
 
-      <p class="issue" data-number="34">
-The grammar currently allows an empty <code>method-specific-id</code>, e.g.,
-<code>did:example:</code> would be a valid <a>DID</a> that could identify the
-<a>DID method</a> itself.
-      </p>
-
       <p>
 A <a>DID method</a> specification MUST further restrict the generic <a>DID</a>
 syntax by defining its own <code>method-name</code> and its own
@@ -759,16 +753,15 @@ governing <a>DID method</a> specification. For more information, see Section
   is bound exclusively and permanently to its one and only subject. Even after a
   <a>DID</a> is deactivated, it is intended that it never be repurposed.
         </p>
-
         <p>
 Ideally, a <a>DID</a> would be a completely abstract decentralized identifier
 (like a <a>UUID</a>) that could be bound to multiple underlying <a>verifiable
 data registries</a> over time, thus maintaining its persistence independent of
 any particular system. However, registering the same identifier on multiple
-<a>verifiable data registries</a> introduces extremely hard entityship and <a
-href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">
-start-of-authority</a> (SOA) problems. It also greatly increases implementation
-complexity for developers.
+<a>verifiable data registries</a> makes it extremely difficult to identify the
+authoritative version of a <a>DID document</a> should the contents diverge
+between the different <a>verifiable data registries</a>. It also greatly
+increases implementation complexity for developers.
         </p>
         <p>
 To avoid these issues, developers should refer to the Decentralized
