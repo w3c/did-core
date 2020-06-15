@@ -711,84 +711,56 @@ by <em>specific</em> <a>DID methods</a> in their respective specifications.
 
     <section class="normative">
       <h3>DID Syntax</h3>
-      <section class="normative">
-        <h2 id="generic-did-syntax">Generic DID Syntax</h2>
 
-        <p>
+      <p>
 The generic <a>DID scheme</a> is a URI scheme conformant with [[!RFC3986]].
-        </p>
+      </p>
 
-        <p class="note">
-A <a>DID</a> always identifies the <a>DID subject</a>.
-         </p>
+      <p>
+The <a>DID scheme</a> name MUST be lowercase.
+      </p>
 
-        <p>
+      <p>
+The <a>DID method</a> name MUST be lowercase.
+      </p>
+
+      <p>
 The following is the ABNF definition using the syntax in [[!RFC5234]], which
 defines <code>ALPHA</code> and <code>DIGIT</code>. All other rule names not
 defined in this ABNF are defined in [[RFC3986]].
-        </p>
+      </p>
 
-        <pre class="nohighlight">
+      <pre class="nohighlight">
 did                = "did:" method-name ":" method-specific-id
 method-name        = 1*method-char
 method-char        = %x61-7A / DIGIT
 method-specific-id = *( ":" *idchar ) 1*idchar
 idchar             = ALPHA / DIGIT / "." / "-" / "_"
-        </pre>
+      </pre>
 
-        <p class="issue" data-number="34">
+      <p class="issue" data-number="34">
 The grammar currently allows an empty <code>method-specific-id</code>, e.g.,
 <code>did:example:</code> would be a valid <a>DID</a> that could identify the
 <a>DID method</a> itself.
-        </p>
-      </section>
-      <section id="method-specific-parameters" class="normative">
-        <h2>Method-Specific Syntax</h2>
+      </p>
 
-        <p>
+      <p>
 A <a>DID method</a> specification MUST further restrict the generic <a>DID</a>
 syntax by defining its own <code>method-name</code> and its own
-<code>method-specific-id</code> syntax. For more information, see Section
+<code>method-specific-id</code> syntax. Case sensitivity and normalization of
+the value of the <code>method-specific-id</code> rule MUST be defined by the
+governing <a>DID method</a> specification. For more information, see Section
 <a href="#methods"></a>.
-        </p>
+      </p>
 
-      </section>
-      <section class="normative">
-        <h2>Normalization</h2>
+      <div class="note" title="Persistence">
+        <p>
+  A <a>DID</a> is expected to be persistent and immutable. That is, a <a>DID</a>
+  is bound exclusively and permanently to its one and only subject. Even after a
+  <a>DID</a> is deactivated, it is intended that it never be repurposed.
+        </p>
 
         <p>
-For the broadest interoperability, make <a>DID</a> normalization as simple and
-universal as possible:
-        </p>
-        <ul>
-          <li>
-The <a>DID scheme</a> name MUST be lowercase.
-          </li>
-
-          <li>
-The <a>DID method</a> name MUST be lowercase.
-          </li>
-
-          <li>
-Case sensitivity and normalization of the value of the
-<code>method-specific-id</code> rule in Section
-<a href="#generic-did-syntax"></a> MUST be defined by the governing
-<a>DID method</a> specification.
-          </li>
-        </ul>
-      </section>
-
-      <section class="normative">
-        <h2>Persistence</h2>
-
-        <p>
-A <a>DID</a> is expected to be persistent and immutable. That is, a <a>DID</a>
-is bound exclusively and permanently to its one and only subject. Even after a
-<a>DID</a> is deactivated, it is intended that it never be repurposed.
-        </p>
-
-        <div class="note">
-          <p>
 Ideally, a <a>DID</a> would be a completely abstract decentralized identifier
 (like a <a>UUID</a>) that could be bound to multiple underlying <a>verifiable
 data registries</a> over time, thus maintaining its persistence independent of
@@ -797,23 +769,14 @@ any particular system. However, registering the same identifier on multiple
 href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">
 start-of-authority</a> (SOA) problems. It also greatly increases implementation
 complexity for developers.
-          </p>
-          <p>
+        </p>
+        <p>
 To avoid these issues, developers should refer to the Decentralized
 Characteristics Rubric [[?DID-RUBRIC]] to decide which <a>DID method</a> best
 addresses the needs of the use case.
-          </p>
-        </div>
-
-        <p class="note">
-Although not included in this version, future versions of this specification
-might support a <a>DID document</a> <code>equivID</code> property to establish
-verifiable equivalence relations between <a>DIDs</a> representing the same
-subject on multiple <a>verifiable data registries</a>. Such equivalence relations can
-produce the practical equivalent of a single persistent abstract <a>DID</a>. For
-more information, see Section <a href="#future-work"></a>.
         </p>
-      </section>
+      </div>
+
     </section>
 
     <section class="normative">
