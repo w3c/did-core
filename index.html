@@ -2995,7 +2995,8 @@ considerations for implementors are discussed in [[?DID-RESOLUTION]].
 
     <p>
 All conformant <a>DID resolvers</a> MUST implement the <a>DID resolution</a>
-function for at least one <a>DID method</a> and MUST be able to return a <a>DID
+function for at least one <a>DID method</a>. All conformant
+<a>DID URL dereferencers</a> MUST be able to return a <a>DID
 document</a> in  at least one conformant representation.
     </p>
 
@@ -3072,7 +3073,7 @@ did-document-metadata
 If the resolution is successful, this MUST be a <a
 href="metadata-structure">metadata structure</a>. This structure contains
 metadata about the <a>DID document</a> contained in the
-<code>did-document</code> output variable. This metadata typically does not change
+<code>did-document</code>. This metadata typically does not change
 between invocations of the <code>resolve</code> function unless the <a>DID
 document</a> changes, as it represents data about the <a>DID document</a>. If
 the resolution is unsuccessful, this output MUST be an empty <a
@@ -3097,7 +3098,7 @@ DID Resolution Input Metadata Properties
             </h3>
             
             <p>
-The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
+The possible properties within the <code>did-resolution-input-metadata</code> structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
             </p>
         </section>
 
@@ -3107,7 +3108,7 @@ DID Resolution Metadata Properties
             </h3>
             
             <p>
-The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
+The possible properties within the <code>did-resolution-metadata</code> structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
 This specification defines the following common properties.
             </p>
 
@@ -3140,24 +3141,12 @@ this <a>DID resolver</a>.
 not-found
                         </dt>
                         <dd>
-The <a>DID resolver</a> was unable to return the <a>DID document</a>
-resulting from this resolution request.
+The <a>DID resolver</a> was unable to find a <code>did-document</code>
+for this resolution request.
                         </dd>
                     </dl>
                 </dd>
             </dl>
-
-        </section>
-
-        <section>
-            <h3>
-DID Document Metadata Properties
-            </h3>
-            
-            <p>
-The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
-This specification defines the following common properties.
-            </p>
 
         </section>
 
@@ -3170,13 +3159,15 @@ DID URL Dereferencing
         <p>
 The <a>DID URL dereferencing</a> function dereferences a <a>DID URL</a> into content
 identified by that <a>DID URL</a>. This content MAY be a <a>DID document</a>, a
-portion of a <a>DID document</a>, a service endpoint, or some other data. The details of the implementation of this function
+portion of a <a>DID document</a>, a service endpoint, or some other data.
+The <a>DID URL dereferencer</a> first MUST resolve the <a>DID</a> within the <a>DID URL</a> into a <a>DID document</a> using a <a>DID resolution</a> process.
+The details of the implementation of this function
 are outside the scope of this specification, but all implementations MUST implement
 a function which has the following abstract form:
         </p>
 
         <p><code>
-dereference ( did-url, did-dereference-input-metadata ) <br>
+dereference ( did-url, did-url-dereference-input-metadata ) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-url-dereference-metadata, content-stream, did-document-metadata )
         </code></p>
 
@@ -3219,7 +3210,7 @@ REQUIRED and MUST NOT be empty. This metadata typically changes between
 invocations of the <code>dereference</code> function as it represents data about the
 dereferencing process itself.
 Properties defined by this specification are in <a href="#did-url-dereferencing-metadata-properties"></a>.
-If the resolution is successful, this structure MUST contain a <code>content-type</code> property containing the mime-type of the <code>did-document-stream</code> in this result.
+If the resolution is successful, this structure MUST contain a <code>content-type</code> property containing the mime-type of the <code>content-stream</code> in this result.
 If the resolution is not successful, this structure MUST contain an <code>error</code> property describing the error.
             </dd>
             <dt>
@@ -3242,7 +3233,7 @@ If the dereferencing is successful and the dereferenced content is a
 <a>DID document</a>, this MUST be a <a href="metadata-structure">metadata
 structure</a>. This structure contains
 metadata about the <a>DID document</a> contained in the
-<code>content-stream</code> output variable. This metadata typically does not change
+<code>content-stream</code>. This metadata typically does not change
 between invocations of the <code>dereference</code> function unless the <a>DID
 document</a> changes, as it represents data about the <a>DID document</a>. If
 the dereferencing is unsuccessful, or if the dereferenced content is not
@@ -3266,7 +3257,7 @@ DID URL Dereferencing Input Metadata Properties
             </h3>
             
             <p>
-The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
+The possible properties within the <code>did-url-dereferencing-input-metadata</code> structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
 This specification defines the following common properties.
             </p>
             
@@ -3275,7 +3266,7 @@ This specification defines the following common properties.
 accept
                 </dt>
                 <dd>
-The MIME type of the caller's preferred representation of the <a>DID document</a> or other content. The <a>DID URL dereferencer</a> implementation 
+The MIME type of the caller's preferred representation of the <a>DID document</a> or other content identified by the <a>DID URL</a>. The <a>DID URL dereferencer</a> implementation 
 MAY use this value to determine the representation contained in the returned <code>content-stream</code> if such
 a representation is supported and available. This property is OPTIONAL.
                 </dd>
@@ -3288,7 +3279,7 @@ DID URL Dereferencing Metadata Properties
             </h3>
             
             <p>
-The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
+The possible properties within the <code>did-url-dereferencing-metadata</code> structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
 This specification defines the following common properties.
             </p>
 
@@ -3308,38 +3299,50 @@ parse and process the <code>content-stream</code> returned by this function into
 error
                 </dt>
                 <dd>
-The error code from the resolution process. 
-This property is REQUIRED when there is an error in the resolution process.
+The error code from the dereferencing process. 
+This property is REQUIRED when there is an error in the dereferencing process.
 The value of this property is a single keyword string.
 The possible property values of this field are defined by [[DID-SPEC-REGISTRIES]].
 This specification defines the following error values:
                     <dl>
                         <dt>
-invalid-did
+invalid-did-url
                         </dt>
                         <dd>
-The <a>DID</a> supplied to the <a>DID resolution</a> function does not
-conform to valid syntax. (See <a href="#did-syntax"></a>.)
+The <a>DID URL</a> supplied to the <a>DID URL dereferencing</a> function does not
+conform to valid syntax. (See <a href="#did-url-syntax"></a>.)
                         </dd>
                         <dt>
 unauthorized
                         </dt>
                         <dd>
-The caller is not authorized to resolve this <a>DID</a> with
-this <a>DID resolver</a>.
+The caller is not authorized to dereference this <a>DID URL</a> with
+this <a>DID URL dereferencer</a>.
                         </dd>
                         <dt>
 not-found
                         </dt>
                         <dd>
-The <a>DID resolver</a> was unable to return the <a>DID document</a>
-resulting from this resolution request.
+The <a>DID URL dereferencer</a> was unable to find a <code>content-stream</code>
+for this dereferencing request.
                         </dd>
                     </dl>
                 </dd>
             </dl>
 
         </section>
+
+    </section>
+
+    <section>
+        <h2>
+DID Document Metadata Properties
+        </h2>
+            
+        <p>
+The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
+This specification defines the following common properties.
+        </p>
 
     </section>
 
