@@ -3013,7 +3013,7 @@ implementations MUST implement a function which has the following abstract form:
 
         <p><code>
 resolve ( did, did-resolution-input-metadata ) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-resolution-metadata, did-document-stream, did-document-metadata )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-resolution-metadata, did-document, did-document-metadata )
         </code></p>
 
         <p>
@@ -3055,19 +3055,15 @@ REQUIRED and MUST NOT be empty. This metadata typically changes between
 invocations of the <code>resolve</code> function as it represents data about the
 resolution process itself.
 Properties defined by this specification are in <a href="#did-resolution-metadata-properties"></a>.
-If the resolution is successful, this structure MUST contain a <code>content-type</code> property containing the mime-type <a>representation</a> of the <code>did-document-stream</code> in this result.
 If the resolution is not successful, this structure MUST contain an <code>error</code> property describing the error.
             </dd>
             <dt>
-did-document-stream
+did-document
             </dt>
             <dd>
-If the resolution is successful, this MUST be a byte stream of the resolved
-<a>DID document</a> in one of the conformant <a href="#representations">representations</a>. The byte
-stream MAY then be parsed by the caller of the <code>resolve</code> function
-into a <a>DID document</a> abstract data model, which can in turn be validated
-and processed. If the resolution is unsuccessful, this value MUST be an empty
-stream.
+If the resolution is successful, this MUST be a <a>DID document</a> conforming to
+the abstract data model, which can be validated and processed.
+If the resolution is unsuccessful, this value MUST be empty.
             </dd>
             <dt>
 did-document-metadata
@@ -3076,7 +3072,7 @@ did-document-metadata
 If the resolution is successful, this MUST be a <a
 href="metadata-structure">metadata structure</a>. This structure contains
 metadata about the <a>DID document</a> contained in the
-<code>did-document-stream</code>. This metadata typically does not change
+<code>did-document</code> output variable. This metadata typically does not change
 between invocations of the <code>resolve</code> function unless the <a>DID
 document</a> changes, as it represents data about the <a>DID document</a>. If
 the resolution is unsuccessful, this output MUST be an empty <a
@@ -3102,19 +3098,7 @@ DID Resolution Input Metadata Properties
             
             <p>
 The possible properties within this structure and their possible values are defined by [[DID-CORE-REGISTRIES]].
-This specification defines the following common properties.
             </p>
-            
-            <dl>
-                <dt>
-accept
-                </dt>
-                <dd>
-The MIME type of the caller's preferred representation of the <a>DID document</a>. The <a>DID resolver</a> implementation 
-MAY use this value to determine the representation contained in the returned <code>did-document-stream</code> if such
-a representation is supported and available. This property is OPTIONAL.
-                </dd>
-            </dl>
         </section>
 
         <section>
@@ -3128,16 +3112,6 @@ This specification defines the following common properties.
             </p>
 
             <dl>
-                <dt>
-content-type
-                </dt>
-                <dd>
-The mime-type of the returned conformant representation of the contained in the returned <code>did-document-stream</code>.
-This property is REQUIRED if resolution is successful and a <code>did-document-stream</code> is returned. 
-The caller of the <code>resolve</code> function MUST use this value when determining how to
-parse and process the <code>did-document-stream</code> returned by this function into a
-<a>DID document</a> abstract data model.
-                </dd>
                 <dt>
 error
                 </dt>
@@ -3193,6 +3167,180 @@ This specification defines the following common properties.
         <h2>
 DID URL Dereferencing
         </h2>
+        <p>
+The <a>DID URL dereferencing</a> function dereferences a <a>DID URL</a> into content
+identified by that <a>DID URL</a>. This content MAY be a <a>DID document</a>, a
+portion of a <a>DID document</a>, a service endpoint, or some other data. The details of the implementation of this function
+are outside the scope of this specification, but all implementations MUST implement
+a function which has the following abstract form:
+        </p>
+
+        <p><code>
+dereference ( did-url, did-dereference-input-metadata ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-url-dereference-metadata, content-stream, did-document-metadata )
+        </code></p>
+
+        <p>
+The input variables of this function MUST be as follows:
+        </p>
+
+        <dl>
+            <dt>
+did-url
+            </dt>
+            <dd>
+A conformant <a>DID URL</a> as a single string. This is the <a>DID URL</a> to dereference.
+This input is REQUIRED.
+            </dd>
+            <dt>
+did-url-dereference-input-metadata
+            </dt>
+            <dd>
+A <a href="metadata-structure">metadata structure</a> consisting of input
+options to the <code>dereference</code> function in addition to the <code>did-url</code>
+itself.
+Properties defined by this specification are in <a href="#did-url-dereferencing-input-metadata-properties"></a>.
+This input is REQUIRED, but the structure MAY be empty.
+            </dd>
+        </dl>
+
+        <p>
+The output variables of this function MUST be as follows:
+        </p>
+
+        <dl>
+            <dt>
+did-url-dereference-metadata
+            </dt>
+            <dd>
+A <a href="metadata-structure">metadata structure</a> consisting of values
+relating to the results of the <a>DID URL dereferencing</a> process. This structure is
+REQUIRED and MUST NOT be empty. This metadata typically changes between
+invocations of the <code>dereference</code> function as it represents data about the
+dereferencing process itself.
+Properties defined by this specification are in <a href="#did-url-dereferencing-metadata-properties"></a>.
+If the resolution is successful, this structure MUST contain a <code>content-type</code> property containing the mime-type of the <code>did-document-stream</code> in this result.
+If the resolution is not successful, this structure MUST contain an <code>error</code> property describing the error.
+            </dd>
+            <dt>
+content-stream
+            </dt>
+            <dd>
+If the dereferencing is successful, this MUST be a byte stream of the dereferenced
+content. The content MAY be a <a>DID document</a> in one of the conformant
+<a href="#core-representations">representations</a>. In this case, the byte
+stream MAY then be parsed by the caller of the <code>dereference</code> function
+into a <a>DID document</a> abstract data model, which can in turn be validated
+and processed. If the dereferencing is unsuccessful, this value MUST be an empty
+stream.
+            </dd>
+            <dt>
+did-document-metadata
+            </dt>
+            <dd>
+If the dereferencing is successful and the dereferenced content is a
+<a>DID document</a>, this MUST be a <a href="metadata-structure">metadata
+structure</a>. This structure contains
+metadata about the <a>DID document</a> contained in the
+<code>content-stream</code> output variable. This metadata typically does not change
+between invocations of the <code>dereference</code> function unless the <a>DID
+document</a> changes, as it represents data about the <a>DID document</a>. If
+the dereferencing is unsuccessful, or if the dereferenced content is not
+a <a>DID document</a>, this output MUST be an empty
+<a href="metadata-structure">metadata structure</a>.
+Properties defined by this specification are in <a href="#did-document-metadata-properties"></a>.
+            </dd>
+        </dl>
+
+        <p>
+<a>DID URL dereferencer</a> implementations MUST NOT alter the signature of this
+function in any way. <a>DID URL dereferencer</a> implementations
+MAY implement  and expose additional
+functions with different signatures in addition to the <code>dereference</code>
+function specified here.
+        </p>
+
+        <section>
+            <h3>
+DID URL Dereferencing Input Metadata Properties
+            </h3>
+            
+            <p>
+The possible properties within this structure and their possible values are defined by [[DID-CORE-REGISTRIES]].
+This specification defines the following common properties.
+            </p>
+            
+            <dl>
+                <dt>
+accept
+                </dt>
+                <dd>
+The MIME type of the caller's preferred representation of the <a>DID document</a> or other content. The <a>DID URL dereferencer</a> implementation 
+MAY use this value to determine the representation contained in the returned <code>content-stream</code> if such
+a representation is supported and available. This property is OPTIONAL.
+                </dd>
+            </dl>
+        </section>
+
+        <section>
+            <h3>
+DID URL Dereferencing Metadata Properties
+            </h3>
+            
+            <p>
+The possible properties within this structure and their possible values are defined by [[DID-CORE-REGISTRIES]].
+This specification defines the following common properties.
+            </p>
+
+            <dl>
+                <dt>
+content-type
+                </dt>
+                <dd>
+The mime-type of the content in the returned <code>content-stream</code>.
+This property is REQUIRED if dereferencing is successful and a <code>content-stream</code> is returned.
+If the value of this property is the mime-type of one of the conformant <a href="#core-representations">representations</a> of a <a>DID document</a>,
+then the caller of the <code>dereference</code> function MUST use this value when determining how to
+parse and process the <code>content-stream</code> returned by this function into a
+<a>DID document</a> abstract data model.
+                </dd>
+                <dt>
+error
+                </dt>
+                <dd>
+The error code from the resolution process. 
+This property is REQUIRED when there is an error in the resolution process.
+The value of this property is a single keyword string.
+The possible property values of this field are defined by the DID Core Registry [[DID-CORE-REGISTRY]]. 
+This specification defines the following error values:
+                    <dl>
+                        <dt>
+invalid-did
+                        </dt>
+                        <dd>
+The <a>DID</a> supplied to the <a>DID resolution</a> function does not
+conform to valid syntax. (See <a href="#did-syntax"></a>.)
+                        </dd>
+                        <dt>
+unauthorized
+                        </dt>
+                        <dd>
+The caller is not authorized to resolve this <a>DID</a> with
+this <a>DID resolver</a>.
+                        </dd>
+                        <dt>
+not-found
+                        </dt>
+                        <dd>
+The <a>DID resolver</a> was unable to return the <a>DID document</a>
+resulting from this resolution request.
+                        </dd>
+                    </dl>
+                </dd>
+            </dl>
+
+        </section>
+
     </section>
 
     <section>
