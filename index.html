@@ -1788,7 +1788,7 @@ relationship</a>. See the sections below for more detailed examples of a
 
     </section>
 
-      <section>
+    <section>
       <h3>Authentication</h3>
 
       <p>
@@ -1862,7 +1862,7 @@ authenticate itself with its <em>own</em> <a>DID document</a> and attached
 Example:
       </p>
 
-      <pre class="example nohighlight" title="Assertion method property 
+      <pre class="example nohighlight" title="Authentication property 
       containing three verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1",
@@ -1916,17 +1916,19 @@ checks to see if a <a>verifiable credential</a> has been signed by the <a>DID
 Subject</a> by checking that the <a>verification method</a> used to
 assert the proof is associated with the <code>assertionMethod</code> property 
 in the corresponding <a>DID Document</a>.
+      </p>
       <p>
 A <a>DID document</a> MAY include an <code>assertionMethod</code> property.
 The <code>assertionMethod</code> property is an example of a <a>verification
 relationship</a>.
-
+      </p>
+      
       <p>
 Example:
       </p>
 
-      <pre class="example nohighlight" title="Authentication field containing 
-      three verification methods">
+      <pre class="example nohighlight" title="Assertion method property
+      containing three verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
@@ -1950,8 +1952,10 @@ Example:
   ],
 }
   <span class="comment">...</span>
-
+      </pre>
       </section>
+
+      <section>
       <h3>keyAgreement</h3>
       <p>
 The <code>keyAgreement<code> property is used to express a 
@@ -1985,8 +1989,8 @@ The <code>keyAgreement</code> property is an additional example of a
 Example:
       </p>
 
-<pre class="example nohighlight" title="Key agreement property 
-    containing three verification methods">
+      <pre class="example nohighlight" title="Key agreement property
+      containing three verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
@@ -2009,18 +2013,23 @@ Example:
     }
   ],
 }
-<span class="comment">...</span>
-      </section>
-
+  <span class="comment">...</span>
+      
+      </pre>
+    </section>
+      
+    <section>
       <h3>capabilityInvocation</h3>
       <p>
 The <code>capabilityInvocation<code> property is used to express a
-<a>verification relationship</a> which an entity can use to invoke capability
-assertions as the <a>DID Subject</a> or on behalf of the <a>DID subject</a>.
-The <em>verifier</em> of a <code>capabilityInvocation<code> attempt can check 
-proof of an invocation of a capability on behalf of the <a>DID subject</a> by 
-checking if the <a>verification method</a> used with the proof is contained 
-in the <code>capabilityInvocation<code> property of the <a>DID Document</a>.
+<a>verification relationship</a> which an entity can use to invoke
+capabilities as the <a>DID Subject</a> or on behalf of the <a>DID
+subject</a>. A capability is an expression of an action that the <a>DID
+subject</a> is authorized to take. The <em>verifier</em> of a
+<code>capabilityInvocation<code> attempt can check proof of an invocation of a
+capability on behalf of the <a>DID subject</a> by checking if the
+<a>verification method</a> used with the proof is contained in the
+<code>capabilityInvocation<code> property of the <a>DID Document</a>.
       </p>
                   
       <p class="note" title="Uses of capabilityInvocation">
@@ -2044,7 +2053,7 @@ example of a <a>verification relationship</a>.
 Example:
       </p>
                   
-      <pre class="example nohighlight" title="Capability Invocation property
+      <pre class="example nohighlight" title="Capability invocation property
       containing two verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1", "id":
@@ -2068,11 +2077,14 @@ Example:
     }
   ],
 }
-    <span class="comment">...</span>
-      </section>
+  <span class="comment">...</span>
 
-    <h3>capabilityDelegation</h3>
-    <p>
+      </pre>
+    </section>
+
+    <section>
+      <h3>capabilityDelegation</h3>
+      <p>
 The <code>capabilityDelegation<code> property is used to express a
 <a>verification relationship</a> which an entity can use to grant capabilities
 as the <a>DID Subject</a> or on behalf of the <a>DID subject</a> to other
@@ -2081,29 +2093,29 @@ as the <a>DID Subject</a> or on behalf of the <a>DID subject</a> to other
 grant invocation of a capability on behalf of the <a>DID subject</a> by 
 checking if the <a>verification method</a> used with the proof is contained 
 in the <code>capabilityDelegation<code> of the <a>DID Document</a>.
-    </p>
+      </p>
           
-    <p class="note" title="Uses of capabilityDelegation">
+      <p class="note" title="Uses of capabilityDelegation">
 It is up to a <a>verifier</a> to validate that the <a>verification method</a>
 used when presenting a capability is valid and is associated with the
 <code>capabilityDelegation</code> property. An example of when this property
 is useful is when a <a>DID Subject</a> chooses to grant their capability to
 start a vehicle through the combined usage of a <a>verification method</a> and
 the "canStartCar" capability to an additional capability invoker.
-    </p>
+      </p>
 
-    <p>
+      <p>
 A <a>DID document</a> MAY include an <code>capabilityDelegation</code>
 property. The <code>capabilityDelegation</code> property is an additional
 example of a <a>verification relationship</a>.
-    </p>
+      </p>
 
-    <p>
+      <p>
 Example:
-    </p>
+      </p>
 
-    <pre class="example nohighlight" title="Key agreement property containing
-    three verification methods">
+      <pre class="example nohighlight" title="Capability Delegation property
+      containing three verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1", "id":
   "did:example:123456789abcdefghi",
@@ -2126,9 +2138,10 @@ Example:
     }
   ],
 }
-      <span class="comment">...</span>
+  <span class="comment">...</span>
+  
+      </pre>
     </section>
-  </section>
 
     <section>
       <h2>Service Endpoints</h2>
