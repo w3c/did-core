@@ -3013,7 +3013,7 @@ implementations MUST implement a function which has the following abstract form:
 
         <p><code>
 resolve ( did, did-resolution-input-metadata ) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-resolution-metadata, did-document-stream, did-document-metadata )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-resolution-metadata, did-document, did-document-metadata )
         </code></p>
 
         <p>
@@ -3051,23 +3051,23 @@ did-resolution-metadata
             <dd>
 A <a href="metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a>DID resolution</a> process. This structure is
-REQUIRED and MUST NOT be empty. This metadata typically changes between
+REQUIRED, but it MAY be empty. This metadata typically changes between
 invocations of the <code>resolve</code> function as it represents data about the
 resolution process itself.
 Properties defined by this specification are in <a href="#did-resolution-metadata-properties"></a>.
-If the resolution is successful, this structure MUST contain a <code>content-type</code> property containing the mime-type <a>representation</a> of the <code>did-document-stream</code> in this result.
+If the resolution is successful, and if the <code>did-document</code> is returned in the form of a byte stream, this structure MUST contain a <code>content-type</code> property containing the mime-type of the <code>did-document</code> in this result.
 If the resolution is not successful, this structure MUST contain an <code>error</code> property describing the error.
             </dd>
             <dt>
-did-document-stream
+did-document
             </dt>
             <dd>
-If the resolution is successful, this MUST be a byte stream of the resolved
-<a>DID document</a> in one of the conformant <a href="#representations">representations</a>. The byte
+If the resolution is successful, this MUST be either a <a>DID document</a> conforming to the abstract data model,
+or a <a>DID document</a> in the form of a byte stream of one of the conformant
+<a href="#representations">representations</a>. In the second case, the byte
 stream MAY then be parsed by the caller of the <code>resolve</code> function
 into a <a>DID document</a> abstract data model, which can in turn be validated
-and processed. If the resolution is unsuccessful, this value MUST be an empty
-stream.
+and processed. If the resolution is unsuccessful, this value MUST be empty.
             </dd>
             <dt>
 did-document-metadata
@@ -3075,8 +3075,8 @@ did-document-metadata
             <dd>
 If the resolution is successful, this MUST be a <a
 href="metadata-structure">metadata structure</a>. This structure contains
-metadata about the <a>DID document</a> contained in the
-<code>did-document-stream</code>. This metadata typically does not change
+metadata about the <code>did-document</code>.
+This metadata typically does not change
 between invocations of the <code>resolve</code> function unless the <a>DID
 document</a> changes, as it represents data about the <a>DID document</a>. If
 the resolution is unsuccessful, this output MUST be an empty <a
@@ -3111,7 +3111,7 @@ accept
                 </dt>
                 <dd>
 The MIME type of the caller's preferred representation of the <a>DID document</a>. The <a>DID resolver</a> implementation 
-MAY use this value to determine the representation contained in the returned <code>did-document-stream</code> if such
+MAY use this value to determine the representation of the returned <code>did-document</code> if such
 a representation is supported and available. This property is OPTIONAL.
                 </dd>
             </dl>
@@ -3132,10 +3132,10 @@ This specification defines the following common properties.
 content-type
                 </dt>
                 <dd>
-The mime-type of the returned conformant representation of the contained in the returned <code>did-document-stream</code>.
-This property is REQUIRED if resolution is successful and a <code>did-document-stream</code> is returned. 
-The caller of the <code>resolve</code> function MUST use this value when determining how to
-parse and process the <code>did-document-stream</code> returned by this function into a
+The mime-type of the returned <code>did-document</code>.
+If the resolution is successful, and if the <code>did-document</code> is returned in the form of a byte stream, this property is REQUIRED.
+In this case, the caller of the <code>resolve</code> function MUST use this value when determining how to
+parse and process the <code>did-document</code> byte stream returned by this function into a
 <a>DID document</a> abstract data model.
                 </dd>
                 <dt>
