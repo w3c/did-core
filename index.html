@@ -2023,24 +2023,24 @@ Example:
       <p>
 The <code>capabilityInvocation<code> property is used to express a
 <a>verification relationship</a> which an entity can use to invoke
-capabilities as the <a>DID Subject</a> or on behalf of the <a>DID
-subject</a>. A capability is an expression of an action that the <a>DID
-subject</a> is authorized to take. The <em>verifier</em> of a
-<code>capabilityInvocation<code> attempt can check proof of an invocation of a
-capability on behalf of the <a>DID subject</a> by checking if the
+capabilities as the <a>DID subject</a> or on behalf of the <a>DID subject</a>.
+A capability is an expression of an action that the <a>DID subject</a> is
+authorized to take. The <em>verifier</em> of a capability invocation attempt
+can check the validity of a capability by checking if the
 <a>verification method</a> used with the proof is contained in the
 <code>capabilityInvocation<code> property of the <a>DID Document</a>.
       </p>
                   
       <p class="note" title="Uses of capabilityInvocation">
-It is up to a <a>verifier</a> to validate that the <a>verification method</a>
-used when presenting a capability is valid and is associated with the
-<code>capabilityInvocation</code> property. An example of when this property
-is useful is when a <a>DID Subject</a> chooses to invoke their capability to
-start a vehicle through the combined usage of a <a>verification method</a> and
-the "canStartCar" capability. In this example, the vehicle would be the 
-<em>verifier</em> and would need to verify the <a>verification method</a> 
-exists in the <code>capabilityInvocation</code> property. 
+It is the responsibility of a <a>verifier</a> to ensure that the
+<a>verification method</a> used when presenting a capability is invoked and is
+associated with the <code>capabilityInvocation</code> property. An example of
+when this property is useful is when a <a>DID subject</a> chooses to invoke
+their capability to start a vehicle through the combined usage of a
+<a>verification method</a> and the <code>StartCar</code> capability. In this
+example, the vehicle would be the <em>verifier</em> and would need to verify
+that the <a>verification method</a> exists in the
+<code>capabilityInvocation<code> property. 
       </p>
                   
       <p>
@@ -2060,7 +2060,7 @@ Example:
   "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "capabilityInvocation: [
-    <span class="comment">// this method can be used to perform key agreement
+    <span class="comment">// this method can be used to invoke capabilities
     as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
     <span class="comment">// this method is *only* authorized for capability
@@ -2087,12 +2087,12 @@ Example:
       <p>
 The <code>capabilityDelegation<code> property is used to express a
 <a>verification relationship</a> which an entity can use to grant capabilities
-as the <a>DID Subject</a> or on behalf of the <a>DID subject</a> to other
+as the <a>DID subject</a> or on behalf of the <a>DID subject</a> to other
 <em>capability invokers</em>. The <em>verifier</em> of a
-<code>capabilityDelegation<code> attempt can check proof of delegation to 
-grant invocation of a capability on behalf of the <a>DID subject</a> by 
-checking if the <a>verification method</a> used with the proof is contained 
-in the <code>capabilityDelegation<code> of the <a>DID Document</a>.
+<code>capabilityDelegation<code> attempt can check the validity of a
+capability to grant invocation of a capability by checking if the
+<a>verification method</a> used with the proof is contained in the
+<code>capabilityDelegation<code> section of the <a>DID Document</a>.
       </p>
           
       <p class="note" title="Uses of capabilityDelegation">
@@ -2101,7 +2101,7 @@ used when presenting a capability is valid and is associated with the
 <code>capabilityDelegation</code> property. An example of when this property
 is useful is when a <a>DID Subject</a> chooses to grant their capability to
 start a vehicle through the combined usage of a <a>verification method</a> and
-the "canStartCar" capability to an additional capability invoker.
+the <code>StartCar</code> capability to a capability invoker.
       </p>
 
       <p>
@@ -2121,8 +2121,8 @@ Example:
   "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "capabilityDelegation": [
-    <span class="comment">// this method can be used to perform key
-    agreement as did:...fghi</span>
+    <span class="comment">// this method can be used to perform 
+    capabilty delegation as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
     <span class="comment">// this method is *only* authorized for granting
     capabilities it may not</span>
