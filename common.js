@@ -10,8 +10,8 @@ var ccg = {
   // Extend or override global respec references
   localBiblio: {
     "DID-SPEC-REGISTRIES": {
-      title: "Decentralized Identifiers Core and Extensions Registries",
-      href: "https://w3c.github.io/did-core-registries/",
+      title: "DID Specification Registries",
+      href: "https://w3c.github.io/did-spec-registries/",
       authors: [
       	"Orie Steele",
         "Manu Sporny"
