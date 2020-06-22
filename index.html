@@ -2645,9 +2645,9 @@ other core representations.
       controller : uri
     }
 
-    did = tstr .pcre "^did\\:(?<method-name>[a-z0-9]{2,})\\:(?<method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)"
+    did = tstr .pcre "^did\\:(?&lt;method-name>[a-z0-9]{2,})\\:(?&lt;method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)"
 
-    did-url =  tstr .pcre "^did\\:(?<method-name>[a-z0-9]{2,})\\:(?<method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)\\;(?<path>[A-Za-z0-9\\/)(?<query>\\?[a-z0-9\\=\\&])#(?<fragment>.+)"
+    did-url =  tstr .pcre "^did\\:(?&lt;method-name>[a-z0-9]{2,})\\:(?&lt;method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)\\;(?&lt;path>[A-Za-z0-9\\/)(?&lt;query>\\?[a-z0-9\\=\\&amp;])#(?&lt;fragment>.+)"
 
     service = {
       id : did-url
