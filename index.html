@@ -732,7 +732,7 @@ defined in this ABNF are defined in [[RFC3986]].
 did                = "did:" method-name ":" method-specific-id
 method-name        = 1*method-char
 method-char        = %x61-7A / DIGIT
-method-specific-id = *( ":" *idchar ) 1*idchar
+method-specific-id = *( *idchar ":" ) 1*idchar
 idchar             = ALPHA / DIGIT / "." / "-" / "_"
         </pre>
 
