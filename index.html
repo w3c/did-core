@@ -3308,10 +3308,10 @@ This specification defines the following common properties.
 content-type
                 </dt>
                 <dd>
-The mime-type of the returned <code>did-document-stream</code>.
+The MIME type of the returned <code>did-document-stream</code>.
 This property is REQUIRED if resolution is successful and if the <code>resolveStream</code> function was called.
 It MUST NOT be present if the <code>resolve</code> function was called.
-The value of this property MUST be the mime-type of one of the conformant <a href="#representations">representations</a>.
+The value of this property MUST be the MIME type of one of the conformant <a href="#representations">representations</a>.
 The caller of the <code>resolveStream</code> function MUST use this value when determining how to
 parse and process the <code>did-document-stream</code> returned by this function into a
 <a>DID document</a> abstract data model.
