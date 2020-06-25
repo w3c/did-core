@@ -711,147 +711,101 @@ by <em>specific</em> <a>DID methods</a> in their respective specifications.
 
     <section class="normative">
       <h3>DID Syntax</h3>
-      <section class="normative">
-        <h2 id="generic-did-syntax">Generic DID Syntax</h2>
 
-        <p>
+      <p>
 The generic <a>DID scheme</a> is a URI scheme conformant with [[!RFC3986]].
-        </p>
+      </p>
 
-        <p class="note">
-A <a>DID</a> always identifies the <a>DID subject</a>.
-         </p>
+      <p>
+The <a>DID scheme</a> name MUST be <a>lowercase</a>.
+      </p>
+      <p>
+The <a>DID method</a> name MUST be <a>lowercase</a>.
+      </p>
+      <p>
+(An ASCII <dfn>lowercase</dfn> letter is a Unicode code point in the range
+<code>U+0061</code> (a) to <code>U+007A</code> (z), inclusive.)
+      </p>
 
-        <p>
+      <p>
 The following is the ABNF definition using the syntax in [[!RFC5234]], which
 defines <code>ALPHA</code> and <code>DIGIT</code>. All other rule names not
 defined in this ABNF are defined in [[RFC3986]].
-        </p>
+      </p>
 
-        <pre class="nohighlight">
+      <pre class="nohighlight">
 did                = "did:" method-name ":" method-specific-id
 method-name        = 1*method-char
 method-char        = %x61-7A / DIGIT
 method-specific-id = *( ":" *idchar ) 1*idchar
 idchar             = ALPHA / DIGIT / "." / "-" / "_"
-        </pre>
+      </pre>
 
-        <p class="issue" data-number="34">
-The grammar currently allows an empty <code>method-specific-id</code>, e.g.,
-<code>did:example:</code> would be a valid <a>DID</a> that could identify the
-<a>DID method</a> itself.
-        </p>
-      </section>
-      <section id="method-specific-parameters" class="normative">
-        <h2>Method-Specific Syntax</h2>
-
-        <p>
+      <p>
 A <a>DID method</a> specification MUST further restrict the generic <a>DID</a>
 syntax by defining its own <code>method-name</code> and its own
-<code>method-specific-id</code> syntax. For more information, see Section
+<code>method-specific-id</code> syntax. Case sensitivity and normalization of
+the value of the <code>method-specific-id</code> rule MUST be defined by the
+governing <a>DID method</a> specification. For more information, see Section
 <a href="#methods"></a>.
-        </p>
+      </p>
 
-      </section>
-      <section class="normative">
-        <h2>Normalization</h2>
-
+      <div class="note" title="Persistence">
         <p>
-For the broadest interoperability, make <a>DID</a> normalization as simple and
-universal as possible:
+  A <a>DID</a> is expected to be persistent and immutable. That is, a <a>DID</a>
+  is bound exclusively and permanently to its one and only subject. Even after a
+  <a>DID</a> is deactivated, it is intended that it never be repurposed.
         </p>
-        <ul>
-          <li>
-The <a>DID scheme</a> name MUST be lowercase.
-          </li>
-
-          <li>
-The <a>DID method</a> name MUST be lowercase.
-          </li>
-
-          <li>
-Case sensitivity and normalization of the value of the
-<code>method-specific-id</code> rule in Section
-<a href="#generic-did-syntax"></a> MUST be defined by the governing
-<a>DID method</a> specification.
-          </li>
-        </ul>
-      </section>
-
-      <section class="normative">
-        <h2>Persistence</h2>
-
         <p>
-A <a>DID</a> is expected to be persistent and immutable. That is, a <a>DID</a>
-is bound exclusively and permanently to its one and only subject. Even after a
-<a>DID</a> is deactivated, it is intended that it never be repurposed.
-        </p>
-
-        <div class="note">
-          <p>
 Ideally, a <a>DID</a> would be a completely abstract decentralized identifier
 (like a <a>UUID</a>) that could be bound to multiple underlying <a>verifiable
 data registries</a> over time, thus maintaining its persistence independent of
 any particular system. However, registering the same identifier on multiple
-<a>verifiable data registries</a> introduces extremely hard entityship and <a
-href="https://en.wikipedia.org/wiki/List_of_DNS_record_types%23SOA">
-start-of-authority</a> (SOA) problems. It also greatly increases implementation
-complexity for developers.
-          </p>
-          <p>
+<a>verifiable data registries</a> makes it extremely difficult to identify the
+authoritative version of a <a>DID document</a> if the contents diverge
+between the different <a>verifiable data registries</a>. It also greatly
+increases implementation complexity for developers.
+        </p>
+        <p>
 To avoid these issues, developers should refer to the Decentralized
 Characteristics Rubric [[?DID-RUBRIC]] to decide which <a>DID method</a> best
 addresses the needs of the use case.
-          </p>
-        </div>
-
-        <p class="note">
-Although not included in this version, future versions of this specification
-might support a <a>DID document</a> <code>equivID</code> property to establish
-verifiable equivalence relations between <a>DIDs</a> representing the same
-subject on multiple <a>verifiable data registries</a>. Such equivalence relations can
-produce the practical equivalent of a single persistent abstract <a>DID</a>.
         </p>
-      </section>
+      </div>
+
     </section>
 
     <section class="normative">
       <h3>DID URL Syntax</h3>
 
-      <section>
-        <h2>Generic DID URL Syntax</h2>
-
-        <p>
+      <p>
 A <a>DID URL</a> always identifies a <a>resource</a> to be located. It can be
 used, for example, to identify a specific part of a <a>DID document</a>.
-        </p>
+      </p>
 
-        <p>
+      <p>
 This following is the ABNF definition using the syntax in [[!RFC5324]]. It
 builds on the <code>did</code> scheme defined in <a
-href="#generic-did-syntax"></a>. The <code>path-abempty</code> and
+href="#did-syntax"></a>. The <code>path-abempty</code> and
 <code>fragment</code> components are identical to the ABNF rules defined in
 [[!RFC3986]], and the <code>did-query</code> component is derived from the
 <code>query</code> ABNF rule.
-        </p>
+      </p>
 
-
-        <pre class="nohighlight">
+      <pre class="nohighlight">
 did-url            = did path-abempty [ "?" did-query ]
                      [ "#" fragment ]
 did-query          = param *( "&" param )
 param              = param-name "=" param-value
 param-name         = 1*pchar
 param-value        = *pchar
-        </pre>
+      </pre>
 
-        <p>
+      <p>
 This specification reserves the semicolon (<code>;</code>) character for
 possible future use as a sub-delimiter for parameters as described in
 [[?MATRIX-URIS]].
-        </p>
-
-      </section>
+      </p>
 
       <section>
         <h2>Generic DID URL Parameters</h2>
@@ -871,7 +825,7 @@ MUST operate uniformly across those <a>DID methods</a> that do support them.
         </p>
         <p>
 Parameter names that are completely method-specific are described in Section
-<a href="#method-specific-parameters"></a>.
+<a href="#method-specific-did-url-parameters"></a>.
         </p>
         <p>
 The following table defines a set of generic DID parameter names.
@@ -933,7 +887,7 @@ time. Note that this parameter might not be supported by all <a>DID methods</a>.
 
         <p>
 Additional considerations for processing these parameters are discussed in
-[?DID-RESOLUTION].
+[[?DID-RESOLUTION]].
         </p>
 
         <p>
@@ -1053,8 +1007,8 @@ For more information, see Section <a href="#service-endpoints"></a>.
         </p>
 
         <p>
-A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID paths</a> that
-are more restrictive than the generic rules in this section.
+A <a>DID method</a> specification MAY specify ABNF rules for <a>DID paths</a>
+that are more restrictive than the generic rules in this section.
         </p>
 
         <pre class="example nohighlight">
@@ -1067,15 +1021,15 @@ did:example:123456/path
 
         <p>
 A <a>DID query</a> is derived from a generic URI query and MUST conform to the
-<code>did-query</code> ABNF rule in Section <a href="#generic-did-url-syntax">
+<code>did-query</code> ABNF rule in Section <a href="#did-url-syntax">
 </a>. If a <a>DID query</a> is present, it MUST be used
 as described in Sections <a href="#generic-did-url-parameters"></a> and
 <a href="#method-specific-did-url-parameters"></a>.
         </p>
 
         <p>
-A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID queries</a> that
-are more restrictive than the generic rules in this section.
+A <a>DID method</a> specification MAY specify ABNF rules for <a>DID queries</a>
+that are more restrictive than the generic rules in this section.
         </p>
 
         <pre class="example nohighlight">
@@ -1099,7 +1053,7 @@ information, see <a href="#did-url-dereferencing"></a>.
         </p>
 
         <p>
-A specific <a>DID scheme</a> MAY specify ABNF rules for <a>DID fragments</a>
+A <a>DID method</a> specification MAY specify ABNF rules for <a>DID fragments</a>
 that are more restrictive than the generic rules in this section.
         </p>
 
@@ -1130,7 +1084,7 @@ representations in Section <a href="#application-did-ld-json"></a>.
 A relative DID URL is any URL value in a <a>DID document</a> that does not start
 with <code>did:&lt;method-name>:&lt;method-specific-id></code>. More
 specifically, it is any URL value that does not start with the ABNF defined  in
-Section <a href="#generic-did-syntax"></a>. The contents of the URL typically
+Section <a href="#did-syntax"></a>. The contents of the URL typically
 refers to a <a>resource</a> in the same <a>DID document</a>. Relative DID URLs
 MAY contain relative path components, query parameters, and fragment
 identifiers.
@@ -2923,34 +2877,70 @@ followed
   </section>
 
   <section>
-    <h1>Methods</h1>
+    <h1>
+Methods
+    </h1>
+
+    <p>
+<a>DID methods</a> provide the means to implement this specification on
+different <a>verifiable data registries</a>. New <a>DID methods</a> are
+defined in their own specifications, so that interoperability between
+different implementations of the same <a>DID method</a> is ensured. This
+section specifies the requirements on any <a>DID method</a>, which are met by
+the <a>DID method</a>'s associated specification.
+    </p>
+
+    <p>
+For adding properties to a <a>DID document</a> which are specific to a
+particular <a>DID method</a>, see <a href="#extensibility"></a>.
+    </p>
 
     <section class="normative">
       <h2>Method Schemes</h2>
 
       <p>
 A <a>DID method</a> specification MUST define exactly one method-specific
-<a>DID scheme</a>, identified by exactly one method name. For more information,
-see the <code>method-name</code> rule in Section
-<a href="#generic-did-syntax"></a>.
+<a>DID scheme</a>, identified by exactly one method name (see the
+<code>method-name</code> rule in Section <a href="#did-syntax"></a>).
       </p>
 
       <p>
-Because the method name is part of the <a>DID</a>, short method names are
-preferred; the method name SHOULD be five characters or less. The method name
-might reflect the name of the <a>verifiable data registry</a> to which the
-<a>DID method</a> specification applies. For more information, see Section
-<a href="#method-schemes"></a>.
+The authors of a new <a>DID method</a> specification SHOULD use a method name
+that is unique among all <a>DID method</a> names known to them at the time of
+publication.
       </p>
 
       <p>
-The <a>DID method</a> specification for the method-specific <a>DID scheme</a>
-MUST specify how to generate the <code>method-specific-id</code> component of a
-<a>DID</a>. The <code>method-specific-id</code> value MUST be able to be
-generated without the use of a centralized registry service. The
-<code>method-specific-id</code> value SHOULD be globally unique by itself. The
-<a>DID</a>, as defined by the <code>did</code> rule in Section
-<a href="#generic-did-syntax"></a>, MUST be globally unique.
+The method name SHOULD be five characters or less.
+      </p>
+
+      <div class="note" title="Unique DID method names">
+        <p>
+Because there is no central authority for allocating or approving <a>DID
+method</a> names, there is no way to know for certain if a specific <a>DID
+method</a> name is unique. To help with this challenge, a non-authoritative
+list of known <a>DID method</a> names and their associated specifications is
+maintained in the DID Methods Registry, which is part of [[?DID-SPEC-REGISTRIES]].
+        </p>
+        <p>
+  Authors of new <a>DID method</a> specifications are encouraged to add their
+  method names to the DID Method Registry so that other implementors
+  and members of the community have a place to see an overview of existing
+  <a>DID methods</a>.
+        </p>
+      </div>
+
+      <p>
+The <a>DID method</a> specification MUST specify how to generate the
+<code>method-specific-id</code> component of a <a>DID</a>.
+      </p>
+      <p>
+The <code>method-specific-id</code> value MUST be able to be generated without
+the use of a centralized registry service.
+      </p>
+      <p>
+The <code>method-specific-id</code> value SHOULD be globally unique by itself.
+Any <a>DID</a> generated by the method MUST be globally unique.
       </p>
 
       <p>
@@ -2961,71 +2951,39 @@ formats as possible.
       </p>
 
       <p>
-The <code>method-specific-id</code> format MAY include colons, which might be
-used by <a>DID methods</a> for various purposes, such as establishing
-hierarchically partitioned namespaces, or identifying specific instances or
-parts of the <a>verifiable data registry</a>. The use of colons MUST comply
-syntactically with the <code>method-specific-id</code> ABNF rule and their use
-is entirely method-specific. Implementers are advised to avoid
-assuming any meanings or behaviors associated with a colon that are
-generically applicable to all <a>DID methods</a>.
+The <code>method-specific-id</code> format MAY include colons. The use of
+colons MUST comply syntactically with the <code>method-specific-id</code> ABNF
+rule.
+      </p>
+      <p class="note" title="Colons in method-specific-id">
+The meaning of colons in the <code>method-specific-id</code> is entirely
+method-specific. Implementers are advised to avoid assuming any meanings or
+behaviors associated with a colon that are generically applicable to all
+<a>DID methods</a>.
       </p>
 
-      <p>
-The authors of a new <a>DID method</a> specification SHOULD use a method name
-that is unique among all <a>DID method</a> names known to them at the time of
-publication.
-      </p>
-      <p>
-Because there is no central authority for allocating or approving <a>DID
-method</a> names, there is no way to know for certain if a specific <a>DID
-method</a> name is unique. To help with this challenge, a non-authoritative
-list of known <a>DID method</a> names and their associated specifications is
-maintained in the DID Methods Registry, which is part of [[?DID-SPEC-REGISTRIES]].
-      </p>
-      <p>
-The DID Methods Registry is a tool for implementors to use when coming to
-consensus on a new method name, as well as an informative reference for software
-developers implementing <a>DID resolvers</a> for different <a>DID methods</a>.
-For more information about <a>DID resolvers</a> see Section
-<a href="#resolution"></a>. The DID Method Registry is not a definitive
-or official list of <a>DID methods</a>. Nonetheless, adding <a>DID method</a>
-names to the DID Method Registry is encouraged so that other implementors
-and members of the community have a place to see an overview of existing
-<a>DID methods</a>. The lightweight criteria for inclusion are documented in
-[[?DID-SPEC-REGISTRIES]].
-      </p>
     </section>
 
     <section>
       <h2>Method Operations</h2>
-
       <p>
-To enable the full functionality of <a>DIDs</a> and <a>DID documents</a> on a
-particular <a>verifiable data registry</a>, a <a>DID method</a> specification
-MUST specify how a client might be used to perform the create, read, update,
-and deactivate operations. Each operation ought to be specified to the level
-of detail necessary to build and test interoperable client implementations. In
-the event that an operation is not supported, such as update or deactivate,
-then it is RECOMMENDED that the <a>DID Method</a> specification state that it
-is not supported. These operations can be used to perform all the operations
-required of a cryptographic key management system (CKMS), e.g.: key registration,
-key replacement, key rotation, key recovery, and key expiration.
+This section sets out the requirements for <a>DID method</a> specifications
+with regards to operations that can be performed on a <a>DID document</a>.
       </p>
-
       <p>
 Determining the authority of a party to carry out the operations is
 method-specific. For example, a <a>DID method</a> MAY:
       </p>
       <ul>
         <li>
-use the <a>verification methods</a> listed under <a>authentication</a> to
+use the <a>verification methods</a> listed under <code>authentication</code> to
 decide whether an update/deactivate operation is allowed; or
         </li>
         <li>
 use other constructs in the <a>DID Document</a> to decide this, for example,
-a verification method specified under capabilityInvocation could be used to
-verify the invocation of a capability to update the DID Document.; or
+a verification method specified under <code>capabilityInvocation</code> could
+be used to verify the invocation of a capability to update the DID Document.;
+or
         </li>
         <li>
 not use the <a>DID Document</a> at all to decide this, but have rules that are
@@ -3095,40 +3053,6 @@ deactivation is not possible.
 
     <section>
       <h2>
-Interoperability
-      </h2>
-      <p>
-Interoperability for <a>DID methods</a> will be determined by evaluating each
-<a>DID method</a> specification to determine, at a minimum, that the:
-      </p>
-      <ul>
-        <li>
-<a>DID method</a> name is unique and not used by an existing, incompatible
-<a>DID method</a>.
-        </li>
-        <li>
-Required operations are supported.
-        </li>
-        <li>
-Operations requiring descriptions are described.
-        </li>
-        <li>
-Specification is specific, detailed, and complete enough for independent
-implementation.
-        </li>
-        <li>
-Specification contains sections describing security and privacy considerations.
-        </li>
-      </ul>
-
-    </section>
-
-    <section>
-      <h2>Extensibility</h2>
-    </section>
-
-    <section>
-      <h2>
 Security Requirements
       </h2>
       <p>
@@ -3143,22 +3067,6 @@ replay, message insertion, deletion, modification, and man-in-the-middle.
 Potential denial of service attacks MUST be identified as well.
       </p>
       <p>
-If the protocol incorporates cryptographic protection mechanisms, the
-<a>DID method</a> specification MUST clearly indicate which portions of the
-data are protected and what the protections are, and SHOULD give an indication
-to what sorts of attacks the cryptographic protection is susceptible.
-For example, integrity only, confidentiality, endpoint authentication, and so
-on.
-      <p>
-Data which is to be held secret (keying material, random seeds, and so on)
-SHOULD be clearly labeled.
-      </p>
-      <p>
-If the technology involves authentication, particularly user-host
-authentication, the security of the authentication method MUST be clearly
-specified.
-      </p>
-      <p>
 This section MUST discuss, per Section 5 of [[RFC3552]], residual risks (such as
 the risks from compromise in a related protocol, incorrect implementation, or
 cipher) after threat mitigation was deployed.
@@ -3168,9 +3076,18 @@ This section MUST provide integrity protection and update authentication for all
 operations required by Section <a href="#method-operations"></a>.
       </p>
       <p>
-Where <a>DID methods</a> make use of peer-to-peer computing resources, such as
-with all known <a>DLTs</a>, the expected burdens of those resources SHOULD be
-discussed in relation to denial of service.
+If the technology involves authentication, particularly user-host
+authentication, the security of the authentication method MUST be clearly
+specified.
+      </p>
+      <p>
+<a>DID methods</a> MUST discuss the policy mechanism by which <a>DIDs</a> are
+proven to be uniquely assigned. A <a>DID</a> fits the functional definition of a
+URN, as defined in [[RFC8141]]. That is, a <a>DID</a> is a persistent identifier
+that is assigned once to a resource and never reassigned to a different
+resource. This is particularly important in a security context because a
+<a>DID</a> might be used to identify a specific party subject to a specific set
+of authorization rights.
       </p>
       <p>
 Method-specific endpoint authentication MUST be discussed. Where <a>DID
@@ -3182,13 +3099,21 @@ of the topology available to implementations of the <a>DID method</a> MUST be
 discussed.
       </p>
       <p>
-<a>DID methods</a> MUST discuss the policy mechanism by which <a>DIDs</a> are
-proven to be uniquely assigned. A <a>DID</a> fits the functional definition of a
-URN, as defined in [[RFC8141]]. That is, a <a>DID</a> is a persistent identifier
-that is assigned once to a resource and never reassigned to a different
-resource. This is particularly important in a security context because a
-<a>DID</a> might be used to identify a specific party subject to a specific set
-of authorization rights.
+If the protocol incorporates cryptographic protection mechanisms, the
+<a>DID method</a> specification MUST clearly indicate which portions of the
+data are protected and what the protections are, and SHOULD give an indication
+to what sorts of attacks the cryptographic protection is susceptible.
+For example, integrity only, confidentiality, endpoint authentication, and so
+on.
+      </p>
+      <p>
+Data which is to be held secret (keying material, random seeds, and so on)
+SHOULD be clearly labeled.
+      </p>
+      <p>
+Where <a>DID methods</a> make use of peer-to-peer computing resources, such as
+with all known <a>DLTs</a>, the expected burdens of those resources SHOULD be
+discussed in relation to denial of service.
       </p>
       <p>
 <a>DID methods</a> that introduce new authentication <a>service endpoint</a>
