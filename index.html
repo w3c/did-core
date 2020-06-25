@@ -1147,7 +1147,8 @@ representations, and a set of requirements for extensibility.
     <section>
       <h2>Definition</h2>
       <p>
-A <a>DID document</a> consists of a collection of property-value pairs. The
+A <a>DID document</a> consists of a collection of properties, which are
+name-value pairs (ie. a property name, and a property value). The
 definitions of each of these properties are specified in section
 <a href="#core-properties"></a>. Specific representations are defined in section
 <a href="#core-representations"></a>.
@@ -1161,9 +1162,9 @@ Following are the requirements for representations.
       <ol>
         <li>
 A representation MUST define an unambiguous encoding and decoding of all
-properties and their associated values as defined in this specification. This
-means anything you can represent in the <a>DID document</a> data model can be
-represented in any compliant representation.
+property names and their associated values as defined in this specification.
+This means anything you can represent in the <a>DID document</a> data model
+can be represented in any compliant representation.
         </li>
         <li>
 The representation MUST be associated with an IANA-registered MIME type.
@@ -1187,8 +1188,8 @@ The data model supports two types of extensibility.
       <ol>
         <li>
 For maximum interoperability, it is RECOMMENDED that extensions use the official
-W3C DID Core Registries mechanism [[DID-SPEC-REGISTRIES]]. The use of this
-mechanism for new properties or other extensions is the only specified method
+W3C DID Specification Registries mechanism [[DID-SPEC-REGISTRIES]]. The use of
+this mechanism for new properties or other extensions is the only specified method
 that ensures that two different representations will be able to work together.
         </li>
       <li>
@@ -1259,11 +1260,11 @@ The value of <code>id</code> MUST be a single valid <a>DID</a>.
 
       <p class="note">
 <a>DID method</a> specifications can create intermediate representations of a
-<a>DID document</a> that do not contain the <code>id</code> key, such as when a
-<a>DID resolver</a> is performing <a>DID resolution</a>. However, the fully
-resolved <a>DID document</a> always contains a valid <code>id</code> property.
-The value of <code>id</code> in the resolved <a>DID document</a> is expected to
-match the <a>DID</a> that was resolved.
+<a>DID document</a> that do not contain the <code>id</code> property, such as
+when a <a>DID resolver</a> is performing <a>DID resolution</a>. However, the
+fully resolved <a>DID document</a> always contains a valid <code>id</code>
+property. The value of <code>id</code> in the resolved <a>DID document</a> is
+expected to match the <a>DID</a> that was resolved.
       </p>
     </section>
 
@@ -1294,19 +1295,21 @@ A <a>DID document</a> MAY include a <code>verificationMethod</code> property.
         <dt><dfn>verificationMethod</dfn></dt>
         <dd>
 If a <a>DID document</a> includes a <code>verificationMethod</code> property,
-the value of the property MUST be an array of verification method objects.
-Each verification method object MUST have the <code>id</code>, <code>type</code>,
-<code>controller</code>, and specific verification method properties. The
-verification method objects MAY include additional properties.
+the value of the property MUST be an unordered set of verification methods,
+where each verification method is described by a set of properties.
+The set of properties MUST include the <code>id</code>, <code>type</code>,
+<code>controller</code>, and specific verification method properties, and
+MAY include additional properties.
         </dd>
       </dl>
 
       <p>
-The value of the <code>id</code> property MUST be a <a>URI</a>. The array of
-verification methods MUST NOT contain multiple entries with the same
-<code>id</code>. If the array of <a>verification methods</a> contains multiple
-entries with the same <code>id</code>, a <a>DID document</a> processor MUST
-produce an error.
+The value of the <code>id</code> property for a verification method MUST be a
+<a>URI</a>. When more than one verification method is present, the value of
+<code>verificationMethod</code> MUST NOT contain multiple entries with the same
+<code>id</code>. If the value of <code>verificationMethod</code> contains
+multiple entries with the same <code>id</code>, a <a>DID document</a> processor
+MUST produce an error.
       </p>
 
       <p>
@@ -1321,7 +1324,7 @@ The value of the <code>controller</code> property, MUST be a valid <a>DID</a>.
       </p>
 
       <p>
-In order to maximize global interoperability, the verification method properties
+In order to maximize global interoperability, the verification method 
 SHOULD be registered in the [[DID-SPEC-REGISTRIES]].
       </p>
 
@@ -1357,9 +1360,9 @@ specifications.
       <p>
 Public keys can be included in a <a>DID document</a> using the
 <code>publicKey</code> or <code>authentication</code> properties, depending on
-what they are to be used for. Each public key has an identifier (<code>id</code>)
-of its own, a <code>type</code>, and a <code>controller</code>, as well as
-other properties that depend on the type of key it is.
+what they are to be used for. Each public key has properties for an identifier
+(<code>id</code>) of its own, a <code>type</code>, and a <code>controller</code>,
+as well as other properties that depend on the type of key it is.
       </p>
 
       <p>
@@ -1380,17 +1383,18 @@ A <a>DID document</a> MAY include a <code>publicKey</code> property.
         <dt><dfn>publicKey</dfn></dt>
         <dd>
 If a <a>DID document</a> includes a <code>publicKey</code> property, the value
-of the property MUST be an array of public key objects. Each public key object
-MUST have the <code>type</code>, <code>controller</code>, and specific public
-key properties, and MUST have an <code>id</code> property. The public key
-objects MAY include additional properties.
+of the property MUST be an unordered set of public keys, where each public
+key is described by a set of properties. Each public key MUST have the <code>id</code>,
+<code>type</code>, <code>controller</code>, and specific public key properties,
+and MAY include additional properties.
         </dd>
       </dl>
 
       <p>
-The value of the <code>id</code> property MUST be a <a>URI</a>. The array of
-public keys MUST NOT contain multiple entries with the same <code>id</code>. In
-this case, a <a>DID document</a> processor MUST produce an error.
+The value of the <code>id</code> property MUST be a <a>URI</a>. The value of
+<code>publicKey</code> MUST NOT contain multiple entries with the same
+<code>id</code>. In this case, a <a>DID document</a> processor MUST produce an
+error.
       </p>
 
       <p>
@@ -1432,7 +1436,7 @@ example of a public key with a compound key identifier.
       </p>
 
       <p>
-All public key properties MUST be registered in the [[DID-SPEC-REGISTRIES]].
+All public key property names MUST be registered in the [[DID-SPEC-REGISTRIES]].
       </p>
 
       <p>
@@ -1668,10 +1672,10 @@ If so:
       <dl>
           <dt><dfn>controller</dfn></dt>
           <dd>
-The value of the <code>controller</code> property MUST be a valid <a>DID</a>
-or an array of valid <a>DIDs</a>. The corresponding <a>DID document</a>(s)
-SHOULD contain <a>verification relationships</a> that explicitly permit the
-use of certain verification methods for specific purposes.
+The value of the <code>controller</code> property MUST be one or more valid
+<a>DIDs</a>. The corresponding <a>DID document</a>(s) SHOULD contain
+<a>verification relationships</a> that explicitly permit the use of certain
+verification methods for specific purposes.
           </dd>
       </dl>
 
@@ -1779,9 +1783,9 @@ subject</a> and a set of verification methods (such as, but not limited to,
 public keys). It means that the <a>DID subject</a> has authorized some set of
 <a>verification methods</a> (per the value of the <code>authentication</code>
 property) for the purpose of authentication. The value of the
-<code>authentication</code> property SHOULD be an array of <a>verification
-methods</a>. Each <a>verification method</a> MAY be embedded or referenced. An
-example of a <a>verification method</a> is a public key
+<code>authentication</code> property SHOULD be an unordered set of
+<a>verification methods</a>. Each <a>verification method</a> MAY be embedded
+or referenced. An example of a <a>verification method</a> is a public key
 (see Section <a href="#public-keys"></a>).
           </dd>
         </dl>
@@ -2089,12 +2093,12 @@ additional details. The metadata associated with services are often
 service-specific. For example, the metadata associated with an encrypted
 messaging service can express how to initiate the encrypted link before
 messaging begins.
-        </p>
+      </p>
       <p>
 Pointers to services are expressed using the <code>service</code> property.
-Each service has its own <code>id</code> and <code>type</code>, as well as a
-<code>serviceEndpoint</code> with a <a>URI</a> or other properties describing
-the service.
+Each service has its own <code>id</code> and <code>type</code> properties, as
+well as a <code>serviceEndpoint</code> property with a <a>URI</a> or a set of
+other properties describing the service.
       </p>
 
       <p>
@@ -2113,24 +2117,26 @@ A <a>DID document</a> MAY include a <code>service</code> property.
         <dt><dfn>service</dfn></dt>
         <dd>
 If a <a>DID document</a> includes a <code>service</code> property, the value of
-the property SHOULD be an array of <a>service endpoint</a> objects. Each
-<a>service endpoint</a> MUST have <code>id</code>, <code>type</code>, and
-<code>serviceEndpoint</code> properties, and MAY include additional properties.
+the property SHOULD be an unordered set of <a>service endpoint</a>s, where
+each service endpoint is described by a set of properties. Each <a>service endpoint</a>
+MUST have <code>id</code>, <code>type</code>, and <code>serviceEndpoint</code>
+properties, and MAY include additional properties.
         </dd>
       </dl>
 
       <p>
 The value of the <code>id</code> property MUST be a <a>URI</a>.
-The array of <a>service endpoints</a> MUST NOT contain multiple entries
+The value of <code>serviceEndpoint</code> MUST NOT contain multiple entries
 with the same <code>id</code>. In this case, a <a>DID document</a> processor
 MUST produce an error.
       </p>
 
       <p>
-The value of the <code>serviceEndpoint</code> property MUST be a JSON-LD object
-or a valid <a>URI</a> conforming to [[RFC3986]] and normalized according to the
+The value of the <code>serviceEndpoint</code> property MUST be a valid
+<a>URI</a> conforming to [[RFC3986]] and normalized according to the
 rules in section 6 of [[RFC3986]] and to any normalization rules in its
-applicable <a>URI</a> scheme specification.
+applicable <a>URI</a> scheme specification, <em>OR</em> a set of properties
+which describe the service endpoint further.
       </p>
 
       <p>
@@ -2299,268 +2305,260 @@ representations should be added here once that section has been written.
     </p>
 
     <section>
-        <h2>
+      <h2>
 JSON
-        </h2>
+      </h2>
 
-        <p>
+      <p>
 When producing and consuming DID documents that are in plain JSON (as indicated
 by a <code>content-type</code> of <code>application/did+json</code> in the
 resolver metadata), the following rules MUST be followed.
-        </p>
+      </p>
 
-        <section>
-            <h3>Production</h3>
+      <section>
+        <h3>Production</h3>
 
-            <p>
+        <p>
 A <a>DID document</a> MUST be a single <a data-cite="RFC8259#section-4">JSON
 object</a> conforming to [[!RFC8259]]. All top-level properties of the <a>DID
 document</a> MUST be represented by using the property name as the name of the
 member of the JSON object. The values of properties of the data model described
 in Section <a href="#data-model"></a>, including all extensions, MUST be encoded
 in JSON [[RFC8259]] by mapping property values to JSON types as follows:
-            </p>
+        </p>
 
-            <p class="issue" data-number="204">
-In this section we use the term "property name" to refer to the string that
-represents the property itself, but this specification still needs to define a
-concrete term for such aspects of a property of a DID document.
-            </p>
-
-            <ul>
-                <li>
+        <ul>
+          <li>
 Numeric values representable as IEEE754 MUST be represented as a
 <a data-cite="RFC8259#section-6">Number type</a>.
-                </li>
-                <li>
+          </li>
+          <li>
 Boolean values MUST be represented as a <a data-cite="RFC8259#section-3">Boolean
 literal</a>.
-                </li>
-                <li>
+          </li>
+          <li>
 Sequence value MUST be represented as an <a data-cite="RFC8259#section-5">Array
 type</a>.
-                </li>
-                <li>
+          </li>
+          <li>
 Unordered sets of values MUST be represented as an <a
 data-cite="RFC8259#section-5">Array type</a>.
-                </li>
-                <li>
+          </li>
+          <li>
 Sets of properties MUST be represented as an <a
 data-cite="RFC8259#section-4">Object type</a>.
-                </li>
-                <li>
+          </li>
+          <li>
 Empty values MUST be represented as a <a data-cite="RFC8259#section-3">null
 literal</a>.
-                </li>
-                <li>
+          </li>
+          <li>
 Other values MUST be represented as a <a data-cite="RFC8259#section-7">String
 type</a>.
-                </li>
-            </ul>
+          </li>
+        </ul>
 
-            <p class="issue" data-number="204">
+        <p class="issue" data-number="204">
 An "empty" value is not specified by this document. It seems to imply a null
 value, but this is unclear.
-            </p>
+        </p>
 
-            <p>
+        <p>
 All properties of the <a>DID document</a> MUST be included in
 the root object. Properties MAY define additional data sub structures subject
 to the value representation rules in the list above.
-            </p>
+        </p>
 
-            <p>
+        <p>
 The member name <code>@context</code> MUST NOT be used as this property is
 reserved for JSON-LD producers.
-            </p>
+        </p>
 
-        </section>
+      </section>
 
-        <section>
-            <h3>
+      <section>
+        <h3>
 Consumption
-            </h3>
+        </h3>
 
-            <p class="issue" data-number="204">
+        <p class="issue" data-number="204">
 In this section and we use the term "property name" to refer to the string that
 represents the property itself, but this specification still needs to define a
 concrete term for such aspects of a property of a DID document. We also need a
 concrete term for "the document itself" as opposed to "the collection or
 properties of the document".
-            </p>
+        </p>
 
-            <p>
+        <p>
 The top-level element MUST be a JSON object. Any other data type at the top
 level is an error and MUST be rejected. The top-level JSON object represents
 the <a>DID document</a>, and all members of this object are properties of the
 <a>DID document</a>. The object member name is the property name, and the
 member value is interpreted as follows:
-            </p>
+        </p>
 
-            <ul>
-                <li>
+        <ul>
+          <li>
 <a data-cite="RFC8259#section-6">Number types</a> MUST interpreted as numeric
 values representable as IEEE754.
-                </li>
-                <li>
+          </li>
+          <li>
 <a data-cite="RFC8259#section-3">Boolean literals</a> MUST be interpreted as a
 Boolean value.
-                </li>
-                <li>
+          </li>
+          <li>
 An <a data-cite="RFC8259#section-5">Array type</a> MUST be interpreted as a
 Sequence or Unordered set, depending on the definition of the property for this
 value.
-                </li>
-                <li>
+          </li>
+          <li>
 An <a data-cite="RFC8259#section-4">Object type</a> MUST be interpreted as a
 sets of properties.
-                </li>
-                <li>
+          </li>
+          <li>
 A <a data-cite="RFC8259#section-3">null literal</a> MUST be interpreted as an
 Empty value.
-                </li>
-                <li>
+          </li>
+          <li>
 <a data-cite="RFC8259#section-7">String types</a> MUST be interpreted as
 Strings, which may be further parsed depending on the definition of the property
 for this value into more specific data types such as URIs, date stamps, or other
 values.
-                </li>
-            </ul>
+          </li>
+        </ul>
 
-            <p class="issue" data-number="204">
+        <p class="issue" data-number="204">
 An "empty" value is not specified by this document. It seems to imply a null
 value, but this is unclear.
-            </p>
+        </p>
 
-            <p>
+        <p>
 The value of the <code>@context</code> object member MUST be ignored as this is
 reserved for JSON-LD consumers.
-            </p>
+        </p>
 
-            <p>
+        <p>
 Unknown object member names MUST be ignored as unknown properties.
-            </p>
+        </p>
 
-            <p class="issue" data-number="205">
+        <p class="issue" data-number="205">
 This specification needs to define clear and consistent rules for how to handle
 unknown data members on consumption, and this section needs to be updated with
 that decision.
-            </p>
+        </p>
 
-        </section>
+      </section>
 
     </section>
 
     <section>
-        <h2>
+      <h2>
 JSON-LD
-        </h2>
+      </h2>
 
-        <p>
+      <p>
 [[!JSON-LD]] is a JSON-based format used to serialize
 <a href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a>.
-        </p>
+      </p>
 
-        <p>
+      <p>
 When producing and consuming DID documents that are in JSON-LD (as indicated by
 a <code>content-type</code> of <code>application/did+ld+json</code> in the
 resolver metadata), the following rules MUST be followed.
-        </p>
+      </p>
 
-        <ul>
-            <li>
+      <ul>
+        <li>
 The <code>@id</code> and <code>@type</code> keywords are aliased to
 <code>id</code> and <code>type</code> respectively, enabling developers to use
 this specification as idiomatic JSON.
-            </li>
-            <li>
+        </li>
+        <li>
 Even though JSON-LD allows any IRI as node identifiers, <a>DID documents</a>
 are explicitly restricted to only describe DIDs. This means that the value of
 <code>id</code> MUST be a valid <a>DID</a> and not any other kind of IRI.
-            </li>
-            <li>
+        </li>
+        <li>
 Data types, such as integers, dates, units of measure, and URLs, are
 automatically typed to provide stronger type guarantees for use cases that
 require them.
-            </li>
-        </ul>
+        </li>
+      </ul>
 
-        <section>
-            <h2>
+      <section>
+        <h3>
 Production
-            </h2>
+        </h3>
 
-            <p>
+        <p>
 The <a>DID document</a> is serialized following the rules in the JSON processor,
 with one addition: <a>DID documents</a> MUST include the <code>@context</code>
 property.
-            </p>
+        </p>
 
-            <dl>
-                <dt>@context</dt>
-                <dd>
+        <dl>
+          <dt>@context</dt>
+          <dd>
 The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
 where the value of the first <a>URI</a> is
 <code>https://www.w3.org/ns/did/v1</code>. All members of the
 <code>@context</code> property MUST exist be in the DID properties extension
 registry.
-                </dd>
-            </dl>
+          </dd>
+        </dl>
 
-            <p class="issue" data-number="202">
+        <p class="issue" data-number="202">
 This specification defines globally interoperable documents, and the requirement
 that the context value be in the verifiable data registry means that different JSON-LD
 processors can consume the document without having to dereference anything in
 the context field. However, a pair of producers and consumers can have local
 extension agreements. This needs to be clarified in a section on extensibility
 and linked here when available.
-            </p>
+        </p>
 
-        </section>
+      </section>
 
-        <section>
-            <h2>
+      <section>
+        <h3>
 Consumption
-            </h2>
+        </h3>
 
-            <p>
+        <p>
 The top-level element MUST be a JSON object. Any other data type at the top
 level is an error and MUST be rejected. This top-level JSON object is
 interpreted using JSON-LD processing under the rules of the defined
 <code>@context</code> fields.
-            </p>
+        </p>
 
-            <dl>
-                <dt>@context</dt>
-                <dd>
+        <dl>
+          <dt>@context</dt>
+          <dd>
 The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
 where the value of the first <a>URI</a> is
 <code>https://www.w3.org/ns/did/v1</code>. If more than one <a>URI</a> is
 provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
 RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
 machine-readable information about the context.
-                </dd>
-            </dl>
+          </dd>
+        </dl>
 
-
-            <p>
+        <p>
 Unknown object member names MUST be ignored as unknown properties.
-            </p>
+        </p>
 
-            <p class="issue" data-number="205">
+        <p class="issue" data-number="205">
 This specification needs to define clear and consistent rules for how to handle
 unknown data members on consumption, and this section needs to be updated with
 that decision.
-            </p>
+        </p>
 
-        </section>
+      </section>
 
     </section>
 
-
     <section>
       <h2>CBOR</h2>
-   <p>
+      <p>
 Like Javascript Object Notation (JSON) [[RFC8259]], Concise Binary Object
 Representation (CBOR) [[RFC7049]] defines a set of formatting rules for the
 portable representation of structured data. CBOR is a more concise,
@@ -2570,75 +2568,75 @@ constraints, CBOR can support all JSON data types (including JSON-LD) for
 translation between the DID document model (described in <a
 href="#data-model">Data Model</a> and <a>DID Documents</a>) and other core
 representations.
-  </p>
+      </p>
 
-  <p>
+      <p>
 Concise Data Definition Language (CDDL) [[RFC8610]] is a notation used to
 express Concise Binary Object Representation (CBOR), and by extension JSON Data
 Structures. The following notation expresses the DID Document model in CBOR
 representation with specific constraints for deterministic mappings between
 other core representations.
-  </p>
+      </p>
 
-  <pre class="example nohighlight" title="DID Document data model for CBOR expressed in CDDL notation">
-    DID-document = {
-      ? @context : uri
-      id : did
-      ? publicKey : [* publicKey ]
-      ? authentication :  [ *did // *publicKey // *tstr ]
-      ? service : [ + service  ]
-      ? controller : did / [ *did ]
-      ? created : time
-      ? updated : time
-      proof :  any
-    }
+      <pre class="example nohighlight" title="DID Document data model for CBOR expressed in CDDL notation">
+DID-document = {
+  ? @context : uri
+  id : did
+  ? publicKey : [* publicKey ]
+  ? authentication :  [ *did // *publicKey // *tstr ]
+  ? service : [ + service  ]
+  ? controller : did / [ *did ]
+  ? created : time
+  ? updated : time
+  proof :  any
+}
 
-    publicKey = {
-      id : did
-      type : text
-      controller : uri
-    }
+publicKey = {
+  id : did
+  type : text
+  controller : uri
+}
 
-    did = tstr .pcre "^did\\:(?&lt;method-name>[a-z0-9]{2,})\\:(?&lt;method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)"
+did = tstr .pcre "^did\\:(?&lt;method-name>[a-z0-9]{2,})\\:(?&lt;method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)"
 
-    did-url =  tstr .pcre "^did\\:(?&lt;method-name>[a-z0-9]{2,})\\:(?&lt;method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)\\;(?&lt;path>[A-Za-z0-9\\/)(?&lt;query>\\?[a-z0-9\\=\\&amp;])#(?&lt;fragment>.+)"
+did-url =  tstr .pcre "^did\\:(?&lt;method-name>[a-z0-9]{2,})\\:(?&lt;method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)\\;(?&lt;path>[A-Za-z0-9\\/)(?&lt;query>\\?[a-z0-9\\=\\&amp;])#(?&lt;fragment>.+)"
 
-    service = {
-      id : did-url
-      type : text
-      serviceEndpoint : uri
-      ? description : text
-      * tstr => any
-    }
-   </pre>
+service = {
+  id : did-url
+  type : text
+  serviceEndpoint : uri
+  ? description : text
+  * tstr => any
+}
+      </pre>
 
-  <section>
-    <h4>Production</h4>
-    <p>
+      <section>
+        <h3>Production</h3>
+        <p>
 When producing DID Documents that are represented as CBOR, in addition to the
 suggestions in section 3.9 of the CBOR [[RFC7049]] specification for
 deterministic mappings, the following constraints of the DID Document model
 MUST be followed:
-    </p>
+        </p>
 
-  <ul>
-    <li>
+        <ul>
+          <li>
 Map keys MUST be strings.
-    </li>
-    <li>
+          </li>
+          <li>
 Integer encoding MUST be as short as possible.
-    </li>
-    <li>
+          </li>
+          <li>
 The expression of lengths in CBOR major types 2 through 5 MUST be as short as
 possible.
-    </li>
-    <li>
+          </li>
+          <li>
 All floating point values MUST be encoded as 64-bits, even for integral values.
-    </li>
-  </ul>
+          </li>
+        </ul>
 
-<pre class="example nohighlight" title="An example DID Document represented as contrained CBOR and exported in diagnostic annotation mode for easy readibility">
-    a7                                                   # map(7)
+        <pre class="example nohighlight" title="An example DID Document represented as contrained CBOR and exported in diagnostic annotation mode for easy readibility">
+    a7                                                # map(7)
     62                                                #   text(2)
        6964                                           #     "id"
     78 40                                             #   text(64)
@@ -2738,43 +2736,43 @@ All floating point values MUST be encoded as 64-bits, even for integral values.
           7a726b63746668776436726577657a67            #       "zrkctfhwd6rewezg"
           70776f6534737769726c733465626468            #       "pwoe4swirls4ebdh"
           733269                                      #       "s2i"
-  </pre>
+        </pre>
 
-</section>
+      </section>
 
-<section>
-  <h4>Consumption</h4>
-  <p>
+      <section>
+        <h3>Consumption</h3>
+        <p>
 When consuming DID Documents that are represented as CBOR, in addition to the
 suggestions in section 3.9 of the CBOR [[RFC7049]] specification for
 deterministic mappings the following constraints of the DID Document model MUST
 be followed:
-  </p>
-  <ul>
-    <li>
+        </p>
+        <ul>
+          <li>
 The keys in every map must be sorted lowest value to highest. Sorting is
 performed on the bytes of the representation of the keys.
-    </li>
-    <li>
+          </li>
+          <li>
 Indefinite-length items must be made into definite-length items.
-    </li>
-  </ul>
-</section>
+          </li>
+        </ul>
+      </section>
 
-<section>
-  <h4>CBOR Extensibility</h4>
-  <p>
+      <section>
+        <h3>CBOR Extensibility</h3>
+        <p>
 In CBOR, one point of extensibility is with the use of CBOR tags. [[RFC7049]]
 defines a basic set of data types, as well as a tagging mechanism that enables
 extending the set of data types supported via the <a
 href="https://www.iana.org/assignments/cbor-tags/cbor-tags.xhtml">CBOR Tag
 Registry</a>. This allows for tags to enhance the semantic description of the
 data that follows.
-  </p>
+        </p>
 
-  <section>
-    <h2>DagCBOR</h2>
-    <p>
+        <section>
+          <h4>DagCBOR</h4>
+          <p>
 DagCBOR is a further restricted subset of CBOR for representing the DID Document
 as a Directed Acyclic Graph model using canonical CBOR encoding as noted above
 with additional constraits.  DagCBOR requires that there exist a single way of
@@ -2782,13 +2780,16 @@ encoding any given object, and that encoded forms contain no superfluous data
 that may be ignored or lost in a round-trip decode/encode. When producing and
 consuming DID Documents representing in DagCBOR the following rules MUST be
 followed
-    </p>
+          </p>
 
-    <ul>
-      <li>Use no CBOR tags other than the CID tag (42)</li>
-    </ul>
+          <ul>
+            <li>
+Use no CBOR tags other than the CID tag (42)
+            </li>
+          </ul>
 
-    <pre class="example nohighlight" title="DID Document as DagCBOR same as the previous example, but serialized to JSON for easy readability">{ "@context": "https://www.w3.org/ns/did/v1",
+          <pre class="example nohighlight" title="DID Document as DagCBOR same as the previous example, but serialized to JSON for easy readability">
+{ "@context": "https://www.w3.org/ns/did/v1",
   "authentication": [
     "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew;key-id=bafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i"
   ],
@@ -2811,17 +2812,18 @@ followed
   ],
   "updated": "2020-05-01T03:00:00Z"
 }
-    </pre>
-  </section>
+          </pre>
+        </section>
 
-  <section>
-    <h4>COSE signatures</h4>
+        <section>
+          <h4>COSE signatures</h4>
 
-    <p>
-    A DID Document proof may be constructed using CBOR semantic tagging, such as tag 98 for CBOR Object Signing and Encryption (COSE) [[RFC8152]]
-    </p>
+          <p>
+A DID Document proof may be constructed using CBOR semantic tagging, such as
+tag 98 for CBOR Object Signing and Encryption (COSE) [[RFC8152]]
+          </p>
 
-    <pre class="example nohighlight" title="An example extensibility of COSE signature of CBOR using tag 98 and 42 expressed in diagnostic annotated form">
+          <pre class="example nohighlight" title="An example extensibility of COSE signature of CBOR using tag 98 and 42 expressed in diagnostic annotated form">
   D8 62                                        # tag(98)
   67                                           #   text(7)
      7061796c6f6164                            #     "payload"
