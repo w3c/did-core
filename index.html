@@ -657,7 +657,7 @@ statements in that section.
      </p>
 
       <p>
-A <dfn>conforming DID Document</dfn> is any concrete expression of the data
+A <dfn>conforming DID document</dfn> is any concrete expression of the data
 model described in this specification and MUST comply with the relevant
 normative statements in Sections <a href="#data-model"></a> and  <a
 href="#core-properties"></a>. A serialization format for the conforming document
@@ -667,24 +667,22 @@ transmitted or stored in any such serialization format.
       </p>
 
       <p>
-A <dfn>conforming DID Method</dfn> is any specification that complies with the
+A <dfn>conforming DID method</dfn> is any specification that complies with the
 relevant normative statements in Section <a href="#methods"></a>.
       </p>
 
       <p>
-A <dfn>producer</dfn> is any algorithm realized as software and/or hardware and
-conforms to this specification if it generates <a>conforming DID</a>s or
-<a>conforming DID Document</a>s. A <a>producer</a> that is conformant with this
-specification MUST NOT produce non-conforming <a>DIDs</a> or <a>DID
-Documents</a>.
+A <dfn>conforming producer</dfn> is any algorithm realized as software and/or
+hardware and conforms to this specification if it generates <a>conforming
+DID</a>s or <a>conforming DID Document</a>s. A conforming producer MUST
+NOT produce non-conforming <a>DIDs</a> or <a>DID documents</a>.
       </p>
 
       <p>
-A <dfn>consumer</dfn> is any algorithm realized as software and/or hardware and
-conforms to this specification if it consumes <a>conforming DID</a>s or
-<a>conforming DID Document</a>s. A <a>consumer</a> that is conformant with this
-specification MUST produce errors when consuming non-conforming <a>DIDs</a> or
-<a>DID Documents</a>.
+A <dfn>conforming consumer</dfn> is any algorithm realized as software and/or
+hardware and conforms to this specification if it consumes <a>conforming
+DID</a>s or <a>conforming DID document</a>s. A conforming consumer MUST
+produce errors when consuming non-conforming <a>DIDs</a> or <a>DID documents</a>.
       </p>
 
     </section>
@@ -1246,7 +1244,7 @@ it is the entity identified by the <a>DID</a> and described by the
       </p>
 
       <dl>
-        <dt><dfn>id</dfn></dt>
+        <dt>id</dt>
         <dd>
 The value of <code>id</code> MUST be a single valid <a>DID</a>.
         </dd>
@@ -1292,7 +1290,7 @@ A <a>DID document</a> MAY include a <code>verificationMethod</code> property.
       </p>
 
       <dl>
-        <dt><dfn>verificationMethod</dfn></dt>
+        <dt>verificationMethod</dt>
         <dd>
 If a <a>DID document</a> includes a <code>verificationMethod</code> property,
 the value of the property MUST be an unordered set of verification methods,
@@ -1380,7 +1378,7 @@ A <a>DID document</a> MAY include a <code>publicKey</code> property.
       </p>
 
       <dl>
-        <dt><dfn>publicKey</dfn></dt>
+        <dt>publicKey</dt>
         <dd>
 If a <a>DID document</a> includes a <code>publicKey</code> property, the value
 of the property MUST be an unordered set of public keys, where each public
@@ -1775,8 +1773,8 @@ The <code>authentication</code> property is an example of a <a>verification
 relationship</a>.
         </p>
 
-        <dl>
-          <dt><dfn>authentication</dfn></dt>
+      <dl>
+          <dt>authentication</dt>
           <dd>
 The <code>authentication</code> property is a relationship between the <a>DID
 subject</a> and a set of verification methods (such as, but not limited to,
@@ -2114,7 +2112,7 @@ A <a>DID document</a> MAY include a <code>service</code> property.
       </p>
 
       <dl>
-        <dt><dfn>service</dfn></dt>
+        <dt>service</dt>
         <dd>
 If a <a>DID document</a> includes a <code>service</code> property, the value of
 the property SHOULD be an unordered set of <a>service endpoint</a>s, where
@@ -2207,7 +2205,7 @@ A <a>DID document</a> SHOULD include a <code>created</code> property.
       </p>
 
       <dl>
-          <dt><dfn>created</dfn></dt>
+          <dt>created</dt>
           <dd>
 If a <a>DID document</a> includes a <code>created</code> property, the value of
 the property MUST be a valid XML datetime value, as defined in section 3.3.7 of
@@ -2237,7 +2235,7 @@ A <a>DID document</a> SHOULD include an <code>updated</code> property.
       </p>
 
       <dl>
-          <dt><dfn>updated</dfn></dt>
+          <dt>updated</dt>
           <dd>
 If a <a>DID document</a> includes an <code>updated</code> property, the value of
 the property MUST follow the same formatting rules as the <code>created</code>

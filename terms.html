@@ -7,6 +7,13 @@ the document to aid the reader:
 
 <dl class="termlist">
 
+  <dt><dfn>authentication</dfn></dt>
+  <dd>
+Authentication is a mechanism by which an entity can prove it is the <a>DID
+subject</a>, using one or more of a set of verification methods (such as, but
+not limited to, public keys).
+  </dd>
+
   <dt><dfn data-lt="blockchains|blockchain technology">blockchain</dfn></dt>
 
   <dd>
@@ -31,8 +38,8 @@ software library, or a network call such as an HTTPS request.
 A globally unique identifier that does not require a centralized registration
 authority because it is registered with <a>distributed ledger technology</a>
 (DLT) or other form of decentralized network. The generic format of a DID is
-defined in this specification. A specific <a>DID scheme</a> is defined in a
-<a>DID method</a> specification.
+defined in the <a href="https://w3.org/TR/did-core">DID Core specification</a>.
+A specific <a>DID scheme</a> is defined in a <a>DID method</a> specification.
   </dd>
 
   <dt><dfn>decentralized identity management</dfn></dt>
@@ -55,7 +62,7 @@ records (for example, <a>DID documents</a>) containing verifiable
 <a>public key descriptions</a>.
   </dd>
 
-  <dt><dfn data-lt="did controllers|did controller(s)">DID controller</dfn></dt>
+  <dt><dfn data-lt="did controllers|did controller(s)|controller">DID controller</dfn></dt>
 
   <dd>
 The entity that has the ability to make changes to a <a>DID document</a>.
@@ -145,7 +152,7 @@ in <a href="#did-resolution"></a>.
 
   <dd>
 A <a>DID resolver</a> is a software and/or hardware component that takes
-a <a>DID</a> as input and produces a <a>conforming DID document</a> as
+a <a>DID</a> as input and produces a conforming <a>DID document</a> as
 output by performing <a>DID resolution</a>.
   </dd>
 
@@ -153,8 +160,9 @@ output by performing <a>DID resolution</a>.
 
   <dd>
 The formal syntax of a <a>decentralized identifier</a>. The generic DID scheme
-is defined in this specification. Separate <a>DID method</a> specifications
-define a specific DID scheme that works with that specific <a>DID method</a>.
+is defined in the <a href="https://w3.org/TR/did-core">DID Core specification</a>.
+Separate <a>DID method</a> specifications define a specific DID scheme that
+works with that specific <a>DID method</a>.
   </dd>
 
   <dt><dfn data-lt="DID subjects">DID subject</dfn></dt>
@@ -238,19 +246,25 @@ metadata necessary to use a public key or verification key.
   <dd>
 The term resource is used in the same way as defined for HTTP in [[RFC7231]];
 that is, a resource is the target of a request and is identified by a URI.
-This specification does not limit the nature of a resource, but defines an
-interface that might be used to interact with resources when identified by
-a <a>DID</a>.
+The <a href="https://w3.org/TR/did-core">DID Core specification</a> does not
+limit the nature of a resource, but defines an interface that might be used to
+interact with resources when identified by a <a>DID</a>.
+  </dd>
+
+  <dt><dfn>service</dfn></dt>
+  <dd>
+Services provide ways of communicating or interacting with the <a>DID
+subject</a> or associated entities. Examples of specific services include
+discovery services, social networks, file storage services, and verifiable
+claim repository services.
   </dd>
 
   <dt><dfn data-lt="service endpoints">service endpoint</dfn></dt>
 
   <dd>
-A network address at which a service operates on behalf of a <a>DID subject</a>.
-Examples of specific services include discovery services, social networks, file
-storage services, and verifiable claim repository services. Service endpoints
-might also be provided by a generalized data interchange protocol, such as
-<a>extensible data interchange</a>.
+A network address at which a <a>service</a> operates on behalf of a <a>DID
+subject</a>. Service endpoints might also be provided by a generalized data
+interchange protocol, such as <a>extensible data interchange</a>.
   </dd>
 
   <dt><dfn data-lt="URI|URIs">Uniform Resource Identifier</dfn> (URI)</dt>
@@ -295,7 +309,7 @@ might not use the words "verification" and "proof."
     <p>
 A verification relationship expresses the relationship between the <a>DID
 subject</a> and a <a>verification method</a>. An example of a verification
-relationship is <a href="#authentication"></a>. 
+relationship is <a href="#authentication"></a>.
     </p>
   </dd>
 
