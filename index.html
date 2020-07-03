@@ -2081,6 +2081,20 @@ capability to grant invocation of a capability by checking if the
 <code>capabilityDelegation</code> section of the <a>DID Document</a>.
         </p>
 
+        <p>
+A <a>DID document</a> MAY include an <code>capabilityDelegation</code>
+property.
+        </p>
+
+        <dl>
+          <dt>capabilityDelegation</dt>
+          <dd>
+The associated value MUST be a <a data-cite="infra#lists">list</a> of one or
+more <a>verification methods</a>. Each <a>verification method</a> MAY be
+embedded or referenced.
+          </dd>
+        </dl>
+
         <p class="note" title="Uses of capabilityDelegation">
 It is up to a verifier to validate that the <a>verification method</a>
 used when presenting a capability is valid and is associated with the
@@ -2088,12 +2102,6 @@ used when presenting a capability is valid and is associated with the
 is useful is when a <a>DID Subject</a> chooses to grant their capability to
 start a vehicle through the combined usage of a <a>verification method</a> and
 the <code>StartCar</code> capability to a capability invoker.
-        </p>
-
-        <p>
-A <a>DID document</a> MAY include an <code>capabilityDelegation</code>
-property. The <code>capabilityDelegation</code> property is an additional
-example of a <a>verification relationship</a>.
         </p>
 
         <p>
