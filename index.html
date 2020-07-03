@@ -2013,6 +2013,20 @@ can check the validity of a capability by checking if the
 <code>capabilityInvocation</code> property of the <a>DID Document</a>.
         </p>
 
+        <p>
+A <a>DID document</a> MAY include an <code>capabilityInvocation</code>
+property.
+        </p>
+
+        <dl>
+          <dt>capabilityInvocation</dt>
+          <dd>
+The associated value MUST be a <a data-cite="infra#lists">list</a> of one or
+more <a>verification methods</a>. Each <a>verification method</a> MAY be
+embedded or referenced.
+          </dd>
+        </dl>
+
         <p class="note" title="Uses of capabilityInvocation">
 It is the responsibility of a verifier to ensure that the
 <a>verification method</a> used when presenting a capability is invoked and is
@@ -2023,12 +2037,6 @@ their capability to start a vehicle through the combined usage of a
 example, the vehicle would be the <em>verifier</em> and would need to verify
 that the <a>verification method</a> exists in the
 <code>capabilityInvocation</code> property.
-        </p>
-
-        <p>
-A <a>DID document</a> MAY include an <code>capabilityInvocation</code>
-property. The <code>capabilityInvocation</code> property is an additional
-example of a <a>verification relationship</a>.
         </p>
 
         <p>
