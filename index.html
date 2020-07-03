@@ -150,7 +150,7 @@
   }
   </style>
 </head>
-<body>
+<body data-cite="infra rfc3986">
   <section id='abstract'>
 
     <p>
@@ -789,11 +789,12 @@ used, for example, to identify a specific part of a <a>DID document</a>.
 
       <p>
 This following is the ABNF definition using the syntax in [[!RFC5324]]. It
-builds on the <code>did</code> scheme defined in <a
-href="#did-syntax"></a>. The <code>path-abempty</code> and
-<code>fragment</code> components are identical to the ABNF rules defined in
-[[!RFC3986]], and the <code>did-query</code> component is derived from the
-<code>query</code> ABNF rule.
+builds on the <code>did</code> scheme defined in <a href="#did-syntax"></a>. The
+<a data-cite="!rfc3986#section-3.3"><code>path-abempty</code></a> and  <a
+data-cite="!rfc3986#section-3.5"><code>fragment</code></a> components are
+identical to the ABNF rules defined in [[!RFC3986]], and the
+<code>did-query</code> component is derived from the  <a
+data-cite="!rfc3986#section-3.4"><code>query</code></a> ABNF rule.
       </p>
 
       <pre class="nohighlight">
@@ -805,7 +806,7 @@ param-name         = 1*pchar
 param-value        = *pchar
       </pre>
 
-      <p>
+      <p class="note">
 This specification reserves the semicolon (<code>;</code>) character for
 possible future use as a sub-delimiter for parameters as described in
 [[?MATRIX-URIS]].
