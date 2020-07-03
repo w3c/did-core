@@ -855,7 +855,8 @@ Description
               </td>
               <td>
 A resource hash of the <a>DID document</a> to add integrity protection, as
-specified in [[?HASHLINK]].
+specified in [[?HASHLINK]]. The associated value MUST be an
+<a data-lt="ascii lowercase">ASCII lowercase string</a>.
               </td>
             </tr>
             <tr>
@@ -863,7 +864,8 @@ specified in [[?HASHLINK]].
 <code>service</code>
               </td>
               <td>
-Identifies a service from the <a>DID document</a> by service ID.
+Identifies a service from the <a>DID document</a> by service ID. The associated
+value MUST be an <a data-lt="ascii string">ASCII string</a>.
               </td>
             </tr>
             <tr>
@@ -873,7 +875,8 @@ Identifies a service from the <a>DID document</a> by service ID.
               <td>
 Identifies a specific version of a <a>DID document</a> to be resolved (the
 version ID could be sequential, or a <a>UUID</a>, or method-specific). Note that
-this parameter might not be supported by all <a>DID methods</a>.
+this parameter might not be supported by all <a>DID methods</a>. The associated
+value MUST be an <a data-lt="ascii lowercase">ASCII lowercase string</a>.
               </td>
             </tr>
 
@@ -885,6 +888,8 @@ this parameter might not be supported by all <a>DID methods</a>.
 Identifies a certain version timestamp of a <a>DID document</a> to be resolved.
 That is, the <a>DID document</a> that was valid for a <a>DID</a> at a certain
 time. Note that this parameter might not be supported by all <a>DID methods</a>.
+The associated value MUST be an
+<a data-lt="ascii lowercase">ASCII string</a>.
               </td>
             </tr>
           </tbody>
