@@ -44,10 +44,12 @@
     previousPublishDate:  "2019-12-09",
     previousMaturity:  "WD",
 
+    // automatically allow term pluralization
     pluralize: true,
 
     // extend the bibliography entries
     localBiblio: ccg.localBiblio,
+    xref: "web-platform",
     github: {
             repoURL: "https://github.com/w3c/did-core/",
             branch: "master"
@@ -721,14 +723,12 @@ The generic <a>DID scheme</a> is a URI scheme conformant with [[!RFC3986]].
       </p>
 
       <p>
-The <a>DID scheme</a> name MUST be <a>lowercase</a>.
+The <a>DID scheme</a> name MUST be an
+<a data-lt="ascii lowercase">ASCII lowercase string</a>.
       </p>
       <p>
-The <a>DID method</a> name MUST be <a>lowercase</a>.
-      </p>
-      <p>
-(An ASCII <dfn>lowercase</dfn> letter is a Unicode code point in the range
-<code>U+0061</code> (a) to <code>U+007A</code> (z), inclusive.)
+The <a>DID method</a> name MUST be an
+<a data-lt="ascii lowercase">ASCII lowercase string</a>.
       </p>
 
       <p>
@@ -3291,12 +3291,12 @@ function specified here.
             <h3>
 DID Resolution Input Metadata Properties
             </h3>
-            
+
             <p>
 The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
 This specification defines the following common properties.
             </p>
-            
+
             <dl>
                 <dt>
 accept
@@ -3314,7 +3314,7 @@ function is called and MUST be ignored if the <code>resolve</code> function is c
             <h3>
 DID Resolution Metadata Properties
             </h3>
-            
+
             <p>
 The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
 This specification defines the following common properties.
@@ -3337,7 +3337,7 @@ parse and process the <code>did-document-stream</code> returned by this function
 error
                 </dt>
                 <dd>
-The error code from the resolution process. 
+The error code from the resolution process.
 This property is REQUIRED when there is an error in the resolution process.
 The value of this property is a single keyword string.
 The possible property values of this field are defined by [[DID-SPEC-REGISTRIES]].
@@ -3374,7 +3374,7 @@ resulting from this resolution request.
             <h3>
 DID Document Metadata Properties
             </h3>
-            
+
             <p>
 The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
 This specification defines the following common properties.
