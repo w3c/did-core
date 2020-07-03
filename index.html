@@ -1259,8 +1259,9 @@ it is the entity identified by the <a>DID</a> and described by the
       <dl>
         <dt>id</dt>
         <dd>
-The value of <code>id</code> MUST be a single valid <a>DID</a> that conforms
-to the rules in Section <a href="#did-syntax"></a>.
+The value of <code>id</code> MUST be a <a
+data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
+href="#did-syntax"></a>.
         </dd>
       </dl>
 
@@ -1307,9 +1308,10 @@ A <a>DID document</a> MAY include a <code>verificationMethod</code> property.
         <dt>verificationMethod</dt>
         <dd>
 If a <a>DID document</a> includes a <code>verificationMethod</code> property,
-the value of the property MUST be an unordered set of verification methods,
-where each verification method is described by a set of properties.
-The set of properties MUST include the <code>id</code>, <code>type</code>,
+the value of the property MUST be a <a data-cite="infra#list">list</a> of verification methods,
+where each verification method is described by a
+<a data-cite="infra#ordered-map">map</a> containing properties.
+The properties MUST include the <code>id</code>, <code>type</code>,
 <code>controller</code>, and specific verification method properties, and
 MAY include additional properties.
         </dd>
@@ -1332,7 +1334,9 @@ method type. In order to maximize global interoperability, the
       </p>
 
       <p>
-The value of the <code>controller</code> property, MUST be a valid <a>DID</a>.
+The value of the <code>controller</code> property MUST be a <a
+data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
+href="#did-syntax"></a>.
       </p>
 
       <p>
