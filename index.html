@@ -1948,6 +1948,19 @@ key agreement protocol is associated with the <code>keyAgreement</code>
 property contained in the <a>DID Document</a>.
         </p>
 
+        <p>
+A <a>DID document</a> MAY include an <code>keyAgreement</code> property.
+        </p>
+
+        <dl>
+          <dt>keyAgreement</dt>
+          <dd>
+The associated value MUST be a <a data-cite="infra#lists">list</a> of one or
+more <a>verification methods</a>. Each <a>verification method</a> MAY be
+embedded or referenced.
+          </dd>
+        </dl>
+
         <p class="note" title="Uses of keyAgreement">
 It is up to a verifier to validate that the <a>verification method</a>
 used during a key agreement exchange is valid and is associated with the
@@ -1956,12 +1969,6 @@ is during the establishment of a TLS session on behalf of the <a>DID
 Subject</a>. In this case, the counterparty checks that the <a>verification
 method</a> used during the protocol handshake is associated with the
 <code>keyAgreement</code> property in the <a>DID Document</a>.
-        </p>
-
-        <p>
-A <a>DID document</a> MAY include an <code>keyAgreement</code> property.
-The <code>keyAgreement</code> property is an additional example of a
-<a>verification relationship</a>.
         </p>
 
         <p>
