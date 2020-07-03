@@ -1893,11 +1893,19 @@ Subject</a> by checking that the <a>verification method</a> used to
 assert the proof is associated with the <code>assertionMethod</code> property
 in the corresponding <a>DID Document</a>.
         </p>
+
         <p>
 A <a>DID document</a> MAY include an <code>assertionMethod</code> property.
-The <code>assertionMethod</code> property is an example of a <a>verification
-relationship</a>.
         </p>
+
+        <dl>
+          <dt>assertionMethod</dt>
+          <dd>
+The value MUST be a <a data-cite="infra#lists">list</a> of one or more
+<a>verification methods</a>. Each <a>verification method</a> MAY be embedded or
+referenced.
+          </dd>
+        </dl>
 
         <p>
 Example:
