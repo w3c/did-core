@@ -1746,6 +1746,7 @@ delegation.
 }
       </pre>
     </section>
+  </section>
 
     <section>
       <h2>Verification Relationships</h2>
@@ -1798,22 +1799,20 @@ themselves.
 
         <p>
 A <a>DID document</a> MAY include an <code>authentication</code> property.
-The <code>authentication</code> property is an example of a <a>verification
-relationship</a>.
+The <code>authentication</code> property is a relationship between the <a>DID
+subject</a> and a set of verification methods (such as, but not limited to,
+public keys). It means that the <a>DID subject</a> has authorized some set of
+<a>verification methods</a> (per the value of the <code>authentication</code>
+property) for the purpose of authentication.
         </p>
 
       <dl>
           <dt>authentication</dt>
           <dd>
-The <code>authentication</code> property is a relationship between the <a>DID
-subject</a> and a set of verification methods (such as, but not limited to,
-public keys). It means that the <a>DID subject</a> has authorized some set of
-<a>verification methods</a> (per the value of the <code>authentication</code>
-property) for the purpose of authentication. The value of the
-<code>authentication</code> property SHOULD be an unordered set of
-<a>verification methods</a>. Each <a>verification method</a> MAY be embedded
-or referenced. An example of a <a>verification method</a> is a public key
-(see Section <a href="#public-keys"></a>).
+The value of the <code>authentication</code> property MUST be a <a
+data-cite="infra#lists">list</a> of one or more <a>verification methods</a>
+and/or URLs identifying <a>verification methods</a>. Each <a>verification
+method</a> MAY be embedded or referenced.
           </dd>
         </dl>
 
@@ -2102,7 +2101,6 @@ Example:
 }
 
         </pre>
-      </section>
     </section>
   </section>
 
