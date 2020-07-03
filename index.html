@@ -790,7 +790,7 @@ used, for example, to identify a specific part of a <a>DID document</a>.
       <p>
 This following is the ABNF definition using the syntax in [[!RFC5324]]. It
 builds on the <code>did</code> scheme defined in <a href="#did-syntax"></a>. The
-<a data-cite="!rfc3986#section-3.3"><code>path-abempty</code></a> and  <a
+<a data-cite="!rfc3986#section-3.3"><code>path-abempty</code></a> and <a
 data-cite="!rfc3986#section-3.5"><code>fragment</code></a> components are
 identical to the ABNF rules defined in [[!RFC3986]], and the
 <code>did-query</code> component is derived from the  <a
@@ -1010,10 +1010,11 @@ Also discuss hierarchical method namespaces in DID parameter names.
         <h2>Path</h2>
 
         <p>
-A <a>DID path</a> is identical to a generic URI path and MUST conform to the
-<code>path-abempty</code> ABNF rule in [[!RFC3986]]. A <a>DID path</a> SHOULD be
-used to address <a>resources</a> available through a <a>service endpoint</a>.
-For more information, see Section <a href="#service-endpoints"></a>.
+A <a>DID path</a> is identical to a generic URI path and MUST conform to the <a
+data-cite="!rfc3986#section-3.3"><code>path-abempty</code></a> ABNF rule in
+[[!RFC3986]]. A <a>DID path</a> SHOULD be used to address <a>resources</a>
+available through a <a>service endpoint</a>. For more information, see Section
+<a href="#service-endpoints"></a>.
         </p>
 
         <p>
@@ -1258,7 +1259,8 @@ it is the entity identified by the <a>DID</a> and described by the
       <dl>
         <dt>id</dt>
         <dd>
-The value of <code>id</code> MUST be a single valid <a>DID</a>.
+The value of <code>id</code> MUST be a single valid <a>DID</a> that conforms
+to the rules in Section <a href="#did-syntax"></a>.
         </dd>
       </dl>
 
