@@ -1237,8 +1237,56 @@ implementations and the larger ecosystem will be less reliable.
 A <a>DID</a> points to a <a>DID document</a>. <a>DID documents</a> are the
 serialization of the data model outlined in Section <a href="#data-model"></a>.
 The following sections define the properties in a <a>DID document</a>,
-including whether these properties are required or optional.
+including whether these properties are required or optional. These properties
+describe relationships between the <a>DID subject</a> and the value of the
+property.
     </p>
+
+    <p>
+For reference, the core properties found at the top level of a <a>DID
+document</a> are as follows. Properties belonging to other objects referenced
+in the <a>DID document</a> are also listed, with their respective top-level
+property.
+    </p>
+    <ul id="core-properties-summary">
+      <li>
+<code><a>id</a></code>: defined in <a href="#did-subject"></a>
+      </li>
+      <li>
+<code><a>controller</a></code>: defined in <a href="#control"></a>
+      </li>
+      <li>
+<code><a>verificationMethod</a></code>: defined in
+<a href="#verification-methods"></a>. Sub-properties include <code>id</code>,
+<code>type</code>, <code>controller</code>.
+      </li>
+      <li>
+<code><a>authentication</a></code>: defined in <a href="#authentication"></a>.
+      </li>
+      <li>
+<code><a>assertionMethod</a></code>: defined in <a href="#assertionmethod"></a>.
+      </li>
+      <li>
+<code><a>keyAgreement</a></code>: defined in <a href="#keyagreement"></a>.
+      </li>
+      <li>
+<code><a>capabilityDelegation</a></code>: defined in <a href="#capabilitydelegation"></a>.
+      </li>
+      <li>
+<code><a>capabilityInvocation</a></code>: defined in <a href="#capabilityinvocation"></a>.
+      </li>
+      <li>
+<code><a>service</a></code>: defined in <a href="#service-endpoints"></a>.
+Sub-properties include <code>id</code>, <code>type</code> and
+<code><a>serviceEndpoint</a></code>.
+      </li>
+      <li>
+<code><a>created</a></code>: defined in <a href="#created"></a>.
+      </li>
+      <li>
+<code><a>updated</a></code>: defined in <a href="#updated"></a>.
+      </li>
+    </ul>
 
     <section>
       <h2>DID Subject</h2>
