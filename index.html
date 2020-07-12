@@ -1333,18 +1333,16 @@ processor MUST produce an error.
           </p>
 
           <p>
-In the case where a verification method is a public key,
-the value of the <code><a>id</a></code> property MAY be structured as a
+In the case where a verification method is a public key, the value of the
+<code><a>id</a></code> property MAY be structured as a
 <a href="https://en.wikipedia.org/wiki/Compound_key">compound key</a>. This is
 especially useful for integrating with existing key management systems and key
-formats such as <a href="https://tools.ietf.org/html/rfc7517">JWK</a>. It is
-RECOMMENDED that <a href="https://tools.ietf.org/html/rfc7517">JWK</a>
-<code>kid</code> values are set to the
-<a href="https://tools.ietf.org/html/rfc7638">public key fingerprint</a>. It is
-RECOMMENDED that verification methods that use JWKs to represent their public
-keys utilize the value of <code>kid</code> as their fragment identifier. See the
-first key in <a href="#example-15-various-public-keys">EXAMPLE 15</a> for an
-example of a public key with a compound key identifier.
+formats such as JWK [[RFC7517]]. It is RECOMMENDED that JWK <code>kid</code>
+values are set to the public key fingerprint [[RFC7638]]. It is RECOMMENDED
+that verification methods that use JWKs to represent their public keys utilize
+the value of <code>kid</code> as their fragment identifier. See the first key
+in <a href="#example-15-various-public-keys">example of various public keys</a>
+for an example of a public key with a compound key identifier.
           </p>
 
           <p>
@@ -1519,8 +1517,9 @@ For each public key type, a maximum of two encoding formats are supported.
 RSA
               </td>
               <td>
-RSA public key values MUST either be encoded as a JWK or be encoded in
-Privacy Enhanced Mail (PEM) format using the <code>publicKeyPem</code> property.
+RSA public key values MUST either be encoded as a JWK [[RFC7517]] or be
+encoded in Privacy Enhanced Mail (PEM) format using the
+<code>publicKeyPem</code> property.
               </td>
             </tr>
             <tr>
@@ -1528,8 +1527,8 @@ Privacy Enhanced Mail (PEM) format using the <code>publicKeyPem</code> property.
 ed25519
               </td>
               <td>
-Ed25519 public key values MUST either be encoded as a JWK or be encoded as
-the raw 32-byte public key value in Base58 Bitcoin format using the
+Ed25519 public key values MUST either be encoded as a JWK [[RFC7517]] or be
+encoded as the raw 32-byte public key value in Base58 Bitcoin format using the
 <code>publicKeyBase58</code> property.
               </td>
             </tr>
@@ -1538,9 +1537,9 @@ the raw 32-byte public key value in Base58 Bitcoin format using the
 secp256k1-koblitz
               </td>
               <td>
-Secp256k1 Koblitz public key values MUST either be encoded as a JWK or be
-encoded as the raw 33-byte public key value in Base58 Bitcoin format using the
-<code>publicKeyBase58</code> property.
+Secp256k1 Koblitz public key values MUST either be encoded as a JWK
+[[RFC7517]] or be encoded as the raw 33-byte public key value in Base58
+Bitcoin format using the <code>publicKeyBase58</code> property.
               </td>
             </tr>
             <tr>
@@ -1548,9 +1547,9 @@ encoded as the raw 33-byte public key value in Base58 Bitcoin format using the
 secp256r1
               </td>
               <td>
-Secp256r1 public key values MUST either be encoded as a JWK or be encoded as
-the raw 32-byte public key value encoded in Base58 Bitcoin format using the
-<code>publicKeyBase58</code> property.
+Secp256r1 public key values MUST either be encoded as a JWK [[RFC7517]] or be
+encoded as the raw 32-byte public key value encoded in Base58 Bitcoin format
+using the <code>publicKeyBase58</code> property.
               </td>
             </tr>
             <tr>
@@ -1559,8 +1558,8 @@ Curve25519
               </td>
               <td>
 Curve25519 (also known as X25519) public key values MUST either be encoded as
-a JWK or be encoded as the raw 32-byte public key value in Base58 Bitcoin format
-using the <code>publicKeyBase58</code> property.
+a JWK [[RFC7517]] or be encoded as the raw 32-byte public key value in Base58
+Bitcoin format using the <code>publicKeyBase58</code> property.
               </td>
             </tr>
           </tbody>
