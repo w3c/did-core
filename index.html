@@ -1562,7 +1562,7 @@ expressed and encoded.
           <thead>
             <tr>
               <th>
-Key&nbsp;Type
+Key&nbsp;Type<br/>(<code>type</code> value)
               </th>
               <th>
 Support
@@ -1577,7 +1577,7 @@ For each public key type, a maximum of two encoding formats are supported.
           <tbody>
             <tr>
               <td>
-RSA
+RSA<br/>(<code>RsaVerificationKey2018</code>)
               </td>
               <td>
 RSA public key values MUST either be encoded as a JWK [[RFC7517]] or be
@@ -1587,7 +1587,7 @@ encoded in Privacy Enhanced Mail (PEM) format using the
             </tr>
             <tr>
               <td>
-ed25519
+ed25519<br/>(<code>Ed25519VerificationKey2018</code>)
               </td>
               <td>
 Ed25519 public key values MUST either be encoded as a JWK [[RFC7517]] or be
@@ -1597,7 +1597,7 @@ encoded as the raw 32-byte public key value in Base58 Bitcoin format using the
             </tr>
             <tr>
               <td>
-secp256k1-koblitz
+secp256k1-koblitz<br/>(pending)
               </td>
               <td>
 Secp256k1 Koblitz public key values MUST either be encoded as a JWK
@@ -1607,7 +1607,7 @@ Bitcoin format using the <code>publicKeyBase58</code> property.
             </tr>
             <tr>
               <td>
-secp256r1
+secp256r1<br/>(<code>SchnorrSecp256k1VerificationKey2019</code>)
               </td>
               <td>
 Secp256r1 public key values MUST either be encoded as a JWK [[RFC7517]] or be
@@ -1617,7 +1617,7 @@ using the <code>publicKeyBase58</code> property.
             </tr>
             <tr>
               <td>
-Curve25519
+Curve25519<br/>(<code>X25519KeyAgreementKey2019</code>)
               </td>
               <td>
 Curve25519 (also known as X25519) public key values MUST either be encoded as
