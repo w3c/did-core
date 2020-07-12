@@ -2253,17 +2253,18 @@ and <a href="#authentication"></a>.
       <h2>Created</h2>
 
       <p>
-A <a>DID document</a> SHOULD include a <code>created</code> property.
+A <a>DID document</a> SHOULD include a <code><a>created</a></code> property.
       </p>
 
       <dl>
-          <dt>created</dt>
+          <dt><dfn>created</dfn></dt>
           <dd>
-If a <a>DID document</a> includes a <code>created</code> property, the value of
-the property MUST be a valid XML datetime value, as defined in section 3.3.7 of
-<a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition
-Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This datetime value
-MUST be normalized to UTC 00:00, as indicated by the trailing "Z".
+If a <a>DID document</a> includes a <code>created</code> property, the value
+of the property MUST be a valid XML datetime value, as defined in section
+3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema
+Definition Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This
+datetime value MUST be normalized to UTC 00:00, as indicated by the trailing
+"Z".
           </dd>
       </dl>
 
@@ -2283,15 +2284,15 @@ change.
       </p>
 
       <p>
-A <a>DID document</a> SHOULD include an <code>updated</code> property.
+A <a>DID document</a> SHOULD include an <code><a>updated</a></code> property.
       </p>
 
       <dl>
-          <dt>updated</dt>
+          <dt><dfn>updated</dfn></dt>
           <dd>
-If a <a>DID document</a> includes an <code>updated</code> property, the value of
-the property MUST follow the same formatting rules as the <code>created</code>
-property, as outlined in Section <a href="#created"></a>.
+If a <a>DID document</a> includes an <code>updated</code> property, the value
+of the property MUST follow the same formatting rules as the
+<code><a>created</a></code> property (see Section <a href="#created"></a>).
           </dd>
       </dl>
 
