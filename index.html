@@ -877,7 +877,7 @@ specified in [[?HASHLINK]]. The associated value MUST be an
             </tr>
             <tr>
               <td>
-<code>service</code>
+<code><a>service</a></code>
               </td>
               <td>
 Identifies a service from the <a>DID document</a> by service ID. The associated
@@ -917,7 +917,7 @@ Additional considerations for processing these parameters are discussed in
         </p>
 
         <p>
-Two example <a>DID URLs</a> using the <code>service</code> and
+Two example <a>DID URLs</a> using the <code><a>service</a></code> and
 <code>version-time</code> generic DID parameters are shown below.
         </p>
 
@@ -2144,10 +2144,10 @@ messaging service can express how to initiate the encrypted link before
 messaging begins.
       </p>
       <p>
-Pointers to services are expressed using the <code>service</code> property.
-Each service has its own <code><a>id</a></code> and <code>type</code> properties, as
-well as a <code>serviceEndpoint</code> property with a <a>URI</a> or a set of
-other properties describing the service.
+Pointers to services are expressed using the <code><a>service</a></code>
+property. Each service has its own <code>id</code> and <code>type</code>
+properties, as well as a <code><a>serviceEndpoint</a></code> property with a
+<a>URI</a> or a set of other properties describing the service.
       </p>
 
       <p>
@@ -2159,34 +2159,35 @@ authentication, authorization, or interaction.
       </p>
 
       <p>
-A <a>DID document</a> MAY include a <code>service</code> property.
+A <a>DID document</a> MAY include a <code><a>service</a></code> property.
       </p>
 
       <dl>
-        <dt>service</dt>
+        <dt><dfn>service</dfn></dt>
         <dd>
-If a <a>DID document</a> includes a <code>service</code> property, the value of
-the property SHOULD be an unordered set of <a>service endpoint</a>s, where
-each service endpoint is described by a set of properties. Each <a>service endpoint</a>
-MUST have <code><a>id</a></code>, <code>type</code>, and <code>serviceEndpoint</code>
-properties, and MAY include additional properties.
-        </dd>
-      </dl>
-
-      <p>
+          <p>
+If a <a>DID document</a> includes a <code>service</code> property, the value
+of the property SHOULD be an unordered set of <a>service endpoint</a>s, where
+each service endpoint is described by a set of properties. Each <a>service
+endpoint</a> MUST have <code><a>id</a></code>, <code>type</code>, and
+<code><a>serviceEndpoint</a></code> properties, and MAY include additional
+properties.
+          </p>
+          <p>
 The value of the <code><a>id</a></code> property MUST be a <a>URI</a>.
-The value of <code>serviceEndpoint</code> MUST NOT contain multiple entries
-with the same <code><a>id</a></code>. In this case, a <a>DID document</a> processor
-MUST produce an error.
-      </p>
-
-      <p>
-The value of the <code>serviceEndpoint</code> property MUST be a valid
-<a>URI</a> conforming to [[RFC3986]] and normalized according to the
+The value of <code>service</code> MUST NOT contain multiple entries with the
+same <code>id</code>. In this case, a <a>DID document</a> processor MUST
+produce an error.
+          </p>
+          <p>
+The value of the <code><dfn>serviceEndpoint</dfn></code> property MUST be a
+valid <a>URI</a> conforming to [[RFC3986]] and normalized according to the
 rules in section 6 of [[RFC3986]] and to any normalization rules in its
 applicable <a>URI</a> scheme specification, <em>OR</em> a set of properties
 which describe the service endpoint further.
-      </p>
+          </p>
+        </dd>
+      </dl>
 
       <p>
 It is expected that the <a>service endpoint</a> protocol is published in an open
