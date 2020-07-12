@@ -1244,18 +1244,18 @@ including whether these properties are required or optional.
       <h2>DID Subject</h2>
 
       <p>
-The <a>DID subject</a> is denoted with the <code>id</code> property. The
+The <a>DID subject</a> is denoted with the <code><a>id</a></code> property. The
 <a>DID subject</a> is the entity that the <a>DID document</a> is about. That is,
 it is the entity identified by the <a>DID</a> and described by the
 <a>DID document</a>.
       </p>
 
       <p>
-<a>DID documents</a> MUST include the <code>id</code> property.
+<a>DID documents</a> MUST include the <code><a>id</a></code> property.
       </p>
 
       <dl>
-        <dt>id</dt>
+        <dt><dfn>id</dfn></dt>
         <dd>
 The value of <code>id</code> MUST be a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
@@ -1269,13 +1269,14 @@ href="#did-syntax"></a>.
 }
       </pre>
 
-      <p class="note">
+      <p class="note" title="Intermediate representations">
 <a>DID method</a> specifications can create intermediate representations of a
-<a>DID document</a> that do not contain the <code>id</code> property, such as
-when a <a>DID resolver</a> is performing <a>DID resolution</a>. However, the
-fully resolved <a>DID document</a> always contains a valid <code>id</code>
-property. The value of <code>id</code> in the resolved <a>DID document</a> is
-expected to match the <a>DID</a> that was resolved.
+<a>DID document</a> that do not contain the <code><a>id</a></code> property,
+such as when a <a>DID resolver</a> is performing <a>DID resolution</a>.
+However, the fully resolved <a>DID document</a> always contains a valid
+<code><a>id</a></code> property. The value of <code><a>id</a></code> in the
+resolved <a>DID document</a> is expected to match the <a>DID</a> that was
+resolved.
       </p>
     </section>
 
@@ -1316,11 +1317,11 @@ properties.
       </dl>
 
       <p>
-The value of the <code>id</code> property for a verification method MUST be a
+The value of the <code><a>id</a></code> property for a verification method MUST be a
 <a>URI</a>. When more than one verification method is present, the value of
 <code>verificationMethod</code> MUST NOT contain multiple entries with the same
-<code>id</code>. If the value of <code>verificationMethod</code> contains
-multiple entries with the same <code>id</code>, a <a>DID document</a> processor
+<code><a>id</a></code>. If the value of <code>verificationMethod</code> contains
+multiple entries with the same <code><a>id</a></code>, a <a>DID document</a> processor
 MUST produce an error.
       </p>
 
@@ -1375,7 +1376,7 @@ specifications.
 Public keys can be included in a <a>DID document</a> using the
 <code>publicKey</code> or <code>authentication</code> properties, depending on
 what they are to be used for. Each public key has properties for an identifier
-(<code>id</code>) of its own, a <code>type</code>, and a <code>controller</code>,
+(<code><a>id</a></code>) of its own, a <code>type</code>, and a <code>controller</code>,
 as well as other properties that depend on the type of key it is.
       </p>
 
@@ -1398,16 +1399,16 @@ A <a>DID document</a> MAY include a <code>publicKey</code> property.
         <dd>
 If a <a>DID document</a> includes a <code>publicKey</code> property, the value
 of the property MUST be an unordered set of public keys, where each public
-key is described by a set of properties. Each public key MUST have the <code>id</code>,
+key is described by a set of properties. Each public key MUST have the <code><a>id</a></code>,
 <code>type</code>, <code>controller</code>, and specific public key properties,
 and MAY include additional properties.
         </dd>
       </dl>
 
       <p>
-The value of the <code>id</code> property MUST be a <a>URI</a>. The value of
+The value of the <code><a>id</a></code> property MUST be a <a>URI</a>. The value of
 <code>publicKey</code> MUST NOT contain multiple entries with the same
-<code>id</code>. In this case, a <a>DID document</a> processor MUST produce an
+<code><a>id</a></code>. In this case, a <a>DID document</a> processor MUST produce an
 error.
       </p>
 
@@ -1436,7 +1437,7 @@ the <a>DID document</a>; see Section
       </p>
 
       <p>
-The value of the <code>id</code> property MAY be structured as a
+The value of the <code><a>id</a></code> property MAY be structured as a
 <a href="https://en.wikipedia.org/wiki/Compound_key">compound key</a>. This is
 especially useful for integrating with existing key management systems and key
 formats such as <a href="https://tools.ietf.org/html/rfc7517">JWK</a>. It is
@@ -1635,14 +1636,14 @@ property at the top-level of the dereferenced document.
             </li>
 
             <li>
-Iterating through each public key object, if the <code>id</code> property of the
+Iterating through each public key object, if the <code><a>id</a></code> property of the
 object matches <em>value</em>, set <em>result</em> to the object.
             </li>
           </ol>
         </li>
 
         <li>
-If <em>result</em> does not contain at least the <code>id</code>,
+If <em>result</em> does not contain at least the <code><a>id</a></code>,
 <code>type</code>, and <code>controller</code> properties, as well as any
 mandatory public cryptographic material, as determined by the <code>type</code>
 property of <em>result</em>, throw an error.
@@ -2149,7 +2150,7 @@ messaging begins.
       </p>
       <p>
 Pointers to services are expressed using the <code>service</code> property.
-Each service has its own <code>id</code> and <code>type</code> properties, as
+Each service has its own <code><a>id</a></code> and <code>type</code> properties, as
 well as a <code>serviceEndpoint</code> property with a <a>URI</a> or a set of
 other properties describing the service.
       </p>
@@ -2172,15 +2173,15 @@ A <a>DID document</a> MAY include a <code>service</code> property.
 If a <a>DID document</a> includes a <code>service</code> property, the value of
 the property SHOULD be an unordered set of <a>service endpoint</a>s, where
 each service endpoint is described by a set of properties. Each <a>service endpoint</a>
-MUST have <code>id</code>, <code>type</code>, and <code>serviceEndpoint</code>
+MUST have <code><a>id</a></code>, <code>type</code>, and <code>serviceEndpoint</code>
 properties, and MAY include additional properties.
         </dd>
       </dl>
 
       <p>
-The value of the <code>id</code> property MUST be a <a>URI</a>.
+The value of the <code><a>id</a></code> property MUST be a <a>URI</a>.
 The value of <code>serviceEndpoint</code> MUST NOT contain multiple entries
-with the same <code>id</code>. In this case, a <a>DID document</a> processor
+with the same <code><a>id</a></code>. In this case, a <a>DID document</a> processor
 MUST produce an error.
       </p>
 
@@ -2536,13 +2537,13 @@ resolver metadata), the following rules MUST be followed.
       <ul>
         <li>
 The <code>@id</code> and <code>@type</code> keywords are aliased to
-<code>id</code> and <code>type</code> respectively, enabling developers to use
+<code><a>id</a></code> and <code>type</code> respectively, enabling developers to use
 this specification as idiomatic JSON.
         </li>
         <li>
 Even though JSON-LD allows any IRI as node identifiers, <a>DID documents</a>
 are explicitly restricted to only describe DIDs. This means that the value of
-<code>id</code> MUST be a valid <a>DID</a> and not any other kind of IRI.
+<code><a>id</a></code> MUST be a valid <a>DID</a> and not any other kind of IRI.
         </li>
         <li>
 Data types, such as integers, dates, units of measure, and URLs, are
@@ -3597,7 +3598,7 @@ Resolving the <a>DID</a> to a <a>DID document</a> according to its
           </li>
 
           <li>
-Verifying that the <code>id</code> property of the resulting <a>DID document</a>
+Verifying that the <code><a>id</a></code> property of the resulting <a>DID document</a>
 matches the <a>DID</a> that was resolved.
           </li>
         </ol>
@@ -3838,11 +3839,11 @@ actors.
         <p>
 As an example, consider the flexibility that the data model offers with respect
 to updating. A single edit to a <a>DID document</a> can change anything and
-everything except the root <code>id</code> property of the document. And any
+everything except the root <code><a>id</a></code> property of the document. And any
 individual JSON object in the data model can change all of its properties except
-its <code>id</code>. But is it actually desirable for a <a>service endpoint</a>
+its <code><a>id</a></code>. But is it actually desirable for a <a>service endpoint</a>
 to change its <code>type</code> after it is defined? Or for a key to change its
-value? Or would it be better to require a new <code>id</code> when certain
+value? Or would it be better to require a new <code><a>id</a></code> when certain
 fundamental properties of an object change? Malicious takeovers of a web site
 often aim for an outcome where the site keeps its identifier (the host name),
 but gets subtle, dangerous changes underneath. If certain properties of the site
