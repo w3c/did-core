@@ -1300,12 +1300,19 @@ a purported <a>DID controller</a> against a candidate biometric vector.
       </p>
 
       <p>
-A <a>DID document</a> MAY include a <code>verificationMethod</code> property.
+In order to maximize global interoperability, verification methods
+SHOULD be registered in the [[DID-SPEC-REGISTRIES]].
+      </p>
+
+      <p>
+A <a>DID document</a> MAY include a <code><a>verificationMethod</a></code>
+property.
       </p>
 
       <dl>
-        <dt>verificationMethod</dt>
+        <dt><dfn>verificationMethod</dfn></dt>
         <dd>
+          <p>
 If a <a>DID document</a> includes a <code>verificationMethod</code> property,
 the value of the property MUST be an <a data-cite="INFRA#ordered-set">ordered
 set</a> of verification methods, where each verification method is described by
@@ -1313,34 +1320,42 @@ a <a data-cite="INFRA#ordered-map">map</a> containing properties. The properties
 MUST include the <code>id</code>, <code>type</code>, <code>controller</code>,
 and specific verification method properties, and MAY include additional
 properties.
-        </dd>
-      </dl>
-
-      <p>
+          </p>
+          <p>
 The value of the <code><a>id</a></code> property for a verification method MUST be a
 <a>URI</a>. When more than one verification method is present, the value of
-<code>verificationMethod</code> MUST NOT contain multiple entries with the same
-<code><a>id</a></code>. If the value of <code>verificationMethod</code> contains
-multiple entries with the same <code><a>id</a></code>, a <a>DID document</a> processor
-MUST produce an error.
-      </p>
+<code><a>verificationMethod</a></code> MUST NOT contain multiple entries with
+the same <code>id</code>. If the value of <code><a>verificationMethod</a></code>
+contains multiple entries with the same <code>id</code>, a <a>DID document</a>
+processor MUST produce an error.
+          </p>
 
-      <p>
+          <p>
 The value of the <code>type</code> property MUST be exactly one verification
 method type. In order to maximize global interoperability, the
 <a>verification method</a> type SHOULD be registered in the
 [[DID-SPEC-REGISTRIES]].
-      </p>
-
-      <p>
+          </p>
+          <p>
 The value of the <code>controller</code> property MUST be a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
 href="#did-syntax"></a>.
-      </p>
+          </p>
+        </dd>
+      </dl>
 
-      <p>
-In order to maximize global interoperability, the verification method
-SHOULD be registered in the [[DID-SPEC-REGISTRIES]].
+
+      <p class="note" title="Verification method controller(s) and DID controller(s)">
+The semantics of the <code>controller</code> property are the same when the
+subject of the relationship is the <a>DID document</a> as when the subject
+of the relationship is a verification method, such as a public key. Since a
+key (for example) can't control itself, and the key controller cannot be
+inferred from the <a>DID document</a>, it is necessary to explicitly express
+the identity of the controller of the key. The difference is that the value of
+<code>controller</code> for a verification method is <em>not</em> necessarily
+a <a>DID controller</a>. <a>DID controller(s)</a> are expressed using the
+<code><a>controller</a></code> property on the <em>top level</em> of the
+<a>DID document</a>; see Section <a href="#authorization-and-delegation"></a>.
       </p>
 
       <pre class="example" title="Example verification methods">
@@ -1420,20 +1435,6 @@ For a registry of available key types and formats, see [[DID-SPEC-REGISTRIES]].
       <p>
 The value of the <code>controller</code> property, which identifies the
 controller of the corresponding private key, MUST be a valid <a>DID</a>.
-      </p>
-
-      <p class="note" title="Key controller(s) and DID controller(s)">
-The semantics of the <code>controller</code> property are the same when the
-subject of the relationship is the <a>DID document</a> as when the subject
-of the relationship is a key. Since a key can't control itself, and the
-key controller cannot be inferred from the <a>DID document</a>, it is
-necessary to explicitly express the identity of the controller of the key
-(which may be the <a>DID controller</a> or <a>DID subject</a>). The
-difference is that the value of <code>controller</code> on a key is not
-necessarily a <a>DID controller</a>. <a>DID controller(s)</a> are
-expressed using the <code>controller</code> property on the top level of
-the <a>DID document</a>; see Section
-<a href="#authorization-and-delegation"></a>.
       </p>
 
       <p>
