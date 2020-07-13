@@ -2124,7 +2124,7 @@ Example:
   "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "capabilityDelegation": [
-    <span class="comment">// this method can be used to perform capabilty delegation as did:...fghi</span>
+    <span class="comment">// this method can be used to perform capability delegation as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
     <span class="comment">// this method is *only* authorized for granting capabilities it may not</span>
     <span class="comment">// be used for any other verification relationship, so its full description is</span>
@@ -2852,7 +2852,7 @@ data that follows.
           <p>
 DagCBOR is a further restricted subset of CBOR for representing the DID Document
 as a Directed Acyclic Graph model using canonical CBOR encoding as noted above
-with additional constraits.  DagCBOR requires that there exist a single way of
+with additional constraints. DagCBOR requires that there exist a single way of
 encoding any given object, and that encoded forms contain no superfluous data
 that may be ignored or lost in a round-trip decode/encode. When producing and
 consuming DID Documents representing in DagCBOR the following rules MUST be
