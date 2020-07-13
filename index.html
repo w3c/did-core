@@ -2426,6 +2426,12 @@ value, but this is unclear.
         </p>
 
         <p>
+Implementers producing JSON are advised to ensure that their algorithms are
+aligned with the <a data-cite="INFRA#json">JSON serialization rules</a> in
+the [[INFRA]] specification.
+        </p>
+
+        <p>
 All properties of the <a>DID document</a> MUST be included in
 the root object. Properties MAY define additional data sub structures subject
 to the value representation rules in the list above.
@@ -2488,6 +2494,13 @@ for this value into more specific data types such as URIs, date stamps, or other
 values.
           </li>
         </ul>
+
+        <p>
+Implementers consuming JSON are advised to ensure that their algorithms are
+aligned with the <a
+data-cite="INFRA#convert-a-json-derived-javascript-value-to-an-infra-value">JSON
+consumption rules</a> in the [[INFRA]] specification.
+        </p>
 
         <p class="issue" data-number="204">
 An "empty" value is not specified by this document. It seems to imply a null
