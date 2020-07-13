@@ -1588,8 +1588,12 @@ types of key formats that are supported in this specification are listed here.
         </p>
 
         <p>
-Public key expression MUST NOT use any other key format than those listed in
-the <a href="#public-key-support">Public Key Support table</a>.
+When using any of the public key types described here, public key expression
+MUST NOT use any other key format than those listed in the
+<a href="#public-key-support">Public Key Support table</a>. For public key
+types that are not listed here, the type value and corresponding format
+property SHOULD be registered in [[DID-SPEC-REGISTRIES]], as with any other
+verification method.
         </p>
 
         <p class="issue">
