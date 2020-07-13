@@ -115,7 +115,7 @@ A definition of how a specific <a>DID scheme</a> must be implemented to work
 with a specific <a>verifiable data registry</a>. A DID method is defined by a
 DID method specification, which must specify the precise operations by which
 <a>DIDs</a> are created, resolved and deactivated and <a>DID documents</a> are
-written and updated. See <a href="#did-methods"></a>.
+written and updated. See <a href="#methods"></a>.
   </dd>
 
   <dt><dfn data-lt="DID paths">DID path</dfn></dt>
@@ -125,7 +125,7 @@ The portion of a <a>DID URL</a> that begins with and includes the first forward
 slash (<code>/</code>) character and ends with either a question mark (<code>?</code>)
 character or a fragment hash sign (<code>#</code>) character (or the end of the
 DID URL). DID path syntax is identical to URI path syntax. See
-<a href="#did-path"></a>.
+<a href="#path"></a>.
   </dd>
 
   <dt><dfn data-lt="DID queries">DID query</dfn></dt>
@@ -133,7 +133,7 @@ DID URL). DID path syntax is identical to URI path syntax. See
   <dd>
 The portion of a <a>DID URL</a> that follows and includes the first question
 mark character (<code>?</code>). DID query syntax is identical to URI query
-syntax. See <a href="#did-query"></a>.
+syntax. See <a href="#query"></a>.
   </dd>
 
   <dt><dfn>DID resolution</dfn></dt>
@@ -143,7 +143,7 @@ The function that takes as its input a <a>DID</a> and a set of input
 metadata and returns a <a>DID document</a> in a conforming <a>representation</a>
 plus additional metadata. This function relies on the "Read" operation of the
 applicable <a>DID method</a>. The inputs and outputs of this function are
-defined in <a href="#did-resolution"></a>.
+defined in <a href="#resolution"></a>.
   </dd>
 
   <dt><dfn data-lt="DID resolvers">DID resolver</dfn></dt>
@@ -178,9 +178,9 @@ group, organization, physical thing, digital thing, logical thing, etc.
 
   <dd>
 A <a>DID</a> plus any additional syntactic component that conforms to  the
-definition in <a href="#did-url"></a>. This includes an optional <a>DID path</a>,
-optional <a>DID query</a> (and its leading <code>?</code> character), and
-optional <a>DID fragment</a> (and its leading <code>#</code> character).
+definition in <a href="#did-url-syntax"></a>. This includes an optional <a>DID
+path</a>, optional <a>DID query</a> (and its leading <code>?</code> character),
+and optional <a>DID fragment</a> (and its leading <code>#</code> character).
   </dd>
 
   <dt><dfn>DID URL dereferencing</dfn></dt>
