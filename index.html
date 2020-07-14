@@ -3450,6 +3450,21 @@ DID URL Dereferencing
         <h2>
 Metadata Structure
         </h2>
+
+        <p>
+Input and output metadata is often involved during the <a>DID Resolution</a>,
+<a>DID URL Dereferencing</a>, and other DID-related processes. The structure
+used to communicate this metadata MUST be a <a data-cite="INFRA#maps">map</a> of
+properties. Each property name MUST be a <a data-cite="INFRA#string">string</a>.
+Each property value SHOULD be a <a data-cite="INFRA#string">string</a>. In the
+rare cases where a non-string value is required, the value and all non-string
+sub-values MUST be expressed as a <a data-cite="INFRA#maps">map</a>, <a
+data-cite="INFRA#lists">list</a>, <a data-cite="INFRA#boolean">boolean</a>,
+number, or  <a data-cite="INFRA#null">null</a> and it MUST be possible to
+represent the value across all supported representations as described in <a
+href="#core-representations"></a>.
+        </p>
+
     </section>
 
   </section>
