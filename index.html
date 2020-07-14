@@ -709,8 +709,9 @@ Terminology
 In addition to the terminology above, this specification also uses terminology
 from the [[INFRA]] specification to formally define the abstract data model.
 When [[INFRA]] terminology is used, such as <a
-data-cite="INFRA#strings">string</a>, <a data-cite="INFRA#lists">list</a>, and
-<a data-cite="INFRA#maps">map</a>, it is linked directly to that specification.
+data-cite="INFRA#strings">string</a>, <a data-cite="INFRA#ordered-set">ordered
+set</a>, and <a data-cite="INFRA#maps">map</a>, it is linked directly to that
+specification.
     </p>
 
   </section>
@@ -1316,11 +1317,12 @@ A <a>DID document</a> MAY include a <code>verificationMethod</code> property.
         <dt>verificationMethod</dt>
         <dd>
 If a <a>DID document</a> includes a <code>verificationMethod</code> property,
-the value of the property MUST be a <a data-cite="INFRA#lists">list</a> of
-verification methods, where each verification method is described by a <a
-data-cite="INFRA#ordered-map">map</a> containing properties. The properties MUST
-include the <code>id</code>, <code>type</code>, <code>controller</code>, and
-specific verification method properties, and MAY include additional properties.
+the value of the property MUST be an <a data-cite="INFRA#ordered-set">ordered
+set</a> of verification methods, where each verification method is described by
+a <a data-cite="INFRA#ordered-map">map</a> containing properties. The properties
+MUST include the <code>id</code>, <code>type</code>, <code>controller</code>,
+and specific verification method properties, and MAY include additional
+properties.
         </dd>
       </dl>
 
@@ -1816,9 +1818,9 @@ property) for the purpose of authentication.
         <dl>
           <dt>authentication</dt>
           <dd>
-The associated value MUST be a <a data-cite="INFRA#lists">list</a> of one or
-more <a>verification methods</a>. Each <a>verification method</a> MAY be
-embedded or referenced.
+The associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
+of one or more <a>verification methods</a>. Each <a>verification method</a> MAY
+be embedded or referenced.
           </dd>
         </dl>
 
@@ -1907,9 +1909,9 @@ A <a>DID document</a> MAY include an <code>assertionMethod</code> property.
         <dl>
           <dt>assertionMethod</dt>
           <dd>
-The associated value MUST be a <a data-cite="INFRA#lists">list</a> of one or
-more <a>verification methods</a>. Each <a>verification method</a> MAY be
-embedded or referenced.
+The associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
+of one or more <a>verification methods</a>. Each <a>verification method</a> MAY
+be embedded or referenced.
           </dd>
         </dl>
 
@@ -1962,9 +1964,9 @@ A <a>DID document</a> MAY include an <code>keyAgreement</code> property.
         <dl>
           <dt>keyAgreement</dt>
           <dd>
-The associated value MUST be a <a data-cite="INFRA#lists">list</a> of one or
-more <a>verification methods</a>. Each <a>verification method</a> MAY be
-embedded or referenced.
+The associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
+of one or more <a>verification methods</a>. Each <a>verification method</a> MAY
+be embedded or referenced.
           </dd>
         </dl>
 
@@ -2028,9 +2030,9 @@ property.
         <dl>
           <dt>capabilityInvocation</dt>
           <dd>
-The associated value MUST be a <a data-cite="INFRA#lists">list</a> of one or
-more <a>verification methods</a>. Each <a>verification method</a> MAY be
-embedded or referenced.
+The associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
+of one or more <a>verification methods</a>. Each <a>verification method</a> MAY
+be embedded or referenced.
           </dd>
         </dl>
 
@@ -2096,9 +2098,9 @@ property.
         <dl>
           <dt>capabilityDelegation</dt>
           <dd>
-The associated value MUST be a <a data-cite="INFRA#lists">list</a> of one or
-more <a>verification methods</a>. Each <a>verification method</a> MAY be
-embedded or referenced.
+The associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
+of one or more <a>verification methods</a>. Each <a>verification method</a> MAY
+be embedded or referenced.
           </dd>
         </dl>
 
