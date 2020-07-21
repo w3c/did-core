@@ -3555,6 +3555,11 @@ It should be noted that this process proves control of a <a>DID</a> and
 Signatures on <a>DID documents</a> are optional. <a>DID method</a>
 specifications SHOULD explain and specify their implementation if applicable.
         </p>
+
+        <div class="note" role="note" id="issue-container-generatedID-8"><div role="heading" class="note-title marker" id="h-note-7" aria-level="4"><span>Note</span></div><p class="">
+Through the use of digital signatures a controller can assert proof of control which can be used in a variety of different contexts. By asserting proof of control of the identifier, the controller is asserting proof of ownership of the public key which may not be the same as the subject of the DID. However, it's up to the verifier to determine if the static or dynamic usage of digital signatures is adequate to meet their assurance guarantees. In the case where it's not, it's up to the verifier to establish their own levels of assurance to identify if they believe the controller is the subject or is authorized to speak on behalf of the subject of the identifier.
+        </p></div>
+        
       </section>
 
       <section>
