@@ -1313,14 +1313,14 @@ expected to match the <a>DID</a> that was resolved.
         <p class="note">
         WARNING: A <code>sameSubject</code> assertion that two or more <a>DIDs</a>
         identify the same <a>DID subject</a> does not prove this assertion is
-        true. A malicious <a>DID controller</a> may attempt to impersonate a
+        true. A malicious <a>DID controller</a> might attempt to impersonate a
         <a>DID subject</a> by making a false <code>sameSubject</code> assertion.
-        Therefore it is STRONGLY RECOMMENDED that a requesting party obtain
+        Therefore it is strongly advised that a requesting party obtain
         independent verification of a <code>sameSubject</code> assertion. One
         method for doing this is to resolve the <code>sameSubject</code> <a>DID</a>
         to its own <a>DID document</a> and then verify that it contains the
-        inverse <code>sameSubject</code> assertion (i.e., a backpointer). See
-        the <a href="#security-considerations"></a> and
+        inverse <code>sameSubject</code> assertion, also known as a backpointer.
+        See the <a href="#security-considerations"></a> and
         <a href="#privacy-considerations"></a> sections for more information.
         </p>
         <p class="note">
@@ -1328,7 +1328,10 @@ expected to match the <a>DID</a> that was resolved.
         <code>owl:sameAs</code> assertion. In other words, it does not assert
         that two or more RDF graphs represented as <a>DID documents</a> can be
         merged. It only asserts that two or more <a>DIDs</a> identify the same
-        <a>DID subject</a>.
+        <a>DID subject</a>. Implementers are strongly advised against the use of
+        <code>owl:sameAs</code> when processing <a>DID documents</a> as its use
+        could expand the attack surface in a way that was not considered by the
+        Working Group.
         </p>
         </section>
 
