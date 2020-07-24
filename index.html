@@ -1289,17 +1289,17 @@ expected to match the <a>DID</a> that was resolved.
         </section>
 
         <section>
-        <h2>sameSubject</h2>
+        <h2>alsoKnownAs</h2>
         <p>
         A <a>DID controller</a> MAY assert that two or more <a>DIDs</a> identify
-        the same <a>DID subject</a> using the <code>sameSubject</code> property. This
-        property is OPTIONAL.
+        the same <a>DID subject</a> using the <code>alsoKnownAs</code> property.
+        This property is OPTIONAL.
         </p>
 
         <dl>
-        <dt>sameSubject</dt>
+        <dt>alsoKnownAs</dt>
         <dd>
-        The value of <code>sameSubject</code> MUST be a
+        The value of <code>alsoKnownAs</code> MUST be a
         <a data-cite="INFRA#lists">list</a> where each item in the list is a
         <a>DID</a> that conforms to the rules in Section <a href="#did-syntax"></a>.
         </dd>
@@ -1311,20 +1311,20 @@ expected to match the <a>DID</a> that was resolved.
         the <code>id</code> property).
         </p>
         <p class="note">
-        WARNING: A <code>sameSubject</code> assertion that two or more <a>DIDs</a>
+        WARNING: An <code>alsoKnownAs</code> assertion that two or more <a>DIDs</a>
         identify the same <a>DID subject</a> does not prove this assertion is
         true. A malicious <a>DID controller</a> might attempt to impersonate a
-        <a>DID subject</a> by making a false <code>sameSubject</code> assertion.
+        <a>DID subject</a> by making a false <code>alsoKnownAs</code> assertion.
         Therefore it is strongly advised that a requesting party obtain
-        independent verification of a <code>sameSubject</code> assertion. One
-        method for doing this is to resolve the <code>sameSubject</code> <a>DID</a>
+        independent verification of a <code>alsoKnownAs</code> assertion. One
+        method for doing this is to resolve the <code>alsoKnownAs</code> <a>DID</a>
         to its own <a>DID document</a> and then verify that it contains the
-        inverse <code>sameSubject</code> assertion, also known as a backpointer.
+        inverse <code>alsoKnownAs</code> assertion, also known as a backpointer.
         See the <a href="#security-considerations"></a> and
         <a href="#privacy-considerations"></a> sections for more information.
         </p>
         <p class="note">
-        A <code>sameSubject</code> assertion is not the same as an
+        A <code>alsoKnownAs</code> assertion is not the same as an
         <code>owl:sameAs</code> assertion. In other words, it does not assert
         that two or more RDF graphs represented as <a>DID documents</a> can be
         merged. It only asserts that two or more <a>DIDs</a> identify the same
