@@ -804,22 +804,16 @@ used, for example, to identify a specific part of a <a>DID document</a>.
       </p>
 
       <p>
-This following is the ABNF definition using the syntax in [[!RFC5324]]. It
+This following is the ABNF definition using the syntax in [[!RFC5234]]. It
 builds on the <code>did</code> scheme defined in <a href="#did-syntax"></a>. The
-<a data-cite="!rfc3986#section-3.3"><code>path-abempty</code></a> and <a
-data-cite="!rfc3986#section-3.5"><code>fragment</code></a> components are
-identical to the ABNF rules defined in [[!RFC3986]], and the
-<code>did-query</code> component is derived from the  <a
-data-cite="!rfc3986#section-3.4"><code>query</code></a> ABNF rule.
+<a data-cite="!rfc3986#section-3.3"><code>path-abempty</code></a>,
+<a data-cite="!rfc3986#section-3.4"><code>query</code></a>, and
+<a data-cite="!rfc3986#section-3.5"><code>fragment</code></a>
+components are identical to the ABNF rules defined in [[!RFC3986]].
       </p>
 
       <pre class="nohighlight">
-did-url            = did path-abempty [ "?" did-query ]
-                     [ "#" fragment ]
-did-query          = param *( "&" param )
-param              = param-name "=" param-value
-param-name         = 1*pchar
-param-value        = *pchar
+did-url = did path-abempty [ "?" query ] [ "#" fragment ]
       </pre>
 
       <p class="note">
