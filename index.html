@@ -3456,18 +3456,27 @@ Input and output metadata is often involved during the <a>DID Resolution</a>,
 <a>DID URL Dereferencing</a>, and other DID-related processes. The structure
 used to communicate this metadata MUST be a <a data-cite="INFRA#maps">map</a> of
 properties. Each property name MUST be a <a data-cite="INFRA#string">string</a>.
-Each property value SHOULD be a <a data-cite="INFRA#string">string</a>. In the
-rare cases where a non-string value is required, the value and all non-string
-sub-values MUST be expressed as a <a data-cite="INFRA#maps">map</a>, <a
-data-cite="INFRA#lists">list</a>, <a data-cite="INFRA#boolean">boolean</a>,
-number, or  <a data-cite="INFRA#null">null</a> and it MUST be possible to
-losslessly represent the value across all supported representations as
-described in <a href="#core-representations"></a>.
+Each property value MUST be a <a data-cite="INFRA#string">string</a>,
+<a data-cite="INFRA#maps">map</a>, <a data-cite="INFRA#lists">list</a>,
+<a data-cite="INFRA#boolean">boolean</a>, or  <a data-cite="INFRA#null">null</a>.
+The values within any complex data structures such as maps and lists 
+MUST be one of these data types as well. 
+All metadata property definitions MUST define the value type, including any additional
+formats or restrictions to that value (for example, a string formatted as a date or as a decimal integer).
+It is RECOMMENDED that property definitions use strings for values where possible.
         </p>
 
         <p>
-The following example demonstrates a JSON-encoded metadata structure sent to
-the <a href="#did-resolution">DID Resolution process</a>.
+All implementations of functions that use metadata structures as either input or output MUST
+be able to fully represent all data types described here in a deterministic fashion. As inputs and
+outputs using metadata structures are defined in terms of data types and not their serialization,
+the method for representation is internal to the implementation of the function and is out of 
+scope of this specification.
+        </p>
+
+        <p>
+The following example demonstrates a JSON-encoded metadata structure represented
+within a <a href="#did-resolution">DID Resolution process</a>.
         </p>
 
         <pre class="example" title="JSON-encoded DID resolution input metadata example">
@@ -3477,8 +3486,18 @@ the <a href="#did-resolution">DID Resolution process</a>.
         </pre>
 
         <p>
+This example corresponds to a metadata structure of the following format:
+        </p>
+
+        <pre class="example" title="DID resolution input metadata example">
+«[
+  "accept" → "application/did+ld+json"
+]»
+        </pre>
+
+        <p>
 The next example demonstrates a JSON-encoded metadata structure that might be
-returned from the <a href="#did-resolution">DID Resolution process</a> if a
+used in the return of a <a href="#did-resolution">DID Resolution process</a> if a
 DID was not found.
         </p>
 
@@ -3486,6 +3505,16 @@ DID was not found.
 {
   "error": "not-found"
 }
+        </pre>        
+
+        <p>
+This example corresponds to a metadata structure of the following format:
+        </p>
+
+        <pre class="example" title="DID resolution output metadata example">
+«[
+  "error" → "not-found"
+]»
         </pre>
 
     </section>
