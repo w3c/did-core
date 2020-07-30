@@ -2248,60 +2248,6 @@ and <a href="#authentication"></a>.
       </p>
     </section>
 
-    <section class="normative">
-      <h2>Created</h2>
-
-      <p>
-A <a>DID document</a> SHOULD include a <code><a>created</a></code> property.
-      </p>
-
-      <dl>
-          <dt><dfn>created</dfn></dt>
-          <dd>
-If a <a>DID document</a> includes a <code>created</code> property, the value
-of the property MUST be a valid XML datetime value, as defined in section
-3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema
-Definition Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This
-datetime value MUST be normalized to UTC 00:00, as indicated by the trailing
-"Z".
-          </dd>
-      </dl>
-
-      <pre class="example nohighlight">
-{
-  "created": "2002-10-10T17:00:00Z"
-}
-      </pre>
-    </section>
-
-    <section>
-      <h2>Updated</h2>
-
-      <p>
-Standard metadata for identifier records includes a timestamp of the most recent
-change.
-      </p>
-
-      <p>
-A <a>DID document</a> SHOULD include an <code><a>updated</a></code> property.
-      </p>
-
-      <dl>
-          <dt><dfn>updated</dfn></dt>
-          <dd>
-If a <a>DID document</a> includes an <code>updated</code> property, the value
-of the property MUST follow the same formatting rules as the
-<code><a>created</a></code> property (see Section <a href="#created"></a>).
-          </dd>
-      </dl>
-
-      <pre class="example nohighlight">
-{
-  "updated": "2016-10-17T02:41:00Z"
-}
-      </pre>
-    </section>
-
   </section>
 
   <section class="normative">
@@ -3435,6 +3381,33 @@ The possible properties within this structure and their possible values are defi
 This specification defines the following common properties.
             </p>
 
+            <dl>
+                <dt>
+created
+                </dt>
+                <dd>
+DID document metadata SHOULD include a <code>created</code> property
+to indicate the timestamp of the <a href="#create">Create operation</a>.
+This property MAY not be supported by a given <a>DID method</a>.
+The value of
+the property MUST be a valid XML datetime value, as defined in section 3.3.7 of
+<a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition
+Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This datetime value
+MUST be normalized to UTC 00:00, as indicated by the trailing "Z".
+                </dd>
+                <dt>
+updated
+                </dt>
+                <dd>
+DID document metadata SHOULD include an <code>updated</code> property
+to indicate the timestamp of the last <a href="#update">Update operation</a>.
+This property MAY not be supported by a given <a>DID method</a>.
+The value of
+the property MUST follow the same formatting rules as the <code>created</code>
+property.
+                </dd>
+            </dl>
+
         </section>
 
     </section>
@@ -3703,8 +3676,8 @@ access control mechanism for the <a>DID method</a> (see Section
       </ul>
 
       <p>
-Non-repudiation is further supported if timestamps are included (see Sections
-<a href="#created"></a> and <a href="#updated"></a>) and the target <a>DLT</a>
+Non-repudiation is further supported if timestamps are included (see Section
+<a href="#did-document-metadata-properties"></a>) and the target <a>DLT</a>
 system supports timestamps.
       </p>
     </section>
