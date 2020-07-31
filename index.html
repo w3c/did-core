@@ -611,7 +611,7 @@ DID resolvers and DID resolution
         </dt>
         <dd>
 A <a>DID resolver</a> is a software and/or hardware component that takes a
-<a>DID</a> (and associated options) as input and produces a conforming <a>DID
+<a>DID</a> (and associated input metadata) as input and produces a conforming <a>DID
 document</a> (and associated metadata) as output. This process is called <a>DID
 resolution</a>. The inputs and outputs of the DID resolution process are defined
 in <a href="#resolution"></a>. The specific steps for resolving a specific type
@@ -624,7 +624,7 @@ DID URL dereferencers and DID URL dereferencing
         </dt>
         <dd>
 A <a>DID URL</a> dereferencer is a software and/or hardware component that takes
-a DID URL (and associated options) as input and produces a resource (and
+a DID URL (and associated input metadata) as input and produces a resource (and
 associated metadata) as output. This process is called DID URL dereferencing.
 The inputs and outputs of the DID URL dereferencing process are defined in <a
 href="#did-url-dereferencing"></a>. Additional considerations for implementing a
@@ -928,13 +928,14 @@ of an identifier for a <a>resource</a> (the <a>DID document</a> or other).
 Alternatively, the <a>DID resolution</a> and the <a>DID URL dereferencing</a>
 functions can also be influenced by passing input metadata to a <a>DID
 resolver</a> that are not part of the DID URL. (See <a
-href="#metadata-structure"></a>). Such options could for example control caching
+href="#did-resolution-input-metadata-properties"></a>). Such input
+metadata could for example control caching
 or the desired encoding of a resolution result. This is comparable to HTTP,
 where certain parameters could either be included in an HTTP URL, or
 alternatively passed as HTTP headers during the dereferencing process. The
 important distinction is that DID parameters that are part of the <a>DID URL</a>
 should be used to specify <i>what <a>resource</a> is being identified</i>,
-whereas <a>DID resolution</a> options that are not part of the <a>DID URL</a>
+whereas input metadata that is not part of the <a>DID URL</a>
 should be use to control <i>how that <a>resource</a> is resolved or
 dereferenced</i>.
         </p>
@@ -947,7 +948,7 @@ RDF / JSON-LD documents.
 
         <p>
 DID parameters SHOULD NOT be used if the same functionality can be expressed by
-passing options to a <a>DID resolver</a>, and if there is no need to construct a
+passing input metadata to a <a>DID resolver</a>, and if there is no need to construct a
 URI for use as a link, or as a <a>resource</a> in RDF / JSON-LD documents.
         </p>
 
@@ -3475,8 +3476,8 @@ scope of this specification.
         </p>
 
         <p>
-The following example demonstrates a JSON-encoded metadata structure represented
-within a <a href="#did-resolution">DID Resolution process</a>.
+The following example demonstrates a JSON-encoded metadata structure that might be
+used as <a href="#did-resolution-input-metadata-properties">DID resolution input metadata</a></a>.
         </p>
 
         <pre class="example" title="JSON-encoded DID resolution input metadata example">
@@ -3497,11 +3498,11 @@ This example corresponds to a metadata structure of the following format:
 
         <p>
 The next example demonstrates a JSON-encoded metadata structure that might be
-used in the return of a <a href="#did-resolution">DID Resolution process</a> if a
+used as <a href="#did-resolution-metadata-properties">DID resolution metadata</a> if a
 DID was not found.
         </p>
 
-        <pre class="example" title="JSON-encoded DID resolution output metadata example">
+        <pre class="example" title="JSON-encoded DID resolution metadata example">
 {
   "error": "not-found"
 }
@@ -3511,7 +3512,7 @@ DID was not found.
 This example corresponds to a metadata structure of the following format:
         </p>
 
-        <pre class="example" title="DID resolution output metadata example">
+        <pre class="example" title="DID resolution metadata example">
 «[
   "error" → "not-found"
 ]»
