@@ -1857,12 +1857,12 @@ Example:
         <p>
 The <code><a>assertionMethod</a></code> property is used to express a
 <a>verification relationship</a> which indicates that a <a>verification
-method</a> can be used to assert a statement on behalf of the <a>DID
-subject</a>. The <em>verifier</em> of an <code><a>assertionMethod</a></code>
-attempt can check proof of a statement asserted on behalf of the <a>DID
-subject</a> by checking if the <a>verification method</a> used with the proof
-is contained in the <code><a>assertionMethod</a></code> of the <a>DID
-Document</a>.
+method</a> can be used to verify a proof that a statement was
+asserted on behalf of the <a>DID subject</a>. A <em>verifier</em>
+of such a proof can ensure that a <a>verification method</a> used
+with the proof was authorized to be used with proofs for that purpose
+by checking that the <a>verification method</a> is contained in the
+<code><a>assertionMethod</a></code> of the <a>DID Document</a>.
         </p>
 
         <p class="note" title="Uses of assertionMethod">
