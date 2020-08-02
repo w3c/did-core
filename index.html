@@ -1340,16 +1340,18 @@ make changes to the respective <a>DID document</a>.
       </p>
 
       <p>
-A DID document MAY include a <code>controller</code> property to indicate
-the <a>DID controller(s)</a>. If so:
+A DID document MAY include a <code><a>controller</a></code> property to
+indicate the <a>DID controller(s)</a>. If so:
       </p>
       <dl>
-          <dt>controller</dt>
+          <dt><dfn>controller</dfn></dt>
           <dd>
-The value of the <code>controller</code> property MUST be one or more valid
-<a>DIDs</a>. The corresponding <a>DID document</a>(s) SHOULD contain
-<a>verification relationships</a> that explicitly permit the use of certain
-verification methods for specific purposes.
+The value of the <code>controller</code> property MUST be an
+<a data-cite="INFRA#ordered-set">ordered set</a> of <a
+data-cite="INFRA#string">strings</a> that conform to the rules in Section <a
+href="#did-syntax"></a>. The corresponding <a>DID document</a>(s) SHOULD
+contain <a>verification relationships</a> that explicitly permit the use of
+certain verification methods for specific purposes.
           </dd>
       </dl>
 
@@ -1378,16 +1380,16 @@ malicious activity by an attacker. See Section
       </pre>
 
       <p class="note" title="Determining the DID controller">
-If the <code>controller</code> property is not present, the
+If the <code><a>controller</a></code> property is not present, the
 <a>DID controller</a> can be determined by consulting the respective
 <a>DID method</a> specification. It cannot be assumed that the
 <a>DID subject</a> is also the controller of its own <a>DID</a>, nor
 can it be assumed that <em>only</em> entities identified by <a>DIDs</a>
-present in the value of <code>controller</code> are capable of exerting
+present in the value of <code><a>controller</a></code> are capable of exerting
 control over the <a>DID</a> in question. Similarly, <a>DID methods</a> are not
-obliged to respect the value of <code>controller</code> and can specify means
-for updating the <a>DID document</a> that are unrelated to the
-<code>controller</code> property.
+obliged to respect the value of <code><a>controller</a></code> and can specify
+means for updating the <a>DID document</a> that are unrelated to the
+<code><a>controller</a></code> property.
       </p>
     </section>
 
@@ -1729,70 +1731,6 @@ see Section <a href="#resolution"></a>.
 
       </section>
     </section>
-
-    <section>
-      <h2>
-Control
-      </h2>
-
-      <p>
-Authorization is the mechanism used to state how operations are performed
-on behalf of the <a>DID subject</a>. A <a>DID controller</a> is authorized to
-make changes to the respective <a>DID document</a>.
-      </p>
-
-      <p>
-A DID document MAY include a <code>controller</code> property to indicate
-the <a>DID controller(s)</a>. If so:
-      </p>
-      <dl>
-          <dt>controller</dt>
-          <dd>
-The value of the <code>controller</code> property MUST be one or more valid
-<a>DIDs</a>. The corresponding <a>DID document</a>(s) SHOULD contain
-<a>verification relationships</a> that explicitly permit the use of certain
-verification methods for specific purposes.
-          </dd>
-      </dl>
-
-      <p class="note" title="Authorization vs authentication">
-Note that Authorization is separate from <a href="#authentication"></a>.
-This is particularly important for key recovery in the case of key loss,
-when the subject no longer has access to their keys, or key compromise,
-where the <a>DID controller</a>'s trusted third parties need to override
-malicious activity by an attacker. See Section
-<a href="#security-considerations"></a>.
-      </p>
-
-      <pre class="example nohighlight"
-        title="DID document with a controller property">
-{
-  "@context": "https://www.w3.org/ns/did/v1",
-  "id": "did:example:123456789abcdefghi",
-  "controller": "did:example:bcehfew7h32f32h7af3",
-  "service": [{
-    <span class="comment">// used to retrieve Verifiable Credentials
-    associated with the DID</span>
-    "type": "VerifiableCredentialService",
-    "serviceEndpoint": "https://example.com/vc/"
-  }]
-}
-      </pre>
-
-      <p class="note" title="Determining the DID controller">
-If the <code>controller</code> property is not present, the
-<a>DID controller</a> can be determined by consulting the respective
-<a>DID method</a> specification. It cannot be assumed that the
-<a>DID subject</a> is also the controller of its own <a>DID</a>, nor
-can it be assumed that <em>only</em> entities identified by <a>DIDs</a>
-present in the value of <code>controller</code> are capable of exerting
-control over the <a>DID</a> in question. Similarly, <a>DID methods</a> are not
-obliged to respect the value of <code>controller</code> and can specify means
-for updating the <a>DID document</a> that are unrelated to the
-<code>controller</code> property.
-      </p>
-    </section>
-  </section>
 
     <section>
       <h2>Verification Relationships</h2>
@@ -2178,6 +2116,7 @@ Example:
 }
 
         </pre>
+      </section>
     </section>
 
     <section>
