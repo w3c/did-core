@@ -15,6 +15,9 @@
     src='https://www.w3.org/Tools/respec/respec-w3c-common'>
   </script><!--script src='./respec-w3c-common.js' class='remove'></script-->
 
+  <script src="https://unpkg.com/reqlist/lib/reqlist.js" class="remove"></script>
+  <link href="https://unpkg.com/reqlist/lib/reqlist.css" class="removeOnSave" rel="stylesheet" type="text/css" />
+
   <script class='remove' src="./common.js">
   </script>
   <script class="remove" type="text/javascript">
@@ -55,6 +58,15 @@
             branch: "master"
     },
     includePermalinks: false,
+
+    // Uncomment these to use the respec extension that generates a list of
+    //   normative statements:
+    // preProcess: [
+    //   prepare_reqlist
+    // ],
+    // postProcess: [
+    //   add_reqlist_button
+    // ],
 
 
     // editors, add as many as you like
