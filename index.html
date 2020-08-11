@@ -1401,12 +1401,12 @@ the root of authority for information expressed in the <a>DID Document.</a> If
 the <code><a>controller</a></code> property is not present, the value can be
 inferred to be the same as that of the <code><a>id</a></code> property of the
 <a>DID document</a>. The way to determine how the <a>DID Document</a> can be
-changed is by consulting the relevant <a>DID method</a>. It is possible that
-the <a>DID method</a> will indicate that the <a>DID document</a> can no longer
-be changed beyond whatever its present value is, or that there are means for
-updating the <a>DID document</a> that are unrelated to the
-<code><a>controller</a></code> property. If no <a>verification methods</a> are
-present, it is unnecessary to express a <code><a>controller</a></code> value.
+changed is by consulting the relevant <a>DID method</a>. If no <a>verification
+methods</a> are present in the <a>DID Document</a>, then a
+<code><a>controller</a></code> property MUST be present, otherwise the
+the <a>DID document</a> can no longer be changed beyond whatever its present
+value is.
+```suggestion
       </p>
     </section>
 
