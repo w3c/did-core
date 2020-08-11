@@ -1396,16 +1396,17 @@ malicious activity by an attacker. See Section
       </pre>
 
       <p class="note" title="Determining the DID controller">
-If the <code><a>controller</a></code> property is not present, the
-<a>DID controller</a> can be determined by consulting the respective
-<a>DID method</a> specification. It cannot be assumed that the
-<a>DID subject</a> is also the controller of its own <a>DID</a>, nor
-can it be assumed that <em>only</em> entities identified by <a>DIDs</a>
-present in the value of <code><a>controller</a></code> are capable of exerting
-control over the <a>DID</a> in question. Similarly, <a>DID methods</a> are not
-obliged to respect the value of <code><a>controller</a></code> and can specify
-means for updating the <a>DID document</a> that are unrelated to the
-<code><a>controller</a></code> property.
+If the <code><a>controller</a></code> property is present, its value expresses
+the root of authority for information expressed in the <a>DID Document.</a> If
+the <code><a>controller</a></code> property is not present, the value can be
+inferred to be the same as that of the <code><a>id</a></code> property of the
+<a>DID document</a>. The way to determine how the <a>DID Document</a> can be
+changed is by consulting the relevant <a>DID method</a>. It is possible that
+the <a>DID method</a> will indicate that the <a>DID document</a> can no longer
+be changed beyond whatever its present value is, or that there are means for
+updating the <a>DID document</a> that are unrelated to the
+<code><a>controller</a></code> property. If no <a>verification methods</a> are
+present, it is unnecessary to express a <code><a>controller</a></code> value.
       </p>
     </section>
 
