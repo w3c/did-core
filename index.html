@@ -3559,15 +3559,12 @@ specifications SHOULD explain and specify their implementation if applicable.
         <div class="note" role="note" id="issue-container-generatedID-8">
           <div role="heading" class="note-title marker" id="h-note-7" 
           aria-level="4"><span>Note</span></div><p class="">
-Through the use of digital signatures a controller can assert proof of control 
-which can be used in a variety of different contexts. By asserting proof of 
-control of the identifier, the controller is asserting proof of ownership of 
-the public key which may not be the same as the subject of the DID. However, 
-it's up to the verifier to determine if the usage of digital signatures is 
-adequate to meet their assurance guarantees. In the case where it's not, it's 
-up to the verifier to establish their own levels of assurance to identify if 
-they believe the controller is the subject or is authorized to speak on behalf 
-of the subject of the identifier.
+It is the responsibility of the verifier to establish their own levels of 
+identity assurance to decide if the controller is also the <a>DID Subject</a> 
+or is authorized to speak on behalf of the <a>DID Subject</a>. The use of 
+digital signatures is one method the <a>Controller</a> can use to prove control 
+of the <a>DID</a>, but it remains up to the verifier to decide if the digital 
+signature is adequate evidence to bind the <a>DID</a> and <a>DID document</a> to the <a>DID Subject<a>.
         </p></div>
         
       </section>
