@@ -1415,85 +1415,112 @@ means for updating the <a>DID document</a> that are unrelated to the
       <section>
         <h2>representation</h2>
         <p>
-       As described in Appendix A, a <a>DID</a> is an abstract identifier that
-       does not resolve directly to a <a>representation</a> of the resource
-       identified by the <a>DID</a> (the <a>DID subject</a>). Rather the
-       <a>DID resolution</a> process produces a <a>DID document</a> which in
-       turn describes the <a>DID subject</a>.
+       A <a>DID</a> is an abstract identifier that does not resolve directly to
+       a <a>representation</a> of the resource identified by the <a>DID</a>
+       (the <a>DID subject</a>). Rather the <a>DID resolution</a> process
+       produces a <a>DID document</a> which in turn describes the
+       <a>DID subject</a>.
         </p>
         <p>
-        Appendix A classifies the <a>resources</a> identified by <a>DIDs</a>
-        into three broad categories. In the first two, the <a>DID subject</a>
-        is not an information resource but an entity that exists
-        independent of a digital <a>representation</a> on a network. In the
-        third, the <a>DID subject</a>  is an information resource that has a
-        digital <a>representation</a>. Common examples of this type of resource
+        If the DID subject is an information resource, it may have one or more
+        <a>representations</a>. Common examples of this type of resource
         include web pages, PDF files, data schemas, or digital files of any
-        type.
+        type. In this case, a <a>DID controller</a> MAY use the
+        <code>representation</code> property of <a>DID document</a> as a means
+        of binding the <a>DID subject</a> to one or more <a>representations</a>.
         </p>
         <p>
-        In this third case, a <a>DID controller</a> MAY use the
-        <code>representation</code> property to: 1) include a <a>representation</a>
-        of the <a>DID subject</a> directly within the <a>DID document</a>,
-        and/or 2) reference a <a>representation</a> of the <a>DID subject</a>
-        directly from the <a>DID document</a>. Since an information resource
-        may have multiple <a>representations</a>, these two options are not
-        mutually exclusive.
+        There are two ways to perform this binding—by reference and by value.
+        Both options are illustrated in the following example:
         </p>
 
-        <dl>
-        <dt>representation</dt>
-        <dd>
-        The <code>representation</code> property MAY have three optional
-        subproperties: <code>type</code>, <code>uri</code>, and <code>value</code>.
-        </dd>
-        </dl>
+
+        <pre class="example nohighlight"
+        title="DID document with a representation property">
+{
+  "@context": "https://www.w3.org/ns/did/v1",
+  "id": "did:example:123456789abcdefghi",
+  "representation": [{
+    <span class="comment">// used to include a representation by value</span>
+    "id": "did:example:123456789abcdefghi#rep-1",
+    "media-type": "application/json",
+    "value": "some-encoded-media-type-here"
+  },
+    <span class="comment">// used to point to a representation by reference</span>
+    "id": "did:example:123456789abcdefghi#rep-2",
+    "seeAlso": "http://example.com/example",
+  }]
+}
+        </pre>
+
+        <p>
+        Since an information resource may have multiple <a>representations</a>,
+        these two options are not mutually exclusive.
+        </p>
+
 
         <dl>
-        <dt>type</dt>
+        <dt><dfn>representation</dfn></dt>
         <dd>
-        The <code>type</code> property MUST be a <a>URI</a> that asserts the
-        media type of the <a>representation</a>. The value of this property
-        SHOULD be a media type from the
+          <p>
+          If a <a>DID document</a> includes a <code>representation</code>
+          property, the <a>DID subject</a> SHOULD be an abstraction of an
+          information resource, and the value of the property SHOULD be an
+          unordered set of <a>representations</a> of this information resource,
+          where each <a>representation</a> is described by a set of properties.
+          Each <a>representation</a> MUST have am <code><a>id</a></code>
+          property and MAY include additional properties.
+          </p>
+
+          <p>
+          The value of the <code><a>id</a></code> property MUST be a <a>URI</a>.
+          The value of <code>representation</code> MUST NOT contain multiple
+          entries with the same <code>id</code>. In this case, a
+          <a>DID document</a> processor MUST produce an error. See the note
+          below.
+          </p>
+
+          <p>
+          The <code>media-type</code> property MUST be a <a>URI</a> that asserts
+          the media type of the <a>representation</a>. The value of this
+          property SHOULD be a media type from the
         <a href="https://www.iana.org/assignments/media-types/media-types.xhtml">IANA Media Type list </a>.
-        </dd>
-        </dl>
+          If there is more than one <a>representation</a>, and if each
+          <a>representation</a> includes a <code>media-type</code> property, the
+          value of this property MUST be different for each
+          <a>representation</a>.
+          </p>
 
-        <dl>
-        <dt>uri</dt>
-        <dd>
-        The <code>uri</code> property MUST be a <a>URI</a>. This <a>URI</a>
-        SHOULD be a reference to a <a>representation</a> of the <a>DID subject</a>
-        that is not contained within the <a>DID document</a> but at some other
-        network location.
-        </dd>
-        </dl>
+          <p>
+          The value of the <code>value</code> property must be a
+          <a>representation</a> of the <a>DID subject</a>. This value MUST first
+          be encoded in the media type indicated by the <code>media-type</code>
+          property if present. If necessary, the value MUST then be re-encoded
+          according to the requirements of the <a>representation</a> of the
+          <a>DID document</a> itself. See Section <a href="#core-representations"></a>.
+          </p>
 
-        <dl>
-        <dt>value</dt>
-        <dd>
-        The <code>value</code> property contains a <a>representation</a> of
-        the <a>DID subject</a>. This value MUST first be encoded in the media
-        type indicated by the <code>type</code> subproperty. If necessary, the
-        value MUST then be re-encoded according to the requirements of the
-        <a>DID document</a> <a>representation</a> itself. See Section
-        <a href="#core-representations"></a>.
+          <p>The value of the <code>seeAlso</code> property MUST be a
+          valid <a>URI</a> conforming to [[RFC3986]] and normalized according to
+          the rules in section 6 of [[RFC3986]] and to any normalization rules
+          in its applicable <a>URI</a> scheme specification.
+          </p>
+
+          <p>If both the <code>value</code> property and the <code>seeAlso</code>
+          property are present and non-empty, the value of the <code>seeAlso</code>
+          property SHOULD resolve to the same <a>representation</a> contained in
+          the <code>value</code> property.
+        </p>
         </dd>
       </dl>
 
-        <p>
-        If both the <code>uri</code> property and the <code>value</code>
-        property are present and non-empty, the value of the <code>uri</code>
-        property SHOULD resolve to the same <a>representation</a> contained in
-        the <code>value</code> property.
-        </p>
+        <p class="note" title="Each representation has a unique DID URL">
+Since each <a>representation</a> is required to have a unique <code><a>id</a></code>
+property, this means it is identified by a unique <a>DID URL</a> composed of the
+DID plus the <a>DID fragment</a>. Thus each <a>representation</a> is an
+information resource that describes the abstract <a>DID subject</a>.
+      </p>
 
-        <p>
-        If there is more than one <code>representation</code> property present,
-        each instance of the property describes a different <a>representation</a>
-        of the same <a>DID subject</a>. Each instance SHOULD have a different
-        value of the <code>type</code> property if present.
-        </p>
 
       </section>
 
