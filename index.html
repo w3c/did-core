@@ -835,7 +835,7 @@ possible future use as a sub-delimiter for parameters as described in
       </p>
 
       <section>
-        <h2>Generic DID URL Parameters</h2>
+        <h2>DID URL Parameters</h2>
 
         <p>
 The <a>DID URL</a> syntax supports a simple, generalized format for parameters
@@ -844,18 +844,14 @@ specifies the basic syntax (the <code>param</code> rule) but does not specify
 any concrete parameter names.
         </p>
         <p>
-Some generic DID parameter names (for example, for service selection) are
+Some DID parameter names (for example, for service selection) are
 completely independent of any specific <a>DID method</a> and MUST always
 function the same way for all <a>DIDs</a>. Other DID parameter names (for
 example, for versioning) MAY be supported by certain <a>DID methods</a>, but
 MUST operate uniformly across those <a>DID methods</a> that do support them.
         </p>
         <p>
-Parameter names that are completely method-specific are described in Section
-<a href="#method-specific-did-url-parameters"></a>.
-        </p>
-        <p>
-The following table defines a set of generic DID parameter names.
+The following table defines a set of DID parameter names.
         </p>
 
         <table class="simple">
@@ -939,7 +935,7 @@ Additional considerations for processing these parameters are discussed in
 
         <p>
 Two example <a>DID URLs</a> using the <code><a>service</a></code> and
-<code>version-time</code> generic DID parameters are shown below.
+<code>version-time</code> DID parameters are shown below.
         </p>
 
         <pre class="example nohighlight" title="A DID URL with a 'service' DID parameter">
@@ -983,62 +979,6 @@ URI for use as a link, or as a <a>resource</a> in RDF / JSON-LD documents.
       </section>
 
       <section>
-        <h2>Method-Specific DID URL Parameters</h2>
-
-        <p>
-A <a>DID method</a> specification MAY specify additional method-specific
-parameter names. A method-specific parameter name MUST be prefixed by the method
-name, as defined by the <code>method-name</code> rule.
-        </p>
-
-        <p>
-For example, if the method <code>did:foo:</code> defines the parameter bar, the
-parameter name must be <code>foo:bar</code>. An example <a>DID URL</a> using
-this method and this method-specific parameter would be as shown below.
-        </p>
-
-        <pre class="example nohighlight">
-did:foo:21tDAKCERh95uGgKbJNHYp?foo:bar=high
-        </pre>
-
-        <p>
-A method-specific parameter name defined by one <a>DID method</a> MAY be used by
-other <a>DID methods</a>.
-        </p>
-
-        <pre class="example nohighlight">
-did:example:21tDAKCERh95uGgKbJNHYp?foo:bar=low
-        </pre>
-
-        <p>
-Method-specific parameter names MAY be combined with generic parameter names in
-any order.
-        </p>
-
-        <pre class="example nohighlight">
-did:example:21tDAKCERh95uGgKbJNHYp?service=agent&amp;foo:bar=high
-        </pre>
-
-        <p>
-Both <a>DID method</a> namespaces and method-specific parameter namespaces MAY
-include colons, so they might be partitioned hierarchically, as defined by a
-<a>DID method</a> specification. The following example <a>DID URL</a>
-illustrates both.
-        </p>
-
-        <pre class="example nohighlight">
-did:foo:baz:21tDAKCERh95uGgKbJNHYp?foo:baz:hex=b612
-        </pre>
-
-        <p class="issue" data-number="36">
-Review what exactly we want to say about method-specific parameters
-defined by one method but used in a <a>DID URL</a> with a different method.
-Also discuss hierarchical method namespaces in DID parameter names.
-        </p>
-
-      </section>
-
-      <section>
         <h2>Path</h2>
 
         <p>
@@ -1064,8 +1004,7 @@ did:example:123456/path
 A <a>DID query</a> is derived from a generic URI query and MUST conform to the
 <code>did-query</code> ABNF rule in Section <a href="#did-url-syntax">
 </a>. If a <a>DID query</a> is present, it MUST be used
-as described in Sections <a href="#generic-did-url-parameters"></a> and
-<a href="#method-specific-did-url-parameters"></a>.
+as described in Section <a href="#generic-did-url-parameters"></a>.
         </p>
 
         <p>
