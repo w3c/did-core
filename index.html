@@ -3376,6 +3376,191 @@ property.
         <h2>
 DID URL Dereferencing
         </h2>
+        <p>
+The DID URL dereferencing function dereferences a <a>DID URL</a> into
+a resource with contents depending on the <a>DID URL</a>'s components,
+including the <a>DID method</a>, method-specific identifier, query parameters,
+and fragment. When a <a>DID URL</a> is also a <a>DID</a>, this process
+ performs <a>DID Resolution</a>. The details of how this
+process is accomplished are outside the scope of this specification, but all
+conformant implementations MUST implement two functions which have the
+following abstract forms:
+        </p>
+
+        <p><code>
+dereference ( did-url, did-url-dereferencing-input-metadata ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-url-dereferencing-metadata, content, content-metadata )
+        </code></p>
+
+        <p>
+The input variables of these functions MUST be as follows:
+        </p>
+
+        <dl>
+            <dt>
+did-url
+            </dt>
+            <dd>
+A conformant <a>DID URL</a> as a single string. This is the <a>DID URL</a> to dereference.
+This input is REQUIRED.
+            </dd>
+            <dt>
+did-url-dereferencing-input-metadata
+            </dt>
+            <dd>
+A <a href="metadata-structure">metadata structure</a> consisting of input
+options to the <code>dereference</code> function in addition to the <code>did-url</code>
+itself.
+Properties defined by this specification are in <a href="#did-url-dereferencing-input-metadata-properties"></a>.
+This input is REQUIRED, but the structure MAY be empty.
+            </dd>
+        </dl>
+
+        <p>
+The output variables of these functions MUST be as follows:
+        </p>
+
+        <dl>
+            <dt>
+did-url-dereferencing-metadata
+            </dt>
+            <dd>
+A <a href="metadata-structure">metadata structure</a> consisting of values
+relating to the results of the <a>DID URL Dereferencing</a> process. This
+structure is REQUIRED and MUST NOT be empty.
+Properties defined by this specification are in 
+<a href="#did-url-dereferencing-metadata-properties"></a>.
+If the dereferencing is not successful, this structure MUST contain an
+<code>error</code> property describing the error.
+            </dd>
+            <dt>
+content
+            </dt>
+            <dd>
+If the <code>dereferencing</code> function was called and successful, this MUST
+contain a resource corresponding to the <a>DID URL</a>.
+Additionally, in the case that the <a>DID URL</a> is a <a>DID</a>, then this
+MUST be a <code>did-document</code> as described in <a>DID Resolution</a>,
+obtained through the resolution process.
+
+If the dereferencing is unsuccessful, this value MUST be empty.
+            </dd>
+            <dt>
+content-metadata
+            </dt>
+            <dd>
+If the dereferencing is successful, this MUST be a <a href="metadata-structure">
+metadata structure</a>. This structure contains
+metadata about the <code>content</code>.  
+Additionally, in the case that the <a>DID URL</a> is a <a>DID</a>, then this
+MUST be a <code>did-document-metadata</code> as described in <a>DID Resolution</a>,
+obtained through the resolution process.
+
+If the dereferencing is unsuccessful, this output MUST be an empty <a href="metadata-structure">metadata structure</a>.
+            </dd>
+        </dl>
+
+        <p>
+<a>DID URL Dereferencing</a> implementations MUST NOT alter the signature of
+these functions in any way. <a>DID URL Dereferencing</a> implementations MAY
+map the <code>dereference</code> function to a method-specific internal
+function to perform the actual <a>DID URL Dereferencing</a> process. <a>DID
+URL Dereferencing</a> implementations MAY implement and expose additional
+functions with different signatures in addition to the <code>dereference</code>
+function specified here.
+        </p>
+
+        <section>
+            <h3>
+DID URL Dereferencing Input Metadata Properties
+            </h3>
+
+            <p>
+The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
+This specification defines the following common properties.
+            </p>
+
+            <dl>
+                <dt>
+accept
+                </dt>
+                <dd>
+The MIME type the caller prefers for <code>content</code>. The <a>DID URL
+Dereferencing</a> implementation SHOULD use this value to determine the
+representation contained in the returned value if such a representation is
+supported and available. This property is OPTIONAL.
+                </dd>
+            </dl>
+        </section>
+
+        <section>
+            <h3>
+DID URL Dereferencing Metadata Properties
+            </h3>
+
+            <p>
+The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
+This specification defines the following common properties.
+            </p>
+
+            <dl>
+                <dt>
+content-type
+                </dt>
+                <dd>
+The MIME type of the returned <code>content</code>.
+This property is REQUIRED if dereferencing is successful.
+                </dd>
+                <dt>
+error
+                </dt>
+                <dd>
+The error code from the dereferencing process.
+This property is REQUIRED when there is an error in the dereferencing process.
+The value of this property is a single keyword string.
+The possible property values of this field are defined by [[DID-SPEC-REGISTRIES]].
+This specification defines the following error values:
+                    <dl>
+                        <dt>
+invalid-url
+                        </dt>
+                        <dd>
+The <a>DID URL</a> supplied to the <a>DID URL Dereferencing</a> function does not
+conform to valid syntax. (See <a href="#did-url-syntax"></a>.)
+                        </dd>
+                        <dt>
+unauthorized
+                        </dt>
+                        <dd>
+The caller is not authorized to dereference this <a>DID URL</a> with
+this <a>DID URL dereferencer</a>.
+                        </dd>
+                        <dt>
+not-found
+                        </dt>
+                        <dd>
+The <a>DID URL dereferencer</a> was unable to return the <code>content</code>
+resulting from this dereferencing request.
+                        </dd>
+                    </dl>
+                </dd>
+            </dl>
+
+        </section>
+
+        <section>
+            <h3>
+DID URL Dereferencing Metadata Properties
+            </h3>
+
+            <p>
+The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
+This specification defines the following common properties.
+            </p>
+
+        </section>
+
+
     </section>
 
     <section>
