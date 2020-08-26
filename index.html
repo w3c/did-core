@@ -835,13 +835,11 @@ possible future use as a sub-delimiter for parameters as described in
       </p>
 
       <section>
-        <h2>DID URL Parameters</h2>
+        <h2>DID Parameters</h2>
 
         <p>
-The <a>DID URL</a> syntax supports a simple, generalized format for parameters
-based on the query component (See <a href="#query"></a>). The ABNF above
-specifies the basic syntax (the <code>param</code> rule) but does not specify
-any concrete parameter names.
+The <a>DID URL</a> syntax supports a simple format for parameters
+based on the <code>query</code> component (See <a href="#query"></a>).
         </p>
         <p>
 Some DID parameter names (for example, for service selection) are
@@ -1004,7 +1002,7 @@ did:example:123456/path
 A <a>DID query</a> is derived from a generic URI query and MUST conform to the
 <code>did-query</code> ABNF rule in Section <a href="#did-url-syntax">
 </a>. If a <a>DID query</a> is present, it MUST be used
-as described in Section <a href="#generic-did-url-parameters"></a>.
+as described in Section <a href="#did-parameters"></a>.
         </p>
 
         <p>
