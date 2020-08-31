@@ -44,7 +44,7 @@
 
     // if there is a previously published draft, uncomment this and set its
     // YYYY-MM-DD date and its maturity status
-    previousPublishDate:  "2019-12-09",
+    previousPublishDate:  "2020-07-31",
     previousMaturity:  "WD",
 
     // automatically allow term pluralization
@@ -1411,7 +1411,7 @@ formats such as JWK [[RFC7517]]. It is RECOMMENDED that JWK <code>kid</code>
 values are set to the public key fingerprint [[RFC7638]]. It is RECOMMENDED
 that verification methods that use JWKs to represent their public keys utilize
 the value of <code>kid</code> as their fragment identifier. See the first key
-in <a href="#example-15-various-public-keys">example of various public keys</a>
+in <a href="#example-17-various-public-keys">example of various public keys</a>
 for an example of a public key with a compound key identifier.
           </p>
 
@@ -1570,6 +1570,10 @@ expressed and encoded.
         </p>
 
         <table class="simple" id="public-key-support">
+          <caption>
+This table defines the support for public key expression in a DID document.
+For each public key type, a maximum of two encoding formats are supported.
+          </caption>
           <thead>
             <tr>
               <th>
@@ -1579,10 +1583,6 @@ Key&nbsp;Type<br/>(<code>type</code> value)
 Support
               </th>
             </tr>
-            <caption>
-This table defines the support for public key expression in a DID document.
-For each public key type, a maximum of two encoding formats are supported.
-            </caption>
           </thead>
 
           <tbody>
