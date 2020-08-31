@@ -3178,7 +3178,7 @@ This input is REQUIRED.
 did-resolution-input-metadata
             </dt>
             <dd>
-A <a href="metadata-structure">metadata structure</a> consisting of input
+A <a href="#metadata-structure">metadata structure</a> consisting of input
 options to the <code>resolve</code> and <code>resolveStream</code> functions in addition to the <code>did</code>
 itself.
 Properties defined by this specification are in <a href="#did-resolution-input-metadata-properties"></a>.
@@ -3195,7 +3195,7 @@ The output variables of these functions MUST be as follows:
 did-resolution-metadata
             </dt>
             <dd>
-A <a href="metadata-structure">metadata structure</a> consisting of values
+A <a href="#metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a>DID resolution</a> process. This structure is
 REQUIRED and MUST NOT be empty. This metadata typically changes between
 invocations of the <code>resolve</code> and <code>resolveStream</code> functions as it represents data about the
@@ -3227,13 +3227,13 @@ did-document-metadata
             </dt>
             <dd>
 If the resolution is successful, this MUST be a <a
-href="metadata-structure">metadata structure</a>. This structure contains
+href="#metadata-structure">metadata structure</a>. This structure contains
 metadata about the <a>DID document</a> contained in the <code>did-document</code> or
 <code>did-document-stream</code>. This metadata typically does not change
 between invocations of the <code>resolve</code> function unless the <a>DID
 document</a> changes, as it represents data about the <a>DID document</a>. If
 the resolution is unsuccessful, this output MUST be an empty <a
-href="metadata-structure">metadata structure</a>.
+href="#metadata-structure">metadata structure</a>.
 Properties defined by this specification are in <a href="#did-document-metadata-properties"></a>.
             </dd>
         </dl>
