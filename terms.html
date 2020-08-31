@@ -6,12 +6,13 @@ included whenever they appear in this specification.
 
 <dl class="termlist">
 
-  <dt><dfn data-lt="authenticate">authentication</dfn></dt>
+  <dt><dfn>authenticate</dfn></dt>
   <dd>
-A process (typically some type of protocol) by which an entity can prove it has
-a specific attribute or controls a specific secret using one or more
-<a>verification methods</a>. With <a>DIDs</a>, a common example would be proving
-control of the private key associated with a public key published in a
+Authentication is a process (typically some type of protocol) by which an
+entity can prove it has a specific attribute or controls a specific secret
+using one or more <a>verification methods</a>. With <a>DIDs</a>, a common
+example would be proving control of the private key associated with a public
+key published in a
 <a>DID document</a>.
   </dd>
 
@@ -80,7 +81,7 @@ document</a>. Note that one <a>DID controller</a> may be the <a>DID subject</a>.
 An entity to whom a <a>DID controller</a> has granted permission to use
 a <a>verification method</a> associated with a <a>DID</a> via a <a>DID document</a>.
 For example, a parent who controls a child's <a>DID document</a> might permit
-the child to use their personal device for <a>authentication</a> purposes. In
+the child to use their personal device in order to <a>authenticate</a>. In
 this case, the child is the <a>DID delegate</a>. The child's personal device
 would contain the private cryptographic material enabling the child to
 <a>authenticate</a> using the DID. However the child may not be permitted to
