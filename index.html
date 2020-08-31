@@ -358,7 +358,7 @@ did:example:123456789abcdefghi
 The example <a>DID</a> above resolves to a <a>DID document</a>. A <a>DID
 document</a> contains information associated with the <a>DID</a>, such as ways
 to cryptographically <a>authenticate</a> the <a>DID controller</a>, as
-well as services that can be used to interact with the <a>DID subject</a>.
+well as <a>services</a> that can be used to interact with the <a>DID subject</a>.
       </p>
 
       <pre class="example nohighlight" title="Minimal self-managed DID document">
@@ -591,7 +591,7 @@ DID documents
         </dt>
         <dd>
 <a>DID documents</a> contain metadata associated with a <a>DID</a>. They
-typically express verification methods (such as public keys) and services
+typically express verification methods (such as public keys) and <a>services</a>
 relevant to interactions with the DID subject. A DID document is serialized
 according to a particular syntax (see <a href="#core-representations"></a>). The
 <a>DID</a> itself is the value of the `id` property. The generic properties
@@ -2081,18 +2081,18 @@ Example:
 
       <p>
 <a>Service endpoints</a> are used in <a>DID documents</a> to express ways of
-communicating with the <a>DID subject</a> or associated entities. Services
+communicating with the <a>DID subject</a> or associated entities. <a>Services</a>
 listed in the <a>DID document</a> can contain information about privacy
 preserving messaging services, or more public information, such as social media
 accounts, personal websites, and email addresses although this is discouraged.
 See <a href="#keep-personally-identifiable-information-pii-private"></a> for
-additional details. The metadata associated with services are often
+additional details. The metadata associated with <a>services</a> are often
 service-specific. For example, the metadata associated with an encrypted
 messaging service can express how to initiate the encrypted link before
 messaging begins.
       </p>
       <p>
-Pointers to services are expressed using the <code><a>service</a></code>
+Pointers to <a>services</a> are expressed using the <code><a>service</a></code>
 property. Each service has its own <code>id</code> and <code>type</code>
 properties, as well as a <code><a>serviceEndpoint</a></code> property with a
 <a>URI</a> or a set of other properties describing the service.
@@ -2132,7 +2132,7 @@ The value of the <code><dfn>serviceEndpoint</dfn></code> property MUST be a
 valid <a>URI</a> conforming to [[RFC3986]] and normalized according to the
 rules in section 6 of [[RFC3986]] and to any normalization rules in its
 applicable <a>URI</a> scheme specification, <em>OR</em> a set of properties
-which describe the service endpoint further.
+which describe the <a>service endpoint</a> further.
           </p>
         </dd>
       </dl>
