@@ -357,7 +357,7 @@ did:example:123456789abcdefghi
       <p>
 The example <a>DID</a> above resolves to a <a>DID document</a>. A <a>DID
 document</a> contains information associated with the <a>DID</a>, such as ways
-to cryptographically authenticate the <a>DID controller</a>, as
+to cryptographically <a>authenticate</a> the <a>DID controller</a>, as
 well as services that can be used to interact with the <a>DID subject</a>.
       </p>
 
@@ -1758,23 +1758,23 @@ be embedded or referenced.
 
         <p>
 This statement is useful to any <em>authentication verifier</em> that needs
-to check to see if an entity that is attempting to authenticate is, in fact,
-presenting a valid proof of authentication. When a <em>verifier</em> receives
-some data (in some protocol-specific format) that contains a proof that was
-made for the purpose of "authentication", and that says that an entity is
-identified by the <a>DID</a>, then that <em>verifier</em> checks to ensure
-that the proof can be verified using a <a>verification method</a> (e.g.,
+to check to see if an entity that is attempting to <a>authenticate</a> is, in
+fact, presenting a valid proof of authentication. When a <em>verifier</em>
+receives some data (in some protocol-specific format) that contains a proof
+that was made for the purpose of "authentication", and that says that an
+entity is identified by the <a>DID</a>, then that <em>verifier</em> checks to
+ensure that the proof can be verified using a <a>verification method</a> (e.g.,
 public key) listed under <code><a>authentication</a></code> in the
 <a>DID Document</a>.
         </p>
 
         <p>
 The <a>verification method</a> indicated by the <code><a>authentication</a></code>
-property of a <a>DID document</a> can only be used to authenticate the
-<a>DID subject</a>. To authenticate the <a>DID controller</a> (in cases
+property of a <a>DID document</a> can only be used to <a>authenticate</a> the
+<a>DID subject</a>. To <a>authenticate</a> the <a>DID controller</a> (in cases
 where the <a>DID controller</a> is not <em>also</em> the <a>DID subject</a>)
 the entity associated with the value of <code>controller</code> (see
-Section <a href="#control"></a>) needs to authenticate itself with its
+Section <a href="#control"></a>) needs to <a>authenticate</a> itself with its
 <em>own</em> <a>DID document</a> and attached <code><a>authentication</a></code>
 <a>verification relationship</a>.
         </p>
