@@ -2548,10 +2548,13 @@ where the value of the first <a>URI</a> is
 provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
 RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
 machine-readable information about the context. To enable interoperability
-across representations, <a>URIs</a> that exist in the DID specification
-registries SHOULD be assumed to refer to the information in the registries. In
-this case, if dereferencing is required during processing, the information from
-the registries SHOULD be used.
+with other representations, <a>URLs</a> registered in the 
+DID Specification Registries [[DID-SPEC-REGISTRIES]] referring to 
+JSON-LD Contexts SHOULD be associated with a cryptographic hash of 
+the content of the JSON-LD Context. This ensures that the interpretation of the
+information by JSON-LD consumers will be the same as interpretations 
+over other representations by other consumers that rely on the
+DID Specification Registries [[DID-SPEC-REGISTRIES]].
           </dd>
         </dl>
 
