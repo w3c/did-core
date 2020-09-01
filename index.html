@@ -2481,7 +2481,8 @@ this specification as idiomatic JSON.
         <li>
 Even though JSON-LD allows any IRI as node identifiers, <a>DID documents</a>
 are explicitly restricted to only describe DIDs. This means that the value of
-<code><a>id</a></code> MUST be a valid <a>DID</a> and not any other kind of IRI.
+<code><a>id</a></code> that refers to the <a>DID subject</a> MUST be a valid
+<a>DID</a> and not any other kind of IRI.
         </li>
         <li>
 Data types, such as integers, dates, units of measure, and URLs, are
@@ -2507,8 +2508,11 @@ property.
 The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
 where the value of the first <a>URI</a> is
 <code>https://www.w3.org/ns/did/v1</code>. All members of the
-<code>@context</code> property MUST exist be in the DID properties extension
-registry.
+<code>@context</code> property SHOULD exist in the DID specification
+registries in order to achieve interoperability across different
+representations. If a member does not exist in the DID specification
+registries, then the DID Document will not be interoperable across
+representations.
           </dd>
         </dl>
 
@@ -2543,7 +2547,11 @@ where the value of the first <a>URI</a> is
 <code>https://www.w3.org/ns/did/v1</code>. If more than one <a>URI</a> is
 provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
 RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
-machine-readable information about the context.
+machine-readable information about the context. To enable interoperability
+across representations, <a>URIs</a> that exist in the DID specification
+registries SHOULD be assumed to refer to the information in the registries. In
+this case, if dereferencing is required during processing, the information from
+the registries SHOULD be used.
           </dd>
         </dl>
 
