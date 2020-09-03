@@ -2379,10 +2379,6 @@ the root object. Properties MAY define additional data sub structures subject
 to the value representation rules in the list above.
         </p>
 
-        <p>
-The member name <code>@context</code> MUST NOT be used as this property is
-reserved for JSON-LD producers.
-        </p>
 
       </section>
 
@@ -2517,25 +2513,66 @@ property.
         <dl>
           <dt>@context</dt>
           <dd>
-The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
-where the value of the first <a>URI</a> is
-<code>https://www.w3.org/ns/did/v1</code>. All members of the
+The value of the <code>@context</code> property MUST be exactly one of the following:
+
+<ul>
+  <li>The string <code>https://www.w3.org/ns/did/v1</code>. 
+    <pre class="example">
+      {
+        "@context": "https://www.w3.org/ns/did/v1",
+        "id": "did:example:123"
+      }      
+    </pre>
+  </li>
+  <li>An array of one or more <a>URIs</a>,
+    where the value of the first <a>URI</a> is
+    <code>https://www.w3.org/ns/did/v1</code>.
+
+    <pre class="example">
+      {
+        "@context": [
+          "https://www.w3.org/ns/did/v1",
+          "https://example.com/blockchain-identity/v1"
+        ],
+        "id": "did:example:123"
+      }      
+    </pre>
+  </li>
+  <li>An array where the first value is
+    <code>https://www.w3.org/ns/did/v1</code>, and the final value is an object.
+
+    <pre class="example">
+      {
+        "@context": [
+          "https://www.w3.org/ns/did/v1",
+          "https://example.com/blockchain-identity/v1",
+          {
+            "@base": "did:example:123"
+          }
+        ],
+        "id": "did:example:123"
+      }      
+    </pre>
+  </li>
+</ul>
+
+All members of the
 <code>@context</code> property SHOULD exist in the DID specification
 registries in order to achieve interoperability across different
-representations. If a member does not exist in the DID specification
+representations. 
+
+If a member does not exist in the DID specification
 registries, then the DID Document will not be interoperable across
 representations.
+
+<p>
+  Producers SHOULD not produce DID Documents that 
+  contain properties not defined by the <code>@context</code>. 
+  Such properties MAY be dropped by Consumers.
+</p>
+
           </dd>
         </dl>
-
-        <p class="issue" data-number="202">
-This specification defines globally interoperable documents, and the requirement
-that the context value be in the verifiable data registry means that different JSON-LD
-processors can consume the document without having to dereference anything in
-the context field. However, a pair of producers and consumers can have local
-extension agreements. This needs to be clarified in a section on extensibility
-and linked here when available.
-        </p>
 
       </section>
 
@@ -2554,9 +2591,10 @@ interpreted using JSON-LD processing under the rules of the defined
         <dl>
           <dt>@context</dt>
           <dd>
-The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
-where the value of the first <a>URI</a> is
-<code>https://www.w3.org/ns/did/v1</code>. If more than one <a>URI</a> is
+The value of the <code>@context</code> property MUST conform 
+to the <a href="#production-0">JSON-LD Production Rules</a>. 
+
+If more than one <a>URI</a> is
 provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
 RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
 machine-readable information about the context. To enable interoperability
@@ -2580,6 +2618,11 @@ unknown data members on consumption, and this section needs to be updated with
 that decision.
         </p>
 
+        <p>
+          Consumers SHOULD drop all properties from a DID Documents that 
+          are not defined by the <code>@context</code>. 
+        </p>
+ 
       </section>
 
     </section>
