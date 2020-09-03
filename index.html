@@ -3380,8 +3380,9 @@ DID URL Dereferencing
 The DID URL dereferencing function dereferences a <a>DID URL</a> into
 a resource with contents depending on the <a>DID URL</a>'s components,
 including the <a>DID method</a>, method-specific identifier, path, query,
-and fragment. When a <a>DID URL</a> is also a <a>DID</a>, this process
- performs <a>DID Resolution</a>. The details of how this
+and fragment. This process depends on <a>DID resolution</a>
+of the <a>DID</a> contained in the <a>DID URL</a>.
+The details of how this
 process is accomplished are outside the scope of this specification, but all
 conformant implementations MUST implement two functions which have the
 following abstract forms:
