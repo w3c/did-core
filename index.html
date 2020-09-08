@@ -904,8 +904,11 @@ value MUST be an <a data-lt="ascii string">ASCII string</a>.
 Identifies a certain version timestamp of a <a>DID document</a> to be resolved.
 That is, the <a>DID document</a> that was valid for a <a>DID</a> at a certain
 time. Note that this parameter might not be supported by all <a>DID methods</a>.
-The associated value MUST be an
-<a data-lt="ascii string">ASCII string</a>.
+The associated value MUST be an <a data-lt="ascii string">ASCII string</a>
+which is a valid XML datetime value, as defined in section 3.3.7 of
+<a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition
+Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This datetime value
+MUST be normalized to UTC 00:00, as indicated by the trailing "Z".
               </td>
             </tr>
 
