@@ -3040,9 +3040,9 @@ Read/Verify
         </h3>
 
         <p>
-The <a>DID method</a> specification MUST specify how a client uses a <a>DID</a>
+The <a>DID method</a> specification MUST specify how a <a>DID resolver</a> uses a <a>DID</a>
 to request a <a>DID document</a> from the <a>verifiable data registry</a>,
-including how the client can verify the authenticity of the response.
+including how the <a>DID resolver</a> can verify the authenticity of the response.
         </p>
       </section>
 
@@ -4057,7 +4057,7 @@ The notion that immutability provides some cybersecurity benefits is
 particularly relevant because of caching. For <a>DID methods</a> tied to a
 global source of truth, a direct, just-in-time lookup of the latest version of a
 <a>DID document</a> is always possible. However, it seems likely that layers of
-cache might eventually sit between a client and that source of truth. If they
+cache might eventually sit between a <a>DID resolver</a> and that source of truth. If they
 do, believing the attributes of an object in the <a>DID document</a> to have a
 given state, when they are actually subtly different, might invite exploits.
 This is particularly true if some lookups are of a full <a>DID document</a>, and
