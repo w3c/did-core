@@ -3384,13 +3384,13 @@ and fragment. This process depends on <a>DID resolution</a>
 of the <a>DID</a> contained in the <a>DID URL</a>.
 The details of how this
 process is accomplished are outside the scope of this specification, but all
-conformant implementations MUST implement two functions which have the
-following abstract forms:
+conformant implementations MUST implement a function which has the
+following abstract form:
         </p>
 
         <p><code>
 dereference ( did-url, did-url-dereferencing-input-metadata ) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-url-dereferencing-metadata, content, content-metadata )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-url-dereferencing-metadata, content-stream, content-metadata )
         </code></p>
 
         <p>
@@ -3402,7 +3402,8 @@ The input variables of these functions MUST be as follows:
 did-url
             </dt>
             <dd>
-A conformant <a>DID URL</a> as a single string. This is the <a>DID URL</a> to dereference.
+A conformant <a>DID URL</a> as a single string. This is the <a>DID URL</a> to
+dereference.
 This input is REQUIRED.
             </dd>
             <dt>
@@ -3428,20 +3429,23 @@ did-url-dereferencing-metadata
             <dd>
 A <a href="metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a>DID URL Dereferencing</a> process. This
-structure is REQUIRED and MUST NOT be empty.
+structure is REQUIRED and in the case of an error in the dereferencing process,
+this MUST NOT be empty.
 Properties defined by this specification are in 
 <a href="#did-url-dereferencing-metadata-properties"></a>.
 If the dereferencing is not successful, this structure MUST contain an
 <code>error</code> property describing the error.
             </dd>
             <dt>
-content
+content-stream
             </dt>
             <dd>
 If the <code>dereferencing</code> function was called and successful, this MUST
-contain a resource corresponding to the <a>DID URL</a>.
-The content MAY be a <a>DID document</a> in one of the conformant <a href="#representations">representations</a>.
-obtained through the resolution process.
+contain a resource corresponding to the <a>DID URL</a>. 
+Especially in the case that the <a>DID URL</a> is a <a>DID</a>, the
+<code>content-stream</code> MAY be a <a>DID document</a> in one of the
+conformant <a href="#representations">representations</a> obtained through
+the resolution process.
 
 If the dereferencing is unsuccessful, this value MUST be empty.
             </dd>
@@ -3450,11 +3454,11 @@ content-metadata
             </dt>
             <dd>
 If the dereferencing is successful, this MUST be a <a href="metadata-structure">
-metadata structure</a>. This structure contains
-metadata about the <code>content</code>.  
-Additionally, in the case that the <a>DID URL</a> is a <a>DID</a>, then this
-MUST be a <code>did-document-metadata</code> as described in <a>DID Resolution</a>,
-obtained through the resolution process.
+metadata structure</a>, but the structure MAY be empty. This structure contains
+metadata about the <code>content-stream</code>.  
+Especially in the case that the <a>DID URL</a> is a <a>DID</a>, this MAY be a
+<code>did-document-metadata</code> structure as described in <a>DID
+Resolution</a>.
 
 If the dereferencing is unsuccessful, this output MUST be an empty <a href="metadata-structure">metadata structure</a>.
             </dd>
@@ -3508,8 +3512,8 @@ This specification defines the following common properties.
 content-type
                 </dt>
                 <dd>
-The MIME type of the returned <code>content</code>.
-This property is REQUIRED if dereferencing is successful.
+The MIME type of the returned <code>content-stream</code>.
+This property is OPTIONAL if dereferencing is successful.
                 </dd>
                 <dt>
 error
@@ -3532,15 +3536,15 @@ conform to valid syntax. (See <a href="#did-url-syntax"></a>.)
 unauthorized
                         </dt>
                         <dd>
-The caller is not authorized to dereference this <a>DID URL</a> with
-this <a>DID URL dereferencer</a>.
+The caller is not authorized to dereference the given <a>DID URL</a> with the
+given <a>DID URL dereferencer</a>.
                         </dd>
                         <dt>
 not-found
                         </dt>
                         <dd>
-The <a>DID URL dereferencer</a> was unable to return the <code>content</code>
-resulting from this dereferencing request.
+The <a>DID URL dereferencer</a> was unable to return the
+<code>content-stream</code> resulting from this dereferencing request.
                         </dd>
                     </dl>
                 </dd>
