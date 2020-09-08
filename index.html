@@ -1732,7 +1732,7 @@ specification is expected to detail how revocation is performed and tracked.
 
         <p class="note">
 Caching and expiration of the keys in a <a>DID document</a> is entirely the
-responsibility of <a>DID resolvers</a> and other clients. For more information,
+responsibility of <a>DID resolvers</a> and requesting parties. For more information,
 see Section <a href="#resolution"></a>.
         </p>
 
@@ -3940,7 +3940,7 @@ Key and Signature Expiration
       <p>
 In a <a>decentralized identifier</a> architecture, there are no centralized
 authorities to enforce key or signature expiration policies. Therefore
-<a>DID resolvers</a> and other client applications need to validate that keys
+<a>DID resolvers</a> and requesting parties need to validate that keys
 were not expired at the time they were used. Because some use cases might have
 legitimate reasons why already-expired keys can be extended, make sure a key
 expiration does not prevent any further use of the key, and implementations
@@ -4199,7 +4199,7 @@ those who legitimately need it most. Choose technologies and human interfaces
 that default to preserving anonymity and pseudonymity. To reduce
 <a href="https://en.wikipedia.org/wiki/Device_fingerprint">
   digital fingerprints</a>,
-share common settings across client implementations, keep negotiated options to
+share common settings across requesting party implementations, keep negotiated options to
 a minimum on wire protocols, use encrypted transport layers, and pad messages to
 standard lengths.
       </p>
