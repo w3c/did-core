@@ -1217,6 +1217,9 @@ property.
 <code><a>id</a></code>: defined in <a href="#did-subject"></a>
       </li>
       <li>
+<code><a>alsoKnownAs</a></code>: defined in <a href="#did-subject"></a>
+      </li>
+      <li>
 <code><a>controller</a></code>: defined in <a href="#control"></a>
       </li>
       <li>
@@ -1286,6 +1289,50 @@ resolved, or be populated with the equivalent canonical <a>DID</a>
 specified by the <a>DID method</a>, which SHOULD be used by the resolving 
 party going forward.
       </p>
+
+      <p>
+A <a>DID subject</a> can have multiple identifiers for different purposes, or
+at different times. The assertion that two or more <a>DIDs</a> (or other types
+of <a>URI</a>) identify the same <a>DID subject</a> can be made using the
+<code><a>alsoKnownAs</a></code> property.
+      </p>
+
+      <p>
+<a>DID documents</a> MAY include the <code><a>alsoKnownAs</a></code> property.
+      </p>
+
+      <dl>
+        <dt><dfn>alsoKnownAs</dfn></dt>
+        <dd>
+The value of <code>alsoKnownAs</code> MUST be a
+<a data-cite="INFRA#lists">list</a> where each item in the list is a
+<a>URI</a> conforming to [[RFC3986]].
+        </dd>
+        <dd>
+This relationship is a statement that the subject of this identifier is
+also identified by one or more other identifiers.
+        </dd>
+      </dl>
+
+      <div class="note" title="Equivalence and alsoKnownAs">
+        <p>
+Applications might choose to consider two identifiers related by
+<code><a>alsoKnownAs</a></code> to be equivalent <em>if</em> the
+<code><a>alsoKnownAs</a></code> relationship is reciprocated in the reverse
+direction. It is best practice <em>not</em> to consider them equivalent in the
+absence of this inverse relationship. In other words, the presence of an
+<code><a>alsoKnownAs</a></code> assertion does not prove that this assertion
+is true. Therefore it is strongly advised that a requesting party obtain
+independent verification of an <code>alsoKnownAs</code> assertion.
+        </p>
+        <p>
+Given that the <a>DID subject</a> might use different identifiers for different
+purposes, an expectation of strong equivalence between the two identifiers, or
+merging the graphs of the two corresponding <a>DID documents</a>, is not
+necessarily appropriate, <em>even with</em> a reciprocal relationship.
+        </p>
+      </div>
+
     </section>
 
     <section>
