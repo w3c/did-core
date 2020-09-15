@@ -1191,7 +1191,7 @@ the DID Core Registries [[DID-SPEC-REGISTRIES]]; interoperability between such
 implementations and the larger ecosystem will be less reliable.
       </p>
     </section>
-
+    
   </section>
 
   <section>
@@ -2297,6 +2297,41 @@ representations should be added here once that section has been written.
     </p>
 
     <section>
+      <h2>Handling Properties</h2>
+      
+        <section>
+          <h2>Unknown Properties</h2>
+          <p>
+    When a DID Document is created by consuming a compliant representation, any properties
+    in the representation that are not known to the consumer MUST be added to the
+    data model as properties without any further processing on the property
+    value.
+          </p>
+          <p>
+    When a DID Document is serialized by a producer into a compliant
+    representation, any unknown properties MUST be serialized into the
+    representation. When the data type for the property is unknown by the producer,
+    a string serialization of the property SHOULD be used.
+          </p>
+        </section>
+  
+        <section>
+          <h2>Reserved Properties</h2>
+          <p>
+    When a DID Document is created by consuming a compliant representation, if any 
+    properties in the representation are reserved by another representation, as 
+    indicated in the registry entry for representations, then the consumer MUST
+    raise an error. 
+          </p>
+          <p>
+    When a DID Document is serialized by a producer into a compliant
+    representation, any reserved properties not for the current
+    representation MUST NOT be used.
+          </p>
+        </section>
+    </section>
+
+    <section>
       <h2>
 JSON
       </h2>
@@ -2369,7 +2404,7 @@ to the value representation rules in the list above.
 
         <p>
 The member name <code>@context</code> MUST NOT be used as this property is
-reserved for JSON-LD producers.
+reserved for the JSON-LD representation.
         </p>
 
       </section>
@@ -2438,12 +2473,12 @@ value, but this is unclear.
         </p>
 
         <p>
-The value of the <code>@context</code> object member MUST be ignored as this is
-reserved for JSON-LD consumers.
+If a <code>@context</code> object member is found, the consumer MUST raise
+an error, as this field is reserved for JSON-LD processing.
         </p>
 
         <p>
-Unknown object member names MUST be ignored as unknown properties.
+Unknown object member names MUST be treated as <a href="#unknown-properties">unknown properties</a>.
         </p>
 
         <p class="issue" data-number="205">
@@ -2559,7 +2594,7 @@ DID Specification Registries [[DID-SPEC-REGISTRIES]].
         </dl>
 
         <p>
-Unknown object member names MUST be ignored as unknown properties.
+Unknown object member names MUST be treated as <a href="#unknown-properties">unknown properties</a>.
         </p>
 
         <p class="issue" data-number="205">
@@ -2570,6 +2605,16 @@ that decision.
 
       </section>
 
+       <section>
+         <h3>
+ Reserved Properties
+         </h3>
+
+         <p>
+This representation format reserves the <code>@context</code> property.
+         </p>
+ 
+      </section>
     </section>
 
     <section>
