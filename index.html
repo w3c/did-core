@@ -2530,8 +2530,9 @@ The value of the <code>@context</code> property MUST be exactly one of the follo
     </pre>
   </li>
   <li>An array of one or more elements,
-    where the value of the first element is
-    a string with the value of <code>https://www.w3.org/ns/did/v1</code>.
+    where the value types of the members of the array
+    MUST be either a string or an object and the first element is
+    the string <code>https://www.w3.org/ns/did/v1</code>.
 
     <pre class="example">
       {
