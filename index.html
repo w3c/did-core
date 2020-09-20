@@ -1688,6 +1688,14 @@ a JWK [[RFC7517]] or be encoded as the raw 32-byte public key value in Base58
 Bitcoin format [[BASE58]] using the <code>publicKeyBase58</code> property.
               </td>
             </tr>
+            <tr>
+              <td>
+JWK<br/>(<code>JsonWebKey2020</code>)
+              </td>
+              <td>
+Key types listed in <a href="https://www.iana.org/assignments/jose/jose.xhtml">JOSE</a>, represented using [[RFC7517]] using the <code>publicKeyJwk</code> property.
+              </td>
+            </tr>
           </tbody>
         </table>
 
@@ -1702,7 +1710,7 @@ Example:
   <span class="comment">...</span>
   "verificationMethod": [{
     "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
-    "type": "JwsVerificationKey2020",
+    "type": "JsonWebKey2020",
     "controller": "did:example:123",
     "publicKeyJwk": {
       "crv": "Ed25519",
