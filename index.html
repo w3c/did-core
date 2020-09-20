@@ -1644,7 +1644,7 @@ expressed and encoded.
         <table class="simple" id="public-key-support">
           <caption>
 This table defines the support for public key expression in a DID document.
-For each public key type, a maximum of two encoding formats are supported.
+For each public key type, a maximum of two encoding formats is supported.
           </caption>
           <thead>
             <tr>
@@ -1663,9 +1663,8 @@ Support
 RSA<br/>(<code>RsaVerificationKey2018</code>)
               </td>
               <td>
-RSA public key values MUST either be encoded as a JWK [[RFC7517]] or be
-encoded in Privacy Enhanced Mail (PEM) format using the
-<code>publicKeyPem</code> property.
+RSA public key values MUST be encoded as a JWK [[RFC7517]] using the
+<code>publicKeyJwk</code> property.
               </td>
             </tr>
             <tr>
@@ -1673,29 +1672,21 @@ encoded in Privacy Enhanced Mail (PEM) format using the
 ed25519<br/>(<code>Ed25519VerificationKey2018</code>)
               </td>
               <td>
-Ed25519 public key values MUST either be encoded as a JWK [[RFC7517]] or be
+Ed25519 public key values MUST either be encoded as a JWK [[RFC7517]] 
+using the <code>publicKeyJwk</code> or be
 encoded as the raw 32-byte public key value in Base58 Bitcoin format
 [[BASE58]] using the <code>publicKeyBase58</code> property.
               </td>
             </tr>
             <tr>
               <td>
-secp256k1-koblitz<br/>(pending)
+secp256k1
               </td>
               <td>
-Secp256k1 Koblitz public key values MUST either be encoded as a JWK
-[[RFC7517]] or be encoded as the raw 33-byte public key value in Base58
+Secp256k1 Koblitz public key values MUST either be encoded as a JWK [[RFC7517]] 
+using the <code>publicKeyJwk</code> or be
+encoded as the raw 33-byte public key value in Base58
 Bitcoin format [[BASE58]] using the <code>publicKeyBase58</code> property.
-              </td>
-            </tr>
-            <tr>
-              <td>
-secp256r1<br/>(<code>SchnorrSecp256k1VerificationKey2019</code>)
-              </td>
-              <td>
-Secp256r1 public key values MUST either be encoded as a JWK [[RFC7517]] or be
-encoded as the raw 32-byte public key value encoded in Base58 Bitcoin format
-[[BASE58]] using the <code>publicKeyBase58</code> property.
               </td>
             </tr>
             <tr>
@@ -1703,8 +1694,9 @@ encoded as the raw 32-byte public key value encoded in Base58 Bitcoin format
 Curve25519<br/>(<code>X25519KeyAgreementKey2019</code>)
               </td>
               <td>
-Curve25519 (also known as X25519) public key values MUST either be encoded as
-a JWK [[RFC7517]] or be encoded as the raw 32-byte public key value in Base58
+Curve25519 (also known as X25519) public key values MUST either be encoded 
+as a JWK [[RFC7517]] using the <code>publicKeyJwk</code> or be 
+encoded as the raw 32-byte public key value in Base58
 Bitcoin format [[BASE58]] using the <code>publicKeyBase58</code> property.
               </td>
             </tr>
@@ -1743,11 +1735,6 @@ Example:
     "type": "Ed25519VerificationKey2018",
     "controller": "did:example:pqrstuvwxyz0987654321",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-  }, {
-    "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Secp256k1VerificationKey2018",
-    "controller": "did:example:123456789abcdefghi",
-    "publicKeyHex": "02b97c30de767f084ce3080168ee293053ba33b235d7116a3263d29f1450936b71"
   }],
   <span class="comment">...</span>
 }
