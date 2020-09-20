@@ -2510,43 +2510,41 @@ Production
         </h3>
 
         <p>
-The <a>DID document</a> is serialized following the rules in the JSON processor,
-with one addition: <a>DID documents</a> MUST include the <code>@context</code>
-property.
+The <a>DID document</a> MUST be serialized as a JSON document,
+with one additional requirement: <br/> 
+The <a>DID document</a> MUST include the <code>@context</code> property.
         </p>
 
         <dl>
           <dt>@context</dt>
           <dd>
-The value of the <code>@context</code> property MUST be exactly one of the following:
+
+<p>
+The <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD specification </a> 
+defines values that are valid for this property.
+</p>
+
+<p>
+The value of <code>@context</code> MUST be exactly one of these values.
+</p>
 
 <ul>
-  <li>The string <code>https://www.w3.org/ns/did/v1</code>. 
+  <li>
+    The <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a>
+    <code>https://www.w3.org/ns/did/v1</code>.
     <pre class="example">
       {
         "@context": "https://www.w3.org/ns/did/v1",
-        "id": "did:example:123"
-      }      
+        ...
+      }
     </pre>
   </li>
-  <li>An array of one or more elements,
-    where the value types of the members of the array
-    MUST be either a string or an object and the first element is
-    the string <code>https://www.w3.org/ns/did/v1</code>.
-
-    <pre class="example">
-      {
-        "@context": [
-          "https://www.w3.org/ns/did/v1",
-          "https://example.com/blockchain-identity/v1"
-        ],
-        "id": "did:example:123"
-      }      
-    </pre>
-  </li>
-  <li>An array where the first value is
-    <code>https://www.w3.org/ns/did/v1</code>, and the final value is an object.
-
+  <li>
+    An <a href="https://infra.spec.whatwg.org/#lists">INFRA list</a>, 
+    with first item the <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a>
+    <code>https://www.w3.org/ns/did/v1</code>, and subsequent items of type 
+    <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a> or 
+    <a href="https://infra.spec.whatwg.org/#maps">INFRA map</a>.
     <pre class="example">
       {
         "@context": [
@@ -2556,11 +2554,12 @@ The value of the <code>@context</code> property MUST be exactly one of the follo
             "@base": "did:example:123"
           }
         ],
-        "id": "did:example:123"
-      }      
+        ...
+      }
     </pre>
   </li>
 </ul>
+
 
 All members of the
 <code>@context</code> property SHOULD exist in the DID specification
@@ -2568,12 +2567,12 @@ registries in order to achieve interoperability across different
 representations. 
 
 If a member does not exist in the DID specification
-registries, then the DID Document will not be interoperable across
+registries, then the DID Document might not be interoperable across
 representations.
 
 <p>
   Producers SHOULD NOT produce DID Documents that 
-  contain properties not defined by the <code>@context</code>. 
+  contain properties not defined via the <code>@context</code>. 
   Properties that are not defined via the <code>@context</code> MAY be dropped by Consumers.
 </p>
 
