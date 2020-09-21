@@ -22,10 +22,8 @@
   </script>
   <script class="remove" type="text/javascript">
   var respecConfig = {
-        wgPublicList: "public-did-wg",
-        wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/117488/status",
-        wg: "Decentralized Identifier Working Group",
-        wgURI: "https://www.w3.org/2019/did-wg/",
+    wgPublicList: "public-did-wg",
+    group: "did",
 
     // specification status (e.g., WD, LCWD, NOTE, etc.). If in doubt use ED.
     specStatus: "WD",
@@ -1288,8 +1286,8 @@ such as when a <a>DID resolver</a> is performing <a>DID resolution</a>.
 However, the fully resolved <a>DID document</a> always contains a valid
 <code><a>id</a></code> property. The value of <code><a>id</a></code> in the
 resolved <a>DID document</a> MUST match the <a>DID</a> that was
-resolved, or be populated with the equivalent canonical <a>DID</a> 
-specified by the <a>DID method</a>, which SHOULD be used by the resolving 
+resolved, or be populated with the equivalent canonical <a>DID</a>
+specified by the <a>DID method</a>, which SHOULD be used by the resolving
 party going forward.
       </p>
 
@@ -1465,7 +1463,7 @@ formats such as JWK [[RFC7517]]. It is RECOMMENDED that JWK <code>kid</code>
 values are set to the public key fingerprint [[RFC7638]]. It is RECOMMENDED
 that verification methods that use JWKs to represent their public keys utilize
 the value of <code>kid</code> as their fragment identifier. See the first key
-in <a href="#example-17-various-public-keys">example of various public keys</a>
+in <a href="#example-13-various-public-keys"></a>
 for an example of a public key with a compound key identifier.
           </p>
 
@@ -2555,11 +2553,11 @@ where the value of the first <a>URI</a> is
 provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
 RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
 machine-readable information about the context. To enable interoperability
-with other representations, <a>URLs</a> registered in the 
-DID Specification Registries [[DID-SPEC-REGISTRIES]] referring to 
-JSON-LD Contexts SHOULD be associated with a cryptographic hash of 
+with other representations, URLs registered in the
+DID Specification Registries [[DID-SPEC-REGISTRIES]] referring to
+JSON-LD Contexts SHOULD be associated with a cryptographic hash of
 the content of the JSON-LD Context. This ensures that the interpretation of the
-information by JSON-LD consumers will be the same as interpretations 
+information by JSON-LD consumers will be the same as interpretations
 over other representations by other consumers that rely on the
 DID Specification Registries [[DID-SPEC-REGISTRIES]].
           </dd>
@@ -2984,7 +2982,7 @@ rule.
 The meaning of colons in the <code>method-specific-id</code> is entirely
 method-specific. Colons might be used by <a>DID methods</a> for establishing
 hierarchically partitioned namespaces, for identifying specific instances or
-parts of the <a>verifiable data registry</a>, or for other purposes.        
+parts of the <a>verifiable data registry</a>, or for other purposes.
 Implementers are advised to avoid assuming any meanings or
 behaviors associated with a colon that are generically applicable to all
 <a>DID methods</a>.
@@ -3488,7 +3486,7 @@ A <a href="metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a>DID URL Dereferencing</a> process. This
 structure is REQUIRED and in the case of an error in the dereferencing process,
 this MUST NOT be empty.
-Properties defined by this specification are in 
+Properties defined by this specification are in
 <a href="#did-url-dereferencing-metadata-properties"></a>.
 If the dereferencing is not successful, this structure MUST contain an
 <code>error</code> property describing the error.
@@ -3511,7 +3509,7 @@ content-metadata
             <dd>
 If the dereferencing is successful, this MUST be a <a href="metadata-structure">
 metadata structure</a>, but the structure MAY be empty. This structure contains
-metadata about the <code>content-stream</code>.  
+metadata about the <code>content-stream</code>.
 If the <code>content-stream</code> is a <a>DID document</a>, this MUST be a
 <code>did-document-metadata</code> structure as described in <a>DID
 Resolution</a>.
@@ -3636,8 +3634,8 @@ properties. Each property name MUST be a <a data-cite="INFRA#string">string</a>.
 Each property value MUST be a <a data-cite="INFRA#string">string</a>,
 <a data-cite="INFRA#maps">map</a>, <a data-cite="INFRA#lists">list</a>,
 <a data-cite="INFRA#boolean">boolean</a>, or  <a data-cite="INFRA#null">null</a>.
-The values within any complex data structures such as maps and lists 
-MUST be one of these data types as well. 
+The values within any complex data structures such as maps and lists
+MUST be one of these data types as well.
 All metadata property definitions MUST define the value type, including any additional
 formats or restrictions to that value (for example, a string formatted as a date or as a decimal integer).
 It is RECOMMENDED that property definitions use strings for values where possible.
@@ -3647,7 +3645,7 @@ It is RECOMMENDED that property definitions use strings for values where possibl
 All implementations of functions that use metadata structures as either input or output MUST
 be able to fully represent all data types described here in a deterministic fashion. As inputs and
 outputs using metadata structures are defined in terms of data types and not their serialization,
-the method for representation is internal to the implementation of the function and is out of 
+the method for representation is internal to the implementation of the function and is out of
 scope of this specification.
         </p>
 
@@ -3682,7 +3680,7 @@ DID was not found.
 {
   "error": "not-found"
 }
-        </pre>        
+        </pre>
 
         <p>
 This example corresponds to a metadata structure of the following format:
@@ -4224,7 +4222,7 @@ standard lengths.
       </p>
 
       <p class="note">
-        These examples are for information purposes only, 
+        These examples are for information purposes only,
         it is considered a best practice to avoid using the same verification method for multiple purposes.
       </p>
 
@@ -4361,7 +4359,7 @@ standard lengths.
           ]
         }
       </pre>
-  
+
     </section>
 
     <section class="informative">
@@ -4370,13 +4368,13 @@ standard lengths.
       </h2>
 
       <p class="note">
-        These examples are for information purposes only. 
+        These examples are for information purposes only.
         See <a href="https://www.w3.org/TR/vc-data-model/">
           W3C Verifiable Credentials Data Model
         </a> for additional examples.
       </p>
 
-      <pre class="example" title="Verifiable Credential linked to a verification method of type Ed25519VerificationKey2018">  
+      <pre class="example" title="Verifiable Credential linked to a verification method of type Ed25519VerificationKey2018">
       {
         "@context": [
           "https://www.w3.org/2018/credentials/v1",
@@ -4418,7 +4416,7 @@ standard lengths.
       }
     </pre>
 
-      <pre class="example" title="Verifiable Credential linked to a verification method of type JsonWebKey2020">        
+      <pre class="example" title="Verifiable Credential linked to a verification method of type JsonWebKey2020">
 {
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
@@ -4489,7 +4487,7 @@ standard lengths.
         Encrypting
       </h2>
       <p class="note">
-        These examples are for information purposes only, 
+        These examples are for information purposes only,
         it is considered a best practice to avoid dislosing unnecessary information in JWE headers.
       </p>
       <pre class="example" title="JWE linked to a verification method via kid">
