@@ -1288,10 +1288,41 @@ such as when a <a>DID resolver</a> is performing <a>DID resolution</a>.
 However, the fully resolved <a>DID document</a> always contains a valid
 <code><a>id</a></code> property. The value of <code><a>id</a></code> in the
 resolved <a>DID document</a> MUST match the <a>DID</a> that was
-resolved, or be populated with the equivalent canonical <a>DID</a> 
-specified by the <a>DID method</a>, which SHOULD be used by the resolving 
+resolved, or be populated with the equivalent canonical <a>DID</a>
+specified by the <a>DID method</a>, which SHOULD be used by the resolving
 party going forward.
       </p>
+
+      <p>
+For certain use cases it might be useful to explicitly state the nature of the
+<a>DID subject</a> (e.g., person, organization, book, web page, data
+structure, abstract concept, etc.). For this, the <code><a>type</a></code>
+property is used.
+      </p>
+
+      <p>
+<a>DID documents</a> MAY include the <code><a>type</a></code> property.
+      </p>
+
+      <dl>
+        <dt><dfn>type</dfn></dt>
+        <dd>
+Where present, the value of <code>type</code> MUST be a
+<a data-cite="INFRA#lists">list</a> where each item in the list is either a
+<a>URI</a> conforming to [[RFC3986]] <em>or</em> a <a
+data-cite="INFRA#string">string</a> which is registered in the
+[[DID-SPEC-REGISTRIES]].
+        </dd>
+      </dl>
+
+      <pre class="example nohighlight" title="Example of type property">
+{
+  "@context": "https://www.w3.org/ns/did/v1",
+  "id": "did:example:21tDAKCERh95uGgKbJNHYp",
+  "type": ["https://schema.org/Person"],
+  <span class="comment">...</span>
+}
+      </pre>
 
       <p>
 A <a>DID subject</a> can have multiple identifiers for different purposes, or
