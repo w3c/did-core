@@ -835,7 +835,9 @@ possible future use as a sub-delimiter for parameters as described in
 
         <p>
 The <a>DID URL</a> syntax supports a simple format for parameters
-based on the <code>query</code> component (See <a href="#query"></a>).
+based on the <code>query</code> component (See <a href="#query"></a>). Adding
+a DID parameter to a <a>DID URL</a> means that the parameter becomes part of
+the identifier for a <a>resource</a>.
         </p>
         <p>
 Some DID parameter names (for example, for service selection) are
@@ -868,7 +870,8 @@ Description
               <td>
 A resource hash of the <a>DID document</a> to add integrity protection, as
 specified in [[?HASHLINK]]. The associated value MUST be an
-<a data-lt="ascii string">ASCII string</a>. <i>This parameter is non-normative.</i>
+<a data-lt="ascii string">ASCII string</a>. <i>This parameter is
+non-normative.</i>
               </td>
             </tr>
             <tr>
@@ -876,8 +879,8 @@ specified in [[?HASHLINK]]. The associated value MUST be an
 <code><a>service</a></code>
               </td>
               <td>
-Identifies a service from the <a>DID document</a> by service ID. The associated
-value MUST be an <a data-lt="ascii string">ASCII string</a>.
+Identifies a service from the <a>DID document</a> by service ID. The
+associated value MUST be an <a data-lt="ascii string">ASCII string</a>.
               </td>
             </tr>
             <tr>
@@ -886,9 +889,9 @@ value MUST be an <a data-lt="ascii string">ASCII string</a>.
               </td>
               <td>
 Identifies a specific version of a <a>DID document</a> to be resolved (the
-version ID could be sequential, or a <a>UUID</a>, or method-specific). Note that
-this parameter might not be supported by all <a>DID methods</a>. The associated
-value MUST be an <a data-lt="ascii string">ASCII string</a>.
+version ID could be sequential, or a <a>UUID</a>, or method-specific). Note
+that this parameter might not be supported by all <a>DID methods</a>. The
+associated value MUST be an <a data-lt="ascii string">ASCII string</a>.
               </td>
             </tr>
 
@@ -897,14 +900,14 @@ value MUST be an <a data-lt="ascii string">ASCII string</a>.
 <code>version-time</code>
               </td>
               <td>
-Identifies a certain version timestamp of a <a>DID document</a> to be resolved.
-That is, the <a>DID document</a> that was valid for a <a>DID</a> at a certain
-time. Note that this parameter might not be supported by all <a>DID methods</a>.
-The associated value MUST be an <a data-lt="ascii string">ASCII string</a>
-which is a valid XML datetime value, as defined in section 3.3.7 of
+Identifies a certain version timestamp of a <a>DID document</a> to be
+resolved. That is, the <a>DID document</a> that was valid for a <a>DID</a> at
+a certain time. Note that this parameter might not be supported by all <a>DID
+methods</a>. The associated value MUST be an <a data-lt="ascii string">ASCII
+string</a> which is a valid XML datetime value, as defined in section 3.3.7 of
 <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition
-Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This datetime value
-MUST be normalized to UTC 00:00, as indicated by the trailing "Z".
+Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This datetime
+value MUST be normalized to UTC 00:00, as indicated by the trailing "Z".
               </td>
             </tr>
 
@@ -915,28 +918,15 @@ MUST be normalized to UTC 00:00, as indicated by the trailing "Z".
               <td>
 A relative URI reference according to <a
 data-cite="RFC3986#section-4.2">RFC3986 Section 4.2</a>
-that identifies a resource at a <a>service endpoint</a>, which is selected from
-a <a>DID document</a> by using the <code>service</code> parameter. The
-associated value MUST be an <a data-lt="ascii string">ASCII string</a> and MUST
-use percent-encoding for certain characters as specified in <a
+that identifies a resource at a <a>service endpoint</a>, which is selected
+from a <a>DID document</a> by using the <code>service</code> parameter. The
+associated value MUST be an <a data-lt="ascii string">ASCII string</a> and
+MUST use percent-encoding for certain characters as specified in <a
 data-cite="RFC3986#section-2.1">RFC3986 Section 2.1</a>.
               </td>
             </tr>
           </tbody>
         </table>
-
-        <p>
-Implementers as well as <a>DID method</a> specification authors MAY use additional
-DID parameters that are not listed here.
-For maximum interoperability, it is RECOMMENDED that DID parameters use the official
-W3C DID Specification Registries mechanism [[DID-SPEC-REGISTRIES]], to avoid collision
-with other uses of the same DID parameter with different semantics.
-        </p>
-
-        <p>
-Additional considerations for processing these parameters are discussed in
-[[?DID-RESOLUTION]].
-        </p>
 
         <p>
 Two example <a>DID URLs</a> using the <code><a>service</a></code> and
@@ -952,33 +942,44 @@ did:foo:21tDAKCERh95uGgKbJNHYp?version-time=2002-10-10T17:00:00Z
         </pre>
 
         <p>
-Adding a DID parameter to a <a>DID URL</a> means that the parameter becomes part
-of an identifier for a <a>resource</a> (the <a>DID document</a> or other).
-Alternatively, the <a>DID resolution</a> and the <a>DID URL dereferencing</a>
-functions can also be influenced by passing input metadata to a <a>DID
-resolver</a> that are not part of the DID URL. (See <a
-href="#did-resolution-input-metadata-properties"></a>). Such input
-metadata could for example control caching
-or the desired encoding of a resolution result. This is comparable to HTTP,
-where certain parameters could either be included in an HTTP URL, or
-alternatively passed as HTTP headers during the dereferencing process. The
-important distinction is that DID parameters that are part of the <a>DID URL</a>
-should be used to specify <i>what <a>resource</a> is being identified</i>,
-whereas input metadata that is not part of the <a>DID URL</a>
-should be use to control <i>how that <a>resource</a> is resolved or
-dereferenced</i>.
+Implementers as well as <a>DID method</a> specification authors MAY use
+additional DID parameters that are not listed here. For maximum
+interoperability, it is RECOMMENDED that DID parameters use the official W3C
+DID Specification Registries mechanism [[DID-SPEC-REGISTRIES]], to avoid
+collision with other uses of the same DID parameter with different semantics.
         </p>
 
         <p>
 DID parameters MAY be used if there is a clear use case where the parameter
-needs to be part of a URI that can be used as a link, or as a <a>resource</a> in
-RDF / JSON-LD documents.
+needs to be part of a URI that can be used as a link, or as a <a>resource</a>
+in RDF / JSON-LD documents.
         </p>
 
         <p>
-DID parameters SHOULD NOT be used if the same functionality can be expressed by
-passing input metadata to a <a>DID resolver</a>, and if there is no need to construct a
-URI for use as a link, or as a <a>resource</a> in RDF / JSON-LD documents.
+DID parameters SHOULD NOT be used if the same functionality can be expressed
+by passing input metadata to a <a>DID resolver</a> (see <a
+href="#did-resolution-input-metadata-properties"></a>), and if there is no need
+to construct a URI for use as a link, or as a <a>resource</a> in RDF / JSON-LD
+documents.
+        </p>
+
+        <p>
+Additional considerations for processing these parameters are discussed in
+[[?DID-RESOLUTION]].
+        </p>
+
+        <p class="note" title="DID parameters and DID resolution">
+The <a>DID resolution</a> and the <a>DID URL dereferencing</a> functions can
+be influenced by passing input metadata to a <a>DID resolver</a> that are
+not part of the DID URL. (See <a
+href="#did-resolution-input-metadata-properties"></a>). This is comparable to
+HTTP, where certain parameters could either be included in an HTTP URL, or
+alternatively passed as HTTP headers during the dereferencing process. The
+important distinction is that DID parameters that are part of the <a>DID
+URL</a> should be used to specify <em>what <a>resource</a> is being
+identified</em>, whereas input metadata that is not part of the <a>DID URL</a>
+should be use to control <em>how that <a>resource</a> is resolved or
+dereferenced</em>.
         </p>
 
       </section>
@@ -987,8 +988,8 @@ URI for use as a link, or as a <a>resource</a> in RDF / JSON-LD documents.
         <h2>Path</h2>
 
         <p>
-A <a>DID path</a> is identical to a generic URI path and MUST conform to the <a
-data-cite="!rfc3986#section-3.3"><code>path-abempty</code></a> ABNF rule in
+A <a>DID path</a> is identical to a generic URI path and MUST conform to the
+<a data-cite="!rfc3986#section-3.3"><code>path-abempty</code></a> ABNF rule in
 [[!RFC3986]].
         </p>
 
