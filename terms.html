@@ -61,9 +61,11 @@ and most national ID systems.
   <dt><dfn>decentralized public key infrastructure</dfn> (DPKI)</dt>
 
   <dd>
-  <a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">Public key infrastructure</a>
-  that does not rely on traditional <a href="https://en.wikipedia.org/wiki/Certificate_authority">certificate authorities</a> because it uses <a>decentralized identifiers</a> and
-<a>DID documents</a>) to discover and verify <a>public key descriptions</a>.
+<a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">Public key
+infrastructure</a> that does not rely on traditional
+<a href="https://en.wikipedia.org/wiki/Certificate_authority">certificate
+authorities</a> because it uses <a>decentralized identifiers</a> and
+<a>DID documents</a> to discover and verify <a>public key descriptions</a>.
   </dd>
 
   <dt><dfn data-lt="did controllers|did controller(s)">DID controller</dfn></dt>
@@ -180,8 +182,9 @@ group, organization, physical thing, digital thing, logical thing, etc.
   <dd>
 A <a>DID</a> plus any additional syntactic component that conforms to  the
 definition in <a href="#did-url-syntax"></a>. This includes an optional <a>DID
-path</a>, optional <a>DID query</a> (and its leading <code>?</code> character),
-and optional <a>DID fragment</a> (and its leading <code>#</code> character).
+path</a> (and its leading <code>/</code> character), optional <a>DID query</a>
+(and its leading <code>?</code> character), and optional <a>DID fragment</a>
+(and its leading <code>#</code> character).
   </dd>
 
   <dt><dfn>DID URL dereferencing</dfn></dt>
@@ -192,7 +195,7 @@ plus a set of dereferencing options, and returns a <a>resource</a>. This
 resource may be a <a>DID document</a> plus additional metadata, or it may be a
 secondary resource contained within the <a>DID document</a>, or it may be a
 resource entirely external to the <a>DID document</a>. If the function begins
-with a <a>DID URL</a>, it use the <a>DID resolution</a> function to fetch a
+with a <a>DID URL</a>, it uses the <a>DID resolution</a> function to fetch a
 <a>DID document</a> indicated by the <a>DID</a> contained within the
 <a>DID URL</a>. The dereferencing function then can perform additional
 processing on the <a>DID document</a> to return the dereferenced resource
