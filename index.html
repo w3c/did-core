@@ -285,18 +285,18 @@ personal or private data should be revealed, and without depending on a central
 authority to guarantee the continued existence of the identifier.
     </p>
     <p>
-This specification does not require any particular technology or cryptography to
-underpin the generation, persistence, resolution or interpretation of DIDs.
-Rather, it defines: a) the generic syntax for all DIDs, and b) the generic
-requirements for performing the four basic CRUD operations (create, read,
-update, deactivate) on the metadata associated with a DID (called the DID
-document).
+This specification does not presuppose any particular technology or
+cryptography to underpin the generation, persistence, resolution or
+interpretation of DIDs. Rather, it defines: a) the generic syntax for all
+DIDs, and b) the generic requirements for performing the four basic CRUD
+operations (create, read, update, deactivate) on the metadata associated with
+a DID (called the DID document).
     </p>
     <p>
 This enables implementers to design specific types of DIDs to work with the
-computing infrastructure they trust (e.g., blockchain, distributed ledger,
-decentralized file system, distributed database, peer-to-peer network). The
-specification for a specific type of DID is called a DID method. Implementers of
+computing infrastructure they trust (e.g., distributed ledger, decentralized
+file system, distributed database, peer-to-peer network). The specification
+for a specific type of DID is called a DID method. Implementers of
 applications or systems using DIDs can choose to support the DID methods most
 appropriate for their particular use cases.
     </p>
@@ -386,8 +386,7 @@ Design Goals
       <p>
 <a>Decentralized Identifiers</a> are a component of larger systems, such as
 the Verifiable Credentials ecosystem [[VC-DATA-MODEL]], which drove the design
-goals for this specification. This section summarizes the primary design goals
-for this specification.
+goals for this specification. These design goals are summarized here.
       </p>
 
       <table class="simple">
@@ -566,7 +565,7 @@ method</a>&mdash;to make changes to a <a>DID document</a>. This capability is
 typically asserted by the control of a set of cryptographic keys used by
 software acting on behalf of the controller, though it may also be asserted via
 other mechanisms. Note that a DID may have more than one controller, and the
-controller(s) may include the <a>DID subject</a>.
+<a>DID subject</a> can be the DID controller.
         </dd>
 
         <dt>
@@ -588,12 +587,13 @@ DID documents
         <dd>
 <a>DID documents</a> contain metadata associated with a <a>DID</a>. They
 typically express verification methods (such as public keys) and <a>services</a>
-relevant to interactions with the DID subject. A DID document is serialized
-according to a particular syntax (see <a href="#core-representations"></a>). The
-<a>DID</a> itself is the value of the `id` property. The generic properties
-supported in a DID document are specified in <a href="#core-properties"></a>.
-The properties present in a DID document may be updated according to the
-applicable operations outlined in <a href="#methods"></a>.
+relevant to interactions with the DID subject. A DID document is represents an
+abstract data model, and can be serialized according to a particular syntax
+(see <a href="#core-representations"></a>).  The generic properties supported
+in a DID document are specified in <a href="#core-properties"></a>.
+The <a>DID</a> itself is the value of the `id` property. The properties
+present in a DID document may be updated according to the applicable
+operations outlined in <a href="#methods"></a>.
         </dd>
 
         <dt>
@@ -612,7 +612,7 @@ method</a> specification is similar to the relationship between the IETF generic
 <a>URI</a> specification ([[RFC3986]]) and a specific <a>URI</a> scheme
 ([[IANA-URI-SCHEMES]] (such as the http: and https: schemes specified in
 [[RFC7230]]). It is also similar to the relationship between the IETF generic
-URN specification ([[RFC8141]]) and a specific URN namespace definition, (such
+URN specification ([[RFC8141]]) and a specific URN namespace definition (such
 as the <a>UUID</a> URN namespace defined in [[RFC4122]]). The difference is that
 a DID method specification, as well as defining a specific DID scheme, also
 specifies the methods creating, resolving, updating, and deactivating
