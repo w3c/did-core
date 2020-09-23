@@ -1589,8 +1589,10 @@ A public key can be used as a <a>verification method</a>.
         </p>
 
 <p>
-A <a>verification method</a> MUST contain a single verification material property
-(for example <code>publicKeyJwk</code> or <code>publicKeyBase58</code>, not both).
+A <a>verification method</a> MUST NOT contain multiple verification material properties. 
+For example, expressing key material in a <a>verification method</a> using both 
+<code>publicKeyJwk</code> and <code>publicKeyBase58</code> at the same time 
+is prohibited.
 </p>
 
         <p>
