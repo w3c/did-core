@@ -1,6 +1,10 @@
- {
-    "group":      [117488]
-,   "contacts":   ["iherman"]
-,   "repo-type":  "rec-track"
-,   "shortName":  "did-spec"
+{
+    "group": [
+        117488
+    ],
+    "contacts": [
+        "iherman"
+    ],
+    "repo-type": "rec-track",
+    "shortName": "did-core"
 }
