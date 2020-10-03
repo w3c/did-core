@@ -2189,11 +2189,11 @@ A <a>DID document</a> MAY include a <code><a>service</a></code> property.
         <dd>
           <p>
 If a <a>DID document</a> includes a <code>service</code> property, the value
-of the property SHOULD be an unordered set of <a>service endpoint</a>s, where
-each service endpoint is described by a set of properties. Each <a>service
-endpoint</a> MUST have <code><a>id</a></code>, <code>type</code>, and
-<code><a>serviceEndpoint</a></code> properties, and MAY include additional
-properties.
+of the property SHOULD be an <a data-cite="INFRA#ordered-set">ordered set</a>
+of <a>service endpoint</a>s, where each service endpoint is described by a set
+of properties. Each <a>service endpoint</a> MUST have <code><a>id</a></code>,
+<code>type</code>, and <code><a>serviceEndpoint</a></code> properties, and MAY
+include additional properties.
           </p>
           <p>
 The value of the <code><a>id</a></code> property MUST be a <a>URI</a>.
