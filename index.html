@@ -770,12 +770,8 @@ idchar             = ALPHA / DIGIT / "." / "-" / "_"
       </pre>
 
       <p>
-A <a>DID method</a> specification MUST further restrict the generic <a>DID</a>
-syntax by defining its own <code>method-name</code> and its own
-<code>method-specific-id</code> syntax. Case sensitivity and normalization of
-the value of the <code>method-specific-id</code> rule MUST be defined by the
-governing <a>DID method</a> specification. For more information, see Section
-<a href="#methods"></a>.
+For requirements on <a>DID methods</a> relating to the <a>DID</a> syntax, see
+Section <a href="#method-schemes"></a>.
       </p>
 
       <div class="note" title="Persistence">
@@ -3005,16 +3001,21 @@ list of known <a>DID method</a> names and their associated specifications is
 maintained in the DID Methods Registry, which is part of [[?DID-SPEC-REGISTRIES]].
         </p>
         <p>
-  Authors of new <a>DID method</a> specifications are encouraged to add their
-  method names to the DID Method Registry so that other implementors
-  and members of the community have a place to see an overview of existing
-  <a>DID methods</a>.
+Authors of new <a>DID method</a> specifications are encouraged to add their
+method names to the DID Method Registry so that other implementors
+and members of the community have a place to see an overview of existing
+<a>DID methods</a>.
         </p>
       </div>
 
       <p>
 The <a>DID method</a> specification MUST specify how to generate the
 <code>method-specific-id</code> component of a <a>DID</a>.
+      </p>
+      <p>
+Case sensitivity and normalization of the value of the
+<code>method-specific-id</code> rule MUST be defined by the <a>DID method</a>
+specification.
       </p>
       <p>
 The <code>method-specific-id</code> value MUST be able to be generated without
