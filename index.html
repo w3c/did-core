@@ -3625,8 +3625,9 @@ DID URL Dereferencing Metadata Properties
             </h3>
 
             <p>
-The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
-This specification defines the following common properties.
+The possible properties within this structure and their possible values are
+defined by [[DID-SPEC-REGISTRIES]]. This specification defines the following
+common properties.
             </p>
 
             <dl>
@@ -3644,15 +3645,16 @@ error
 The error code from the dereferencing process.
 This property is REQUIRED when there is an error in the dereferencing process.
 The value of this property is a single keyword string.
-The possible property values of this field are defined by [[DID-SPEC-REGISTRIES]].
-This specification defines the following error values:
+The possible property values of this field are defined by
+[[DID-SPEC-REGISTRIES]]. This specification defines the following error
+values:
                     <dl>
                         <dt>
 invalid-did-url
                         </dt>
                         <dd>
-The <a>DID URL</a> supplied to the <a>DID URL Dereferencing</a> function does not
-conform to valid syntax. (See <a href="#did-url-syntax"></a>.)
+The <a>DID URL</a> supplied to the <a>DID URL Dereferencing</a> function does
+not conform to valid syntax. (See <a href="#did-url-syntax"></a>.)
                         </dd>
                         <dt>
 unauthorized
@@ -3674,19 +3676,6 @@ The <a>DID URL dereferencer</a> was unable to return the
 
         </section>
 
-        <section>
-            <h3>
-DID URL Dereferencing Metadata Properties
-            </h3>
-
-            <p>
-The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
-This specification defines the following common properties.
-            </p>
-
-        </section>
-
-
     </section>
 
     <section>
@@ -3697,29 +3686,32 @@ Metadata Structure
         <p>
 Input and output metadata is often involved during the <a>DID Resolution</a>,
 <a>DID URL Dereferencing</a>, and other DID-related processes. The structure
-used to communicate this metadata MUST be a <a data-cite="INFRA#maps">map</a> of
-properties. Each property name MUST be a <a data-cite="INFRA#string">string</a>.
-Each property value MUST be a <a data-cite="INFRA#string">string</a>,
-<a data-cite="INFRA#maps">map</a>, <a data-cite="INFRA#lists">list</a>,
-<a data-cite="INFRA#boolean">boolean</a>, or  <a data-cite="INFRA#null">null</a>.
-The values within any complex data structures such as maps and lists
-MUST be one of these data types as well.
-All metadata property definitions MUST define the value type, including any additional
-formats or restrictions to that value (for example, a string formatted as a date or as a decimal integer).
-It is RECOMMENDED that property definitions use strings for values where possible.
+used to communicate this metadata MUST be a <a data-cite="INFRA#maps">map</a>
+of properties. Each property name MUST be a <a
+data-cite="INFRA#string">string</a>. Each property value MUST be a <a
+data-cite="INFRA#string">string</a>, <a data-cite="INFRA#maps">map</a>, <a
+data-cite="INFRA#lists">list</a>, <a data-cite="INFRA#boolean">boolean</a>, or
+<a data-cite="INFRA#null">null</a>. The values within any complex data
+structures such as maps and lists MUST be one of these data types as well.
+All metadata property definitions MUST define the value type, including any
+additional formats or restrictions to that value (for example, a string
+formatted as a date or as a decimal integer). It is RECOMMENDED that property
+definitions use strings for values where possible.
         </p>
 
         <p>
-All implementations of functions that use metadata structures as either input or output MUST
-be able to fully represent all data types described here in a deterministic fashion. As inputs and
-outputs using metadata structures are defined in terms of data types and not their serialization,
-the method for representation is internal to the implementation of the function and is out of
+All implementations of functions that use metadata structures as either input
+or output MUST be able to fully represent all data types described here in a
+deterministic fashion. As inputs and outputs using metadata structures are
+defined in terms of data types and not their serialization, the method for
+representation is internal to the implementation of the function and is out of
 scope of this specification.
         </p>
 
         <p>
-The following example demonstrates a JSON-encoded metadata structure that might be
-used as <a href="#did-resolution-input-metadata-properties">DID resolution input metadata</a></a>.
+The following example demonstrates a JSON-encoded metadata structure that
+might be used as <a href="#did-resolution-input-metadata-properties">DID
+resolution input metadata</a></a>.
         </p>
 
         <pre class="example" title="JSON-encoded DID resolution input metadata example">
@@ -3740,8 +3732,8 @@ This example corresponds to a metadata structure of the following format:
 
         <p>
 The next example demonstrates a JSON-encoded metadata structure that might be
-used as <a href="#did-resolution-metadata-properties">DID resolution metadata</a> if a
-DID was not found.
+used as <a href="#did-resolution-metadata-properties">DID resolution
+metadata</a> if a DID was not found.
         </p>
 
         <pre class="example" title="JSON-encoded DID resolution metadata example">
@@ -3762,8 +3754,8 @@ This example corresponds to a metadata structure of the following format:
 
         <p>
 The next example demonstrates a JSON-encoded metadata structure that might be
-used as <a href="#did-document-metadata-properties">DID document metadata</a> to
-describe timestamps associated with the DID document.
+used as <a href="#did-document-metadata-properties">DID document metadata</a>
+to describe timestamps associated with the DID document.
         </p>
 
         <pre class="example" title="JSON-encoded DID document metadata example">
