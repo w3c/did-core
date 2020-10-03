@@ -1747,16 +1747,16 @@ Example:
         </pre>
 
         <p>
-If a public key does not exist in the <a>DID document</a>, it MUST be assumed
-the key was revoked or is invalid. The <a>DID document</a> MUST NOT express
-revoked keys using a <a>verification relationship</a>. Each <a>DID method</a>
-specification is expected to detail how revocation is performed and tracked.
+If a public key does not exist in the <a>DID document</a>, the key was revoked
+or is invalid. The <a>DID document</a> MUST NOT express revoked keys using a
+<a>verification relationship</a>. Each <a>DID method</a> specification is
+expected to detail how revocation is performed and tracked.
         </p>
 
         <p class="note">
 Caching and expiration of the keys in a <a>DID document</a> is entirely the
-responsibility of <a>DID resolvers</a> and requesting parties. For more information,
-see Section <a href="#resolution"></a>.
+responsibility of <a>DID resolvers</a> and requesting parties. For more
+information, see Section <a href="#resolution"></a>.
         </p>
 
       </section>
