@@ -1378,9 +1378,7 @@ such as when a <a>DID resolver</a> is performing <a>DID resolution</a>.
 However, the fully resolved <a>DID document</a> always contains a valid
 <code><a>id</a></code> property. The value of <code><a>id</a></code> in the
 resolved <a>DID document</a> MUST match the <a>DID</a> that was
-resolved, or be populated with the equivalent canonical <a>DID</a>
-specified by the <a>DID method</a>, which SHOULD be used by the resolving
-party going forward.
+resolved.
       </p>
 
         <p class="note" title="Nested objects with the id property">
@@ -1441,6 +1439,53 @@ necessarily appropriate, <em>even with</em> a reciprocal relationship.
         </div>
 
       </section>
+
+      <section>
+        <h3>deterministicSameAs</h3>
+          <p>
+            The <code><a>deterministicSameAs</a></code> property is an array 
+            of one or more DID URI strings that are verified by the <a>DID Method</a> 
+            to be deterministically equivalent variants of the DID in the 
+            <code>id</code> property. The resolving party MUST treat the DIDs in the 
+            <code>id</code> property and <code><a>deterministicSameAs</a></code> array 
+            as references to the same logical ID, thus the resolving party MUST retain 
+            the DID URIs from the <code>id</code> and <code><a>deterministicSameAs</a></code> 
+            properties to ensure any subsequent interactions with them are correctly 
+            handled in relation to the <a>DID Subject</a>. (e.g. retain all variants in 
+            a database relationship so a login with any one of them maps back to the 
+            same UUID row for the <a>DID Subject</a>)
+          </p>
+  
+          <p>
+  <a>DID documents</a> MAY include the <code><a>deterministicSameAs</a></code> property.
+          </p>
+  
+          <dl>
+            <dt><dfn>deterministicSameAs</dfn></dt>
+            <dd>
+  The value of <code>deterministicSameAs</code> MUST be a
+  <a data-cite="INFRA#lists">list</a> where each item in the list is a
+  <a>URI</a> conforming to [[RFC3986]].
+            </dd>
+            <dd>
+  This relationship is a statement that the subject of this DID is
+  also identified by one or more other DIDs that are verified by the 
+  DID Method to be deterministically equivalent variants of the DID.
+            </dd>
+          </dl>
+  
+          <div class="note" title="Equivalence and alsoKnownAs">
+            <p>
+  Unlike a purely self-declared statement of equivalence, 
+  <code><a>deterministicSameAs</a></code> only expresses variants of the 
+  resolved identifier the resolving Method can ensure are deterministically 
+  equivalent, such that a requesting party is able to rely on the veracity 
+  of the statement to the same degree it trusts the resolving Method.
+            </p>
+          </div>
+  
+        </section>
+
     </section>
 
     <section>
