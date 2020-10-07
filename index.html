@@ -12,17 +12,18 @@
   -->
 
   <script class='remove'
-    src='https://www.w3.org/Tools/respec/respec-w3c-common'>
+    src='https://www.w3.org/Tools/respec/respec-w3c'>
   </script><!--script src='./respec-w3c-common.js' class='remove'></script-->
+
+  <script src="https://unpkg.com/reqlist/lib/reqlist.js" class="remove"></script>
+  <link href="https://unpkg.com/reqlist/lib/reqlist.css" class="removeOnSave" rel="stylesheet" type="text/css" />
 
   <script class='remove' src="./common.js">
   </script>
   <script class="remove" type="text/javascript">
   var respecConfig = {
-        wgPublicList: "public-did-wg",
-        wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/117488/status",
-        wg: "Decentralized Identifier Working Group",
-        wgURI: "https://www.w3.org/2019/did-wg/",
+    wgPublicList: "public-did-wg",
+    group: "did",
 
     // specification status (e.g., WD, LCWD, NOTE, etc.). If in doubt use ED.
     specStatus: "WD",
@@ -41,7 +42,7 @@
 
     // if there is a previously published draft, uncomment this and set its
     // YYYY-MM-DD date and its maturity status
-    previousPublishDate:  "2019-12-09",
+    previousPublishDate:  "2020-07-31",
     previousMaturity:  "WD",
 
     // automatically allow term pluralization
@@ -55,6 +56,15 @@
             branch: "master"
     },
     includePermalinks: false,
+
+    // Uncomment these to use the respec extension that generates a list of
+    //   normative statements:
+    // preProcess: [
+    //   prepare_reqlist
+    // ],
+    // postProcess: [
+    //   add_reqlist_button
+    // ],
 
 
     // editors, add as many as you like
@@ -327,7 +337,7 @@ A <a>DID</a> is a simple text string consisting of three parts, the:
       </p>
         <ul>
           <li>
-URL scheme identifier (<code>did</code>)
+URI scheme identifier (<code>did</code>)
           </li>
           <li>
 Identifier for the <a>DID method</a>
@@ -345,8 +355,8 @@ did:example:123456789abcdefghi
       <p>
 The example <a>DID</a> above resolves to a <a>DID document</a>. A <a>DID
 document</a> contains information associated with the <a>DID</a>, such as ways
-to cryptographically authenticate the <a>DID controller</a>, as
-well as services that can be used to interact with the <a>DID subject</a>.
+to cryptographically <a>authenticate</a> the <a>DID controller</a>, as
+well as <a>services</a> that can be used to interact with the <a>DID subject</a>.
       </p>
 
       <pre class="example nohighlight" title="Minimal self-managed DID document">
@@ -579,7 +589,7 @@ DID documents
         </dt>
         <dd>
 <a>DID documents</a> contain metadata associated with a <a>DID</a>. They
-typically express verification methods (such as public keys) and services
+typically express verification methods (such as public keys) and <a>services</a>
 relevant to interactions with the DID subject. A DID document is serialized
 according to a particular syntax (see <a href="#core-representations"></a>). The
 <a>DID</a> itself is the value of the `id` property. The generic properties
@@ -823,27 +833,21 @@ possible future use as a sub-delimiter for parameters as described in
       </p>
 
       <section>
-        <h2>Generic DID URL Parameters</h2>
+        <h2>DID Parameters</h2>
 
         <p>
-The <a>DID URL</a> syntax supports a simple, generalized format for parameters
-based on the query component (See <a href="#query"></a>). The ABNF above
-specifies the basic syntax (the <code>param</code> rule) but does not specify
-any concrete parameter names.
+The <a>DID URL</a> syntax supports a simple format for parameters
+based on the <code>query</code> component (See <a href="#query"></a>).
         </p>
         <p>
-Some generic DID parameter names (for example, for service selection) are
+Some DID parameter names (for example, for service selection) are
 completely independent of any specific <a>DID method</a> and MUST always
 function the same way for all <a>DIDs</a>. Other DID parameter names (for
 example, for versioning) MAY be supported by certain <a>DID methods</a>, but
 MUST operate uniformly across those <a>DID methods</a> that do support them.
         </p>
         <p>
-Parameter names that are completely method-specific are described in Section
-<a href="#method-specific-did-url-parameters"></a>.
-        </p>
-        <p>
-The following table defines a set of generic DID parameter names.
+The following table defines a set of DID parameter names.
         </p>
 
         <table class="simple">
@@ -866,7 +870,7 @@ Description
               <td>
 A resource hash of the <a>DID document</a> to add integrity protection, as
 specified in [[?HASHLINK]]. The associated value MUST be an
-<a data-lt="ascii string">ASCII string</a>.
+<a data-lt="ascii string">ASCII string</a>. <i>This parameter is non-normative.</i>
               </td>
             </tr>
             <tr>
@@ -898,8 +902,11 @@ value MUST be an <a data-lt="ascii string">ASCII string</a>.
 Identifies a certain version timestamp of a <a>DID document</a> to be resolved.
 That is, the <a>DID document</a> that was valid for a <a>DID</a> at a certain
 time. Note that this parameter might not be supported by all <a>DID methods</a>.
-The associated value MUST be an
-<a data-lt="ascii string">ASCII string</a>.
+The associated value MUST be an <a data-lt="ascii string">ASCII string</a>
+which is a valid XML datetime value, as defined in section 3.3.7 of
+<a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition
+Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This datetime value
+MUST be normalized to UTC 00:00, as indicated by the trailing "Z".
               </td>
             </tr>
 
@@ -921,13 +928,21 @@ data-cite="RFC3986#section-2.1">RFC3986 Section 2.1</a>.
         </table>
 
         <p>
+Implementers as well as <a>DID method</a> specification authors MAY use additional
+DID parameters that are not listed here.
+For maximum interoperability, it is RECOMMENDED that DID parameters use the official
+W3C DID Specification Registries mechanism [[DID-SPEC-REGISTRIES]], to avoid collision
+with other uses of the same DID parameter with different semantics.
+        </p>
+
+        <p>
 Additional considerations for processing these parameters are discussed in
 [[?DID-RESOLUTION]].
         </p>
 
         <p>
 Two example <a>DID URLs</a> using the <code><a>service</a></code> and
-<code>version-time</code> generic DID parameters are shown below.
+<code>version-time</code> DID parameters are shown below.
         </p>
 
         <pre class="example nohighlight" title="A DID URL with a 'service' DID parameter">
@@ -971,62 +986,6 @@ URI for use as a link, or as a <a>resource</a> in RDF / JSON-LD documents.
       </section>
 
       <section>
-        <h2>Method-Specific DID URL Parameters</h2>
-
-        <p>
-A <a>DID method</a> specification MAY specify additional method-specific
-parameter names. A method-specific parameter name MUST be prefixed by the method
-name, as defined by the <code>method-name</code> rule.
-        </p>
-
-        <p>
-For example, if the method <code>did:foo:</code> defines the parameter bar, the
-parameter name must be <code>foo:bar</code>. An example <a>DID URL</a> using
-this method and this method-specific parameter would be as shown below.
-        </p>
-
-        <pre class="example nohighlight">
-did:foo:21tDAKCERh95uGgKbJNHYp?foo:bar=high
-        </pre>
-
-        <p>
-A method-specific parameter name defined by one <a>DID method</a> MAY be used by
-other <a>DID methods</a>.
-        </p>
-
-        <pre class="example nohighlight">
-did:example:21tDAKCERh95uGgKbJNHYp?foo:bar=low
-        </pre>
-
-        <p>
-Method-specific parameter names MAY be combined with generic parameter names in
-any order.
-        </p>
-
-        <pre class="example nohighlight">
-did:example:21tDAKCERh95uGgKbJNHYp?service=agent&amp;foo:bar=high
-        </pre>
-
-        <p>
-Both <a>DID method</a> namespaces and method-specific parameter namespaces MAY
-include colons, so they might be partitioned hierarchically, as defined by a
-<a>DID method</a> specification. The following example <a>DID URL</a>
-illustrates both.
-        </p>
-
-        <pre class="example nohighlight">
-did:foo:baz:21tDAKCERh95uGgKbJNHYp?foo:baz:hex=b612
-        </pre>
-
-        <p class="issue" data-number="36">
-Review what exactly we want to say about method-specific parameters
-defined by one method but used in a <a>DID URL</a> with a different method.
-Also discuss hierarchical method namespaces in DID parameter names.
-        </p>
-
-      </section>
-
-      <section>
         <h2>Path</h2>
 
         <p>
@@ -1052,8 +1011,7 @@ did:example:123456/path
 A <a>DID query</a> is derived from a generic URI query and MUST conform to the
 <code>did-query</code> ABNF rule in Section <a href="#did-url-syntax">
 </a>. If a <a>DID query</a> is present, it MUST be used
-as described in Sections <a href="#generic-did-url-parameters"></a> and
-<a href="#method-specific-did-url-parameters"></a>.
+as described in Section <a href="#did-parameters"></a>.
         </p>
 
         <p>
@@ -1260,6 +1218,9 @@ property.
 <code><a>id</a></code>: defined in <a href="#did-subject"></a>
       </li>
       <li>
+<code><a>alsoKnownAs</a></code>: defined in <a href="#alsoknownas"></a>
+      </li>
+      <li>
 <code><a>controller</a></code>: defined in <a href="#control"></a>
       </li>
       <li>
@@ -1286,12 +1247,6 @@ property.
 <code><a>service</a></code>: defined in <a href="#service-endpoints"></a>.
 Sub-properties include <code>id</code>, <code>type</code> and
 <code><a>serviceEndpoint</a></code>.
-      </li>
-      <li>
-<code><a>created</a></code>: defined in <a href="#created"></a>.
-      </li>
-      <li>
-<code><a>updated</a></code>: defined in <a href="#updated"></a>.
       </li>
     </ul>
 
@@ -1331,10 +1286,58 @@ such as when a <a>DID resolver</a> is performing <a>DID resolution</a>.
 However, the fully resolved <a>DID document</a> always contains a valid
 <code><a>id</a></code> property. The value of <code><a>id</a></code> in the
 resolved <a>DID document</a> MUST match the <a>DID</a> that was
-resolved, or be populated with the equivalent canonical <a>DID</a> 
-specified by the <a>DID method</a>, which SHOULD be used by the resolving 
+resolved, or be populated with the equivalent canonical <a>DID</a>
+specified by the <a>DID method</a>, which SHOULD be used by the resolving
 party going forward.
       </p>
+
+    <section>
+      <h3>alsoKnownAs</h3>
+
+        <p>
+A <a>DID subject</a> can have multiple identifiers for different purposes, or
+at different times. The assertion that two or more <a>DIDs</a> (or other types
+of <a>URI</a>) identify the same <a>DID subject</a> can be made using the
+<code><a>alsoKnownAs</a></code> property.
+        </p>
+
+        <p>
+<a>DID documents</a> MAY include the <code><a>alsoKnownAs</a></code> property.
+        </p>
+
+        <dl>
+          <dt><dfn>alsoKnownAs</dfn></dt>
+          <dd>
+The value of <code>alsoKnownAs</code> MUST be a
+<a data-cite="INFRA#lists">list</a> where each item in the list is a
+<a>URI</a> conforming to [[RFC3986]].
+          </dd>
+          <dd>
+This relationship is a statement that the subject of this identifier is
+also identified by one or more other identifiers.
+          </dd>
+        </dl>
+
+        <div class="note" title="Equivalence and alsoKnownAs">
+          <p>
+Applications might choose to consider two identifiers related by
+<code><a>alsoKnownAs</a></code> to be equivalent <em>if</em> the
+<code><a>alsoKnownAs</a></code> relationship is reciprocated in the reverse
+direction. It is best practice <em>not</em> to consider them equivalent in the
+absence of this inverse relationship. In other words, the presence of an
+<code><a>alsoKnownAs</a></code> assertion does not prove that this assertion
+is true. Therefore it is strongly advised that a requesting party obtain
+independent verification of an <code>alsoKnownAs</code> assertion.
+          </p>
+          <p>
+Given that the <a>DID subject</a> might use different identifiers for different
+purposes, an expectation of strong equivalence between the two identifiers, or
+merging the graphs of the two corresponding <a>DID documents</a>, is not
+necessarily appropriate, <em>even with</em> a reciprocal relationship.
+          </p>
+        </div>
+
+      </section>
     </section>
 
     <section>
@@ -1365,6 +1368,15 @@ certain verification methods for specific purposes.
           </dd>
       </dl>
 
+      <p>
+When a <code><a>controller</a></code> property is present in a
+<a>DID Document</a>, its value expresses one or more <a>DIDs</a>. Any
+<a>verification methods</a> contained in the <a>DID Documents</a> for those
+<a>DIDs</a> SHOULD be accepted as authoritative, such that proofs that satisfy
+those verification methods are to be considered equivalent to proofs provided
+by the <a>DID Subject</a>.
+      </p>
+
       <p class="note" title="Authorization vs authentication">
 Note that Authorization is separate from <a href="#authentication"></a>.
 This is particularly important for key recovery in the case of key loss,
@@ -1388,19 +1400,6 @@ malicious activity by an attacker. See Section
   }]
 }
       </pre>
-
-      <p class="note" title="Determining the DID controller">
-If the <code><a>controller</a></code> property is not present, the
-<a>DID controller</a> can be determined by consulting the respective
-<a>DID method</a> specification. It cannot be assumed that the
-<a>DID subject</a> is also the controller of its own <a>DID</a>, nor
-can it be assumed that <em>only</em> entities identified by <a>DIDs</a>
-present in the value of <code><a>controller</a></code> are capable of exerting
-control over the <a>DID</a> in question. Similarly, <a>DID methods</a> are not
-obliged to respect the value of <code><a>controller</a></code> and can specify
-means for updating the <a>DID document</a> that are unrelated to the
-<code><a>controller</a></code> property.
-      </p>
     </section>
 
     <section>
@@ -1464,7 +1463,7 @@ formats such as JWK [[RFC7517]]. It is RECOMMENDED that JWK <code>kid</code>
 values are set to the public key fingerprint [[RFC7638]]. It is RECOMMENDED
 that verification methods that use JWKs to represent their public keys utilize
 the value of <code>kid</code> as their fragment identifier. See the first key
-in <a href="#example-15-various-public-keys">example of various public keys</a>
+in <a href="#example-13-various-public-keys"></a>
 for an example of a public key with a compound key identifier.
           </p>
 
@@ -1589,6 +1588,13 @@ property of <em>result</em>, throw an error.
 A public key can be used as a <a>verification method</a>.
         </p>
 
+<p>
+A <a>verification method</a> MUST NOT contain multiple verification material properties. 
+For example, expressing key material in a <a>verification method</a> using both 
+<code>publicKeyJwk</code> and <code>publicKeyBase58</code> at the same time 
+is prohibited.
+</p>
+
         <p>
 This specification strives to limit the number of formats for expressing public
 key material in a <a>DID document</a> to the fewest possible, to increase the
@@ -1623,6 +1629,10 @@ expressed and encoded.
         </p>
 
         <table class="simple" id="public-key-support">
+          <caption>
+This table defines the support for public key expression in a DID document.
+For each public key type, a maximum of two encoding formats are supported.
+          </caption>
           <thead>
             <tr>
               <th>
@@ -1632,10 +1642,6 @@ Key&nbsp;Type<br/>(<code>type</code> value)
 Support
               </th>
             </tr>
-            <caption>
-This table defines the support for public key expression in a DID document.
-For each public key type, a maximum of two encoding formats are supported.
-            </caption>
           </thead>
 
           <tbody>
@@ -1689,6 +1695,14 @@ a JWK [[RFC7517]] or be encoded as the raw 32-byte public key value in Base58
 Bitcoin format [[BASE58]] using the <code>publicKeyBase58</code> property.
               </td>
             </tr>
+            <tr>
+              <td>
+JWK<br/>(<code>JsonWebKey2020</code>)
+              </td>
+              <td>
+Key types listed in <a href="https://www.iana.org/assignments/jose/jose.xhtml">JOSE</a>, represented using [[RFC7517]] using the <code>publicKeyJwk</code> property.
+              </td>
+            </tr>
           </tbody>
         </table>
 
@@ -1703,7 +1717,7 @@ Example:
   <span class="comment">...</span>
   "verificationMethod": [{
     "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
-    "type": "JwsVerificationKey2020",
+    "type": "JsonWebKey2020",
     "controller": "did:example:123",
     "publicKeyJwk": {
       "crv": "Ed25519",
@@ -1735,7 +1749,7 @@ specification is expected to detail how revocation is performed and tracked.
 
         <p class="note">
 Caching and expiration of the keys in a <a>DID document</a> is entirely the
-responsibility of <a>DID resolvers</a> and other clients. For more information,
+responsibility of <a>DID resolvers</a> and requesting parties. For more information,
 see Section <a href="#resolution"></a>.
         </p>
 
@@ -1811,23 +1825,23 @@ be embedded or referenced.
 
         <p>
 This statement is useful to any <em>authentication verifier</em> that needs
-to check to see if an entity that is attempting to authenticate is, in fact,
-presenting a valid proof of authentication. When a <em>verifier</em> receives
-some data (in some protocol-specific format) that contains a proof that was
-made for the purpose of "authentication", and that says that an entity is
-identified by the <a>DID</a>, then that <em>verifier</em> checks to ensure
-that the proof can be verified using a <a>verification method</a> (e.g.,
+to check to see if an entity that is attempting to <a>authenticate</a> is, in
+fact, presenting a valid proof of authentication. When a <em>verifier</em>
+receives some data (in some protocol-specific format) that contains a proof
+that was made for the purpose of "authentication", and that says that an
+entity is identified by the <a>DID</a>, then that <em>verifier</em> checks to
+ensure that the proof can be verified using a <a>verification method</a> (e.g.,
 public key) listed under <code><a>authentication</a></code> in the
 <a>DID Document</a>.
         </p>
 
         <p>
 The <a>verification method</a> indicated by the <code><a>authentication</a></code>
-property of a <a>DID document</a> can only be used to authenticate the
-<a>DID subject</a>. To authenticate the <a>DID controller</a> (in cases
+property of a <a>DID document</a> can only be used to <a>authenticate</a> the
+<a>DID subject</a>. To <a>authenticate</a> the <a>DID controller</a> (in cases
 where the <a>DID controller</a> is not <em>also</em> the <a>DID subject</a>)
 the entity associated with the value of <code>controller</code> (see
-Section <a href="#control"></a>) needs to authenticate itself with its
+Section <a href="#control"></a>) needs to <a>authenticate</a> itself with its
 <em>own</em> <a>DID document</a> and attached <code><a>authentication</a></code>
 <a>verification relationship</a>.
         </p>
@@ -2134,18 +2148,18 @@ Example:
 
       <p>
 <a>Service endpoints</a> are used in <a>DID documents</a> to express ways of
-communicating with the <a>DID subject</a> or associated entities. Services
+communicating with the <a>DID subject</a> or associated entities. <a>Services</a>
 listed in the <a>DID document</a> can contain information about privacy
 preserving messaging services, or more public information, such as social media
 accounts, personal websites, and email addresses although this is discouraged.
 See <a href="#keep-personally-identifiable-information-pii-private"></a> for
-additional details. The metadata associated with services are often
+additional details. The metadata associated with <a>services</a> are often
 service-specific. For example, the metadata associated with an encrypted
 messaging service can express how to initiate the encrypted link before
 messaging begins.
       </p>
       <p>
-Pointers to services are expressed using the <code><a>service</a></code>
+Pointers to <a>services</a> are expressed using the <code><a>service</a></code>
 property. Each service has its own <code>id</code> and <code>type</code>
 properties, as well as a <code><a>serviceEndpoint</a></code> property with a
 <a>URI</a> or a set of other properties describing the service.
@@ -2185,7 +2199,7 @@ The value of the <code><dfn>serviceEndpoint</dfn></code> property MUST be a
 valid <a>URI</a> conforming to [[RFC3986]] and normalized according to the
 rules in section 6 of [[RFC3986]] and to any normalization rules in its
 applicable <a>URI</a> scheme specification, <em>OR</em> a set of properties
-which describe the service endpoint further.
+which describe the <a>service endpoint</a> further.
           </p>
         </dd>
       </dl>
@@ -2487,7 +2501,8 @@ this specification as idiomatic JSON.
         <li>
 Even though JSON-LD allows any IRI as node identifiers, <a>DID documents</a>
 are explicitly restricted to only describe DIDs. This means that the value of
-<code><a>id</a></code> MUST be a valid <a>DID</a> and not any other kind of IRI.
+<code><a>id</a></code> that refers to the <a>DID subject</a> MUST be a valid
+<a>DID</a> and not any other kind of IRI.
         </li>
         <li>
 Data types, such as integers, dates, units of measure, and URLs, are
@@ -2513,8 +2528,11 @@ property.
 The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
 where the value of the first <a>URI</a> is
 <code>https://www.w3.org/ns/did/v1</code>. All members of the
-<code>@context</code> property MUST exist be in the DID properties extension
-registry.
+<code>@context</code> property SHOULD exist in the DID specification
+registries in order to achieve interoperability across different
+representations. If a member does not exist in the DID specification
+registries, then the DID Document will not be interoperable across
+representations.
           </dd>
         </dl>
 
@@ -2549,7 +2567,14 @@ where the value of the first <a>URI</a> is
 <code>https://www.w3.org/ns/did/v1</code>. If more than one <a>URI</a> is
 provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
 RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
-machine-readable information about the context.
+machine-readable information about the context. To enable interoperability
+with other representations, URLs registered in the
+DID Specification Registries [[DID-SPEC-REGISTRIES]] referring to
+JSON-LD Contexts SHOULD be associated with a cryptographic hash of
+the content of the JSON-LD Context. This ensures that the interpretation of the
+information by JSON-LD consumers will be the same as interpretations
+over other representations by other consumers that rely on the
+DID Specification Registries [[DID-SPEC-REGISTRIES]].
           </dd>
         </dl>
 
@@ -2970,7 +2995,10 @@ rule.
       </p>
       <p class="note" title="Colons in method-specific-id">
 The meaning of colons in the <code>method-specific-id</code> is entirely
-method-specific. Implementers are advised to avoid assuming any meanings or
+method-specific. Colons might be used by <a>DID methods</a> for establishing
+hierarchically partitioned namespaces, for identifying specific instances or
+parts of the <a>verifiable data registry</a>, or for other purposes.
+Implementers are advised to avoid assuming any meanings or
 behaviors associated with a colon that are generically applicable to all
 <a>DID methods</a>.
       </p>
@@ -3017,7 +3045,7 @@ Create
         </h3>
 
         <p>
-The <a>DID method</a> specification MUST specify how a client creates a
+The <a>DID method</a> specification MUST specify how a <a>DID controller</a> creates a
 <a>DID</a> and its associated <a>DID document</a> on the <a>verifiable data registry</a>,
 including all cryptographic operations necessary to establish proof of control.
         </p>
@@ -3029,9 +3057,9 @@ Read/Verify
         </h3>
 
         <p>
-The <a>DID method</a> specification MUST specify how a client uses a <a>DID</a>
+The <a>DID method</a> specification MUST specify how a <a>DID resolver</a> uses a <a>DID</a>
 to request a <a>DID document</a> from the <a>verifiable data registry</a>,
-including how the client can verify the authenticity of the response.
+including how the <a>DID resolver</a> can verify the authenticity of the response.
         </p>
       </section>
 
@@ -3041,7 +3069,7 @@ Update
         </h3>
 
         <p>
-The <a>DID method</a> specification MUST specify how a client can update a
+The <a>DID method</a> specification MUST specify how a <a>DID controller</a> can update a
 <a>DID document</a> on the <a>verifiable data registry</a>, including all cryptographic
 operations necessary to establish proof of control, <em>or</em> state that
 updates are not possible.
@@ -3063,7 +3091,7 @@ Deactivate
         </h3>
 
         <p>
-The <a>DID method</a> specification MUST specify how a client can deactivate a
+The <a>DID method</a> specification MUST specify how a <a>DID controller</a> can deactivate a
 <a>DID</a> on the <a>verifiable data registry</a>, including all cryptographic
 operations necessary to establish proof of deactivation, <em>or</em> state that
 deactivation is not possible.
@@ -3220,7 +3248,7 @@ This input is REQUIRED.
 did-resolution-input-metadata
             </dt>
             <dd>
-A <a href="metadata-structure">metadata structure</a> consisting of input
+A <a href="#metadata-structure">metadata structure</a> consisting of input
 options to the <code>resolve</code> and <code>resolveStream</code> functions in addition to the <code>did</code>
 itself.
 Properties defined by this specification are in <a href="#did-resolution-input-metadata-properties"></a>.
@@ -3237,7 +3265,7 @@ The output variables of these functions MUST be as follows:
 did-resolution-metadata
             </dt>
             <dd>
-A <a href="metadata-structure">metadata structure</a> consisting of values
+A <a href="#metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a>DID resolution</a> process. This structure is
 REQUIRED and MUST NOT be empty. This metadata typically changes between
 invocations of the <code>resolve</code> and <code>resolveStream</code> functions as it represents data about the
@@ -3269,13 +3297,13 @@ did-document-metadata
             </dt>
             <dd>
 If the resolution is successful, this MUST be a <a
-href="metadata-structure">metadata structure</a>. This structure contains
+href="#metadata-structure">metadata structure</a>. This structure contains
 metadata about the <a>DID document</a> contained in the <code>did-document</code> or
 <code>did-document-stream</code>. This metadata typically does not change
 between invocations of the <code>resolve</code> function unless the <a>DID
 document</a> changes, as it represents data about the <a>DID document</a>. If
 the resolution is unsuccessful, this output MUST be an empty <a
-href="metadata-structure">metadata structure</a>.
+href="#metadata-structure">metadata structure</a>.
 Properties defined by this specification are in <a href="#did-document-metadata-properties"></a>.
             </dd>
         </dl>
@@ -3418,6 +3446,194 @@ property.
         <h2>
 DID URL Dereferencing
         </h2>
+        <p>
+The DID URL dereferencing function dereferences a <a>DID URL</a> into
+a resource with contents depending on the <a>DID URL</a>'s components,
+including the <a>DID method</a>, method-specific identifier, path, query,
+and fragment. This process depends on <a>DID resolution</a>
+of the <a>DID</a> contained in the <a>DID URL</a>.
+The details of how this
+process is accomplished are outside the scope of this specification, but all
+conformant implementations MUST implement a function which has the
+following abstract form:
+        </p>
+
+        <p><code>
+dereference ( did-url, did-url-dereferencing-input-metadata ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-url-dereferencing-metadata, content-stream, content-metadata )
+        </code></p>
+
+        <p>
+The input variables of this function MUST be as follows:
+        </p>
+
+        <dl>
+            <dt>
+did-url
+            </dt>
+            <dd>
+A conformant <a>DID URL</a> as a single string. This is the <a>DID URL</a> to
+dereference.
+This input is REQUIRED.
+            </dd>
+            <dt>
+did-url-dereferencing-input-metadata
+            </dt>
+            <dd>
+A <a href="metadata-structure">metadata structure</a> consisting of input
+options to the <code>dereference</code> function in addition to the <code>did-url</code>
+itself.
+Properties defined by this specification are in <a href="#did-url-dereferencing-input-metadata-properties"></a>.
+This input is REQUIRED, but the structure MAY be empty.
+            </dd>
+        </dl>
+
+        <p>
+The output variables of this function MUST be as follows:
+        </p>
+
+        <dl>
+            <dt>
+did-url-dereferencing-metadata
+            </dt>
+            <dd>
+A <a href="metadata-structure">metadata structure</a> consisting of values
+relating to the results of the <a>DID URL Dereferencing</a> process. This
+structure is REQUIRED and in the case of an error in the dereferencing process,
+this MUST NOT be empty.
+Properties defined by this specification are in
+<a href="#did-url-dereferencing-metadata-properties"></a>.
+If the dereferencing is not successful, this structure MUST contain an
+<code>error</code> property describing the error.
+            </dd>
+            <dt>
+content-stream
+            </dt>
+            <dd>
+If the <code>dereferencing</code> function was called and successful, this MUST
+contain a resource corresponding to the <a>DID URL</a>.
+The <code>content-stream</code> MAY be a <a>DID document</a> in one of the
+conformant <a href="#representations">representations</a> obtained through
+the resolution process.
+
+If the dereferencing is unsuccessful, this value MUST be empty.
+            </dd>
+            <dt>
+content-metadata
+            </dt>
+            <dd>
+If the dereferencing is successful, this MUST be a <a href="metadata-structure">
+metadata structure</a>, but the structure MAY be empty. This structure contains
+metadata about the <code>content-stream</code>.
+If the <code>content-stream</code> is a <a>DID document</a>, this MUST be a
+<code>did-document-metadata</code> structure as described in <a>DID
+Resolution</a>.
+
+If the dereferencing is unsuccessful, this output MUST be an empty <a href="metadata-structure">metadata structure</a>.
+            </dd>
+        </dl>
+
+        <p>
+<a>DID URL Dereferencing</a> implementations MUST NOT alter the signature of
+these functions in any way. <a>DID URL Dereferencing</a> implementations MAY
+map the <code>dereference</code> function to a method-specific internal
+function to perform the actual <a>DID URL Dereferencing</a> process. <a>DID
+URL Dereferencing</a> implementations MAY implement and expose additional
+functions with different signatures in addition to the <code>dereference</code>
+function specified here.
+        </p>
+
+        <section>
+            <h3>
+DID URL Dereferencing Input Metadata Properties
+            </h3>
+
+            <p>
+The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
+This specification defines the following common properties.
+            </p>
+
+            <dl>
+                <dt>
+accept
+                </dt>
+                <dd>
+The MIME type the caller prefers for <code>content-stream</code>. The <a>DID URL
+Dereferencing</a> implementation SHOULD use this value to determine the
+representation contained in the returned value if such a representation is
+supported and available. This property is OPTIONAL.
+                </dd>
+            </dl>
+        </section>
+
+        <section>
+            <h3>
+DID URL Dereferencing Metadata Properties
+            </h3>
+
+            <p>
+The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
+This specification defines the following common properties.
+            </p>
+
+            <dl>
+                <dt>
+content-type
+                </dt>
+                <dd>
+The MIME type of the returned <code>content-stream</code>.
+This property is OPTIONAL if dereferencing is successful.
+                </dd>
+                <dt>
+error
+                </dt>
+                <dd>
+The error code from the dereferencing process.
+This property is REQUIRED when there is an error in the dereferencing process.
+The value of this property is a single keyword string.
+The possible property values of this field are defined by [[DID-SPEC-REGISTRIES]].
+This specification defines the following error values:
+                    <dl>
+                        <dt>
+invalid-did-url
+                        </dt>
+                        <dd>
+The <a>DID URL</a> supplied to the <a>DID URL Dereferencing</a> function does not
+conform to valid syntax. (See <a href="#did-url-syntax"></a>.)
+                        </dd>
+                        <dt>
+unauthorized
+                        </dt>
+                        <dd>
+The caller is not authorized to dereference the given <a>DID URL</a> with the
+given <a>DID URL dereferencer</a>.
+                        </dd>
+                        <dt>
+not-found
+                        </dt>
+                        <dd>
+The <a>DID URL dereferencer</a> was unable to return the
+<code>content-stream</code> resulting from this dereferencing request.
+                        </dd>
+                    </dl>
+                </dd>
+            </dl>
+
+        </section>
+
+        <section>
+            <h3>
+DID URL Dereferencing Metadata Properties
+            </h3>
+
+            <p>
+The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
+This specification defines the following common properties.
+            </p>
+
+        </section>
+
+
     </section>
 
     <section>
@@ -3433,8 +3649,8 @@ properties. Each property name MUST be a <a data-cite="INFRA#string">string</a>.
 Each property value MUST be a <a data-cite="INFRA#string">string</a>,
 <a data-cite="INFRA#maps">map</a>, <a data-cite="INFRA#lists">list</a>,
 <a data-cite="INFRA#boolean">boolean</a>, or  <a data-cite="INFRA#null">null</a>.
-The values within any complex data structures such as maps and lists 
-MUST be one of these data types as well. 
+The values within any complex data structures such as maps and lists
+MUST be one of these data types as well.
 All metadata property definitions MUST define the value type, including any additional
 formats or restrictions to that value (for example, a string formatted as a date or as a decimal integer).
 It is RECOMMENDED that property definitions use strings for values where possible.
@@ -3444,7 +3660,7 @@ It is RECOMMENDED that property definitions use strings for values where possibl
 All implementations of functions that use metadata structures as either input or output MUST
 be able to fully represent all data types described here in a deterministic fashion. As inputs and
 outputs using metadata structures are defined in terms of data types and not their serialization,
-the method for representation is internal to the implementation of the function and is out of 
+the method for representation is internal to the implementation of the function and is out of
 scope of this specification.
         </p>
 
@@ -3479,7 +3695,7 @@ DID was not found.
 {
   "error": "not-found"
 }
-        </pre>        
+        </pre>
 
         <p>
 This example corresponds to a metadata structure of the following format:
@@ -3531,9 +3747,7 @@ on threats and threat mitigations that should be reflected in this section or
 elsewhere in the spec. <a>DIDs</a> are designed to operate under the general
 Internet threat model used by many IETF standards. We assume uncompromised
 endpoints, but anticipate that messages could be read or corrupted on the
-network. Protecting against an attack when a system is compromised requires
-external key-signing hardware (see Section <a
-href="#key-revocation-and-recovery"></a>).
+network.
     </p>
 
     <section>
@@ -3743,7 +3957,7 @@ Key and Signature Expiration
       <p>
 In a <a>decentralized identifier</a> architecture, there are no centralized
 authorities to enforce key or signature expiration policies. Therefore
-<a>DID resolvers</a> and other client applications need to validate that keys
+<a>DID resolvers</a> and requesting parties need to validate that keys
 were not expired at the time they were used. Because some use cases might have
 legitimate reasons why already-expired keys can be extended, make sure a key
 expiration does not prevent any further use of the key, and implementations
@@ -3860,7 +4074,7 @@ The notion that immutability provides some cybersecurity benefits is
 particularly relevant because of caching. For <a>DID methods</a> tied to a
 global source of truth, a direct, just-in-time lookup of the latest version of a
 <a>DID document</a> is always possible. However, it seems likely that layers of
-cache might eventually sit between a client and that source of truth. If they
+cache might eventually sit between a <a>DID resolver</a> and that source of truth. If they
 do, believing the attributes of an object in the <a>DID document</a> to have a
 given state, when they are actually subtly different, might invite exploits.
 This is particularly true if some lookups are of a full <a>DID document</a>, and
@@ -4002,11 +4216,322 @@ those who legitimately need it most. Choose technologies and human interfaces
 that default to preserving anonymity and pseudonymity. To reduce
 <a href="https://en.wikipedia.org/wiki/Device_fingerprint">
   digital fingerprints</a>,
-share common settings across client implementations, keep negotiated options to
+share common settings across requesting party implementations, keep negotiated options to
 a minimum on wire protocols, use encrypted transport layers, and pad messages to
 standard lengths.
       </p>
     </section>
+  </section>
+
+  <section class="informative">
+    <h1>
+      Examples
+    </h1>
+    <section class="informative">
+      <h2>
+        DID Documents
+      </h2>
+
+      <p>
+        See <a href="https://www.w3.org/TR/did-spec-registries/#verification-method-types">did-spec-registries</a> for optional extensions and other verifcation method types.
+      </p>
+
+      <p class="note">
+        These examples are for information purposes only,
+        it is considered a best practice to avoid using the same verification method for multiple purposes.
+      </p>
+
+      <pre class="example" title="DID Document with 1 verification method type">
+        {
+          "@context": "https://www.w3.org/ns/did/v1",
+          "id": "did:example:123",
+          "authentication": [
+            {
+              "id": "did:example:123#z6MkecaLyHuYWkayBDLw5ihndj3T1m6zKTGqau3A51G7RBf3",
+              "type": "Ed25519VerificationKey2018",
+              "controller": "did:example:123",
+              "publicKeyBase58": "AKJP3f7BD6W4iWEQ9jwndVTCBq8ua2Utt8EEjJ6Vxsf"
+            }
+          ],
+          "capabilityInvocation": [
+            {
+              "id": "did:example:123#z6MkhdmzFu659ZJ4XKj31vtEDmjvsi5yDZG5L7Caz63oP39k",
+              "type": "Ed25519VerificationKey2018",
+              "controller": "did:example:123",
+              "publicKeyBase58": "4BWwfeqdp1obQptLLMvPNgBw48p7og1ie6Hf9p5nTpNN"
+            }
+          ],
+          "capabilityDelegation": [
+            {
+              "id": "did:example:123#z6Mkw94ByR26zMSkNdCUi6FNRsWnc2DFEeDXyBGJ5KTzSWyi",
+              "type": "Ed25519VerificationKey2018",
+              "controller": "did:example:123",
+              "publicKeyBase58": "Hgo9PAmfeoxHG8Mn2XHXamxnnSwPpkyBHAMNF3VyXJCL"
+            }
+          ],
+          "assertionMethod": [
+            {
+              "id": "did:example:123#z6MkiukuAuQAE8ozxvmahnQGzApvtW7KT5XXKfojjwbdEomY",
+              "type": "Ed25519VerificationKey2018",
+              "controller": "did:example:123",
+              "publicKeyBase58": "5TVraf9itbKXrRvt2DSS95Gw4vqU3CHAdetoufdcKazA"
+            }
+          ]
+      }
+      </pre>
+
+      <pre class="example" title="DID Document with many different verification methods">
+        {
+          "@context": "https://www.w3.org/ns/did/v1",
+          "id": "did:example:123",
+          "verificationMethod": [
+            {
+              "id": "did:example:123#ZC2jXTO6t4R501bfCXv3RxarZyUbdP2w_psLwMuY6ec",
+              "type": "Ed25519VerificationKey2018",
+              "controller": "did:example:123",
+              "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+            },
+            {
+              "id": "did:example:123#zQ3shP2mWsZYWgvgM11nenXRTx9L1yiJKmkf9dfX7NaMKb1pX",
+              "type": "EcdsaSecp256k1VerificationKey2019",
+              "controller": "did:example:123",
+              "publicKeyBase58": "d5cW2R53NHTTkv7EQSYR8YxaKx7MVCcchjmK5EgCNXxo",
+            },
+            {
+              "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
+              "type": "JsonWebKey2020",
+              "controller": "did:example:123",
+              "publicKeyJwk": {
+                "kty": "OKP",
+                "crv": "Ed25519",
+                "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ"
+              }
+            },
+            {
+              "id": "did:example:123#z6LSnjagzhe8Df6gZmroW3wjDd7XQLwAuYfwa4ZeTBCGFoYc",
+              "type": "JsonWebKey2020",
+              "controller": "did:example:123",
+              "publicKeyJwk": {
+                "kty": "OKP",
+                "crv": "X25519",
+                "x": "pE_mG098rdQjY3MKK2D5SUQ6ZOEW3a6Z6T7Z4SgnzCE"
+              },
+            }
+            {
+              "id": "did:example:123#4SZ-StXrp5Yd4_4rxHVTCYTHyt4zyPfN1fIuYsm6k3A",
+              "type": "JsonWebKey2020",
+              "controller": "did:example:123",
+              "publicKeyJwk": {
+                "kty": "EC",
+                "crv": "secp256k1",
+                "x": "Z4Y3NNOxv0J6tCgqOBFnHnaZhJF6LdulT7z8A-2D5_8",
+                "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk"
+              }
+            },
+            {
+              "id": "did:example:123#n4cQ-I_WkHMcwXBJa7IHkYu8CMfdNcZKnKsOrnHLpFs",
+              "type": "JsonWebKey2020",
+              "controller": "did:example:123",
+              "publicKeyJwk": {
+                "kty": "RSA",
+                "e": "AQAB",
+                "n": "omwsC1AqEk6whvxyOltCFWheSQvv1MExu5RLCMT4jVk9khJKv8JeMXWe3bWHatjPskdf2dlaGkW5QjtOnUKL742mvr4tCldKS3ULIaT1hJInMHHxj2gcubO6eEegACQ4QSu9LO0H-LM_L3DsRABB7Qja8HecpyuspW1Tu_DbqxcSnwendamwL52V17eKhlO4uXwv2HFlxufFHM0KmCJujIKyAxjD_m3q__IiHUVHD1tDIEvLPhG9Azsn3j95d-saIgZzPLhQFiKluGvsjrSkYU5pXVWIsV-B2jtLeeLC14XcYxWDUJ0qVopxkBvdlERcNtgF4dvW4X00EHj4vCljFw"
+              }
+            },
+            {
+              "id": "did:example:123#_TKzHv2jFIyvdTGF1Dsgwngfdg3SH6TpDv0Ta1aOEkw",
+              "type": "JsonWebKey2020",
+              "controller": "did:example:123",
+              "publicKeyJwk": {
+                "kty": "EC"
+                "crv": "P-256",
+                "x": "38M1FDts7Oea7urmseiugGW7tWc3mLpJh6rKe7xINZ8",
+                "y": "nDQW6XZ7b_u2Sy9slofYLlG03sOEoug3I0aAPQ0exs4"
+              }
+            },
+            {
+              "id": "did:example:123#8wgRfY3sWmzoeAL-78-oALNvNj67ZlQxd1ss_NX1hZY",
+              "type": "JsonWebKey2020",
+              "controller": "did:example:123",
+              "publicKeyJwk": {
+                "kty": "EC",
+                "crv": "P-384",
+                "x": "GnLl6mDti7a2VUIZP5w6pcRX8q5nvEIgB3Q_5RI2p9F_QVsaAlDN7IG68Jn0dS_F",
+                "y": "jq4QoAHKiIzezDp88s_cxSPXtuXYFliuCGndgU4Qp8l91xzD1spCmFIzQgVjqvcP"
+              }
+            },
+            {
+              "id": "did:example:123#NjQ6Y_ZMj6IUK_XkgCDwtKHlNTUTVjEYOWZtxhp1n-E",
+              "type": "JsonWebKey2020",
+              "controller": "did:example:123",
+              "publicKeyJwk": {
+                "kty": "EC",
+                "crv": "P-521",
+                "x": "AVlZG23LyXYwlbjbGPMxZbHmJpDSu-IvpuKigEN2pzgWtSo--Rwd-n78nrWnZzeDc187Ln3qHlw5LRGrX4qgLQ-y",
+                "y": "ANIbFeRdPHf1WYMCUjcPz-ZhecZFybOqLIJjVOlLETH7uPlyG0gEoMWnIZXhQVypPy_HtUiUzdnSEPAylYhHBTX2"
+              }
+            }
+          ]
+        }
+      </pre>
+
+    </section>
+
+    <section class="informative">
+      <h2>
+        Proving
+      </h2>
+
+      <p class="note">
+        These examples are for information purposes only.
+        See <a href="https://www.w3.org/TR/vc-data-model/">
+          W3C Verifiable Credentials Data Model
+        </a> for additional examples.
+      </p>
+
+      <pre class="example" title="Verifiable Credential linked to a verification method of type Ed25519VerificationKey2018">
+      {
+        "@context": [
+          "https://www.w3.org/2018/credentials/v1",
+          "https://w3id.org/citizenship/v1"
+        ],
+        "type": [
+          "VerifiableCredential",
+          "PermanentResidentCard"
+        ],
+        "credentialSubject": {
+          "id": "did:example:123",
+          "type": [
+            "PermanentResident",
+            "Person"
+          ],
+          "givenName": "JOHN",
+          "familyName": "SMITH",
+          "gender": "Male",
+          "image": "data:image/png;base64,iVBORw0KGgo...kJggg==",
+          "residentSince": "2015-01-01",
+          "lprCategory": "C09",
+          "lprNumber": "000-000-204",
+          "commuterClassification": "C1",
+          "birthCountry": "Bahamas",
+          "birthDate": "1958-08-17"
+        },
+        "issuer": "did:example:456",
+        "issuanceDate": "2020-04-22T10:37:22Z",
+        "identifier": "83627465",
+        "name": "Permanent Resident Card",
+        "description": "Government of Example Permanent Resident Card.",
+        "proof": {
+          "type": "Ed25519Signature2018",
+          "created": "2020-04-22T10:37:22Z",
+          "proofPurpose": "assertionMethod",
+          "verificationMethod": "did:example:456#key-1",
+          "jws": "eyJjcml0IjpbImI2NCJdLCJiNjQiOmZhbHNlLCJhbGciOiJFZERTQSJ9..BhWew0x-txcroGjgdtK-yBCqoetg9DD9SgV4245TmXJi-PmqFzux6Cwaph0r-mbqzlE17yLebjfqbRT275U1AA"
+        }
+      }
+    </pre>
+
+      <pre class="example" title="Verifiable Credential linked to a verification method of type JsonWebKey2020">
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://www.w3.org/2018/credentials/examples/v1"
+  ],
+  "id": "http://example.gov/credentials/3732",
+  "type": ["VerifiableCredential", "UniversityDegreeCredential"],
+  "issuer": { "id": "did:example:123" },
+  "issuanceDate": "2020-03-10T04:24:12.164Z",
+  "credentialSubject": {
+    "id": "did:example:456",
+    "degree": {
+      "type": "BachelorDegree",
+      "name": "Bachelor of Science and Arts"
+    }
+  },
+  "proof": {
+    "type": "JsonWebSignature2020",
+    "created": "2020-02-15T17:13:18Z",
+    "verificationMethod": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
+    "proofPurpose": "assertionMethod",
+    "jws": "eyJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdLCJhbGciOiJFZERTQSJ9..Y0KqovWCPAeeFhkJxfQ22pbVl43Z7UI-X-1JX32CA9MkFHkmNprcNj9Da4Q4QOl0cY3obF8cdDRdnKr0IwNrAw"
+  }
+}
+      </pre>
+
+      <pre class="example" title="Verifiable Credential as Decoded JWT">
+        {
+          "protected": {
+            "kid": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
+            "alg": "EdDSA"
+          },
+          "payload": {
+            "iss": "did:example:123",
+            "sub": "did:example:456",
+            "vc": {
+              "@context": [
+                "https://www.w3.org/2018/credentials/v1",
+                "https://www.w3.org/2018/credentials/examples/v1"
+              ],
+              "id": "http://example.gov/credentials/3732",
+              "type": [
+                "VerifiableCredential",
+                "UniversityDegreeCredential"
+              ],
+              "issuer": {
+                "id": "did:example:123"
+              },
+              "issuanceDate": "2020-03-10T04:24:12.164Z",
+              "credentialSubject": {
+                "id": "did:example:456",
+                "degree": {
+                  "type": "BachelorDegree",
+                  "name": "Bachelor of Science and Arts"
+                }
+              }
+            },
+            "jti": "http://example.gov/credentials/3732",
+            "nbf": 1583814252
+          },
+          "signature": "qSv6dpZJGFybtcifLwGf4ujzlEu-fam_M7HPxinCbVhz9iIJCg70UMeQbPa1ex6BmQ2tnSS7F11FHnMB2bJRAw"
+        }
+      </pre>
+    </section>
+
+    <section class="informative">
+      <h2>
+        Encrypting
+      </h2>
+      <p class="note">
+        These examples are for information purposes only,
+        it is considered a best practice to avoid dislosing unnecessary information in JWE headers.
+      </p>
+      <pre class="example" title="JWE linked to a verification method via kid">
+        {
+          "ciphertext": "3SHQQJajNH6q0fyAHmw...",
+          "iv": "QldSPLVnFf2-VXcNLza6mbylYwphW57Q",
+          "protected": "eyJlbmMiOiJYQzIwUCJ9",
+          "recipients": [
+            {
+              "encrypted_key": "BMJ19zK12YHftJ4sr6Pz1rX1HtYni_L9DZvO1cEZfRWDN2vXeOYlwA",
+              "header": {
+                "alg": "ECDH-ES+A256KW",
+                "apu": "Tx9qG69ZfodhRos-8qfhTPc6ZFnNUcgNDVdHqX1UR3s",
+                "apv": "ZGlkOmVsZW06cm9wc3RlbjpFa...",
+                "epk": {
+                  "crv": "X25519",
+                  "kty": "OKP",
+                  "x": "Tx9qG69ZfodhRos-8qfhTPc6ZFnNUcgNDVdHqX1UR3s"
+                },
+                "kid": "did:example:123#zC1Rnuvw9rVa6E5TKF4uQVRuQuaCpVgB81Um2u17Fu7UK"
+              }
+            }
+          ],
+          "tag": "xbfwwDkzOAJfSVem0jr1bA"
+        }
+      </pre>
+    </section>
+
+
   </section>
 
   <section class="appendix">
