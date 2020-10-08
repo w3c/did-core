@@ -1028,15 +1028,15 @@ did:example:123456?query=true
         <h2>Fragment</h2>
 
         <p>
-A <a>DID fragment</a> is used as method-independent reference into the <a>DID
-document</a> to identify a component of the document (for example, a unique
-<a>public key description</a> or <a>service endpoint</a>). <a>DID fragment</a>
-syntax and semantics are identical to a generic URI fragment and  MUST conform
-to <a data-cite="RFC3986#section-3.5">RFC&nbsp;3986, section 3.5</a>. To
-dereference a <a>DID fragment</a>, the complete <a>DID URL</a> including the
+A <a>DID fragment</a> is used as method-independent reference into a <a>DID Document</a> or external resource.
+        </p>
+        
+<p>
+<a>DID fragment</a> syntax and semantics are identical to a generic URI fragment 
+and  MUST conform to <a data-cite="RFC3986#section-3.5">RFC&nbsp;3986, section 3.5</a>. 
+To dereference a <a>DID fragment</a>, the complete <a>DID URL</a> including the
 <a>DID fragment</a> MUST be used as input to the <a>DID URL dereferencing</a>
-function for the target component in the <a>DID document</a> object. For more
-information, see <a href="#did-url-dereferencing"></a>.
+function. For more information, see <a href="#did-url-dereferencing"></a>.
         </p>
 
         <p>
@@ -1044,9 +1044,7 @@ A <a>DID method</a> specification MAY specify ABNF rules for <a>DID fragments</a
 that are more restrictive than the generic rules in this section.
         </p>
 
-        <pre class="example nohighlight">
-did:example:123456#public-key-1
-        </pre>
+        
 
         <p>
 In order to maximize interoperability, implementers are urged to ensure that
@@ -1055,6 +1053,21 @@ described in <a href="#core-representations"></a>). For example, while
 JSON Pointer [[?RFC6901]] can be used in a <a>DID fragment</a>, it will not
 be interpreted in the same way across representations.
         </p>
+
+        <p>For example:</p>
+        <ul>
+          <li>A unique <a>verification method</a> in a <a>DID Document</a>
+            <pre class="example nohighlight">did:example:123#public-key-0</pre>
+          </li>
+
+          <li>A unique <a>service endpoint</a> in a <a>DID Document</a>
+            <pre class="example nohighlight">did:example:123#agent</pre>
+          </li>
+
+          <li>A resource external to a <a>DID Document</a>
+            <pre class="example nohighlight">did:example:123?service=agent&relativeRef=/credentials#degree</pre>
+          </li>
+        </ul>
 
         <p>
 Additional semantics for fragment identifiers, which are compatible with and
