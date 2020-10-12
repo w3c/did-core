@@ -2295,10 +2295,10 @@ capable of expressing the data model, such as XML or YAML.
 
     <p>
 Producers MUST indicate which representation of a document has been used via a
-media type in the document's metadata. Consumers MUST determine which
-representation a document is in via the <code>content-type</code> DID resolver
-metadata field. (See <a href="#did-resolution"></a>). Consumers MUST NOT
-determine the representation of a document through its content alone.
+media type in the document's metadata. Consumers MUST determine the
+representation of a <a>DID document</a> via the <code>content-type</code> DID
+resolver metadata field (see <a href="#did-resolution"></a>), <em>not</em>
+through the content of the <a>DID document</a> alone.
     </p>
 
     <p class="issue" data-number="203">
