@@ -2399,6 +2399,7 @@ The member name <code>@context</code> MUST NOT be used as this property is
 reserved for JSON-LD producers.
         </p>
 
+
       </section>
 
       <section>
@@ -2524,33 +2525,72 @@ Production
         </h3>
 
         <p>
-The <a>DID document</a> is serialized following the rules in the JSON processor,
-with one addition: <a>DID documents</a> MUST include the <code>@context</code>
-property.
+The <a>DID document</a> MUST be serialized as a JSON document,
+with one additional requirement: <br/> 
+The <a>DID document</a> MUST include the <code>@context</code> property.
         </p>
 
         <dl>
           <dt>@context</dt>
           <dd>
-The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
-where the value of the first <a>URI</a> is
-<code>https://www.w3.org/ns/did/v1</code>. All members of the
+
+<p>
+The <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD specification </a> 
+defines values that are valid for this property.
+</p>
+
+<p>
+The value of <code>@context</code> MUST be exactly one of these values.
+</p>
+
+<ul>
+  <li>
+    The <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a>
+    <code>https://www.w3.org/ns/did/v1</code>.
+    <pre class="example">
+      {
+        "@context": "https://www.w3.org/ns/did/v1",
+        ...
+      }
+    </pre>
+  </li>
+  <li>
+    An <a href="https://infra.spec.whatwg.org/#lists">INFRA list</a>, 
+    with first item the <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a>
+    <code>https://www.w3.org/ns/did/v1</code>, and subsequent items of type 
+    <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a> or 
+    <a href="https://infra.spec.whatwg.org/#maps">INFRA map</a>.
+    <pre class="example">
+      {
+        "@context": [
+          "https://www.w3.org/ns/did/v1",
+          "https://example.com/blockchain-identity/v1"
+        ],
+        ...
+      }
+    </pre>
+    <p class="issue"  data-number="432">The working group is still discussing restrictions on <code>@base</code>, beyond what JSON-LD allows.</p>
+  </li>
+</ul>
+
+
+All members of the
 <code>@context</code> property SHOULD exist in the DID specification
 registries in order to achieve interoperability across different
-representations. If a member does not exist in the DID specification
-registries, then the DID Document will not be interoperable across
+representations. 
+
+If a member does not exist in the DID specification
+registries, then the DID Document might not be interoperable across
 representations.
+
+<p>
+  Producers SHOULD NOT produce DID Documents that 
+  contain properties not defined via the <code>@context</code>. 
+  Properties that are not defined via the <code>@context</code> MAY be dropped by Consumers.
+</p>
+
           </dd>
         </dl>
-
-        <p class="issue" data-number="202">
-This specification defines globally interoperable documents, and the requirement
-that the context value be in the verifiable data registry means that different JSON-LD
-processors can consume the document without having to dereference anything in
-the context field. However, a pair of producers and consumers can have local
-extension agreements. This needs to be clarified in a section on extensibility
-and linked here when available.
-        </p>
 
       </section>
 
@@ -2569,9 +2609,10 @@ interpreted using JSON-LD processing under the rules of the defined
         <dl>
           <dt>@context</dt>
           <dd>
-The value of the <code>@context</code> property MUST be one or more <a>URIs</a>,
-where the value of the first <a>URI</a> is
-<code>https://www.w3.org/ns/did/v1</code>. If more than one <a>URI</a> is
+The value of the <code>@context</code> property MUST conform 
+to the <a href="#production-0">JSON-LD Production Rules</a>. 
+
+If more than one <a>URI</a> is
 provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
 RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
 machine-readable information about the context. To enable interoperability
@@ -2595,6 +2636,11 @@ unknown data members on consumption, and this section needs to be updated with
 that decision.
         </p>
 
+        <p>
+          Consumers SHOULD drop all properties from a DID Documents that 
+          are not defined via the <code>@context</code>. 
+        </p>
+ 
       </section>
 
     </section>
