@@ -2279,12 +2279,12 @@ All concrete representations of a <a>DID document</a> are serialized using a
 deterministic mapping that is able to be unambiguously parsed into the data
 model defined in this specification. All serialization methods MUST define rules
 for the bidirectional translation of a <a>DID document</a> both into and out of
-the representation in question. As a consequence, translation between any two
-representations MUST be done by parsing the source format into a <a>DID
-document</a> model (described in Sections <a href="#data-model"></a> and <a
-href="#core-properties"></a>) and then serializing the <a>DID document</a> model
-into the target representation. An implementation MUST NOT convert between
-representations without first parsing to a <a>DID document</a> model.
+the representation in question. An implementation MUST NOT convert between
+representations without first parsing to a <a>DID document</a> model
+(described in Sections <a href="#data-model"></a> and <a
+href="#core-properties"></a>); translation between any two representations is
+done by parsing the source format into a <a>DID document</a> model and then
+serializing the <a>DID document</a> model into the target representation.
     </p>
 
     <p>
