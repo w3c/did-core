@@ -1029,10 +1029,10 @@ did:example:123456?query=true
         <p>
 A <a>DID fragment</a> is used as method-independent reference into a <a>DID Document</a> or external resource.
         </p>
-        
+
 <p>
-<a>DID fragment</a> syntax and semantics are identical to a generic URI fragment 
-and  MUST conform to <a data-cite="RFC3986#section-3.5">RFC&nbsp;3986, section 3.5</a>. 
+<a>DID fragment</a> syntax and semantics are identical to a generic URI fragment
+and  MUST conform to <a data-cite="RFC3986#section-3.5">RFC&nbsp;3986, section 3.5</a>.
 To dereference a <a>DID fragment</a>, the complete <a>DID URL</a> including the
 <a>DID fragment</a> MUST be used as input to the <a>DID URL dereferencing</a>
 function. For more information, see <a href="#did-url-dereferencing"></a>.
@@ -1043,7 +1043,7 @@ A <a>DID method</a> specification MAY specify ABNF rules for <a>DID fragments</a
 that are more restrictive than the generic rules in this section.
         </p>
 
-        
+
 
         <p>
 In order to maximize interoperability, implementers are urged to ensure that
@@ -1601,9 +1601,9 @@ A public key can be used as a <a>verification method</a>.
         </p>
 
 <p>
-A <a>verification method</a> MUST NOT contain multiple verification material properties. 
-For example, expressing key material in a <a>verification method</a> using both 
-<code>publicKeyJwk</code> and <code>publicKeyBase58</code> at the same time 
+A <a>verification method</a> MUST NOT contain multiple verification material properties.
+For example, expressing key material in a <a>verification method</a> using both
+<code>publicKeyJwk</code> and <code>publicKeyBase58</code> at the same time
 is prohibited.
 </p>
 
@@ -1641,7 +1641,7 @@ expressed and encoded.
         </p>
 
 <p class="issue" data-number="423">
-The Working Group is still debating how best to communicate support for 
+The Working Group is still debating how best to communicate support for
 specific verification method types.
 </p>
 
@@ -1678,7 +1678,7 @@ RSA public key values MUST be encoded as a JWK [[RFC7517]] using the
 ed25519<br/>(<code>Ed25519VerificationKey2018</code>)
               </td>
               <td>
-Ed25519 public key values MUST either be encoded as a JWK [[RFC7517]] 
+Ed25519 public key values MUST either be encoded as a JWK [[RFC7517]]
 using the <code>publicKeyJwk</code> or be
 encoded as the raw 32-byte public key value in Base58 Bitcoin format
 [[BASE58]] using the <code>publicKeyBase58</code> property.
@@ -1689,7 +1689,7 @@ encoded as the raw 32-byte public key value in Base58 Bitcoin format
 secp256k1
               </td>
               <td>
-Secp256k1 public key values MUST either be encoded as a JWK [[RFC7517]] 
+Secp256k1 public key values MUST either be encoded as a JWK [[RFC7517]]
 using the <code>publicKeyJwk</code> or be
 encoded as the raw 33-byte public key value in Base58
 Bitcoin format [[BASE58]] using the <code>publicKeyBase58</code> property.
@@ -1700,8 +1700,8 @@ Bitcoin format [[BASE58]] using the <code>publicKeyBase58</code> property.
 Curve25519<br/>(<code>X25519KeyAgreementKey2019</code>)
               </td>
               <td>
-Curve25519 (also known as X25519) public key values MUST either be encoded 
-as a JWK [[RFC7517]] using the <code>publicKeyJwk</code> or be 
+Curve25519 (also known as X25519) public key values MUST either be encoded
+as a JWK [[RFC7517]] using the <code>publicKeyJwk</code> or be
 encoded as the raw 32-byte public key value in Base58
 Bitcoin format [[BASE58]] using the <code>publicKeyBase58</code> property.
               </td>
@@ -2327,9 +2327,9 @@ JSON
       </h2>
 
       <p>
-When producing and consuming DID documents that are in plain JSON (as indicated
-by a <code>content-type</code> of <code>application/did+json</code> in the
-resolver metadata), the following rules MUST be followed.
+This section sets out the requirements for producing and consuming <a>DID
+documents</a> that are in plain JSON (as indicated by a <code>content-type</code>
+of <code>application/did+json</code> in the resolver metadata).
       </p>
 
       <section>
@@ -2340,7 +2340,7 @@ A <a>DID document</a> MUST be a single <a data-cite="RFC8259#section-4">JSON
 object</a> conforming to [[!RFC8259]]. All top-level properties of the <a>DID
 document</a> MUST be represented by using the property name as the name of the
 member of the JSON object. The values of properties of the data model described
-in Section <a href="#data-model"></a>, including all extensions, MUST be encoded
+in Section <a href="#data-model"></a>, including all extensions, are encoded
 in JSON [[RFC8259]] by mapping property values to JSON types as follows:
         </p>
 
@@ -2493,16 +2493,16 @@ JSON-LD
       </p>
 
       <p>
-When producing and consuming DID documents that are in JSON-LD (as indicated by
-a <code>content-type</code> of <code>application/did+ld+json</code> in the
-resolver metadata), the following rules MUST be followed.
+This section sets out the requirements for producing and consuming <a>DID
+documents</a> that are in plain JSON (as indicated by a <code>content-type</code>
+of <code>application/did+ld+json</code> in the resolver metadata).
       </p>
 
       <ul>
         <li>
 The <code>@id</code> and <code>@type</code> keywords are aliased to
-<code><a>id</a></code> and <code>type</code> respectively, enabling developers to use
-this specification as idiomatic JSON.
+<code><a>id</a></code> and <code>type</code> respectively, enabling developers
+to use this specification as idiomatic JSON.
         </li>
         <li>
 Even though JSON-LD allows any IRI as node identifiers, <a>DID documents</a>
@@ -2523,69 +2523,73 @@ Production
         </h3>
 
         <p>
-The <a>DID document</a> MUST be serialized as a JSON document,
-with one additional requirement: <br/> 
-The <a>DID document</a> MUST include the <code>@context</code> property.
+The <a>DID document</a> MUST be serialized as a JSON document, with one
+additional requirement: The <a>DID document</a> MUST include the
+<code>@context</code> property.
         </p>
 
         <dl>
           <dt>@context</dt>
           <dd>
 
-<p>
-The <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD specification </a> 
-defines values that are valid for this property.
-</p>
+            <p>
+The <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD
+specification</a> defines values that are valid for this property.
+            </p>
 
-<p>
+            <p>
 The value of <code>@context</code> MUST be exactly one of these values.
-</p>
+            </p>
 
-<ul>
-  <li>
-    The <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a>
-    <code>https://www.w3.org/ns/did/v1</code>.
-    <pre class="example">
-      {
-        "@context": "https://www.w3.org/ns/did/v1",
-        ...
-      }
-    </pre>
-  </li>
-  <li>
-    An <a href="https://infra.spec.whatwg.org/#lists">INFRA list</a>, 
-    with first item the <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a>
-    <code>https://www.w3.org/ns/did/v1</code>, and subsequent items of type 
-    <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a> or 
-    <a href="https://infra.spec.whatwg.org/#maps">INFRA map</a>.
-    <pre class="example">
-      {
-        "@context": [
-          "https://www.w3.org/ns/did/v1",
-          "https://example.com/blockchain-identity/v1"
-        ],
-        ...
-      }
-    </pre>
-    <p class="issue"  data-number="432">The working group is still discussing restrictions on <code>@base</code>, beyond what JSON-LD allows.</p>
-  </li>
-</ul>
+            <ul>
+              <li>
+The <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a>
+<code>https://www.w3.org/ns/did/v1</code>.
+                <pre class="example">
+{
+  "@context": "https://www.w3.org/ns/did/v1",
+  ...
+}
+                </pre>
+              </li>
+              <li>
+An <a href="https://infra.spec.whatwg.org/#lists">INFRA list</a>,
+with first item the <a href="https://infra.spec.whatwg.org/#strings">INFRA
+string</a> <code>https://www.w3.org/ns/did/v1</code>, and subsequent items of
+type <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a> or
+<a href="https://infra.spec.whatwg.org/#maps">INFRA map</a>.
+                <pre class="example">
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://example.com/blockchain-identity/v1"
+  ],
+  ...
+}
+                </pre>
+                <p class="issue"  data-number="432">
+The working group is still discussing restrictions on <code>@base</code>,
+beyond what JSON-LD allows.
+                </p>
+              </li>
+            </ul>
 
+            <p>
+All members of the <code>@context</code> property SHOULD exist in the DID
+specification registries [[DID-SPEC-REGISTRIES]] in order to achieve
+interoperability across different representations.
+            </p>
 
-All members of the
-<code>@context</code> property SHOULD exist in the DID specification
-registries in order to achieve interoperability across different
-representations. 
+            <p>
+If a member does not exist in the DID specification registries, then the
+<a>DID document</a> might not be interoperable across representations.
+            </p>
 
-If a member does not exist in the DID specification
-registries, then the DID Document might not be interoperable across
-representations.
-
-<p>
-  Producers SHOULD NOT produce DID Documents that 
-  contain properties not defined via the <code>@context</code>. 
-  Properties that are not defined via the <code>@context</code> MAY be dropped by Consumers.
-</p>
+            <p>
+Producers SHOULD NOT produce <a>DID documents</a> that contain properties not
+defined via the <code>@context</code>. Properties that are not defined via the
+<code>@context</code> MAY be dropped by Consumers.
+            </p>
 
           </dd>
         </dl>
@@ -2607,8 +2611,8 @@ interpreted using JSON-LD processing under the rules of the defined
         <dl>
           <dt>@context</dt>
           <dd>
-The value of the <code>@context</code> property MUST conform 
-to the <a href="#production-0">JSON-LD Production Rules</a>. 
+The value of the <code>@context</code> property MUST conform
+to the <a href="#production-0">JSON-LD Production Rules</a>.
 
 If more than one <a>URI</a> is
 provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
@@ -2635,10 +2639,10 @@ that decision.
         </p>
 
         <p>
-          Consumers SHOULD drop all properties from a DID Documents that 
-          are not defined via the <code>@context</code>. 
+          Consumers SHOULD drop all properties from a DID Documents that
+          are not defined via the <code>@context</code>.
         </p>
- 
+
       </section>
 
     </section>
