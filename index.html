@@ -3284,7 +3284,7 @@ resolveRepresentation ( did, did-resolution-input-metadata ) <br>
         </code></p>
 
         <p>
-The input variables of these functions MUST be as follows:
+The input variables of these functions are as follows:
         </p>
 
         <dl>
@@ -3292,23 +3292,23 @@ The input variables of these functions MUST be as follows:
 did
             </dt>
             <dd>
-A conformant <a>DID</a> as a single string. This is the <a>DID</a> to resolve.
-This input is REQUIRED.
+This is the <a>DID</a> to resolve. This input is REQUIRED and the value MUST
+be a conformant <a>DID</a>.
             </dd>
             <dt>
 did-resolution-input-metadata
             </dt>
             <dd>
 A <a href="#metadata-structure">metadata structure</a> consisting of input
-options to the <code>resolve</code> and <code>resolveRepresentation</code> functions in addition to the <code>did</code>
-itself.
-Properties defined by this specification are in <a href="#did-resolution-input-metadata-properties"></a>.
+options to the <code>resolve</code> and <code>resolveRepresentation</code>
+functions in addition to the <code>did</code> itself. Properties defined by
+this specification are in <a href="#did-resolution-input-metadata-properties"></a>.
 This input is REQUIRED, but the structure MAY be empty.
             </dd>
         </dl>
 
         <p>
-The output variables of these functions MUST be as follows:
+The output variables of these functions are as follows:
         </p>
 
         <dl>
@@ -3316,31 +3316,44 @@ The output variables of these functions MUST be as follows:
 did-resolution-metadata
             </dt>
             <dd>
+              <p>
 A <a href="#metadata-structure">metadata structure</a> consisting of values
-relating to the results of the <a>DID resolution</a> process. This structure is
-REQUIRED and MUST NOT be empty. This metadata typically changes between
-invocations of the <code>resolve</code> and <code>resolveRepresentation</code> functions as it represents data about the
-resolution process itself.
-Properties defined by this specification are in <a href="#did-resolution-metadata-properties"></a>.
-If the resolution is successful, and if the <code>resolveRepresentation</code> function was called, this structure MUST contain a <code>content-type</code> property containing the mime-type of the <code>did-document-stream</code> in this result.
-If the resolution is not successful, this structure MUST contain an <code>error</code> property describing the error.
+relating to the results of the <a>DID resolution</a> process. This structure
+is REQUIRED and MUST NOT be empty.
+              </p>
+              <p>
+This metadata typically changes between invocations of the
+<code>resolve</code> and <code>resolveRepresentation</code> functions as it
+represents data about the resolution process itself. Properties defined by
+this specification are in <a href="#did-resolution-metadata-properties"></a>.
+              </p>
+              <p>
+If the resolution is successful, and if the <code>resolveRepresentation</code>
+function was called, this structure MUST contain a <code>content-type</code>
+property containing the mime-type of the <code>did-document-stream</code> in
+this result. If the resolution is not successful, this structure MUST contain
+an <code>error</code> property describing the error.
+              </p>
             </dd>
             <dt>
 did-document
             </dt>
             <dd>
-If the resolution is successful, and if the <code>resolve</code> function was called, this MUST be a <a>DID document</a> conforming to the abstract data model.
-If the resolution is unsuccessful, this value MUST be empty.
+If the resolution is successful, and if the <code>resolve</code> function was
+called, this MUST be a <a>DID document</a> conforming to the abstract data
+model. If the resolution is unsuccessful, this value MUST be empty.
             </dd>
             <dt>
 did-document-stream
             </dt>
             <dd>
-If the resolution is successful, and if the <code>resolveRepresentation</code> function was called, this MUST be a byte stream of the resolved
-<a>DID document</a> in one of the conformant <a href="#representations">representations</a>. The byte
-stream MAY then be parsed by the caller of the <code>resolveRepresentation</code> function
-into a <a>DID document</a> abstract data model, which can in turn be validated
-and processed. If the resolution is unsuccessful, this value MUST be an empty
+If the resolution is successful, and if the <code>resolveRepresentation</code>
+function was called, this MUST be a byte stream of the resolved <a>DID
+document</a> in one of the conformant
+<a href="#representations">representations</a>. The byte stream MAY then be
+parsed by the caller of the <code>resolveRepresentation</code> function into a
+<a>DID document</a> abstract data model, which can in turn be validated and
+processed. If the resolution is unsuccessful, this value MUST be an empty
 stream.
             </dd>
             <dt>
@@ -3349,24 +3362,25 @@ did-document-metadata
             <dd>
 If the resolution is successful, this MUST be a <a
 href="#metadata-structure">metadata structure</a>. This structure contains
-metadata about the <a>DID document</a> contained in the <code>did-document</code> or
-<code>did-document-stream</code>. This metadata typically does not change
-between invocations of the <code>resolve</code> function unless the <a>DID
-document</a> changes, as it represents data about the <a>DID document</a>. If
-the resolution is unsuccessful, this output MUST be an empty <a
-href="#metadata-structure">metadata structure</a>.
-Properties defined by this specification are in <a href="#did-document-metadata-properties"></a>.
+metadata about the <a>DID document</a> contained in the
+<code>did-document</code> or <code>did-document-stream</code>. This metadata
+typically does not change between invocations of the <code>resolve</code>
+function unless the <a>DID document</a> changes, as it represents data about
+the <a>DID document</a>. If the resolution is unsuccessful, this output MUST
+be an empty <a href="#metadata-structure">metadata structure</a>. Properties
+defined by this specification are in <a
+href="#did-document-metadata-properties"></a>.
             </dd>
         </dl>
 
         <p>
 <a>DID resolver</a> implementations MUST NOT alter the signature of these
 functions in any way. <a>DID resolver</a> implementations MAY map the
-<code>resolve</code> and <code>resolveRepresentation</code> functions to a method-specific internal function to perform
-the actual <a>DID resolution</a> process. <a>DID resolver</a> implementations
-MAY implement  and expose additional
-functions with different signatures in addition to the <code>resolve</code>
-function specified here.
+<code>resolve</code> and <code>resolveRepresentation</code> functions to a
+method-specific internal function to perform the actual <a>DID resolution</a>
+process. <a>DID resolver</a> implementations MAY implement  and expose
+additional functions with different signatures in addition to the
+<code>resolve</code> function specified here.
         </p>
 
         <section>
@@ -3375,8 +3389,9 @@ DID Resolution Input Metadata Properties
             </h3>
 
             <p>
-The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
-This specification defines the following common properties.
+The possible properties within this structure and their possible values are
+defined by [[DID-SPEC-REGISTRIES]]. This specification defines the following
+common properties.
             </p>
 
             <dl>
@@ -3384,10 +3399,13 @@ This specification defines the following common properties.
 accept
                 </dt>
                 <dd>
-The MIME type of the caller's preferred <a href="#representations">representation</a> of the <a>DID document</a>. The <a>DID resolver</a> implementation
-SHOULD use this value to determine the representation contained in the returned <code>did-document-stream</code> if such
-a representation is supported and available. This property is OPTIONAL. It is only used if the <code>resolveRepresentation</code>
-function is called and MUST be ignored if the <code>resolve</code> function is called.
+The MIME type of the caller's preferred <a
+href="#representations">representation</a> of the <a>DID document</a>. The
+<a>DID resolver</a> implementation SHOULD use this value to determine the
+representation contained in the returned <code>did-document-stream</code> if
+such a representation is supported and available. This property is OPTIONAL.
+It is only used if the <code>resolveRepresentation</code> function is called
+and MUST be ignored if the <code>resolve</code> function is called.
                 </dd>
             </dl>
         </section>
@@ -3398,8 +3416,9 @@ DID Resolution Metadata Properties
             </h3>
 
             <p>
-The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
-This specification defines the following common properties.
+The possible properties within this structure and their possible values are
+defined by [[DID-SPEC-REGISTRIES]]. This specification defines the following
+common properties.
             </p>
 
             <dl>
@@ -3407,37 +3426,39 @@ This specification defines the following common properties.
 content-type
                 </dt>
                 <dd>
-The MIME type of the returned <code>did-document-stream</code>.
-This property is REQUIRED if resolution is successful and if the <code>resolveRepresentation</code> function was called.
-It MUST NOT be present if the <code>resolve</code> function was called.
-The value of this property MUST be the MIME type of one of the conformant <a href="#representations">representations</a>.
-The caller of the <code>resolveRepresentation</code> function MUST use this value when determining how to
-parse and process the <code>did-document-stream</code> returned by this function into a
-<a>DID document</a> abstract data model.
+The MIME type of the returned <code>did-document-stream</code>. This property
+is REQUIRED if resolution is successful and if the
+<code>resolveRepresentation</code> function was called. This property MUST NOT
+be present if the <code>resolve</code> function was called. The value of this
+property MUST be the MIME type of one of the conformant <a
+href="#representations">representations</a>. The caller of the
+<code>resolveRepresentation</code> function MUST use this value when
+determining how to parse and process the <code>did-document-stream</code>
+returned by this function into a <a>DID document</a> abstract data model.
                 </dd>
                 <dt>
 error
                 </dt>
                 <dd>
-The error code from the resolution process.
-This property is REQUIRED when there is an error in the resolution process.
-The value of this property is a single keyword string.
-The possible property values of this field are defined by [[DID-SPEC-REGISTRIES]].
+The error code from the resolution process. This property is REQUIRED when
+there is an error in the resolution process. The value of this property MUST
+be a single keyword string. The possible property values of this field SHOULD
+be registered in the DID Specification Registries [[DID-SPEC-REGISTRIES]].
 This specification defines the following error values:
                     <dl>
                         <dt>
 invalid-did
                         </dt>
                         <dd>
-The <a>DID</a> supplied to the <a>DID resolution</a> function does not
-conform to valid syntax. (See <a href="#did-syntax"></a>.)
+The <a>DID</a> supplied to the <a>DID resolution</a> function does not conform
+to valid syntax. (See <a href="#did-syntax"></a>.)
                         </dd>
                         <dt>
 unauthorized
                         </dt>
                         <dd>
-The caller is not authorized to resolve this <a>DID</a> with
-this <a>DID resolver</a>.
+The caller is not authorized to resolve this <a>DID</a> with this <a>DID
+resolver</a>.
                         </dd>
                         <dt>
 not-found
@@ -3458,7 +3479,8 @@ DID Document Metadata Properties
             </h3>
 
             <p>
-The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
+The possible properties within this structure and their possible values SHOULD
+be registered in the DID Specification Registries [[DID-SPEC-REGISTRIES]].
 This specification defines the following common properties.
             </p>
 
@@ -3470,11 +3492,11 @@ created
 DID document metadata SHOULD include a <code>created</code> property
 to indicate the timestamp of the <a href="#create">Create operation</a>.
 This property MAY not be supported by a given <a>DID method</a>.
-The value of
-the property MUST be a valid XML datetime value, as defined in section 3.3.7 of
-<a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition
-Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This datetime value
-MUST be normalized to UTC 00:00, as indicated by the trailing "Z".
+The value of the property MUST be a valid XML datetime value, as defined in
+section 3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema
+Definition Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This
+datetime value MUST be normalized to UTC 00:00, as indicated by the trailing
+"Z".
                 </dd>
                 <dt>
 updated
@@ -3483,9 +3505,8 @@ updated
 DID document metadata SHOULD include an <code>updated</code> property
 to indicate the timestamp of the last <a href="#update">Update operation</a>.
 This property MAY not be supported by a given <a>DID method</a>.
-The value of
-the property MUST follow the same formatting rules as the <code>created</code>
-property.
+The value of the property MUST follow the same formatting rules as the
+<code>created</code> property.
                 </dd>
             </dl>
 
@@ -3524,8 +3545,7 @@ did-url
             </dt>
             <dd>
 A conformant <a>DID URL</a> as a single string. This is the <a>DID URL</a> to
-dereference.
-This input is REQUIRED.
+dereference. This input is REQUIRED.
             </dd>
             <dt>
 did-url-dereferencing-input-metadata
@@ -3533,9 +3553,9 @@ did-url-dereferencing-input-metadata
             <dd>
 A <a href="metadata-structure">metadata structure</a> consisting of input
 options to the <code>dereference</code> function in addition to the <code>did-url</code>
-itself.
-Properties defined by this specification are in <a href="#did-url-dereferencing-input-metadata-properties"></a>.
-This input is REQUIRED, but the structure MAY be empty.
+itself. Properties defined by this specification are in <a
+href="#did-url-dereferencing-input-metadata-properties"></a>. This input is
+REQUIRED, but the structure MAY be empty.
             </dd>
         </dl>
 
@@ -3580,7 +3600,8 @@ If the <code>content-stream</code> is a <a>DID document</a>, this MUST be a
 <code>did-document-metadata</code> structure as described in <a>DID
 Resolution</a>.
 
-If the dereferencing is unsuccessful, this output MUST be an empty <a href="metadata-structure">metadata structure</a>.
+If the dereferencing is unsuccessful, this output MUST be an empty <a
+href="metadata-structure">metadata structure</a>.
             </dd>
         </dl>
 
@@ -3600,8 +3621,9 @@ DID URL Dereferencing Input Metadata Properties
             </h3>
 
             <p>
-The possible properties within this structure and their possible values are defined by [[DID-SPEC-REGISTRIES]].
-This specification defines the following common properties.
+The possible properties within this structure and their possible values SHOULD
+be registered in the [[DID-SPEC-REGISTRIES]]. This specification defines the
+following common properties.
             </p>
 
             <dl>
@@ -3609,8 +3631,8 @@ This specification defines the following common properties.
 accept
                 </dt>
                 <dd>
-The MIME type the caller prefers for <code>content-stream</code>. The <a>DID URL
-Dereferencing</a> implementation SHOULD use this value to determine the
+The MIME type the caller prefers for <code>content-stream</code>. The <a>DID
+URL Dereferencing</a> implementation SHOULD use this value to determine the
 representation contained in the returned value if such a representation is
 supported and available. This property is OPTIONAL.
                 </dd>
@@ -3640,12 +3662,11 @@ This property is OPTIONAL if dereferencing is successful.
 error
                 </dt>
                 <dd>
-The error code from the dereferencing process.
-This property is REQUIRED when there is an error in the dereferencing process.
-The value of this property is a single keyword string.
-The possible property values of this field are defined by
-[[DID-SPEC-REGISTRIES]]. This specification defines the following error
-values:
+The error code from the dereferencing process. This property is REQUIRED when
+there is an error in the dereferencing process. The value of this property is
+a single keyword string. The possible property values of this field SHOULD be
+registered in the DID Specification Registries [DID-SPEC-REGISTRIES]]. This
+specification defines the following error values:
                     <dl>
                         <dt>
 invalid-did-url
@@ -3694,7 +3715,7 @@ structures such as maps and lists MUST be one of these data types as well.
 All metadata property definitions MUST define the value type, including any
 additional formats or restrictions to that value (for example, a string
 formatted as a date or as a decimal integer). It is RECOMMENDED that property
-definitions use strings for values where possible.
+definitions use strings for values.
         </p>
 
         <p>
