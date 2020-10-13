@@ -2577,22 +2577,25 @@ beyond what JSON-LD allows.
             <p>
 All members of the <code>@context</code> property SHOULD exist in the DID
 specification registries [[DID-SPEC-REGISTRIES]] in order to achieve
-interoperability across different representations.
+interoperability across different representations. If a member does not exist
+in the DID specification registries, then the <a>DID document</a> might not be
+interoperable across representations.
             </p>
 
             <p>
-If a member does not exist in the DID specification registries, then the
-<a>DID document</a> might not be interoperable across representations.
+It is RECOMMENDED that dereferencing each <a>URI</a> value of the
+<code>@context</code> property results in a document containing
+machine-readable information about the context. These URIs SHOULD be
+associated with a cryptographic hash of the content of the JSON-LD Context as
+part of registration in the DID Specification Registries [[DID-SPEC-REGISTRIES]].
             </p>
-
-            <p>
+          </dd>
+        </dl>
+        <p>
 Producers SHOULD NOT produce <a>DID documents</a> that contain properties not
 defined via the <code>@context</code>. Properties that are not defined via the
 <code>@context</code> MAY be dropped by Consumers.
-            </p>
-
-          </dd>
-        </dl>
+        </p>
 
       </section>
 
@@ -2611,20 +2614,12 @@ interpreted using JSON-LD processing under the rules of the defined
         <dl>
           <dt>@context</dt>
           <dd>
-The value of the <code>@context</code> property MUST conform
-to the <a href="#production-0">JSON-LD Production Rules</a>.
-
-If more than one <a>URI</a> is
-provided, the <a>URIs</a> MUST be interpreted as an ordered set. It is
-RECOMMENDED that dereferencing each <a>URI</a> results in a document containing
-machine-readable information about the context. To enable interoperability
-with other representations, URLs registered in the
-DID Specification Registries [[DID-SPEC-REGISTRIES]] referring to
-JSON-LD Contexts SHOULD be associated with a cryptographic hash of
-the content of the JSON-LD Context. This ensures that the interpretation of the
-information by JSON-LD consumers will be the same as interpretations
-over other representations by other consumers that rely on the
-DID Specification Registries [[DID-SPEC-REGISTRIES]].
+            <p>
+The value of the <code>@context</code> property conforms to the
+<a href="#production-0">JSON-LD Production Rules</a>. If more than one
+<a>URI</a> is provided, the <a>URIs</a> MUST be interpreted as an
+<a data-cite="INFRA#ordered-set">ordered set</a>.
+            </p>
           </dd>
         </dl>
 
@@ -2639,8 +2634,8 @@ that decision.
         </p>
 
         <p>
-          Consumers SHOULD drop all properties from a DID Documents that
-          are not defined via the <code>@context</code>.
+Consumers SHOULD drop all properties from a DID Documents that are not defined
+via the <code>@context</code>.
         </p>
 
       </section>
