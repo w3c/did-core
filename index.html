@@ -3166,13 +3166,13 @@ replay, message insertion, deletion, modification, and man-in-the-middle.
 Potential denial of service attacks MUST be identified as well.
       </p>
       <p>
-This section MUST discuss, per Section 5 of [[RFC3552]], residual risks (such as
-the risks from compromise in a related protocol, incorrect implementation, or
-cipher) after threat mitigation was deployed.
+This section MUST discuss, per Section 5 of [[RFC3552]], residual risks (such
+as the risks from compromise in a related protocol, incorrect implementation,
+or cipher) after threat mitigation was deployed.
       </p>
       <p>
-This section MUST provide integrity protection and update authentication for all
-operations required by Section <a href="#method-operations"></a>.
+This section MUST provide integrity protection and update authentication for
+all operations required by Section <a href="#method-operations"></a>.
       </p>
       <p>
 If the technology involves authentication, particularly user-host
@@ -3181,12 +3181,12 @@ specified.
       </p>
       <p>
 <a>DID methods</a> MUST discuss the policy mechanism by which <a>DIDs</a> are
-proven to be uniquely assigned. A <a>DID</a> fits the functional definition of a
-URN, as defined in [[RFC8141]]. That is, a <a>DID</a> is a persistent identifier
-that is assigned once to a resource and never reassigned to a different
-resource. This is particularly important in a security context because a
-<a>DID</a> might be used to identify a specific party subject to a specific set
-of authorization rights.
+proven to be uniquely assigned. A <a>DID</a> fits the functional definition of
+a URN, as defined in [[RFC8141]]. That is, a <a>DID</a> is a persistent
+identifier that is assigned once to a resource and never reassigned to a
+different resource. This is particularly important in a security context
+because a <a>DID</a> might be used to identify a specific party subject to a
+specific set of authorization rights.
       </p>
       <p>
 Method-specific endpoint authentication MUST be discussed. Where <a>DID
@@ -3208,6 +3208,10 @@ on.
       <p>
 Data which is to be held secret (keying material, random seeds, and so on)
 SHOULD be clearly labeled.
+      </p>
+      <p>
+<a>DID method</a> specifications SHOULD explain and specify the implementation
+of signatures on <a>DID documents</a>, if applicable.
       </p>
       <p>
 Where <a>DID methods</a> make use of peer-to-peer computing resources, such as
@@ -3846,8 +3850,8 @@ Proving Control of a DID and DID Document
         </h3>
 
         <p>
-Signatures and <a>verifiable timestamps</a> allow <a>DID documents</a> to be cryptographically
-verifiable.
+Signatures and <a>verifiable timestamps</a> allow <a>DID documents</a> to be
+cryptographically verifiable.
         </p>
 
         <p>
@@ -3867,8 +3871,8 @@ the time the timestamp was created.
         </ul>
 
         <p>
-Proving control of a <a>DID</a>, that is, the binding between the <a>DID</a> and
-the <a>DID document</a> that describes it, requires a two step process:
+Proving control of a <a>DID</a>, that is, the binding between the <a>DID</a>
+and the <a>DID document</a> that describes it, requires a two step process:
         </p>
 
         <ol start="1">
@@ -3878,8 +3882,8 @@ Resolving the <a>DID</a> to a <a>DID document</a> according to its
           </li>
 
           <li>
-Verifying that the <code><a>id</a></code> property of the resulting <a>DID document</a>
-matches the <a>DID</a> that was resolved.
+Verifying that the <code><a>id</a></code> property of the resulting <a>DID
+document</a> matches the <a>DID</a> that was resolved.
           </li>
         </ol>
 
@@ -3890,7 +3894,8 @@ It should be noted that this process proves control of a <a>DID</a> and
 
         <p>
 Signatures on <a>DID documents</a> are optional. <a>DID method</a>
-specifications SHOULD explain and specify their implementation if applicable.
+specifications are expected to explain and specify their implementation if
+applicable.
         </p>
       </section>
 
