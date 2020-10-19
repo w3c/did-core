@@ -3447,18 +3447,18 @@ The <a>DID</a> supplied to the <a>DID resolution</a> function does not conform
 to valid syntax. (See <a href="#did-syntax"></a>.)
                         </dd>
                         <dt>
-unauthorized
-                        </dt>
-                        <dd>
-The caller is not authorized to resolve this <a>DID</a> with this <a>DID
-resolver</a>.
-                        </dd>
-                        <dt>
 not-found
                         </dt>
                         <dd>
-The <a>DID resolver</a> was unable to return the <a>DID document</a>
+The <a>DID resolver</a> was unable to find the <a>DID document</a>
 resulting from this resolution request.
+                        </dd>
+                        <dt>
+deactivated
+                        </dt>
+                        <dd>
+The <a>DID</a> supplied to the <a>DID resolution</a> function has been
+deactivated. (See <a href="#deactivate"></a>.)
                         </dd>
                     </dl>
                 </dd>
@@ -3669,19 +3669,19 @@ The <a>DID URL</a> supplied to the <a>DID URL Dereferencing</a> function does
 not conform to valid syntax. (See <a href="#did-url-syntax"></a>.)
                         </dd>
                         <dt>
-unauthorized
-                        </dt>
-                        <dd>
-The caller is not authorized to dereference the given <a>DID URL</a> with the
-given <a>DID URL dereferencer</a>.
-                        </dd>
-                        <dt>
 not-found
                         </dt>
                         <dd>
-The <a>DID URL dereferencer</a> was unable to return the
+The <a>DID URL dereferencer</a> was unable to find the
 <code>content-stream</code> resulting from this dereferencing request.
                         </dd>
+                        <dt>
+deactivated
+                        </dt>
+                        <dd>
+The <a>DID</a> in the <a>DID URL</a> supplied to the <a>DID URL
+dereferencing</a> function has been deactivated. (See
+<a href="#deactivate"></a>.)
                     </dl>
                 </dd>
             </dl>
