@@ -159,6 +159,15 @@ var ccg = {
       ],
       status: "Draft Community Group Report",
       publisher: "Credentials Community Group"
+    },
+    "PRIVACY-BY-DESIGN": {
+      title: "Privacy by Design",
+      href: "https://iapp.org/media/pdf/resource_center/pbd_implement_7found_principles.pdf",
+      authors: [
+        "Ann Cavoukian"
+      ],
+      date: "2011",
+      publisher: "Information and Privacy Commissioner"
     }
   }
 };
