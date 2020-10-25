@@ -43,7 +43,7 @@ var ccg = {
     },
     "DID-USE-CASES": {
       title: "Decentralized Identifier Use Cases",
-      href: "https://w3c.github.io/did-use-cases/",
+      href: "https://www.w3.org/TR/did-use-cases/",
       authors: [
       	"Joe Andrieu",
         "Kim Hamilton Duffy",
@@ -113,7 +113,7 @@ var ccg = {
     "HASHLINK": {
       title: "Cryptographic Hyperlinks",
       date: "December 2018",
-      href: "https://tools.ietf.org/html/draft-sporny-hashlink-02",
+      href: "https://tools.ietf.org/html/draft-sporny-hashlink-05",
       authors: [
         "Manu Sporny"
       ],
