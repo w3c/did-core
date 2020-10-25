@@ -1253,6 +1253,16 @@ Sub-properties include <code>id</code>, <code>type</code> and
       </li>
     </ul>
 
+    <p class="note" title="Ordering of values">
+As a result of the data model being defined using terminology from [[INFRA]],
+property values which can contain more than one item, such as
+<a data-cite="INFRA#lists">lists</a> and <a
+data-cite="INFRA#ordered-set">sets</a>, are explicitly ordered. For the
+purposes of this specification, unless otherwise stated, ordering is not
+important and implementations are not expected to produce or consume
+deterministically ordered values.
+    </p>
+
     <section>
       <h2>DID Subject</h2>
 
