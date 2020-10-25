@@ -1629,7 +1629,7 @@ verification method.
 
         <p class="issue">
 The Working Group is still debating whether the base encoding format used will
-be Base58 (Bitcoin) [[BASE58]], base64url [[RFC7515]], or base16 (hex)
+be Base58 (Bitcoin) [[?BASE58]], base64url [[RFC7515]], or base16 (hex)
 [[RFC4648]]. The entries in the table below currently assume PEM and Base58
 (Bitcoin), but might change to base64url and/or base16 (hex) after the group
 achieves consensus on this particular issue.
@@ -1680,7 +1680,7 @@ ed25519<br/>(<code>Ed25519VerificationKey2018</code>)
 Ed25519 public key values MUST either be encoded as a JWK [[RFC7517]]
 using the <code>publicKeyJwk</code> or be
 encoded as the raw 32-byte public key value in Base58 Bitcoin format
-[[BASE58]] using the <code>publicKeyBase58</code> property.
+[[?BASE58]] using the <code>publicKeyBase58</code> property.
               </td>
             </tr>
             <tr>
@@ -1691,7 +1691,7 @@ secp256k1
 Secp256k1 public key values MUST either be encoded as a JWK [[RFC7517]]
 using the <code>publicKeyJwk</code> or be
 encoded as the raw 33-byte public key value in Base58
-Bitcoin format [[BASE58]] using the <code>publicKeyBase58</code> property.
+Bitcoin format [[?BASE58]] using the <code>publicKeyBase58</code> property.
               </td>
             </tr>
             <tr>
@@ -1702,7 +1702,7 @@ Curve25519<br/>(<code>X25519KeyAgreementKey2019</code>)
 Curve25519 (also known as X25519) public key values MUST either be encoded
 as a JWK [[RFC7517]] using the <code>publicKeyJwk</code> or be
 encoded as the raw 32-byte public key value in Base58
-Bitcoin format [[BASE58]] using the <code>publicKeyBase58</code> property.
+Bitcoin format [[?BASE58]] using the <code>publicKeyBase58</code> property.
               </td>
             </tr>
             <tr>
@@ -4712,8 +4712,7 @@ Drummond Reed, Manu Sporny, Markus Sabadello, Dave Longley, Christopher Allen
       <p>
 Fragment identifiers used with
 <a href="#application-did-json">application/did+json</a> are treated
-according to the rules defined in
-<a data-cite="DID-CORE#fragment">DID Core v1.0, Fragment</a> [[DID-CORE]].
+according to the rules defined in <a href="#fragment"></a>.
       </p>
     </section>
 
@@ -4838,8 +4837,7 @@ websites that issue or verify W3C Verifiable Credentials.
        <p>
 Fragment identifiers used with
 <a href="#application-did-json">application/did+cbor</a> are treated
-according to the rules defined in
-<a data-cite="DID-CORE#fragment">DID Core v1.0, Fragment</a> [[DID-CORE]].
+according to the rules defined in <a href="#fragment"></a>.
       </p>
     </section>
 
@@ -4899,8 +4897,7 @@ websites that issue or verify W3C Verifiable Credentials.
        <p>
 Fragment identifiers used with
 <a href="#application-did-json">application/did+cbor</a> are treated
-according to the rules defined in
-<a data-cite="DID-CORE#fragment">DID Core v1.0, Fragment</a> [[DID-CORE]].
+according to the rules defined in <a href="#fragment"></a>.
       </p>
     </section>
 
