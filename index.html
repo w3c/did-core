@@ -4271,6 +4271,34 @@ thousands or millions of <a>DIDs</a> controlled by many different subjects.
 
     <section>
       <h2>
+Assigning a type to the DID subject
+      </h2>
+      <p>
+It is dangerous to add properties to the <a>DID document</a> that can be used
+to indicate, explicitly or through inference, what <em>type</em> or nature of
+thing the <a>DID subject</a> is, particularly if the <a>DID subject</a> is a
+person.
+      </p>
+      <p>
+Not only do such properties potentially result in personally identifiable
+information (see
+<a href="#keep-personally-identifiable-information-pii-private"></a>) or
+correlatable data (see <a href="#did-correlation-risks-and-pseudonymous-dids">
+</a> and <a href="#did-document-correlation-risks"></a>) being present in the
+<a>DID document</a>, but they can be used for grouping particular <a>DIDs</a>
+in such a way that they are included in or excluded from certain operations or
+functionalities.
+      </p>
+      <p>
+To minimize these risks, all properties in a <a>DID document</a> should be
+for expressing cryptographic material or verification methods related to
+using the <a>DID</a>.
+      </p>
+
+    </section>
+
+    <section>
+      <h2>
 Herd Privacy
       </h2>
 
