@@ -930,6 +930,17 @@ collision with other uses of the same DID parameter with different semantics.
         </p>
 
         <p>
+DID parameters MAY be used if there is a clear use case where the parameter
+needs to be part of a URI that can be used as a link, or as a <a>resource</a>
+in RDF / JSON-LD documents.
+        </p>
+
+        <p>
+It is expected that DID parameters will <em>not</em> be used if the same
+functionality can be expressed by passing input metadata to a DID resolver.
+        </p>
+
+        <p>
 Additional considerations for processing these parameters are discussed in
 [[?DID-RESOLUTION]].
         </p>
@@ -947,33 +958,18 @@ did:foo:21tDAKCERh95uGgKbJNHYp?service=agent
 did:foo:21tDAKCERh95uGgKbJNHYp?version-time=2002-10-10T17:00:00Z
         </pre>
 
-        <p>
-Adding a DID parameter to a <a>DID URL</a> means that the parameter becomes
-part of an identifier for a <a>resource</a> (the <a>DID document</a> or other).
-Alternatively, the <a>DID resolution</a> and the <a>DID URL dereferencing</a>
-functions can also be influenced by passing input metadata to a <a>DID
-resolver</a> that are not part of the DID URL. (See <a
-href="#did-resolution-input-metadata-properties"></a>). Such input
-metadata could for example control caching
-or the desired encoding of a resolution result. This is comparable to HTTP,
-where certain parameters could either be included in an HTTP URL, or
+        <p class="note" title="DID parameters and DID resolution">
+The <a>DID resolution</a> and the <a>DID URL dereferencing</a> functions can
+be influenced by passing input metadata to a <a>DID resolver</a> that are
+not part of the DID URL. (See <a
+href="#did-resolution-input-metadata-properties"></a>). This is comparable to
+HTTP, where certain parameters could either be included in an HTTP URL, or
 alternatively passed as HTTP headers during the dereferencing process. The
-important distinction is that DID parameters that are part of the <a>DID URL</a>
-should be used to specify <i>what <a>resource</a> is being identified</i>,
-whereas input metadata that is not part of the <a>DID URL</a>
-should be use to control <i>how that <a>resource</a> is resolved or
-dereferenced</i>.
-        </p>
-
-        <p>
-DID parameters MAY be used if there is a clear use case where the parameter
-needs to be part of a URI that can be used as a link, or as a <a>resource</a>
-in RDF / JSON-LD documents.
-        </p>
-
-        <p>
-It is expected that DID parameters will <em>not</em> be used if the same
-functionality can be expressed by passing input metadata to a DID resolver.
+important distinction is that DID parameters that are part of the <a>DID
+URL</a> should be used to specify <em>what <a>resource</a> is being
+identified</em>, whereas input metadata that is not part of the <a>DID URL</a>
+should be use to control <em>how that <a>resource</a> is resolved or
+dereferenced</em>.
         </p>
 
       </section>
