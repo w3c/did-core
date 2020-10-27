@@ -2300,12 +2300,6 @@ resolver metadata field (see <a href="#did-resolution"></a>), <em>not</em>
 through the content of the <a>DID document</a> alone.
     </p>
 
-    <p class="issue" data-number="203">
-This requirement depends on the return of DID document metadata that still needs
-to be defined by this specification. Once defined, that should be linked from
-here.
-    </p>
-
     <p>
 The production and consumption rules in this section apply to all
 implementations seeking to be fully compatible with independent implementations
@@ -2313,11 +2307,6 @@ of the specification. Deployments of this specification MAY use a custom
 agreed-upon representation, including localized rules for handling properties
 not listed in the registry. See section <a href="#extensibility"></a>
 for more information.
-    </p>
-
-    <p class="issue" data-number="207">
-A link to a section on extensibility and conformance as it applies to data
-representations should be added here once that section has been written.
     </p>
 
     <section>
@@ -2374,11 +2363,6 @@ type</a>.
           </li>
         </ul>
 
-        <p class="issue" data-number="204">
-An "empty" value is not specified by this document. It seems to imply a null
-value, but this is unclear.
-        </p>
-
         <p>
 Implementers producing JSON are advised to ensure that their algorithms are
 aligned with the <a data-cite="INFRA#json">JSON serialization rules</a> in
@@ -2403,14 +2387,6 @@ reserved for JSON-LD producers.
         <h3>
 Consumption
         </h3>
-
-        <p class="issue" data-number="204">
-In this section and we use the term "property name" to refer to the string that
-represents the property itself, but this specification still needs to define a
-concrete term for such aspects of a property of a DID document. We also need a
-concrete term for "the document itself" as opposed to "the collection or
-properties of the document".
-        </p>
 
         <p>
 The top-level element MUST be a JSON object. Any other data type at the top
@@ -2455,11 +2431,6 @@ Implementers consuming JSON are advised to ensure that their algorithms are
 aligned with the <a
 data-cite="INFRA#convert-a-json-derived-javascript-value-to-an-infra-value">JSON
 consumption rules</a> in the [[INFRA]] specification.
-        </p>
-
-        <p class="issue" data-number="204">
-An "empty" value is not specified by this document. It seems to imply a null
-value, but this is unclear.
         </p>
 
         <p>
@@ -4647,24 +4618,20 @@ result in changes to this specification.
     <div class="issue" data-number="33">Cheap DIDs and the option to migrate DIDs between ledgers using standard DID Deprecation Registries</div>
     <div class="issue" data-number="58">Registry handling</div>
     <div class="issue" data-number="72">Privacy Considerations - Specifically call out GDPR</div>
-    <div class="issue" data-number="94">Create DID explainer</div>
     <div class="issue" data-number="104">Horizontal Review: Internationalization self test</div>
     <div class="issue" data-number="105">Horizontal Review: Accessibility self test</div>
     <div class="issue" data-number="118">Specification needs to be compliant with WCAG 2.0</div>
     <div class="issue" data-number="119">Horizontal Review: offer review opportunity to TAG</div>
-    <div class="issue" data-number="122">When is a DID subject not a DID controller (if ever)?</div>
     <div class="issue" data-number="151">Include discussion of eIDAS levels-of-assurance</div>
     <div class="issue" data-number="163">Uses of terms defined in the specification should be links to their definitions</div>
     <div class="issue" data-number="170">Public key "id" and "type" members duplicate JWK "kid" and "kty" members</div>
     <div class="issue" data-number="174">Underspecified semantics of "updated" property</div>
     <div class="issue" data-number="199">Clarification on what DIDs might identify</div>
-    <div class="issue" data-number="203">Define DID Document Metadata</div>
     <div class="issue" data-number="205">How to treat unknown properties</div>
     <div class="issue" data-number="208">IETF did+ld+json media type registration</div>
     <div class="issue" data-number="240">Should did-core restrict the use of JWK?</div>
     <div class="issue" data-number="249">How to mitigate the single source of failure wrt/ "Trust into the Universal Resolver"?</div>
     <div class="issue" data-number="253">Added DID resolution and dereferencing contracts.</div>
-    <div class="issue" data-number="261">Definition of the term "client" in regard to SSI principles</div>
     <div class="issue" data-number="267">Put key points up front</div>
     <div class="issue" data-number="282">Added CBOR section </div>
     <div class="issue" data-number="291">PING Horizontal Review</div>
