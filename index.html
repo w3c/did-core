@@ -925,7 +925,7 @@ parameter is OPTIONAL. If present, the associated value MUST be an
 Implementers as well as <a>DID method</a> specification authors MAY use
 additional DID parameters that are not listed here. For maximum
 interoperability, it is RECOMMENDED that DID parameters use the official W3C
-DID Specification Registries mechanism [[DID-SPEC-REGISTRIES]], to avoid
+DID Specification Registries mechanism [[?DID-SPEC-REGISTRIES]], to avoid
 collision with other uses of the same DID parameter with different semantics.
         </p>
 
@@ -1178,7 +1178,7 @@ The data model supports two types of extensibility.
       <ol>
         <li>
 For maximum interoperability, it is RECOMMENDED that extensions use the official
-W3C DID Specification Registries mechanism [[DID-SPEC-REGISTRIES]]. The use of
+W3C DID Specification Registries mechanism [[?DID-SPEC-REGISTRIES]]. The use of
 this mechanism for new properties or other extensions is the only specified method
 that ensures that two different representations will be able to work together.
         </li>
@@ -1191,7 +1191,7 @@ conversion into any other conformant representation.
       <p class="note">
 It is always possible for two specific implementations to agree out-of-band to
 use a mutually understood extension or representation that is not recorded in
-the DID Core Registries [[DID-SPEC-REGISTRIES]]; interoperability between such
+the DID Core Registries [[?DID-SPEC-REGISTRIES]]; interoperability between such
 implementations and the larger ecosystem will be less reliable.
       </p>
     </section>
@@ -1438,7 +1438,7 @@ a purported <a>DID controller</a> against a candidate biometric vector.
 In order to maximize interoperability, support for public keys as verification
 methods is restricted: see <a href="#key-types-and-formats"></a>. For other
 types of verification method, the verification method SHOULD be registered in
-the [[DID-SPEC-REGISTRIES]].
+the [[?DID-SPEC-REGISTRIES]].
       </p>
 
       <p>
@@ -1484,7 +1484,7 @@ for an example of a public key with a compound key identifier.
 The value of the <code>type</code> property MUST be exactly one verification
 method type. In order to maximize global interoperability, the
 <a>verification method</a> type SHOULD be registered in the
-[[DID-SPEC-REGISTRIES]].
+[[?DID-SPEC-REGISTRIES]].
           </p>
           <p>
 The value of the <code>controller</code> property MUST be a <a
@@ -1623,7 +1623,7 @@ When using any of the public key types described here, public key expression
 MUST NOT use any other key format than those listed in the
 <a href="#public-key-support">Public Key Support table</a>. For public key
 types that are not listed here, the type value and corresponding format
-property SHOULD be registered in [[DID-SPEC-REGISTRIES]], as with any other
+property SHOULD be registered in [[?DID-SPEC-REGISTRIES]], as with any other
 verification method.
         </p>
 
@@ -1772,7 +1772,7 @@ A <a>verification relationship</a> expresses the relationship between the
 A <a>DID document</a> MAY include a property expressing a specific
 <a>verification relationship</a>. In order to maximize global
 interoperability, the property SHOULD be registered in
-[[DID-SPEC-REGISTRIES]].
+[[?DID-SPEC-REGISTRIES]].
       </p>
       <p>
 The <a>verification relationship</a> between the <a>DID subject</a> and the
@@ -2546,7 +2546,7 @@ beyond what JSON-LD allows.
 
             <p>
 All members of the <code>@context</code> property SHOULD exist in the DID
-specification registries [[DID-SPEC-REGISTRIES]] in order to achieve
+specification registries [[?DID-SPEC-REGISTRIES]] in order to achieve
 interoperability across different representations. If a member does not exist
 in the DID specification registries, then the <a>DID document</a> might not be
 interoperable across representations.
@@ -2557,7 +2557,7 @@ It is RECOMMENDED that dereferencing each <a>URI</a> value of the
 <code>@context</code> property results in a document containing
 machine-readable information about the context. These URIs SHOULD be
 associated with a cryptographic hash of the content of the JSON-LD Context as
-part of registration in the DID Specification Registries [[DID-SPEC-REGISTRIES]].
+part of registration in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
             </p>
           </dd>
         </dl>
@@ -3356,7 +3356,7 @@ DID Resolution Input Metadata Properties
 
             <p>
 The possible properties within this structure and their possible values are
-defined by [[DID-SPEC-REGISTRIES]]. This specification defines the following
+defined by [[?DID-SPEC-REGISTRIES]]. This specification defines the following
 common properties.
             </p>
 
@@ -3383,7 +3383,7 @@ DID Resolution Metadata Properties
 
             <p>
 The possible properties within this structure and their possible values are
-defined by [[DID-SPEC-REGISTRIES]]. This specification defines the following
+defined by [[?DID-SPEC-REGISTRIES]]. This specification defines the following
 common properties.
             </p>
 
@@ -3409,7 +3409,7 @@ error
 The error code from the resolution process. This property is REQUIRED when
 there is an error in the resolution process. The value of this property MUST
 be a single keyword string. The possible property values of this field SHOULD
-be registered in the DID Specification Registries [[DID-SPEC-REGISTRIES]].
+be registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
 This specification defines the following error values:
                     <dl>
                         <dt>
@@ -3446,7 +3446,7 @@ DID Document Metadata Properties
 
             <p>
 The possible properties within this structure and their possible values SHOULD
-be registered in the DID Specification Registries [[DID-SPEC-REGISTRIES]].
+be registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
 This specification defines the following common properties.
             </p>
 
@@ -3588,7 +3588,7 @@ DID URL Dereferencing Input Metadata Properties
 
             <p>
 The possible properties within this structure and their possible values SHOULD
-be registered in the [[DID-SPEC-REGISTRIES]]. This specification defines the
+be registered in the [[?DID-SPEC-REGISTRIES]]. This specification defines the
 following common properties.
             </p>
 
@@ -3612,7 +3612,7 @@ DID URL Dereferencing Metadata Properties
 
             <p>
 The possible properties within this structure and their possible values are
-defined by [[DID-SPEC-REGISTRIES]]. This specification defines the following
+defined by [[?DID-SPEC-REGISTRIES]]. This specification defines the following
 common properties.
             </p>
 
