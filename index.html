@@ -1779,34 +1779,45 @@ A <a>verification relationship</a> expresses the relationship between the
 <a>DID subject</a> and a <a>verification method</a>.
       </p>
       <p>
-A <a>DID document</a> MAY include a property expressing a specific
-<a>verification relationship</a>. In order to maximize global
-interoperability, the property SHOULD be registered in
-[[?DID-SPEC-REGISTRIES]].
+Different <a>verification relationships</a> enable the associated
+<a>verification methods</a> to be used for different purposes. It is up to a
+<em>verifier</em> to ascertain the validity of a verification attempt by
+checking that the <a>verification method</a> used is contained in the
+appropriate <a>verification relationship</a> property of the <a>DID
+Document</a>.
       </p>
       <p>
 The <a>verification relationship</a> between the <a>DID subject</a> and the
 <a>verification method</a> MUST be explicit in the <a>DID document</a>.
 <a>Verification methods</a> that are not associated with a particular
 <a>verification relationship</a> MUST NOT be used for that <a>verification
-relationship</a>. See the sections below for more detailed examples of a
-<a>verification relationship</a>.
+relationship</a>. For example, a <a>verification method</a> in the value of
+the <code><a>authentication</a></code> property cannot be used to engage in
+key agreement protocols with the <a>DID subject</a>&mdash;the value of the
+<code><a>keyAgreement</a></code> property needs to be used for that.
+      </p>
+      <p>
+This specification defines several <a>verification relationships</a> below. A
+<a>DID document</a> MAY include any of these, or other properties, to express
+a specific <a>verification relationship</a>. In order to maximize global
+interoperability, any such properties used SHOULD be registered in
+[[DID-SPEC-REGISTRIES]].
       </p>
 
-      <section>
-        <h3>authentication</h3>
+      <dl>
+        <dt><dfn>authentication</dfn></dt>
+        <dd>
+The <code>authentication</code> property is OPTIONAL.
+        </dd>
+        <dd>
+If present, the associated value MUST be an <a
+data-cite="INFRA#ordered-set">ordered set</a> of one or more <a>verification
+methods</a>. Each <a>verification method</a> MAY be embedded or referenced.
+        </dd>
+      </dl>
 
+      <div class="note" title="Uses of authentication">
         <p>
-Authentication is a <a>verification relationship</a> which an entity can use
-to prove it is the <a>DID subject</a> or acting on behalf of the
-<a>DID Subject</a> as a <a>DID Controller</a>. The <em>verifier</em> of an
-authentication attempt can check if the authenticating party is presenting a
-valid proof of authentication, that is, that they are who they say they are.
-Note that a successful authentication on its own might or might not confer
-authority; that is up to the verifying application.
-        </p>
-
-        <p class="note" title="Uses of authentication">
 If authentication is established, it is up to the <a>DID method</a> or other
 application to decide what to do with that information. A particular <a>DID
 method</a> could decide that authenticating as a <a>DID controller</a> is
@@ -1818,27 +1829,8 @@ document</a> than that used to authenticate. In other words, what is done
 model, but <a>DID methods</a> and applications are expected to define this
 themselves.
         </p>
-
         <p>
-A <a>DID document</a> MAY include an <code><a>authentication</a></code> property.
-The <code><a>authentication</a></code> property is a relationship between the <a>DID
-subject</a> and a set of verification methods (such as, but not limited to,
-public keys). It means that the <a>DID subject</a> has authorized some set of
-<a>verification methods</a> (per the value of the <code><a>authentication</a></code>
-property) for the purpose of authentication.
-        </p>
-
-        <dl>
-          <dt><dfn>authentication</dfn></dt>
-          <dd>
-The associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
-of one or more <a>verification methods</a>. Each <a>verification method</a> MAY
-be embedded or referenced.
-          </dd>
-        </dl>
-
-        <p>
-This statement is useful to any <em>authentication verifier</em> that needs
+This is useful to any <em>authentication verifier</em> that needs
 to check to see if an entity that is attempting to <a>authenticate</a> is, in
 fact, presenting a valid proof of authentication. When a <em>verifier</em>
 receives some data (in some protocol-specific format) that contains a proof
@@ -1848,23 +1840,18 @@ ensure that the proof can be verified using a <a>verification method</a> (e.g.,
 public key) listed under <code><a>authentication</a></code> in the
 <a>DID Document</a>.
         </p>
-
         <p>
-The <a>verification method</a> indicated by the <code><a>authentication</a></code>
-property of a <a>DID document</a> can only be used to <a>authenticate</a> the
-<a>DID subject</a>. To <a>authenticate</a> the <a>DID controller</a> (in cases
-where the <a>DID controller</a> is not <em>also</em> the <a>DID subject</a>)
-the entity associated with the value of <code>controller</code> (see
-Section <a href="#control"></a>) needs to <a>authenticate</a> itself with its
-<em>own</em> <a>DID document</a> and attached <code><a>authentication</a></code>
-<a>verification relationship</a>.
+Note that the <a>verification method</a> indicated by the
+<code><a>authentication</a></code> property of a <a>DID document</a> can only
+be used to <a>authenticate</a> the <a>DID subject</a>. To <a>authenticate</a>
+a different <a>DID controller</a> the entity associated with the value of
+<code>controller</code> (see Section <a href="#control"></a>) needs to
+<a>authenticate</a> with its <em>own</em> <a>DID document</a> and attached
+<code><a>authentication</a></code> <a>verification relationship</a>.
         </p>
+      </div>
 
-        <p>
-Example:
-        </p>
-
-        <pre class="example nohighlight" title="Authentication property
+      <pre class="example nohighlight" title="Authentication property
                     containing three verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1",
@@ -1887,118 +1874,73 @@ Example:
   ],
   <span class="comment">...</span>
 }
-        </pre>
-      </section>
+      </pre>
 
-      <section>
-        <h3>assertionMethod</h3>
-        <p>
-The <code><a>assertionMethod</a></code> property is used to express a
-<a>verification relationship</a> which indicates that a <a>verification
-method</a> can be used to verify a proof that a statement was
-asserted on behalf of the <a>DID subject</a>. A <em>verifier</em>
-of such a proof can ensure that a <a>verification method</a> used
-with the proof was authorized to be used with proofs for that purpose
-by checking that the <a>verification method</a> is contained in the
-<code><a>assertionMethod</a></code> of the <a>DID Document</a>.
-        </p>
+      <dl>
+        <dt><dfn>assertionMethod</dfn></dt>
+        <dd>
+The <code>assertionMethod</code> property is OPTIONAL.
+        </dd>
+        <dd>
+If present, the associated value MUST be an <a
+data-cite="INFRA#ordered-set">ordered set</a> of one or more <a>verification
+methods</a>. Each <a>verification method</a> MAY be embedded or referenced.
+        </dd>
+      </dl>
 
-        <p class="note" title="Uses of assertionMethod">
-If <code><a>assertionMethod</a></code> is established, it is up to the
-verifier to validate that the <a>verification method</a> used for providing
-proof of an assertion is valid and is associated with the
-<code><a>assertionMethod</a></code> <a>verification relationship</a>. An
-example of when this property is useful is during the processing of a
+      <p class="note" title="Uses of assertionMethod">
+An example of when this property is useful is during the processing of a
 verifiable credential by a verifier. During validation, a verifier checks to
 see if a verifiable credential has been signed by the <a>DID Subject</a> by
 checking that the <a>verification method</a> used to assert the proof is
 associated with the <code><a>assertionMethod</a></code> property in the
 corresponding <a>DID Document</a>.
-        </p>
+      </p>
 
-        <p>
-A <a>DID document</a> MAY include an <code><a>assertionMethod</a></code> property.
-        </p>
-
-        <dl>
-          <dt><dfn>assertionMethod</dfn></dt>
-          <dd>
-The associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
-of one or more <a>verification methods</a>. Each <a>verification method</a> MAY
-be embedded or referenced.
-          </dd>
-        </dl>
-
-        <p>
-Example:
-        </p>
-
-        <pre class="example nohighlight" title="Assertion method property
-                    containing two verification methods">
+      <pre class="example nohighlight" title="Assertion method property
+                  containing two verification methods">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
-  "id": "did:example:123456789abcdefghi",
-  <span class="comment">...</span>
-  "assertionMethod": [
-    <span class="comment">// this method can be used to assert statements as did:...fghi</span>
-    "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this method is *only* authorized for assertion of statements, it may not</span>
-    <span class="comment">// be used for any other verification relationship, so its full description is</span>
-    <span class="comment">// embedded here rather than using only a reference</span>
-    {
-      "id": "did:example:123456789abcdefghi#keys-2",
-      "type": "Ed25519VerificationKey2018",
-      "controller": "did:example:123456789abcdefghi",
-      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-    }
-  ],
-  <span class="comment">...</span>
+"@context": "https://www.w3.org/ns/did/v1",
+"id": "did:example:123456789abcdefghi",
+<span class="comment">...</span>
+"assertionMethod": [
+  <span class="comment">// this method can be used to assert statements as did:...fghi</span>
+  "did:example:123456789abcdefghi#keys-1",
+  <span class="comment">// this method is *only* authorized for assertion of statements, it may not</span>
+  <span class="comment">// be used for any other verification relationship, so its full description is</span>
+  <span class="comment">// embedded here rather than using only a reference</span>
+  {
+    "id": "did:example:123456789abcdefghi#keys-2",
+    "type": "Ed25519VerificationKey2018",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+  }
+],
+<span class="comment">...</span>
 }
-        </pre>
-        </section>
+      </pre>
 
-        <section>
-          <h3>keyAgreement</h3>
-          <p>
-The <code><a>keyAgreement</a></code> property is used to express a <a>verification
-relationship</a> which an entity can use to engage in key agreement protocols
-on behalf of the <a>DID subject</a>. The <em>counterparties</em> in a key
-agreement protocol can use the <code><a>keyAgreement</a></code> <a>verification
-relationship</a> to check whether a party performing a key agreement protocol
-on behalf of the <a>DID subject</a> is authorized by checking if the
-<a>verification method</a> used during the key agreement protocol is
-associated with the <code><a>keyAgreement</a></code> property contained in the <a>DID
-Document</a>.
-        </p>
+      <dl>
+        <dt><dfn>keyAgreement</dfn></dt>
+        <dd>
+The <code>keyAgreement</code> property is OPTIONAL.
+        </dd>
+        <dd>
+If present, the associated value MUST be an <a
+data-cite="INFRA#ordered-set">ordered set</a> of one or more <a>verification
+methods</a>. Each <a>verification method</a> MAY be embedded or referenced.
+        </dd>
+      </dl>
 
-        <p>
-A <a>DID document</a> MAY include an <code><a>keyAgreement</a></code> property.
-        </p>
+      <p class="note" title="Uses of keyAgreement">
+An example of when this property is useful is during the establishment of a
+TLS session on behalf of the <a>DID Subject</a>. In this case, the
+counterparty checks that the <a>verification method</a> used during the
+protocol handshake is associated with the <code><a>keyAgreement</a></code>
+property in the <a>DID Document</a>.
+      </p>
 
-        <dl>
-          <dt><dfn>keyAgreement</dfn></dt>
-          <dd>
-The associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
-of one or more <a>verification methods</a>. Each <a>verification method</a> MAY
-be embedded or referenced.
-          </dd>
-        </dl>
-
-        <p class="note" title="Uses of keyAgreement">
-It is up to a verifier to validate that the <a>verification method</a>
-used during a key agreement exchange is valid and is associated with the
-<code><a>keyAgreement</a></code> property. An example of when this property is useful
-is during the establishment of a TLS session on behalf of the <a>DID
-Subject</a>. In this case, the counterparty checks that the <a>verification
-method</a> used during the protocol handshake is associated with the
-<code><a>keyAgreement</a></code> property in the <a>DID Document</a>.
-        </p>
-
-        <p>
-Example:
-        </p>
-
-        <pre class="example nohighlight" title="Key agreement property
+      <pre class="example nohighlight" title="Key agreement property
                     containing two verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1",
@@ -2020,53 +1962,30 @@ Example:
   <span class="comment">...</span>
 }
 
-        </pre>
-      </section>
+      </pre>
 
-      <section>
-        <h3>capabilityInvocation</h3>
-        <p>
-The <code><a>capabilityInvocation</a></code> property is used to express a
-<a>verification relationship</a> which an entity can use to invoke
-capabilities as the <a>DID subject</a> or on behalf of the <a>DID subject</a>.
-A capability is an expression of an action that the <a>DID subject</a> is
-authorized to take. The <em>verifier</em> of a capability invocation attempt
-can check the validity of a capability by checking if the <a>verification
-method</a> used with the proof is contained in the
-<code><a>capabilityInvocation</a></code> property of the <a>DID Document</a>.
-        </p>
+      <dl>
+        <dt><dfn>capabilityInvocation</dfn></dt>
+        <dd>
+The <code>capabilityInvocation</code> property is OPTIONAL.
+        </dd>
+        <dd>
+If present, the associated value MUST be an <a
+data-cite="INFRA#ordered-set">ordered set</a> of one or more <a>verification
+methods</a>. Each <a>verification method</a> MAY be embedded or referenced.
+        </dd>
+      </dl>
 
-        <p>
-A <a>DID document</a> MAY include an <code><a>capabilityInvocation</a></code>
-property.
-        </p>
-
-        <dl>
-          <dt><dfn>capabilityInvocation</dfn></dt>
-          <dd>
-The associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
-of one or more <a>verification methods</a>. Each <a>verification method</a> MAY
-be embedded or referenced.
-          </dd>
-        </dl>
-
-        <p class="note" title="Uses of capabilityInvocation">
-It is the responsibility of a verifier to ensure that the
-<a>verification method</a> used when presenting a capability is invoked and is
-associated with the <code><a>capabilityInvocation</a></code> property. An example of
-when this property is useful is when a <a>DID subject</a> chooses to invoke
-their capability to start a vehicle through the combined usage of a
-<a>verification method</a> and the <code>StartCar</code> capability. In this
-example, the vehicle would be the <em>verifier</em> and would need to verify
-that the <a>verification method</a> exists in the
+      <p class="note" title="Uses of capabilityInvocation">
+An example of when this property is useful is when a <a>DID subject</a>
+chooses to invoke their capability to start a vehicle through the combined
+usage of a <a>verification method</a> and the <code>StartCar</code>
+capability. In this example, the vehicle would be the <em>verifier</em> and
+would need to verify that the <a>verification method</a> exists in the
 <code><a>capabilityInvocation</a></code> property.
-        </p>
+      </p>
 
-        <p>
-Example:
-        </p>
-
-        <pre class="example nohighlight" title="Capability invocation property
+      <pre class="example nohighlight" title="Capability invocation property
                     containing two verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1", "id":
@@ -2088,50 +2007,28 @@ Example:
   <span class="comment">...</span>
 }
 
-        </pre>
-      </section>
+      </pre>
 
-      <section>
-        <h3>capabilityDelegation</h3>
-        <p>
-The <code><a>capabilityDelegation</a></code> property is used to express a
-<a>verification relationship</a> which an entity can use to grant capabilities
-as the <a>DID subject</a> or on behalf of the <a>DID subject</a> to other
-<em>capability invokers</em>. The <em>verifier</em> of a
-<code><a>capabilityDelegation</a></code> attempt can check the validity of a
-capability to grant invocation of a capability by checking if the
-<a>verification method</a> used with the proof is contained in the
-<code><a>capabilityDelegation</a></code> section of the <a>DID Document</a>.
-        </p>
+      <dl>
+        <dt><dfn>capabilityDelegation</dfn></dt>
+        <dd>
+The <code>capabilityDelegation</code> property is OPTIONAL.
+        </dd>
+        <dd>
+If present, the associated value MUST be an <a
+data-cite="INFRA#ordered-set">ordered set</a> of one or more <a>verification
+methods</a>. Each <a>verification method</a> MAY be embedded or referenced.
+        </dd>
+      </dl>
 
-        <p>
-A <a>DID document</a> MAY include an <code><a>capabilityDelegation</a></code>
-property.
-        </p>
+      <p class="note" title="Uses of capabilityDelegation">
+An example of when this property is useful is when a <a>DID Subject</a>
+chooses to grant their capability to start a vehicle through the combined
+usage of a <a>verification method</a> and the <code>StartCar</code> capability
+to a capability invoker.
+      </p>
 
-        <dl>
-          <dt><dfn>capabilityDelegation</dfn></dt>
-          <dd>
-The associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
-of one or more <a>verification methods</a>. Each <a>verification method</a> MAY
-be embedded or referenced.
-          </dd>
-        </dl>
-
-        <p class="note" title="Uses of capabilityDelegation">
-It is up to a verifier to validate that the <a>verification method</a> used
-when presenting a capability is valid and is associated with the
-<code><a>capabilityDelegation</a></code> property. An example of when this
-property is useful is when a <a>DID Subject</a> chooses to grant their
-capability to start a vehicle through the combined usage of a <a>verification
-method</a> and the <code>StartCar</code> capability to a capability invoker.
-        </p>
-
-        <p>
-Example:
-        </p>
-
-        <pre class="example nohighlight" title="Capability Delegation property
+      <pre class="example nohighlight" title="Capability Delegation property
                     containing two verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1", "id":
@@ -2153,8 +2050,7 @@ Example:
   <span class="comment">...</span>
 }
 
-        </pre>
-      </section>
+      </pre>
     </section>
 
     <section>
