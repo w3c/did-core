@@ -1267,14 +1267,15 @@ deterministically ordered values.
       <h2>DID Subject</h2>
 
       <p>
-The <a>DID subject</a> is denoted with the <code><a>id</a></code> property. The
-<a>DID subject</a> is the entity that the <a>DID document</a> is about. That is,
-it is the entity identified by the <a>DID</a> and described by the
-<a>DID document</a>.
+The <a>DID subject</a> is denoted with the <code><a>id</a></code> property at
+the top level of a <a>DID document</a>. The <a>DID subject</a> is the entity
+that the <a>DID document</a> is about. That is, it is the entity identified by
+the <a>DID</a> and described by the <a>DID document</a>.
       </p>
 
       <p>
-<a>DID documents</a> MUST include the <code><a>id</a></code> property.
+<a>DID documents</a> MUST include the <code><a>id</a></code> property at the
+top level.
       </p>
 
       <dl>
@@ -1302,6 +1303,15 @@ resolved <a>DID document</a> MUST match the <a>DID</a> that was
 resolved, or be populated with the equivalent canonical <a>DID</a>
 specified by the <a>DID method</a>, which SHOULD be used by the resolving
 party going forward.
+      </p>
+
+      <p class="note" title="Nested objects with the id property">
+A <a>DID document</a> can contain objects which have their own unique
+identifier; see, for example, <a href="#verification-methods"></a>. Such other
+objects also use the <code>id</code> property to denote the identifier of
+the object in question. The <code>id</code> property only denotes the
+<a>DID</a> of the <a>DID subject</a> when it is present at the <em>top
+level</em> of a <a>DID document</a>.
       </p>
 
     <section>
