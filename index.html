@@ -4290,9 +4290,16 @@ in such a way that they are included in or excluded from certain operations or
 functionalities.
       </p>
       <p>
-To minimize these risks, all properties in a <a>DID document</a> should be
-for expressing cryptographic material or verification methods related to
-using the <a>DID</a>.
+Including <em>type</em> information in a <a>DID Document</a> can
+result in personal privacy harms even for <a>DID Subjects</a> that are
+non-person entities, such as IoT devices. The aggregation of such
+information around a <a>DID Controller</a> could serve as a form of
+digital fingerprint and this is best avoided.
+      </p>
+      <p>
+To minimize these risks, all properties in a <a>DID document</a> ought to be
+for expressing cryptographic material, endpoints, or verification methods related
+to using the <a>DID</a>.
       </p>
 
     </section>
