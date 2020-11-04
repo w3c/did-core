@@ -1441,46 +1441,99 @@ necessarily appropriate, <em>even with</em> a reciprocal relationship.
       </section>
 
       <section>
-        <h3>deterministicSameAs</h3>
+        <h3>canonicalId</h3>
           <p>
-            The <code><a>deterministicSameAs</a></code> property is an array 
-            of one or more DID URI strings that are verified by the <a>DID Method</a> 
-            to be deterministically equivalent variants of the DID in the 
-            <code>id</code> property. The resolving party MUST treat the DIDs in the 
-            <code>id</code> property and <code><a>deterministicSameAs</a></code> array 
-            as references to the same logical ID, thus the resolving party MUST retain 
-            the DID URIs from the <code>id</code> and <code><a>deterministicSameAs</a></code> 
-            properties to ensure any subsequent interactions with them are correctly 
-            handled in relation to the <a>DID Subject</a>. (e.g. retain all variants in 
-            a database relationship so a login with any one of them maps back to the 
-            same UUID row for the <a>DID Subject</a>)
+            The <code><a>canonicalId</a></code> property is an single DID URI string
+            value that MUST be from the same <a>DID Method</a> as the resolved 
+            identifier, and MUST be guaranteed by the <a>DID Method</a> to be an exactly 
+            equivalent variant of the DID in the <code>id</code> property. The resolving 
+            party MUST treat the DID URI in the <code>id</code> property and the DID URI 
+            in the <code><a>canonicalId</a></code> array as references to the same logical 
+            ID. The resolving party MAY retain the DID URI from the <code>id</code> property 
+            to ensure any subsequent interactions across them are correctly handled as 
+            exactly equivalent variants of the same logical ID. (e.g. retain all 
+            variants in a database so an interaction with any one of them maps to the 
+            same UUID row), but MUST update held references and other interfaces to 
+            reflect the exactly equivalent DID URI variant present in the 
+            <code><a>canonicalId</a></code> property.
           </p>
 
           <p>
-  <a>DID documents</a> MAY include the <code><a>deterministicSameAs</a></code> property.
+  <a>DID Documents</a> MAY include the <code><a>canonicalId</a></code> property. 
+  If included, <a>DID Methods</a> MUST only populate the property with a DID URI 
+  from their own <a>DID Method</a>, and MUST guarentee the DID URI populated is 
+  an exactly equivalent variant of the DID being resolved.
           </p>
   
           <dl>
-            <dt><dfn>deterministicSameAs</dfn></dt>
+            <dt><dfn>canonicalId</dfn></dt>
             <dd>
-  The value of <code>deterministicSameAs</code> MUST be a
-  <a data-cite="INFRA#lists">list</a> where each item in the list is a
-  <a>URI</a> conforming to [[RFC3986]].
+  The value of <code>canonicalId</code> MUST be a <a data-cite="INFRA#strings">string</a> 
+  that is a <a>URI</a> conforming to [[RFC3986]].
             </dd>
             <dd>
-  This relationship is a statement that the subject of this DID is
-  also identified by one or more other DIDs that are verified by the 
-  DID Method to be deterministically equivalent variants of the DID.
+  This relationship is a statement that the DID being resolved has a canonical variant 
+  that is guarenteed by the <a>DID Method</a> to represent the same logical ID within 
+  the <a>DID Method</a> and is to be used as the primary reference for the Subject.
             </dd>
           </dl>
   
-          <div class="note" title="Equivalence and deterministicSameAs">
+          <div class="note" title="Equivalence and canonicalId">
             <p>
-  Unlike a purely self-declared statement of equivalence, 
-  <code><a>deterministicSameAs</a></code> only expresses variants of the 
-  resolved identifier the resolving Method can ensure are deterministically 
-  equivalent, such that a requesting party is able to rely on the veracity 
-  of the statement to the same degree it trusts the resolving Method.
+  Unlike a purely self-declared statement of equivalence asserted by the Subject, 
+  <code><a>canonicalId</a></code> MUST only expresses a DID URI from the same 
+  <a>DID Method</a> that is guarenteed by the <a>DID Method</a> to be an exactly 
+  equivalent variant of the resolved identifier, which the requesting party is 
+  subsequently able to trust to the same degree it trusts the resolving <a>DID Method</a>.
+            </p>
+          </div>
+  
+        </section>
+
+      <section>
+        <h3>sameAs</h3>
+          <p>
+            The <code><a>sameAs</a></code> property is an array 
+            of one or more DID URIs that MUST be from the same <a>DID Method</a> 
+            as the resolved identifier, and MUST be guaranteed by the <a>DID Method</a> 
+            to be exactly equivalent variants of the DID in the <code>id</code> 
+            property. The resolving party MUST treat the DID in the <code>id</code> 
+            property and those in the <code><a>sameAs</a></code> array as references 
+            to the same logical ID. The resolving party SHOULD retain the DID URIs 
+            from the <code>id</code> and <code><a>sameAs</a></code> properties to 
+            ensure any subsequent interactions across them are correctly handled as 
+            exactly equivalent variants of the same logical ID. (e.g. retain all 
+            variants in a database so an interaction with any one of them maps to the 
+            same UUID row)
+          </p>
+
+          <p>
+  <a>DID Documents</a> MAY include the <code><a>sameAs</a></code> property. 
+  If included, <a>DID Methods</a> MUST only populate the array with DID URIs from 
+  their own <a>DID Method</a>, and MUST guarentee all DID URIs populated are 
+  exactly equivalent variants of the DID being resolved.
+          </p>
+  
+          <dl>
+            <dt><dfn>sameAs</dfn></dt>
+            <dd>
+  The value of <code>sameAs</code> MUST be a <a data-cite="INFRA#lists">list</a> 
+  where each item in the list is a <a>URI</a> conforming to [[RFC3986]].
+            </dd>
+            <dd>
+  This relationship is a statement that the DID being resolved has multiple variants
+  that are guarenteed by the <a>DID Method</a> to represent the same logical ID 
+  within the <a>DID Method</a>, all of which identify the same Subject.
+            </dd>
+          </dl>
+  
+          <div class="note" title="Equivalence and sameAs">
+            <p>
+  Unlike a purely self-declared statement of equivalence asserted by the Subject, 
+  <code><a>sameAs</a></code> MUST only expresses DID URIs from the same 
+  <a>DID Method</a> that are guarenteed by the <a>DID Method</a> to be exactly 
+  equivalent variants of the resolved identifier, which the requesting party is 
+  subsequently able to trust to the same degree it trusts the resolving <a>DID Method</a>.
             </p>
           </div>
   
