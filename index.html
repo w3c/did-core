@@ -1880,29 +1880,36 @@ a different <a>DID controller</a>, the entity associated with the value of
         </pre>
       </section>
 
-      <dl>
-        <dt><dfn>assertionMethod</dfn></dt>
-        <dd>
-The <code>assertionMethod</code> property is OPTIONAL.
-        </dd>
-        <dd>
-If present, the associated value MUST be an <a
-data-cite="INFRA#ordered-set">ordered set</a> of one or more <a>verification
-methods</a>. Each <a>verification method</a> MAY be embedded or referenced.
-        </dd>
-      </dl>
+      <section>
+        <h2>Assertion Method</h2>
 
-      <p class="note" title="Uses of assertionMethod">
+        <p>
+The `assertionMethod` <a>verification relationship</a> is used to specify how
+the <a>DID subject</a> is expected to express claims, such as for the purposes
+of issuing a Verifiable Credential [[?VC-DATA-MODEL]].
+        </p>
+
+        <dl>
+          <dt><dfn>assertionMethod</dfn></dt>
+          <dd>
+The <code>assertionMethod</code> property is OPTIONAL. If present, the
+associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of
+one or more <a>verification methods</a>. Each <a>verification method</a> MAY be
+embedded or referenced.
+          </dd>
+        </dl>
+
+        <p>
 An example of when this property is useful is during the processing of a
 verifiable credential by a verifier. During validation, a verifier checks to
 see if a verifiable credential has been signed by the <a>DID Subject</a> by
 checking that the <a>verification method</a> used to assert the proof is
 associated with the <code><a>assertionMethod</a></code> property in the
 corresponding <a>DID Document</a>.
-      </p>
+        </p>
 
-      <pre class="example nohighlight" title="Assertion method property
-                  containing two verification methods">
+        <pre class="example nohighlight" title="Assertion method property
+                    containing two verification methods">
 {
 "@context": "https://www.w3.org/ns/did/v1",
 "id": "did:example:123456789abcdefghi",
@@ -1922,7 +1929,8 @@ corresponding <a>DID Document</a>.
 ],
 <span class="comment">...</span>
 }
-      </pre>
+        </pre>
+      </section>
 
       <dl>
         <dt><dfn>keyAgreement</dfn></dt>
