@@ -12,6 +12,8 @@
   -->
 
   <script class="remove"
+    src="https://unpkg.com/browse/jquery/dist/jquery.min.js"></script>
+  <script class="remove"
     src="https://www.w3.org/Tools/respec/respec-w3c"></script>
   <script class="remove"
     src="https://unpkg.com/reqlist/lib/reqlist.js"></script>
@@ -42,8 +44,8 @@
 
     // previously published draft, uncomment this and set its
     // YYYY-MM-DD date and its maturity status
-    //previousPublishDate:  "2020-07-31",
-    //previousMaturity:  "WD",
+    previousPublishDate:  "2020-11-08",
+    previousMaturity:  "WD",
 
     // automatically allow term pluralization
     pluralize: true,
@@ -1231,16 +1233,16 @@ property.
 <code><a>authentication</a></code>: defined in <a href="#authentication"></a>.
       </li>
       <li>
-<code><a>assertionMethod</a></code>: defined in <a href="#assertionmethod"></a>.
+<code><a>assertionMethod</a></code>: defined in <a href="#assertion"></a>.
       </li>
       <li>
-<code><a>keyAgreement</a></code>: defined in <a href="#keyagreement"></a>.
+<code><a>keyAgreement</a></code>: defined in <a href="#key-agreement"></a>.
       </li>
       <li>
-<code><a>capabilityDelegation</a></code>: defined in <a href="#capabilitydelegation"></a>.
+<code><a>capabilityDelegation</a></code>: defined in <a href="#capability-delegation"></a>.
       </li>
       <li>
-<code><a>capabilityInvocation</a></code>: defined in <a href="#capabilityinvocation"></a>.
+<code><a>capabilityInvocation</a></code>: defined in <a href="#capability-invocation"></a>.
       </li>
       <li>
 <code><a>service</a></code>: defined in <a href="#service-endpoints"></a>.
@@ -1482,7 +1484,7 @@ formats such as JWK [[RFC7517]]. It is RECOMMENDED that JWK <code>kid</code>
 values are set to the public key fingerprint [[RFC7638]]. It is RECOMMENDED
 that verification methods that use JWKs to represent their public keys utilize
 the value of <code>kid</code> as their fragment identifier. See the first key
-in <a href="#example-13-various-public-keys"></a>
+in <a href="#example-15-various-public-keys"></a>
 for an example of a public key with a compound key identifier.
           </p>
 
