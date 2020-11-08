@@ -588,7 +588,7 @@ DID documents
 typically express verification methods (such as public keys) and <a>services</a>
 relevant to interactions with the DID subject. A DID document is represents an
 abstract data model, and can be serialized according to a particular syntax
-(see <a href="#core-representations"></a>).  The generic properties supported
+(see <a href="#representations"></a>).  The generic properties supported
 in a DID document are specified in <a href="#core-properties"></a>.
 The <a>DID</a> itself is the value of the `id` property. The properties
 present in a DID document may be updated according to the applicable
@@ -684,7 +684,7 @@ model described in this specification which complies with the relevant
 normative statements in Sections <a href="#data-model"></a> and  <a
 href="#core-properties"></a>. A serialization format for the conforming
 document is deterministic, bi-directional, and lossless as described in
-Section <a href="#core-representations"></a>.
+Section <a href="#representations"></a>.
       </p>
 
       <p>
@@ -1037,7 +1037,7 @@ that are more restrictive than the generic rules in this section.
         <p>
 In order to maximize interoperability, implementers are urged to ensure that
 <a>DID fragments</a> are interpreted in the same way across representations (as
-described in <a href="#core-representations"></a>). For example, while
+described in <a href="#representations"></a>). For example, while
 JSON Pointer [[?RFC6901]] can be used in a <a>DID fragment</a>, it will not
 be interpreted in the same way across representations.
         </p>
@@ -1127,47 +1127,127 @@ absolute DID URL value of <code>did:example:123456789abcdefghi#key-1</code>.
   <section>
     <h1>Data Model</h1>
     <p>
-This specification defines an abstract data model for <a>DID documents</a>,
-independent of any specific representation. This section provides a
-high-level description of the data model, a set of requirements for
-representations, and a set of requirements for extensibility.
+This specification defines an abstract data model for <a>DID documents</a> that
+is capable of being serialized into multiple concrete representations. This
+section provides a high-level description of the data model, how different types
+of properties are expressed in the data model, and instructions for extending
+the data model.
     </p>
-    <section>
-      <h2>Definition</h2>
-      <p>
+    <p>
 A <a>DID document</a> consists of a <a data-cite="INFRA#maps">map</a> of <a
-data-cite="INFRA#map-entry">properties</a>, which are name-value pairs (ie. a
-property name, and a property value). The definitions of each of these
-properties are specified in section <a href="#core-properties"></a>. Specific
-representations are defined in section <a href="#core-representations"></a>.
-      </p>
-    </section>
-    <section>
-      <h2>Representations</h2>
-      <p>
-Following are the requirements for representations.
-      </p>
-      <ol>
-        <li>
-A representation MUST define an unambiguous encoding and decoding of all
-property names and their associated values as defined in this specification.
-This means anything you can represent in the <a>DID document</a> data model
-can be represented in any compliant representation.
-        </li>
-        <li>
-The representation MUST be associated with an IANA-registered MIME type.
-        </li>
-        <li>
-The representation MUST define fragment processing rules for its MIME type that
-are conformant with the fragment processing rules defined in section
-<a href="#fragment"></a> of this specification.
-        </li>
-      </ol>
-        <p>
-The core representations are specified in section
-<a href="#core-representations"></a>.
-        </p>
-    </section>
+data-cite="INFRA#map-entry">properties</a>, where each property consists of
+a property name/property value pair. The data model contains at least two
+different classes of properties. The first class of properties are called
+core properties, and are specified in section <a href="#core-properties"></a>.
+The second class of properties are called representation properties, and
+are specified in section <a href="#representations"></a>.
+    </p>
+    <p>
+All property names in the data model are <a
+data-cite="INFRA#strings">strings</a>. All property values are expressed
+using one of the data types in the table below.
+    </p>
+
+    <table class="simple" id="public-key-support">
+      <thead>
+        <tr>
+          <th>
+Data&nbsp;Type
+          </th>
+          <th>
+Considerations
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+<a data-cite="INFRA#maps">ordered&nbsp;map</a>
+          </td>
+          <td>
+A finite ordered sequence of key/value pairs, with no key appearing twice as
+specified in [[INFRA]].
+          </td>
+        </tr>
+        <tr>
+          <td>
+<a data-cite="INFRA#list">list</a>
+          </td>
+          <td>
+A finite ordered sequence of items as specified in [[INFRA]].
+          </td>
+        </tr>
+        <tr>
+          <td>
+<a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
+          </td>
+          <td>
+A <a data-cite="INFRA#list">list</a> that does not contain the same item twice
+as specified in [[INFRA]].
+          </td>
+        </tr>
+        <tr>
+          <td>
+<dfn>datetime</dfn>
+          </td>
+          <td>
+A date and time value that is capable of losslessly expressing all values
+expressible by a `dateTime` as specified in
+[<a data-cite="XMLSCHEMA11-2#dateTime">XMLSCHEMA11-2</a>].
+          </td>
+        </tr>
+        <tr>
+          <td>
+<a data-cite="INFRA#string">string</a>
+          </td>
+          <td>
+A sequence of code units often used to represent human readable language
+as specified in [[INFRA]].
+          </td>
+        </tr>
+        <tr>
+          <td>
+<dfn>decimal</dfn>
+          </td>
+          <td>
+A value that represents a subset of the real numbers, which can be
+represented by decimal numerals as specified in
+[<a data-cite="XMLSCHEMA11-2#decimal">XMLSCHEMA11-2</a>]. To maximize
+interoperability, implementers are urged to only express values capable of
+being represented by 53 bits in binary notation.
+          </td>
+        </tr>
+        <tr>
+          <td>
+<dfn>double</dfn>
+          </td>
+          <td>
+A value that is often used to approximate arbitrary real numbers as specified
+in [<a data-cite="XMLSCHEMA11-2#double">XMLSCHEMA11-2</a>]. To maximize
+interoperability, implementers are urged to only express values capable of
+being represented by 64 bits in binary notation.
+          </td>
+        </tr>
+        <tr>
+          <td>
+<a data-cite="INFRA#boolean">boolean</a>
+          </td>
+          <td>
+A value that is either true or false as defined in [[INFRA]].
+          </td>
+        </tr>
+        <tr>
+          <td>
+<a data-cite="INFRA#null">null</a>
+          </td>
+          <td>
+A value that is used to indicate the lack of a value as defined in [[INFRA]].
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
     <section>
       <h2>Extensibility</h2>
       <p>
@@ -2212,7 +2292,7 @@ and <a href="#authentication"></a>.
   </section>
 
   <section class="normative">
-    <h1>Core Representations</h1>
+    <h1>Representations</h1>
 
     <p>
 All concrete representations of a <a>DID document</a> are serialized using a
@@ -2249,6 +2329,36 @@ agreed-upon representation, including localized rules for handling properties
 not listed in the registry. See section <a href="#extensibility"></a>
 for more information.
     </p>
+
+    <section>
+      <h2>Creating Representations</h2>
+      <p>
+The <a href="#data-model">data model</a> provided in this specification
+supports being serialized into a variety of existing representations. Some
+applications might require the creation of a new representation. All new
+representations require the following:
+      </p>
+      <ol>
+        <li>
+A representation MUST define an unambiguous encoding and decoding of all
+property names and their associated values as defined in this specification.
+This means anything you can represent in the <a>DID document</a> data model
+can be represented in any compliant representation.
+        </li>
+        <li>
+The representation MUST be associated with an IANA-registered MIME type.
+        </li>
+        <li>
+The representation MUST define fragment processing rules for its MIME type that
+are conformant with the fragment processing rules defined in section
+<a href="#fragment"></a> of this specification.
+        </li>
+      </ol>
+      <p>
+In order to maximize interoperability, representation specification authors
+SHOULD register their representation in the [[?DID-SPEC-REGISTRIES]].
+      </p>
+    </section>
 
     <section>
       <h2>
