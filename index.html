@@ -1932,28 +1932,34 @@ corresponding <a>DID Document</a>.
         </pre>
       </section>
 
-      <dl>
-        <dt><dfn>keyAgreement</dfn></dt>
-        <dd>
-The <code>keyAgreement</code> property is OPTIONAL.
-        </dd>
-        <dd>
-If present, the associated value MUST be an <a
-data-cite="INFRA#ordered-set">ordered set</a> of one or more <a>verification
-methods</a>. Each <a>verification method</a> MAY be embedded or referenced.
-        </dd>
-      </dl>
+      <section>
+        <h2>Key Agreement</h2>
 
-      <p class="note" title="Uses of keyAgreement">
-An example of when this property is useful is during the establishment of a
-TLS session on behalf of the <a>DID Subject</a>. In this case, the
-counterparty checks that the <a>verification method</a> used during the
-protocol handshake is associated with the <code><a>keyAgreement</a></code>
-property in the <a>DID Document</a>.
-      </p>
+        <p>
+The `keyAgreement` <a>verification relationship</a> is used to specify how
+to encrypt information to the <a>DID subject</a>, such as for the purposes
+of establishing a secure communication channel with the recipient.
+        </p>
 
-      <pre class="example nohighlight" title="Key agreement property
-                    containing two verification methods">
+        <dl>
+          <dt><dfn>keyAgreement</dfn></dt>
+          <dd>
+The <code>keyAgreement</code> property is OPTIONAL. If present, the associated
+value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of one or more
+<a>verification methods</a>. Each <a>verification method</a> MAY be embedded or
+referenced.
+          </dd>
+        </dl>
+
+        <p>
+An example of when this property is useful is when encrypting a message
+intended for the <a>DID Subject</a>. In this case, the counterparty uses the
+public cryptographic key information in the <a>verification method</a>
+to wrap a decryption key for the recipient.
+        </p>
+
+        <pre class="example nohighlight" title="Key agreement property
+                      containing two verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
@@ -1973,8 +1979,8 @@ property in the <a>DID Document</a>.
   ],
   <span class="comment">...</span>
 }
-
-      </pre>
+        </pre>
+      </section>
 
       <dl>
         <dt><dfn>capabilityInvocation</dfn></dt>
