@@ -11,39 +11,39 @@
     offline.
   -->
 
-  <script class='remove'
-    src='https://www.w3.org/Tools/respec/respec-w3c'>
-  </script><!--script src='./respec-w3c-common.js' class='remove'></script-->
+  <script class="remove"
+    src="https://www.w3.org/Tools/respec/respec-w3c"></script>
+  <script class="remove"
+    src="https://unpkg.com/reqlist/lib/reqlist.js"></script>
+  <link class="removeOnSave" rel="stylesheet" type="text/css"
+    href="https://unpkg.com/reqlist/lib/reqlist.css" />
 
-  <script src="https://unpkg.com/reqlist/lib/reqlist.js" class="remove"></script>
-  <link href="https://unpkg.com/reqlist/lib/reqlist.css" class="removeOnSave" rel="stylesheet" type="text/css" />
-
-  <script class='remove' src="./common.js">
-  </script>
+  <script class='remove' src="./common.js"></script>
   <script class="remove" type="text/javascript">
   var respecConfig = {
-    wgPublicList: "public-did-wg",
+    // the W3C WG and public mailing list
     group: "did",
-
-    // specification status (e.g., WD, LCWD, NOTE, etc.). If in doubt use ED.
-    specStatus: "WD",
+    wgPublicList: "public-did-wg",
 
     // the specification's short name, as in http://www.w3.org/TR/short-name/
     shortName: "did-core",
 
+    // specification status (e.g., WD, LCWD, NOTE, etc.). If in doubt use ED.
+    specStatus: "WD",
 
+    // Editor's Draft URL
     edDraftURI: "https://w3c.github.io/did-core/",
 
-    // subtitle
+    // subtitle for the spec
     subtitle: "Core architecture, data model, and representations",
 
     // if you wish the publication date to be other than today, set this
     //publishDate:  "2019-11-07",
 
-    // if there is a previously published draft, uncomment this and set its
+    // previously published draft, uncomment this and set its
     // YYYY-MM-DD date and its maturity status
-    previousPublishDate:  "2020-07-31",
-    previousMaturity:  "WD",
+    //previousPublishDate:  "2020-07-31",
+    //previousMaturity:  "WD",
 
     // automatically allow term pluralization
     pluralize: true,
@@ -52,8 +52,8 @@
     localBiblio: ccg.localBiblio,
     xref: "web-platform",
     github: {
-            repoURL: "https://github.com/w3c/did-core/",
-            branch: "master"
+      repoURL: "https://github.com/w3c/did-core/",
+      branch: "master"
     },
     includePermalinks: false,
 
@@ -67,8 +67,7 @@
     // ],
 
 
-    // editors, add as many as you like
-    // only "name" is required
+    // list of specification editors
     editors: [{
         name: "Drummond Reed",
         url: "https://www.linkedin.com/in/drummondreed/",
@@ -92,9 +91,7 @@
       }
     ],
 
-    // authors, add as many as you like.
-    // This is optional, uncomment if you have authors as well as editors.
-    // only "name" is required. Same format as editors.
+    // list of specification authors
     authors: [{
         name: "Drummond Reed",
         url: "https://www.linkedin.com/in/drummondreed/",
@@ -111,7 +108,7 @@
       },
       {
         name: "Dave Longley",
-        url: "",
+        url: "https://github.com/dlongley",
         company: "Digital Bazaar",
         companyURL: "https://digitalbazaar.com/",
         w3cid: 48025
