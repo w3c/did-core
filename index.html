@@ -1982,29 +1982,36 @@ to wrap a decryption key for the recipient.
         </pre>
       </section>
 
-      <dl>
-        <dt><dfn>capabilityInvocation</dfn></dt>
-        <dd>
-The <code>capabilityInvocation</code> property is OPTIONAL.
-        </dd>
-        <dd>
-If present, the associated value MUST be an <a
-data-cite="INFRA#ordered-set">ordered set</a> of one or more <a>verification
-methods</a>. Each <a>verification method</a> MAY be embedded or referenced.
-        </dd>
-      </dl>
+      <section>
+        <h2>Capability Invocation</h2>
 
-      <p class="note" title="Uses of capabilityInvocation">
+        <p>
+The `capabilityInvocation` <a>verification relationship</a> is used to specify
+a mechanism that might be used by the <a>DID subject</a> to invoke a
+cryptographic capability, such as the authorization to access an HTTP API.
+        </p>
+
+        <dl>
+          <dt><dfn>capabilityInvocation</dfn></dt>
+          <dd>
+The <code>capabilityInvocation</code> property is OPTIONAL. If present, the
+associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of
+one or more <a>verification methods</a>. Each <a>verification method</a> MAY be
+embedded or referenced.
+          </dd>
+        </dl>
+
+        <p>
 An example of when this property is useful is when a <a>DID subject</a>
 chooses to invoke their capability to start a vehicle through the combined
 usage of a <a>verification method</a> and the <code>StartCar</code>
 capability. In this example, the vehicle would be the <em>verifier</em> and
 would need to verify that the <a>verification method</a> exists in the
 <code><a>capabilityInvocation</a></code> property.
-      </p>
+        </p>
 
-      <pre class="example nohighlight" title="Capability invocation property
-                    containing two verification methods">
+        <pre class="example nohighlight" title="Capability invocation property
+                      containing two verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1", "id":
   "did:example:123456789abcdefghi",
@@ -2024,8 +2031,8 @@ would need to verify that the <a>verification method</a> exists in the
   ],
   <span class="comment">...</span>
 }
-
-      </pre>
+        </pre>
+      </section>
 
       <dl>
         <dt><dfn>capabilityDelegation</dfn></dt>
