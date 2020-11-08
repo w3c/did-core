@@ -2329,6 +2329,27 @@ through the content of the <a>DID document</a> alone.
     </p>
 
     <p>
+Consumers MUST add all properties that do not have processing rules for
+the representation being consumed to the abstract data model using the
+representation's generic type processing rules. Producers MUST serialize all
+properties in the abstract data model that do not have processing rules for the
+representation being produced according to the representation's generic type
+processing rules.
+    </p>
+
+    <p class="note" title="Representation-specific syntax properties">
+Note that properties that contain representation-specific syntax will only
+have special processing rules defined by a single representation. Consumers of
+a different representation are required to include these properties in
+the abstract data model using only their generic type processing rules
+to enable lossless conversion of representations. Similarly, producers
+are required to treat properties containing representation-specific syntax
+using generic type processing rules when producing a representation for which
+the property is not defined. Representations are required to define producer
+behavior for any such properties defined by the representation.
+    </p>
+
+    <p>
 The production and consumption rules in this section apply to all
 implementations seeking to be fully compatible with independent implementations
 of the specification. Deployments of this specification MAY use a custom
@@ -2360,6 +2381,11 @@ The representation MUST be uniquely associated with an IANA-registered MIME type
 The representation MUST define fragment processing rules for its MIME type that
 are conformant with the fragment processing rules defined in section
 <a href="#fragment"></a> of this specification.
+        </li>
+        <li>
+The representation MAY define representation-specific syntax that can
+be stored as properties in the abstract data model. These properties are
+included when consuming or producing to aid in ensuring lossless conversion.
         </li>
       </ol>
       <p>
@@ -2493,12 +2519,6 @@ the root object. Properties MAY define additional data sub structures subject
 to the value representation rules in the list above.
         </p>
 
-        <p>
-The member name <code>@context</code> MUST NOT be used as this property is
-reserved for JSON-LD producers.
-        </p>
-
-
       </section>
 
       <section>
@@ -2613,21 +2633,6 @@ data-cite="INFRA#convert-a-json-derived-javascript-value-to-an-infra-value">JSON
 consumption rules</a> in the [[INFRA]] specification.
         </p>
 
-        <p>
-The value of the <code>@context</code> object member MUST be ignored as this is
-reserved for JSON-LD consumers.
-        </p>
-
-        <p>
-Unknown object member names MUST be ignored as unknown properties.
-        </p>
-
-        <p class="issue" data-number="205">
-This specification needs to define clear and consistent rules for how to handle
-unknown data members on consumption, and this section needs to be updated with
-that decision.
-        </p>
-
       </section>
 
     </section>
@@ -2691,7 +2696,13 @@ additional requirement: The <a>DID document</a> MUST include the
 
             <p>
 The <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD
-specification</a> defines values that are valid for this property.
+specification</a> defines values that are valid for this property. This
+property contains representation-specific syntax and therefore could
+be present in the abstract data model to aid in lossless conversion. If
+the property is present in the abstract data model, it MUST be used
+during production unless either an alternative <code>@context</code> value is
+explicitly provided to the producer or if the value from the abstract data
+model is not valid according to the consumption rules.
             </p>
 
             <p>
@@ -2779,16 +2790,6 @@ The value of the <code>@context</code> property conforms to the
             </p>
           </dd>
         </dl>
-
-        <p>
-Unknown object member names MUST be ignored as unknown properties.
-        </p>
-
-        <p class="issue" data-number="205">
-This specification needs to define clear and consistent rules for how to handle
-unknown data members on consumption, and this section needs to be updated with
-that decision.
-        </p>
 
         <p>
 Consumers SHOULD drop all properties from a <a>DID document</a> that are not
