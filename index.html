@@ -1800,20 +1800,27 @@ interoperability, any such properties used SHOULD be registered in
 [[DID-SPEC-REGISTRIES]].
       </p>
 
-      <dl>
-        <dt><dfn>authentication</dfn></dt>
-        <dd>
-The <code>authentication</code> property is OPTIONAL.
-        </dd>
-        <dd>
-If present, the associated value MUST be an <a
-data-cite="INFRA#ordered-set">ordered set</a> of one or more <a>verification
-methods</a>. Each <a>verification method</a> MAY be embedded or referenced.
-        </dd>
-      </dl>
+      <section>
+        <h2>Authentication</h2>
 
-      <div class="note" title="Uses of authentication">
         <p>
+The `authentication` <a>verification relationship</a> is used to specify how the
+<a>DID subject</a> is expected to be authenticated, such as for the purposes of
+logging into a website.
+        </p>
+
+        <dl>
+          <dt><dfn>authentication</dfn></dt>
+          <dd>
+The <code>authentication</code> property is OPTIONAL. If present, the associated
+value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of one or more
+<a>verification methods</a>. Each <a>verification method</a> MAY be embedded or
+referenced.
+          </dd>
+        </dl>
+
+        <div class="note" title="Uses of authentication">
+          <p>
 If authentication is established, it is up to the <a>DID method</a> or other
 application to decide what to do with that information. A particular <a>DID
 method</a> could decide that authenticating as a <a>DID controller</a> is
@@ -1824,8 +1831,8 @@ document</a> than that used to authenticate. In other words, what is done
 <em>after</em> the authentication check is out of scope for the DID data
 model, but <a>DID methods</a> and applications are expected to define this
 themselves.
-        </p>
-        <p>
+          </p>
+          <p>
 This is useful to any <em>authentication verifier</em> that needs
 to check to see if an entity that is attempting to <a>authenticate</a> is, in
 fact, presenting a valid proof of authentication. When a <em>verifier</em>
@@ -1835,8 +1842,8 @@ entity is identified by the <a>DID</a>, then that <em>verifier</em> checks to
 ensure that the proof can be verified using a <a>verification method</a> (e.g.,
 public key) listed under <code><a>authentication</a></code> in the
 <a>DID Document</a>.
-        </p>
-        <p>
+          </p>
+          <p>
 Note that the <a>verification method</a> indicated by the
 <code><a>authentication</a></code> property of a <a>DID document</a> can only
 be used to <a>authenticate</a> the <a>DID subject</a>. To <a>authenticate</a>
@@ -1844,11 +1851,11 @@ a different <a>DID controller</a>, the entity associated with the value of
 <code>controller</code> (see Section <a href="#control"></a>) needs to
 <a>authenticate</a> with its <em>own</em> <a>DID document</a> and attached
 <code><a>authentication</a></code> <a>verification relationship</a>.
-        </p>
-      </div>
+          </p>
+        </div>
 
-      <pre class="example nohighlight" title="Authentication property
-                    containing three verification methods">
+        <pre class="example nohighlight" title="Authentication property
+                      containing three verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
@@ -1870,7 +1877,8 @@ a different <a>DID controller</a>, the entity associated with the value of
   ],
   <span class="comment">...</span>
 }
-      </pre>
+        </pre>
+      </section>
 
       <dl>
         <dt><dfn>assertionMethod</dfn></dt>
