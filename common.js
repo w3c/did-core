@@ -4,7 +4,6 @@
 /*  ... who stole it from Manu Sporny of the JSON-LD 1.0 Working Group */
 /*  ... who stole it from Shane McCarron, that beautiful, beautiful man. */
 /* exported restrictReferences */
-
 var ccg = {
   // Add as the respecConfig localBiblio variable
   // Extend or override global respec references
@@ -181,34 +180,20 @@ var ccg = {
 const termNames = [] ;
 const termsReferencedByTerms = [] ;
 
-function restrictReferences(utils, content) {
+function restrictReferences(utils, content, filename) {
   const base = document.createElement("div");
   base.innerHTML = content;
 
-  // New new logic:
-  //
-  // 1. build a list of all term-internal references
-  // 2. When ready to process, for each reference INTO the terms,
-  // remove any terms they reference from the termNames array too.
-  const noPreserve = base.querySelectorAll("dfn:not(.preserve)");
-  for (const item of noPreserve) {
-    const $t = $(item);
-    const titles = $t.getDfnTitles();
-    const n = $t.makeID("dfn", titles[0]);
-    if (n) {
-      termNames[n] = $t.parent();
-    }
-  }
-
-  const $container = $(".termlist", base) ;
-  const containerID = $container.makeID("", "terms") ;
   return (base.innerHTML);
 }
 
 require(["core/pubsubhub"], (respecEvents) => {
   "use strict";
 
-  respecEvents.sub('end', (message) => {
+  console.log("RESPEC EVENTS", respecEvents);
+
+  respecEvents.sub('end-all', (message) => {
+    console.log("END EVENT", message);
     // remove data-cite on where the citation is to ourselves.
     const selfDfns = document.querySelectorAll("dfn[data-cite^='" + respecConfig.shortName.toUpperCase() + "#']");
     for (const dfn of selfDfns) {
@@ -229,8 +214,32 @@ require(["core/pubsubhub"], (respecEvents) => {
   // class 'termlist', and if the target of that reference is
   // also within a 'dl' element of class 'termlist', then
   // consider it an internal reference and ignore it.
-  respecEvents.sub('end', (message) => {
+  respecEvents.sub('end-all', (message) => {
+    console.log("message", message);
     if (message === 'core/link-to-dfn') {
+      // 1. build a list of all term-internal references
+      // 2. When ready to process, for each reference INTO the terms,
+      // remove any terms they reference from the termNames array too.
+      const noPreserve =
+        document.querySelectorAll("#terminology dfn:not(.preserve)");
+
+      for (const item of noPreserve) {
+        const $t = $(item);
+        const titles = getDfnTitles(item);
+        console.log('titles', titles);
+        /*
+        const $t = $(item);
+        const titles = $t.getDfnTitles();
+        const n = $t.makeID("dfn", titles[0]);
+        if (n) {
+          termNames[n] = $t.parent();
+        }
+        */
+      }
+
+      //const $container = $(".termlist", base) ;
+      //const containerID = $container.makeID("", "terms") ;
+
       // all definitions are linked; find any internal references
       const internalTerms = document.querySelectorAll(".termlist a.internalDFN");
       for (const item of internalTerms) {
@@ -282,6 +291,7 @@ require(["core/pubsubhub"], (respecEvents) => {
 
       // delete any terms that were not referenced.
       for (const term in termNames) {
+        //console.log("DELETE TERM?", term);
         const $p = $("#"+term);
         // Remove term definitions inside a dt, where data-cite does not start with shortname
         if ($p === undefined) { continue; }
