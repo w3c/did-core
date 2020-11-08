@@ -2034,27 +2034,35 @@ would need to verify that the <a>verification method</a> exists in the
         </pre>
       </section>
 
-      <dl>
-        <dt><dfn>capabilityDelegation</dfn></dt>
-        <dd>
-The <code>capabilityDelegation</code> property is OPTIONAL.
-        </dd>
-        <dd>
-If present, the associated value MUST be an <a
-data-cite="INFRA#ordered-set">ordered set</a> of one or more <a>verification
-methods</a>. Each <a>verification method</a> MAY be embedded or referenced.
-        </dd>
-      </dl>
+      <section>
+        <h2>Capability Delegation</h2>
 
-      <p class="note" title="Uses of capabilityDelegation">
+        <p>
+The `capabilityDelegation` <a>verification relationship</a> is used to specify
+a mechanism that might be used by the <a>DID subject</a> to delegate
+a cryptographic capability to another party, such as delegating the
+authority to access a specific HTTP API to a subordinate.
+        </p>
+
+        <dl>
+          <dt><dfn>capabilityDelegation</dfn></dt>
+          <dd>
+The <code>capabilityDelegation</code> property is OPTIONAL. If present, the
+associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of
+one or more <a>verification methods</a>. Each <a>verification method</a> MAY be
+embedded or referenced.
+          </dd>
+        </dl>
+
+        <p>
 An example of when this property is useful is when a <a>DID Subject</a>
 chooses to grant their capability to start a vehicle through the combined
 usage of a <a>verification method</a> and the <code>StartCar</code> capability
-to a capability invoker.
-      </p>
+to a party other than themselves.
+        </p>
 
-      <pre class="example nohighlight" title="Capability Delegation property
-                    containing two verification methods">
+        <pre class="example nohighlight" title="Capability Delegation property
+                      containing two verification methods">
 {
   "@context": "https://www.w3.org/ns/did/v1", "id":
   "did:example:123456789abcdefghi",
@@ -2074,8 +2082,8 @@ to a capability invoker.
   ],
   <span class="comment">...</span>
 }
-
-      </pre>
+        </pre>
+      </section>
     </section>
 
     <section>
