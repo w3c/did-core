@@ -4395,6 +4395,42 @@ not wish to be correlated with the <a>DID</a>.
 
     </section>
 
+    <section>
+      <h2>
+        Equivalence Properties
+      </h2>
+      <p>
+        The three equivalence properties defined in Core Properties
+        —<code><a>alsoKnownAs</a></code>, <code><a>sameAs</a></code>, and 
+        <code><a>canonicalID</a></code>—are subject to special security 
+        considerations related to attacks against DIDs that are asserted to be 
+        equivalent. Each of the equivalence property sections describes relevant 
+        mitigation instructions. In general, they are:
+      </p>
+      <p>
+        The <code><a>sameAs</a></code> and <code><a>canonicalID</a></code> properties 
+        that constrain equivalence assertions to variants of a single DID produced by 
+        the same <a>DID method</a> (e.g. <code>did:foo:123</code> ≡ <code>did:foo:hash(123)</code>) 
+        can be trusted to the extent the resolving party trusts the <a>DID method</a> (and a 
+        conforming producer) itself.
+      </p>
+      <p>
+        The <code><a>alsoKnownAs</a></code> property that permits an equivalence assertion 
+        to URIs that are not governed by the same <a>DID method</a> (or may not be DIDs at 
+        all) cannot be trusted without performing verification steps outside of the governing 
+        <a>DID method</a>. See Section 5.1.1 for the recommendation to verify inverse relationships.
+      </p>
+      <p>
+        As with any other sensitive properties in the DID Document (e.g. public key references), 
+        parties relying on any equivalence statement in a DID Document should guard against the 
+        values of these properties being substituted by an attacker after the proper verification 
+        has been performed. Any write access to a DID document stored in memory or disk after 
+        verification has been performed is an attack vector that will circumvent verification 
+        unless the DID document is re-verified.
+      </p>
+
+    </section>
+
   </section>
 
   <section class="informative">
