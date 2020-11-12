@@ -1441,99 +1441,108 @@ necessarily appropriate, <em>even with</em> a reciprocal relationship.
       </section>
 
       <section>
-        <h3>canonicalId</h3>
+        <h3>sameAs</h3>
           <p>
-            The <code><a>canonicalId</a></code> property is an single DID URI string
-            value that MUST be from the same <a>DID Method</a> as the resolved 
-            identifier, and MUST be guaranteed by the <a>DID Method</a> to be an exactly 
-            equivalent variant of the DID in the <code>id</code> property. The resolving 
-            party MUST treat the DID URI in the <code>id</code> property and the DID URI 
-            in the <code><a>canonicalId</a></code> array as references to the same logical 
-            ID. The resolving party MAY retain the DID URI from the <code>id</code> property 
-            to ensure any subsequent interactions across them are correctly handled as 
-            exactly equivalent variants of the same logical ID. (e.g. retain all 
-            variants in a database so an interaction with any one of them maps to the 
-            same UUID row), but MUST update held references and other interfaces to 
-            reflect the exactly equivalent DID URI variant present in the 
-            <code><a>canonicalId</a></code> property.
-          </p>
-
-          <p>
-  <a>DID Documents</a> MAY include the <code><a>canonicalId</a></code> property. 
-  If included, <a>DID Methods</a> MUST only populate the property with a DID URI 
-  from their own <a>DID Method</a>, and MUST guarentee the DID URI populated is 
-  an exactly equivalent variant of the DID being resolved.
+            A <a>DID Method</a> can define different forms of a DID that are 
+            logically equivalent. An example is when a DID takes one form prior 
+            to registration in a verifiable data registry and another form after 
+            such registration. In this case, the <a>DID Method</a> specification 
+            may need to express one or more DIDs that are logically equivalent to 
+            the resolved DID as a property of the DID document. This is the 
+            purpose of the sameAs property.
           </p>
   
           <dl>
-            <dt><dfn>canonicalId</dfn></dt>
+            <dt><dfn>sameAs</dfn></dt>
             <dd>
-  The value of <code>canonicalId</code> MUST be a <a data-cite="INFRA#strings">string</a> 
-  that is a <a>URI</a> conforming to [[RFC3986]].
+              The value of <code>sameAs</code> MUST be a 
+              <a data-cite="INFRA#lists">list</a> where each item in the list 
+              is a DID conforming to the requirements in Section 3.1.
             </dd>
             <dd>
-  This relationship is a statement that the DID being resolved has a canonical variant 
-  that is guarenteed by the <a>DID Method</a> to represent the same logical ID within 
-  the <a>DID Method</a> and is to be used as the primary reference for the Subject.
+              The relationship is a statement that each <code><a>sameAs</a></code> 
+              DID value is logically equivalent to the <code>id</code> property DID 
+              value and thus identifies the same DID subject.
+            </dd>
+            <dd>
+              Each <code><a>sameAs</a></code> DID value MUST be produced by the same 
+              DID method as the <code>id</code> property DID value.
+            </dd>
+            <dd>
+              A conforming <a>DID Method</a> specification MUST guarantee that each 
+              <code><a>sameAs</a></code> DID value is logically equivalent to the 
+              <code>id</code> property DID value.
+            </dd>
+            <dd>
+              A resolving party SHOULD retain the DIDs from the <code>id</code> and 
+              <code><a>sameAs</a></code> properties to ensure any subsequent 
+              interactions with any of the DIDs they contain are correctly handled 
+              as logically equivalent DIDs (e.g. retain all variants in a database so an 
+              interaction with any one maps to the same underlying account).
             </dd>
           </dl>
   
-          <div class="note" title="Equivalence and canonicalId">
+          <div class="note" title="Equivalence and sameAs">
             <p>
-  Unlike a purely self-declared statement of equivalence asserted by the Subject, 
-  <code><a>canonicalId</a></code> MUST only expresses a DID URI from the same 
-  <a>DID Method</a> that is guarenteed by the <a>DID Method</a> to be an exactly 
-  equivalent variant of the resolved identifier, which the requesting party is 
-  subsequently able to trust to the same degree it trusts the resolving <a>DID Method</a>.
+              <code><a>sameAs</a></code> was chosen as the name for this property because 
+              from a graph modeling standpoint the intended semantics are identical to 
+              the <code>owl:sameAs</code> property. <code><a>sameAs</a></code> is a much 
+              stronger form of equivalence than <code><a>alsoKnownAs</a></code> because the 
+              equivalence MUST be guaranteed by the governing DID method. <code><a>sameAs</a></code> 
+              represents a full graph merge because the same DID document describes both 
+              the <code><a>sameAs</a></code> DID and the <code>id</code> property DID.
             </p>
           </div>
   
         </section>
 
       <section>
-        <h3>sameAs</h3>
+        <h3>canonicalId</h3>
           <p>
-            The <code><a>sameAs</a></code> property is an array 
-            of one or more DID URIs that MUST be from the same <a>DID Method</a> 
-            as the resolved identifier, and MUST be guaranteed by the <a>DID Method</a> 
-            to be exactly equivalent variants of the DID in the <code>id</code> 
-            property. The resolving party MUST treat the DID in the <code>id</code> 
-            property and those in the <code><a>sameAs</a></code> array as references 
-            to the same logical ID. The resolving party SHOULD retain the DID URIs 
-            from the <code>id</code> and <code><a>sameAs</a></code> properties to 
-            ensure any subsequent interactions across them are correctly handled as 
-            exactly equivalent variants of the same logical ID. (e.g. retain all 
-            variants in a database so an interaction with any one of them maps to the 
-            same UUID row)
-          </p>
-
-          <p>
-  <a>DID Documents</a> MAY include the <code><a>sameAs</a></code> property. 
-  If included, <a>DID Methods</a> MUST only populate the array with DID URIs from 
-  their own <a>DID Method</a>, and MUST guarentee all DID URIs populated are 
-  exactly equivalent variants of the DID being resolved.
+            The <code><a>canonicalID</a></code> property is identical to the 
+            <code><a>sameAs</a></code> property except: a) it accepts only a single 
+            DID as its value, and b) that DID is defined to be the canonical DID 
+            for the DID subject within the scope of the containing DID document. 
           </p>
   
           <dl>
-            <dt><dfn>sameAs</dfn></dt>
+            <dt><dfn>canonicalId</dfn></dt>
             <dd>
-  The value of <code>sameAs</code> MUST be a <a data-cite="INFRA#lists">list</a> 
-  where each item in the list is a <a>URI</a> conforming to [[RFC3986]].
+              The value of <code><a>canonicalID</a></code> MUST be a DID conforming to the 
+              requirements in Section 3.1.
             </dd>
             <dd>
-  This relationship is a statement that the DID being resolved has multiple variants
-  that are guarenteed by the <a>DID Method</a> to represent the same logical ID 
-  within the <a>DID Method</a>, all of which identify the same Subject.
+              The relationship is a statement that the <code><a>canonicalID</a></code> DID 
+              value is logically equivalent to the <code>id</code> property DID value and 
+              that the <code><a>canonicalID</a></code> DID value is defined by the 
+              <a>DID Method</a> to be the canonical DID for the DID subject in the scope 
+              of the containing DID document.
+            </dd>
+            <dd>
+              A <code><a>canonicalID</a></code> DID value MUST be produced by the same 
+              <a>DID Method</a> as the <code>id</code> property DID value.
+            </dd>
+            <dd>
+              A conforming <a>DID Method</a> specification MUST guarantee that the 
+              <code><a>canonicalID</a></code> DID value is logically equivalent to the 
+              <code>id</code> property DID value.
+            </dd>
+            <dd>
+              A resolving party SHOULD use the <code><a>canonicalID</a></code> DID value 
+              as its primary ID value for the DID subject and treat all other equivalent 
+              DIDs as secondary aliases. (e.g. update corresponding primary references in 
+              their systems to reflect the new canonical ID directive).
             </dd>
           </dl>
   
-          <div class="note" title="Equivalence and sameAs">
+          <div class="note" title="Equivalence and canonicalId">
             <p>
-  Unlike a purely self-declared statement of equivalence asserted by the Subject, 
-  <code><a>sameAs</a></code> MUST only expresses DID URIs from the same 
-  <a>DID Method</a> that are guarenteed by the <a>DID Method</a> to be exactly 
-  equivalent variants of the resolved identifier, which the requesting party is 
-  subsequently able to trust to the same degree it trusts the resolving <a>DID Method</a>.
+              <code><a>canonicalID</a></code> is the same statement of equivalence as 
+              <code><a>sameAs</a></code> except it is constrained to a single value that 
+              is defined to be canonical for the DID subject in the scope of the DID 
+              document. Like <code><a>sameAs</a></code>, <code><a>canonicalID</a></code> 
+              represents a full graph merge because the same DID document describes both 
+              the <code><a>canonicalID</a></code> DID and the <code>id</code> property DID.
             </p>
           </div>
   
