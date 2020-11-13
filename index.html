@@ -767,24 +767,34 @@ Section <a href="#method-schemes"></a>.
 
       <div class="note" title="Persistence">
         <p>
-  A <a>DID</a> is expected to be persistent and immutable. That is, a <a>DID</a>
-  is bound exclusively and permanently to its one and only subject. Even after a
-  <a>DID</a> is deactivated, it is intended that it never be repurposed.
+The persistence of a <a>DID</a>, i.e., the ability for it to continue to
+identify the same <a>DID subject</a> over time, is a function of: a) the DID
+controller, and b) the <a>DID method</a>. While <a>DID</a> architecture is
+designed to support the ability for a <a>DID</a> to be permanently bound to one
+<a>DID subject</a> for all time, there are two important caveats:
+        </p>
+        <ol start="1">
+          <li>
+The <a>DID controller</a> may wish to terminate this binding—or possibly even
+bind the <a>DID</a> to a different <a>DID subject</a> at some point in time.
+          </li>
+          <li>
+Even if a permanent binding is desired, maintaining this binding is dependent
+on the infrastructure required by the <a>DID method</a>.
+          </li>
+        </ol>
+        <p>
+With regard to the first caveat, requesting parties are advised not to make
+assumptions about the permanence of the binding of a <a>DID</a> to a
+<a>DID subject</a> in the absence of <a>DID</a> assignment policies specified
+by the <a>DID controller</a> and consistent with the <a>DID method</a>. This is
+particularly important from a security standpoint if the requesting party is
+relying on the binding for authentication or authorization purposes.
         </p>
         <p>
-Ideally, a <a>DID</a> would be a completely abstract decentralized identifier
-(like a <a>UUID</a>) that could be bound to multiple underlying <a>verifiable
-data registries</a> over time, thus maintaining its persistence independent of
-any particular system. However, registering the same identifier on multiple
-<a>verifiable data registries</a> makes it extremely difficult to identify the
-authoritative version of a <a>DID document</a> if the contents diverge
-between the different <a>verifiable data registries</a>. It also greatly
-increases implementation complexity for developers.
-        </p>
-        <p>
-To avoid these issues, developers should refer to the Decentralized
+With regard to the second caveat, developers should refer to the Decentralized
 Characteristics Rubric [[?DID-RUBRIC]] to decide which <a>DID method</a> best
-addresses the needs of the use case.
+addresses their needs for persistence of a <a>DID</a>.
         </p>
       </div>
 
