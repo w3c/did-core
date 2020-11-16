@@ -270,8 +270,7 @@ The Decentralized Identifiers (DIDs) defined in this specification are a new
 type of globally unique identifier designed to enable individuals and
 organizations to generate our own identifiers using systems we trust, and to
 prove control of those identifiers (authenticate) using cryptographic proofs
-(for example, digital signatures, privacy-preserving biometric protocols, and so
-on).
+(for example, digital signatures).
     </p>
     <p>
 Because we control the generation and assertion of these identifiers, each of us
@@ -1517,8 +1516,8 @@ usage, it verifies that the signer possessed the associated private key.
 Verification methods might take many parameters. An example of this is a set
 of five cryptographic keys from which any three are required to contribute to
 a threshold signature. Methods need not be cryptographic. An example of this
-might be the contact information for a biometric service provider that compares
-a purported <a>DID controller</a> against a candidate biometric vector.
+might be the contact information for a verifiable credential verifier that
+verifies a credential presented by a purported <a>DID controller</a>.
       </p>
 
       <p>
