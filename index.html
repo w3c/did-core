@@ -3950,16 +3950,30 @@ Verify the signature of the response message against the
 
       <section>
         <h3>
-Authentication and Verifiable Claims
+Real-World Identity
         </h3>
 
         <p>
 A <a>DID</a> and <a>DID document</a> do not inherently carry any
 <a href="https://en.wikipedia.org/wiki/Personally_identifiable_information">
   PII</a>
-(personally-identifiable information). The process of binding a <a>DID</a> to
-something in the real world, such as a person or a company, for example with
-credentials with the same subject as that <a>DID</a>, is out of scope for this
+(personally-identifiable information).
+        </p>
+
+        <p>
+Sometimes, it can be useful to express a binding of <a>DID</a> to a
+person's or company's real-world identity, in a way that is
+provably asserted by a trusted authority such as a government. This can
+enable interactions that can be considered legally valid under one or
+more jurisdictions. In any case however, establishing such bindings
+has to be carefully balanced against privacy considerations
+(see <a href="#privacy-considerations"></a>).
+        </p>
+
+        <p>
+The process of binding a <a>DID</a> to
+something in the real world, such as a person or a company, for example using
+<a>verifiable credentials</a> with the same subject as that <a>DID</a>, is out of scope for this
 specification. For more information, see the [[VC-DATA-MODEL]] instead.
         </p>
       </section>
