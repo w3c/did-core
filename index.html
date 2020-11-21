@@ -64,9 +64,10 @@
     // preProcess: [
     //   prepare_reqlist
     // ],
-    // postProcess: [
-    //   add_reqlist_button
-    // ],
+    postProcess: [
+    //   add_reqlist_button,
+      restrictRefs
+    ],
 
     // list of specification editors
     editors: [{
@@ -714,7 +715,7 @@ produce errors when consuming non-conforming <a>DIDs</a> or <a>DID documents</a>
 Terminology
     </h2>
 
-    <div data-include="terms.html" data-oninclude="restrictReferences">
+    <div data-include="terms.html">
     </div>
 
     <p>
