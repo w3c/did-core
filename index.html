@@ -1295,17 +1295,17 @@ property.
     </p>
     <ul id="core-properties-summary">
       <li>
-<code><a>id</a></code>: defined in <a href="#did-subject"></a>
+<code><a>id</a></code>: defined in <a href="#identifier-0"></a>
       </li>
       <li>
-<code><a>alsoKnownAs</a></code>: defined in <a href="#alsoknownas"></a>
+<code><a>alsoKnownAs</a></code>: defined in <a href="#also-known-as"></a>
       </li>
       <li>
-<code><a>controller</a></code>: defined in <a href="#control"></a>
+<code><a>controller</a></code>: defined in <a href="#did-controller"></a>
       </li>
       <li>
 <code><a>verificationMethod</a></code>: defined in
-<a href="#verification-methods"></a>. Sub-properties include <code>id</code>,
+<a href="#verification-methods"></a>. Nested properties include <code>id</code>,
 <code>type</code>, <code>controller</code>.
       </li>
       <li>
@@ -1318,14 +1318,14 @@ property.
 <code><a>keyAgreement</a></code>: defined in <a href="#key-agreement"></a>.
       </li>
       <li>
-<code><a>capabilityDelegation</a></code>: defined in <a href="#capability-delegation"></a>.
-      </li>
-      <li>
 <code><a>capabilityInvocation</a></code>: defined in <a href="#capability-invocation"></a>.
       </li>
       <li>
+<code><a>capabilityDelegation</a></code>: defined in <a href="#capability-delegation"></a>.
+      </li>
+      <li>
 <code><a>service</a></code>: defined in <a href="#service-endpoints"></a>.
-Sub-properties include <code>id</code>, <code>type</code> and
+Nested properties include <code>id</code>, <code>type</code> and
 <code><a>serviceEndpoint</a></code>.
       </li>
     </ul>
@@ -1344,33 +1344,41 @@ deterministically ordered values.
       <h2>DID Subject</h2>
 
       <p>
-The <a>DID subject</a> is denoted with the <code><a>id</a></code> property at
-the top level of a <a>DID document</a>. The <a>DID subject</a> is the entity
-that the <a>DID document</a> is about. That is, it is the entity identified by
-the <a>DID</a> and described by the <a>DID document</a>.
+The <a>DID subject</a> is the entity that the <a>DID document</a> is about.
+That is, it is the entity identified by the <a>DID</a> and described by the
+<a>DID document</a>.
       </p>
 
-      <p>
+      <section>
+        <h3>
+Identifier
+        </h3>
+        <p>
+The <a>DID</a> for a particular <a>DID subject</a> is denoted with the
+<code><a>id</a></code> property at the top level of a <a>DID document</a>.
+        </p>
+
+        <p>
 <a>DID documents</a> MUST include the <code><a>id</a></code> property at the
 top level.
-      </p>
+        </p>
 
-      <dl>
-        <dt><dfn>id</dfn></dt>
-        <dd>
+        <dl>
+          <dt><dfn>id</dfn></dt>
+          <dd>
 The value of <code>id</code> MUST be a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
 href="#did-syntax"></a>.
-        </dd>
-      </dl>
+          </dd>
+        </dl>
 
-      <pre class="example nohighlight">
+        <pre class="example nohighlight">
 {
   "id": "did:example:21tDAKCERh95uGgKbJNHYp"
 }
-      </pre>
+        </pre>
 
-      <p class="note" title="Intermediate representations">
+        <p class="note" title="Intermediate representations">
 <a>DID method</a> specifications can create intermediate representations of a
 <a>DID document</a> that do not contain the <code><a>id</a></code> property,
 such as when a <a>DID resolver</a> is performing <a>DID resolution</a>.
@@ -1380,19 +1388,21 @@ resolved <a>DID document</a> MUST match the <a>DID</a> that was
 resolved, or be populated with the equivalent canonical <a>DID</a>
 specified by the <a>DID method</a>, which SHOULD be used by the resolving
 party going forward.
-      </p>
+        </p>
 
-      <p class="note" title="Nested objects with the id property">
+        <p class="note" title="Nested objects with the id property">
 A <a>DID document</a> can contain objects which have their own unique
 identifier; see, for example, <a href="#verification-methods"></a>. Such other
 objects also use the <code>id</code> property to denote the identifier of
 the object in question. The <code>id</code> property only denotes the
 <a>DID</a> of the <a>DID subject</a> when it is present at the <em>top
 level</em> of a <a>DID document</a>.
-      </p>
+        </p>
 
-    <section>
-      <h3>alsoKnownAs</h3>
+      </section>
+
+      <section>
+        <h3>Also Known As</h3>
 
         <p>
 A <a>DID subject</a> can have multiple identifiers for different purposes, or
@@ -1441,8 +1451,8 @@ necessarily appropriate, <em>even with</em> a reciprocal relationship.
     </section>
 
     <section>
-      <h2>
-Control
+     <h2>
+DID Controller
       </h2>
 
       <p>
@@ -1590,7 +1600,7 @@ the identity of the controller of the key. The difference is that the value of
 <code>controller</code> for a verification method is <em>not</em> necessarily
 a <a>DID controller</a>. <a>DID controller(s)</a> are expressed using the
 <code><a>controller</a></code> property on the <em>top level</em> of the
-<a>DID document</a>; see Section <a href="#control"></a>.
+<a>DID document</a>; see Section <a href="#did-controller"></a>.
       </p>
 
       <pre class="example" title="Example verification methods">
@@ -1927,7 +1937,7 @@ Note that the <a>verification method</a> indicated by the
 <code><a>authentication</a></code> property of a <a>DID document</a> can only
 be used to <a>authenticate</a> the <a>DID subject</a>. To <a>authenticate</a>
 a different <a>DID controller</a>, the entity associated with the value of
-<code>controller</code> (see Section <a href="#control"></a>) needs to
+<code>controller</code> (see Section <a href="#did-controller"></a>) needs to
 <a>authenticate</a> with its <em>own</em> <a>DID document</a> and attached
 <code><a>authentication</a></code> <a>verification relationship</a>.
           </p>
@@ -4200,7 +4210,7 @@ also up to the <a>DID method</a> to define how revocation of cryptographic keys
 might occur. Additionally, <a>DID method</a> specifications are also expected
 to enable support for a quorum of trusted parties to enable key recovery. Some
 of the facilities to do so are suggested in Section
-<a href="#control"></a>. Not all <a>DID method</a>
+<a href="#did-controller"></a>. Not all <a>DID method</a>
 specifications will recognize control from <a>DIDs</a> registered using other
 <a>DID methods</a> and they might restrict third-party control to <a>DIDs</a>
 that use the same method. Access control and key recovery in a <a>DID method</a>
