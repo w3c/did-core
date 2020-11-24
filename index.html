@@ -2388,7 +2388,7 @@ in JSON [[RFC8259]] by mapping property values to JSON types as follows:
 Data&nbsp;Type
               </th>
               <th>
-Representation Type
+JSON Representation Type
               </th>
             </tr>
           </thead>
@@ -2504,35 +2504,95 @@ the <a>DID document</a>, and all members of this object are properties of the
 member value is interpreted as follows:
         </p>
 
-        <ul>
-          <li>
-<a data-cite="RFC8259#section-6">Number types</a> MUST interpreted as numeric
-values representable as IEEE754.
-          </li>
-          <li>
-<a data-cite="RFC8259#section-3">Boolean literals</a> MUST be interpreted as a
-Boolean value.
-          </li>
-          <li>
-An <a data-cite="RFC8259#section-5">Array type</a> MUST be interpreted as a
-Sequence or Unordered set, depending on the definition of the property for this
-value.
-          </li>
-          <li>
-An <a data-cite="RFC8259#section-4">Object type</a> MUST be interpreted as a
-sets of properties.
-          </li>
-          <li>
-A <a data-cite="RFC8259#section-3">null literal</a> MUST be interpreted as an
-Empty value.
-          </li>
-          <li>
-<a data-cite="RFC8259#section-7">String types</a> MUST be interpreted as
-Strings, which may be further parsed depending on the definition of the property
-for this value into more specific data types such as URIs, date stamps, or other
-values.
-          </li>
-        </ul>
+        <table class="simple" id="json-representation-production">
+          <thead>
+            <tr>
+              <th>
+JSON Representation Type
+              </th>
+              <th>
+Data&nbsp;Type
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+<a data-cite="RFC8259#section-4">JSON Object</a>
+              </td>
+              <td>
+<a data-cite="INFRA#maps">ordered&nbsp;map</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="RFC8259#section-5">JSON Array</a>
+              </td>
+              <td>
+<a data-cite="INFRA#list">list</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="RFC8259#section-5">JSON Array</a>
+              </td>
+              <td>
+<a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="RFC8259#section-7">JSON String</a> formatted as an
+<a data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a>]
+              </td>
+              <td>
+<a>datetime</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="RFC8259#section-7">JSON String</a>
+              </td>
+              <td>
+<a data-cite="INFRA#string">string</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="RFC8259#section-6">JSON Number</a> without a decimal or
+fractional component
+              </td>
+              <td>
+<a>integer</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="RFC8259#section-6">JSON Number</a> with a fractional component
+              </td>
+              <td>
+<a>double</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="RFC8259#section-3">JSON Boolean</a>
+              </td>
+              <td>
+<a data-cite="INFRA#boolean">boolean</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="RFC8259#section-3">JSON null literal</a>
+              </td>
+              <td>
+<a data-cite="INFRA#null">null</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
         <p>
 Implementers consuming JSON are advised to ensure that their algorithms are
