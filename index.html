@@ -1440,114 +1440,6 @@ necessarily appropriate, <em>even with</em> a reciprocal relationship.
 
       </section>
 
-      <section>
-        <h3>sameAs</h3>
-          <p>
-            A <a>DID Method</a> can define different forms of a DID that are 
-            logically equivalent. An example is when a DID takes one form prior 
-            to registration in a verifiable data registry and another form after 
-            such registration. In this case, the <a>DID Method</a> specification 
-            may need to express one or more DIDs that are logically equivalent to 
-            the resolved DID as a property of the DID document. This is the 
-            purpose of the sameAs property.
-          </p>
-  
-          <dl>
-            <dt><dfn>sameAs</dfn></dt>
-            <dd>
-              The value of <code>sameAs</code> MUST be a 
-              <a data-cite="INFRA#lists">list</a> where each item in the list 
-              is a DID conforming to the requirements in Section 3.1.
-            </dd>
-            <dd>
-              The relationship is a statement that each <code><a>sameAs</a></code> 
-              DID value is logically equivalent to the <code>id</code> property DID 
-              value and thus identifies the same DID subject.
-            </dd>
-            <dd>
-              Each <code><a>sameAs</a></code> DID value MUST be produced by the same 
-              DID method as the <code>id</code> property DID value.
-            </dd>
-            <dd>
-              A conforming <a>DID Method</a> specification MUST guarantee that each 
-              <code><a>sameAs</a></code> DID value is logically equivalent to the 
-              <code>id</code> property DID value.
-            </dd>
-            <dd>
-              A resolving party MUST retain the DIDs from the <code>id</code> and 
-              <code><a>sameAs</a></code> properties to ensure any subsequent 
-              interactions with any of the DIDs they contain are correctly handled 
-              as logically equivalent DIDs (e.g. retain all variants in a database so an 
-              interaction with any one maps to the same underlying account).
-            </dd>
-          </dl>
-  
-          <div class="note" title="Equivalence and sameAs">
-            <p>
-              <code><a>sameAs</a></code> was chosen as the name for this property because 
-              from a graph modeling standpoint the intended semantics are identical to 
-              the <code>owl:sameAs</code> property. <code><a>sameAs</a></code> is a much 
-              stronger form of equivalence than <code><a>alsoKnownAs</a></code> because the 
-              equivalence MUST be guaranteed by the governing DID method. <code><a>sameAs</a></code> 
-              represents a full graph merge because the same DID document describes both 
-              the <code><a>sameAs</a></code> DID and the <code>id</code> property DID.
-            </p>
-          </div>
-  
-        </section>
-
-      <section>
-        <h3>canonicalId</h3>
-          <p>
-            The <code><a>canonicalID</a></code> property is identical to the 
-            <code><a>sameAs</a></code> property except: a) it accepts only a single 
-            DID as its value, and b) that DID is defined to be the canonical DID 
-            for the DID subject within the scope of the containing DID document. 
-          </p>
-  
-          <dl>
-            <dt><dfn>canonicalId</dfn></dt>
-            <dd>
-              The value of <code><a>canonicalID</a></code> MUST be a DID conforming to the 
-              requirements in Section 3.1.
-            </dd>
-            <dd>
-              The relationship is a statement that the <code><a>canonicalID</a></code> DID 
-              value is logically equivalent to the <code>id</code> property DID value and 
-              that the <code><a>canonicalID</a></code> DID value is defined by the 
-              <a>DID Method</a> to be the canonical DID for the DID subject in the scope 
-              of the containing DID document.
-            </dd>
-            <dd>
-              A <code><a>canonicalID</a></code> DID value MUST be produced by the same 
-              <a>DID Method</a> as the <code>id</code> property DID value.
-            </dd>
-            <dd>
-              A conforming <a>DID Method</a> specification MUST guarantee that the 
-              <code><a>canonicalID</a></code> DID value is logically equivalent to the 
-              <code>id</code> property DID value.
-            </dd>
-            <dd>
-              A resolving party MUST use the <code><a>canonicalID</a></code> DID value 
-              as its primary ID value for the DID subject and treat all other equivalent 
-              DIDs as secondary aliases. (e.g. update corresponding primary references in 
-              their systems to reflect the new canonical ID directive).
-            </dd>
-          </dl>
-  
-          <div class="note" title="Equivalence and canonicalId">
-            <p>
-              <code><a>canonicalID</a></code> is the same statement of equivalence as 
-              <code><a>sameAs</a></code> except it is constrained to a single value that 
-              is defined to be canonical for the DID subject in the scope of the DID 
-              document. Like <code><a>sameAs</a></code>, <code><a>canonicalID</a></code> 
-              represents a full graph merge because the same DID document describes both 
-              the <code><a>canonicalID</a></code> DID and the <code>id</code> property DID.
-            </p>
-          </div>
-  
-        </section>
-
     </section>
 
     <section>
@@ -3693,11 +3585,11 @@ be registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
 This specification defines the following common properties.
             </p>
 
-            <dl>
-                <dt>
-created
-                </dt>
-                <dd>
+              <section>
+                <h4>
+                  created
+                </h4>
+<p>
 DID document metadata SHOULD include a <code>created</code> property
 to indicate the timestamp of the <a href="#create">Create operation</a>.
 This property MAY not be supported by a given <a>DID method</a>.
@@ -3706,18 +3598,128 @@ section 3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema
 Definition Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This
 datetime value MUST be normalized to UTC 00:00, as indicated by the trailing
 "Z".
-                </dd>
-                <dt>
-updated
-                </dt>
-                <dd>
+</p>
+            </section>
+
+            <section>
+                <h4>
+                  updated
+                </h4>
+                <p>
 DID document metadata SHOULD include an <code>updated</code> property
 to indicate the timestamp of the last <a href="#update">Update operation</a>.
 This property MAY not be supported by a given <a>DID method</a>.
 The value of the property MUST follow the same formatting rules as the
 <code>created</code> property.
-                </dd>
-            </dl>
+                </p>
+              </section>
+
+            <section>
+              <h4>equivalentId</h4>
+                <p>
+                  A <a>DID Method</a> can define different forms of a DID that are
+                  logically equivalent. An example is when a DID takes one form prior
+                  to registration in a verifiable data registry and another form after
+                  such registration. In this case, the <a>DID Method</a> specification
+                  may need to express one or more DIDs that are logically equivalent to
+                  the resolved DID as a property of the DID document. This is the
+                  purpose of the <code><a>equivalentId</a></code>  property.
+                </p>
+
+                <dl>
+                  <dt><dfn>equivalentId</dfn></dt>
+                  <dd>
+                    The value of <code>equivalentId</code> MUST be a
+                    <a data-cite="INFRA#lists">list</a> where each item in the list
+                    is a <a data-cite="INFRA#string">string</a> that conforms to the rules in Section <a href="#did-syntax"></a>.
+                  </dd>
+                  <dd>
+                    The relationship is a statement that each <code><a>equivalentId</a></code>
+                    value is logically equivalent to the <code>id</code> property
+                    value and thus identifies the same DID subject.
+                  </dd>
+                  <dd>
+                    Each <code><a>equivalentId</a></code> DID value MUST be produced by, and a form of,
+                    the same <a>DID Method</a> as the <code>id</code> property value.
+                    (e.g. <code>did:example:abc</code> == <code>did:example:ABC</code>)
+                  </dd>
+                  <dd>
+                    A conforming <a>DID Method</a> specification MUST guarantee that each
+                    <code><a>equivalentId</a></code> value is logically equivalent to the
+                    <code>id</code> property value.
+                  </dd>
+                  <dd>
+                    A resolving party MUST retain the values from the <code>id</code> and
+                    <code><a>equivalentId</a></code> properties to ensure any subsequent
+                    interactions with any of the values they contain are correctly handled
+                    as logically equivalent (e.g. retain all variants in a database so an
+                    interaction with any one maps to the same underlying account).
+                  </dd>
+                </dl>
+
+                <div class="note" title="Equivalence and equivalentId">
+                  <p>
+                    <code><a>equivalentId</a></code> is a much stronger form of equivalence than
+                    <code><a>alsoKnownAs</a></code> because the equivalence MUST be guaranteed by
+                    the governing DID method. <code><a>equivalentId</a></code> represents a full
+                    graph merge because the same DID document describes both the
+                    <code><a>equivalentId</a></code> DID and the <code>id</code> property DID.
+                  </p>
+                </div>
+
+              </section>
+
+            <section>
+              <h4>canonicalId</h4>
+                <p>
+                  The <code><a>canonicalId</a></code> property is identical to the
+                  <code><a>equivalentId</a></code> property except: a) it accepts only a single
+                  value rather than a list, and b) that DID is defined to be the canonical ID
+                  for the DID subject within the scope of the containing DID document.
+                </p>
+
+                <dl>
+                  <dt><dfn>canonicalId</dfn></dt>
+                  <dd>
+                    The value of <code><a>canonicalId</a></code> MUST be a <a data-cite="INFRA#string">string</a> that conforms to the rules in Section <a href="#did-syntax"></a>.
+                  </dd>
+                  <dd>
+                    The relationship is a statement that the <code><a>canonicalId</a></code>
+                    value is logically equivalent to the <code>id</code> property value and
+                    that the <code><a>canonicalId</a></code> value is defined by the
+                    <a>DID Method</a> to be the canonical ID for the DID subject in the scope
+                    of the containing DID document.
+                  </dd>
+                  <dd>
+                    A <code><a>canonicalId</a></code> value MUST be produced by, and a form of,
+                    the same <a>DID Method</a> as the <code>id</code> property value.
+                    (e.g. <code>did:example:abc</code> == <code>did:example:ABC</code>)
+                  </dd>
+                  <dd>
+                    A conforming <a>DID Method</a> specification MUST guarantee that the
+                    <code><a>canonicalId</a></code> value is logically equivalent to the
+                    <code>id</code> property value.
+                  </dd>
+                  <dd>
+                    A resolving party MUST use the <code><a>canonicalId</a></code> value
+                    as its primary ID value for the DID subject and treat all other equivalent
+                    values as secondary aliases. (e.g. update corresponding primary references in
+                    their systems to reflect the new canonical ID directive).
+                  </dd>
+                </dl>
+
+                <div class="note" title="Equivalence and canonicalId">
+                  <p>
+                    <code><a>canonicalId</a></code> is the same statement of equivalence as
+                    <code><a>equivalentId</a></code> except it is constrained to a single value that
+                    is defined to be canonical for the DID subject in the scope of the DID
+                    document. Like <code><a>equivalentId</a></code>, <code><a>canonicalId</a></code>
+                    represents a full graph merge because the same DID document describes both
+                    the <code><a>canonicalId</a></code> DID and the <code>id</code> property DID.
+                  </p>
+                </div>
+
+              </section>
 
         </section>
 
@@ -4401,31 +4403,31 @@ not wish to be correlated with the <a>DID</a>.
       </h2>
       <p>
         The three equivalence properties defined in Core Properties
-        —<code><a>alsoKnownAs</a></code>, <code><a>sameAs</a></code>, and 
-        <code><a>canonicalID</a></code>—are subject to special security 
-        considerations related to attacks against DIDs that are asserted to be 
-        equivalent. Each of the equivalence property sections describes relevant 
+        —<code><a>alsoKnownAs</a></code>, <code><a>equivalentId</a></code>, and
+        <code><a>canonicalId</a></code>—are subject to special security
+        considerations related to attacks against DIDs that are asserted to be
+        equivalent. Each of the equivalence property sections describes relevant
         mitigation instructions. In general, they are:
       </p>
       <p>
-        The <code><a>sameAs</a></code> and <code><a>canonicalID</a></code> properties 
-        that constrain equivalence assertions to variants of a single DID produced by 
-        the same <a>DID method</a> (e.g. <code>did:foo:123</code> ≡ <code>did:foo:hash(123)</code>) 
-        can be trusted to the extent the resolving party trusts the <a>DID method</a> (and a 
+        The <code><a>equivalentId</a></code> and <code><a>canonicalId</a></code> properties
+        that constrain equivalence assertions to variants of a single DID produced by
+        the same <a>DID method</a> (e.g. <code>did:foo:123</code> ≡ <code>did:foo:hash(123)</code>)
+        can be trusted to the extent the resolving party trusts the <a>DID method</a> (and a
         conforming producer) itself.
       </p>
       <p>
-        The <code><a>alsoKnownAs</a></code> property that permits an equivalence assertion 
-        to URIs that are not governed by the same <a>DID method</a> (or may not be DIDs at 
-        all) cannot be trusted without performing verification steps outside of the governing 
+        The <code><a>alsoKnownAs</a></code> property that permits an equivalence assertion
+        to URIs that are not governed by the same <a>DID method</a> (or may not be DIDs at
+        all) cannot be trusted without performing verification steps outside of the governing
         <a>DID method</a>. See Section 5.1.1 for the recommendation to verify inverse relationships.
       </p>
       <p>
-        As with any other sensitive properties in the DID Document (e.g. public key references), 
-        parties relying on any equivalence statement in a DID Document should guard against the 
-        values of these properties being substituted by an attacker after the proper verification 
-        has been performed. Any write access to a DID document stored in memory or disk after 
-        verification has been performed is an attack vector that will circumvent verification 
+        As with any other sensitive properties in the DID Document (e.g. public key references),
+        parties relying on any equivalence statement in a DID Document should guard against the
+        values of these properties being substituted by an attacker after the proper verification
+        has been performed. Any write access to a DID document stored in memory or disk after
+        verification has been performed is an attack vector that will circumvent verification
         unless the DID document is re-verified.
       </p>
 
