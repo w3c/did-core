@@ -1148,7 +1148,7 @@ data-cite="INFRA#strings">strings</a>. All property values are expressed
 using one of the data types in the table below.
     </p>
 
-    <table class="simple" id="public-key-support">
+    <table class="simple" id="data-types">
       <thead>
         <tr>
           <th>
@@ -2338,7 +2338,7 @@ representations require the following:
       <ol>
         <li>
 A representation MUST define an unambiguous encoding and decoding for all
-property names and all data model <a href="#data-model">data types</a> 
+property names and all data model <a href="#data-model">data types</a>
 as defined in this specification.
 This enables anything that can be represented in the <a>DID document</a> data
 model to also be represented in a compliant representation.
@@ -2381,36 +2381,95 @@ in Section <a href="#data-model"></a>, including all extensions, are encoded
 in JSON [[RFC8259]] by mapping property values to JSON types as follows:
         </p>
 
-        <ul>
-          <li>
-Numeric values representable as IEEE754 MUST be represented as a
-<a data-cite="RFC8259#section-6">Number type</a>.
-          </li>
-          <li>
-Boolean values MUST be represented as a <a data-cite="RFC8259#section-3">Boolean
-literal</a>.
-          </li>
-          <li>
-Sequence value MUST be represented as an <a data-cite="RFC8259#section-5">Array
-type</a>.
-          </li>
-          <li>
-Unordered sets of values MUST be represented as an <a
-data-cite="RFC8259#section-5">Array type</a>.
-          </li>
-          <li>
-Sets of properties MUST be represented as an <a
-data-cite="RFC8259#section-4">Object type</a>.
-          </li>
-          <li>
-Empty values MUST be represented as a <a data-cite="RFC8259#section-3">null
-literal</a>.
-          </li>
-          <li>
-Other values MUST be represented as a <a data-cite="RFC8259#section-7">String
-type</a>.
-          </li>
-        </ul>
+        <table class="simple" id="json-representation-production">
+          <thead>
+            <tr>
+              <th>
+Data&nbsp;Type
+              </th>
+              <th>
+Representation Type
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+<a data-cite="INFRA#maps">ordered&nbsp;map</a>
+              </td>
+              <td>
+<a data-cite="RFC8259#section-4">JSON Object</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="INFRA#list">list</a>
+              </td>
+              <td>
+<a data-cite="RFC8259#section-5">JSON Array</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
+              </td>
+              <td>
+<a data-cite="RFC8259#section-5">JSON Array</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a>datetime</a>
+              </td>
+              <td>
+<a data-cite="RFC8259#section-7">JSON String</a> formatted as an
+<a data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a>]
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="INFRA#string">string</a>
+              </td>
+              <td>
+<a data-cite="RFC8259#section-7">JSON String</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a>integer</a>
+              </td>
+              <td>
+<a data-cite="RFC8259#section-6">JSON Number</a> without a decimal or
+fractional component
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a>double</a>
+              </td>
+              <td>
+<a data-cite="RFC8259#section-6">JSON Number</a> with a fractional component
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="INFRA#boolean">boolean</a>
+              </td>
+              <td>
+<a data-cite="RFC8259#section-3">JSON Boolean</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="INFRA#null">null</a>
+              </td>
+              <td>
+<a data-cite="RFC8259#section-3">JSON null literal</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
         <p>
 Implementers producing JSON are advised to ensure that their algorithms are
