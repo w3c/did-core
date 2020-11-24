@@ -2399,7 +2399,7 @@ JSON Representation Type
 <a data-cite="INFRA#maps">ordered&nbsp;map</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-4">JSON Object</a>
+<a data-cite="RFC8259#section-4">JSON Object</a>, each property is represented as a member of the JSON Object with the property name as the member name and the property value according to its type, as defined in this section
               </td>
             </tr>
             <tr>
@@ -2407,7 +2407,7 @@ JSON Representation Type
 <a data-cite="INFRA#list">list</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-5">JSON Array</a>
+<a data-cite="RFC8259#section-5">JSON Array</a>, each element of the list is added, in order, as a value of the array according to its type, as defined in this section
               </td>
             </tr>
             <tr>
@@ -2415,7 +2415,7 @@ JSON Representation Type
 <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-5">JSON Array</a>
+<a data-cite="RFC8259#section-5">JSON Array</a>, each element of the list is added, in order, as a value of the array according to its type, as defined in this section
               </td>
             </tr>
             <tr>
@@ -2522,16 +2522,16 @@ Data&nbsp;Type
 <a data-cite="RFC8259#section-4">JSON Object</a>
               </td>
               <td>
-<a data-cite="INFRA#maps">ordered&nbsp;map</a>
+<a data-cite="INFRA#maps">ordered&nbsp;map</a>, each member of the JSON Object is added as a property to the ordered map with the property name being the member name and the value converted based on the JSON type and, if available, property definition, as defined here; as no order is specified by JSON Objects, no insertion order is guaranteed
               </td>
             </tr>
             <tr>
               <td>
 <a data-cite="RFC8259#section-5">JSON Array</a> where data model property value
-is a <a data-cite="INFRA#list">list</a>
+is a <a data-cite="INFRA#list">list</a> or unknown
               </td>
               <td>
-<a data-cite="INFRA#list">list</a>
+<a data-cite="INFRA#list">list</a>, each value of the JSON Array is added to the list in order, converted based on the JSON type of the array value, as defined here
               </td>
             </tr>
             <tr>
@@ -2540,7 +2540,7 @@ is a <a data-cite="INFRA#list">list</a>
 is an <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
-<a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
+<a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>, each value of the JSON Array is added to the ordered set in order, converted based on the JSON type of the array value, as defined here
               </td>
             </tr>
             <tr>
@@ -2554,7 +2554,7 @@ property value is an <a>datetime</a>
             </tr>
             <tr>
               <td>
-<a data-cite="RFC8259#section-7">JSON String</a>
+<a data-cite="RFC8259#section-7">JSON String</a>, where data model property value type is <a>string</a> or unknown
               </td>
               <td>
 <a data-cite="INFRA#string">string</a>
@@ -2571,7 +2571,7 @@ fractional component
             </tr>
             <tr>
               <td>
-<a data-cite="RFC8259#section-6">JSON Number</a> with a fractional component
+<a data-cite="RFC8259#section-6">JSON Number</a> with a fractional component, or when property value is a <a>double</a> regardless of inclusion of fractional component
               </td>
               <td>
 <a>double</a>
