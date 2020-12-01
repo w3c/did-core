@@ -2329,6 +2329,8 @@ through the content of the <a>DID document</a> alone.
     </p>
 
     <p>
+Unrecognized properties MUST be preserved. An unrecognized property is
+any property that does not have explicit processing rules known to the consumer or producer.
 Consumers MUST add all properties that do not have explicit processing rules
 for the representation being consumed to the abstract data model using only the
 representation's generic type processing rules. Producers MUST serialize all
@@ -2632,7 +2634,9 @@ aligned with the <a
 data-cite="INFRA#convert-a-json-derived-javascript-value-to-an-infra-value">JSON
 consumption rules</a> in the [[INFRA]] specification.
         </p>
-
+        <p>
+Note that the value of the <code>@context</code> object member will be ignored, if present. That is, this field will not have additional processing applied to its value and will be added verbatim to the abstract data model.
+        </p>
       </section>
 
     </section>
