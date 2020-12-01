@@ -134,13 +134,6 @@
         company: "Danube Tech",
         companyURL: "https://danubetech.com/",
         w3cid: 46729
-      },
-      {
-        name: "Jonathan Holt, DO, MS",
-        url: "https://www.linkedin.com/in/jonathan-holt-do-ms",
-        company: "ConsenSys Health",
-        companyURL: "https://www.consensyshealth.com",
-        w3cid: 95341
       }
     ]
     };
@@ -2811,179 +2804,118 @@ Like Javascript Object Notation (JSON) [[RFC8259]], Concise Binary Object
 Representation (CBOR) [[RFC7049]] defines a set of formatting rules for the
 portable representation of structured data. CBOR is a more concise,
 machine-readable, language-independent data interchange format that is
-self-describing and has built-in semantics for interoperability.  With specific
-constraints, CBOR can support all JSON data types (including JSON-LD) for
+self-describing and has built-in semantics for interoperability.  CBOR prioritizes 
+the simplicity of the encoder and decoder over the size of the encoded data.
+With specific constraints, CBOR can support all JSON data types for
 translation between the DID document model (described in <a
-href="#data-model">Data Model</a> and <a>DID Documents</a>) and other core
-representations.
+href="#data-model">Data Model</a> and the <a href="#core-properties"> Core Properties section</a> of the DID Document</a>).
       </p>
 
-      <p>
-Concise Data Definition Language (CDDL) [[RFC8610]] is a notation used to
-express Concise Binary Object Representation (CBOR), and by extension JSON Data
-Structures. The following notation expresses the DID Document model in CBOR
-representation with specific constraints for deterministic mappings between
-other core representations.
-      </p>
-
-      <pre class="example nohighlight" title="DID Document data model for CBOR expressed in CDDL notation">
-DID-document = {
-  ? @context : uri
-  id : did
-  ? publicKey : [* publicKey ]
-  ? authentication :  [ *did // *publicKey // *tstr ]
-  ? service : [ + service  ]
-  ? controller : did / [ *did ]
-  ? created : time
-  ? updated : time
-  proof :  any
-}
-
-publicKey = {
-  id : did
-  type : text
-  controller : uri
-}
-
-did = tstr .pcre "^did\\:(?&lt;method-name>[a-z0-9]{2,})\\:(?&lt;method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)"
-
-did-url =  tstr .pcre "^did\\:(?&lt;method-name>[a-z0-9]{2,})\\:(?&lt;method-specific-id>[A-Za-z0-9\\.\\-\\:\\_]+)\\;(?&lt;path>[A-Za-z0-9\\/)(?&lt;query>\\?[a-z0-9\\=\\&amp;])#(?&lt;fragment>.+)"
-
-service = {
-  id : did-url
-  type : text
-  serviceEndpoint : uri
-  ? description : text
-  * tstr => any
-}
-      </pre>
-
+<p>
+When producing and consuming DID documents that are encoded in CBOR (as indicated 
+by a content-type of application/did+cbor in the resolver metadata), the following rules MUST be followed.
+</p>
+      
       <section>
         <h3>Production</h3>
         <p>
-When producing DID Documents that are represented as CBOR, in addition to the
-suggestions in section 3.9 of the CBOR [[RFC7049]] specification for
-deterministic mappings, the following constraints of the DID Document model
-MUST be followed:
-        </p>
+A DID document encoded in CBOR must be represented as a CBOR Map (major type 5) conforming to [[RFC7049]]. 
+Similar to the JSON encoding of a DID document, all properties of the DID document MUST be represented by using the 
+property name as the name of the member of the CBOR map.  The values of properties of the data model described in <a href="#core-properties"> § 5. Core Properties</a>, including 
+all extensions, MUST be encoded in CBOR [[RFC7049]] by mapping INFRA property values to CBOR types as follows: </p>
 
-        <ul>
-          <li>
-Map keys MUST be strings.
-          </li>
-          <li>
-Integer encoding MUST be as short as possible.
-          </li>
-          <li>
-The expression of lengths in CBOR major types 2 through 5 MUST be as short as
-possible.
-          </li>
-          <li>
-All floating point values MUST be encoded as 64-bits, even for integral values.
-          </li>
-        </ul>
+<ul>
+<li>Integer values (A real number without a fractional part) are serialized as <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR integers (major types 0 and 1)</a>, choosing the shortest form.</li>
+<li>Double values (Number values with a fractional part) are serialized as <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR floating-point values (major type 7)</a>. All floating point values MUST be encoded as 64-bits (additional type value 27), even for integral values.</li>
+<li>Strings are serialized as <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR UTF-8 strings (major type 3)</a>. Note that, unlike JSON, CBOR does not require any escaping in strings, so all escape codes (if any) present in the alternate representations must be replaced beforehand by their corresponding character.</li>
+<li>Boolean values MUST be represented as a <a href="https://tools.ietf.org/html/rfc7049#section-2.3">CBOR Primitve type (major type 7) with value 21 for true and 20 for false). </a> </li>
+<li>List (A finite sequence of values) MUST be represented as a <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR Array type (major type 4) </a>.</li>
+<li>Unordered sets of values MUST be represented as a <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR Array type (major type 4).</a></li>
+<li>Ordered Map ( A Set of properties ) MUST be represented as a <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR map type (major type 5).</a></li>
+<li>Null (Empty values) MUST be represented as a <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR null literal Primitive type (major type 7) value 22.</a> </li>
+<li>Other Data Types not otherewise defined in the Abstract Data Model MUST be represented as a <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR String type. (major type 5)</a></li>
+<li>Indefinite-length items are not allowed and MUST be made <a href="https://tools.ietf.org/html/rfc7049#section-2.2.1">CBOR definite length.</a></li>
+<li>Datetime MUST be encoded as <a href="https://tools.ietf.org/html/rfc7049#section-2.4.1">CBOR UTF-8 (major type 3)</a>. This datetime value MUST be normalized to UTC 00:00, as indicated by the trailing "Z".</li>
+</ul>
 
-        <pre class="example nohighlight" title="An example DID Document represented as contrained CBOR and exported in diagnostic annotation mode for easy readibility">
-    a7                                                # map(7)
-    62                                                #   text(2)
-       6964                                           #     "id"
-    78 40                                             #   text(64)
-       6469643a6578616d706c653a31324433               #     "did:example:12D3"
-       4b6f6f574d4864727a6377706a626472               #     "KooWMHdrzcwpjbdr"
-       5a733547477145524176636771583362               #     "Zs5GGqERAvcgqX3b"
-       3564707550745061396f743639796577               #     "5dpuPtPa9ot69yew"
-    65                                                #   text(5)
-       70726f6f66                                     #     "proof"
-    a4                                                #   map(4)
-       64                                             #     text(4)
-          74797065                                    #       "type"
-       74                                             #     text(20)
-          656432353531395369676e617475726532303138    #       "ed25519Signature2018"
-       67                                             #     text(7)
-          63726561746564                              #       "created"
-       74                                             #     text(20)
-          323032302d30352d30315430333a30303a30325a    #       "2020-05-01T03:00:02Z"
-       67                                             #     text(7)
-          63726561746f72                              #       "creator"
-       78 8c                                          #     text(140)
-          6469643a6578616d706c653a31324433            #       "did:example:12D3"
-          4b6f6f574d4864727a6377706a626472            #       "KooWMHdrzcwpjbdr"
-          5a733547477145524176636771583362            #       "Zs5GGqERAvcgqX3b"
-          3564707550745061396f743639796577            #       "5dpuPtPa9ot69yew"
-          3b206578616d706c653a6b65793d6964            #       "; example:key=id"
-          3d626166797265696375627478357771            #       "=bafyreicubtx5wq"
-          6f336e6f73633463617a726b63746668            #       "o3nosc4cazrkctfh"
-          776436726577657a6770776f65347377            #       "wd6rewezgpwoe4sw"
-          69726c733465626468733269                    #       "irls4ebdhs2i"
-       6e                                             #     text(14)
-          7369676e617475726556616c7565                #       "signatureValue"
-       78 58                                          #     text(88)
-          6f3972364c78676f474e38466f616565            #       "o9r6LxgoGN8Foaee"
-          554136456444637631324776447a4645            #       "UA6EdDcv12GvDzFE"
-          6d43676a577a76707572325953517941            #       "mCgjWzvpur2YSQyA"
-          3857327230535357554b2b6e4835744d            #       "8W2r0SSWUK+nH5tM"
-          717a61464c756e3677775a31456f7433            #       "qzaFLun6wwZ1Eot3"
-          37616d4744673d3d                            #       "7amGDg=="
-    67                                                #   text(7)
-       63726561746564                                 #     "created"
-    74                                                #   text(20)
-       323031382d31322d30315430333a30303a30305a       #     "2018-12-01T03:00:00Z"
-    67                                                #   text(7)
-       75706461746564                                 #     "updated"
-    74                                                #   text(20)
-       323032302d30352d30315430333a30303a30305a       #     "2020-05-01T03:00:00Z"
-    68                                                #   text(8)
-       40636f6e74657874                               #     "@context"
-    78 1c                                             #   text(28)
-       68747470733a2f2f7777772e77332e6f               #     "https://www.w3.o"
-       72672f6e732f6469642f7631                       #     "rg/ns/did/v1"
-    69                                                #   text(9)
-       7075626c69634b6579                             #     "verificationMethod"
-    81                                                #   array(1)
-       a5                                             #     map(5)
-          62                                          #       text(2)
-             6964                                     #         "id"
-          78 85                                       #       text(133)
-             6261667972656963756274783577716f         #         "bafyreicubtx5wqo"
-             336e6f73633463617a726b6374666877         #         "3nosc4cazrkctfhw"
-             6436726577657a6770776f6534737769         #         "d6rewezgpwoe4swi"
-             726c7334656264687332693b6578616d         #         "rls4ebdhs2i;exam"
-             706c653a6b65793d6964626166797265         #         "ple:key=idbafyre"
-             6963756274783577716f336e6f736334         #         "icubtx5wqo3nosc4"
-             63617a726b6374666877643672657765         #         "cazrkctfhwd6rewe"
-             7a6770776f6534737769726c73346562         #         "zgpwoe4swirls4eb"
-             6468733269                               #         "dhs2i"
-          64                                          #       text(4)
-             74797065                                 #         "type"
-          6e                                          #       text(14)
-             45644473615075626c69634b6579             #         "EdDsaPublicKey"
-          65                                          #       text(5)
-             6375727665                               #         "curve"
-          67                                          #       text(7)
-             65643235353139                           #         "ed25519"
-          67                                          #       text(7)
-             65787069726573                           #         "expires"
-          74                                          #       text(20)
-             323031392d31322d30315430333a30303a30305a #         "2019-12-01T03:00:00Z"
-          6f                                          #       text(15)
-             7075626c69634b6579426173653634           #         "publicKeyBase64"
-          78 2c                                       #       text(44)
-             716d7a3774704c4e4b4b4b646c376344         #         "qmz7tpLNKKKdl7cD"
-             375062656a4469425670374f4e706d5a         #         "7PbejDiBVp7ONpmZ"
-             62666d633763454b396d673d                 #         "bfmc7cEK9mg="
-    6e                                                #   text(14)
-       61757468656e7469636174696f6e                   #     "authentication"
-    81                                                #   array(1)
-       78 83                                          #     text(131)
-          6469643a6578616d706c653a31324433            #       "did:example:12D3"
-          4b6f6f574d4864727a6377706a626472            #       "KooWMHdrzcwpjbdr"
-          5a733547477145524176636771583362            #       "Zs5GGqERAvcgqX3b"
-          3564707550745061396f743639796577            #       "5dpuPtPa9ot69yew"
-          3b6b65792d69643d6261667972656963            #       ";key-id=bafyreic"
-          756274783577716f336e6f7363346361            #       "ubtx5wqo3nosc4ca"
-          7a726b63746668776436726577657a67            #       "zrkctfhwd6rewezg"
-          70776f6534737769726c733465626468            #       "pwoe4swirls4ebdh"
-          733269                                      #       "s2i"
+
+<!-- <p>Additional considerations to enable lossless production of a CBOR representation and to enable a deterministic 
+  canonical CBOR representation of the DID Document between other core representations of the DID document is possible 
+  with additional constraints to the CBOR representation.  -->
+  <p>
+  To produce a deterministic canonical CBOR representation of a DID document and faciliate maximal lossless compatiblity with other 
+  core representations via the Abstract Data Model the following constraints of a CBOR representation of a DID Document model MUST be followed:
+ 
+<ul>
+    <li>Property names MUST be represented as text string (major type 3) and contain only UTF-8 strings. </li>
+    <li>Undefined Values of Required Properties as defined in <a href="#data-model">the Data Model</a> that are absent from the CBOR representation SHOULD be labeled with Primitive type (major type 7) with value 23 (Undefined value).  </li>
+    <li>Property names in each CBOR map MUST be unique. </li>
+    <li>Integer encoding MUST be as short as possible.</li>
+    <li>The expression of lengths in CBOR major types 2 through 5 MUST be as short as possible. </li>
+    <li>The keys in every map must be sorted lowest value to highest. Sorting is performed on the bytes of the representation of the keys. If two keys have different lengths, the shorter one sorts earlier.  If two keys have the same length, the one with the lower value in (byte-wise) lexical order sorts earlier. </li>
+  </ul>
+</p>
+
+
+<p class="issue">
+ How to represent Floating-point values that can exceed the range or the precision IEEE 754. See <a href=https://github.com/w3c/did-core/issues/361">issue #361. </a>
+</p>
+
+<p>
+  The property name `@context` MAY be present in the CBOR representation of a DID Document and if present SHOULD be ignored as this property is reserved for JSON-LD processing.
+</p>
+
+<p>
+  All properties of the DID document represented in CBOR MUST be included in the root map (major type 5). 
+  Properties MAY define additional data sub structures represented as nested CBOR maps (major type 5) 
+  and is subject to the value representation rules in the lists above and conformance to section <a href="#extensibility"> § 4.3 Extensibility</a>.
+</p>
+
+<p>
+</p>
+
+  <ul>
+  </ul>
+
+
+<pre class="example nohighlight" title="An example DID Document (the same as Example 2) represented as constrained CBOR presented as Hexadecimal">
+  A2626964781E6469643A6578616D706C653A313233343536373839616263
+  6465666768696E61757468656E7469636174696F6E81A462696478256469
+  643A6578616D706C653A313233343536373839616263646566676869236B
+  6579732D316474797065781A45643235353139566572696669636174696F
+  6E4B6579323031386A636F6E74726F6C6C6572781E6469643A6578616D70
+  6C653A3132333435363738396162636465666768696F7075626C69634B65
+  79426173653538782C483343324156764C4D7636676D4D4E616D33755641
+  6A5A70666B634A437744776E5A6E367A3377586D715056
+</pre>
+  
+<pre class="example nohighlight" title="The same example DID Document shown above but exported 
+in diagnostic annotation mode for easy readibility">  
+A2                                   # map(2)
+62                                   # text(2)
+   6964                              # "id"
+78 1E                                # text(30)
+   6469643A6578616D706C653A313233343536373839616263646566676869 # "did:example:123456789abcdefghi"
+6E                                   # text(14)
+   61757468656E7469636174696F6E      # "authentication"
+81                                   # array(1)
+   A4                                # map(4)
+      62                             # text(2)
+         6964                        # "id"
+      78 25                          # text(37)
+         6469643A6578616D706C653A313233343536373839616263646566676869236B6579732D31 # "did:example:123456789abcdefghi#keys-1"
+      64                             # text(4)
+         74797065                    # "type"
+      78 1A                          # text(26)
+         45643235353139566572696669636174696F6E4B657932303138 # "Ed25519VerificationKey2018"
+      6A                             # text(10)
+         636F6E74726F6C6C6572        # "controller"
+      78 1E                          # text(30)
+         6469643A6578616D706C653A313233343536373839616263646566676869 # "did:example:123456789abcdefghi"
+      6F                             # text(15)
+         7075626C69634B6579426173653538 # "publicKeyBase58"
+      78 2C                          # text(44)
+         483343324156764C4D7636676D4D4E616D337556416A5A70666B634A437744776E5A6E367A3377586D715056 # "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
         </pre>
 
       </section>
@@ -2991,21 +2923,29 @@ All floating point values MUST be encoded as 64-bits, even for integral values.
       <section>
         <h3>Consumption</h3>
         <p>
-When consuming DID Documents that are represented as CBOR, in addition to the
-suggestions in section 3.9 of the CBOR [[RFC7049]] specification for
-deterministic mappings the following constraints of the DID Document model MUST
-be followed:
-        </p>
-        <ul>
-          <li>
-The keys in every map must be sorted lowest value to highest. Sorting is
-performed on the bytes of the representation of the keys.
-          </li>
-          <li>
-Indefinite-length items must be made into definite-length items.
-          </li>
-        </ul>
-      </section>
+        When consuming DID Documents that are represented as CBOR and interpreting the data types with respect to the Abstract Data Model using INFRA types the following consumption rules MUST be followed:
+      </p>
+
+<ul>
+  <li><a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR integers (major types 0 and 1)</a> MUST be interpreted as Integer values (a real number without a fractional part). </li>
+  <li><a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR floating-point values (major type 7)</a> MUST be interpreted as Double values (Number values with a fractional part). </li>
+  <li><a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR UTF-8 strings (major type 3)</a> MUST be interpreted as Strings </li>
+  <li><a href="https://tools.ietf.org/html/rfc7049#section-2.3">CBOR Boolean Primitve type (major type 7) with value 21 MUST be interpreted as Boolean True and value 20 MUST be interpreted as Boolean False. </li>
+  <li><a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR Array type (major type 4)</a> MUST be interpreted as a List (a finite sequence of values).</li>
+  <li><a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR Map type (major type 5).</a> MUST be interpreted as an Ordered Map ( A Set of properties ).</li>
+  <li><a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR Null literal Primitive type (major type 7) value 22.</a> MUST be interpreted as Null (Empty values). </li>
+  <li><a href="https://tools.ietf.org/html/rfc7049#section-2.4.1">CBOR Datetime string</a> (major type 6, minor tag 0) MUST interpreted as datetime string conformant to [[XMLSCHEMA11-2]].</li>
+  </ul>
+
+
+<p>Additional Considerations:</p>
+<ul>
+  <li><a href="https://tools.ietf.org/html/rfc7049#section-2.2.1">CBOR Indefinite-length items</a> are not allowed and MUST throw an Error.</li>
+  <li>Duplicate key in the same CBOR map MUST throw an Error.</li>
+  <li><a href="https://tools.ietf.org/html/rfc7049#section-3.3.3">Unknown Additional Properties and Values</a> that are not defined in <a href="#data-model">the Data Model</a>, represented in the `@context`, or represented in <a href="">the DID spec registries</a> or be explicitly documented as an extension of the DID document conformant to <a href="#extensibility"> § 4.3 Extensibility</a> MUST be preserved by default and represented as major type 3 (UTF-8 String) </li>
+</ul>
+
+</section>
 
       <section>
         <h3>CBOR Extensibility</h3>
@@ -3013,14 +2953,31 @@ Indefinite-length items must be made into definite-length items.
 In CBOR, one point of extensibility is with the use of CBOR tags. [[RFC7049]]
 defines a basic set of data types, as well as a tagging mechanism that enables
 extending the set of data types supported via the <a
-href="https://www.iana.org/assignments/cbor-tags/cbor-tags.xhtml">CBOR Tag
+href="https://www.iana.org/assignments/cbor-tags/cbor-tags.xhtml">IANA CBOR Tag
 Registry</a>. This allows for tags to enhance the semantic description of the
-data that follows.
-        </p>
+data that follows.  Extensibility with CBOR tags also facilitates lossless conversion to
+othere core representations. CBOR Tags number 21 to 23 indicate that a following byte string 
+might require a specific encoding when interoperating with a text-based
+representation such as JSON.  These tags are useful when an encoder knows that the
+byte string data it is writing is likely to be later converted to a
+particular text-based usage such as JSON.  These three tag numbers suggest conversions to three of the base data
+encodings defined in [[RFC4648]].  Tag number 21 suggests conversion to
+base64url encoding (Section 5 of [[RFC4648]]), where padding is not used
+(see Section 3.2 of [[RFC4648]]); that is, all trailing equals signs
+("=") are removed from the encoded string.  Tag number 22 suggests
+conversion to classical base64 encoding (Section 4 of [[RFC4648]] ), with
+padding as defined in [[RFC4648]].  For both base64url and base64,
+padding bits are set to zero (see Section 3.5 of [[RFC4648]] ), and
+encoding is performed without the inclusion of any line breaks,
+whitespace, or other additional characters.  Tag number 23 suggests
+conversion to base16 (hex) encoding, with uppercase alphabetics (see
+Section 8 of [[RFC4648]]).  Note that, for all three tag numbers, the
+encoding of the empty byte string is the empty text string of other representations.
+</p>
 
-        <section>
-          <h4>DagCBOR</h4>
-          <p>
+ <section>
+  <h4>DagCBOR</h4>
+  <p>
 DagCBOR is a further restricted subset of CBOR for representing the DID Document
 as a Directed Acyclic Graph model using canonical CBOR encoding as noted above
 with additional constraints. DagCBOR requires that there exist a single way of
@@ -3036,88 +2993,75 @@ Use no CBOR tags other than the CID tag (42)
             </li>
           </ul>
 
-          <pre class="example nohighlight" title="DID Document as DagCBOR same as the previous example, but serialized to JSON for easy readability">
-{ "@context": "https://www.w3.org/ns/did/v1",
-  "authentication": [
-    "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew;key-id=bafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i"
-  ],
-  "created": "2018-12-01T03:00:00Z",
-  "id": "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew",
-  "verificationMethod": [
-    {
-      "curve": "ed25519",
-      "expires": "2019-12-01T03:00:00Z",
-      "id": "bafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i;example:key=idbafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i",
-      "publicKeyBase64": "qmz7tpLNKKKdl7cD7PbejDiBVp7ONpmZbfmc7cEK9mg=",
-      "type": "EdDsaPublicKey"
-    }
-  ],
-  "updated": "2020-05-01T03:00:00Z"
-}
-          </pre>
-        </section>
+          <pre class="example nohighlight" title="DID Document as DagCBOR with tag 42 used in Proof section">
+            a5                                      # map(5)
+            62                                   # text(2)
+               6964                              # "id"
+            78 40                                # text(64)
+               6469643a6578616d706c653a313244334b6f6f574d4864727a6377706a6264725a7335474771455241766367715833623564707550745061396f743639796577 # "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew"
+            65                                   # text(5)
+               70726f6f66                        # "proof"
+            d8 2a                                # tag(42)
+               58 26                             # bytes(38)
+                  000190011b20a7f3a13d0dafa9b8b640fee52173c27b9a66ff27f6669b3be73fc0ee6849e2ce # "\x00\x01\x90\x01\e \xA7\xF3\xA1=\r\xAF\xA9\xB8\xB6@\xFE\xE5!s\xC2{\x9Af\xFF'\xF6f\x9B;\xE7?\xC0\xEEhI\xE2\xCE"
+            68                                   # text(8)
+               40636f6e74657874                  # "@context"
+            78 1c                                # text(28)
+               68747470733a2f2f7777772e77332e6f72672f6e732f6469642f7631 # "https://www.w3.org/ns/did/v1"
+            6e                                   # text(14)
+               61757468656e7469636174696f6e      # "authentication"
+            81                                   # array(1)
+               78 83                             # text(131)
+                  6469643a6578616d706c653a313244334b6f6f574d4864727a6377706a6264725a7335474771455241766367715833623564707550745061396f7436397965773b6b65792d69643d6261667972656963756274783577716f336e6f73633463617a726b63746668776436726577657a6770776f6534737769726c733465626468733269 # "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew;key-id=bafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i"
+            72                                   # text(18)
+               766572696669636174696f6e4d6574686f64 # "verificationMethod"
+            81                                   # array(1)
+               78 40                             # text(64)
+                  6469643a6578616d706c653a313244334b6f6f574d4864727a6377706a6264725a7335474771455241766367715833623564707550745061396f743639796577 # "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew"
+                    </pre>
 
-        <section>
-          <h4>COSE signatures</h4>
-
-          <p>
-A DID Document proof may be constructed using CBOR semantic tagging, such as
-tag 98 for CBOR Object Signing and Encryption (COSE) [[RFC8152]]
-          </p>
-
-          <pre class="example nohighlight" title="An example extensibility of COSE signature of CBOR using tag 98 and 42 expressed in diagnostic annotated form">
-  D8 62                                        # tag(98)
-  67                                           #   text(7)
-     7061796c6f6164                            #     "payload"
-  d8 2a                                        #   tag(42)
-     58 25                                     #     bytes(37)
-        00017112206c8fdc5c3d2302dda95034       #       "\x00\x01q\x12 l\x8f\xdc\\=#\x02\xdd\xa9P4"
-        f9de57a8591918ecb7d7789387c547f7       #       "\xf9\xdeW\xa8Y\x19\x18\xec\xb7\xd7x\x93\x87\xc5G\xf7"
-        a89d05e72f                             #       "\xa8\x9d\x05\xe7/"
-  69                                           #   text(9)
-     70726f746563746564                        #     "protected"
-  a0                                           #   map(0)
-  6a                                           #   text(10)
-     7369676e617475726573                      #     "signatures"
-  81                                           #   array(1)
-     a3                                        #     map(3)
-        69                                     #       text(9)
-           70726f746563746564                  #         "protected"
-        66                                     #       text(6)
-           613130313236                        #         "a10126"
-        69                                     #       text(9)
-           7369676e6174757265                  #         "signature"
-        78 80                                  #       text(128)
-           65326165616664343064363964313964    #         "e2aeafd40d69d19d"
-           66653665353230373763356437666634    #         "fe6e52077c5d7ff4"
-           65343038323832636265666235643036    #         "e408282cbefb5d06"
-           63626634313461663265313964393832    #         "cbf414af2e19d982"
-           61633435616339386238353434633930    #         "ac45ac98b8544c90"
-           38623435303764653165393062373137    #         "8b4507de1e90b717"
-           63336433343831366665393236613262    #         "c3d34816fe926a2b"
-           39386635336166643266613066333061    #         "98f53afd2fa0f30a"
-        6b                                     #       text(11)
-           756e70726f746563746564              #         "unprotected"
-        a1                                     #       map(1)
-           63                                  #         text(3)
-              6b6964                           #           "kid"
-           78 85                               #         text(133)
-              6469643a697069643a313244334b6f6f #           "did:ipid:12D3Koo"
-              574d4864727a6377706a6264725a7335 #           "WMHdrzcwpjbdrZs5"
-              47477145524176636771583362356470 #           "GGqERAvcgqX3b5dp"
-              7550745061396f7436397965773b6970 #           "uPtPa9ot69yew;ip"
-              69643a6b65792d69643d626166797265 #           "id:key-id=bafyre"
-              6963756274783577716f336e6f736334 #           "icubtx5wqo3nosc4"
-              63617a726b6374666877643672657765 #           "cazrkctfhwd6rewe"
-              7a6770776f6534737769726c73346562 #           "zgpwoe4swirls4eb"
-              6468733269                       #           "dhs2i"
-  6b                                           #   text(11)
-     756e70726f746563746564                    #     "unprotected"
-  a0                                           #   tag(0)
-          </pre>
         </section>
       </section>
     </section>
+    <section>
+      <h3>Converting Data between Core Representations</h3>
+      <p>Transformation between various core representations SHOULD be performed through parsing and serializing via the Abstract DID Document Data Model (see <a href="#data-model"></a> and <a href="#representations">Production and Consumptions rules between core representation via the Abstract Data Model</a>).  
+        Given that CBOR is a superset of JSON, the following non-normative advice is given for converting a DID document between CBOR and JSON.  </p>
+
+      <div class="warning" title="Converting via DID document data model">
+        <p>
+This section conflicts with other parts of the specification, since
+conversion has to be defined not between any two representations directly,
+but rather in terms of parsing and serializing via the abstract
+DID document data model (see <a href="#data-model"></a> and 
+<a href="#representations"></a>). The content of this section can
+potentially be adapted and re-used in other sections such as the one
+about the CBOR representation (see <a href="#cbor"></a>).
+        </p>
+      </div>
+
+    <section>
+      <h3>CBOR to JSON</h3>
+      <p>Most of the types in CBOR have direct analogs in JSON.  The following constraints allow for lossless conversion from CBOR to JSON:  </p>
+      <ul>
+        <li>A CBOR integer (major type 0 or 1) becomes a JSON number.</li>
+        <li>A CBOR array (major type 4) becomes a JSON array.</li>
+        <li>A CBOR map (major type 5) becomes a JSON object. This is possible directly only if all keys are UTF-8 strings. A converter might also convert other keys into UTF-8 strings (such as by converting integers into strings containing their decimal representation); however, doing so introduces a danger of key collision. </li>
+        <li>CBOR Boolean False (major type 7, additional information 20) becomes a JSON false.</li>
+        <li>CBOR Boolean True (major type 7, additional information 21) becomes a JSON true.</li>
+        <li>CBOR Null (major type 7, additional information 22) becomes a JSON null.</li>
+        <li>A CBOR floating-point value (major type 7, additional information 25 through 27) becomes a JSON number if it is finite (that is, it can be represented in a JSON number); if the value is non-finite (NaN, or positive or negative Infinity), it is represented by the substitute value.</li>
+        <li>A CBOR byte string with an encoding hint (major type 6, tag number 21 through 23) is encoded as described and becomes a JSON string.</li>
+      </ul>
+
+      <p>
+        When interoperating with a text-based representation such as JSON or JSON-LD it is helpful to utilize additional sematics to aid convertion.  CBOR Tags numbers 21 to 23 indicate that a byte string value in DID document represented in CBOR might require a specific encoding to represent properly in JSON.
+      </p>
+
+    </section>
+    </section>
+
+    
   </section>
 
   <section>
@@ -5039,7 +4983,7 @@ websites that issue or verify W3C Verifiable Credentials.
         <dt>Restrictions on usage:</dt>
         <dd>None</dd>
         <dt>Author(s):</dt>
-        <dd>Drummond Reed, Manu Sporny, Markus Sabadello, Dave Longley, Christopher Allen, Jonathan Holt</dd>
+        <dd>Drummond Reed, Manu Sporny, Markus Sabadello, Dave Longley, Christopher Allen</dd>
         <dt>Change controller:</dt>
         <dd>W3C</dd>
       </dl>
@@ -5099,7 +5043,7 @@ websites that issue or verify W3C Verifiable Credentials.
         <dt>Restrictions on usage:</dt>
         <dd>None</dd>
         <dt>Author(s):</dt>
-        <dd>Drummond Reed, Manu Sporny, Markus Sabadello, Dave Longley, Christopher Allen, Jonathan Holt</dd>
+        <dd>Drummond Reed, Manu Sporny, Markus Sabadello, Dave Longley, Christopher Allen</dd>
         <dt>Change controller:</dt>
         <dd>W3C</dd>
       </dl>
