@@ -100,7 +100,7 @@ association with the <a>DID</a>. A DID document may also contain other
 <a href="https://en.wikipedia.org/wiki/Attribute_(computing)">attributes</a> or
 <a href="https://en.wikipedia.org/wiki/Claims-based_identity">claims</a>
 describing the <a>DID subject</a>. A DID document may have one or more different
-<a>representations</a> as defined in <a href="#core-representations"></a> or in
+<a>representations</a> as defined in <a href="#representations"></a> or in
 the W3C DID Specification Registries [[DID-SPEC-REGISTRIES]].
   </dd>
 
@@ -213,11 +213,13 @@ function for a given <a>DID URL</a> or <a>DID document</a>.
   <dt><dfn data-lt="distributed ledger technology|DLT">distributed ledger</dfn> (DLT)</dt>
 
   <dd>
-A <a href="https://en.wikipedia.org/wiki/Distributed_database">distributed database</a>
-in which the various nodes use a
-<a href="https://en.wikipedia.org/wiki/Consensus_(computer_science)">consensus protocol</a>
-to maintain a shared ledger in which each transaction is cryptographically
-signed and chained to the previous transaction.
+A non-centralized system for recording events. These systems establish
+sufficient confidence for participants to rely upon the data recorded
+by others to make operational decisions. They typically use distributed
+databases where different nodes use a consensus protocol to confirm the
+ordering of cryptographically signed transactions. The linking of digitally
+signed transactions over time often makes the history of the ledger
+effectively immutable.
   </dd>
 
   <dt><dfn data-lt="proofPurpose">proof purpose</dfn></dt>
@@ -252,7 +254,7 @@ past, current, or desired state of a given resource, in a format that can be
 readily communicated via the protocol, and that consists of a set of
 representation metadata and a potentially unbounded stream of representation
 data." A <a>DID document</a> is a representation of information
-describing a <a>DID subject</a>. The <a href="#core-representations"></a>
+describing a <a>DID subject</a>. The <a href="#representations"></a>
 section of the <a href="https://w3.org/TR/did-core">DID Core specification</a>
 defines several representation formats for a <a>DID document</a>.
   </dd>
