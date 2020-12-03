@@ -3060,7 +3060,6 @@ about the CBOR representation (see <a href="#cbor"></a>).
     </section>
     </section>
 
-
   </section>
 
   <section>
@@ -3653,7 +3652,9 @@ The value of the property MUST follow the same formatting rules as the
                     <code><a>equivalentId</a></code> properties to ensure any subsequent
                     interactions with any of the values they contain are correctly handled
                     as logically equivalent (e.g. retain all variants in a database so an
-                    interaction with any one maps to the same underlying account).
+                    interaction with any one maps to the same underlying account). <span class="issue">The testability of
+                    resolving parties is currently under debate and normative statements related to resolving parties
+                    may be downgraded in the future from a MUST to a SHOULD/MAY or similar language.</span>
                   </dd>
                 </dl>
 
@@ -3704,7 +3705,9 @@ The value of the property MUST follow the same formatting rules as the
                     A resolving party MUST use the <code><a>canonicalId</a></code> value
                     as its primary ID value for the DID subject and treat all other equivalent
                     values as secondary aliases. (e.g. update corresponding primary references in
-                    their systems to reflect the new canonical ID directive).
+                    their systems to reflect the new canonical ID directive). <span class="issue">The testability of
+                    resolving parties is currently under debate and normative statements related to resolving parties
+                    may be downgraded in the future from a MUST to a SHOULD/MAY or similar language.</span>
                   </dd>
                 </dl>
 
