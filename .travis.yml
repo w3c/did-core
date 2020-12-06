@@ -2,7 +2,7 @@ language: node_js
  
 branches:
   only:
-    - master
+    - main
  
 env:
   global:
