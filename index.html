@@ -3031,44 +3031,6 @@ Use no CBOR tags other than the CID tag (42)
         </section>
       </section>
     </section>
-    <section>
-      <h3>Converting Data between Core Representations</h3>
-      <p>Transformation between various core representations SHOULD be performed through parsing and serializing via the Abstract DID Document Data Model (see <a href="#data-model"></a> and <a href="#representations">Production and Consumptions rules between core representation via the Abstract Data Model</a>).
-        Given that CBOR is a superset of JSON, the following non-normative advice is given for converting a DID document between CBOR and JSON.  </p>
-
-      <div class="warning" title="Converting via DID document data model">
-        <p>
-This section conflicts with other parts of the specification, since
-conversion has to be defined not between any two representations directly,
-but rather in terms of parsing and serializing via the abstract
-DID document data model (see <a href="#data-model"></a> and
-<a href="#representations"></a>). The content of this section can
-potentially be adapted and re-used in other sections such as the one
-about the CBOR representation (see <a href="#cbor"></a>).
-        </p>
-      </div>
-
-    <section>
-      <h3>CBOR to JSON</h3>
-      <p>Most of the types in CBOR have direct analogs in JSON.  The following constraints allow for lossless conversion from CBOR to JSON:  </p>
-      <ul>
-        <li>A CBOR integer (major type 0 or 1) becomes a JSON number.</li>
-        <li>A CBOR array (major type 4) becomes a JSON array.</li>
-        <li>A CBOR map (major type 5) becomes a JSON object. This is possible directly only if all keys are UTF-8 strings. A converter might also convert other keys into UTF-8 strings (such as by converting integers into strings containing their decimal representation); however, doing so introduces a danger of key collision. </li>
-        <li>CBOR Boolean False (major type 7, additional information 20) becomes a JSON false.</li>
-        <li>CBOR Boolean True (major type 7, additional information 21) becomes a JSON true.</li>
-        <li>CBOR Null (major type 7, additional information 22) becomes a JSON null.</li>
-        <li>A CBOR floating-point value (major type 7, additional information 25 through 27) becomes a JSON number if it is finite (that is, it can be represented in a JSON number); if the value is non-finite (NaN, or positive or negative Infinity), it is represented by the substitute value.</li>
-        <li>A CBOR byte string with an encoding hint (major type 6, tag number 21 through 23) is encoded as described and becomes a JSON string.</li>
-      </ul>
-
-      <p>
-        When interoperating with a text-based representation such as JSON or JSON-LD it is helpful to utilize additional sematics to aid convertion.  CBOR Tags numbers 21 to 23 indicate that a byte string value in DID document represented in CBOR might require a specific encoding to represent properly in JSON.
-      </p>
-
-    </section>
-    </section>
-
   </section>
 
   <section>
