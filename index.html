@@ -1255,8 +1255,8 @@ that ensures that two different representations will be able to work together.
       <li>
 Representations MAY define other extensibility mechanisms including methods for
 decentralized extensions. Such extension mechanisms SHOULD support lossless
-conversion into any other conformant representation. Extension mechanisms for a 
-representation SHOULD define a mapping of all properties and representation syntax 
+conversion into any other conformant representation. Extension mechanisms for a
+representation SHOULD define a mapping of all properties and representation syntax
 into the abstract data model and its type system.
       </li>
       </ol>
@@ -2643,14 +2643,12 @@ JSON-LD
       </h2>
 
       <p>
-[[!JSON-LD11]] is a JSON-based format used to serialize
+JSON-LD is a JSON-based format used to serialize
 <a href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a>.
-      </p>
-
-      <p>
-This section sets out the requirements for producing and consuming <a>DID
-documents</a> that are in JSON-LD (as indicated by a <code>content-type</code>
-of <code>application/did+ld+json</code> in the resolver metadata).
+This section establishes the requirements for producing and consuming <a>DID
+documents</a> that are expressed as JSON-LD. JSON-LD <a>DID documents</a>
+are indicated by a <code>content-type</code> resolver metadata field that is
+set to <code>application/did+ld+json</code>.
       </p>
 
       <p class="issue atrisk" data-number="208">
@@ -2658,6 +2656,12 @@ Use of the media type <code>application/did+ld+json</code> is pending
 clarification over registration of media types with multiple suffixes. The
 alternative will be to use <code>application/did+jsonld</code> if multiple
 suffixes cannot be registered by the time the rest of DID Core is ready for PR.
+      </p>
+
+      <p>
+The following application-specific modifications are made by this specification
+to the JSON-LD specification [[JSON-LD11]] to ease interoperability between
+JSON and JSON-LD implementations:
       </p>
 
       <ul>
@@ -2685,9 +2689,10 @@ Production
         </h3>
 
         <p>
-The <a>DID document</a> MUST be serialized as a JSON document, with one
-additional requirement: The <a>DID document</a> MUST include the
-<code>@context</code> property.
+The <a>DID document</a> MUST be serialized according to the
+<a href="#production">production rules for JSON</a>, with one additional
+requirement: The <a>DID document</a> MUST include the <code>@context</code>
+property.
         </p>
 
         <dl>
@@ -2773,10 +2778,10 @@ Consumption
         </h3>
 
         <p>
-The top-level element MUST be a JSON object. Any other data type at the top
-level is an error and MUST be rejected. This top-level JSON object is
-interpreted using JSON-LD processing under the rules of the defined
-<code>@context</code> fields.
+The <a>DID document</a> MUST be deserialized as a JSON document according to
+the <a href="#consumption">consumption rules for JSON</a>, with one additional
+requirement: The <a>DID document</a> MUST include the <code>@context</code>
+property and be processed according to the rules below.
         </p>
 
         <dl>
