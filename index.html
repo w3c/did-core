@@ -2804,7 +2804,7 @@ Like Javascript Object Notation (JSON) [[RFC8259]], Concise Binary Object
 Representation (CBOR) [[RFC7049]] defines a set of formatting rules for the
 portable representation of structured data. CBOR is a more concise,
 machine-readable, language-independent data interchange format that is
-self-describing and has built-in semantics for interoperability.  CBOR prioritizes 
+self-describing and has built-in semantics for interoperability.  CBOR prioritizes
 the simplicity of the encoder and decoder over the size of the encoded data.
 With specific constraints, CBOR can support all JSON data types for
 translation between the DID document model (described in <a
@@ -2812,16 +2812,16 @@ href="#data-model">Data Model</a> and the <a href="#core-properties"> Core Prope
       </p>
 
 <p>
-When producing and consuming DID documents that are encoded in CBOR (as indicated 
+When producing and consuming DID documents that are encoded in CBOR (as indicated
 by a content-type of application/did+cbor in the resolver metadata), the following rules MUST be followed.
 </p>
-      
+
       <section>
         <h3>Production</h3>
         <p>
-A DID document encoded in CBOR must be represented as a CBOR Map (major type 5) conforming to [[RFC7049]]. 
-Similar to the JSON encoding of a DID document, all properties of the DID document MUST be represented by using the 
-property name as the name of the member of the CBOR map.  The values of properties of the data model described in <a href="#core-properties"> § 5. Core Properties</a>, including 
+A DID document encoded in CBOR must be represented as a CBOR Map (major type 5) conforming to [[RFC7049]].
+Similar to the JSON encoding of a DID document, all properties of the DID document MUST be represented by using the
+property name as the name of the member of the CBOR map.  The values of properties of the data model described in <a href="#core-properties"> § 5. Core Properties</a>, including
 all extensions, MUST be encoded in CBOR [[RFC7049]] by mapping INFRA property values to CBOR types as follows: </p>
 
 <ul>
@@ -2839,13 +2839,13 @@ all extensions, MUST be encoded in CBOR [[RFC7049]] by mapping INFRA property va
 </ul>
 
 
-<!-- <p>Additional considerations to enable lossless production of a CBOR representation and to enable a deterministic 
-  canonical CBOR representation of the DID Document between other core representations of the DID document is possible 
+<!-- <p>Additional considerations to enable lossless production of a CBOR representation and to enable a deterministic
+  canonical CBOR representation of the DID Document between other core representations of the DID document is possible
   with additional constraints to the CBOR representation.  -->
   <p>
-  To produce a deterministic canonical CBOR representation of a DID document and faciliate maximal lossless compatiblity with other 
+  To produce a deterministic canonical CBOR representation of a DID document and faciliate maximal lossless compatiblity with other
   core representations via the Abstract Data Model the following constraints of a CBOR representation of a DID Document model MUST be followed:
- 
+
 <ul>
     <li>Property names MUST be represented as text string (major type 3) and contain only UTF-8 strings. </li>
     <li>Undefined Values of Required Properties as defined in <a href="#data-model">the Data Model</a> that are absent from the CBOR representation SHOULD be labeled with Primitive type (major type 7) with value 23 (Undefined value).  </li>
@@ -2866,8 +2866,8 @@ all extensions, MUST be encoded in CBOR [[RFC7049]] by mapping INFRA property va
 </p>
 
 <p>
-  All properties of the DID document represented in CBOR MUST be included in the root map (major type 5). 
-  Properties MAY define additional data sub structures represented as nested CBOR maps (major type 5) 
+  All properties of the DID document represented in CBOR MUST be included in the root map (major type 5).
+  Properties MAY define additional data sub structures represented as nested CBOR maps (major type 5)
   and is subject to the value representation rules in the lists above and conformance to section <a href="#extensibility"> § 4.3 Extensibility</a>.
 </p>
 
@@ -2888,9 +2888,9 @@ all extensions, MUST be encoded in CBOR [[RFC7049]] by mapping INFRA property va
   79426173653538782C483343324156764C4D7636676D4D4E616D33755641
   6A5A70666B634A437744776E5A6E367A3377586D715056
 </pre>
-  
-<pre class="example nohighlight" title="The same example DID Document shown above but exported 
-in diagnostic annotation mode for easy readibility">  
+
+<pre class="example nohighlight" title="The same example DID Document shown above but exported
+in diagnostic annotation mode for easy readibility">
 A2                                   # map(2)
 62                                   # text(2)
    6964                              # "id"
@@ -2956,7 +2956,7 @@ extending the set of data types supported via the <a
 href="https://www.iana.org/assignments/cbor-tags/cbor-tags.xhtml">IANA CBOR Tag
 Registry</a>. This allows for tags to enhance the semantic description of the
 data that follows.  Extensibility with CBOR tags also facilitates lossless conversion to
-othere core representations. CBOR Tags number 21 to 23 indicate that a following byte string 
+othere core representations. CBOR Tags number 21 to 23 indicate that a following byte string
 might require a specific encoding when interoperating with a text-based
 representation such as JSON.  These tags are useful when an encoder knows that the
 byte string data it is writing is likely to be later converted to a
@@ -3025,7 +3025,7 @@ Use no CBOR tags other than the CID tag (42)
     </section>
     <section>
       <h3>Converting Data between Core Representations</h3>
-      <p>Transformation between various core representations SHOULD be performed through parsing and serializing via the Abstract DID Document Data Model (see <a href="#data-model"></a> and <a href="#representations">Production and Consumptions rules between core representation via the Abstract Data Model</a>).  
+      <p>Transformation between various core representations SHOULD be performed through parsing and serializing via the Abstract DID Document Data Model (see <a href="#data-model"></a> and <a href="#representations">Production and Consumptions rules between core representation via the Abstract Data Model</a>).
         Given that CBOR is a superset of JSON, the following non-normative advice is given for converting a DID document between CBOR and JSON.  </p>
 
       <div class="warning" title="Converting via DID document data model">
@@ -3033,7 +3033,7 @@ Use no CBOR tags other than the CID tag (42)
 This section conflicts with other parts of the specification, since
 conversion has to be defined not between any two representations directly,
 but rather in terms of parsing and serializing via the abstract
-DID document data model (see <a href="#data-model"></a> and 
+DID document data model (see <a href="#data-model"></a> and
 <a href="#representations"></a>). The content of this section can
 potentially be adapted and re-used in other sections such as the one
 about the CBOR representation (see <a href="#cbor"></a>).
@@ -3061,7 +3061,7 @@ about the CBOR representation (see <a href="#cbor"></a>).
     </section>
     </section>
 
-    
+
   </section>
 
   <section>
