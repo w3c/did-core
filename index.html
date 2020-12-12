@@ -2755,6 +2755,13 @@ machine-readable information about the context. These URIs SHOULD be
 associated with a cryptographic hash of the content of the JSON-LD Context as
 part of registration in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
             </p>
+            <p class="advisement">
+              If included, the cryptographic hash of the content of the JSON-LD Context, MUST be computed in a manner equivalent to:
+              <pre class="example">
+                curl -s https://www.w3.org/ns/did/v1#910cd6648f6f7b72a7896a8da83e63460eb8355a0af4b56b699c9281452ac8bb  | openssl sha256
+              </pre>
+              The integrity check is considered valid if and only if the hex digest of the resource matches the fragment.
+            </p>
           </dd>
         </dl>
         <p>
