@@ -2343,6 +2343,13 @@ the property is not defined. Representations are required to define producer
 behavior for any such properties defined by the representation.
     </p>
 
+<p class="note" title="Representation properties lexical and value space">
+It is recommended that representations SHOULD use the lexical representation 
+of a registered data types (e.g. JSON-LD uses XML Schema date), 
+but representation MAY also choose to represent the data types 
+differently (e.g. CBOR may represent the same property with a tag).
+</p>
+
     <p>
 The production and consumption rules in this section apply to all
 implementations seeking to be fully compatible with independent implementations
