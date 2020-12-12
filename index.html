@@ -1536,7 +1536,7 @@ a threshold signature. Methods need not be cryptographic.
 
       <p>
 In order to maximize interoperability, support for public keys as verification
-methods is restricted: see <a href="#key-types-and-formats"></a>. For other
+methods is restricted: see <a href="#verification-method-types"></a>. For other
 types of verification method, the verification method SHOULD be registered in
 the [[?DID-SPEC-REGISTRIES]].
       </p>
@@ -1576,7 +1576,7 @@ formats such as JWK [[RFC7517]]. It is RECOMMENDED that JWK <code>kid</code>
 values are set to the public key fingerprint [[RFC7638]]. It is RECOMMENDED
 that verification methods that use JWKs to represent their public keys utilize
 the value of <code>kid</code> as their fragment identifier. See the first key
-in <a href="#example-15-various-public-keys"></a>
+in <a href="#example-15-various-verification-method-types"></a>
 for an example of a public key with a compound key identifier.
           </p>
 
@@ -1591,9 +1591,30 @@ The value of the <code>controller</code> property MUST be a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
 href="#did-syntax"></a>.
           </p>
+
+<p>
+A verification method MUST contain verification material, 
+such as <a>publicKeyJwk</a> or <a>publicKeyBase58</a> 
+</p>
+
+<p>
+  A <a>verification method</a> MUST NOT contain multiple verification material properties.
+  For example, expressing key material in a <a>verification method</a> using both
+  <code>publicKeyJwk</code> and <code>publicKeyBase58</code> at the same time
+  is prohibited.
+</p>
+        </dd>
+        <dt><dfn>publicKeyJwk</dfn></dt>
+        <dd>
+         A JSON Web Key that conforms to [[RFC7517]]. MUST NOT contain "d", 
+         or any other members of the private information class as described in 
+         <a href="https://tools.ietf.org/html/rfc7517#section-8.1.1">Registration Template</a>.
+        </dd>
+        <dt><dfn>publicKeyBase58</dfn></dt>
+        <dd>
+         A base58btc encoded public key.
         </dd>
       </dl>
-
 
       <p class="note" title="Verification method controller(s) and DID controller(s)">
 The semantics of the <code>controller</code> property are the same when the
@@ -1617,8 +1638,13 @@ a <a>DID controller</a>. <a>DID controller(s)</a> are expressed using the
     "id": <span class="comment">...</span>,
     "type": <span class="comment">...</span>,
     "controller": <span class="comment">...</span>,
-    <span class="comment">...</span>
-  ]}
+    "publicKeyJwk": <span class="comment">...</span>
+  }, {
+    "id": <span class="comment">...</span>,
+    "type": <span class="comment">...</span>,
+    "controller": <span class="comment">...</span>,
+    "publicKeyBase58": <span class="comment">...</span>
+  }]
 }
       </pre>
 
@@ -1695,18 +1721,11 @@ property of <em>result</em>, throw an error.
       </pre>
 
       <section>
-        <h3>Key types and formats</h3>
+        <h3>Verification method types</h3>
 
         <p>
 A public key can be used as a <a>verification method</a>.
         </p>
-
-<p>
-A <a>verification method</a> MUST NOT contain multiple verification material properties.
-For example, expressing key material in a <a>verification method</a> using both
-<code>publicKeyJwk</code> and <code>publicKeyBase58</code> at the same time
-is prohibited.
-</p>
 
         <p>
 This specification strives to limit the number of formats for expressing public
@@ -1714,113 +1733,17 @@ key material in a <a>DID document</a> to the fewest possible, to increase the
 likelihood of interoperability. The fewer formats that implementers have to
 implement, the more likely it will be that they will support all of them. This
 approach attempts to strike a delicate balance between ease of implementation
-and supporting formats that have historically had broad deployment. The specific
-types of key formats that are supported in this specification are listed here.
+and supporting formats that have historically had broad deployment. 
         </p>
 
         <p>
-When using any of the public key types described here, public key expression
-MUST NOT use any other key format than those listed in the
-<a href="#public-key-support">Public Key Support table</a>. For public key
-types that are not listed here, the type value and corresponding format
-property SHOULD be registered in [[?DID-SPEC-REGISTRIES]], as with any other
-verification method.
-        </p>
-
-        <p class="issue">
-The Working Group is still debating whether the base encoding format used will
-be Base58 (Bitcoin) [[?BASE58]], base64url [[RFC7515]], or base16 (hex)
-[[RFC4648]]. The entries in the table below currently assume PEM and Base58
-(Bitcoin), but might change to base64url and/or base16 (hex) after the group
-achieves consensus on this particular issue.
-        </p>
-
-        <p class="issue">
-The Working Group is still debating whether secp256k1 Schnorr public key values
-will be elaborated upon in this specification and if so, how they will be
-expressed and encoded.
-        </p>
-
-<p class="issue" data-number="423">
-The Working Group is still debating how best to communicate support for
-specific verification method types.
+A suite definition is responsible for specifying the verification method 
+<code>type</code> and proof <code>type</code>. 
+For example, see <a href="https://w3c-ccg.github.io/lds-jws2020/">JSON Web Signature 2020</a> and 
+<a href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature 2018</a>. 
 </p>
 
-        <table class="simple" id="public-key-support">
-          <caption>
-This table defines the support for public key expression in a DID document.
-For each public key type, a maximum of two encoding formats is supported.
-          </caption>
-          <thead>
-            <tr>
-              <th>
-Key&nbsp;Type<br/>(<code>type</code> value)
-              </th>
-              <th>
-Support
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>
-RSA<br/>(<code>RsaVerificationKey2018</code>)
-              </td>
-              <td>
-RSA public key values MUST be encoded as a JWK [[RFC7517]] using the
-<code>publicKeyJwk</code> property.
-              </td>
-            </tr>
-            <tr>
-              <td>
-ed25519<br/>(<code>Ed25519VerificationKey2018</code>)
-              </td>
-              <td>
-Ed25519 public key values MUST either be encoded as a JWK [[RFC7517]]
-using the <code>publicKeyJwk</code> or be
-encoded as the raw 32-byte public key value in Base58 Bitcoin format
-[[?BASE58]] using the <code>publicKeyBase58</code> property.
-              </td>
-            </tr>
-            <tr>
-              <td>
-secp256k1
-              </td>
-              <td>
-Secp256k1 public key values MUST either be encoded as a JWK [[RFC7517]]
-using the <code>publicKeyJwk</code> or be
-encoded as the raw 33-byte public key value in Base58
-Bitcoin format [[?BASE58]] using the <code>publicKeyBase58</code> property.
-              </td>
-            </tr>
-            <tr>
-              <td>
-Curve25519<br/>(<code>X25519KeyAgreementKey2019</code>)
-              </td>
-              <td>
-Curve25519 (also known as X25519) public key values MUST either be encoded
-as a JWK [[RFC7517]] using the <code>publicKeyJwk</code> or be
-encoded as the raw 32-byte public key value in Base58
-Bitcoin format [[?BASE58]] using the <code>publicKeyBase58</code> property.
-              </td>
-            </tr>
-            <tr>
-              <td>
-JWK<br/>(<code>JsonWebKey2020</code>)
-              </td>
-              <td>
-Key types listed in <a href="https://www.iana.org/assignments/jose/jose.xhtml">JOSE</a>, represented using [[RFC7517]] using the <code>publicKeyJwk</code> property.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p>
-Example:
-        </p>
-
-        <pre class="example nohighlight" title="Various public keys">
+<pre class="example nohighlight" title="Various verification method types">
 {
   "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
   "id": "did:example:123456789abcdefghi",
@@ -1845,12 +1768,17 @@ Example:
 }
         </pre>
 
-        <p>
-If a public key does not exist in the <a>DID document</a>, the key was revoked
-or is invalid. The <a>DID document</a> MUST NOT express revoked keys using a
-<a>verification relationship</a>. Each <a>DID method</a> specification is
-expected to detail how revocation is performed and tracked.
-        </p>
+
+<p>The <a>DID document</a> MUST NOT express revoked keys using a
+<a>verification relationship</a>.
+</p> 
+<p>
+If a verification method does not exist in the <a>DID document</a>, the method was revoked
+or is invalid. 
+</p>
+<p>
+Each <a>DID method</a> specification is expected to detail how revocation is performed and tracked.
+</p>
 
         <p class="note">
 Caching and expiration of the keys in a <a>DID document</a> is entirely the
