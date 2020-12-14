@@ -1594,11 +1594,12 @@ href="#did-syntax"></a>.
 
 <p>
 A verification method MUST contain verification material, 
-such as <a>publicKeyJwk</a> or <a>publicKeyBase58</a> 
+such as <a>publicKeyJwk</a> or <a>publicKeyBase58</a>.
 </p>
 
 <p>
-  A <a>verification method</a> MUST NOT contain multiple verification material properties.
+  A <a>verification method</a> MUST NOT contain multiple verification material properties
+  for the same material.
   For example, expressing key material in a <a>verification method</a> using both
   <code>publicKeyJwk</code> and <code>publicKeyBase58</code> at the same time
   is prohibited.
@@ -1606,7 +1607,7 @@ such as <a>publicKeyJwk</a> or <a>publicKeyBase58</a>
         </dd>
         <dt><dfn>publicKeyJwk</dfn></dt>
         <dd>
-         A JSON Web Key that conforms to [[RFC7517]]. MUST NOT contain "d", 
+         A JSON Web Key that conforms to [[RFC7517]]. This value MUST NOT contain "d", 
          or any other members of the private information class as described in 
          <a href="https://tools.ietf.org/html/rfc7517#section-8.1.1">Registration Template</a>.
         </dd>
@@ -1740,7 +1741,9 @@ and supporting formats that have historically had broad deployment.
 A suite definition is responsible for specifying the verification method 
 <code>type</code> and proof <code>type</code>. 
 For example, see <a href="https://w3c-ccg.github.io/lds-jws2020/">JSON Web Signature 2020</a> and 
-<a href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature 2018</a>. 
+<a href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature 2018</a>.
+For all registered and supported verification method types available for DIDs
+please see [[?DID-SPEC-REGISTRIES]].
 </p>
 
 <pre class="example nohighlight" title="Various verification method types">
