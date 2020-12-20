@@ -4241,12 +4241,12 @@ Choosing DID Resolvers
       </h2>
 
       <p>
-The DID Method Registry (see [[?DID-SPEC-REGISTRIES]] is an informative list of <a>DID method</a> names
-and their corresponding <a>DID method</a> specifications. Implementors need to
-bear in mind that there is no central authority to mandate which
-<a>DID method</a> specification is to be used with any specific
-<a>DID method</a> name, but can use the DID Method Registry to make an
-informed decision when choosing which <a>DID resolver</a> implementations to
+The DID Method Registry (see [[?DID-SPEC-REGISTRIES]] is an informative list of
+<a>DID method</a> names and their corresponding <a>DID method</a>
+specifications. Implementors need to bear in mind that there is no central
+authority to mandate which <a>DID method</a> specification is to be used with
+any specific <a>DID method</a> name, but can use the DID Method Registry to make
+an informed decision when choosing which <a>DID resolver</a> implementations to
 use.
       </p>
     </section>
@@ -4361,20 +4361,19 @@ A <a>DID</a> and <a>DID document</a> do not inherently carry any
         </p>
 
         <p>
-It can be useful to express a binding of <a>DID</a> to a
-person's or company's real world identity, in a way that is
-provably asserted by a trusted authority such as a government. This can
-enable interactions that can be considered legally valid under one or
-more jurisdictions; establishing such bindings
-has to be carefully balanced against privacy considerations
-(see <a href="#privacy-considerations"></a>).
+It can be useful to express a binding of <a>DID</a> to a person's or company's
+real world identity, in a way that is provably asserted by a trusted authority
+such as a government. This can enable interactions that can be considered
+legally valid under one or more jurisdictions; establishing such bindings has to
+be carefully balanced against privacy considerations (see <a
+href="#privacy-considerations"></a>).
         </p>
 
         <p>
-The process of binding a <a>DID</a> to
-something in the real world, such as a person or a company, for example using
-<a>verifiable credentials</a> with the same subject as that <a>DID</a>, is out of scope for this
-specification. For more information, see the [[VC-DATA-MODEL]] instead.
+The process of binding a <a>DID</a> to something in the real world, such as a
+person or a company, for example using <a>verifiable credentials</a> with the
+same subject as that <a>DID</a>, is out of scope for this specification. For
+more information, see the [[VC-DATA-MODEL]] instead.
         </p>
       </section>
     </section>
@@ -4388,8 +4387,9 @@ Authentication Service Endpoints
 If a <a>DID document</a> publishes a <a>service endpoint</a> intended for
 authentication or authorization of the <a>DID subject</a> (see Section <a
 href="#service-endpoints"></a>), it is the responsibility of the <a>service
-endpoint</a> provider, subject, or requesting party to comply with the requirements
-of the authentication protocols supported at that <a>service endpoint</a>.
+endpoint</a> provider, subject, or requesting party to comply with the
+requirements of the authentication protocols supported at that <a>service
+endpoint</a>.
       </p>
     </section>
 
@@ -4436,11 +4436,11 @@ addresses on file.
       </p>
       <p>
 In the case of a <a>DID</a>, there is no intermediary registrar or account
-provider to generate such notifications. However, if the <a>verifiable data registry</a>
-on which the <a>DID</a> is registered directly supports change notifications,
-a subscription service can be offered to <a>DID controllers</a>. Notifications
-could be sent directly to the relevant <a>service endpoints</a> listed in an
-existing <a>DID</a>.
+provider to generate such notifications. However, if the <a>verifiable data
+registry</a> on which the <a>DID</a> is registered directly supports change
+notifications, a subscription service can be offered to <a>DID controllers</a>.
+Notifications could be sent directly to the relevant <a>service endpoints</a>
+listed in an existing <a>DID</a>.
       </p>
       <p>
 If a <a>DID controller</a> chooses to rely on a third-party monitoring service
@@ -4555,17 +4555,17 @@ actors.
         <p>
 As an example, consider the flexibility that the data model offers with respect
 to updating. A single edit to a <a>DID document</a> can change anything and
-everything except the root <code><a>id</a></code> property of the document. And any
-individual JSON object in the data model can change all of its properties except
-its <code><a>id</a></code>. But is it actually desirable for a <a>service endpoint</a>
-to change its <code>type</code> after it is defined? Or for a key to change its
-value? Or would it be better to require a new <code><a>id</a></code> when certain
-fundamental properties of an object change? Malicious takeovers of a web site
-often aim for an outcome where the site keeps its identifier (the host name),
-but gets subtle, dangerous changes underneath. If certain properties of the site
-were required by the specification to be immutable (for example, the
-<a target="_blank"
-  href="https://en.wikipedia.org/wiki/Autonomous_system_(Internet)">ASN</a>
+everything except the root <code><a>id</a></code> property of the document. And
+any individual JSON object in the data model can change all of its properties
+except its <code><a>id</a></code>. But is it actually desirable for a <a>service
+endpoint</a> to change its <code>type</code> after it is defined? Or for a key
+to change its value? Or would it be better to require a new
+<code><a>id</a></code> when certain fundamental properties of an object change?
+Malicious takeovers of a web site often aim for an outcome where the site keeps
+its identifier (the host name), but gets subtle, dangerous changes underneath.
+If certain properties of the site were required by the specification to be
+immutable (for example, the <a target="_blank"
+href="https://en.wikipedia.org/wiki/Autonomous_system_(Internet)">ASN</a>
 associated with its IP address), such attacks might be much harder and more
 expensive to carry out, and anomaly detection would be easier.
         </p>
@@ -4574,11 +4574,12 @@ The notion that immutability provides some cybersecurity benefits is
 particularly relevant because of caching. For <a>DID methods</a> tied to a
 global source of truth, a direct, just-in-time lookup of the latest version of a
 <a>DID document</a> is always possible. However, it seems likely that layers of
-cache might eventually sit between a <a>DID resolver</a> and that source of truth. If they
-do, believing the attributes of an object in the <a>DID document</a> to have a
-given state, when they are actually subtly different, might invite exploits.
-This is particularly true if some lookups are of a full <a>DID document</a>, and
-others are of partial data, where the larger context is assumed.
+cache might eventually sit between a <a>DID resolver</a> and that source of
+truth. If they do, believing the attributes of an object in the <a>DID
+document</a> to have a given state, when they are actually subtly different,
+might invite exploits. This is particularly true if some lookups are of a full
+<a>DID document</a>, and others are of partial data, where the larger context is
+assumed.
         </p>
     </section>
 
@@ -4608,41 +4609,40 @@ not wish to be correlated with the <a>DID</a>.
     </section>
 
     <section>
-      <h2>
-        Equivalence Properties
-      </h2>
+      <h2>Equivalence Properties</h2>
       <p>
-        The three equivalence properties defined in Core Properties
-        —<code><a>alsoKnownAs</a></code>, <code><a>equivalentId</a></code>, and
-        <code><a>canonicalId</a></code>—are subject to special security
-        considerations related to attacks against DIDs that are asserted to be
-        equivalent. Each of the equivalence property sections describes relevant
-        mitigation instructions. In general, they are:
+The three equivalence properties defined in Core Properties
+—<code><a>alsoKnownAs</a></code>, <code><a>equivalentId</a></code>, and
+<code><a>canonicalId</a></code>—are subject to special security considerations
+related to attacks against DIDs that are asserted to be equivalent. Each of the
+equivalence property sections describes relevant mitigation instructions. In
+general, they are:
       </p>
       <p>
-        The <code><a>equivalentId</a></code> and <code><a>canonicalId</a></code> properties
-        that constrain equivalence assertions to variants of a single DID produced by
-        the same <a>DID method</a> (e.g. <code>did:foo:123</code> ≡ <code>did:foo:hash(123)</code>)
-        can be trusted to the extent the resolving party trusts the <a>DID method</a> (and a
-        conforming producer) itself.
+The <code><a>equivalentId</a></code> and <code><a>canonicalId</a></code>
+properties that constrain equivalence assertions to variants of a single DID
+produced by the same <a>DID method</a> (e.g. <code>did:foo:123</code> ≡
+<code>did:foo:hash(123)</code>) can be trusted to the extent the resolving party
+trusts the <a>DID method</a> (and a conforming producer) itself.
       </p>
       <p>
-        The <code><a>alsoKnownAs</a></code> property that permits an equivalence assertion
-        to URIs that are not governed by the same <a>DID method</a> (or may not be DIDs at
-        all) cannot be trusted without performing verification steps outside of the governing
-        <a>DID method</a>. See Section 5.1.1 for the recommendation to verify inverse relationships.
+The <code><a>alsoKnownAs</a></code> property that permits an equivalence
+assertion to URIs that are not governed by the same <a>DID method</a> (or may
+not be DIDs at all) cannot be trusted without performing verification steps
+outside of the governing <a>DID method</a>. See Section 5.1.1 for the
+recommendation to verify inverse relationships.
       </p>
       <p>
-        As with any other sensitive properties in the DID Document (e.g. public key references),
-        parties relying on any equivalence statement in a DID Document should guard against the
-        values of these properties being substituted by an attacker after the proper verification
-        has been performed. Any write access to a DID document stored in memory or disk after
-        verification has been performed is an attack vector that will circumvent verification
-        unless the DID document is re-verified.
+As with any other sensitive properties in the DID Document (e.g. public key
+references), parties relying on any equivalence statement in a DID Document
+should guard against the values of these properties being substituted by an
+attacker after the proper verification has been performed. Any write access to a
+DID document stored in memory or disk after verification has been performed is
+an attack vector that will circumvent verification unless the DID document is
+re-verified.
       </p>
 
     </section>
-
   </section>
 
   <section class="informative">
