@@ -4805,6 +4805,126 @@ keep negotiated options to a minimum on wire protocols, use encrypted transport
 layers, and pad messages to standard lengths.
       </p>
     </section>
+
+    <section>
+      <h2>
+Service Privacy
+      </h2>
+
+      <p>
+This specification provides a mechanism for expressing services that an
+entity might use to interact with a <a>DID subject</a>
+(see <a href="#service-endpoints"></a>). Implementers are advised that
+while service endpoints in a <a>DID Document</a> increase control and agency
+for a <a>DID subject</a>, that they might also become a privacy risk if misused.
+      </p>
+
+      <p>
+For example, consider the range of privacy implications for the following
+service endpoints (ordered by an entity's expectation of no privacy to
+strong privacy protection):
+      </p>
+
+      <ul>
+        <li>
+A governmental DID Document expressing the government's public website.
+        </li>
+        <li>
+A celebrity DID Document expressing all of their official social media profiles.
+        </li>
+        <li>
+An individual's DID Document expressing their professional profile.
+        </li>
+        <li>
+A corporate DID Document expressing contact information for their paying
+customers.
+        </li>
+        <li>
+An individual's DID Document expressing a service endpoint containing their
+email address (questionable idea).
+        </li>
+        <li>
+An individual's DID Document expressing a service endpoint containing their
+personal phone number and home address (bad idea).
+        </li>
+        <li>
+An individual's DID Document expressing endpoints for managing electronic
+health records (bad idea).
+        </li>
+      </ul>
+
+      <p>
+The examples above demonstrate a spectrum of privacy challenges that
+implementers creating service endpoints want to consider. For these reasons,
+it is important that implementers ask themselves at least the following
+questions when creating new types of service endpoints:
+      </p>
+
+      <ul>
+        <li>
+What is the expected level of privacy that an entity using the endpoint will
+have?
+        </li>
+        <li>
+Is it possible to misuse the service endpoint in a way that exposes more
+data than a <a>DID subject</a> might expect?
+        </li>
+        <li>
+Is it possible to attack the service endpoint in a way that results in an
+unexpected exposure of private or confidential information?
+        </li>
+        <li>
+Is there another way of communicating the information expressed by the
+service endpoint in a way that is safer, more privacy preserving, or less
+likely to be misused or abused?
+        </li>
+        <li>
+What will a privacy impact assessment for the service conclude for the known
+use cases for the service?
+        </li>
+      </ul>
+
+      <p>
+Once at least the questions above have been explored, there are a variety of
+strategies when implementing service endpoints that implementers are advised
+to heed:
+      </p>
+
+      <ol>
+        <li>
+Favor transmitting service descriptions only when needed for an particular
+interaction instead of publishing the service description on a <a>verifiable
+data registry</a>. For example, service descriptions can be transmitted by
+requesting a Verifiable Credential for a service instead of publishing them in a
+DID Document.
+        </li>
+        <li>
+Favor service descriptions that do not disclose private information. For
+example, avoid domain names in service endpoint URLs that identify private
+individuals or organizations.
+        </li>
+        <li>
+Favor service descriptions that are difficult to impossible to correlate.
+For example, avoid the use of static account identifiers in service endpoint
+URLs.
+        </li>
+        <li>
+Favor publishing the minimal amount of information necessary to upgrade
+into a more trusted and private channel of communication. For example,
+publishing a pseudonymous secure inbox URL is preferred over an email address.
+        </li>
+      </ol>
+
+      <p>
+As with all features with privacy implications, implementers are expected to
+not only think about the privacy implications of their services but document
+those implications thoroughly in their service specifications. The guidance
+provided in this section is merely a starting point and is not intended to be
+exhaustive or complete.
+      </p>
+
+    </section>
+
   </section>
 
   <section class="informative">
