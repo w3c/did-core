@@ -201,7 +201,7 @@ development that establish requirements for this document.
 
     <p>
 At present, there exist
-<a href="https://w3c-ccg.github.io/did-method-registry/#the-registry">40
+<a href="https://w3c-ccg.github.io/did-method-registry/#did-methods">80
 experimental implementations</a> and a preliminary
 <a href="https://github.com/w3c-ccg/did-test-suite/">test suite</a>
 that will eventually determine whether or not implementations are conformant.
@@ -221,10 +221,12 @@ to <a href="mailto:public-did-wg@w3.org">public-did-wg@w3.org</a> (
 
     <p>
 Portions of the work on this specification have been funded by the United States
-Department of Homeland Security's Science and Technology Directorate under
-contracts HSHQDC-16-R00012-H-SB2016-1-002 and HSHQDC-17-C-00019. The content of
-this specification does not necessarily reflect the position or the policy of
-the U.S. Government and no official endorsement should be inferred.
+Department of Homeland Security's (US DHS) Science and Technology Directorate
+under contracts HSHQDC-16-R00012-H-SB2016-1-002, and HSHQDC-17-C-00019, as well
+as  the US DHS Silicon Valley Innovation Program under contracts
+70RSAT20T00000010, 70RSAT20T00000029. The content of this specification does not
+necessarily reflect the position or the policy of the U.S. Government and no
+official endorsement should be inferred.
     </p>
 
     <p>
@@ -1594,7 +1596,7 @@ href="#did-syntax"></a>.
           </p>
 
 <p>
-A verification method MUST contain verification material, 
+A verification method MUST contain verification material,
 such as <a>publicKeyJwk</a> or <a>publicKeyBase58</a>.
 </p>
 
@@ -1608,8 +1610,8 @@ such as <a>publicKeyJwk</a> or <a>publicKeyBase58</a>.
         </dd>
         <dt><dfn>publicKeyJwk</dfn></dt>
         <dd>
-         A JSON Web Key that conforms to [[RFC7517]]. This value MUST NOT contain "d", 
-         or any other members of the private information class as described in 
+         A JSON Web Key that conforms to [[RFC7517]]. This value MUST NOT contain "d",
+         or any other members of the private information class as described in
          <a href="https://tools.ietf.org/html/rfc7517#section-8.1.1">Registration Template</a>.
         </dd>
         <dt><dfn>publicKeyBase58</dfn></dt>
@@ -1735,13 +1737,13 @@ key material in a <a>DID document</a> to the fewest possible, to increase the
 likelihood of interoperability. The fewer formats that implementers have to
 implement, the more likely it will be that they will support all of them. This
 approach attempts to strike a delicate balance between ease of implementation
-and supporting formats that have historically had broad deployment. 
+and supporting formats that have historically had broad deployment.
         </p>
 
         <p>
-A suite definition is responsible for specifying the verification method 
-<code>type</code> and proof <code>type</code>. 
-For example, see <a href="https://w3c-ccg.github.io/lds-jws2020/">JSON Web Signature 2020</a> and 
+A suite definition is responsible for specifying the verification method
+<code>type</code> and proof <code>type</code>.
+For example, see <a href="https://w3c-ccg.github.io/lds-jws2020/">JSON Web Signature 2020</a> and
 <a href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature 2018</a>.
 For all registered and supported verification method types available for DIDs,
 please see [[?DID-SPEC-REGISTRIES]].
@@ -1775,7 +1777,7 @@ please see [[?DID-SPEC-REGISTRIES]].
 
 <p>The <a>DID document</a> MUST NOT express revoked keys using a
 <a>verification relationship</a>.
-</p> 
+</p>
 <p>
 If a referenced verification method is not in the <a>DID Document</a> used
 to dereference it, then that verification method is considered invalid or revoked.
@@ -2289,11 +2291,11 @@ behavior for any such properties defined by the representation.
     </p>
 
 <p class="note" title="Representation properties lexical and value space">
-It is RECOMMENDED that representations use the lexical representation 
-of registered data types. For example, JSON and JSON-LD use the XML 
-Schema dateTime lexical representation to represent <a>datetimes</a>. 
+It is RECOMMENDED that representations use the lexical representation
+of registered data types. For example, JSON and JSON-LD use the XML
+Schema dateTime lexical representation to represent <a>datetimes</a>.
 A representation MAY choose to represent the data types differently.
-For example, CBOR-LD represents some <a>datetime</a> values 
+For example, CBOR-LD represents some <a>datetime</a> values
 using integers since the Unix epoch.
 </p>
 
@@ -2719,9 +2721,9 @@ curl -s https://www.w3.org/ns/did/v1 | openssl sha256
             </pre>
             <p>
 The command above will result in the following hash, expressed in hexadecimal notation:
-            </p>             
+            </p>
             <pre class="example">
-910cd6648f6f7b72a7896a8da83e63460eb8355a0af4b56b699c9281452ac8bb              
+910cd6648f6f7b72a7896a8da83e63460eb8355a0af4b56b699c9281452ac8bb
             </pre>
             </p>
           </dd>
@@ -3689,7 +3691,7 @@ resulting from this resolution request.
 representation-not-supported
 </dt>
 <dd>
-This error code is returned if the representation requested via the <code>accept</code> input metadata 
+This error code is returned if the representation requested via the <code>accept</code> input metadata
 property is not supported by the DID method and/or DID resolver implementation.
 </dd>
                         <dt>
