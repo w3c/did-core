@@ -1300,10 +1300,11 @@ property.
     </p>
 
     <p>
-For reference, the core properties found at the top level of a <a>DID
-document</a> are as follows. Properties belonging to other objects referenced
-in the <a>DID document</a> are also listed, with their respective top-level
-property.
+For reference, the core properties found in the <a>DID document</a> (the
+topmost <a data-cite="INFRA#ordered-map">map</a> in the  <a
+href="#data-model">data model</a>) are as follows. Properties belonging to other
+<a data-cite="INFRA#ordered-map">maps</a> referenced in the <a>DID document</a>
+are also listed, with their respective property.
     </p>
     <ul id="core-properties-summary">
       <li>
@@ -1369,12 +1370,13 @@ Identifier
         </h3>
         <p>
 The <a>DID</a> for a particular <a>DID subject</a> is denoted with the
-<code><a>id</a></code> property at the top level of a <a>DID document</a>.
+<code><a>id</a></code> property in the <a>DID document</a>.
         </p>
 
         <p>
-<a>DID documents</a> MUST include the <code><a>id</a></code> property at the
-top level.
+<a>DID documents</a> MUST include the <code><a>id</a></code> property in the
+the topmost <a data-cite="INFRA#ordered-map">map</a> in the
+<a href="#data-model">data model</a>.
         </p>
 
         <dl>
@@ -1635,8 +1637,10 @@ inferred from the <a>DID document</a>, it is necessary to explicitly express
 the identity of the controller of the key. The difference is that the value of
 <code>controller</code> for a verification method is <em>not</em> necessarily
 a <a>DID controller</a>. <a>DID controller(s)</a> are expressed using the
-<code><a>controller</a></code> property on the <em>top level</em> of the
-<a>DID document</a>; see Section <a href="#did-controller"></a>.
+<code><a>controller</a></code> property at the highest level of the
+<a>DID document</a> (the topmost <a data-cite="INFRA#ordered-map">map</a> in
+the <a href="#data-model">data model</a>); see
+<a href="#did-controller"></a>.
       </p>
 
       <pre class="example" title="Example verification methods">
@@ -1691,8 +1695,8 @@ reference. Assume <em>value</em> is a URL.
             <li>
 Dereference the URL and retrieve the <code><a>verificationMethod</a></code>
 properties associated with the URL. For example, process the
-<code><a>verificationMethod</a></code> property at the top-level of the
-dereferenced document.
+<code><a>verificationMethod</a></code> property in the topmost
+<a data-cite="INFRA#ordered-map">map</a> of the dereferenced document.
             </li>
 
             <li>
@@ -2375,7 +2379,7 @@ metadata).
 
         <p>
 A <a>DID document</a> MUST be a single <a data-cite="RFC8259#section-4">JSON
-object</a> conforming to [[!RFC8259]]. All top-level properties of the <a>DID
+object</a> conforming to [[!RFC8259]]. All properties of the <a>DID
 document</a> MUST be represented by using the property name as the name of the
 member of the JSON object. The values of properties of the <a
 href="#data-model">data model</a> described in <a href="#data-model"></a>,
@@ -2499,11 +2503,11 @@ Consumption
         </h3>
 
         <p>
-The top-level element MUST be a JSON object. Any other data type at the top
-level is an error and MUST be rejected. The top-level JSON object represents
-the <a>DID document</a>, and all members of this object are properties of the
-<a>DID document</a>. The object member name is the property name, and the
-member value is interpreted as follows:
+The topmost element MUST be a JSON object. Any other data type at the topmost
+level is an error and MUST be rejected. The topmost JSON object represents the
+<a>DID document</a>, and all members of this object are properties of the <a>DID
+document</a>. The object member name is the property name, and the member value
+is interpreted as follows:
         </p>
 
         <table class="simple" id="json-representation-consumption">
@@ -2827,7 +2831,7 @@ metadata.
 
         <p>
 A <a>DID document</a> MUST be a single <a data-cite="RFC7049#section-2.1">CBOR
-Map</a> conforming to [[RFC7049]]. All top-level properties of the <a>DID
+Map</a> conforming to [[RFC7049]]. All topmost properties of the <a>DID
 document</a> MUST be represented by using the property name as the name of the
 key of the CBOR Map. The values of properties of the <a href="#data-model">data
 model</a> described in Section <a href="#data-model"></a>, including all
@@ -3049,9 +3053,11 @@ A2                                   # map(2)
       <section>
         <h3>Consumption</h3>
         <p>
-The top-level element MUST be a <a data-cite="RFC7049#section-2.1">CBOR map</a>
-(major type 5). Any other data type at the top level is an error and MUST be
-rejected. The top-level <a data-cite="RFC7049#section-2.1">CBOR map</a>
+The topmost element MUST be a <a data-cite="RFC7049#section-2.1">CBOR map</a>
+(major type 5). Any other data type at the highest level of the
+<a>DID document</a> (the topmost <a data-cite="INFRA#ordered-map">map</a> in
+the <a href="#data-model">data model</a>) is an error and MUST be
+rejected. The topmost <a data-cite="RFC7049#section-2.1">CBOR map</a>
 represents the <a>DID document</a>, and all data items of this map are
 properties of the <a>DID document</a>. The data item key is the property name,
 and the data item value is interpreted as follows:
@@ -5119,7 +5125,7 @@ result in changes to this specification.
     </p>
 
 <div class="issue" data-number="506">Correct the serviceEndpoint property to allow for a string or array of strings</div>
-<div class="issue" data-number="505">The definition of "the top-level" of the abstract data model is unclear </div>
+<div class="issue" data-number="505">The definition of "the topmost" of the abstract data model is unclear </div>
 <div class="issue" data-number="504">Issues in "Note on Persistence" in DID Syntax section</div>
 <div class="issue" data-number="502">`Decentralized extension` is not discussed</div>
 <div class="issue" data-number="499">Metadata properties don't define data model and serialization format</div>
