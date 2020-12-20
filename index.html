@@ -4797,210 +4797,210 @@ layers, and pad messages to standard lengths.
       Examples
     </h1>
     <section class="informative">
-      <h2>
-        DID Documents
-      </h2>
+      <h2>DID Documents</h2>
 
       <p>
-See <a href="https://www.w3.org/TR/did-spec-registries/#verification-method-types">did-spec-registries</a> for optional extensions and other verifcation method types.
+See <a
+href="https://www.w3.org/TR/did-spec-registries/#verification-method-types">
+did-spec-registries</a> for optional extensions and other verifcation method
+types.
       </p>
 
       <p class="note">
-        These examples are for information purposes only,
-        it is considered a best practice to avoid using the same verification method for multiple purposes.
+These examples are for information purposes only, it is considered a best
+practice to avoid using the same verification method for multiple purposes.
       </p>
 
       <pre class="example" title="DID Document with 1 verification method type">
-        {
-          "@context": "https://www.w3.org/ns/did/v1",
-          "id": "did:example:123",
-          "authentication": [
-            {
-              "id": "did:example:123#z6MkecaLyHuYWkayBDLw5ihndj3T1m6zKTGqau3A51G7RBf3",
-              "type": "Ed25519VerificationKey2018",
-              "controller": "did:example:123",
-              "publicKeyBase58": "AKJP3f7BD6W4iWEQ9jwndVTCBq8ua2Utt8EEjJ6Vxsf"
-            }
-          ],
-          "capabilityInvocation": [
-            {
-              "id": "did:example:123#z6MkhdmzFu659ZJ4XKj31vtEDmjvsi5yDZG5L7Caz63oP39k",
-              "type": "Ed25519VerificationKey2018",
-              "controller": "did:example:123",
-              "publicKeyBase58": "4BWwfeqdp1obQptLLMvPNgBw48p7og1ie6Hf9p5nTpNN"
-            }
-          ],
-          "capabilityDelegation": [
-            {
-              "id": "did:example:123#z6Mkw94ByR26zMSkNdCUi6FNRsWnc2DFEeDXyBGJ5KTzSWyi",
-              "type": "Ed25519VerificationKey2018",
-              "controller": "did:example:123",
-              "publicKeyBase58": "Hgo9PAmfeoxHG8Mn2XHXamxnnSwPpkyBHAMNF3VyXJCL"
-            }
-          ],
-          "assertionMethod": [
-            {
-              "id": "did:example:123#z6MkiukuAuQAE8ozxvmahnQGzApvtW7KT5XXKfojjwbdEomY",
-              "type": "Ed25519VerificationKey2018",
-              "controller": "did:example:123",
-              "publicKeyBase58": "5TVraf9itbKXrRvt2DSS95Gw4vqU3CHAdetoufdcKazA"
-            }
-          ]
+  {
+    "@context": "https://www.w3.org/ns/did/v1",
+    "id": "did:example:123",
+    "authentication": [
+      {
+        "id": "did:example:123#z6MkecaLyHuYWkayBDLw5ihndj3T1m6zKTGqau3A51G7RBf3",
+        "type": "Ed25519VerificationKey2018",
+        "controller": "did:example:123",
+        "publicKeyBase58": "AKJP3f7BD6W4iWEQ9jwndVTCBq8ua2Utt8EEjJ6Vxsf"
       }
+    ],
+    "capabilityInvocation": [
+      {
+        "id": "did:example:123#z6MkhdmzFu659ZJ4XKj31vtEDmjvsi5yDZG5L7Caz63oP39k",
+        "type": "Ed25519VerificationKey2018",
+        "controller": "did:example:123",
+        "publicKeyBase58": "4BWwfeqdp1obQptLLMvPNgBw48p7og1ie6Hf9p5nTpNN"
+      }
+    ],
+    "capabilityDelegation": [
+      {
+        "id": "did:example:123#z6Mkw94ByR26zMSkNdCUi6FNRsWnc2DFEeDXyBGJ5KTzSWyi",
+        "type": "Ed25519VerificationKey2018",
+        "controller": "did:example:123",
+        "publicKeyBase58": "Hgo9PAmfeoxHG8Mn2XHXamxnnSwPpkyBHAMNF3VyXJCL"
+      }
+    ],
+    "assertionMethod": [
+      {
+        "id": "did:example:123#z6MkiukuAuQAE8ozxvmahnQGzApvtW7KT5XXKfojjwbdEomY",
+        "type": "Ed25519VerificationKey2018",
+        "controller": "did:example:123",
+        "publicKeyBase58": "5TVraf9itbKXrRvt2DSS95Gw4vqU3CHAdetoufdcKazA"
+      }
+    ]
+}
       </pre>
 
       <pre class="example" title="DID Document with many different verification methods">
-        {
-          "@context": "https://www.w3.org/ns/did/v1",
-          "id": "did:example:123",
-          "verificationMethod": [
-            {
-              "id": "did:example:123#ZC2jXTO6t4R501bfCXv3RxarZyUbdP2w_psLwMuY6ec",
-              "type": "Ed25519VerificationKey2018",
-              "controller": "did:example:123",
-              "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-            },
-            {
-              "id": "did:example:123#zQ3shP2mWsZYWgvgM11nenXRTx9L1yiJKmkf9dfX7NaMKb1pX",
-              "type": "EcdsaSecp256k1VerificationKey2019",
-              "controller": "did:example:123",
-              "publicKeyBase58": "d5cW2R53NHTTkv7EQSYR8YxaKx7MVCcchjmK5EgCNXxo",
-            },
-            {
-              "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
-              "type": "JsonWebKey2020",
-              "controller": "did:example:123",
-              "publicKeyJwk": {
-                "kty": "OKP",
-                "crv": "Ed25519",
-                "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ"
-              }
-            },
-            {
-              "id": "did:example:123#z6LSnjagzhe8Df6gZmroW3wjDd7XQLwAuYfwa4ZeTBCGFoYc",
-              "type": "JsonWebKey2020",
-              "controller": "did:example:123",
-              "publicKeyJwk": {
-                "kty": "OKP",
-                "crv": "X25519",
-                "x": "pE_mG098rdQjY3MKK2D5SUQ6ZOEW3a6Z6T7Z4SgnzCE"
-              },
-            }
-            {
-              "id": "did:example:123#4SZ-StXrp5Yd4_4rxHVTCYTHyt4zyPfN1fIuYsm6k3A",
-              "type": "JsonWebKey2020",
-              "controller": "did:example:123",
-              "publicKeyJwk": {
-                "kty": "EC",
-                "crv": "secp256k1",
-                "x": "Z4Y3NNOxv0J6tCgqOBFnHnaZhJF6LdulT7z8A-2D5_8",
-                "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk"
-              }
-            },
-            {
-              "id": "did:example:123#n4cQ-I_WkHMcwXBJa7IHkYu8CMfdNcZKnKsOrnHLpFs",
-              "type": "JsonWebKey2020",
-              "controller": "did:example:123",
-              "publicKeyJwk": {
-                "kty": "RSA",
-                "e": "AQAB",
-                "n": "omwsC1AqEk6whvxyOltCFWheSQvv1MExu5RLCMT4jVk9khJKv8JeMXWe3bWHatjPskdf2dlaGkW5QjtOnUKL742mvr4tCldKS3ULIaT1hJInMHHxj2gcubO6eEegACQ4QSu9LO0H-LM_L3DsRABB7Qja8HecpyuspW1Tu_DbqxcSnwendamwL52V17eKhlO4uXwv2HFlxufFHM0KmCJujIKyAxjD_m3q__IiHUVHD1tDIEvLPhG9Azsn3j95d-saIgZzPLhQFiKluGvsjrSkYU5pXVWIsV-B2jtLeeLC14XcYxWDUJ0qVopxkBvdlERcNtgF4dvW4X00EHj4vCljFw"
-              }
-            },
-            {
-              "id": "did:example:123#_TKzHv2jFIyvdTGF1Dsgwngfdg3SH6TpDv0Ta1aOEkw",
-              "type": "JsonWebKey2020",
-              "controller": "did:example:123",
-              "publicKeyJwk": {
-                "kty": "EC"
-                "crv": "P-256",
-                "x": "38M1FDts7Oea7urmseiugGW7tWc3mLpJh6rKe7xINZ8",
-                "y": "nDQW6XZ7b_u2Sy9slofYLlG03sOEoug3I0aAPQ0exs4"
-              }
-            },
-            {
-              "id": "did:example:123#8wgRfY3sWmzoeAL-78-oALNvNj67ZlQxd1ss_NX1hZY",
-              "type": "JsonWebKey2020",
-              "controller": "did:example:123",
-              "publicKeyJwk": {
-                "kty": "EC",
-                "crv": "P-384",
-                "x": "GnLl6mDti7a2VUIZP5w6pcRX8q5nvEIgB3Q_5RI2p9F_QVsaAlDN7IG68Jn0dS_F",
-                "y": "jq4QoAHKiIzezDp88s_cxSPXtuXYFliuCGndgU4Qp8l91xzD1spCmFIzQgVjqvcP"
-              }
-            },
-            {
-              "id": "did:example:123#NjQ6Y_ZMj6IUK_XkgCDwtKHlNTUTVjEYOWZtxhp1n-E",
-              "type": "JsonWebKey2020",
-              "controller": "did:example:123",
-              "publicKeyJwk": {
-                "kty": "EC",
-                "crv": "P-521",
-                "x": "AVlZG23LyXYwlbjbGPMxZbHmJpDSu-IvpuKigEN2pzgWtSo--Rwd-n78nrWnZzeDc187Ln3qHlw5LRGrX4qgLQ-y",
-                "y": "ANIbFeRdPHf1WYMCUjcPz-ZhecZFybOqLIJjVOlLETH7uPlyG0gEoMWnIZXhQVypPy_HtUiUzdnSEPAylYhHBTX2"
-              }
-            }
-          ]
-        }
+{
+  "@context": "https://www.w3.org/ns/did/v1",
+  "id": "did:example:123",
+  "verificationMethod": [
+    {
+      "id": "did:example:123#ZC2jXTO6t4R501bfCXv3RxarZyUbdP2w_psLwMuY6ec",
+      "type": "Ed25519VerificationKey2018",
+      "controller": "did:example:123",
+      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    },
+    {
+      "id": "did:example:123#zQ3shP2mWsZYWgvgM11nenXRTx9L1yiJKmkf9dfX7NaMKb1pX",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:example:123",
+      "publicKeyBase58": "d5cW2R53NHTTkv7EQSYR8YxaKx7MVCcchjmK5EgCNXxo",
+    },
+    {
+      "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "OKP",
+        "crv": "Ed25519",
+        "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ"
+      }
+    },
+    {
+      "id": "did:example:123#z6LSnjagzhe8Df6gZmroW3wjDd7XQLwAuYfwa4ZeTBCGFoYc",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "OKP",
+        "crv": "X25519",
+        "x": "pE_mG098rdQjY3MKK2D5SUQ6ZOEW3a6Z6T7Z4SgnzCE"
+      },
+    }
+    {
+      "id": "did:example:123#4SZ-StXrp5Yd4_4rxHVTCYTHyt4zyPfN1fIuYsm6k3A",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC",
+        "crv": "secp256k1",
+        "x": "Z4Y3NNOxv0J6tCgqOBFnHnaZhJF6LdulT7z8A-2D5_8",
+        "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk"
+      }
+    },
+    {
+      "id": "did:example:123#n4cQ-I_WkHMcwXBJa7IHkYu8CMfdNcZKnKsOrnHLpFs",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "RSA",
+        "e": "AQAB",
+        "n": "omwsC1AqEk6whvxyOltCFWheSQvv1MExu5RLCMT4jVk9khJKv8JeMXWe3bWHatjPskdf2dlaGkW5QjtOnUKL742mvr4tCldKS3ULIaT1hJInMHHxj2gcubO6eEegACQ4QSu9LO0H-LM_L3DsRABB7Qja8HecpyuspW1Tu_DbqxcSnwendamwL52V17eKhlO4uXwv2HFlxufFHM0KmCJujIKyAxjD_m3q__IiHUVHD1tDIEvLPhG9Azsn3j95d-saIgZzPLhQFiKluGvsjrSkYU5pXVWIsV-B2jtLeeLC14XcYxWDUJ0qVopxkBvdlERcNtgF4dvW4X00EHj4vCljFw"
+      }
+    },
+    {
+      "id": "did:example:123#_TKzHv2jFIyvdTGF1Dsgwngfdg3SH6TpDv0Ta1aOEkw",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC"
+        "crv": "P-256",
+        "x": "38M1FDts7Oea7urmseiugGW7tWc3mLpJh6rKe7xINZ8",
+        "y": "nDQW6XZ7b_u2Sy9slofYLlG03sOEoug3I0aAPQ0exs4"
+      }
+    },
+    {
+      "id": "did:example:123#8wgRfY3sWmzoeAL-78-oALNvNj67ZlQxd1ss_NX1hZY",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC",
+        "crv": "P-384",
+        "x": "GnLl6mDti7a2VUIZP5w6pcRX8q5nvEIgB3Q_5RI2p9F_QVsaAlDN7IG68Jn0dS_F",
+        "y": "jq4QoAHKiIzezDp88s_cxSPXtuXYFliuCGndgU4Qp8l91xzD1spCmFIzQgVjqvcP"
+      }
+    },
+    {
+      "id": "did:example:123#NjQ6Y_ZMj6IUK_XkgCDwtKHlNTUTVjEYOWZtxhp1n-E",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC",
+        "crv": "P-521",
+        "x": "AVlZG23LyXYwlbjbGPMxZbHmJpDSu-IvpuKigEN2pzgWtSo--Rwd-n78nrWnZzeDc187Ln3qHlw5LRGrX4qgLQ-y",
+        "y": "ANIbFeRdPHf1WYMCUjcPz-ZhecZFybOqLIJjVOlLETH7uPlyG0gEoMWnIZXhQVypPy_HtUiUzdnSEPAylYhHBTX2"
+      }
+    }
+  ]
+}
       </pre>
 
     </section>
 
     <section class="informative">
-      <h2>
-        Proving
-      </h2>
+      <h2>Proving</h2>
 
       <p class="note">
-        These examples are for information purposes only.
-        See <a href="https://www.w3.org/TR/vc-data-model/">
-          W3C Verifiable Credentials Data Model
-        </a> for additional examples.
+These examples are for information purposes only. See
+<a href="https://www.w3.org/TR/vc-data-model/">W3C Verifiable Credentials Data
+Model</a> for additional examples.
       </p>
 
-      <pre class="example" title="Verifiable Credential linked to a verification method of type Ed25519VerificationKey2018">
-      {
-        "@context": [
-          "https://www.w3.org/2018/credentials/v1",
-          "https://w3id.org/citizenship/v1"
-        ],
-        "type": [
-          "VerifiableCredential",
-          "PermanentResidentCard"
-        ],
-        "credentialSubject": {
-          "id": "did:example:123",
-          "type": [
-            "PermanentResident",
-            "Person"
-          ],
-          "givenName": "JOHN",
-          "familyName": "SMITH",
-          "gender": "Male",
-          "image": "data:image/png;base64,iVBORw0KGgo...kJggg==",
-          "residentSince": "2015-01-01",
-          "lprCategory": "C09",
-          "lprNumber": "000-000-204",
-          "commuterClassification": "C1",
-          "birthCountry": "Bahamas",
-          "birthDate": "1958-08-17"
-        },
-        "issuer": "did:example:456",
-        "issuanceDate": "2020-04-22T10:37:22Z",
-        "identifier": "83627465",
-        "name": "Permanent Resident Card",
-        "description": "Government of Example Permanent Resident Card.",
-        "proof": {
-          "type": "Ed25519Signature2018",
-          "created": "2020-04-22T10:37:22Z",
-          "proofPurpose": "assertionMethod",
-          "verificationMethod": "did:example:456#key-1",
-          "jws": "eyJjcml0IjpbImI2NCJdLCJiNjQiOmZhbHNlLCJhbGciOiJFZERTQSJ9..BhWew0x-txcroGjgdtK-yBCqoetg9DD9SgV4245TmXJi-PmqFzux6Cwaph0r-mbqzlE17yLebjfqbRT275U1AA"
-        }
-      }
+      <pre class="example"
+        title="Verifiable Credential linked to a verification method of type Ed25519VerificationKey2018">
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/citizenship/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "PermanentResidentCard"
+  ],
+  "credentialSubject": {
+    "id": "did:example:123",
+    "type": [
+      "PermanentResident",
+      "Person"
+    ],
+    "givenName": "JOHN",
+    "familyName": "SMITH",
+    "gender": "Male",
+    "image": "data:image/png;base64,iVBORw0KGgo...kJggg==",
+    "residentSince": "2015-01-01",
+    "lprCategory": "C09",
+    "lprNumber": "000-000-204",
+    "commuterClassification": "C1",
+    "birthCountry": "Bahamas",
+    "birthDate": "1958-08-17"
+  },
+  "issuer": "did:example:456",
+  "issuanceDate": "2020-04-22T10:37:22Z",
+  "identifier": "83627465",
+  "name": "Permanent Resident Card",
+  "description": "Government of Example Permanent Resident Card.",
+  "proof": {
+    "type": "Ed25519Signature2018",
+    "created": "2020-04-22T10:37:22Z",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:example:456#key-1",
+    "jws": "eyJjcml0IjpbImI2NCJdLCJiNjQiOmZhbHNlLCJhbGciOiJFZERTQSJ9..BhWew0x-txcroGjgdtK-yBCqoetg9DD9SgV4245TmXJi-PmqFzux6Cwaph0r-mbqzlE17yLebjfqbRT275U1AA"
+  }
+}
     </pre>
 
-      <pre class="example" title="Verifiable Credential linked to a verification method of type JsonWebKey2020">
+    <pre class="example"
+      title="Verifiable Credential linked to a verification method of type JsonWebKey2020">
 {
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
@@ -5025,82 +5025,80 @@ See <a href="https://www.w3.org/TR/did-spec-registries/#verification-method-type
     "jws": "eyJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdLCJhbGciOiJFZERTQSJ9..Y0KqovWCPAeeFhkJxfQ22pbVl43Z7UI-X-1JX32CA9MkFHkmNprcNj9Da4Q4QOl0cY3obF8cdDRdnKr0IwNrAw"
   }
 }
-      </pre>
+    </pre>
 
-      <pre class="example" title="Verifiable Credential as Decoded JWT">
-        {
-          "protected": {
-            "kid": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
-            "alg": "EdDSA"
-          },
-          "payload": {
-            "iss": "did:example:123",
-            "sub": "did:example:456",
-            "vc": {
-              "@context": [
-                "https://www.w3.org/2018/credentials/v1",
-                "https://www.w3.org/2018/credentials/examples/v1"
-              ],
-              "id": "http://example.gov/credentials/3732",
-              "type": [
-                "VerifiableCredential",
-                "UniversityDegreeCredential"
-              ],
-              "issuer": {
-                "id": "did:example:123"
-              },
-              "issuanceDate": "2020-03-10T04:24:12.164Z",
-              "credentialSubject": {
-                "id": "did:example:456",
-                "degree": {
-                  "type": "BachelorDegree",
-                  "name": "Bachelor of Science and Arts"
-                }
-              }
-            },
-            "jti": "http://example.gov/credentials/3732",
-            "nbf": 1583814252
-          },
-          "signature": "qSv6dpZJGFybtcifLwGf4ujzlEu-fam_M7HPxinCbVhz9iIJCg70UMeQbPa1ex6BmQ2tnSS7F11FHnMB2bJRAw"
+    <pre class="example" title="Verifiable Credential as Decoded JWT">
+{
+  "protected": {
+    "kid": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
+    "alg": "EdDSA"
+  },
+  "payload": {
+    "iss": "did:example:123",
+    "sub": "did:example:456",
+    "vc": {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        "https://www.w3.org/2018/credentials/examples/v1"
+      ],
+      "id": "http://example.gov/credentials/3732",
+      "type": [
+        "VerifiableCredential",
+        "UniversityDegreeCredential"
+      ],
+      "issuer": {
+        "id": "did:example:123"
+      },
+      "issuanceDate": "2020-03-10T04:24:12.164Z",
+      "credentialSubject": {
+        "id": "did:example:456",
+        "degree": {
+          "type": "BachelorDegree",
+          "name": "Bachelor of Science and Arts"
         }
+      }
+    },
+    "jti": "http://example.gov/credentials/3732",
+    "nbf": 1583814252
+  },
+  "signature": "qSv6dpZJGFybtcifLwGf4ujzlEu-fam_M7HPxinCbVhz9iIJCg70UMeQbPa1ex6BmQ2tnSS7F11FHnMB2bJRAw"
+}
       </pre>
     </section>
 
     <section class="informative">
-      <h2>
-        Encrypting
-      </h2>
+      <h2>Encrypting</h2>
+
       <p class="note">
-        These examples are for information purposes only,
-        it is considered a best practice to avoid dislosing unnecessary information in JWE headers.
+These examples are for information purposes only, it is considered a best
+practice to avoid dislosing unnecessary information in JWE headers.
       </p>
+
       <pre class="example" title="JWE linked to a verification method via kid">
-        {
-          "ciphertext": "3SHQQJajNH6q0fyAHmw...",
-          "iv": "QldSPLVnFf2-VXcNLza6mbylYwphW57Q",
-          "protected": "eyJlbmMiOiJYQzIwUCJ9",
-          "recipients": [
-            {
-              "encrypted_key": "BMJ19zK12YHftJ4sr6Pz1rX1HtYni_L9DZvO1cEZfRWDN2vXeOYlwA",
-              "header": {
-                "alg": "ECDH-ES+A256KW",
-                "apu": "Tx9qG69ZfodhRos-8qfhTPc6ZFnNUcgNDVdHqX1UR3s",
-                "apv": "ZGlkOmVsZW06cm9wc3RlbjpFa...",
-                "epk": {
-                  "crv": "X25519",
-                  "kty": "OKP",
-                  "x": "Tx9qG69ZfodhRos-8qfhTPc6ZFnNUcgNDVdHqX1UR3s"
-                },
-                "kid": "did:example:123#zC1Rnuvw9rVa6E5TKF4uQVRuQuaCpVgB81Um2u17Fu7UK"
-              }
-            }
-          ],
-          "tag": "xbfwwDkzOAJfSVem0jr1bA"
-        }
+{
+  "ciphertext": "3SHQQJajNH6q0fyAHmw...",
+  "iv": "QldSPLVnFf2-VXcNLza6mbylYwphW57Q",
+  "protected": "eyJlbmMiOiJYQzIwUCJ9",
+  "recipients": [
+    {
+      "encrypted_key": "BMJ19zK12YHftJ4sr6Pz1rX1HtYni_L9DZvO1cEZfRWDN2vXeOYlwA",
+      "header": {
+        "alg": "ECDH-ES+A256KW",
+        "apu": "Tx9qG69ZfodhRos-8qfhTPc6ZFnNUcgNDVdHqX1UR3s",
+        "apv": "ZGlkOmVsZW06cm9wc3RlbjpFa...",
+        "epk": {
+          "crv": "X25519",
+          "kty": "OKP",
+          "x": "Tx9qG69ZfodhRos-8qfhTPc6ZFnNUcgNDVdHqX1UR3s"
+        },
+        "kid": "did:example:123#zC1Rnuvw9rVa6E5TKF4uQVRuQuaCpVgB81Um2u17Fu7UK"
+      }
+    }
+  ],
+  "tag": "xbfwwDkzOAJfSVem0jr1bA"
+}
       </pre>
     </section>
-
-
   </section>
 
   <section class="appendix">
