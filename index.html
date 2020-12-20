@@ -579,7 +579,7 @@ DID documents
         <dd>
 <a>DID documents</a> contain metadata associated with a <a>DID</a>. They
 typically express verification methods (such as public keys) and <a>services</a>
-relevant to interactions with the DID subject. A DID document is represents an
+relevant to interactions with the DID subject. A DID document represents an
 abstract data model, and can be serialized according to a particular syntax
 (see <a href="#representations"></a>).  The generic properties supported
 in a DID document are specified in <a href="#core-properties"></a>.
@@ -3118,7 +3118,7 @@ extending the set of data types supported via the <a
 href="https://www.iana.org/assignments/cbor-tags/cbor-tags.xhtml">IANA CBOR Tag
 Registry</a>. This allows for tags to enhance the semantic description of the
 data that follows.  Extensibility with CBOR tags also facilitates lossless conversion to
-othere core representations. CBOR Tags number 21 to 23 indicate that a following byte string
+other core representations. CBOR Tags number 21 to 23 indicate that a following byte string
 might require a specific encoding when interoperating with a text-based
 representation such as JSON.  These tags are useful when an encoder knows that the
 byte string data it is writing is likely to be later converted to a
@@ -3460,7 +3460,7 @@ Considerations sections, if only to point to
 
       <p>
 The <a>DID method</a> specification's Privacy Considerations section MUST
-discuss any subsection of section 5 of [[RFC6973]] that could apply in a
+discuss any subsection of Section 5 of [[RFC6973]] that could apply in a
 method-specific manner. The subsections to consider are: surveillance, stored
 data compromise, unsolicited traffic, misattribution, correlation,
 identification, secondary use, disclosure, exclusion.
