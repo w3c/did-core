@@ -2197,10 +2197,15 @@ produce an error.
           </p>
           <p>
 The value of the <code><dfn>serviceEndpoint</dfn></code> property MUST be a
-valid <a>URI</a> conforming to [[RFC3986]] and normalized according to the
-rules in section 6 of [[RFC3986]] and to any normalization rules in its
-applicable <a>URI</a> scheme specification, <em>OR</em> a set of properties
-which describe the <a>service endpoint</a> further.
+<a data-cite="INFRA#string">string</a>, a <a data-cite="INFRA#string">map</a>,
+or a <a data-cite="INFRA#">list</a> composed of a one or more
+<a data-cite="INFRA#string">strings</a> and/or
+<a data-cite="INFRA#string">maps</a>. All <a data-cite="INFRA#string">string</a>
+values MUST be valid <a>URI</a>s conforming to [[RFC3986]] and normalized
+according to the rules in section 6 of [[RFC3986]] and to any normalization
+rules in its applicable <a>URI</a> scheme specification. Extension
+specifications for services MAY further restrict the properties associated
+with the extension.
           </p>
         </dd>
       </dl>
@@ -2236,11 +2241,7 @@ standard specification.
     "id": "did:example:123456789abcdefghi#hub",
     "type": "IdentityHub",
     "verificationMethod": "did:example:123456789abcdefghi#key-1",
-    "serviceEndpoint": {
-      "@context": "https://schema.identity.foundation/hub",
-      "type": "UserHubEndpoint",
-      "instances": ["did:example:456", "did:example:789"]
-    }
+    "serviceEndpoint": ["did:example:456", "did:example:789"]
   }, {
     "id": "did:example:123456789abcdefghi#messages",
     "type": "MessagingService",
