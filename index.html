@@ -760,6 +760,17 @@ method-specific-id = *( *idchar ":" ) 1*idchar
 idchar             = ALPHA / DIGIT / "." / "-" / "_"
       </pre>
 
+      <p class="issue atrisk" data-number="34">
+This ABNF does not currently permit an empty <code>method-specific-id</code>
+string. Some DID methods have expressed an interest in providing
+resolution of an DID with an empty <code>method-specific-id</code> string,
+for example to enable discovery of a DID document describing a
+<a>verifiable data registry</a> by resolving the DID method name alone.
+The Working Group is requesting feedback during the Candidate Recommendation
+stage on whether or not an empty <code>method-specific-id</code> string is
+of interest to implementers. This feature may change as a result of that feedback.
+      </p>
+
       <p>
 For requirements on <a>DID methods</a> relating to the <a>DID</a> syntax, see
 Section <a href="#method-schemes"></a>.
