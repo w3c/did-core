@@ -1809,16 +1809,16 @@ information, see Section <a href="#resolution"></a>.
       <h2>Verification Relationships</h2>
 
       <p>
-A <a>verification relationship</a> expresses the relationship between the
-<a>DID subject</a> and a <a>verification method</a>.
+A <a>verification relationship</a> expresses the relationship between the <a>DID
+subject</a> and a <a>verification method</a>.
       </p>
       <p>
 Different <a>verification relationships</a> enable the associated
 <a>verification methods</a> to be used for different purposes. It is up to a
 <em>verifier</em> to ascertain the validity of a verification attempt by
 checking that the <a>verification method</a> used is contained in the
-appropriate <a>verification relationship</a> property of the <a>DID
-Document</a>.
+appropriate <a>verification relationship</a> property of the
+<a>DID Document</a>.
       </p>
       <p>
 The <a>verification relationship</a> between the <a>DID subject</a> and the
@@ -2129,11 +2129,12 @@ to a party other than themselves.
 
       <p>
 <a>Service endpoints</a> are used in <a>DID documents</a> to express ways of
-communicating with the <a>DID subject</a> or associated entities. <a>Services</a>
-listed in the <a>DID document</a> can contain information about privacy
-preserving messaging services, or more public information, such as social media
-accounts, personal websites, and email addresses although this is discouraged.
-See <a href="#keep-personally-identifiable-information-pii-private"></a> for
+communicating with the <a>DID subject</a> or associated entities.
+<a>Services</a> listed in the <a>DID document</a> can contain information about
+privacy preserving messaging services, or more public information, such as
+social media accounts, personal websites, and email addresses although this is
+discouraged. See
+<a href="#keep-personally-identifiable-information-pii-private"></a> for
 additional details. The metadata associated with <a>services</a> are often
 service-specific. For example, the metadata associated with an encrypted
 messaging service can express how to initiate the encrypted link before
@@ -2335,7 +2336,8 @@ This enables anything that can be represented in the <a>DID document</a> data
 model to also be represented in a compliant representation.
         </li>
         <li>
-The representation MUST be uniquely associated with an IANA-registered MIME type.
+The representation MUST be uniquely associated with an IANA-registered MIME
+type.
         </li>
         <li>
 The representation MUST define fragment processing rules for its MIME type that
@@ -2361,8 +2363,9 @@ JSON
 
       <p>
 This section sets out the requirements for producing and consuming <a>DID
-documents</a> that are in plain JSON (as indicated by a <code>content-type</code>
-of <code>application/did+json</code> in the resolver metadata).
+documents</a> that are in plain JSON (as indicated by a
+<code>content-type</code> of <code>application/did+json</code> in the resolver
+metadata).
       </p>
 
       <section>
@@ -2395,7 +2398,9 @@ JSON Representation Type
 <a data-cite="INFRA#maps">ordered&nbsp;map</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-4">JSON Object</a>, each property is represented as a member of the JSON Object with the property name as the member name and the property value according to its type, as defined in this section
+<a data-cite="RFC8259#section-4">JSON Object</a>, each property is represented
+as a member of the JSON Object with the property name as the member name and the
+property value according to its type, as defined in this section
               </td>
             </tr>
             <tr>
@@ -2403,7 +2408,9 @@ JSON Representation Type
 <a data-cite="INFRA#list">list</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-5">JSON Array</a>, each element of the list is added, in order, as a value of the array according to its type, as defined in this section
+<a data-cite="RFC8259#section-5">JSON Array</a>, each element of the list is
+added, in order, as a value of the array according to its type, as defined in
+this section
               </td>
             </tr>
             <tr>
@@ -2411,7 +2418,9 @@ JSON Representation Type
 <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-5">JSON Array</a>, each element of the list is added, in order, as a value of the array according to its type, as defined in this section
+<a data-cite="RFC8259#section-5">JSON Array</a>, each element of the list is
+added, in order, as a value of the array according to its type, as defined in
+this section
               </td>
             </tr>
             <tr>
@@ -2512,7 +2521,11 @@ Data&nbsp;Type
 <a data-cite="RFC8259#section-4">JSON Object</a>
               </td>
               <td>
-<a data-cite="INFRA#maps">ordered&nbsp;map</a>, each member of the JSON Object is added as a property to the ordered map with the property name being the member name and the value converted based on the JSON type and, if available, property definition, as defined here; as no order is specified by JSON Objects, no insertion order is guaranteed
+<a data-cite="INFRA#maps">ordered&nbsp;map</a>, each member of the JSON Object
+is added as a property to the ordered map with the property name being the
+member name and the value converted based on the JSON type and, if available,
+property definition, as defined here; as no order is specified by JSON Objects,
+no insertion order is guaranteed
               </td>
             </tr>
             <tr>
@@ -2521,7 +2534,9 @@ Data&nbsp;Type
 is a <a data-cite="INFRA#list">list</a> or unknown
               </td>
               <td>
-<a data-cite="INFRA#list">list</a>, each value of the JSON Array is added to the list in order, converted based on the JSON type of the array value, as defined here
+<a data-cite="INFRA#list">list</a>, each value of the JSON Array is added to the
+list in order, converted based on the JSON type of the array value, as defined
+here
               </td>
             </tr>
             <tr>
@@ -2530,7 +2545,9 @@ is a <a data-cite="INFRA#list">list</a> or unknown
 is an <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
-<a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>, each value of the JSON Array is added to the ordered set in order, converted based on the JSON type of the array value, as defined here
+<a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>, each value of the JSON
+Array is added to the ordered set in order, converted based on the JSON type of
+the array value, as defined here
               </td>
             </tr>
             <tr>
@@ -2544,7 +2561,8 @@ property value is an <a>datetime</a>
             </tr>
             <tr>
               <td>
-<a data-cite="RFC8259#section-7">JSON String</a>, where data model property value type is <a>string</a> or unknown
+<a data-cite="RFC8259#section-7">JSON String</a>, where data model property
+value type is <a>string</a> or unknown
               </td>
               <td>
 <a data-cite="INFRA#string">string</a>
@@ -2561,7 +2579,9 @@ fractional component
             </tr>
             <tr>
               <td>
-<a data-cite="RFC8259#section-6">JSON Number</a> with a fractional component, or when property value is a <a>double</a> regardless of inclusion of fractional component
+<a data-cite="RFC8259#section-6">JSON Number</a> with a fractional component, or
+when property value is a <a>double</a> regardless of inclusion of fractional
+component
               </td>
               <td>
 <a>double</a>
@@ -2717,20 +2737,21 @@ interoperable across representations.
 
             <p>
 It is RECOMMENDED that dereferencing each <a>URI</a> value of the
-<code>@context</code> property results in a document containing
-machine-readable information about the context. These URIs SHOULD be
-associated with a cryptographic hash of the content of the JSON-LD Context as
-part of registration in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
+<code>@context</code> property results in a document containing machine-readable
+information about the context. These URIs SHOULD be associated with a
+cryptographic hash of the content of the JSON-LD Context as part of registration
+in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
             </p>
             <p class="advisement">
-If included, the cryptographic hash of the content of the JSON-LD Context MUST be
-computed in a manner equivalent to the following:
+If included, the cryptographic hash of the content of the JSON-LD Context MUST
+be computed in a manner equivalent to the following:
             </p>
             <pre class="example">
 curl -s https://www.w3.org/ns/did/v1 | openssl sha256
             </pre>
             <p>
-The command above will result in the following hash, expressed in hexadecimal notation:
+The command above will result in the following hash, expressed in hexadecimal
+notation:
             </p>
             <pre class="example">
 910cd6648f6f7b72a7896a8da83e63460eb8355a0af4b56b699c9281452ac8bb
@@ -2909,15 +2930,19 @@ subtype 24) with a simple value of 22 (Null)
           </tbody>
         </table>
 
-<ul>
-<li>Other Data Types not otherewise defined in the Abstract Data Model MUST be represented as a <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR String type. (major type 5)</a></li>
-<li>Indefinite-length items are not allowed and MUST be made <a href="https://tools.ietf.org/html/rfc7049#section-2.2.1">CBOR definite length.</a></li>
-</ul>
+        <ul>
+        <li>
+Other Data Types not otherewise defined in the Abstract Data Model MUST be
+represented as a <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR
+String type. (major type 5)</a>
+        </li>
+        <li>
+Indefinite-length items are not allowed and MUST be made <a
+href="https://tools.ietf.org/html/rfc7049#section-2.2.1">CBOR definite
+length.</a>
+        </li>
+        </ul>
 
-
-<!-- <p>Additional considerations to enable lossless production of a CBOR representation and to enable a deterministic
-  canonical CBOR representation of the DID Document between other core representations of the DID document is possible
-  with additional constraints to the CBOR representation.  -->
   <p>
   To produce a deterministic canonical CBOR representation of a DID document and faciliate maximal lossless compatiblity with other
   core representations via the Abstract Data Model the following constraints of a CBOR representation of a DID Document model MUST be followed:
