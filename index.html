@@ -283,8 +283,8 @@ This specification does not presuppose any particular technology or
 cryptography to underpin the generation, persistence, resolution or
 interpretation of DIDs. Rather, it defines: a) the generic syntax for all
 DIDs, and b) the generic requirements for performing the four basic CRUD
-operations (create, read, update, deactivate) on the metadata associated with
-a DID (called the DID document).
+operations (create, read, update, deactivate) on the information associated
+with a DID (called the DID document).
     </p>
     <p>
 This enables implementers to design specific types of DIDs to work with the
@@ -579,15 +579,14 @@ other forms of trusted data storage.
 DID documents
         </dt>
         <dd>
-<a>DID documents</a> contain metadata associated with a <a>DID</a>. They
+<a>DID documents</a> contain information associated with a <a>DID</a>. They
 typically express verification methods (such as public keys) and <a>services</a>
-relevant to interactions with the DID subject. A DID document represents an
-abstract data model, and can be serialized according to a particular syntax
-(see <a href="#representations"></a>).  The generic properties supported
-in a DID document are specified in <a href="#core-properties"></a>.
-The <a>DID</a> itself is the value of the `id` property. The properties
-present in a DID document may be updated according to the applicable
-operations outlined in <a href="#methods"></a>.
+relevant to interactions with the DID subject. A DID document can be serialized
+according to a particular syntax (see <a href="#representations"></a>). The
+generic properties supported in a DID document are specified in <a
+href="#core-properties"></a>. The <a>DID</a> itself is the value of the `id`
+property. The properties present in a DID document may be updated according to
+the applicable operations outlined in <a href="#methods"></a>.
         </dd>
 
         <dt>
@@ -676,7 +675,7 @@ statements in that section.
       <p>
 A <dfn>conforming DID document</dfn> is any concrete expression of the data
 model described in this specification which complies with the relevant
-normative statements in Sections <a href="#data-model"></a> and  <a
+normative statements in Sections <a href="#data-model"></a> and <a
 href="#core-properties"></a>. A serialization format for the conforming
 document is deterministic, bi-directional, and lossless as described in
 Section <a href="#representations"></a>.
@@ -715,11 +714,11 @@ Terminology
 
     <p>
 In addition to the terminology above, this specification also uses terminology
-from the [[INFRA]] specification to formally define the abstract data model.
-When [[INFRA]] terminology is used, such as <a
-data-cite="INFRA#strings">string</a>, <a data-cite="INFRA#ordered-set">ordered
-set</a>, and <a data-cite="INFRA#maps">map</a>, it is linked directly to that
-specification.
+from the [[INFRA]] specification to formally define the <a
+href="#data-model">data model</a>. When [[INFRA]] terminology is used, such as
+<a data-cite="INFRA#strings">string</a>, <a
+data-cite="INFRA#ordered-set">ordered set</a>, and <a
+data-cite="INFRA#maps">map</a>, it is linked directly to that specification.
     </p>
 
   </section>
@@ -1039,8 +1038,8 @@ For information about how to dereference a <a>DID fragment</a>, see
         </p>
 
         <p>
-A <a>DID method</a> specification MAY specify ABNF rules for <a>DID fragments</a>
-that are more restrictive than the generic rules in this section.
+A <a>DID method</a> specification MAY specify ABNF rules for <a>DID
+fragments</a> that are more restrictive than the generic rules in this section.
         </p>
 
         <p>
@@ -1136,7 +1135,7 @@ absolute DID URL value of <code>did:example:123456789abcdefghi#key-1</code>.
   <section>
     <h1>Data Model</h1>
     <p>
-This specification defines an abstract data model for <a>DID documents</a> that
+This specification defines a data model for <a>DID documents</a> that
 is capable of being serialized into multiple concrete representations. This
 section provides a high-level description of the data model, how different types
 of properties are expressed in the data model, and instructions for extending
@@ -1154,7 +1153,8 @@ are specified in section <a href="#representations"></a>.
     <p>
 All property names in the data model are <a
 data-cite="INFRA#strings">strings</a>. All property values are expressed
-using one of the data types in the table below.
+using one of the abstract data types in the table below while each
+representation specifies the concrete serialization format of each data type.
     </p>
 
     <table class="simple" id="data-types">
@@ -1274,7 +1274,7 @@ Representations MAY define other extensibility mechanisms including methods for
 decentralized extensions. Such extension mechanisms SHOULD support lossless
 conversion into any other conformant representation. Extension mechanisms for a
 representation SHOULD define a mapping of all properties and representation
-syntax into the abstract data model and its type system.
+syntax into the <a href="#data-model">data model</a> and its type system.
       </li>
       </ol>
       <p class="note">
@@ -1292,7 +1292,7 @@ implementations and the larger ecosystem will be less reliable.
 
     <p>
 A <a>DID</a> points to a <a>DID document</a>. <a>DID documents</a> are the
-serialization of the data model outlined in Section <a href="#data-model"></a>.
+serialization of the <a href="#data-model">data model</a>.
 The following sections define the properties in a <a>DID document</a>,
 including whether these properties are required or optional. These properties
 describe relationships between the <a>DID subject</a> and the value of the
@@ -1345,13 +1345,13 @@ Nested properties include <code>id</code>, <code>type</code> and
     </ul>
 
     <p class="note" title="Ordering of values">
-As a result of the data model being defined using terminology from [[INFRA]],
-property values which can contain more than one item, such as
-<a data-cite="INFRA#lists">lists</a> and <a
-data-cite="INFRA#ordered-set">sets</a>, are explicitly ordered. For the
-purposes of this specification, unless otherwise stated, ordering is not
-important and implementations are not expected to produce or consume
-deterministically ordered values.
+As a result of the <a href="#data-model">data model</a> being defined using
+terminology from [[INFRA]], property values which can contain more than one
+item, such as <a data-cite="INFRA#lists">lists</a> and <a
+data-cite="INFRA#ordered-set">sets</a>, are explicitly ordered. For the purposes
+of this specification, unless otherwise stated, ordering is not important and
+implementations are not expected to produce or consume deterministically ordered
+values.
     </p>
 
     <section>
@@ -1866,9 +1866,9 @@ sufficient to, for example, update or delete the <a>DID document</a>. Another
 <a>DID method</a> could require different keys, or a different verification
 method entirely, to be presented in order to update or delete the <a>DID
 document</a> than that used to authenticate. In other words, what is done
-<em>after</em> the authentication check is out of scope for the DID data
-model, but <a>DID methods</a> and applications are expected to define this
-themselves.
+<em>after</em> the authentication check is out of scope for the
+<a href="#data-model">data model</a>, but <a>DID methods</a> and applications
+are expected to define this themselves.
           </p>
           <p>
 This is useful to any <em>authentication verifier</em> that needs
@@ -2253,21 +2253,23 @@ and <a href="#authentication"></a>.
 
     <p>
 All concrete representations of a <a>DID document</a> are serialized using a
-deterministic mapping that is able to be unambiguously parsed into the data
-model defined in this specification. All serialization methods MUST define rules
-for the bidirectional translation of a <a>DID document</a> both into and out of
-the representation in question. An implementation MUST NOT convert between
-representations without first parsing to a <a>DID document</a> model
-(described in Sections <a href="#data-model"></a> and <a
-href="#core-properties"></a>); translation between any two representations is
-done by parsing the source format into a <a>DID document</a> model and then
-serializing the <a>DID document</a> model into the target representation.
+deterministic mapping that is able to be unambiguously parsed into the <a
+href="#data-model">data model</a> defined in this specification. All
+serialization methods MUST define rules for the bidirectional translation of a
+<a>DID document</a> both into and out of the representation in question. An
+implementation MUST NOT convert between representations without first parsing to
+a <a href="#data-model">data model</a> (described in Sections <a
+href="#data-model"></a> and <a href="#core-properties"></a>); translation
+between any two representations is done by parsing the source representation
+into the <a href="#data-model">data model</a> and then serializing the <a
+href="#data-model">data model</a> into the target representation.
     </p>
 
     <p>
 Although syntactic mappings are provided for JSON, JSON-LD, and CBOR here,
 applications and services MAY use any other data representation syntax that is
-capable of expressing the data model, such as XML or YAML.
+capable of expressing the <a href="#data-model">data model</a>, such as XML or
+YAML.
     </p>
 
     <p>
@@ -2279,25 +2281,25 @@ through the content of the <a>DID document</a> alone.
     </p>
 
     <p>
-Unrecognized properties MUST be preserved. An unrecognized property is
-any property that does not have explicit processing rules known to the consumer or producer.
-Consumers MUST add all properties that do not have explicit processing rules
-for the representation being consumed to the abstract data model using only the
-representation's generic type processing rules. Producers MUST serialize all
-properties in the abstract data model that do not have explicit processing
-rules for the representation being produced using only the representation's
-generic type processing rules.
+Unrecognized properties MUST be preserved. An unrecognized property is any
+property that does not have explicit processing rules known to the consumer or
+producer. Consumers MUST add all properties that do not have explicit processing
+rules for the representation being consumed to the <a href="#data-model">data
+model</a> using only the representation's generic type processing rules.
+Producers MUST serialize all properties in the <a href="#data-model">data
+model</a> that do not have explicit processing rules for the representation
+being produced using only the representation's generic type processing rules.
     </p>
 
     <p class="note" title="Representation-specific syntax properties">
-Note that properties that contain representation-specific syntax will only
-have special processing rules defined by a single representation. Consumers of
-a different representation are required to include these properties in
-the abstract data model using only their generic type processing rules
-to enable lossless conversion of representations. Similarly, producers
-are required to treat properties containing representation-specific syntax
-using generic type processing rules when producing a representation for which
-the property is not defined. Representations are required to define producer
+Note that properties that contain representation-specific syntax will only have
+special processing rules defined by a single representation. Consumers of a
+different representation are required to include these properties in the <a
+href="#data-model">data model</a> using only their generic type processing rules
+to enable lossless conversion of representations. Similarly, producers are
+required to treat properties containing representation-specific syntax using
+generic type processing rules when producing a representation for which the
+property is not defined. Representations are required to define producer
 behavior for any such properties defined by the representation.
     </p>
 
@@ -2330,10 +2332,10 @@ representations require the following:
       <ol>
         <li>
 A representation MUST define an unambiguous encoding and decoding for all
-property names and all data model <a href="#data-model">data types</a>
-as defined in this specification.
-This enables anything that can be represented in the <a>DID document</a> data
-model to also be represented in a compliant representation.
+property names and all <a href="#data-model">data model</a> <a
+href="#data-model">data types</a> as defined in this specification. This enables
+anything that can be represented in the  <a href="#data-model">data model</a> to
+also be represented in a compliant representation.
         </li>
         <li>
 The representation MUST be uniquely associated with an IANA-registered MIME
@@ -2345,8 +2347,8 @@ are conformant with the fragment processing rules defined in section
 <a href="#fragment"></a> of this specification.
         </li>
         <li>
-The representation MAY define representation-specific syntax that can
-be stored as properties in the abstract data model. These properties are
+The representation MAY define representation-specific syntax that can be stored
+as properties in the <a href="#data-model">data model</a>. These properties are
 included when consuming or producing to aid in ensuring lossless conversion.
         </li>
       </ol>
@@ -2375,9 +2377,10 @@ metadata).
 A <a>DID document</a> MUST be a single <a data-cite="RFC8259#section-4">JSON
 object</a> conforming to [[!RFC8259]]. All top-level properties of the <a>DID
 document</a> MUST be represented by using the property name as the name of the
-member of the JSON object. The values of properties of the data model described
-in Section <a href="#data-model"></a>, including all extensions, are encoded
-in JSON [[RFC8259]] by mapping property values to JSON types as follows:
+member of the JSON object. The values of properties of the <a
+href="#data-model">data model</a> described in <a href="#data-model"></a>,
+including all extensions, are encoded in JSON [[RFC8259]] by mapping property
+values to JSON types as follows:
         </p>
 
         <table class="simple" id="json-representation-production">
@@ -2530,8 +2533,8 @@ no insertion order is guaranteed
             </tr>
             <tr>
               <td>
-<a data-cite="RFC8259#section-5">JSON Array</a> where data model property value
-is a <a data-cite="INFRA#list">list</a> or unknown
+<a data-cite="RFC8259#section-5">JSON Array</a> where <a href="#data-model">data
+model</a> property value is a <a data-cite="INFRA#list">list</a> or unknown
               </td>
               <td>
 <a data-cite="INFRA#list">list</a>, each value of the JSON Array is added to the
@@ -2541,8 +2544,9 @@ here
             </tr>
             <tr>
               <td>
-<a data-cite="RFC8259#section-5">JSON Array</a> where data model property value
-is an <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
+<a data-cite="RFC8259#section-5">JSON Array</a> where <a href="#data-model">data
+model</a> property value is an <a
+data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
 <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>, each value of the JSON
@@ -2552,8 +2556,8 @@ the array value, as defined here
             </tr>
             <tr>
               <td>
-<a data-cite="RFC8259#section-7">JSON String</a> where data model
-property value is an <a>datetime</a>
+<a data-cite="RFC8259#section-7">JSON String</a> where <a
+href="#data-model">data model</a> property value is an <a>datetime</a>
               </td>
               <td>
 <a>datetime</a>
@@ -2561,8 +2565,9 @@ property value is an <a>datetime</a>
             </tr>
             <tr>
               <td>
-<a data-cite="RFC8259#section-7">JSON String</a>, where data model property
-value type is <a>string</a> or unknown
+<a data-cite="RFC8259#section-7">JSON String</a>, where <a
+href="#data-model">data model</a> property value type is <a>string</a> or
+unknown
               </td>
               <td>
 <a data-cite="INFRA#string">string</a>
@@ -2615,7 +2620,7 @@ consumption rules</a> in the [[INFRA]] specification.
         <p>
 Note that the <code>@context</code> object member, if present, will not have
 additional processing applied to its value, which will be added verbatim to the
-abstract data model.
+<a href="#data-model">data model</a>.
         </p>
       </section>
 
@@ -2685,13 +2690,13 @@ property.
 
             <p>
 The <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD
-specification</a> defines values that are valid for this property. This
-property contains representation-specific syntax and therefore could
-be present in the abstract data model to aid in lossless conversion. If
-the property is present in the abstract data model, it MUST be used
-during production unless either an alternative <code>@context</code> value is
-explicitly provided to the producer or if the value from the abstract data
-model is not valid according to the consumption rules.
+specification</a> defines values that are valid for this property. This property
+contains representation-specific syntax and therefore could be present in the <a
+href="#data-model">data model</a> to aid in lossless conversion. If the property
+is present in the <a href="#data-model">data model</a>, it MUST be used during
+production unless either an alternative <code>@context</code> value is
+explicitly provided to the producer or if the value from the data model is not
+valid according to the consumption rules.
             </p>
 
             <p>
@@ -2821,13 +2826,13 @@ metadata.
         <h3>Production</h3>
 
         <p>
-A <a>DID document</a> MUST be a single
-<a data-cite="RFC7049#section-2.1">CBOR Map</a> conforming to [[RFC7049]].
-All top-level properties of the <a>DID document</a> MUST be represented by
-using the property name as the name of the key of the CBOR Map. The values
-of properties of the data model described in Section <a href="#data-model"></a>,
-including all extensions, are encoded in CBOR [[RFC7049]] by mapping property
-values to CBOR types as follows:
+A <a>DID document</a> MUST be a single <a data-cite="RFC7049#section-2.1">CBOR
+Map</a> conforming to [[RFC7049]]. All top-level properties of the <a>DID
+document</a> MUST be represented by using the property name as the name of the
+key of the CBOR Map. The values of properties of the <a href="#data-model">data
+model</a> described in Section <a href="#data-model"></a>, including all
+extensions, are encoded in CBOR [[RFC7049]] by mapping property values to CBOR
+types as follows:
         </p>
 
         <table class="simple" id="cbor-representation-production">
@@ -2932,7 +2937,7 @@ subtype 24) with a simple value of 22 (Null)
 
         <ul>
           <li>
-Other Data Types not otherewise defined in the Abstract Data Model MUST be
+Other Data Types not otherewise defined in the Data Model MUST be
 represented as a <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR
 String type. (major type 5)</a>
           </li>
@@ -2946,8 +2951,8 @@ length.</a>
       <p>
 To produce a deterministic canonical CBOR representation of a DID document and
 faciliate maximal lossless compatiblity with other core representations via the
-Abstract Data Model the following constraints of a CBOR representation of a DID
-Document model MUST be followed:
+<a href="#data-model">data model</a> the following constraints of a CBOR
+representation of a DID Document MUST be followed:
       </p>
 
       <ul>
@@ -3079,8 +3084,9 @@ CBOR maps, no insertion order is guaranteed.
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), where the data
-model property value is a <a data-cite="INFRA#list">list</a> or unknown
+<a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), where the <a
+href="#data-model">data model</a> property value is a <a
+data-cite="INFRA#list">list</a> or unknown
               </td>
               <td>
 <a data-cite="INFRA#list">list</a>, each value of the
@@ -3090,8 +3096,9 @@ converted based on the CBOR type of the array value, as defined in this table
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), where the data
-model property value is an <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
+<a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), where the <a
+href="#data-model">data model</a> property value is an <a
+data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
 <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>, each value of the
@@ -3102,8 +3109,8 @@ in this table
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5) where the data
-model property value is a <a>datetime</a>
+<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5) where the
+<a href="#data-model">data model</a> property value is a <a>datetime</a>
               </td>
               <td>
   <a>datetime</a>
@@ -3111,8 +3118,9 @@ model property value is a <a>datetime</a>
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5), where the
-data model property value type is <a>string</a> or unknown
+<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5), where the <a
+href="#data-model">data model</a> property value type is <a>string</a> or
+unknown
               </td>
               <td>
 <a data-cite="INFRA#string">string</a>
@@ -3171,8 +3179,8 @@ Duplicate key in the same CBOR map MUST throw an Error.
           </li>
           <li>
 <a href="https://tools.ietf.org/html/rfc7049#section-3.3.3">Unknown Additional
-Properties and Values</a> that are not defined in <a href="#data-model">the Data
-Model</a>, represented in the `@context`, or represented in <a href="">the DID
+Properties and Values</a> that are not defined in <a href="#data-model">data
+model</a>, represented in the `@context`, or represented in <a href="">the DID
 spec registries</a> or be explicitly documented as an extension of the DID
 document conformant to <a href="#extensibility"> § 4.3 Extensibility</a> MUST be
 preserved by default and represented as major type 3 (UTF-8 String)
@@ -3656,7 +3664,7 @@ function was called, this MUST be a byte stream of the resolved <a>DID
 document</a> in one of the conformant
 <a href="#representations">representations</a>. The byte stream MAY then be
 parsed by the caller of the <code>resolveRepresentation</code> function into a
-<a>DID document</a> abstract data model, which can in turn be validated and
+<a href="#data-model">data model</a>, which can in turn be validated and
 processed. If the resolution is unsuccessful, this value MUST be an empty
 stream.
             </dd>
@@ -3738,7 +3746,7 @@ property MUST be the MIME type of one of the conformant <a
 href="#representations">representations</a>. The caller of the
 <code>resolveRepresentation</code> function MUST use this value when
 determining how to parse and process the <code>did-document-stream</code>
-returned by this function into a <a>DID document</a> abstract data model.
+returned by this function into the <a href="#data-model">data model</a>.
                 </dd>
                 <dt>
 error
@@ -4545,18 +4553,19 @@ Immutability
 Many cybersecurity abuses hinge on exploiting gaps between reality and the
 assumptions of rational, good-faith actors. Like any ecosystem, the <a>DID</a>
 ecosystem has some potential for this to occur. Because this specification is
-focused on a data model instead of a protocol, it offers no opinion about many
-aspects of how that model is put to use. However, individual <a>DID methods</a>
-might want to consider constraints that would eliminate behaviors or semantics
-they do not need. The more <em>locked down</em> a <a>DID method</a> is, while
-providing the same set of features, the less it can be manipulated by malicious
-actors.
+focused on a <a href="#data-model">data model</a> instead of a protocol, it
+offers no opinion about many aspects of how that model is put to use. However,
+individual <a>DID methods</a> might want to consider constraints that would
+eliminate behaviors or semantics they do not need. The more <em>locked down</em>
+a <a>DID method</a> is, while providing the same set of features, the less it
+can be manipulated by malicious actors.
         </p>
         <p>
-As an example, consider the flexibility that the data model offers with respect
-to updating. A single edit to a <a>DID document</a> can change anything and
-everything except the root <code><a>id</a></code> property of the document. And
-any individual JSON object in the data model can change all of its properties
+As an example, consider the flexibility that the <a href="#data-model">data
+model</a> offers with respect to updating. A single edit to a <a>DID
+document</a> can change anything and everything except the root
+<code><a>id</a></code> property of the document. And any individual JSON object
+in the <a href="#data-model">data model</a> can change all of its properties
 except its <code><a>id</a></code>. But is it actually desirable for a <a>service
 endpoint</a> to change its <code>type</code> after it is defined? Or for a key
 to change its value? Or would it be better to require a new
@@ -4765,9 +4774,9 @@ information around a <a>DID Controller</a> could serve as a form of
 digital fingerprint and this is best avoided.
       </p>
       <p>
-To minimize these risks, all properties in a <a>DID document</a> ought to be
-for expressing cryptographic material, endpoints, or verification methods related
-to using the <a>DID</a>.
+To minimize these risks, all properties in a <a>DID document</a> ought to be for
+expressing cryptographic material, endpoints, or verification methods related to
+using the <a>DID</a>.
       </p>
 
     </section>
