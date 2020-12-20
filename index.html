@@ -433,8 +433,8 @@ selective, and progressive disclosure of attributes or other data.
 Security
             </td>
             <td>
-Enable sufficient security for requesting parties to depend on <a>DID documents</a>
-for their required level of assurance.
+Enable sufficient security for requesting parties to depend on
+<a>DID documents</a> sfor their required level of assurance.
             </td>
           </tr>
 
@@ -620,13 +620,13 @@ DID resolvers and DID resolution
         </dt>
         <dd>
 A <a>DID resolver</a> is a software and/or hardware component that takes a
-<a>DID</a> (and associated input metadata) as input and produces a conforming <a>DID
-document</a> (and associated metadata) as output. This process is called <a>DID
-resolution</a>. The inputs and outputs of the DID resolution process are defined
-in <a href="#resolution"></a>. The specific steps for resolving a specific type
-of DID are defined by the relevant <a>DID method</a> specification. Additional
-considerations for implementing a DID resolver are discussed in
-[[DID-RESOLUTION]].
+<a>DID</a> (and associated input metadata) as input and produces a conforming
+<a>DID document</a> (and associated metadata) as output. This process is called
+<a>DID resolution</a>. The inputs and outputs of the DID resolution process are
+defined in <a href="#resolution"></a>. The specific steps for resolving a
+specific type of DID are defined by the relevant <a>DID method</a>
+specification. Additional considerations for implementing a DID resolver are
+discussed in [[DID-RESOLUTION]].
         </dd>
         <dt>
 DID URL dereferencers and DID URL dereferencing
@@ -955,11 +955,13 @@ Two example <a>DID URLs</a> using the <code><a>service</a></code> and
 <code>version-time</code> DID parameters are shown below.
         </p>
 
-        <pre class="example nohighlight" title="A DID URL with a 'service' DID parameter">
+        <pre class="example nohighlight"
+          title="A DID URL with a 'service' DID parameter">
 did:foo:21tDAKCERh95uGgKbJNHYp?service=agent
         </pre>
 
-        <pre class="example nohighlight" title="A DID URL with a 'version-time' DID parameter">
+        <pre class="example nohighlight"
+          title="A DID URL with a 'version-time' DID parameter">
 did:foo:21tDAKCERh95uGgKbJNHYp?version-time=2002-10-10T17:00:00Z
         </pre>
 
@@ -1263,15 +1265,16 @@ The data model supports two types of extensibility.
         <li>
 For maximum interoperability, it is RECOMMENDED that extensions use the official
 W3C DID Specification Registries mechanism [[?DID-SPEC-REGISTRIES]]. The use of
-this mechanism for new properties or other extensions is the only specified method
-that ensures that two different representations will be able to work together.
+this mechanism for new properties or other extensions is the only specified
+method that ensures that two different representations will be able to work
+together.
         </li>
       <li>
 Representations MAY define other extensibility mechanisms including methods for
 decentralized extensions. Such extension mechanisms SHOULD support lossless
 conversion into any other conformant representation. Extension mechanisms for a
-representation SHOULD define a mapping of all properties and representation syntax
-into the abstract data model and its type system.
+representation SHOULD define a mapping of all properties and representation
+syntax into the abstract data model and its type system.
       </li>
       </ol>
       <p class="note">
@@ -1327,10 +1330,12 @@ property.
 <code><a>keyAgreement</a></code>: defined in <a href="#key-agreement"></a>.
       </li>
       <li>
-<code><a>capabilityInvocation</a></code>: defined in <a href="#capability-invocation"></a>.
+<code><a>capabilityInvocation</a></code>: defined in
+<a href="#capability-invocation"></a>.
       </li>
       <li>
-<code><a>capabilityDelegation</a></code>: defined in <a href="#capability-delegation"></a>.
+<code><a>capabilityDelegation</a></code>: defined in
+<a href="#capability-delegation"></a>.
       </li>
       <li>
 <code><a>service</a></code>: defined in <a href="#service-endpoints"></a>.
@@ -1562,8 +1567,8 @@ and specific verification method properties, and MAY include additional
 properties.
           </p>
           <p>
-The value of the <code><a>id</a></code> property for a verification method MUST be a
-<a>URI</a>. When more than one verification method is present, the value of
+The value of the <code><a>id</a></code> property for a verification method MUST
+be a <a>URI</a>. When more than one verification method is present, the value of
 <code><a>verificationMethod</a></code> MUST NOT contain multiple entries with
 the same <code>id</code>. If the value of <code><a>verificationMethod</a></code>
 contains multiple entries with the same <code>id</code>, a <a>DID document</a>
@@ -1595,32 +1600,33 @@ data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
 href="#did-syntax"></a>.
           </p>
 
-<p>
-A verification method MUST contain verification material,
-such as <a>publicKeyJwk</a> or <a>publicKeyBase58</a>.
-</p>
+          <p>
+A verification method MUST contain verification material, such as
+<a>publicKeyJwk</a> or <a>publicKeyBase58</a>.
+          </p>
 
-<p>
-  A <a>verification method</a> MUST NOT contain multiple verification material properties
-  for the same material.
-  For example, expressing key material in a <a>verification method</a> using both
-  <code>publicKeyJwk</code> and <code>publicKeyBase58</code> at the same time
-  is prohibited.
-</p>
+          <p>
+A <a>verification method</a> MUST NOT contain multiple verification material
+properties for the same material. For example, expressing key material in a
+<a>verification method</a> using both <code>publicKeyJwk</code> and
+<code>publicKeyBase58</code> at the same time is prohibited.
+          </p>
         </dd>
         <dt><dfn>publicKeyJwk</dfn></dt>
         <dd>
-         A JSON Web Key that conforms to [[RFC7517]]. This value MUST NOT contain "d",
-         or any other members of the private information class as described in
-         <a href="https://tools.ietf.org/html/rfc7517#section-8.1.1">Registration Template</a>.
+A JSON Web Key that conforms to [[RFC7517]]. This value MUST NOT contain "d", or
+any other members of the private information class as described in
+<a href="https://tools.ietf.org/html/rfc7517#section-8.1.1">Registration
+Template</a>.
         </dd>
         <dt><dfn>publicKeyBase58</dfn></dt>
         <dd>
-         A base58btc encoded public key.
+A base58btc encoded public key.
         </dd>
       </dl>
 
-      <p class="note" title="Verification method controller(s) and DID controller(s)">
+      <p class="note"
+        title="Verification method controller(s) and DID controller(s)">
 The semantics of the <code>controller</code> property are the same when the
 subject of the relationship is the <a>DID document</a> as when the subject
 of the relationship is a verification method, such as a public key. Since a
@@ -1704,7 +1710,8 @@ property of <em>result</em>, throw an error.
         </li>
       </ol>
 
-      <pre class="example nohighlight" title="Embedding and referencing verification methods">
+      <pre class="example nohighlight"
+        title="Embedding and referencing verification methods">
 {
 <span class="comment">...</span>
 
@@ -1742,14 +1749,15 @@ and supporting formats that have historically had broad deployment.
 
         <p>
 A suite definition is responsible for specifying the verification method
-<code>type</code> and proof <code>type</code>.
-For example, see <a href="https://w3c-ccg.github.io/lds-jws2020/">JSON Web Signature 2020</a> and
-<a href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature 2018</a>.
-For all registered and supported verification method types available for DIDs,
+<code>type</code> and proof <code>type</code>. For example, see
+<a href="https://w3c-ccg.github.io/lds-jws2020/">JSON Web Signature 2020</a> and
+<a href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature 2018</a>
+. For all registered and supported verification method types available for DIDs,
 please see [[?DID-SPEC-REGISTRIES]].
-</p>
+        </p>
 
-<pre class="example nohighlight" title="Various verification method types">
+        <pre class="example nohighlight"
+          title="Various verification method types">
 {
   "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
   "id": "did:example:123456789abcdefghi",
@@ -1775,16 +1783,18 @@ please see [[?DID-SPEC-REGISTRIES]].
         </pre>
 
 
-<p>The <a>DID document</a> MUST NOT express revoked keys using a
-<a>verification relationship</a>.
-</p>
-<p>
-If a referenced verification method is not in the <a>DID Document</a> used
-to dereference it, then that verification method is considered invalid or revoked.
-</p>
-<p>
-Each <a>DID method</a> specification is expected to detail how revocation is performed and tracked.
-</p>
+        <p>
+The <a>DID document</a> MUST NOT express revoked keys using a <a>verification
+relationship</a>.
+        </p>
+        <p>
+If a referenced verification method is not in the <a>DID Document</a> used to
+dereference it, then that verification method is considered invalid or revoked.
+        </p>
+        <p>
+Each <a>DID method</a> specification is expected to detail how revocation is
+performed and tracked.
+        </p>
 
         <p class="note">
 Caching and expiration of the keys in a <a>DID document</a> is entirely the
