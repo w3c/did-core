@@ -2931,67 +2931,87 @@ subtype 24) with a simple value of 22 (Null)
         </table>
 
         <ul>
-        <li>
+          <li>
 Other Data Types not otherewise defined in the Abstract Data Model MUST be
 represented as a <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR
 String type. (major type 5)</a>
-        </li>
-        <li>
+          </li>
+          <li>
 Indefinite-length items are not allowed and MUST be made <a
 href="https://tools.ietf.org/html/rfc7049#section-2.2.1">CBOR definite
 length.</a>
-        </li>
+          </li>
         </ul>
 
-  <p>
-  To produce a deterministic canonical CBOR representation of a DID document and faciliate maximal lossless compatiblity with other
-  core representations via the Abstract Data Model the following constraints of a CBOR representation of a DID Document model MUST be followed:
+      <p>
+To produce a deterministic canonical CBOR representation of a DID document and
+faciliate maximal lossless compatiblity with other core representations via the
+Abstract Data Model the following constraints of a CBOR representation of a DID
+Document model MUST be followed:
+      </p>
 
-<ul>
-    <li>Property names MUST be represented as text string (major type 3) and contain only UTF-8 strings. </li>
-    <li>Undefined Values of Required Properties as defined in <a href="#data-model">the Data Model</a> that are absent from the CBOR representation SHOULD be labeled with Primitive type (major type 7) with value 23 (Undefined value).  </li>
-    <li>Property names in each CBOR map MUST be unique. </li>
-    <li>Integer encoding MUST be as short as possible.</li>
-    <li>The expression of lengths in CBOR major types 2 through 5 MUST be as short as possible. </li>
-    <li>The keys in every map must be sorted lowest value to highest. Sorting is performed on the bytes of the representation of the keys. If two keys have different lengths, the shorter one sorts earlier.  If two keys have the same length, the one with the lower value in (byte-wise) lexical order sorts earlier. </li>
-  </ul>
-</p>
+      <ul>
+        <li>
+Property names MUST be represented as text string (major type 3) and contain
+only UTF-8 strings.
+        </li>
+        <li>
+Undefined Values of Required Properties as defined in <a href="#data-model">the
+Data Model</a> that are absent from the CBOR representation SHOULD be labeled
+with Primitive type (major type 7) with value 23 (Undefined value).
+        </li>
+        <li>
+Property names in each CBOR map MUST be unique.
+        </li>
+        <li>
+Integer encoding MUST be as short as possible.
+        </li>
+        <li>
+The expression of lengths in CBOR major types 2 through 5 MUST be as short as
+possible.
+        </li>
+        <li>
+The keys in every map must be sorted lowest value to highest. Sorting is
+performed on the bytes of the representation of the keys. If two keys have
+different lengths, the shorter one sorts earlier.  If two keys have the same
+length, the one with the lower value in (byte-wise) lexical order sorts earlier.
+        </li>
+      </ul>
 
+      <p class="issue">
+How to represent Floating-point values that can exceed the range or the
+precision IEEE 754. See <a
+href="https://github.com/w3c/did-core/issues/361">issue #361. </a>
+      </p>
 
-<p class="issue">
- How to represent Floating-point values that can exceed the range or the precision IEEE 754. See <a href="https://github.com/w3c/did-core/issues/361">issue #361. </a>
-</p>
+      <p>
+The property name `@context` MAY be present in the CBOR representation of a DID
+Document and if present SHOULD be ignored as this property is reserved for
+JSON-LD processing.
+      </p>
 
-<p>
-  The property name `@context` MAY be present in the CBOR representation of a DID Document and if present SHOULD be ignored as this property is reserved for JSON-LD processing.
-</p>
+      <p>
+All properties of the DID document represented in CBOR MUST be included in the
+root map (major type 5). Properties MAY define additional data sub structures
+represented as nested CBOR maps (major type 5) and is subject to the value
+representation rules in the lists above and conformance to section <a
+href="#extensibility"> § 4.3 Extensibility</a>.
+      </p>
 
-<p>
-  All properties of the DID document represented in CBOR MUST be included in the root map (major type 5).
-  Properties MAY define additional data sub structures represented as nested CBOR maps (major type 5)
-  and is subject to the value representation rules in the lists above and conformance to section <a href="#extensibility"> § 4.3 Extensibility</a>.
-</p>
+      <pre class="example nohighlight"
+        title="Example 2 DID Document encoded as CBOR (hexadecimal)">
+A2626964781E6469643A6578616D706C653A313233343536373839616263
+6465666768696E61757468656E7469636174696F6E81A462696478256469
+643A6578616D706C653A313233343536373839616263646566676869236B
+6579732D316474797065781A45643235353139566572696669636174696F
+6E4B6579323031386A636F6E74726F6C6C6572781E6469643A6578616D70
+6C653A3132333435363738396162636465666768696F7075626C69634B65
+79426173653538782C483343324156764C4D7636676D4D4E616D33755641
+6A5A70666B634A437744776E5A6E367A3377586D715056
+      </pre>
 
-<p>
-</p>
-
-  <ul>
-  </ul>
-
-
-<pre class="example nohighlight" title="An example DID Document (the same as Example 2) represented as constrained CBOR presented as Hexadecimal">
-  A2626964781E6469643A6578616D706C653A313233343536373839616263
-  6465666768696E61757468656E7469636174696F6E81A462696478256469
-  643A6578616D706C653A313233343536373839616263646566676869236B
-  6579732D316474797065781A45643235353139566572696669636174696F
-  6E4B6579323031386A636F6E74726F6C6C6572781E6469643A6578616D70
-  6C653A3132333435363738396162636465666768696F7075626C69634B65
-  79426173653538782C483343324156764C4D7636676D4D4E616D33755641
-  6A5A70666B634A437744776E5A6E367A3377586D715056
-</pre>
-
-<pre class="example nohighlight" title="The same example DID Document shown above but exported
-in diagnostic annotation mode for easy readibility">
+      <pre class="example nohighlight"
+        title="Example 2 DID Document encoded as CBOR (diagnostic notation)">
 A2                                   # map(2)
 62                                   # text(2)
    6964                              # "id"
@@ -3017,7 +3037,7 @@ A2                                   # map(2)
          7075626C69634B6579426173653538 # "publicKeyBase58"
       78 2C                          # text(44)
          483343324156764C4D7636676D4D4E616D337556416A5A70666B634A437744776E5A6E367A3377586D715056 # "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-        </pre>
+              </pre>
 
       </section>
 
@@ -3032,119 +3052,134 @@ properties of the <a>DID document</a>. The data item key is the property name,
 and the data item value is interpreted as follows:
         </p>
 
-      <table class="simple" id="cbor-representation-consumption">
-        <thead>
-          <tr>
-            <th style="width: 50%">
+        <table class="simple" id="cbor-representation-consumption">
+          <thead>
+            <tr>
+              <th style="width: 50%">
 CBOR Representation Type
-            </th>
-            <th>
+              </th>
+              <th>
 Data&nbsp;Type
-            </th>
-          </tr>
-        </thead>
+              </th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr>
-            <td>
+          <tbody>
+            <tr>
+              <td>
 <a data-cite="RFC7049#section-2.1">CBOR map</a> (major type 5)
-            </td>
-            <td>
-<a data-cite="INFRA#maps">ordered&nbsp;map</a>, each data item of the
-CBOR map is added as a property to the ordered map with the property name being the
-data item name and the value converted based on the CBOR type and, if available,
+              </td>
+              <td>
+<a data-cite="INFRA#maps">ordered&nbsp;map</a>, each data item of the CBOR map
+is added as a property to the ordered map with the property name being the data
+item name and the value converted based on the CBOR type and, if available,
 property definition, as defined here; as no order can be enforced for general
 CBOR maps, no insertion order is guaranteed.
-            </td>
-          </tr>
-          <tr>
-            <td>
+              </td>
+            </tr>
+            <tr>
+              <td>
 <a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), where the data
 model property value is a <a data-cite="INFRA#list">list</a> or unknown
-            </td>
-            <td>
+              </td>
+              <td>
 <a data-cite="INFRA#list">list</a>, each value of the
 <a data-cite="RFC7049#section-2.1">CBOR array</a> is added to the list in order,
 converted based on the CBOR type of the array value, as defined in this table
-            </td>
-          </tr>
-          <tr>
-            <td>
+              </td>
+            </tr>
+            <tr>
+              <td>
 <a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), where the data
 model property value is an <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
-            </td>
-            <td>
+              </td>
+              <td>
 <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>, each value of the
 <a data-cite="RFC7049#section-2.1">CBOR array</a> is added to the ordered set
 in order, converted based on the CBOR type of the array value as defined
 in this table
-            </td>
-          </tr>
-          <tr>
-            <td>
+              </td>
+            </tr>
+            <tr>
+              <td>
 <a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5) where the data
 model property value is a <a>datetime</a>
-            </td>
-            <td>
-<a>datetime</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
+              </td>
+              <td>
+  <a>datetime</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
 <a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5), where the
 data model property value type is <a>string</a> or unknown
-            </td>
-            <td>
+              </td>
+              <td>
 <a data-cite="INFRA#string">string</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
+              </td>
+            </tr>
+            <tr>
+              <td>
 <a data-cite="RFC7049#section-2.1">CBOR integer</a> (major type 0 or 1),
 choosing the shortest byte representation
-            </td>
-            <td>
+              </td>
+              <td>
 <a>integer</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
+              </td>
+            </tr>
+            <tr>
+              <td>
 <a data-cite="RFC7049#section-2.1">CBOR floating-point number</a> (major type
 7)</a>.
-            </td>
-            <td>
+              </td>
+              <td>
 <a>double</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
+              </td>
+            </tr>
+            <tr>
+              <td>
 <a data-cite="RFC7049#section-2.3">CBOR simple value</a> (major type 7,
 subtype 24) with a simple value of 21 (True) or 20 (False)
-            </td>
-            <td>
+              </td>
+              <td>
 <a data-cite="INFRA#boolean">boolean</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
+              </td>
+            </tr>
+            <tr>
+              <td>
 <a data-cite="RFC7049#section-2.3">CBOR simple value</a> (major type 7,
 subtype 24) with a simple value of 22 (Null)
-            </td>
-            <td>
+              </td>
+              <td>
 <a data-cite="INFRA#null">null</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-<p>Additional Considerations:</p>
-<ul>
-  <li><a href="https://tools.ietf.org/html/rfc7049#section-2.2.1">CBOR Indefinite-length items</a> are not allowed and MUST throw an Error.</li>
-  <li>Duplicate key in the same CBOR map MUST throw an Error.</li>
-  <li><a href="https://tools.ietf.org/html/rfc7049#section-3.3.3">Unknown Additional Properties and Values</a> that are not defined in <a href="#data-model">the Data Model</a>, represented in the `@context`, or represented in <a href="">the DID spec registries</a> or be explicitly documented as an extension of the DID document conformant to <a href="#extensibility"> § 4.3 Extensibility</a> MUST be preserved by default and represented as major type 3 (UTF-8 String) </li>
-</ul>
+        <p>
+Additional Considerations:
+        </p>
 
-</section>
+        <ul>
+          <li>
+<a href="https://tools.ietf.org/html/rfc7049#section-2.2.1">CBOR
+Indefinite-length items</a> are not allowed and MUST throw an Error.
+          </li>
+          <li>
+Duplicate key in the same CBOR map MUST throw an Error.
+          </li>
+          <li>
+<a href="https://tools.ietf.org/html/rfc7049#section-3.3.3">Unknown Additional
+Properties and Values</a> that are not defined in <a href="#data-model">the Data
+Model</a>, represented in the `@context`, or represented in <a href="">the DID
+spec registries</a> or be explicitly documented as an extension of the DID
+document conformant to <a href="#extensibility"> § 4.3 Extensibility</a> MUST be
+preserved by default and represented as major type 3 (UTF-8 String)
+          </li>
+        </ul>
+
+      </section>
 
       <section>
         <h3>CBOR Extensibility</h3>
@@ -3154,29 +3189,29 @@ defines a basic set of data types, as well as a tagging mechanism that enables
 extending the set of data types supported via the <a
 href="https://www.iana.org/assignments/cbor-tags/cbor-tags.xhtml">IANA CBOR Tag
 Registry</a>. This allows for tags to enhance the semantic description of the
-data that follows.  Extensibility with CBOR tags also facilitates lossless conversion to
-other core representations. CBOR Tags number 21 to 23 indicate that a following byte string
-might require a specific encoding when interoperating with a text-based
-representation such as JSON.  These tags are useful when an encoder knows that the
-byte string data it is writing is likely to be later converted to a
-particular text-based usage such as JSON.  These three tag numbers suggest conversions to three of the base data
-encodings defined in [[RFC4648]].  Tag number 21 suggests conversion to
-base64url encoding (Section 5 of [[RFC4648]]), where padding is not used
-(see Section 3.2 of [[RFC4648]]); that is, all trailing equals signs
-("=") are removed from the encoded string.  Tag number 22 suggests
-conversion to classical base64 encoding (Section 4 of [[RFC4648]] ), with
-padding as defined in [[RFC4648]].  For both base64url and base64,
-padding bits are set to zero (see Section 3.5 of [[RFC4648]] ), and
-encoding is performed without the inclusion of any line breaks,
-whitespace, or other additional characters.  Tag number 23 suggests
-conversion to base16 (hex) encoding, with uppercase alphabetics (see
-Section 8 of [[RFC4648]]).  Note that, for all three tag numbers, the
-encoding of the empty byte string is the empty text string of other representations.
-</p>
+data that follows.  Extensibility with CBOR tags also facilitates lossless
+conversion to other core representations. CBOR Tags number 21 to 23 indicate
+that a following byte string might require a specific encoding when
+interoperating with a text-based representation such as JSON.  These tags are
+useful when an encoder knows that the byte string data it is writing is likely
+to be later converted to a particular text-based usage such as JSON.  These
+three tag numbers suggest conversions to three of the base data encodings
+defined in [[RFC4648]].  Tag number 21 suggests conversion to base64url encoding
+(Section 5 of [[RFC4648]]), where padding is not used (see Section 3.2 of
+[[RFC4648]]); that is, all trailing equals signs ("=") are removed from the
+encoded string.  Tag number 22 suggests conversion to classical base64 encoding
+(Section 4 of [[RFC4648]] ), with padding as defined in [[RFC4648]].  For both
+base64url and base64, padding bits are set to zero (see Section 3.5 of
+[[RFC4648]] ), and encoding is performed without the inclusion of any line
+breaks, whitespace, or other additional characters.  Tag number 23 suggests
+conversion to base16 (hex) encoding, with uppercase alphabetics (see Section 8
+of [[RFC4648]]).  Note that, for all three tag numbers, the encoding of the
+empty byte string is the empty text string of other representations.
+        </p>
 
- <section>
-  <h4>DagCBOR</h4>
-  <p>
+        <section>
+          <h4>DagCBOR</h4>
+          <p>
 DagCBOR is a further restricted subset of CBOR for representing the DID Document
 as a Directed Acyclic Graph model using canonical CBOR encoding as noted above
 with additional constraints. DagCBOR requires that there exist a single way of
@@ -3192,32 +3227,33 @@ Use no CBOR tags other than the CID tag (42)
             </li>
           </ul>
 
-          <pre class="example nohighlight" title="DID Document as DagCBOR with tag 42 used in Proof section">
-            a5                                      # map(5)
-            62                                   # text(2)
-               6964                              # "id"
-            78 40                                # text(64)
-               6469643a6578616d706c653a313244334b6f6f574d4864727a6377706a6264725a7335474771455241766367715833623564707550745061396f743639796577 # "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew"
-            65                                   # text(5)
-               70726f6f66                        # "proof"
-            d8 2a                                # tag(42)
-               58 26                             # bytes(38)
-                  000190011b20a7f3a13d0dafa9b8b640fee52173c27b9a66ff27f6669b3be73fc0ee6849e2ce # "\x00\x01\x90\x01\e \xA7\xF3\xA1=\r\xAF\xA9\xB8\xB6@\xFE\xE5!s\xC2{\x9Af\xFF'\xF6f\x9B;\xE7?\xC0\xEEhI\xE2\xCE"
-            68                                   # text(8)
-               40636f6e74657874                  # "@context"
-            78 1c                                # text(28)
-               68747470733a2f2f7777772e77332e6f72672f6e732f6469642f7631 # "https://www.w3.org/ns/did/v1"
-            6e                                   # text(14)
-               61757468656e7469636174696f6e      # "authentication"
-            81                                   # array(1)
-               78 83                             # text(131)
-                  6469643a6578616d706c653a313244334b6f6f574d4864727a6377706a6264725a7335474771455241766367715833623564707550745061396f7436397965773b6b65792d69643d6261667972656963756274783577716f336e6f73633463617a726b63746668776436726577657a6770776f6534737769726c733465626468733269 # "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew;key-id=bafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i"
-            72                                   # text(18)
-               766572696669636174696f6e4d6574686f64 # "verificationMethod"
-            81                                   # array(1)
-               78 40                             # text(64)
-                  6469643a6578616d706c653a313244334b6f6f574d4864727a6377706a6264725a7335474771455241766367715833623564707550745061396f743639796577 # "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew"
-                    </pre>
+          <pre class="example nohighlight"
+            title="DID Document as DagCBOR with tag 42 used in Proof section">
+a5                                      # map(5)
+62                                   # text(2)
+   6964                              # "id"
+78 40                                # text(64)
+   6469643a6578616d706c653a313244334b6f6f574d4864727a6377706a6264725a7335474771455241766367715833623564707550745061396f743639796577 # "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew"
+65                                   # text(5)
+   70726f6f66                        # "proof"
+d8 2a                                # tag(42)
+   58 26                             # bytes(38)
+      000190011b20a7f3a13d0dafa9b8b640fee52173c27b9a66ff27f6669b3be73fc0ee6849e2ce # "\x00\x01\x90\x01\e \xA7\xF3\xA1=\r\xAF\xA9\xB8\xB6@\xFE\xE5!s\xC2{\x9Af\xFF'\xF6f\x9B;\xE7?\xC0\xEEhI\xE2\xCE"
+68                                   # text(8)
+   40636f6e74657874                  # "@context"
+78 1c                                # text(28)
+   68747470733a2f2f7777772e77332e6f72672f6e732f6469642f7631 # "https://www.w3.org/ns/did/v1"
+6e                                   # text(14)
+   61757468656e7469636174696f6e      # "authentication"
+81                                   # array(1)
+   78 83                             # text(131)
+      6469643a6578616d706c653a313244334b6f6f574d4864727a6377706a6264725a7335474771455241766367715833623564707550745061396f7436397965773b6b65792d69643d6261667972656963756274783577716f336e6f73633463617a726b63746668776436726577657a6770776f6534737769726c733465626468733269 # "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew;key-id=bafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i"
+72                                   # text(18)
+   766572696669636174696f6e4d6574686f64 # "verificationMethod"
+81                                   # array(1)
+   78 40                             # text(64)
+      6469643a6578616d706c653a313244334b6f6f574d4864727a6377706a6264725a7335474771455241766367715833623564707550745061396f743639796577 # "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew"
+          </pre>
 
         </section>
       </section>
