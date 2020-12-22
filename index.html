@@ -4879,8 +4879,62 @@ keep negotiated options to a minimum on wire protocols, use encrypted transport
 layers, and pad messages to standard lengths.
       </p>
     </section>
-  </section>
 
+    <section>
+      <h2>
+          Service Privacy
+      </h2>
+      <p>
+The ability for a controller to optionally state at least one service endpoint
+in the DID document increases their control and agency. Stating more than one
+endpoint in the DID document always adds privacy risk either due to correlation
+across the endpoint descriptions or because the services are not protected by
+an authorization mechanism, or both.
+      </p>
+      <p>
+The degree of added privacy risk for using multiple service endpoints in one
+DID document can be difficult to estimate. Privacy harms are typically due to
+unintended consequences. DIDs can identify documents, things, and schemas as
+well as services. As such, they will be associated with individual people,
+households, clubs, and employers &mdash; and correlation of their service
+endpoints could become a powerful surveillance and inference tool.
+      </p>
+      <p>
+DID documents are often public and will be stored and indexed efficiently by
+their very nature as standards-based. This risk is worse if DID documents are
+published to immutable Verifiable Data Registries. Access to a history of the
+DID documents referenced by a DID represents a form of traffic analysis made
+more efficient through our standards process.
+      </p>
+      <p>
+Examples of service endpoints in DID documents come in three broad categories:
+      </p>
+      <ol>
+          <li>Intentional public disclosures</li>
+          <li>
+              DIDs about natural persons (as might be covered by GDPR and
+              similar privacy regulations)
+          </li>
+          <li>
+              DIDs about things and documents that are associated with natural
+              persons.
+          </li>
+      </ol>
+      <p>
+For category 1, consider non-DID publication mechanisms with only a single
+service endpoint as the root. In some cases, the publication mechanism might
+reference a DID Document with no service endpoints at all. For category 2,
+prefer using only one service that points to an authorization server or to a
+mediator / proxy that can provide a kind of herd immunity, or both. For
+category 3, avoid the use of multiple service endpoints for a DID because some
+of these (e.g. an authorization server) are likely to be reused with other,
+related DIDs. Place correlatable service endpoints behind a “firewall”, if
+possible, or introduce a mediator / proxy as a sole service endpoint in
+order to obscure related devices and documents through herd immunity.
+      </p>
+    </section>
+  </section>
+  
   <section class="informative">
     <h1>
       Examples
