@@ -3845,12 +3845,52 @@ datetime value MUST be normalized to UTC 00:00, as indicated by the trailing
             <h4>updated</h4>
             <p>
 DID document metadata SHOULD include an <code>updated</code> property
-to indicate the timestamp of the last <a href="#update">Update operation</a>.
+to indicate the timestamp of the last <a href="#update">Update operation</a>
+for the document version which was resolved. This property MAY not be
+supported by a given <a>DID method</a>. The value of the property MUST
+follow the same formatting rules as the <code>created</code> property.
+                </p>
+              </section>
+
+            <section>
+                <h4>
+                  next-update
+                </h4>
+                <p>
+DID document metadata SHOULD include a <code>next-update</code> property if
+the resolved document version is not the latest version of the document. It
+indicates the timestamp of the next <a href="#update">Update operation</a>.
 This property MAY not be supported by a given <a>DID method</a>.
 The value of the property MUST follow the same formatting rules as the
 <code>created</code> property.
             </p>
           </section>
+
+          <section>
+              <h4>
+                version-id
+              </h4>
+              <p>
+DID document metadata SHOULD include a <code>version-id</code> property
+to indicate the version of the last <a href="#update">Update operation</a>
+for the document version which was resolved. This property MAY not be
+supported by a given <a>DID method</a>. The value of the property MUST be
+an <a data-lt="ascii string">ASCII string</a>.
+              </p>
+            </section>
+
+          <section>
+              <h4>
+                next-version-id
+              </h4>
+              <p>
+DID document metadata SHOULD include a <code>next-version-id</code> property
+if the resolved document version is not the latest version of the document.
+It indicates the version of the next <a href="#update">Update operation</a>.
+This property MAY not be supported by a given <a>DID method</a>.
+The value of the property MUST be an <a data-lt="ascii string">ASCII string</a>.
+              </p>
+            </section>
 
           <section>
             <h4>equivalentId</h4>
