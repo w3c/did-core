@@ -922,6 +922,18 @@ parameter is OPTIONAL. If present, the associated value MUST be an
 <a data-lt="ascii string">ASCII string</a>.
               </td>
             </tr>
+            <tr>
+              <td>
+<code>resource</code>
+              </td>
+              <td>
+Indicates that the resource to be dereferenced is the <a>DID Subject</a>, rather
+than the <a>DID Document</a>. This parameter is used to retrieve an information
+resource identified by a <a>DID</a>. Support for this parameter is OPTIONAL.
+If present, the associated value MUST be the
+<a data-lt="ascii string">ASCII string</a> <code>true</code>.
+              </td>
+            </tr>
           </tbody>
         </table>
 
@@ -950,8 +962,7 @@ Additional considerations for processing these parameters are discussed in
         </p>
 
         <p>
-Two example <a>DID URLs</a> using the <code><a>service</a></code> and
-<code>version-time</code> DID parameters are shown below.
+Some example <a>DID URLs</a> using DID parameters are shown below.
         </p>
 
         <pre class="example nohighlight"
@@ -962,6 +973,10 @@ did:foo:21tDAKCERh95uGgKbJNHYp?service=agent
         <pre class="example nohighlight"
           title="A DID URL with a 'version-time' DID parameter">
 did:foo:21tDAKCERh95uGgKbJNHYp?version-time=2002-10-10T17:00:00Z
+        </pre>
+
+        <pre class="example nohighlight" title="A DID URL with a 'resource' DID parameter">
+did:foo:21tDAKCERh95uGgKbJNHYp?resource=true
         </pre>
 
         <p class="note" title="DID parameters and DID resolution">
