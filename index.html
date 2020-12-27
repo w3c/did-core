@@ -1607,7 +1607,7 @@ formats such as JWK [[RFC7517]]. It is RECOMMENDED that JWK <code>kid</code>
 values are set to the public key fingerprint [[RFC7638]]. It is RECOMMENDED
 that verification methods that use JWKs to represent their public keys utilize
 the value of <code>kid</code> as their fragment identifier. See the first key
-in <a href="#example-15-various-verification-method-types"></a>
+in <a href="#example-16-various-verification-method-types"></a>
 for an example of a public key with a compound key identifier.
           </p>
 
@@ -3641,7 +3641,7 @@ did
             </dt>
             <dd>
 This is the <a>DID</a> to resolve. This input is REQUIRED and the value MUST
-be a conformant <a>DID</a> expressed as a single string.
+be a conformant <a>DID</a> as defined in <a href="#did-syntax"></a>.
             </dd>
             <dt>
 did-resolution-input-metadata
@@ -3747,13 +3747,14 @@ common properties.
 accept
                 </dt>
                 <dd>
-The MIME type of the caller's preferred <a
-href="#representations">representation</a> of the <a>DID document</a>. The
-<a>DID resolver</a> implementation SHOULD use this value to determine the
-representation contained in the returned <code>did-document-stream</code> if
-such a representation is supported and available. This property is OPTIONAL.
-It is only used if the <code>resolveRepresentation</code> function is called
-and MUST be ignored if the <code>resolve</code> function is called.
+The MIME type expressed as an <a data-lt="ascii string">ASCII string</a> of the
+caller's preferred <a href="#representations">representation</a> of the <a>DID
+document</a>. The <a>DID resolver</a> implementation SHOULD use this value to
+determine the representation contained in the returned
+<code>did-document-stream</code> if such a representation is supported and
+available. This property is OPTIONAL. It is only used if the
+<code>resolveRepresentation</code> function is called and MUST be ignored if the
+<code>resolve</code> function is called.
                 </dd>
             </dl>
         </section>
@@ -3774,25 +3775,25 @@ common properties.
 content-type
                 </dt>
                 <dd>
-The MIME type of the returned <code>did-document-stream</code>. This property
-is REQUIRED if resolution is successful and if the
+The MIME type of the returned <code>did-document-stream</code>. This property is
+REQUIRED if resolution is successful and if the
 <code>resolveRepresentation</code> function was called. This property MUST NOT
 be present if the <code>resolve</code> function was called. The value of this
-property MUST be the MIME type of one of the conformant <a
-href="#representations">representations</a>. The caller of the
-<code>resolveRepresentation</code> function MUST use this value when
-determining how to parse and process the <code>did-document-stream</code>
+property MUST be an <a data-lt="ascii string">ASCII string</a> that is the MIME
+type of the conformant <a href="#representations">representations</a>. The
+caller of the <code>resolveRepresentation</code> function MUST use this value
+when determining how to parse and process the <code>did-document-stream</code>
 returned by this function into the <a href="#data-model">data model</a>.
                 </dd>
                 <dt>
 error
                 </dt>
                 <dd>
-The error code from the resolution process. This property is REQUIRED when
-there is an error in the resolution process. The value of this property MUST
-be a single keyword string. The possible property values of this field SHOULD
-be registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
-This specification defines the following error values:
+The error code from the resolution process. This property is REQUIRED when there
+is an error in the resolution process. The value of this property MUST be a
+single keyword <a data-lt="ascii string">ASCII string</a>. The possible property
+values of this field SHOULD be registered in the DID Specification Registries
+[[?DID-SPEC-REGISTRIES]]. This specification defines the following error values:
                     <dl>
                         <dt>
 invalid-did
@@ -3844,11 +3845,11 @@ This specification defines the following common properties.
 DID document metadata SHOULD include a <code>created</code> property
 to indicate the timestamp of the <a href="#create">Create operation</a>.
 This property MAY not be supported by a given <a>DID method</a>.
-The value of the property MUST be a valid XML datetime value, as defined in
-section 3.3.7 of <a href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema
-Definition Language (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This
-datetime value MUST be normalized to UTC 00:00, as indicated by the trailing
-"Z".
+The value of the property MUST be a <a data-cite="INFRA#string">string</a>
+formatted as an
+<a data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a> normalized to
+UTC 00:00:00 and without sub-second decimal precision. For example:
+<code>2020-12-20T19:17:47Z</code>.
             </p>
           </section>
 
