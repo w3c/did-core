@@ -5186,6 +5186,142 @@ practice to avoid dislosing unnecessary information in JWE headers.
   </section>
 
   <section class="appendix">
+    <h2>Vocabulary Overview</h2>
+
+    <p>This section provides an overview of all core properties defined in this specification in Section <a href="#core-properties"></a>, including the constraints on the usage of the properties.</p>
+
+    <section>
+      <h2>Classes</h2>
+
+      <p>The classes used in this section are not used DID Documents, and are only used to provide a more concise overview of the relevant core properties below. The are all represented, in a DID Document, as a <a data-cite="INFRA#maps">map</a> with specific properties.</p>
+
+      <table class=simple>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>DIDDocument</code></td>
+            <td>Class representing the “top level” of the <a>DID Document</a>. Each instance MUST have an <code>id</code> property, and MAY have the <code>alsoKnownAs</code>, <code>controller</code>, <code>verificationMethod</code>, <code>authentication</code>, <code>assertionMethod</code>, <code>keyAgreement</code>, <code>capabilityInvocation</code>, <code>capabilityDelegation</code>, and <code>service</code> properties.</td>
+          </tr>
+          <tr>
+            <td><code>VerificationMethod</code></td>
+            <td>Class representing the generic concept of <a href="#verification-methods"></a>. Each instance MUST have the <code>id</code>, <code>type</code>, and <code>controller</code> properties, as well as <em>one of</em> the <code>publicKeyJwk</code> or <code>publicKeyBase58</code> properties.</td>
+          </tr>
+          <tr>
+            <td><code>ServiceEndpoint</code></td>
+            <td>Class representing the generic concept of <a href="#service-endpoints"></a>. Each instance MUST have the <code>id</code>, <code>type</code>, and <code>serviceEndpoint</code> properties.</td>
+          </tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Properties</h2>
+
+      <p>Properties in the section are formally defined in Section <a href="#core-properties"></a>.</p>
+
+      <table class=simple>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Usage constraints</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>id</code></td>
+            <td>MUST be present for any <code>DIDDocument</code>, <code>VerificationMethod</code>, or <code>ServiceEndpoint</code> instance. The value MUST be
+              <ul>
+                <li>for a <code>DIDDocument</code>: a <a data-cite="INFRA#string">string</a> that conforms to the rules in Section <a href="#did-syntax"></a>;</li>
+                <li>for a <code>VerificationMethod</code>: a <a data-cite="INFRA#string">string</a> that conforms to the rules in Section <a href="#did-url-syntax"></a>;</li>
+                <li>for a <code>ServiceEndpoint</code>: a <a data-cite="INFRA#string">string</a> that conforms to the rules of [[RFC3986]] for <a>URI</a>-s.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>alsoKnownAs</></code></td>
+            <td>
+              MAY be present for any <code>DIDDocument</code> instance. The value MUST be a <a data-cite="INFRA#lists">list</a> of <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s.
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>controller</a></code></td>
+            <td>
+              MAY be present for any <code>DIDDocument</code> instance and MUST be present for any <code>VerificationMethod</code> instance. The value MUST be a <a data-cite="INFRA#string">string</a> or an <a data-cite="INFRA#ordered-set">ordered set</a> of <a data-cite="INFRA#string">strings</a> that conform to the rules in Section <a href="#did-syntax"></a>.
+            </td> 
+          </tr>
+          <tr>
+            <td><code>type</code></td>
+            <td>
+              MUST be present for any <code>VerificationMethod</code> or <code>ServiceEndpoint</code> instance. The value MUST be a <a data-cite="INFRA#string">string</a> or an <a data-cite="INFRA#ordered-set">ordered set</a> of <a data-cite="INFRA#string">strings</a>.
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>verificationMethod</a></code></td>
+            <td>
+              MAY be present for any <code>DIDDocument</code> instance. The value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of either <code>VerificationMethod</code> instances or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>publicKeyJwk</a></code></td>
+            <td>MAY be present for any <code>VerificationMethod</code>. The value MUST be a <a data-cite="INFRA#maps">map</a> representing a JSON Web Key that conforms to [[RFC7517]].</td>
+          </tr>
+          <tr>
+            <td><code><a>publicKeyBase58</a></code></td>
+            <td>MAY be present for any <code>VerificationMethod</code>. The value MUST be a <a
+              data-cite="INFRA#string">string</a> that conforms to a base58btc encoded public key.</td>
+          </tr>
+          <tr>
+            <td><code><a>authentication</a></code></td>
+            <td>
+              MAY be present for any <code>DIDDocument</code> instance. The value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of either <code>VerificationMethod</code> instances or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>assertionMethod</a></code></td>
+            <td>
+              MAY be present for any <code>DIDDocument</code> instance. The value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of either <code>VerificationMethod</code> instances or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>keyAgreement</a></code></td>
+            <td>
+              MAY be present for any <code>DIDDocument</code> instance. The value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of either <code>VerificationMethod</code> instances or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>capabilityInvocation</></code></td>
+            <td>
+              MAY be present for any <code>DIDDocument</code> instance. The value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of either <code>VerificationMethod</code> instances or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>capabilityDelegation</a></code></td>
+            <td>
+              MAY be present for any <code>DIDDocument</code> instance. The value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of either <code>VerificationMethod</code> instances or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>service</a></code></td>
+            <td>MAY be present for any <code>DIDDocument</code> instance. The value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of <code>ServiceEndpoint</code> instances.</td>
+          </tr>
+          <tr>
+            <td><code><a>serviceEndpoint</a></code></td>
+            <td>
+              MUST be present for any <code>DIDDocument</code> instance. The value MUST a <a data-cite="INFRA#string">string</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s, a <a data-cite="INFRA#string">map</a>, or an <a data-cite="INFRA#ordered-set">ordered set</a> composed of a one or more <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s and/or <a data-cite="INFRA#string">maps</a>.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+
+
+  <section class="appendix">
     <h1>Current Issues</h1>
 
     <p>
