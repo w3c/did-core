@@ -172,7 +172,7 @@ decoupled from centralized registries, identity providers, and certificate
 authorities. Specifically, while other parties might be used to help enable the
 discovery of information related to a <a>DID</a>, the design enables the
 controller of a <a>DID</a> to prove control over it without requiring permission
-from any other party. <a>DID</a>s are URIs that associate a <a>DID subject</a>
+from any other party. <a>DIDs</a> are URIs that associate a <a>DID subject</a>
 with a <a>DID document</a> allowing trustable interactions associated with that
 subject.
     </p>
@@ -694,14 +694,14 @@ relevant normative statements in Section <a href="#methods"></a>.
       <p>
 A <dfn>conforming producer</dfn> is any algorithm realized as software and/or
 hardware and conforms to this specification if it generates <a>conforming
-DID</a>s or <a>conforming DID Document</a>s. A conforming producer MUST
+DIDs</a> or <a>conforming DID Documents</a>. A conforming producer MUST
 NOT produce non-conforming <a>DIDs</a> or <a>DID documents</a>.
       </p>
 
       <p>
 A <dfn>conforming consumer</dfn> is any algorithm realized as software and/or
 hardware and conforms to this specification if it consumes <a>conforming
-DID</a>s or <a>conforming DID document</a>s. A conforming consumer MUST
+DIDs</a> or <a>conforming DID documents</a>. A conforming consumer MUST
 produce errors when consuming non-conforming <a>DIDs</a> or <a>DID documents</a>.
       </p>
 
@@ -2190,7 +2190,7 @@ A <a>DID document</a> MAY include a <code><a>service</a></code> property.
           <p>
 If a <a>DID document</a> includes a <code>service</code> property, the value
 of the property SHOULD be an <a data-cite="INFRA#ordered-set">ordered set</a>
-of <a>service endpoint</a>s, where each service endpoint is described by a set
+of <a>service endpoints</a>, where each service endpoint is described by a set
 of properties. Each <a>service endpoint</a> MUST have <code><a>id</a></code>,
 <code>type</code>, and <code><a>serviceEndpoint</a></code> properties, and MAY
 include additional properties.
@@ -2207,7 +2207,7 @@ The value of the <code><dfn>serviceEndpoint</dfn></code> property MUST be a
 or an <a data-cite="INFRA#ordered-set">ordered set</a> composed of a one or more
 <a data-cite="INFRA#string">strings</a> and/or
 <a data-cite="INFRA#string">maps</a>. All <a data-cite="INFRA#string">string</a>
-values MUST be valid <a>URI</a>s conforming to [[RFC3986]] and normalized
+values MUST be valid <a>URIs</a> conforming to [[RFC3986]] and normalized
 according to the rules in section 6 of [[RFC3986]] and to any normalization
 rules in its applicable <a>URI</a> scheme specification. Extension
 specifications for services MAY further restrict the properties associated
