@@ -5236,7 +5236,7 @@ practice to avoid dislosing unnecessary information in JWE headers.
             <td>MUST be present for any <code>DIDDocument</code>, <code>VerificationMethod</code>, or <code>ServiceEndpoint</code> instance. The value MUST be
               <ul>
                 <li>for a <code>DIDDocument</code>: a <a data-cite="INFRA#string">string</a> that conforms to the rules in Section <a href="#did-syntax"></a>;</li>
-                <li>for a <code>VerificationMethod</code>: a <a data-cite="INFRA#string">string</a> that conforms to the rules in Section <a href="#did-url-syntax"></a>;</li>
+                <li>for a <code>VerificationMethod</code>: a <a data-cite="INFRA#string">string</a> that conforms to the rules of [[RFC3986]] for <a>URI</a>-s and which SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>;</li>
                 <li>for a <code>ServiceEndpoint</code>: a <a data-cite="INFRA#string">string</a> that conforms to the rules of [[RFC3986]] for <a>URI</a>-s.</li>
               </ul>
             </td>
