@@ -2983,47 +2983,6 @@ length.</a>
         </ul>
 
       <p>
-To produce a deterministic canonical CBOR representation of a DID document and
-faciliate maximal lossless compatiblity with other core representations via the
-<a href="#data-model">data model</a> the following constraints of a CBOR
-representation of a DID Document MUST be followed:
-      </p>
-
-      <ul>
-        <li>
-Property names MUST be represented as text string (major type 3) and contain
-only UTF-8 strings.
-        </li>
-        <li>
-Undefined Values of Required Properties as defined in <a href="#data-model">the
-Data Model</a> that are absent from the CBOR representation SHOULD be labeled
-with Primitive type (major type 7) with value 23 (Undefined value).
-        </li>
-        <li>
-Property names in each CBOR map MUST be unique.
-        </li>
-        <li>
-Integer encoding MUST be as short as possible.
-        </li>
-        <li>
-The expression of lengths in CBOR major types 2 through 5 MUST be as short as
-possible.
-        </li>
-        <li>
-The keys in every map must be sorted lowest value to highest. Sorting is
-performed on the bytes of the representation of the keys. If two keys have
-different lengths, the shorter one sorts earlier.  If two keys have the same
-length, the one with the lower value in (byte-wise) lexical order sorts earlier.
-        </li>
-      </ul>
-
-      <p class="issue">
-How to represent Floating-point values that can exceed the range or the
-precision IEEE 754. See <a
-href="https://github.com/w3c/did-core/issues/361">issue #361. </a>
-      </p>
-
-      <p>
 The property name `@context` MAY be present in the CBOR representation of a DID
 Document and if present SHOULD be ignored as this property is reserved for
 JSON-LD processing.
@@ -3257,12 +3216,56 @@ empty byte string is the empty text string of other representations.
           <h4>DagCBOR</h4>
           <p>
 DagCBOR is a further restricted subset of CBOR for representing the DID Document
-as a Directed Acyclic Graph model using canonical CBOR encoding as noted above
+as a Directed Acyclic Graph model using canonical CBOR encoding
 with additional constraints. DagCBOR requires that there exist a single way of
 encoding any given object, and that encoded forms contain no superfluous data
-that may be ignored or lost in a round-trip decode/encode. When producing and
-consuming DID Documents representing in DagCBOR the following rules MUST be
-followed
+that may be ignored or lost in a round-trip decode/encode.
+          </p>
+
+          <p>
+To produce a deterministic canonical CBOR representation of a DID document and
+faciliate maximal lossless compatiblity with other core representations via the
+<a href="#data-model">data model</a> the following constraints of a CBOR
+representation of a DID Document MUST be followed:
+          </p>
+
+          <ul>
+            <li>
+Property names MUST be represented as text string (major type 3) and contain
+only UTF-8 strings.
+            </li>
+            <li>
+Undefined Values of Required Properties as defined in <a href="#data-model">the
+Data Model</a> that are absent from the CBOR representation SHOULD be labeled
+with Primitive type (major type 7) with value 23 (Undefined value).
+            </li>
+            <li>
+Property names in each CBOR map MUST be unique.
+            </li>
+            <li>
+Integer encoding MUST be as short as possible.
+            </li>
+            <li>
+The expression of lengths in CBOR major types 2 through 5 MUST be as short as
+possible.
+            </li>
+            <li>
+The keys in every map must be sorted lowest value to highest. Sorting is
+performed on the bytes of the representation of the keys. If two keys have
+different lengths, the shorter one sorts earlier.  If two keys have the same
+length, the one with the lower value in (byte-wise) lexical order sorts earlier.
+            </li>
+          </ul>
+
+          <p class="issue">
+How to represent Floating-point values that can exceed the range or the
+precision IEEE 754. See <a
+href="https://github.com/w3c/did-core/issues/361">issue #361</a>.
+          </p>
+
+          <p>
+When producing and consuming DID Documents representing in DagCBOR the following
+rules MUST be followed:
           </p>
 
           <ul>
