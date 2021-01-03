@@ -1108,7 +1108,7 @@ identifiers.
 
         <p>
 When resolving a relative DID URL reference, the algorithm specified in <a
-data-cite="RFC3986#section-5">RFC3986 Section 5: Reference Resolution</a>  MUST
+data-cite="RFC3986#section-5">RFC3986 Section 5: Reference Resolution</a> MUST
 be used. The <strong>base URI</strong> value is the <a>DID</a> that is
 associated with the <a>DID subject</a>, see Section <a href="#did-subject"></a>.
 The <strong>scheme</strong> is <code>did</code>. The <strong>authority</strong>
@@ -1808,7 +1808,7 @@ please see [[?DID-SPEC-REGISTRIES]].
 
 
         <p>
-The <a>DID document</a> MUST NOT express revoked keys using a <a>verification
+The <a>DID document</a> does not express revoked keys using a <a>verification
 relationship</a>.
         </p>
         <p>
@@ -1846,9 +1846,9 @@ appropriate <a>verification relationship</a> property of the
       </p>
       <p>
 The <a>verification relationship</a> between the <a>DID subject</a> and the
-<a>verification method</a> MUST be explicit in the <a>DID document</a>.
+<a>verification method</a> is explicit in the <a>DID document</a>.
 <a>Verification methods</a> that are not associated with a particular
-<a>verification relationship</a> MUST NOT be used for that <a>verification
+<a>verification relationship</a> cannot be used for that <a>verification
 relationship</a>. For example, a <a>verification method</a> in the value of
 the <code><a>authentication</a></code> property cannot be used to engage in
 key agreement protocols with the <a>DID subject</a>&mdash;the value of the
@@ -3230,7 +3230,7 @@ that may be ignored or lost in a round-trip decode/encode.
 To produce a deterministic canonical CBOR representation of a DID document and
 faciliate maximal lossless compatiblity with other core representations via the
 <a href="#data-model">data model</a> the following constraints of a CBOR
-representation of a DID Document MUST be followed:
+representation are as follows:
           </p>
 
           <ul>
@@ -3269,12 +3269,12 @@ href="https://github.com/w3c/did-core/issues/361">issue #361</a>.
 
           <p>
 When producing and consuming DID Documents representing in DagCBOR the following
-rules MUST be followed:
+rules are followed:
           </p>
 
           <ul>
             <li>
-Use no CBOR tags other than the CID tag (42)
+CBOR tags other than the CID tag (42) MUST NOT be utilized.
             </li>
           </ul>
 
@@ -3612,7 +3612,7 @@ considerations for implementors are discussed in [[?DID-RESOLUTION]].
     <p>
 All conformant <a>DID resolvers</a> MUST implement the <a>DID resolution</a>
 functions for at least one <a>DID method</a> and MUST be able to return a <a>DID
-document</a> in  at least one conformant representation.
+document</a> in at least one conformant representation.
     </p>
 
     <section>
@@ -3624,7 +3624,7 @@ The <a>DID resolution</a> functions resolve a <a>DID</a> into a <a>DID
 document</a> by using the "Read" operation of the applicable <a>DID method</a>.
 (See <a href="#read-verify"></a>.) The details of how this process is
 accomplished are outside the scope of this specification, but all conformant
-implementations MUST implement two functions which have the following abstract
+implementations implement two functions which have the following abstract
 forms:
         </p>
 
@@ -3729,8 +3729,8 @@ href="#did-document-metadata-properties"></a>.
         </dl>
 
         <p>
-<a>DID resolver</a> implementations MUST NOT alter the signature of these
-functions in any way. <a>DID resolver</a> implementations MAY map the
+Conforming <a>DID resolver</a> implementations do not alter the signature of
+these functions in any way. <a>DID resolver</a> implementations MAY map the
 <code>resolve</code> and <code>resolveRepresentation</code> functions to a
 method-specific internal function to perform the actual <a>DID resolution</a>
 process. <a>DID resolver</a> implementations MAY implement  and expose
@@ -3946,7 +3946,7 @@ A conforming <a>DID Method</a> specification MUST guarantee that each
 <code>id</code> property value.
                   </dd>
                   <dd>
-A resolving party MUST retain the values from the <code>id</code> and
+A resolving party is expected to retain the values from the <code>id</code> and
 <code><a>equivalentId</a></code> properties to ensure any subsequent
 interactions with any of the values they contain are correctly handled as
 logically equivalent (e.g. retain all variants in a database so an interaction
@@ -4003,13 +4003,13 @@ A conforming <a>DID Method</a> specification MUST guarantee that the
 <code>id</code> property value.
                   </dd>
                   <dd>
-A resolving party MUST use the <code><a>canonicalId</a></code> value as its
-primary ID value for the DID subject and treat all other equivalent values as
-secondary aliases. (e.g. update corresponding primary references in their
-systems to reflect the new canonical ID directive). <span class="issue">The
-testability of resolving parties is currently under debate and normative
-statements related to resolving parties may be downgraded in the future from a
-MUST to a SHOULD/MAY or similar language.</span>
+A resolving party is expected to use the <code><a>canonicalId</a></code> value
+as its primary ID value for the DID subject and treat all other equivalent
+values as secondary aliases. (e.g. update corresponding primary references in
+their systems to reflect the new canonical ID directive). <span
+class="issue">The testability of resolving parties is currently under debate and
+normative statements related to resolving parties may be downgraded in the
+future from a MUST to a SHOULD/MAY or similar language.</span>
                   </dd>
                 </dl>
 
@@ -4039,7 +4039,7 @@ including the <a>DID method</a>, method-specific identifier, path, query,
 and fragment. This process depends on <a>DID resolution</a> of the <a>DID</a>
 contained in the <a>DID URL</a>.
 The details of how this process is accomplished are outside the scope of this
-specification, but all conformant implementations MUST implement a function
+specification, but all conformant implementations implement a function
 which has the following abstract form:
       </p>
 
@@ -4049,7 +4049,7 @@ dereference ( did-url, did-url-dereferencing-input-metadata ) <br>
       </code></p>
 
       <p>
-The input variables of this function MUST be as follows:
+The input variables of this function are as follows:
       </p>
 
       <dl>
@@ -4074,7 +4074,7 @@ REQUIRED, but the structure MAY be empty.
       </dl>
 
       <p>
-The output variables of this function MUST be as follows:
+The output variables of this function are as follows:
       </p>
 
       <dl>
@@ -4120,13 +4120,13 @@ href="metadata-structure">metadata structure</a>.
     </dl>
 
     <p>
-<a>DID URL Dereferencing</a> implementations MUST NOT alter the signature of
-these functions in any way. <a>DID URL Dereferencing</a> implementations MAY
-map the <code>dereference</code> function to a method-specific internal
-function to perform the actual <a>DID URL Dereferencing</a> process. <a>DID
-URL Dereferencing</a> implementations MAY implement and expose additional
-functions with different signatures in addition to the <code>dereference</code>
-function specified here.
+Conforming <a>DID URL Dereferencing</a> implementations do not alter the
+signature of these functions in any way. <a>DID URL Dereferencing</a>
+implementations MAY map the <code>dereference</code> function to a
+method-specific internal function to perform the actual <a>DID URL
+Dereferencing</a> process. <a>DID URL Dereferencing</a> implementations MAY
+implement and expose additional functions with different signatures in addition
+to the <code>dereference</code> function specified here.
     </p>
 
       <section>
@@ -4231,7 +4231,7 @@ definitions use strings for values.
 
         <p>
 All implementations of functions that use metadata structures as either input
-or output MUST be able to fully represent all data types described here in a
+or output are able to fully represent all data types described here in a
 deterministic fashion. As inputs and outputs using metadata structures are
 defined in terms of data types and not their serialization, the method for
 representation is internal to the implementation of the function and is out of
