@@ -1290,12 +1290,12 @@ method that ensures that two different representations will be able to work
 together.
         </li>
       <li>
-Representations MAY define other extensibility mechanisms, including ones that do
-not require the use of the DID Specification Registries. Such extension mechanisms SHOULD
-support lossless conversion into any other conformant representation. Extension
-mechanisms for a representation SHOULD define a mapping of all properties and
-representation syntax into the <a href="#data-model">data model</a> and its type
-system.
+Representations MAY define other extensibility mechanisms, including ones that
+do not require the use of the DID Specification Registries. Such extension
+mechanisms SHOULD support lossless conversion into any other conformant
+representation. Extension mechanisms for a representation SHOULD define a
+mapping of all properties and representation syntax into the <a
+href="#data-model">data model</a> and its type system.
       </li>
       </ol>
       <p class="note">
@@ -2189,7 +2189,7 @@ A <a>DID document</a> MAY include a <code><a>service</a></code> property.
         <dd>
           <p>
 If a <a>DID document</a> includes a <code>service</code> property, the value
-of the property SHOULD be an <a data-cite="INFRA#ordered-set">ordered set</a>
+of the property MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
 of <a>service endpoints</a>, where each service endpoint is described by a set
 of properties. Each <a>service endpoint</a> MUST have <code><a>id</a></code>,
 <code>type</code>, and <code><a>serviceEndpoint</a></code> properties, and MAY
