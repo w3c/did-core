@@ -1492,9 +1492,9 @@ DID Controller
       </h2>
 
       <p>
-Authorization is the mechanism used to state how operations are performed
-on behalf of the <a>DID subject</a>. A <a>DID controller</a> is authorized to
-make changes to the respective <a>DID document</a>.
+A <a>DID controller</a> is an entity that is authorized to make changes to
+a <a>DID document</a>. The process of authorizing a <a>DID controller</a> is
+defined by the <a>DID Method</a>.
       </p>
 
       <p>
@@ -1524,12 +1524,11 @@ by the <a>DID Subject</a>.
       </p>
 
       <p class="note" title="Authorization vs authentication">
-Note that Authorization is separate from <a href="#authentication"></a>.
-This is particularly important for key recovery in the case of key loss,
-when the subject no longer has access to their keys, or key compromise,
-where the <a>DID controller</a>'s trusted third parties need to override
-malicious activity by an attacker. See Section
-<a href="#security-considerations"></a>.
+Note that Authorization is separate from <a href="#authentication"></a>. This is
+particularly important for key recovery in the case of cryptographic key loss,
+when the subject no longer has access to their keys, or key compromise, where
+the <a>DID controller</a>'s trusted third parties need to override malicious
+activity by an attacker. See Section <a href="#security-considerations"></a>.
       </p>
 
       <pre class="example nohighlight"
@@ -1928,7 +1927,7 @@ a different <a>DID controller</a>, the entity associated with the value of
     "did:example:123456789abcdefghi#keys-1",
     <span class="comment">// this method can be used to authenticate as did:...fghi</span>
     "did:example:123456789abcdefghi#biometric-1",
-    <span class="comment">// this method is *only* authorized for authentication, it may not</span>
+    <span class="comment">// this method is *only* approved for authentication, it may not</span>
     <span class="comment">// be used for any other proof purpose, so its full description is</span>
     <span class="comment">// embedded here rather than using only a reference</span>
     {
@@ -1980,7 +1979,7 @@ corresponding <a>DID Document</a>.
 "assertionMethod": [
   <span class="comment">// this method can be used to assert statements as did:...fghi</span>
   "did:example:123456789abcdefghi#keys-1",
-  <span class="comment">// this method is *only* authorized for assertion of statements, it may not</span>
+  <span class="comment">// this method is *only* approved for assertion of statements, it may not</span>
   <span class="comment">// be used for any other verification relationship, so its full description is</span>
   <span class="comment">// embedded here rather than using only a reference</span>
   {
@@ -2030,7 +2029,7 @@ to wrap a decryption key for the recipient.
   "keyAgreement": [
     <span class="comment">// this method can be used to perform key agreement as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this method is *only* authorized for key agreement usage, it may not</span>
+    <span class="comment">// this method is *only* approved for key agreement usage, it may not</span>
     <span class="comment">// be used for any other verification relationship, so its full description is</span>
     <span class="comment">// embedded here rather than using only a reference</span>
     {
@@ -2050,8 +2049,9 @@ to wrap a decryption key for the recipient.
 
         <p>
 The `capabilityInvocation` <a>verification relationship</a> is used to specify
-a mechanism that might be used by the <a>DID subject</a> to invoke a
-cryptographic capability, such as the authorization to access an HTTP API.
+a <a>verification method</a> that might be used by the <a>DID subject</a> to
+invoke a cryptographic capability, such as the authorization to update the
+<a>DID Document</a> or the authorization to access an HTTP API.
         </p>
 
         <dl>
@@ -2082,7 +2082,7 @@ would need to verify that the <a>verification method</a> exists in the
   "capabilityInvocation: [
     <span class="comment">// this method can be used to invoke capabilities as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this method is *only* authorized for capability invocation usage, it may not</span>
+    <span class="comment">// this method is *only* approved for capability invocation usage, it may not</span>
     <span class="comment">// be used for any other verification relationship, so its full description is</span>
     <span class="comment">// embedded here rather than using only a reference</span>
     {
@@ -2133,7 +2133,7 @@ to a party other than themselves.
   "capabilityDelegation": [
     <span class="comment">// this method can be used to perform capability delegation as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this method is *only* authorized for granting capabilities it may not</span>
+    <span class="comment">// this method is *only* approved for granting capabilities it may not</span>
     <span class="comment">// be used for any other verification relationship, so its full description is</span>
     <span class="comment">// embedded here rather than using only a reference</span>
     {
@@ -3434,8 +3434,8 @@ not use the <a>DID Document</a> at all to decide this, but have rules that are
       </ul>
 
       <p>
-Each <a>DID method</a> MUST define how authorization is implemented, including
-any necessary cryptographic operations.
+Each <a>DID method</a> MUST define how authorization to perform DID method
+operations is implemented, including any necessary cryptographic operations.
       </p>
 
       <section>
