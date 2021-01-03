@@ -943,7 +943,7 @@ If present, the associated value MUST be the
         </table>
 
         <p>
-Implementers as well as <a>DID method</a> specification authors MAY use
+Implementers as well as <a>DID method</a> specification authors might use
 additional DID parameters that are not listed here. For maximum
 interoperability, it is RECOMMENDED that DID parameters use the official W3C
 DID Specification Registries mechanism [[?DID-SPEC-REGISTRIES]], to avoid
@@ -951,7 +951,7 @@ collision with other uses of the same DID parameter with different semantics.
         </p>
 
         <p>
-DID parameters MAY be used if there is a clear use case where the parameter
+DID parameters might be used if there is a clear use case where the parameter
 needs to be part of a URI that can be used as a link, or as a <a>resource</a>
 in RDF / JSON-LD documents.
         </p>
@@ -1599,7 +1599,7 @@ processor MUST produce an error.
 
           <p>
 In the case where a verification method is a public key, the value of the
-<code><a>id</a></code> property MAY be structured as a
+<code><a>id</a></code> property might be structured as a
 <a href="https://en.wikipedia.org/wiki/Compound_key">compound key</a>. This is
 especially useful for integrating with existing key management systems and key
 formats such as JWK [[RFC7517]]. It is RECOMMENDED that JWK <code>kid</code>
@@ -2987,12 +2987,6 @@ length.</a>
         </ul>
 
       <p>
-The property name `@context` MAY be present in the CBOR representation of a DID
-Document and if present SHOULD be ignored as this property is reserved for
-JSON-LD processing.
-      </p>
-
-      <p>
 All properties of the DID document represented in CBOR MUST be included in the
 root map (major type 5). Properties MAY define additional data sub structures
 represented as nested CBOR maps (major type 5) and is subject to the value
@@ -3410,7 +3404,7 @@ with regards to operations that can be performed on a <a>DID document</a>.
       </p>
       <p>
 Determining the authority of a party to carry out the operations is
-method-specific. For example, a <a>DID method</a> MAY:
+method-specific. For example, a <a>DID method</a> might:
       </p>
       <ul>
         <li>
@@ -3705,7 +3699,7 @@ did-document-stream
 If the resolution is successful, and if the <code>resolveRepresentation</code>
 function was called, this MUST be a byte stream of the resolved <a>DID
 document</a> in one of the conformant
-<a href="#representations">representations</a>. The byte stream MAY then be
+<a href="#representations">representations</a>. The byte stream might then be
 parsed by the caller of the <code>resolveRepresentation</code> function into a
 <a href="#data-model">data model</a>, which can in turn be validated and
 processed. If the resolution is unsuccessful, this value MUST be an empty
@@ -3730,10 +3724,10 @@ href="#did-document-metadata-properties"></a>.
 
         <p>
 Conforming <a>DID resolver</a> implementations do not alter the signature of
-these functions in any way. <a>DID resolver</a> implementations MAY map the
+these functions in any way. <a>DID resolver</a> implementations might map the
 <code>resolve</code> and <code>resolveRepresentation</code> functions to a
 method-specific internal function to perform the actual <a>DID resolution</a>
-process. <a>DID resolver</a> implementations MAY implement  and expose
+process. <a>DID resolver</a> implementations might implement and expose
 additional functions with different signatures in addition to the
 <code>resolve</code> function specified here.
         </p>
@@ -3849,13 +3843,11 @@ This specification defines the following common properties.
           <section>
             <h4>created</h4>
             <p>
-DID document metadata SHOULD include a <code>created</code> property
-to indicate the timestamp of the <a href="#create">Create operation</a>.
-This property MAY not be supported by a given <a>DID method</a>.
-The value of the property MUST be a <a data-cite="INFRA#string">string</a>
-formatted as an
-<a data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a> normalized to
-UTC 00:00:00 and without sub-second decimal precision. For example:
+DID document metadata SHOULD include a <code>created</code> property to indicate
+the timestamp of the <a href="#create">Create operation</a>. The value of the
+property MUST be a <a data-cite="INFRA#string">string</a> formatted as an <a
+data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a> normalized to UTC 00:00:00
+and without sub-second decimal precision. For example:
 <code>2020-12-20T19:17:47Z</code>.
             </p>
           </section>
@@ -3863,11 +3855,10 @@ UTC 00:00:00 and without sub-second decimal precision. For example:
           <section>
             <h4>updated</h4>
             <p>
-DID document metadata SHOULD include an <code>updated</code> property
-to indicate the timestamp of the last <a href="#update">Update operation</a>
-for the document version which was resolved. This property MAY not be
-supported by a given <a>DID method</a>. The value of the property MUST
-follow the same formatting rules as the <code>created</code> property.
+DID document metadata SHOULD include an <code>updated</code> property to
+indicate the timestamp of the last <a href="#update">Update operation</a> for
+the document version which was resolved. The value of the property MUST follow
+the same formatting rules as the <code>created</code> property.
                 </p>
               </section>
 
@@ -3879,7 +3870,6 @@ follow the same formatting rules as the <code>created</code> property.
 DID document metadata SHOULD include a <code>next-update</code> property if
 the resolved document version is not the latest version of the document. It
 indicates the timestamp of the next <a href="#update">Update operation</a>.
-This property MAY not be supported by a given <a>DID method</a>.
 The value of the property MUST follow the same formatting rules as the
 <code>created</code> property.
             </p>
@@ -3890,11 +3880,10 @@ The value of the property MUST follow the same formatting rules as the
                 version-id
               </h4>
               <p>
-DID document metadata SHOULD include a <code>version-id</code> property
-to indicate the version of the last <a href="#update">Update operation</a>
-for the document version which was resolved. This property MAY not be
-supported by a given <a>DID method</a>. The value of the property MUST be
-an <a data-lt="ascii string">ASCII string</a>.
+DID document metadata SHOULD include a <code>version-id</code> property to
+indicate the version of the last <a href="#update">Update operation</a> for the
+document version which was resolved. The value of the property MUST be an <a
+data-lt="ascii string">ASCII string</a>.
               </p>
             </section>
 
@@ -3903,11 +3892,10 @@ an <a data-lt="ascii string">ASCII string</a>.
                 next-version-id
               </h4>
               <p>
-DID document metadata SHOULD include a <code>next-version-id</code> property
-if the resolved document version is not the latest version of the document.
-It indicates the version of the next <a href="#update">Update operation</a>.
-This property MAY not be supported by a given <a>DID method</a>.
-The value of the property MUST be an <a data-lt="ascii string">ASCII string</a>.
+DID document metadata SHOULD include a <code>next-version-id</code> property if
+the resolved document version is not the latest version of the document. It
+indicates the version of the next <a href="#update">Update operation</a>. The
+value of the property MUST be an <a data-lt="ascii string">ASCII string</a>.
               </p>
             </section>
 
@@ -4097,7 +4085,7 @@ content-stream
         <dd>
 If the <code>dereferencing</code> function was called and successful, this MUST
 contain a resource corresponding to the <a>DID URL</a>.
-The <code>content-stream</code> MAY be a <a>DID document</a> in one of the
+The <code>content-stream</code> SHOULD be a <a>DID document</a> in one of the
 conformant <a href="#representations">representations</a> obtained through
 the resolution process.
 
@@ -4122,9 +4110,9 @@ href="metadata-structure">metadata structure</a>.
     <p>
 Conforming <a>DID URL Dereferencing</a> implementations do not alter the
 signature of these functions in any way. <a>DID URL Dereferencing</a>
-implementations MAY map the <code>dereference</code> function to a
+implementations might map the <code>dereference</code> function to a
 method-specific internal function to perform the actual <a>DID URL
-Dereferencing</a> process. <a>DID URL Dereferencing</a> implementations MAY
+Dereferencing</a> process. <a>DID URL Dereferencing</a> implementations might
 implement and expose additional functions with different signatures in addition
 to the <code>dereference</code> function specified here.
     </p>
