@@ -1201,6 +1201,14 @@ specified in [[INFRA]].
         </tr>
         <tr>
           <td>
+<a data-cite="INFRA#list">list</a>
+          </td>
+          <td>
+A finite ordered sequence of items as specified in [[INFRA]].
+          </td>
+        </tr>
+        <tr>
+          <td>
 <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
           </td>
           <td>
@@ -2429,6 +2437,16 @@ property value according to its type, as defined in this section
             </tr>
             <tr>
               <td>
+<a data-cite="INFRA#list">list</a>
+              </td>
+              <td>
+<a data-cite="RFC8259#section-5">JSON Array</a>, each element of the list is
+added, in order, as a value of the array according to its type, as defined in
+this section
+              </td>
+            </tr>
+            <tr>
+              <td>
 <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
@@ -2542,6 +2560,17 @@ is added as a property to the ordered map with the property name being the
 member name and the value converted based on the JSON type and, if available,
 property definition, as defined here; as no order is specified by JSON Objects,
 no insertion order is guaranteed
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="RFC8259#section-5">JSON Array</a> where <a href="#data-model">data
+model</a> property value is a <a data-cite="INFRA#list">list</a> or unknown
+              </td>
+              <td>
+<a data-cite="INFRA#list">list</a>, each value of the JSON Array is added to the
+list in order, converted based on the JSON type of the array value, as defined
+here
               </td>
             </tr>
             <tr>
@@ -2862,6 +2891,16 @@ the property value according to its type, as defined in this section
             </tr>
             <tr>
               <td>
+<a data-cite="INFRA#list">list</a>
+              </td>
+              <td>
+<a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), each element
+of the list is added, in order, as a value of the array according to its type,
+as defined in this section
+              </td>
+            </tr>
+            <tr>
+              <td>
 <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
@@ -3076,6 +3115,18 @@ is added as a property to the ordered map with the property name being the data
 item name and the value converted based on the CBOR type and, if available,
 property definition, as defined here; as no order can be enforced for general
 CBOR maps, no insertion order is guaranteed.
+              </td>
+            </tr>
+            <tr>
+              <td>
+<a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), where the <a
+href="#data-model">data model</a> property value is a <a
+data-cite="INFRA#list">list</a> or unknown
+              </td>
+              <td>
+<a data-cite="INFRA#list">list</a>, each value of the
+<a data-cite="RFC7049#section-2.1">CBOR array</a> is added to the list in order,
+converted based on the CBOR type of the array value, as defined in this table
               </td>
             </tr>
             <tr>
