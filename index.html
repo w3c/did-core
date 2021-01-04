@@ -1320,616 +1320,804 @@ describe relationships between the <a>DID subject</a> and the value of the
 property.
     </p>
 
-    <p>
-For reference, the core properties found in the <a>DID document</a> (the
-topmost <a data-cite="INFRA#ordered-map">map</a> in the  <a
-href="#data-model">data model</a>) are as follows. Properties belonging to other
-<a data-cite="INFRA#ordered-map">maps</a> referenced in the <a>DID document</a>
-are also listed, with their respective property.
-    </p>
-    <ul id="core-properties-summary">
-      <li>
-<code><a>id</a></code>: defined in <a href="#identifier-0"></a>
-      </li>
-      <li>
-<code><a>alsoKnownAs</a></code>: defined in <a href="#also-known-as"></a>
-      </li>
-      <li>
-<code><a>controller</a></code>: defined in <a href="#did-controller"></a>
-      </li>
-      <li>
-<code><a>verificationMethod</a></code>: defined in
-<a href="#verification-methods"></a>. Nested properties include <code>id</code>,
-<code>type</code>, <code>controller</code>.
-      </li>
-      <li>
-<code><a>authentication</a></code>: defined in <a href="#authentication"></a>.
-      </li>
-      <li>
-<code><a>assertionMethod</a></code>: defined in <a href="#assertion"></a>.
-      </li>
-      <li>
-<code><a>keyAgreement</a></code>: defined in <a href="#key-agreement"></a>.
-      </li>
-      <li>
-<code><a>capabilityInvocation</a></code>: defined in
-<a href="#capability-invocation"></a>.
-      </li>
-      <li>
-<code><a>capabilityDelegation</a></code>: defined in
-<a href="#capability-delegation"></a>.
-      </li>
-      <li>
-<code><a>service</a></code>: defined in <a href="#service-endpoints"></a>.
-Nested properties include <code>id</code>, <code>type</code> and
-<code><a>serviceEndpoint</a></code>.
-      </li>
-    </ul>
+    <p>This document defines three classes of core properties:</p>
+
+    <ol>
+      <li>properties defined for a <a>DID Document</a>, serializing the topmost <a data-cite="INFRA#ordered-map">map</a> in the  <a href="#data-model">data model</a>;</li>
+      <li>properties defined for a <a>Verification Method</a>, serializing a concept represented by a <a data-cite="INFRA#ordered-map">map</a> in the <a href="#data-model">data model</a>, and specified in Section <a href="#verification-methods"></a>; </li>
+      <li>properties defined for a <a>Service Endpoint</a>, serializing a concept represented by a <a data-cite="INFRA#ordered-map">map</a> in the <a href="#data-model">data model</a>, and specified in Section <a href="#service-endpoints"></a>.</li>
+    </ol>
+    
+    <p class="note" title="Repeated properties">Some of the properties (e.g., <code>id</code> or <code>type</code>) are present in different classes but with possible differences in the associated constraints. Hence their repeated presence in the tables in Section <a href="#property_tables"></a>.</p>
 
     <p class="note" title="Ordering of values">
-As a result of the <a href="#data-model">data model</a> being defined using
-terminology from [[INFRA]], property values which can contain more than one
-item, such as <a data-cite="INFRA#lists">lists</a> and <a
-data-cite="INFRA#ordered-set">sets</a>, are explicitly ordered. For the purposes
-of this specification, unless otherwise stated, ordering is not important and
-implementations are not expected to produce or consume deterministically ordered
-values.
+      As a result of the <a href="#data-model">data model</a> being defined using terminology from [[INFRA]], property values which can contain more than one item, such as <a data-cite="INFRA#ordered-map">maps</a> and <a data-cite="INFRA#ordered-set">sets</a>, are explicitly ordered. For the purposes of this specification, unless otherwise stated, ordering is not important and implementations are not expected to produce or consume deterministically ordered values.
     </p>
 
+    <section id=property_tables>
+      <h2>Property Tables</h2>
+
+      <section id=core_table>
+        <h2>Core Properties for a <a>DID Document</a></h2>
+
+        <table class=simple>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Usage constraints</th>
+              <th>Value constraints</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>id</code></td>
+              <td>REQUIRED</td>
+              <td>
+                A <a data-cite="INFRA#string">string</a> that conforms to the rules in Section <a href="#did-syntax"></a>.
+              </td>
+            </tr>
+            <tr>
+              <td><code><a>alsoKnownAs</a</code></td>
+              <td>OPTIONAL</td>
+              <td>
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s.
+              </td>
+            </tr>
+            <tr>
+              <td><code><a>controller</a></code></td>
+              <td>OPTIONAL</td>
+              <td>
+                A <a data-cite="INFRA#string">string</a> or an <a data-cite="INFRA#ordered-set">ordered set</a> of <a data-cite="INFRA#string">strings</a> that conform to the rules in Section <a href="#did-syntax"></a>.
+              </td> 
+            </tr>
+            <tr>
+              <td><code><a>verificationMethod</a></code></td>
+              <td>OPTIONAL</td>
+              <td>
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+              </td>
+            </tr>
+            <tr>
+              <td><code><a>authentication</a></code></td>
+              <td>OPTIONAL</td>
+              <td>
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+              </td>
+            </tr>
+            <tr>
+              <td><code><a>assertionMethod</a></code></td>
+              <td>OPTIONAL</td>
+              <td>
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+              </td>
+            </tr>
+            <tr>
+              <td><code><a>keyAgreement</a></code></td>
+              <td>OPTIONAL</td>
+              <td>
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+              </td>
+            </tr>
+            <tr>
+              <td><code><a>capabilityInvocation</a></code></td>
+              <td>OPTIONAL</td>
+              <td>
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> ins<a data-cite="INFRA#ordered-map">maps</a>ances or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+              </td>
+            </tr>
+            <tr>
+              <td><code><a>capabilityDelegation</a></code></td>
+              <td>OPTIONAL</td>
+              <td>
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+              </td>
+            </tr>
+            <tr>
+              <td><code><a>service</a></code></td>
+              <td>OPTIONAL</td>
+              <td>An <a data-cite="INFRA#ordered-set">ordered set</a> of <a>Service Endpoint</a> <a data-cite="INFRA#ordered-map">maps</a>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id=verification_table>
+        <h2>Core Properties for a <a>Verification Method</a></h2>
+
+        <table class=simple>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Usage constraints</th>
+              <th>Value constraints</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>id</code></td>
+              <td>REQUIRED</td>
+              <td>
+                A <a data-cite="INFRA#string">string</a> that conforms to the rules of [[RFC3986]] for <a>URI</a>-s and which SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+              </td>
+            </tr>
+            <tr>
+              <td><code><a>controller</a></code></td>
+              <td>REQUIRED</td>
+              <td>
+                A <a data-cite="INFRA#string">string</a> or an <a data-cite="INFRA#ordered-set">ordered set</a> of <a data-cite="INFRA#string">strings</a> that conform to the rules in Section <a href="#did-syntax"></a>.
+              </td> 
+            </tr>
+            <tr>
+              <td><code>type</code></td>
+              <td>REQUIRED</td>
+              <td>
+                A <a data-cite="INFRA#string">string</a> or an <a data-cite="INFRA#ordered-set">ordered set</a> of <a data-cite="INFRA#string">strings</a>.
+              </td>
+            </tr>
+            <tr>
+              <td><code><a>publicKeyJwk</a></code></td>
+              <td>OPTIONAL</td>
+              <td>A <a data-cite="INFRA#maps">map</a> representing a JSON Web Key that conforms to [[RFC7517]].</td>
+            </tr>
+            <tr>
+              <td><code><a>publicKeyBase58</a></code></td>
+              <td>OPTIONAL</td>
+              <td>A <a
+                data-cite="INFRA#string">string</a> that conforms to a base58btc encoded public key.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>As an extra constraint on the <code><a>publicKeyJwk</a></code> and <code><a>publicKeyBase58</a></code> properties, while both of these properties are OPTIONAL, a particular <a>Verification Method</a> MUST contain <em>exactly one</em> of the two.</p>
+      </section>
+
+
+      <section id=service_table>
+        <h2>Core Properties for a <a>Service Endpoint</a></h2>
+
+      <table class=simple>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Usage constraints</th>
+              <th>Value constraints</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>id</code></td>
+              <td>REQUIRED</td>
+              <td>
+                when used on a <a>Service Endpoint</a>: a <a data-cite="INFRA#string">string</a> that conforms to the rules of [[RFC3986]] for <a>URI</a>-s.
+              </td>
+            </tr>
+            <tr>
+              <td><code>type</code></td>
+              <td>REQUIRED</td>
+              <td>
+                A <a data-cite="INFRA#string">string</a> or an <a data-cite="INFRA#ordered-set">ordered set</a> of <a data-cite="INFRA#string">strings</a>.
+              </td>
+            </tr>
+            <tr>
+              <td><code><a>serviceEndpoint</a></code></td>
+              <td>OPTIONAL</td>
+              <td>
+                A <a data-cite="INFRA#string">string</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s, a <a data-cite="INFRA#string">map</a>, or an <a data-cite="INFRA#ordered-set">ordered set</a> composed of a one or more <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s and/or <a data-cite="INFRA#string">maps</a>.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+
     <section>
-      <h2>DID Subject</h2>
-
-      <p>
-The <a>DID subject</a> is the entity that the <a>DID document</a> is about.
-That is, it is the entity identified by the <a>DID</a> and described by the
-<a>DID document</a>.
-      </p>
-
+      <h2>Detailed Specifications of Core Properties</h2>
       <section>
-        <h3>
-Identifier
-        </h3>
-        <p>
-The <a>DID</a> for a particular <a>DID subject</a> is denoted with the
-<code><a>id</a></code> property in the <a>DID document</a>.
-        </p>
+        <h2>DID Subject</h2>
 
         <p>
-<a>DID documents</a> MUST include the <code><a>id</a></code> property in the
-the topmost <a data-cite="INFRA#ordered-map">map</a> in the
-<a href="#data-model">data model</a>.
+  The <a>DID subject</a> is the entity that the <a>DID document</a> is about.
+  That is, it is the entity identified by the <a>DID</a> and described by the
+  <a>DID document</a>.
         </p>
 
-        <dl>
-          <dt><dfn>id</dfn></dt>
-          <dd>
-The value of <code>id</code> MUST be a <a
-data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
-href="#did-syntax"></a>.
-          </dd>
-        </dl>
+        <section>
+          <h3>
+  Identifier
+          </h3>
+          <p>
+  The <a>DID</a> for a particular <a>DID subject</a> is denoted with the
+  <code><a>id</a></code> property in the <a>DID document</a>.
+          </p>
 
-        <pre class="example nohighlight">
-{
-  "id": "did:example:21tDAKCERh95uGgKbJNHYp"
-}
-        </pre>
+          <p>
+  <a>DID documents</a> MUST include the <code><a>id</a></code> property in the
+  the topmost <a data-cite="INFRA#ordered-map">map</a> in the
+  <a href="#data-model">data model</a>.
+          </p>
 
-        <p class="note" title="Intermediate representations">
-<a>DID method</a> specifications can create intermediate representations of a
-<a>DID document</a> that do not contain the <code><a>id</a></code> property,
-such as when a <a>DID resolver</a> is performing <a>DID resolution</a>.
-However, the fully resolved <a>DID document</a> always contains a valid
-<code><a>id</a></code> property. The value of <code><a>id</a></code> in the
-resolved <a>DID document</a> MUST match the <a>DID</a> that was
-resolved.
-      </p>
+          <dl>
+            <dt><dfn>id</dfn></dt>
+            <dd>
+  The value of <code>id</code> MUST be a <a
+  data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
+  href="#did-syntax"></a>.
+            </dd>
+          </dl>
 
-        <p class="note" title="Nested objects with the id property">
-A <a>DID document</a> can contain objects which have their own unique
-identifier; see, for example, <a href="#verification-methods"></a>. Such other
-objects also use the <code>id</code> property to denote the identifier of
-the object in question. The <code>id</code> property only denotes the
-<a>DID</a> of the <a>DID subject</a> when it is present at the <em>top
-level</em> of a <a>DID document</a>.
+          <pre class="example nohighlight">
+  {
+    "id": "did:example:21tDAKCERh95uGgKbJNHYp"
+  }
+          </pre>
+
+          <p class="note" title="Intermediate representations">
+  <a>DID method</a> specifications can create intermediate representations of a
+  <a>DID document</a> that do not contain the <code><a>id</a></code> property,
+  such as when a <a>DID resolver</a> is performing <a>DID resolution</a>.
+  However, the fully resolved <a>DID document</a> always contains a valid
+  <code><a>id</a></code> property. The value of <code><a>id</a></code> in the
+  resolved <a>DID document</a> MUST match the <a>DID</a> that was
+  resolved.
         </p>
+
+          <p class="note" title="Nested objects with the id property">
+  A <a>DID document</a> can contain objects which have their own unique
+  identifier; see, for example, <a href="#verification-methods"></a>. Such other
+  objects also use the <code>id</code> property to denote the identifier of
+  the object in question. The <code>id</code> property only denotes the
+  <a>DID</a> of the <a>DID subject</a> when it is present at the <em>top
+  level</em> of a <a>DID document</a>.
+          </p>
+
+        </section>
+
+        <section>
+          <h3>Also Known As</h3>
+
+          <p>
+  A <a>DID subject</a> can have multiple identifiers for different purposes, or
+  at different times. The assertion that two or more <a>DIDs</a> (or other types
+  of <a>URI</a>) identify the same <a>DID subject</a> can be made using the
+  <code><a>alsoKnownAs</a></code> property.
+          </p>
+
+          <p>
+  <a>DID documents</a> MAY include the <code><a>alsoKnownAs</a></code> property.
+          </p>
+
+          <dl>
+            <dt><dfn>alsoKnownAs</dfn></dt>
+            <dd>
+  The value of <code>alsoKnownAs</code> MUST be a
+  <a data-cite="INFRA#lists">list</a> where each item in the list is a
+  <a>URI</a> conforming to [[RFC3986]].
+            </dd>
+            <dd>
+  This relationship is a statement that the subject of this identifier is
+  also identified by one or more other identifiers.
+            </dd>
+          </dl>
+
+          <div class="note" title="Equivalence and alsoKnownAs">
+            <p>
+  Applications might choose to consider two identifiers related by
+  <code><a>alsoKnownAs</a></code> to be equivalent <em>if</em> the
+  <code><a>alsoKnownAs</a></code> relationship is reciprocated in the reverse
+  direction. It is best practice <em>not</em> to consider them equivalent in the
+  absence of this inverse relationship. In other words, the presence of an
+  <code><a>alsoKnownAs</a></code> assertion does not prove that this assertion
+  is true. Therefore it is strongly advised that a requesting party obtain
+  independent verification of an <code>alsoKnownAs</code> assertion.
+            </p>
+            <p>
+  Given that the <a>DID subject</a> might use different identifiers for different
+  purposes, an expectation of strong equivalence between the two identifiers, or
+  merging the graphs of the two corresponding <a>DID documents</a>, is not
+  necessarily appropriate, <em>even with</em> a reciprocal relationship.
+            </p>
+          </div>
+
+        </section>
 
       </section>
 
       <section>
-        <h3>Also Known As</h3>
+      <h2>
+  DID Controller
+        </h2>
 
         <p>
-A <a>DID subject</a> can have multiple identifiers for different purposes, or
-at different times. The assertion that two or more <a>DIDs</a> (or other types
-of <a>URI</a>) identify the same <a>DID subject</a> can be made using the
-<code><a>alsoKnownAs</a></code> property.
+  Authorization is the mechanism used to state how operations are performed
+  on behalf of the <a>DID subject</a>. A <a>DID controller</a> is authorized to
+  make changes to the respective <a>DID document</a>.
         </p>
 
         <p>
-<a>DID documents</a> MAY include the <code><a>alsoKnownAs</a></code> property.
+  A DID document MAY include a <code><a>controller</a></code> property to
+  indicate the <a>DID controller(s)</a>. If so:
         </p>
-
         <dl>
-          <dt><dfn>alsoKnownAs</dfn></dt>
-          <dd>
-The value of <code>alsoKnownAs</code> MUST be a
-<a data-cite="INFRA#lists">list</a> where each item in the list is a
-<a>URI</a> conforming to [[RFC3986]].
-          </dd>
-          <dd>
-This relationship is a statement that the subject of this identifier is
-also identified by one or more other identifiers.
-          </dd>
+            <dt><dfn>controller</dfn></dt>
+            <dd>
+  The value of the <code>controller</code> property MUST be a <a
+  data-cite="INFRA#string">string</a> or an <a
+  data-cite="INFRA#ordered-set">ordered set</a> of <a
+  data-cite="INFRA#string">strings</a> that conform to the rules in Section <a
+  href="#did-syntax"></a>. The corresponding <a>DID document</a>(s) SHOULD
+  contain <a>verification relationships</a> that explicitly permit the use of
+  certain verification methods for specific purposes.
+            </dd>
         </dl>
 
-        <div class="note" title="Equivalence and alsoKnownAs">
-          <p>
-Applications might choose to consider two identifiers related by
-<code><a>alsoKnownAs</a></code> to be equivalent <em>if</em> the
-<code><a>alsoKnownAs</a></code> relationship is reciprocated in the reverse
-direction. It is best practice <em>not</em> to consider them equivalent in the
-absence of this inverse relationship. In other words, the presence of an
-<code><a>alsoKnownAs</a></code> assertion does not prove that this assertion
-is true. Therefore it is strongly advised that a requesting party obtain
-independent verification of an <code>alsoKnownAs</code> assertion.
-          </p>
-          <p>
-Given that the <a>DID subject</a> might use different identifiers for different
-purposes, an expectation of strong equivalence between the two identifiers, or
-merging the graphs of the two corresponding <a>DID documents</a>, is not
-necessarily appropriate, <em>even with</em> a reciprocal relationship.
-          </p>
-        </div>
-
-      </section>
-
-    </section>
-
-    <section>
-     <h2>
-DID Controller
-      </h2>
-
-      <p>
-Authorization is the mechanism used to state how operations are performed
-on behalf of the <a>DID subject</a>. A <a>DID controller</a> is authorized to
-make changes to the respective <a>DID document</a>.
-      </p>
-
-      <p>
-A DID document MAY include a <code><a>controller</a></code> property to
-indicate the <a>DID controller(s)</a>. If so:
-      </p>
-      <dl>
-          <dt><dfn>controller</dfn></dt>
-          <dd>
-The value of the <code>controller</code> property MUST be a <a
-data-cite="INFRA#string">string</a> or an <a
-data-cite="INFRA#ordered-set">ordered set</a> of <a
-data-cite="INFRA#string">strings</a> that conform to the rules in Section <a
-href="#did-syntax"></a>. The corresponding <a>DID document</a>(s) SHOULD
-contain <a>verification relationships</a> that explicitly permit the use of
-certain verification methods for specific purposes.
-          </dd>
-      </dl>
-
-      <p>
-When a <code><a>controller</a></code> property is present in a
-<a>DID Document</a>, its value expresses one or more <a>DIDs</a>. Any
-<a>verification methods</a> contained in the <a>DID Documents</a> for those
-<a>DIDs</a> SHOULD be accepted as authoritative, such that proofs that satisfy
-those verification methods are to be considered equivalent to proofs provided
-by the <a>DID Subject</a>.
-      </p>
-
-      <p class="note" title="Authorization vs authentication">
-Note that Authorization is separate from <a href="#authentication"></a>.
-This is particularly important for key recovery in the case of key loss,
-when the subject no longer has access to their keys, or key compromise,
-where the <a>DID controller</a>'s trusted third parties need to override
-malicious activity by an attacker. See Section
-<a href="#security-considerations"></a>.
-      </p>
-
-      <pre class="example nohighlight"
-        title="DID document with a controller property">
-{
-  "@context": "https://www.w3.org/ns/did/v1",
-  "id": "did:example:123456789abcdefghi",
-  "controller": "did:example:bcehfew7h32f32h7af3",
-  "service": [{
-    <span class="comment">// used to retrieve Verifiable Credentials
-    associated with the DID</span>
-    "type": "VerifiableCredentialService",
-    "serviceEndpoint": "https://example.com/vc/"
-  }]
-}
-      </pre>
-    </section>
-
-    <section>
-      <h2>Verification Methods</h2>
-      <p>
-A <a>DID document</a> can express <a>verification methods</a>, such as
-cryptographic keys, which can be used to authenticate or authorize interactions
-with the <a>DID subject</a> or associated parties. The information expressed
-often includes globally unambiguous identifiers and public key material, which
-can be used to verify digital signatures. For example, a public key can be
-used as a verification method with respect to a digital signature; in such
-usage, it verifies that the signer possessed the associated private key.
-      </p>
-      <p>
-Verification methods might take many parameters. An example of this is a set
-of five cryptographic keys from which any three are required to contribute to
-a threshold signature. Methods need not be cryptographic.
-      </p>
-
-      <p>
-In order to maximize interoperability, support for public keys as verification
-methods is restricted: see <a href="#verification-method-types"></a>. For other
-types of verification method, the verification method SHOULD be registered in
-the [[?DID-SPEC-REGISTRIES]].
-      </p>
-
-      <p>
-A <a>DID document</a> MAY include a <code><a>verificationMethod</a></code>
-property.
-      </p>
-
-      <dl>
-        <dt><dfn>verificationMethod</dfn></dt>
-        <dd>
-          <p>
-If a <a>DID document</a> includes a <code>verificationMethod</code> property,
-the value of the property MUST be an <a data-cite="INFRA#ordered-set">ordered
-set</a> of verification methods, where each verification method is described by
-a <a data-cite="INFRA#ordered-map">map</a> containing properties. The properties
-MUST include the <code>id</code>, <code>type</code>, <code>controller</code>,
-and specific verification method properties, and MAY include additional
-properties.
-          </p>
-          <p>
-The value of the <code><a>id</a></code> property for a verification method MUST
-be a <a>URI</a>. When more than one verification method is present, the value of
-<code><a>verificationMethod</a></code> MUST NOT contain multiple entries with
-the same <code>id</code>. If the value of <code><a>verificationMethod</a></code>
-contains multiple entries with the same <code>id</code>, a <a>DID document</a>
-processor MUST produce an error.
-          </p>
-
-          <p>
-In the case where a verification method is a public key, the value of the
-<code><a>id</a></code> property MAY be structured as a
-<a href="https://en.wikipedia.org/wiki/Compound_key">compound key</a>. This is
-especially useful for integrating with existing key management systems and key
-formats such as JWK [[RFC7517]]. It is RECOMMENDED that JWK <code>kid</code>
-values are set to the public key fingerprint [[RFC7638]]. It is RECOMMENDED
-that verification methods that use JWKs to represent their public keys utilize
-the value of <code>kid</code> as their fragment identifier. See the first key
-in <a href="#example-16-various-verification-method-types"></a>
-for an example of a public key with a compound key identifier.
-          </p>
-
-          <p>
-The value of the <code>type</code> property MUST be exactly one verification
-method type. In order to maximize global interoperability, the
-<a>verification method</a> type SHOULD be registered in the
-[[?DID-SPEC-REGISTRIES]].
-          </p>
-          <p>
-The value of the <code>controller</code> property MUST be a <a
-data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
-href="#did-syntax"></a>.
-          </p>
-
-          <p>
-A verification method MUST contain verification material, such as
-<a>publicKeyJwk</a> or <a>publicKeyBase58</a>.
-          </p>
-
-          <p>
-A <a>verification method</a> MUST NOT contain multiple verification material
-properties for the same material. For example, expressing key material in a
-<a>verification method</a> using both <code>publicKeyJwk</code> and
-<code>publicKeyBase58</code> at the same time is prohibited.
-          </p>
-        </dd>
-        <dt><dfn>publicKeyJwk</dfn></dt>
-        <dd>
-A JSON Web Key that conforms to [[RFC7517]]. This value MUST NOT contain "d", or
-any other members of the private information class as described in
-<a href="https://tools.ietf.org/html/rfc7517#section-8.1.1">Registration
-Template</a>.
-        </dd>
-        <dt><dfn>publicKeyBase58</dfn></dt>
-        <dd>
-A base58btc encoded public key.
-        </dd>
-      </dl>
-
-      <p class="note"
-        title="Verification method controller(s) and DID controller(s)">
-The semantics of the <code>controller</code> property are the same when the
-subject of the relationship is the <a>DID document</a> as when the subject
-of the relationship is a verification method, such as a public key. Since a
-key (for example) can't control itself, and the key controller cannot be
-inferred from the <a>DID document</a>, it is necessary to explicitly express
-the identity of the controller of the key. The difference is that the value of
-<code>controller</code> for a verification method is <em>not</em> necessarily
-a <a>DID controller</a>. <a>DID controller(s)</a> are expressed using the
-<code><a>controller</a></code> property at the highest level of the
-<a>DID document</a> (the topmost <a data-cite="INFRA#ordered-map">map</a> in
-the <a href="#data-model">data model</a>); see
-<a href="#did-controller"></a>.
-      </p>
-
-      <pre class="example" title="Example verification methods">
-{
-  "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
-  "id": "did:example:123456789abcdefghi",
-  <span class="comment">...</span>
-  "verificationMethod": [{
-    "id": <span class="comment">...</span>,
-    "type": <span class="comment">...</span>,
-    "controller": <span class="comment">...</span>,
-    "publicKeyJwk": <span class="comment">...</span>
-  }, {
-    "id": <span class="comment">...</span>,
-    "type": <span class="comment">...</span>,
-    "controller": <span class="comment">...</span>,
-    "publicKeyBase58": <span class="comment">...</span>
-  }]
-}
-      </pre>
-
-      <p>
-As well as the <code><a>verificationMethod</a></code> property, verification
-methods can be embedded in or referenced from properties associated with
-various <a>verification relationships</a> (see
-<a href="#verification-relationships"></a>). Referencing verification methods
-allows them to be used with more than one <a>verification relationship</a>.
-      </p>
-
-      <p>
-The steps to use when processing a <a>verification method</a> in a
-<a>DID document</a> are:
-      </p>
-
-      <ol class="algorithm">
-        <li>
-Let <em>value</em> be the data associated with the
-<code><a>verificationMethod</a></code> property or property for a particular
-<a>verification relationship</a> and initialize <em>result</em> to
-<code>null</code>.
-        </li>
-
-        <li>
-If <em>value</em> is an object, the verification method material is embedded.
-Set <em>result</em> to <em>value</em>.
-        </li>
-
-        <li>
-If <em>value</em> is a string, the verification method is included by
-reference. Assume <em>value</em> is a URL.
-          <ol>
-            <li>
-Dereference the URL and retrieve the <code><a>verificationMethod</a></code>
-properties associated with the URL. For example, process the
-<code><a>verificationMethod</a></code> property in the topmost
-<a data-cite="INFRA#ordered-map">map</a> of the dereferenced document.
-            </li>
-
-            <li>
-Iterating through each object, if the <code><a>id</a></code> property of the
-object matches <em>value</em>, set <em>result</em> to the object.
-            </li>
-          </ol>
-        </li>
-
-        <li>
-If <em>result</em> does not contain at least the <code>id</code>,
-<code>type</code>, and <code>controller</code> properties, as well as any
-mandatory public cryptographic material, as determined by the <code>type</code>
-property of <em>result</em>, throw an error.
-        </li>
-      </ol>
-
-      <pre class="example nohighlight"
-        title="Embedding and referencing verification methods">
-{
-<span class="comment">...</span>
-
-  "authentication": [
-    <span class="comment">// this key is referenced, it may be used with more than one verification relationship</span>
-    "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this key is embedded and may *only* be used for authentication</span>
-    {
-      "id": "did:example:123456789abcdefghi#keys-2",
-      "type": "Ed25519VerificationKey2018",
-      "controller": "did:example:123456789abcdefghi",
-      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-    }
-  ],
-
-<span class="comment">...</span>
-}
-      </pre>
-
-      <section>
-        <h3>Verification method types</h3>
-
         <p>
-A public key can be used as a <a>verification method</a>.
+  When a <code><a>controller</a></code> property is present in a
+  <a>DID Document</a>, its value expresses one or more <a>DIDs</a>. Any
+  <a>verification methods</a> contained in the <a>DID Documents</a> for those
+  <a>DIDs</a> SHOULD be accepted as authoritative, such that proofs that satisfy
+  those verification methods are to be considered equivalent to proofs provided
+  by the <a>DID Subject</a>.
         </p>
 
-        <p>
-This specification strives to limit the number of formats for expressing public
-key material in a <a>DID document</a> to the fewest possible, to increase the
-likelihood of interoperability. The fewer formats that implementers have to
-implement, the more likely it will be that they will support all of them. This
-approach attempts to strike a delicate balance between ease of implementation
-and supporting formats that have historically had broad deployment.
-        </p>
-
-        <p>
-A suite definition is responsible for specifying the verification method
-<code>type</code> and proof <code>type</code>. For example, see
-<a href="https://w3c-ccg.github.io/lds-jws2020/">JSON Web Signature 2020</a> and
-<a href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature 2018</a>
-. For all registered and supported verification method types available for DIDs,
-please see [[?DID-SPEC-REGISTRIES]].
+        <p class="note" title="Authorization vs authentication">
+  Note that Authorization is separate from <a href="#authentication"></a>.
+  This is particularly important for key recovery in the case of key loss,
+  when the subject no longer has access to their keys, or key compromise,
+  where the <a>DID controller</a>'s trusted third parties need to override
+  malicious activity by an attacker. See Section
+  <a href="#security-considerations"></a>.
         </p>
 
         <pre class="example nohighlight"
-          title="Various verification method types">
-{
-  "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
-  "id": "did:example:123456789abcdefghi",
-  <span class="comment">...</span>
-  "verificationMethod": [{
-    "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
-    "type": "JsonWebKey2020",
-    "controller": "did:example:123",
-    "publicKeyJwk": {
-      "crv": "Ed25519",
-      "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ",
-      "kty": "OKP",
-      "kid": "_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A"
-    }
-  }, {
-    "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "Ed25519VerificationKey2018",
-    "controller": "did:example:pqrstuvwxyz0987654321",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-  }],
-  <span class="comment">...</span>
-}
+          title="DID document with a controller property">
+  {
+    "@context": "https://www.w3.org/ns/did/v1",
+    "id": "did:example:123456789abcdefghi",
+    "controller": "did:example:bcehfew7h32f32h7af3",
+    "service": [{
+      <span class="comment">// used to retrieve Verifiable Credentials
+      associated with the DID</span>
+      "type": "VerifiableCredentialService",
+      "serviceEndpoint": "https://example.com/vc/"
+    }]
+  }
         </pre>
-
-
-        <p>
-The <a>DID document</a> MUST NOT express revoked keys using a <a>verification
-relationship</a>.
-        </p>
-        <p>
-If a referenced verification method is not in the <a>DID Document</a> used to
-dereference it, then that verification method is considered invalid or revoked.
-        </p>
-        <p>
-Each <a>DID method</a> specification is expected to detail how revocation is
-performed and tracked.
-        </p>
-
-        <p class="note">
-Caching and expiration of the keys in a <a>DID document</a> is entirely the
-responsibility of <a>DID resolvers</a> and requesting parties. For more
-information, see Section <a href="#resolution"></a>.
-        </p>
-
       </section>
-    </section>
-
-    <section>
-      <h2>Verification Relationships</h2>
-
-      <p>
-A <a>verification relationship</a> expresses the relationship between the <a>DID
-subject</a> and a <a>verification method</a>.
-      </p>
-      <p>
-Different <a>verification relationships</a> enable the associated
-<a>verification methods</a> to be used for different purposes. It is up to a
-<em>verifier</em> to ascertain the validity of a verification attempt by
-checking that the <a>verification method</a> used is contained in the
-appropriate <a>verification relationship</a> property of the
-<a>DID Document</a>.
-      </p>
-      <p>
-The <a>verification relationship</a> between the <a>DID subject</a> and the
-<a>verification method</a> MUST be explicit in the <a>DID document</a>.
-<a>Verification methods</a> that are not associated with a particular
-<a>verification relationship</a> MUST NOT be used for that <a>verification
-relationship</a>. For example, a <a>verification method</a> in the value of
-the <code><a>authentication</a></code> property cannot be used to engage in
-key agreement protocols with the <a>DID subject</a>&mdash;the value of the
-<code><a>keyAgreement</a></code> property needs to be used for that.
-      </p>
-      <p>
-This specification defines several <a>verification relationships</a> below. A
-<a>DID document</a> MAY include any of these, or other properties, to express
-a specific <a>verification relationship</a>. In order to maximize global
-interoperability, any such properties used SHOULD be registered in
-[[DID-SPEC-REGISTRIES]].
-      </p>
 
       <section>
-        <h2>Authentication</h2>
+        <h2>Verification Methods</h2>
+        <p>
+  A <a>DID document</a> can express <a>verification methods</a>, such as
+  cryptographic keys, which can be used to authenticate or authorize interactions
+  with the <a>DID subject</a> or associated parties. The information expressed
+  often includes globally unambiguous identifiers and public key material, which
+  can be used to verify digital signatures. For example, a public key can be
+  used as a verification method with respect to a digital signature; in such
+  usage, it verifies that the signer possessed the associated private key.
+        </p>
+        <p>
+  Verification methods might take many parameters. An example of this is a set
+  of five cryptographic keys from which any three are required to contribute to
+  a threshold signature. Methods need not be cryptographic.
+        </p>
 
         <p>
-The `authentication` <a>verification relationship</a> is used to specify how the
-<a>DID subject</a> is expected to be authenticated, such as for the purposes of
-logging into a website.
+  In order to maximize interoperability, support for public keys as verification
+  methods is restricted: see <a href="#verification-method-types"></a>. For other
+  types of verification method, the verification method SHOULD be registered in
+  the [[?DID-SPEC-REGISTRIES]].
+        </p>
+
+        <p>
+  A <a>DID document</a> MAY include a <code><a>verificationMethod</a></code>
+  property.
         </p>
 
         <dl>
-          <dt><dfn>authentication</dfn></dt>
+          <dt><dfn>verificationMethod</dfn></dt>
           <dd>
-The <code>authentication</code> property is OPTIONAL. If present, the associated
-value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of one or more
-<a>verification methods</a>. Each <a>verification method</a> MAY be embedded or
-referenced.
+            <p>
+  If a <a>DID document</a> includes a <code>verificationMethod</code> property,
+  the value of the property MUST be an <a data-cite="INFRA#ordered-set">ordered
+  set</a> of verification methods, where each verification method is described by
+  a <a data-cite="INFRA#ordered-map">map</a> containing properties. The properties
+  MUST include the <code>id</code>, <code>type</code>, <code>controller</code>,
+  and specific verification method properties, and MAY include additional
+  properties.
+            </p>
+            <p>
+  The value of the <code><a>id</a></code> property for a verification method MUST
+  be a <a>URI</a>. When more than one verification method is present, the value of
+  <code><a>verificationMethod</a></code> MUST NOT contain multiple entries with
+  the same <code>id</code>. If the value of <code><a>verificationMethod</a></code>
+  contains multiple entries with the same <code>id</code>, a <a>DID document</a>
+  processor MUST produce an error.
+            </p>
+
+            <p>
+  In the case where a verification method is a public key, the value of the
+  <code><a>id</a></code> property MAY be structured as a
+  <a href="https://en.wikipedia.org/wiki/Compound_key">compound key</a>. This is
+  especially useful for integrating with existing key management systems and key
+  formats such as JWK [[RFC7517]]. It is RECOMMENDED that JWK <code>kid</code>
+  values are set to the public key fingerprint [[RFC7638]]. It is RECOMMENDED
+  that verification methods that use JWKs to represent their public keys utilize
+  the value of <code>kid</code> as their fragment identifier. See the first key
+  in <a href="#example-16-various-verification-method-types"></a>
+  for an example of a public key with a compound key identifier.
+            </p>
+
+            <p>
+  The value of the <code>type</code> property MUST be exactly one verification
+  method type. In order to maximize global interoperability, the
+  <a>verification method</a> type SHOULD be registered in the
+  [[?DID-SPEC-REGISTRIES]].
+            </p>
+            <p>
+  The value of the <code>controller</code> property MUST be a <a
+  data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
+  href="#did-syntax"></a>.
+            </p>
+
+            <p>
+  A verification method MUST contain verification material, such as
+  <a>publicKeyJwk</a> or <a>publicKeyBase58</a>.
+            </p>
+
+            <p>
+  A <a>verification method</a> MUST NOT contain multiple verification material
+  properties for the same material. For example, expressing key material in a
+  <a>verification method</a> using both <code>publicKeyJwk</code> and
+  <code>publicKeyBase58</code> at the same time is prohibited.
+            </p>
+          </dd>
+          <dt><dfn>publicKeyJwk</dfn></dt>
+          <dd>
+  A JSON Web Key that conforms to [[RFC7517]]. This value MUST NOT contain "d", or
+  any other members of the private information class as described in
+  <a href="https://tools.ietf.org/html/rfc7517#section-8.1.1">Registration
+  Template</a>.
+          </dd>
+          <dt><dfn>publicKeyBase58</dfn></dt>
+          <dd>
+  A base58btc encoded public key.
           </dd>
         </dl>
 
-        <div class="note" title="Uses of authentication">
-          <p>
-If authentication is established, it is up to the <a>DID method</a> or other
-application to decide what to do with that information. A particular <a>DID
-method</a> could decide that authenticating as a <a>DID controller</a> is
-sufficient to, for example, update or delete the <a>DID document</a>. Another
-<a>DID method</a> could require different keys, or a different verification
-method entirely, to be presented in order to update or delete the <a>DID
-document</a> than that used to authenticate. In other words, what is done
-<em>after</em> the authentication check is out of scope for the
-<a href="#data-model">data model</a>, but <a>DID methods</a> and applications
-are expected to define this themselves.
-          </p>
-          <p>
-This is useful to any <em>authentication verifier</em> that needs
-to check to see if an entity that is attempting to <a>authenticate</a> is, in
-fact, presenting a valid proof of authentication. When a <em>verifier</em>
-receives some data (in some protocol-specific format) that contains a proof
-that was made for the purpose of "authentication", and that says that an
-entity is identified by the <a>DID</a>, then that <em>verifier</em> checks to
-ensure that the proof can be verified using a <a>verification method</a> (e.g.,
-public key) listed under <code><a>authentication</a></code> in the
-<a>DID Document</a>.
-          </p>
-          <p>
-Note that the <a>verification method</a> indicated by the
-<code><a>authentication</a></code> property of a <a>DID document</a> can only
-be used to <a>authenticate</a> the <a>DID subject</a>. To <a>authenticate</a>
-a different <a>DID controller</a>, the entity associated with the value of
-<code>controller</code> (see Section <a href="#did-controller"></a>) needs to
-<a>authenticate</a> with its <em>own</em> <a>DID document</a> and attached
-<code><a>authentication</a></code> <a>verification relationship</a>.
-          </p>
-        </div>
+        <p class="note"
+          title="Verification method controller(s) and DID controller(s)">
+  The semantics of the <code>controller</code> property are the same when the
+  subject of the relationship is the <a>DID document</a> as when the subject
+  of the relationship is a verification method, such as a public key. Since a
+  key (for example) can't control itself, and the key controller cannot be
+  inferred from the <a>DID document</a>, it is necessary to explicitly express
+  the identity of the controller of the key. The difference is that the value of
+  <code>controller</code> for a verification method is <em>not</em> necessarily
+  a <a>DID controller</a>. <a>DID controller(s)</a> are expressed using the
+  <code><a>controller</a></code> property at the highest level of the
+  <a>DID document</a> (the topmost <a data-cite="INFRA#ordered-map">map</a> in
+  the <a href="#data-model">data model</a>); see
+  <a href="#did-controller"></a>.
+        </p>
 
-        <pre class="example nohighlight" title="Authentication property
-                      containing three verification methods">
-{
+        <pre class="example" title="Example verification methods">
+  {
+    "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
+    "id": "did:example:123456789abcdefghi",
+    <span class="comment">...</span>
+    "verificationMethod": [{
+      "id": <span class="comment">...</span>,
+      "type": <span class="comment">...</span>,
+      "controller": <span class="comment">...</span>,
+      "publicKeyJwk": <span class="comment">...</span>
+    }, {
+      "id": <span class="comment">...</span>,
+      "type": <span class="comment">...</span>,
+      "controller": <span class="comment">...</span>,
+      "publicKeyBase58": <span class="comment">...</span>
+    }]
+  }
+        </pre>
+
+        <p>
+  As well as the <code><a>verificationMethod</a></code> property, verification
+  methods can be embedded in or referenced from properties associated with
+  various <a>verification relationships</a> (see
+  <a href="#verification-relationships"></a>). Referencing verification methods
+  allows them to be used with more than one <a>verification relationship</a>.
+        </p>
+
+        <p>
+  The steps to use when processing a <a>verification method</a> in a
+  <a>DID document</a> are:
+        </p>
+
+        <ol class="algorithm">
+          <li>
+  Let <em>value</em> be the data associated with the
+  <code><a>verificationMethod</a></code> property or property for a particular
+  <a>verification relationship</a> and initialize <em>result</em> to
+  <code>null</code>.
+          </li>
+
+          <li>
+  If <em>value</em> is an object, the verification method material is embedded.
+  Set <em>result</em> to <em>value</em>.
+          </li>
+
+          <li>
+  If <em>value</em> is a string, the verification method is included by
+  reference. Assume <em>value</em> is a URL.
+            <ol>
+              <li>
+  Dereference the URL and retrieve the <code><a>verificationMethod</a></code>
+  properties associated with the URL. For example, process the
+  <code><a>verificationMethod</a></code> property in the topmost
+  <a data-cite="INFRA#ordered-map">map</a> of the dereferenced document.
+              </li>
+
+              <li>
+  Iterating through each object, if the <code><a>id</a></code> property of the
+  object matches <em>value</em>, set <em>result</em> to the object.
+              </li>
+            </ol>
+          </li>
+
+          <li>
+  If <em>result</em> does not contain at least the <code>id</code>,
+  <code>type</code>, and <code>controller</code> properties, as well as any
+  mandatory public cryptographic material, as determined by the <code>type</code>
+  property of <em>result</em>, throw an error.
+          </li>
+        </ol>
+
+        <pre class="example nohighlight"
+          title="Embedding and referencing verification methods">
+  {
+  <span class="comment">...</span>
+
+    "authentication": [
+      <span class="comment">// this key is referenced, it may be used with more than one verification relationship</span>
+      "did:example:123456789abcdefghi#keys-1",
+      <span class="comment">// this key is embedded and may *only* be used for authentication</span>
+      {
+        "id": "did:example:123456789abcdefghi#keys-2",
+        "type": "Ed25519VerificationKey2018",
+        "controller": "did:example:123456789abcdefghi",
+        "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+      }
+    ],
+
+  <span class="comment">...</span>
+  }
+        </pre>
+
+        <section>
+          <h3>Verification method types</h3>
+
+          <p>
+  A public key can be used as a <a>verification method</a>.
+          </p>
+
+          <p>
+  This specification strives to limit the number of formats for expressing public
+  key material in a <a>DID document</a> to the fewest possible, to increase the
+  likelihood of interoperability. The fewer formats that implementers have to
+  implement, the more likely it will be that they will support all of them. This
+  approach attempts to strike a delicate balance between ease of implementation
+  and supporting formats that have historically had broad deployment.
+          </p>
+
+          <p>
+  A suite definition is responsible for specifying the verification method
+  <code>type</code> and proof <code>type</code>. For example, see
+  <a href="https://w3c-ccg.github.io/lds-jws2020/">JSON Web Signature 2020</a> and
+  <a href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature 2018</a>
+  . For all registered and supported verification method types available for DIDs,
+  please see [[?DID-SPEC-REGISTRIES]].
+          </p>
+
+          <pre class="example nohighlight"
+            title="Various verification method types">
+  {
+    "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
+    "id": "did:example:123456789abcdefghi",
+    <span class="comment">...</span>
+    "verificationMethod": [{
+      "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "crv": "Ed25519",
+        "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ",
+        "kty": "OKP",
+        "kid": "_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A"
+      }
+    }, {
+      "id": "did:example:123456789abcdefghi#keys-1",
+      "type": "Ed25519VerificationKey2018",
+      "controller": "did:example:pqrstuvwxyz0987654321",
+      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    }],
+    <span class="comment">...</span>
+  }
+          </pre>
+
+
+          <p>
+  The <a>DID document</a> MUST NOT express revoked keys using a <a>verification
+  relationship</a>.
+          </p>
+          <p>
+  If a referenced verification method is not in the <a>DID Document</a> used to
+  dereference it, then that verification method is considered invalid or revoked.
+          </p>
+          <p>
+  Each <a>DID method</a> specification is expected to detail how revocation is
+  performed and tracked.
+          </p>
+
+          <p class="note">
+  Caching and expiration of the keys in a <a>DID document</a> is entirely the
+  responsibility of <a>DID resolvers</a> and requesting parties. For more
+  information, see Section <a href="#resolution"></a>.
+          </p>
+
+        </section>
+      </section>
+
+      <section>
+        <h2>Verification Relationships</h2>
+
+        <p>
+  A <a>verification relationship</a> expresses the relationship between the <a>DID
+  subject</a> and a <a>verification method</a>.
+        </p>
+        <p>
+  Different <a>verification relationships</a> enable the associated
+  <a>verification methods</a> to be used for different purposes. It is up to a
+  <em>verifier</em> to ascertain the validity of a verification attempt by
+  checking that the <a>verification method</a> used is contained in the
+  appropriate <a>verification relationship</a> property of the
+  <a>DID Document</a>.
+        </p>
+        <p>
+  The <a>verification relationship</a> between the <a>DID subject</a> and the
+  <a>verification method</a> MUST be explicit in the <a>DID document</a>.
+  <a>Verification methods</a> that are not associated with a particular
+  <a>verification relationship</a> MUST NOT be used for that <a>verification
+  relationship</a>. For example, a <a>verification method</a> in the value of
+  the <code><a>authentication</a></code> property cannot be used to engage in
+  key agreement protocols with the <a>DID subject</a>&mdash;the value of the
+  <code><a>keyAgreement</a></code> property needs to be used for that.
+        </p>
+        <p>
+  This specification defines several <a>verification relationships</a> below. A
+  <a>DID document</a> MAY include any of these, or other properties, to express
+  a specific <a>verification relationship</a>. In order to maximize global
+  interoperability, any such properties used SHOULD be registered in
+  [[DID-SPEC-REGISTRIES]].
+        </p>
+
+        <section>
+          <h2>Authentication</h2>
+
+          <p>
+  The `authentication` <a>verification relationship</a> is used to specify how the
+  <a>DID subject</a> is expected to be authenticated, such as for the purposes of
+  logging into a website.
+          </p>
+
+          <dl>
+            <dt><dfn>authentication</dfn></dt>
+            <dd>
+  The <code>authentication</code> property is OPTIONAL. If present, the associated
+  value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of one or more
+  <a>verification methods</a>. Each <a>verification method</a> MAY be embedded or
+  referenced.
+            </dd>
+          </dl>
+
+          <div class="note" title="Uses of authentication">
+            <p>
+  If authentication is established, it is up to the <a>DID method</a> or other
+  application to decide what to do with that information. A particular <a>DID
+  method</a> could decide that authenticating as a <a>DID controller</a> is
+  sufficient to, for example, update or delete the <a>DID document</a>. Another
+  <a>DID method</a> could require different keys, or a different verification
+  method entirely, to be presented in order to update or delete the <a>DID
+  document</a> than that used to authenticate. In other words, what is done
+  <em>after</em> the authentication check is out of scope for the
+  <a href="#data-model">data model</a>, but <a>DID methods</a> and applications
+  are expected to define this themselves.
+            </p>
+            <p>
+  This is useful to any <em>authentication verifier</em> that needs
+  to check to see if an entity that is attempting to <a>authenticate</a> is, in
+  fact, presenting a valid proof of authentication. When a <em>verifier</em>
+  receives some data (in some protocol-specific format) that contains a proof
+  that was made for the purpose of "authentication", and that says that an
+  entity is identified by the <a>DID</a>, then that <em>verifier</em> checks to
+  ensure that the proof can be verified using a <a>verification method</a> (e.g.,
+  public key) listed under <code><a>authentication</a></code> in the
+  <a>DID Document</a>.
+            </p>
+            <p>
+  Note that the <a>verification method</a> indicated by the
+  <code><a>authentication</a></code> property of a <a>DID document</a> can only
+  be used to <a>authenticate</a> the <a>DID subject</a>. To <a>authenticate</a>
+  a different <a>DID controller</a>, the entity associated with the value of
+  <code>controller</code> (see Section <a href="#did-controller"></a>) needs to
+  <a>authenticate</a> with its <em>own</em> <a>DID document</a> and attached
+  <code><a>authentication</a></code> <a>verification relationship</a>.
+            </p>
+          </div>
+
+          <pre class="example nohighlight" title="Authentication property
+                        containing three verification methods">
+  {
+    "@context": "https://www.w3.org/ns/did/v1",
+    "id": "did:example:123456789abcdefghi",
+    <span class="comment">...</span>
+    "authentication": [
+      <span class="comment">// this method can be used to authenticate as did:...fghi</span>
+      "did:example:123456789abcdefghi#keys-1",
+      <span class="comment">// this method can be used to authenticate as did:...fghi</span>
+      "did:example:123456789abcdefghi#biometric-1",
+      <span class="comment">// this method is *only* authorized for authentication, it may not</span>
+      <span class="comment">// be used for any other proof purpose, so its full description is</span>
+      <span class="comment">// embedded here rather than using only a reference</span>
+      {
+        "id": "did:example:123456789abcdefghi#keys-2",
+        "type": "Ed25519VerificationKey2018",
+        "controller": "did:example:123456789abcdefghi",
+        "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+      }
+    ],
+    <span class="comment">...</span>
+  }
+          </pre>
+        </section>
+
+        <section>
+          <h2>Assertion</h2>
+
+          <p>
+  The `assertionMethod` <a>verification relationship</a> is used to specify how
+  the <a>DID subject</a> is expected to express claims, such as for the purposes
+  of issuing a Verifiable Credential [[?VC-DATA-MODEL]].
+          </p>
+
+          <dl>
+            <dt><dfn>assertionMethod</dfn></dt>
+            <dd>
+  The <code>assertionMethod</code> property is OPTIONAL. If present, the
+  associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of
+  one or more <a>verification methods</a>. Each <a>verification method</a> MAY be
+  embedded or referenced.
+            </dd>
+          </dl>
+
+          <p>
+  An example of when this property is useful is during the processing of a
+  verifiable credential by a verifier. During validation, a verifier checks to
+  see if a verifiable credential has been signed by the <a>DID Subject</a> by
+  checking that the <a>verification method</a> used to assert the proof is
+  associated with the <code><a>assertionMethod</a></code> property in the
+  corresponding <a>DID Document</a>.
+          </p>
+
+          <pre class="example nohighlight" title="Assertion method property
+                      containing two verification methods">
+  {
   "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
-  "authentication": [
-    <span class="comment">// this method can be used to authenticate as did:...fghi</span>
+  "assertionMethod": [
+    <span class="comment">// this method can be used to assert statements as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this method can be used to authenticate as did:...fghi</span>
-    "did:example:123456789abcdefghi#biometric-1",
-    <span class="comment">// this method is *only* authorized for authentication, it may not</span>
-    <span class="comment">// be used for any other proof purpose, so its full description is</span>
+    <span class="comment">// this method is *only* authorized for assertion of statements, it may not</span>
+    <span class="comment">// be used for any other verification relationship, so its full description is</span>
     <span class="comment">// embedded here rather than using only a reference</span>
     {
       "id": "did:example:123456789abcdefghi#keys-2",
@@ -1939,343 +2127,292 @@ a different <a>DID controller</a>, the entity associated with the value of
     }
   ],
   <span class="comment">...</span>
-}
-        </pre>
-      </section>
-
-      <section>
-        <h2>Assertion</h2>
-
-        <p>
-The `assertionMethod` <a>verification relationship</a> is used to specify how
-the <a>DID subject</a> is expected to express claims, such as for the purposes
-of issuing a Verifiable Credential [[?VC-DATA-MODEL]].
-        </p>
-
-        <dl>
-          <dt><dfn>assertionMethod</dfn></dt>
-          <dd>
-The <code>assertionMethod</code> property is OPTIONAL. If present, the
-associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of
-one or more <a>verification methods</a>. Each <a>verification method</a> MAY be
-embedded or referenced.
-          </dd>
-        </dl>
-
-        <p>
-An example of when this property is useful is during the processing of a
-verifiable credential by a verifier. During validation, a verifier checks to
-see if a verifiable credential has been signed by the <a>DID Subject</a> by
-checking that the <a>verification method</a> used to assert the proof is
-associated with the <code><a>assertionMethod</a></code> property in the
-corresponding <a>DID Document</a>.
-        </p>
-
-        <pre class="example nohighlight" title="Assertion method property
-                    containing two verification methods">
-{
-"@context": "https://www.w3.org/ns/did/v1",
-"id": "did:example:123456789abcdefghi",
-<span class="comment">...</span>
-"assertionMethod": [
-  <span class="comment">// this method can be used to assert statements as did:...fghi</span>
-  "did:example:123456789abcdefghi#keys-1",
-  <span class="comment">// this method is *only* authorized for assertion of statements, it may not</span>
-  <span class="comment">// be used for any other verification relationship, so its full description is</span>
-  <span class="comment">// embedded here rather than using only a reference</span>
-  {
-    "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018",
-    "controller": "did:example:123456789abcdefghi",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }
-],
-<span class="comment">...</span>
-}
-        </pre>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Key Agreement</h2>
+
+          <p>
+  The `keyAgreement` <a>verification relationship</a> is used to specify how
+  to encrypt information to the <a>DID subject</a>, such as for the purposes
+  of establishing a secure communication channel with the recipient.
+          </p>
+
+          <dl>
+            <dt><dfn>keyAgreement</dfn></dt>
+            <dd>
+  The <code>keyAgreement</code> property is OPTIONAL. If present, the associated
+  value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of one or more
+  <a>verification methods</a>. Each <a>verification method</a> MAY be embedded or
+  referenced.
+            </dd>
+          </dl>
+
+          <p>
+  An example of when this property is useful is when encrypting a message
+  intended for the <a>DID Subject</a>. In this case, the counterparty uses the
+  public cryptographic key information in the <a>verification method</a>
+  to wrap a decryption key for the recipient.
+          </p>
+
+          <pre class="example nohighlight" title="Key agreement property
+                        containing two verification methods">
+  {
+    "@context": "https://www.w3.org/ns/did/v1",
+    "id": "did:example:123456789abcdefghi",
+    <span class="comment">...</span>
+    "keyAgreement": [
+      <span class="comment">// this method can be used to perform key agreement as did:...fghi</span>
+      "did:example:123456789abcdefghi#keys-1",
+      <span class="comment">// this method is *only* authorized for key agreement usage, it may not</span>
+      <span class="comment">// be used for any other verification relationship, so its full description is</span>
+      <span class="comment">// embedded here rather than using only a reference</span>
+      {
+        "id": "did:example:123#zC9ByQ8aJs8vrNXyDhPHHNNMSHPcaSgNpjjsBYpMMjsTdS",
+        "type": "X25519KeyAgreementKey2019",
+        "controller": "did:example:123",
+        "publicKeyBase58": "9hFgmPVfmBZwRvFEyniQDBkz9LmV7gDEqytWyGZLmDXE"
+      }
+    ],
+    <span class="comment">...</span>
+  }
+          </pre>
+        </section>
+
+        <section>
+          <h2>Capability Invocation</h2>
+
+          <p>
+  The `capabilityInvocation` <a>verification relationship</a> is used to specify
+  a mechanism that might be used by the <a>DID subject</a> to invoke a
+  cryptographic capability, such as the authorization to access an HTTP API.
+          </p>
+
+          <dl>
+            <dt><dfn>capabilityInvocation</dfn></dt>
+            <dd>
+  The <code>capabilityInvocation</code> property is OPTIONAL. If present, the
+  associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of
+  one or more <a>verification methods</a>. Each <a>verification method</a> MAY be
+  embedded or referenced.
+            </dd>
+          </dl>
+
+          <p>
+  An example of when this property is useful is when a <a>DID subject</a>
+  chooses to invoke their capability to start a vehicle through the combined
+  usage of a <a>verification method</a> and the <code>StartCar</code>
+  capability. In this example, the vehicle would be the <em>verifier</em> and
+  would need to verify that the <a>verification method</a> exists in the
+  <code><a>capabilityInvocation</a></code> property.
+          </p>
+
+          <pre class="example nohighlight" title="Capability invocation property
+                        containing two verification methods">
+  {
+    "@context": "https://www.w3.org/ns/did/v1", "id":
+    "did:example:123456789abcdefghi",
+    <span class="comment">...</span>
+    "capabilityInvocation: [
+      <span class="comment">// this method can be used to invoke capabilities as did:...fghi</span>
+      "did:example:123456789abcdefghi#keys-1",
+      <span class="comment">// this method is *only* authorized for capability invocation usage, it may not</span>
+      <span class="comment">// be used for any other verification relationship, so its full description is</span>
+      <span class="comment">// embedded here rather than using only a reference</span>
+      {
+      "id": "did:example:123456789abcdefghi#keys-2",
+      "type": "Ed25519VerificationKey2018",
+      "controller": "did:example:123456789abcdefghi",
+      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+      }
+    ],
+    <span class="comment">...</span>
+  }
+          </pre>
+        </section>
+
+        <section>
+          <h2>Capability Delegation</h2>
+
+          <p>
+  The `capabilityDelegation` <a>verification relationship</a> is used to specify
+  a mechanism that might be used by the <a>DID subject</a> to delegate
+  a cryptographic capability to another party, such as delegating the
+  authority to access a specific HTTP API to a subordinate.
+          </p>
+
+          <dl>
+            <dt><dfn>capabilityDelegation</dfn></dt>
+            <dd>
+  The <code>capabilityDelegation</code> property is OPTIONAL. If present, the
+  associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of
+  one or more <a>verification methods</a>. Each <a>verification method</a> MAY be
+  embedded or referenced.
+            </dd>
+          </dl>
+
+          <p>
+  An example of when this property is useful is when a <a>DID Subject</a>
+  chooses to grant their capability to start a vehicle through the combined
+  usage of a <a>verification method</a> and the <code>StartCar</code> capability
+  to a party other than themselves.
+          </p>
+
+          <pre class="example nohighlight" title="Capability Delegation property
+                        containing two verification methods">
+  {
+    "@context": "https://www.w3.org/ns/did/v1", "id":
+    "did:example:123456789abcdefghi",
+    <span class="comment">...</span>
+    "capabilityDelegation": [
+      <span class="comment">// this method can be used to perform capability delegation as did:...fghi</span>
+      "did:example:123456789abcdefghi#keys-1",
+      <span class="comment">// this method is *only* authorized for granting capabilities it may not</span>
+      <span class="comment">// be used for any other verification relationship, so its full description is</span>
+      <span class="comment">// embedded here rather than using only a reference</span>
+      {
+      "id": "did:example:123456789abcdefghi#keys-2",
+      "type": "Ed25519VerificationKey2018",
+      "controller": "did:example:123456789abcdefghi",
+      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+      }
+    ],
+    <span class="comment">...</span>
+  }
+          </pre>
+        </section>
       </section>
 
       <section>
-        <h2>Key Agreement</h2>
+        <h2>Service Endpoints</h2>
 
         <p>
-The `keyAgreement` <a>verification relationship</a> is used to specify how
-to encrypt information to the <a>DID subject</a>, such as for the purposes
-of establishing a secure communication channel with the recipient.
+  <a>Service endpoints</a> are used in <a>DID documents</a> to express ways of
+  communicating with the <a>DID subject</a> or associated entities.
+  <a>Services</a> listed in the <a>DID document</a> can contain information about
+  privacy preserving messaging services, or more public information, such as
+  social media accounts, personal websites, and email addresses although this is
+  discouraged. See
+  <a href="#keep-personally-identifiable-information-pii-private"></a> for
+  additional details. The information associated with <a>services</a> are often
+  service-specific. For example, the information associated with an encrypted
+  messaging service can express how to initiate the encrypted link before
+  messaging begins.
+        </p>
+        <p>
+  Pointers to <a>services</a> are expressed using the <code><a>service</a></code>
+  property. Each service has its own <code>id</code> and <code>type</code>
+  properties, as well as a <code><a>serviceEndpoint</a></code> property with a
+  <a>URI</a> or a set of other properties describing the service.
+        </p>
+
+        <p>
+  One of the primary purposes of a <a>DID document</a> is to enable discovery of
+  <a>service endpoints</a>. A <a>service endpoint</a> can be any type of service
+  the <a>DID subject</a> wants to advertise, including
+  <a>decentralized identity management</a> services for further discovery,
+  authentication, authorization, or interaction.
+        </p>
+
+        <p>
+  A <a>DID document</a> MAY include a <code><a>service</a></code> property.
         </p>
 
         <dl>
-          <dt><dfn>keyAgreement</dfn></dt>
+          <dt><dfn>service</dfn></dt>
           <dd>
-The <code>keyAgreement</code> property is OPTIONAL. If present, the associated
-value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of one or more
-<a>verification methods</a>. Each <a>verification method</a> MAY be embedded or
-referenced.
+            <p>
+  If a <a>DID document</a> includes a <code>service</code> property, the value
+  of the property SHOULD be an <a data-cite="INFRA#ordered-set">ordered set</a>
+  of <a>service endpoints</a>, where each service endpoint is described by a set
+  of properties. Each <a>service endpoint</a> MUST have <code><a>id</a></code>,
+  <code>type</code>, and <code><a>serviceEndpoint</a></code> properties, and MAY
+  include additional properties.
+            </p>
+            <p>
+  The value of the <code><a>id</a></code> property MUST be a <a>URI</a>.
+  The value of <code>service</code> MUST NOT contain multiple entries with the
+  same <code>id</code>. In this case, a <a>DID document</a> processor MUST
+  produce an error.
+            </p>
+            <p>
+  The value of the <code><dfn>serviceEndpoint</dfn></code> property MUST be a
+  <a data-cite="INFRA#string">string</a>, a <a data-cite="INFRA#string">map</a>,
+  or an <a data-cite="INFRA#ordered-set">ordered set</a> composed of a one or more
+  <a data-cite="INFRA#string">strings</a> and/or
+  <a data-cite="INFRA#string">maps</a>. All <a data-cite="INFRA#string">string</a>
+  values MUST be valid <a>URIs</a> conforming to [[RFC3986]] and normalized
+  according to the rules in section 6 of [[RFC3986]] and to any normalization
+  rules in its applicable <a>URI</a> scheme specification. Extension
+  specifications for services MAY further restrict the properties associated
+  with the extension.
+            </p>
           </dd>
         </dl>
 
         <p>
-An example of when this property is useful is when encrypting a message
-intended for the <a>DID Subject</a>. In this case, the counterparty uses the
-public cryptographic key information in the <a>verification method</a>
-to wrap a decryption key for the recipient.
+  It is expected that the <a>service endpoint</a> protocol is published in an open
+  standard specification.
         </p>
 
-        <pre class="example nohighlight" title="Key agreement property
-                      containing two verification methods">
-{
-  "@context": "https://www.w3.org/ns/did/v1",
-  "id": "did:example:123456789abcdefghi",
-  <span class="comment">...</span>
-  "keyAgreement": [
-    <span class="comment">// this method can be used to perform key agreement as did:...fghi</span>
-    "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this method is *only* authorized for key agreement usage, it may not</span>
-    <span class="comment">// be used for any other verification relationship, so its full description is</span>
-    <span class="comment">// embedded here rather than using only a reference</span>
-    {
-      "id": "did:example:123#zC9ByQ8aJs8vrNXyDhPHHNNMSHPcaSgNpjjsBYpMMjsTdS",
-      "type": "X25519KeyAgreementKey2019",
-      "controller": "did:example:123",
-      "publicKeyBase58": "9hFgmPVfmBZwRvFEyniQDBkz9LmV7gDEqytWyGZLmDXE"
-    }
-  ],
-  <span class="comment">...</span>
-}
+        <pre class="example nohighlight" title="Various service endpoints">
+  {
+    "service": [{
+      "id":"did:example:123#linked-domain",
+      "type": "LinkedDomains",
+      "serviceEndpoint": "https://bar.example.com"
+    }, {
+      "id": "did:example:123456789abcdefghi#openid",
+      "type": "OpenIdConnectVersion1.0Service",
+      "serviceEndpoint": "https://openid.example.com/"
+    }, {
+      "id": "did:example:123456789abcdefghi#vcr",
+      "type": "CredentialRepositoryService",
+      "serviceEndpoint": "https://repository.example.com/service/8377464"
+    }, {
+      "id": "did:example:123456789abcdefghi#xdi",
+      "type": "XdiService",
+      "serviceEndpoint": "https://xdi.example.com/8377464"
+    }, {
+      "id": "did:example:123456789abcdefghi#agent",
+      "type": "AgentService",
+      "serviceEndpoint": "https://agent.example.com/8377464"
+    }, {
+      "id": "did:example:123456789abcdefghi#hub",
+      "type": "IdentityHub",
+      "verificationMethod": "did:example:123456789abcdefghi#key-1",
+      "serviceEndpoint": ["did:example:456", "did:example:789"]
+    }, {
+      "id": "did:example:123456789abcdefghi#messages",
+      "type": "MessagingService",
+      "serviceEndpoint": "https://example.com/messages/8377464"
+    }, {
+      "id": "did:example:123456789abcdefghi#inbox",
+      "type": "SocialWebInboxService",
+      "serviceEndpoint": "https://social.example.com/83hfh37dj",
+      "description": "My public social inbox",
+      "spamCost": {
+        "amount": "0.50",
+        "currency": "USD"
+      }
+    }, {
+      "id": "did:example:123456789abcdefghi#authpush",
+      "type": "DidAuthPushModeVersion1",
+      "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefg"
+    }]
+  }
         </pre>
+
+        <p>
+  For more information about security considerations regarding authentication
+  <a>service endpoints</a> see Sections <a href="#method-schemes"></a>
+  and <a href="#authentication"></a>.
+        </p>
       </section>
 
-      <section>
-        <h2>Capability Invocation</h2>
-
-        <p>
-The `capabilityInvocation` <a>verification relationship</a> is used to specify
-a mechanism that might be used by the <a>DID subject</a> to invoke a
-cryptographic capability, such as the authorization to access an HTTP API.
-        </p>
-
-        <dl>
-          <dt><dfn>capabilityInvocation</dfn></dt>
-          <dd>
-The <code>capabilityInvocation</code> property is OPTIONAL. If present, the
-associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of
-one or more <a>verification methods</a>. Each <a>verification method</a> MAY be
-embedded or referenced.
-          </dd>
-        </dl>
-
-        <p>
-An example of when this property is useful is when a <a>DID subject</a>
-chooses to invoke their capability to start a vehicle through the combined
-usage of a <a>verification method</a> and the <code>StartCar</code>
-capability. In this example, the vehicle would be the <em>verifier</em> and
-would need to verify that the <a>verification method</a> exists in the
-<code><a>capabilityInvocation</a></code> property.
-        </p>
-
-        <pre class="example nohighlight" title="Capability invocation property
-                      containing two verification methods">
-{
-  "@context": "https://www.w3.org/ns/did/v1", "id":
-  "did:example:123456789abcdefghi",
-  <span class="comment">...</span>
-  "capabilityInvocation: [
-    <span class="comment">// this method can be used to invoke capabilities as did:...fghi</span>
-    "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this method is *only* authorized for capability invocation usage, it may not</span>
-    <span class="comment">// be used for any other verification relationship, so its full description is</span>
-    <span class="comment">// embedded here rather than using only a reference</span>
-    {
-    "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018",
-    "controller": "did:example:123456789abcdefghi",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-    }
-  ],
-  <span class="comment">...</span>
-}
-        </pre>
-      </section>
-
-      <section>
-        <h2>Capability Delegation</h2>
-
-        <p>
-The `capabilityDelegation` <a>verification relationship</a> is used to specify
-a mechanism that might be used by the <a>DID subject</a> to delegate
-a cryptographic capability to another party, such as delegating the
-authority to access a specific HTTP API to a subordinate.
-        </p>
-
-        <dl>
-          <dt><dfn>capabilityDelegation</dfn></dt>
-          <dd>
-The <code>capabilityDelegation</code> property is OPTIONAL. If present, the
-associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of
-one or more <a>verification methods</a>. Each <a>verification method</a> MAY be
-embedded or referenced.
-          </dd>
-        </dl>
-
-        <p>
-An example of when this property is useful is when a <a>DID Subject</a>
-chooses to grant their capability to start a vehicle through the combined
-usage of a <a>verification method</a> and the <code>StartCar</code> capability
-to a party other than themselves.
-        </p>
-
-        <pre class="example nohighlight" title="Capability Delegation property
-                      containing two verification methods">
-{
-  "@context": "https://www.w3.org/ns/did/v1", "id":
-  "did:example:123456789abcdefghi",
-  <span class="comment">...</span>
-  "capabilityDelegation": [
-    <span class="comment">// this method can be used to perform capability delegation as did:...fghi</span>
-    "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this method is *only* authorized for granting capabilities it may not</span>
-    <span class="comment">// be used for any other verification relationship, so its full description is</span>
-    <span class="comment">// embedded here rather than using only a reference</span>
-    {
-    "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018",
-    "controller": "did:example:123456789abcdefghi",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-    }
-  ],
-  <span class="comment">...</span>
-}
-        </pre>
-      </section>
     </section>
-
-    <section>
-      <h2>Service Endpoints</h2>
-
-      <p>
-<a>Service endpoints</a> are used in <a>DID documents</a> to express ways of
-communicating with the <a>DID subject</a> or associated entities.
-<a>Services</a> listed in the <a>DID document</a> can contain information about
-privacy preserving messaging services, or more public information, such as
-social media accounts, personal websites, and email addresses although this is
-discouraged. See
-<a href="#keep-personally-identifiable-information-pii-private"></a> for
-additional details. The information associated with <a>services</a> are often
-service-specific. For example, the information associated with an encrypted
-messaging service can express how to initiate the encrypted link before
-messaging begins.
-      </p>
-      <p>
-Pointers to <a>services</a> are expressed using the <code><a>service</a></code>
-property. Each service has its own <code>id</code> and <code>type</code>
-properties, as well as a <code><a>serviceEndpoint</a></code> property with a
-<a>URI</a> or a set of other properties describing the service.
-      </p>
-
-      <p>
-One of the primary purposes of a <a>DID document</a> is to enable discovery of
-<a>service endpoints</a>. A <a>service endpoint</a> can be any type of service
-the <a>DID subject</a> wants to advertise, including
-<a>decentralized identity management</a> services for further discovery,
-authentication, authorization, or interaction.
-      </p>
-
-      <p>
-A <a>DID document</a> MAY include a <code><a>service</a></code> property.
-      </p>
-
-      <dl>
-        <dt><dfn>service</dfn></dt>
-        <dd>
-          <p>
-If a <a>DID document</a> includes a <code>service</code> property, the value
-of the property SHOULD be an <a data-cite="INFRA#ordered-set">ordered set</a>
-of <a>service endpoints</a>, where each service endpoint is described by a set
-of properties. Each <a>service endpoint</a> MUST have <code><a>id</a></code>,
-<code>type</code>, and <code><a>serviceEndpoint</a></code> properties, and MAY
-include additional properties.
-          </p>
-          <p>
-The value of the <code><a>id</a></code> property MUST be a <a>URI</a>.
-The value of <code>service</code> MUST NOT contain multiple entries with the
-same <code>id</code>. In this case, a <a>DID document</a> processor MUST
-produce an error.
-          </p>
-          <p>
-The value of the <code><dfn>serviceEndpoint</dfn></code> property MUST be a
-<a data-cite="INFRA#string">string</a>, a <a data-cite="INFRA#string">map</a>,
-or an <a data-cite="INFRA#ordered-set">ordered set</a> composed of a one or more
-<a data-cite="INFRA#string">strings</a> and/or
-<a data-cite="INFRA#string">maps</a>. All <a data-cite="INFRA#string">string</a>
-values MUST be valid <a>URIs</a> conforming to [[RFC3986]] and normalized
-according to the rules in section 6 of [[RFC3986]] and to any normalization
-rules in its applicable <a>URI</a> scheme specification. Extension
-specifications for services MAY further restrict the properties associated
-with the extension.
-          </p>
-        </dd>
-      </dl>
-
-      <p>
-It is expected that the <a>service endpoint</a> protocol is published in an open
-standard specification.
-      </p>
-
-      <pre class="example nohighlight" title="Various service endpoints">
-{
-  "service": [{
-    "id":"did:example:123#linked-domain",
-    "type": "LinkedDomains",
-    "serviceEndpoint": "https://bar.example.com"
-  }, {
-    "id": "did:example:123456789abcdefghi#openid",
-    "type": "OpenIdConnectVersion1.0Service",
-    "serviceEndpoint": "https://openid.example.com/"
-  }, {
-    "id": "did:example:123456789abcdefghi#vcr",
-    "type": "CredentialRepositoryService",
-    "serviceEndpoint": "https://repository.example.com/service/8377464"
-  }, {
-    "id": "did:example:123456789abcdefghi#xdi",
-    "type": "XdiService",
-    "serviceEndpoint": "https://xdi.example.com/8377464"
-  }, {
-    "id": "did:example:123456789abcdefghi#agent",
-    "type": "AgentService",
-    "serviceEndpoint": "https://agent.example.com/8377464"
-  }, {
-    "id": "did:example:123456789abcdefghi#hub",
-    "type": "IdentityHub",
-    "verificationMethod": "did:example:123456789abcdefghi#key-1",
-    "serviceEndpoint": ["did:example:456", "did:example:789"]
-  }, {
-    "id": "did:example:123456789abcdefghi#messages",
-    "type": "MessagingService",
-    "serviceEndpoint": "https://example.com/messages/8377464"
-  }, {
-    "id": "did:example:123456789abcdefghi#inbox",
-    "type": "SocialWebInboxService",
-    "serviceEndpoint": "https://social.example.com/83hfh37dj",
-    "description": "My public social inbox",
-    "spamCost": {
-      "amount": "0.50",
-      "currency": "USD"
-    }
-  }, {
-    "id": "did:example:123456789abcdefghi#authpush",
-    "type": "DidAuthPushModeVersion1",
-    "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefg"
-  }]
-}
-      </pre>
-
-      <p>
-For more information about security considerations regarding authentication
-<a>service endpoints</a> see Sections <a href="#method-schemes"></a>
-and <a href="#authentication"></a>.
-      </p>
-    </section>
-
   </section>
 
   <section class="normative">
