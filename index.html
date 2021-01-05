@@ -1328,16 +1328,16 @@ property.
       <li>properties defined for a <a>Service Endpoint</a>, serializing a concept represented by a <a data-cite="INFRA#ordered-map">map</a> in the <a href="#data-model">data model</a>, and specified in Section <a href="#service-endpoints"></a>.</li>
     </ol>
     
-    <p class="note" title="Repeated properties">Some of the properties (e.g., <code>id</code> or <code>type</code>) are present in different classes but with possible differences in the associated constraints. Hence their repeated presence in the tables in Section <a href="#property_tables"></a>.</p>
+    <p class="note" title="Repeated properties">Some of the properties (e.g., <code>id</code> or <code>type</code>) are present in different classes but with possible differences in the associated constraints. Hence their repeated presence in the tables in Section <a href="#property-summary"></a>.</p>
 
     <p class="note" title="Ordering of values">
       As a result of the <a href="#data-model">data model</a> being defined using terminology from [[INFRA]], property values which can contain more than one item, such as <a data-cite="INFRA#ordered-map">maps</a> and <a data-cite="INFRA#ordered-set">sets</a>, are explicitly ordered. For the purposes of this specification, unless otherwise stated, ordering is not important and implementations are not expected to produce or consume deterministically ordered values.
     </p>
 
-    <section id=property_tables>
-      <h2>Property Tables</h2>
+    <section>
+      <h2>Property Summary</h2>
 
-      <section id=core_table>
+      <section>
         <h2>Core Properties for a <a>DID Document</a></h2>
 
         <table class=simple>
@@ -1421,7 +1421,7 @@ property.
         </table>
       </section>
 
-      <section id=verification_table>
+      <section>
         <h2>Core Properties for a <a>Verification Method</a></h2>
 
         <table class=simple>
@@ -1472,7 +1472,7 @@ property.
       </section>
 
 
-      <section id=service_table>
+      <section>
         <h2>Core Properties for a <a>Service Endpoint</a></h2>
 
       <table class=simple>
