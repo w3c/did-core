@@ -4861,16 +4861,9 @@ architecture, because <a>DIDs</a> and <a>DID documents</a> are, by design,
 administered directly by the <a>DID controller(s)</a>. There is no registrar,
 hosting company, or other intermediate service provider to recommend or apply
 additional privacy safeguards. The authors of this specification have applied
-all seven Privacy by Design principles throughout its development. For example,
-privacy in this specification is preventative not remedial, and privacy is an
-embedded default. Furthermore, the <a>decentralized identifier</a>
-architecture by itself embodies Privacy by Design principle #7: "Respect for
-user privacy &mdash; keep it user-centric."
-    </p>
-
-    <p>
-This section lists additional privacy considerations that implementers,
-delegates, and <a>DID subjects</a> should keep in mind.
+all seven Privacy by Design principles throughout its development.
+Privacy in this specification is preventative not remedial, and privacy is an
+embedded default.
     </p>
 
     <section>
@@ -4882,13 +4875,15 @@ Keep Personally-Identifiable Information (PII) Private
 If a <a>DID method</a> specification is written for a public <a>verifiable data
 registry</a> where all <a>DIDs</a> and <a>DID documents</a> are publicly
 available, it is <em>critical</em> that <a>DID documents</a> contain no
-personal data. All personal data should be kept behind <a>service
-endpoints</a> under the control of the <a>DID subject</a>. Additional due
-diligence should be taken around the use of URLs in service endpoints as well
-to prevent leakage of unintentional personal data or correlation within a URL
-of a service endpoint. For example, a URL that contains a username is likely
+personally-identifiable information.
+      </p>
+      <p>
+Due
+diligence should be taken around the use of URLs in service endpoints
+to prevent leakage of personal data or correlation within a URL
+of a service endpoint. For example, a URL that contains a username is
 dangerous to include in a <a>DID Document</a> because the username is likely
-to be human-meaningful in a way that can unintentionally reveal information
+to be human-meaningful in a way that can reveal information
 that the <a>DID subject</a> did not consent to sharing. With this privacy
 architecture, personal data can be exchanged on a private, peer-to-peer basis
 using communications channels identified and secured by <a>public key
@@ -4940,6 +4935,7 @@ allow all traffic between two <a>DIDs</a> to be isolated perfectly into unique
 buckets, where timing correlation and similar analysis is easy. Therefore, a
 better strategy for endpoint privacy might be to share an endpoint among
 thousands or millions of <a>DIDs</a> controlled by many different subjects.
+See also <a href="#herd-privacy"></a>.
       </p>
     </section>
 
@@ -4971,9 +4967,9 @@ information around a <a>DID Controller</a> could serve as a form of
 digital fingerprint and this is best avoided.
       </p>
       <p>
-To minimize these risks, all properties in a <a>DID document</a> ought to be for
-expressing cryptographic material, endpoints, or verification methods related to
-using the <a>DID</a>.
+To minimize these risks, all properties in a <a>DID document</a> ought to be
+for expressing cryptographic material, endpoints, or verification methods
+related to using the <a>DID</a>.
       </p>
 
     </section>
@@ -4984,15 +4980,18 @@ Herd Privacy
       </h2>
 
       <p>
-When a <a>DID subject</a> is indistinguishable from others in the herd, privacy
-is available. When the act of engaging privately with another party is by itself
-a recognizable flag, privacy is greatly diminished. <a>DIDs</a> and <a>DID
+When a <a>DID subject</a> is indistinguishable from others in the herd,
+privacy is available. When the act of engaging privately with another party is
+by itself a recognizable flag, privacy is greatly diminished.
+      </p>
+      <p>
+<a>DIDs</a> and <a>DID
 methods</a> need to work to improve herd privacy, particularly for those who
-legitimately need it most. Choose technologies and human interfaces that default
-to preserving anonymity and pseudonymity. To reduce <a
-href="https://en.wikipedia.org/wiki/Device_fingerprint"> digital
-fingerprints</a>, share common settings across requesting party implementations,
-keep negotiated options to a minimum on wire protocols, use encrypted transport
+legitimately need it most. Choose technologies and human interfaces that
+default to preserving anonymity and pseudonymity. To reduce <a
+href="https://en.wikipedia.org/wiki/Device_fingerprint">digital
+fingerprints</a>, share common settings across implementations, keep
+negotiated options to a minimum on wire protocols, use encrypted transport
 layers, and pad messages to standard lengths.
       </p>
     </section>
