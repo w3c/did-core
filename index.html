@@ -2917,25 +2917,10 @@ interoperable across representations.
 
             <p>
 It is RECOMMENDED that dereferencing each <a>URI</a> value of the
-<code>@context</code> property results in a document containing machine-readable
-information about the context. These URIs SHOULD be associated with a
-cryptographic hash of the content of the JSON-LD Context as part of registration
-in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
-            </p>
-            <p class="advisement">
-If included, the cryptographic hash of the content of the JSON-LD Context MUST
-be computed in a manner equivalent to the following:
-            </p>
-            <pre class="example">
-curl -s https://www.w3.org/ns/did/v1 | openssl sha256
-            </pre>
-            <p>
-The command above will result in the following hash, expressed in hexadecimal
-notation:
-            </p>
-            <pre class="example">
-910cd6648f6f7b72a7896a8da83e63460eb8355a0af4b56b699c9281452ac8bb
-            </pre>
+<code>@context</code> property results in a document containing
+machine-readable information about the context. Note that further expectations
+of additional JSON-LD contexts are described as part of the DID specification
+registries registration process.
             </p>
           </dd>
         </dl>
@@ -4862,6 +4847,28 @@ an attack vector that will circumvent verification unless the DID document is
 re-verified.
       </p>
 
+    </section>
+
+    <section>
+      <h2>
+Content Integrity Protection
+      </h2>
+      <p>
+DID documents which include external JSON-LD contexts (see
+<a href="#json-ld"></a>) or any other links to external machine-readable
+content are vulnerable to tampering.
+      </p>
+      <p>
+DID document consumers can cache local static copies of JSON-LD contexts
+and/or verify the integrity of external contexts against the cryptographic
+hash for the context as registered in the DID specification registries
+(see the registration process for more detail) [[?DID-SPEC-REGISTRIES]].
+      </p>
+      <p>
+Implementers can also consider other means to protect links to external
+content as best suited to their application. Examples of URL schemes which
+enforce content integrity are [[HASHLINK]] and [[IPFS]].
+      </p>
     </section>
   </section>
 
