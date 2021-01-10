@@ -1212,7 +1212,7 @@ A finite ordered sequence of items as specified in [[INFRA]].
 <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
           </td>
           <td>
-A <a data-cite="INFRA#list">list</a> that does not contain the same item twice
+A finite ordered sequence of items that does not contain the same item twice
 as specified in [[INFRA]].
           </td>
         </tr>
@@ -1369,7 +1369,7 @@ Nested properties include <code>id</code>, <code>type</code> and
     <p class="note" title="Ordering of values">
 As a result of the <a href="#data-model">data model</a> being defined using
 terminology from [[INFRA]], property values which can contain more than one
-item, such as <a data-cite="INFRA#lists">lists</a> and <a
+item, such as <a
 data-cite="INFRA#ordered-set">sets</a>, are explicitly ordered. For the purposes
 of this specification, unless otherwise stated, ordering is not important and
 implementations are not expected to produce or consume deterministically ordered
@@ -1453,8 +1453,8 @@ of <a>URI</a>) identify the same <a>DID subject</a> can be made using the
         <dl>
           <dt><dfn>alsoKnownAs</dfn></dt>
           <dd>
-The value of <code>alsoKnownAs</code> MUST be a
-<a data-cite="INFRA#lists">list</a> where each item in the list is a
+The value of <code>alsoKnownAs</code> MUST be an
+<a data-cite="INFRA#ordered-set">ordered set</a> where each item in the set is a
 <a>URI</a> conforming to [[RFC3986]].
           </dd>
           <dd>
@@ -2451,7 +2451,7 @@ this section
 <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-5">JSON Array</a>, each element of the list is
+<a data-cite="RFC8259#section-5">JSON Array</a>, each element of the set is
 added, in order, as a value of the array according to its type, as defined in
 this section
               </td>
@@ -2746,8 +2746,8 @@ The <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a>
 }
                 </pre>
               </li>
-              <li>
-An <a href="https://infra.spec.whatwg.org/#lists">INFRA list</a>,
+              <li>  
+An <a data-cite="INFRA#ordered-set">INFRA ordered set</a>,
 with first item the <a href="https://infra.spec.whatwg.org/#strings">INFRA
 string</a> <code>https://www.w3.org/ns/did/v1</code>, and subsequent items of
 type <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a> or
@@ -3921,8 +3921,8 @@ This is the purpose of the <code><a>equivalentId</a></code>  property.
                 <dl>
                   <dt><dfn>equivalentId</dfn></dt>
                   <dd>
-The value of <code>equivalentId</code> MUST be a <a
-data-cite="INFRA#lists">list</a> where each item in the list is a <a
+The value of <code>equivalentId</code> MUST be an <a
+data-cite="INFRA#ordered-set">ordered set</a> where each item in the list is a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
 href="#did-syntax"></a>.
                   </dd>
@@ -4216,7 +4216,7 @@ used to communicate this metadata MUST be a <a data-cite="INFRA#maps">map</a>
 of properties. Each property name MUST be a <a
 data-cite="INFRA#string">string</a>. Each property value MUST be a <a
 data-cite="INFRA#string">string</a>, <a data-cite="INFRA#maps">map</a>, <a
-data-cite="INFRA#lists">list</a>, <a data-cite="INFRA#boolean">boolean</a>, or
+data-cite="INFRA#list">list</a>, <a data-cite="INFRA#ordered-set">ordered set</a>, <a data-cite="INFRA#boolean">boolean</a>, or
 <a data-cite="INFRA#null">null</a>. The values within any complex data
 structures such as maps and lists MUST be one of these data types as well.
 All metadata property definitions MUST define the value type, including any
