@@ -4,7 +4,7 @@
   <title>
     Decentralized Identifiers (DIDs) v1.0
   </title>
-  <meta content='text/html; charset=utf-8' http-equiv='Content-Type'><!--
+  <meta content='text/html; charset=utf-8' http-equiv='contentType'><!--
     === NOTA BENE ===
     For the three scripts below, if your spec resides on dev.w3 you can check
     them out in the same tree and use relative links so that they'll work
@@ -892,7 +892,7 @@ string">ASCII string</a>.
             </tr>
             <tr>
               <td>
-<code>version-id</code>
+<code>versionId</code>
               </td>
               <td>
 Identifies a specific version of a <a>DID document</a> to be resolved (the
@@ -2305,7 +2305,7 @@ YAML.
     <p>
 Producers MUST indicate which representation of a document has been used via a
 media type in the document's metadata. Consumers MUST determine the
-representation of a <a>DID document</a> via the <code>content-type</code> DID
+representation of a <a>DID document</a> via the <code>contentType</code> DID
 resolver metadata field (see <a href="#did-resolution"></a>), <em>not</em>
 through the content of the <a>DID document</a> alone.
     </p>
@@ -2396,7 +2396,7 @@ JSON
       <p>
 This section sets out the requirements for producing and consuming <a>DID
 documents</a> that are in plain JSON (as indicated by a
-<code>content-type</code> of <code>application/did+json</code> in the resolver
+<code>contentType</code> of <code>application/did+json</code> in the resolver
 metadata).
       </p>
 
@@ -2668,7 +2668,7 @@ JSON-LD is a JSON-based format used to serialize
 <a href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a>.
 This section establishes the requirements for producing and consuming <a>DID
 documents</a> that are expressed as JSON-LD. JSON-LD <a>DID documents</a>
-are indicated by a <code>content-type</code> resolver metadata field that is
+are indicated by a <code>contentType</code> resolver metadata field that is
 set to <code>application/did+ld+json</code>.
       </p>
 
@@ -2854,7 +2854,7 @@ self-describing and has built-in semantics for interoperability.
       <p>
 The following sections outline the rules for producing and consuming
 <a>DID documents</a> that are expressed in CBOR as indicated by a
-<code>content-type</code> of <code>application/did+cbor</code> in the resolver
+<code>contentType</code> of <code>application/did+cbor</code> in the resolver
 metadata.
       </p>
 
@@ -3678,7 +3678,7 @@ this specification are in <a href="#did-resolution-metadata-properties"></a>.
               </p>
               <p>
 If the resolution is successful, and if the <code>resolveRepresentation</code>
-function was called, this structure MUST contain a <code>content-type</code>
+function was called, this structure MUST contain a <code>contentType</code>
 property containing the mime-type of the <code>did-document-stream</code> in
 this result. If the resolution is not successful, this structure MUST contain
 an <code>error</code> property describing the error.
@@ -3773,7 +3773,7 @@ common properties.
 
             <dl>
                 <dt>
-content-type
+contentType
                 </dt>
                 <dd>
 The MIME type of the returned <code>did-document-stream</code>. This property is
@@ -3797,21 +3797,21 @@ values of this field SHOULD be registered in the DID Specification Registries
 [[?DID-SPEC-REGISTRIES]]. This specification defines the following error values:
                     <dl>
                         <dt>
-invalid-did
+invalidDid
                         </dt>
                         <dd>
 The <a>DID</a> supplied to the <a>DID resolution</a> function does not conform
 to valid syntax. (See <a href="#did-syntax"></a>.)
                         </dd>
                         <dt>
-not-found
+notFound
                         </dt>
                         <dd>
 The <a>DID resolver</a> was unable to find the <a>DID document</a>
 resulting from this resolution request.
                         </dd>
                         <dt>
-representation-not-supported
+representationNotSupported
                         </dt>
                         <dd>
 This error code is returned if the representation requested via the
@@ -3864,10 +3864,10 @@ the same formatting rules as the <code>created</code> property.
 
             <section>
                 <h4>
-                  next-update
+                  nextUpdate
                 </h4>
                 <p>
-DID document metadata SHOULD include a <code>next-update</code> property if
+DID document metadata SHOULD include a <code>nextUpdate</code> property if
 the resolved document version is not the latest version of the document. It
 indicates the timestamp of the next <a href="#update">Update operation</a>.
 The value of the property MUST follow the same formatting rules as the
@@ -3877,10 +3877,10 @@ The value of the property MUST follow the same formatting rules as the
 
           <section>
               <h4>
-                version-id
+                versionId
               </h4>
               <p>
-DID document metadata SHOULD include a <code>version-id</code> property to
+DID document metadata SHOULD include a <code>versionId</code> property to
 indicate the version of the last <a href="#update">Update operation</a> for the
 document version which was resolved. The value of the property MUST be an <a
 data-lt="ascii string">ASCII string</a>.
@@ -3889,10 +3889,10 @@ data-lt="ascii string">ASCII string</a>.
 
           <section>
               <h4>
-                next-version-id
+                nextVersionId
               </h4>
               <p>
-DID document metadata SHOULD include a <code>next-version-id</code> property if
+DID document metadata SHOULD include a <code>nextVersionId</code> property if
 the resolved document version is not the latest version of the document. It
 indicates the version of the next <a href="#update">Update operation</a>. The
 value of the property MUST be an <a data-lt="ascii string">ASCII string</a>.
@@ -3900,18 +3900,18 @@ value of the property MUST be an <a data-lt="ascii string">ASCII string</a>.
             </section>
 
           <section>
-            <h4>equivalent-id</h4>
+            <h4>equivalentId</h4>
                 <p>
 A <a>DID Method</a> can define different forms of a DID that are logically
 equivalent. An example is when a DID takes one form prior to registration in a
 verifiable data registry and another form after such registration. In this case,
 the <a>DID Method</a> specification may need to express one or more DIDs that
 are logically equivalent to the resolved DID as a property of the DID document.
-This is the purpose of the <code><a>equivalent-id</a></code>  property.
+This is the purpose of the <code><a>equivalentId</a></code>  property.
                 </p>
 
                 <dl>
-                  <dt><dfn>equivalent-id</dfn></dt>
+                  <dt><dfn>equivalentId</dfn></dt>
                   <dd>
 The value of <code>equivalentId</code> MUST be an <a
 data-cite="INFRA#ordered-set">ordered set</a> where each item in the list is a <a
@@ -3919,18 +3919,18 @@ data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
 href="#did-syntax"></a>.
                   </dd>
                   <dd>
-The relationship is a statement that each <code><a>equivalent-id</a></code> value
+The relationship is a statement that each <code><a>equivalentId</a></code> value
 is logically equivalent to the <code>id</code> property value and thus
 identifies the same DID subject.
                   </dd>
                   <dd>
-Each <code><a>equivalent-id</a></code> DID value MUST be produced by, and a form
+Each <code><a>equivalentId</a></code> DID value MUST be produced by, and a form
 of, the same <a>DID Method</a> as the <code>id</code> property value. (e.g.
 <code>did:example:abc</code> == <code>did:example:ABC</code>)
                   </dd>
                   <dd>
 A conforming <a>DID Method</a> specification MUST guarantee that each
-<code><a>equivalent-id</a></code> value is logically equivalent to the
+<code><a>equivalentId</a></code> value is logically equivalent to the
 <code>id</code> property value.
                   </dd>
                   <dd>
@@ -3945,49 +3945,49 @@ MUST to a SHOULD/MAY or similar language.</span>
                   </dd>
                 </dl>
 
-                <div class="note" title="Equivalence and equivalent-id">
+                <div class="note" title="Equivalence and equivalentId">
                   <p>
-<code><a>equivalent-id</a></code> is a much stronger form of equivalence than
+<code><a>equivalentId</a></code> is a much stronger form of equivalence than
 <code><a>alsoKnownAs</a></code> because the equivalence MUST be guaranteed by
-the governing DID method. <code><a>equivalent-id</a></code> represents a full
+the governing DID method. <code><a>equivalentId</a></code> represents a full
 graph merge because the same DID document describes both the
-<code><a>equivalent-id</a></code> DID and the <code>id</code> property DID.
+<code><a>equivalentId</a></code> DID and the <code>id</code> property DID.
                   </p>
                 </div>
 
               </section>
 
             <section>
-              <h4>canonical-id</h4>
+              <h4>canonicalId</h4>
                 <p>
-The <code><a>canonical-id</a></code> property is identical to the
-<code><a>equivalent-id</a></code> property except: a) it accepts only a single
+The <code><a>canonicalId</a></code> property is identical to the
+<code><a>equivalentId</a></code> property except: a) it accepts only a single
 value rather than a list, and b) that DID is defined to be the canonical ID for
 the DID subject within the scope of the containing DID document.
                 </p>
 
                 <dl>
-                  <dt><dfn>canonical-id</dfn></dt>
+                  <dt><dfn>canonicalId</dfn></dt>
                   <dd>
-The value of <code><a>canonical-id</a></code> MUST be a <a
+The value of <code><a>canonicalId</a></code> MUST be a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
 href="#did-syntax"></a>.
                   </dd>
                   <dd>
-The relationship is a statement that the <code><a>canonical-id</a></code> value
+The relationship is a statement that the <code><a>canonicalId</a></code> value
 is logically equivalent to the <code>id</code> property value and that the
-<code><a>canonical-id</a></code> value is defined by the <a>DID Method</a> to be
+<code><a>canonicalId</a></code> value is defined by the <a>DID Method</a> to be
 the canonical ID for the DID subject in the scope of the containing DID
 document.
                   </dd>
                   <dd>
-A <code><a>canonical-id</a></code> value MUST be produced by, and a form of, the
+A <code><a>canonicalId</a></code> value MUST be produced by, and a form of, the
 same <a>DID Method</a> as the <code>id</code> property value. (e.g.
 <code>did:example:abc</code> == <code>did:example:ABC</code>)
                   </dd>
                   <dd>
 A conforming <a>DID Method</a> specification MUST guarantee that the
-<code><a>canonical-id</a></code> value is logically equivalent to the
+<code><a>canonicalId</a></code> value is logically equivalent to the
 <code>id</code> property value.
                   </dd>
                   <dd>
@@ -4001,14 +4001,14 @@ future from a MUST to a SHOULD/MAY or similar language.</span>
                   </dd>
                 </dl>
 
-                <div class="note" title="Equivalence and canonical-id">
+                <div class="note" title="Equivalence and canonicalId">
                   <p>
-<code><a>canonical-id</a></code> is the same statement of equivalence as
-<code><a>equivalent-id</a></code> except it is constrained to a single value that
+<code><a>canonicalId</a></code> is the same statement of equivalence as
+<code><a>equivalentId</a></code> except it is constrained to a single value that
 is defined to be canonical for the DID subject in the scope of the DID document.
-Like <code><a>equivalent-id</a></code>, <code><a>canonical-id</a></code>
+Like <code><a>equivalentId</a></code>, <code><a>canonicalId</a></code>
 represents a full graph merge because the same DID document describes both the
-<code><a>canonical-id</a></code> DID and the <code>id</code> property DID.
+<code><a>canonicalId</a></code> DID and the <code>id</code> property DID.
                   </p>
                 </div>
 
@@ -4152,7 +4152,7 @@ common properties.
 
             <dl>
                 <dt>
-content-type
+contentType
                 </dt>
                 <dd>
 The MIME type of the returned <code>content-stream</code> SHOULD be expressed
@@ -4169,14 +4169,14 @@ registered in the DID Specification Registries [DID-SPEC-REGISTRIES]]. This
 specification defines the following error values:
                     <dl>
                         <dt>
-invalid-did-url
+invalidDidUrl
                         </dt>
                         <dd>
 The <a>DID URL</a> supplied to the <a>DID URL Dereferencing</a> function does
 not conform to valid syntax. (See <a href="#did-url-syntax"></a>.)
                         </dd>
                         <dt>
-not-found
+notFound
                         </dt>
                         <dd>
 The <a>DID URL dereferencer</a> was unable to find the
@@ -4258,7 +4258,7 @@ metadata</a> if a DID was not found.
         <pre class="example"
         title="JSON-encoded DID resolution metadata example">
 {
-  "error": "not-found"
+  "error": "notFound"
 }
         </pre>
 
@@ -4268,7 +4268,7 @@ This example corresponds to a metadata structure of the following format:
 
         <pre class="example" title="DID resolution metadata example">
 «[
-  "error" → "not-found"
+  "error" → "notFound"
 ]»
         </pre>
 
@@ -4693,14 +4693,14 @@ not wish to be correlated with the <a>DID</a>.
       <h2>Equivalence Properties</h2>
       <p>
 The three equivalence properties defined in Core Properties
-—<code><a>alsoKnownAs</a></code>, <code><a>equivalent-id</a></code>, and
-<code><a>canonical-id</a></code>—are subject to special security considerations
+—<code><a>alsoKnownAs</a></code>, <code><a>equivalentId</a></code>, and
+<code><a>canonicalId</a></code>—are subject to special security considerations
 related to attacks against DIDs that are asserted to be equivalent. Each of the
 equivalence property sections describes relevant mitigation instructions. In
 general, they are:
       </p>
       <p>
-The <code><a>equivalent-id</a></code> and <code><a>canonical-id</a></code>
+The <code><a>equivalentId</a></code> and <code><a>canonicalId</a></code>
 properties that constrain equivalence assertions to variants of a single DID
 produced by the same <a>DID method</a> (e.g. <code>did:foo:123</code> ≡
 <code>did:foo:hash(123)</code>) can be trusted to the extent the resolving party
@@ -5256,7 +5256,7 @@ result in changes to this specification.
 <div class="issue" data-number="496"> Inconsistent definition/name of DID Document (or abstract data model?)</div>
 <div class="issue" data-number="495">`updated` property's initial value is not defined clearly</div>
 <div class="issue" data-number="494">Discussion on "localized rules for handling properties" not described anywhere</div>
-<div class="issue" data-number="483">Issue with using `version-id` and key revocation</div>
+<div class="issue" data-number="483">Issue with using `versionId` and key revocation</div>
 <div class="issue" data-number="479">Provide better service.type examples</div>
 <div class="issue" data-number="468">Should "deactivated" be an error code?</div>
 <div class="issue" data-number="463">Naming classes of properties and syntax</div>
