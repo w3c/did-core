@@ -1328,7 +1328,7 @@ property.
       <li>properties defined for a <a>Verification Method</a>, serializing a concept represented by a <a data-cite="INFRA#ordered-map">map</a> in the <a href="#data-model">data model</a>, and specified in Section <a href="#verification-methods"></a>; </li>
       <li>properties defined for a <a>Service Endpoint</a>, serializing a concept represented by a <a data-cite="INFRA#ordered-map">map</a> in the <a href="#data-model">data model</a>, and specified in Section <a href="#service-endpoints"></a>.</li>
     </ol>
-    
+
     <p class="note" title="Repeated properties">Some of the properties (e.g., <code>id</code> or <code>type</code>) are present in different classes but with possible differences in the associated constraints. Hence their repeated presence in the tables in Section <a href="#property-summary"></a>.</p>
 
     <p class="note" title="Ordering of values">
@@ -1361,7 +1361,7 @@ property.
               <td><code><a>alsoKnownAs</a</code></td>
               <td>OPTIONAL</td>
               <td>
-                An <a data-cite="INFRA#ordered-set">ordered set</a> of <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s.
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URIs</a>.
               </td>
             </tr>
             <tr>
@@ -1369,54 +1369,54 @@ property.
               <td>OPTIONAL</td>
               <td>
                 A <a data-cite="INFRA#string">string</a> or an <a data-cite="INFRA#ordered-set">ordered set</a> of <a data-cite="INFRA#string">strings</a> that conform to the rules in Section <a href="#did-syntax"></a>.
-              </td> 
+              </td>
             </tr>
             <tr>
               <td><code><a>verificationMethod</a></code></td>
               <td>OPTIONAL</td>
               <td>
-                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see <a href="#core-properties-for-a-verification-method"></a>) or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URIs</a>. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
               </td>
             </tr>
             <tr>
               <td><code><a>authentication</a></code></td>
               <td>OPTIONAL</td>
               <td>
-                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see <a href="#core-properties-for-a-verification-method"></a>) or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URIs</a>. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
               </td>
             </tr>
             <tr>
               <td><code><a>assertionMethod</a></code></td>
               <td>OPTIONAL</td>
               <td>
-                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see <a href="#core-properties-for-a-verification-method"></a>) or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URIs</a>. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
               </td>
             </tr>
             <tr>
               <td><code><a>keyAgreement</a></code></td>
               <td>OPTIONAL</td>
               <td>
-                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see <a href="#core-properties-for-a-verification-method"></a>) or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URIs</a>. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
               </td>
             </tr>
             <tr>
               <td><code><a>capabilityInvocation</a></code></td>
               <td>OPTIONAL</td>
               <td>
-                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> ins<a data-cite="INFRA#ordered-map">maps</a>ances or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see <a href="#core-properties-for-a-verification-method"></a>) or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URIs</a>. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
               </td>
             </tr>
             <tr>
               <td><code><a>capabilityDelegation</a></code></td>
               <td>OPTIONAL</td>
               <td>
-                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+                An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see <a href="#core-properties-for-a-verification-method"></a>) or <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URIs</a>. <br/>The <a>URI</a> values SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
               </td>
             </tr>
             <tr>
               <td><code><a>service</a></code></td>
               <td>OPTIONAL</td>
-              <td>An <a data-cite="INFRA#ordered-set">ordered set</a> of <a>Service Endpoint</a> <a data-cite="INFRA#ordered-map">maps</a>.</td>
+              <td>An <a data-cite="INFRA#ordered-set">ordered set</a> of <a>Service Endpoint</a> <a data-cite="INFRA#ordered-map">maps</a>  (see <a href="#core-properties-for-a-service-endpoint"></a>).</td>
             </tr>
           </tbody>
         </table>
@@ -1438,7 +1438,7 @@ property.
               <td><code>id</code></td>
               <td>REQUIRED</td>
               <td>
-                A <a data-cite="INFRA#string">string</a> that conforms to the rules of [[RFC3986]] for <a>URI</a>-s and which SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
+                A <a data-cite="INFRA#string">string</a> that conforms to the rules of [[RFC3986]] for <a>URIs</a> and which SHOULD also conform to the rules in Section <a href="#did-url-syntax"></a>.
               </td>
             </tr>
             <tr>
@@ -1446,7 +1446,7 @@ property.
               <td>REQUIRED</td>
               <td>
                 A <a data-cite="INFRA#string">string</a> or an <a data-cite="INFRA#ordered-set">ordered set</a> of <a data-cite="INFRA#string">strings</a> that conform to the rules in Section <a href="#did-syntax"></a>.
-              </td> 
+              </td>
             </tr>
             <tr>
               <td><code>type</code></td>
@@ -1458,7 +1458,7 @@ property.
             <tr>
               <td><code><a>publicKeyJwk</a></code></td>
               <td>OPTIONAL</td>
-              <td>A <a data-cite="INFRA#maps">map</a> representing a JSON Web Key that conforms to [[RFC7517]].</td>
+              <td>A <a data-cite="INFRA#maps">map</a> representing a JSON Web Key that conforms to [[RFC7517]]. This value MUST NOT contain "d", or any other members of the private information class as described in <a href="https://tools.ietf.org/html/rfc7517#section-8.1.1">Registration Template</a>.</td>
             </tr>
             <tr>
               <td><code><a>publicKeyBase58</a></code></td>
@@ -1489,7 +1489,7 @@ property.
               <td><code>id</code></td>
               <td>REQUIRED</td>
               <td>
-                when used on a <a>Service Endpoint</a>: a <a data-cite="INFRA#string">string</a> that conforms to the rules of [[RFC3986]] for <a>URI</a>-s.
+                when used on a <a>Service Endpoint</a>: a <a data-cite="INFRA#string">string</a> that conforms to the rules of [[RFC3986]] for <a>URIs</a>.
               </td>
             </tr>
             <tr>
@@ -1503,7 +1503,7 @@ property.
               <td><code><a>serviceEndpoint</a></code></td>
               <td>OPTIONAL</td>
               <td>
-                A <a data-cite="INFRA#string">string</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s, a <a data-cite="INFRA#string">map</a>, or an <a data-cite="INFRA#ordered-set">ordered set</a> composed of a one or more <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s and/or <a data-cite="INFRA#string">maps</a>.
+                A <a data-cite="INFRA#string">string</a> that conform to the rules of [[RFC3986]] for <a>URIs</a>, a <a data-cite="INFRA#string">map</a>, or an <a data-cite="INFRA#ordered-set">ordered set</a> composed of a one or more <a data-cite="INFRA#string">strings</a> that conform to the rules of [[RFC3986]] for <a>URI</a>-s and/or <a data-cite="INFRA#string">maps</a>.
               </td>
             </tr>
           </tbody>
@@ -2414,7 +2414,7 @@ and <a href="#authentication"></a>.
     </section>
 
   </section>
-  
+
   </section>
 
   <section class="normative">
@@ -2889,7 +2889,7 @@ The <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a>
 }
                 </pre>
               </li>
-              <li>  
+              <li>
 An <a data-cite="INFRA#ordered-set">INFRA ordered set</a>,
 with first item the <a href="https://infra.spec.whatwg.org/#strings">INFRA
 string</a> <code>https://www.w3.org/ns/did/v1</code>, and subsequent items of
@@ -5023,12 +5023,12 @@ endpoint in the DID document adds privacy risk either due to correlation
 protected by an authorization mechanism, or both.
       </p>
       <p>
-The degree of additional privacy risk caused by using multiple service 
-endpoints in one DID document can be difficult to estimate. Privacy 
-harms are typically unintended consequences. DIDs can identify documents, 
-services, schemas, and other things that may be associated 
-with individual people, households, clubs, and employers &mdash; and 
-correlation of their service endpoints could become a powerful 
+The degree of additional privacy risk caused by using multiple service
+endpoints in one DID document can be difficult to estimate. Privacy
+harms are typically unintended consequences. DIDs can identify documents,
+services, schemas, and other things that may be associated
+with individual people, households, clubs, and employers &mdash; and
+correlation of their service endpoints could become a powerful
 surveillance and inference tool.
       </p>
       <p>
@@ -5054,21 +5054,21 @@ DIDs about things and documents that are associated with natural persons
           </li>
       </ol>
       <p>
-For the first category, consider non-DID publication mechanisms with only 
+For the first category, consider non-DID publication mechanisms with only
 a single service endpoint. In some cases, the publication mechanism might
 reference a DID Document with no service endpoints at all. For the second
-category, prefer using only one service that points to an authorization server, 
-mediator, or proxy that can provide herd immunity. For the third category, 
+category, prefer using only one service that points to an authorization server,
+mediator, or proxy that can provide herd immunity. For the third category,
 avoid the use of multiple service endpoints for a DID because some
 of these (e.g., an authorization server) are likely to be reused with other,
-related DIDs. Place correlatable service endpoints behind a 
-privacy-preserving  mechanism, if possible, or introduce a mediator or proxy 
-as a sole service endpoint in order to obscure related devices and documents 
+related DIDs. Place correlatable service endpoints behind a
+privacy-preserving  mechanism, if possible, or introduce a mediator or proxy
+as a sole service endpoint in order to obscure related devices and documents
 through herd immunity.
       </p>
     </section>
   </section>
-  
+
   <section class="informative">
     <h1>
       Examples
