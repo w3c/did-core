@@ -3982,7 +3982,11 @@ and without sub-second decimal precision. For example:
 DID document metadata SHOULD include an <code>updated</code> property to
 indicate the timestamp of the last <a href="#update">Update operation</a> for
 the document version which was resolved. The value of the property MUST follow
-the same formatting rules as the <code>created</code> property.
+the same formatting rules as the <code>created</code> property. The updated property
+is omitted if an Update operation has never been performed on the DID document.
+If an <code>updated</code> property exists, it may be the same value as the
+<code>created</code> property when the difference between the two timestamps
+is less than one second.
                 </p>
               </section>
 
