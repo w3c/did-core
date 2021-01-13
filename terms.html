@@ -188,12 +188,12 @@ path</a> (with its leading <code>/</code> character), optional <a>DID query</a>
   <dt><dfn>DID URL dereferencing</dfn></dt>
 
   <dd>
-The function that takes as its input a <a>DID URL</a>, a <a>DID document</a>,
-plus a set of dereferencing options, and returns a <a>resource</a>. This
+The function that takes as its input a <a>DID URL</a>
+and a set of input metadata, and returns a <a>resource</a>. This
 resource might be a <a>DID document</a> plus additional metadata, or it might be a
 secondary resource contained within the <a>DID document</a>, or it might be a
-resource entirely external to the <a>DID document</a>. If the function begins
-with a <a>DID URL</a>, it uses the <a>DID resolution</a> function to fetch a
+resource entirely external to the <a>DID document</a>. The function
+uses the <a>DID resolution</a> function to fetch a
 <a>DID document</a> indicated by the <a>DID</a> contained within the
 <a>DID URL</a>. The dereferencing function then can perform additional
 processing on the <a>DID document</a> to return the dereferenced resource
