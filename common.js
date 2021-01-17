@@ -166,11 +166,6 @@ var ccg = {
       ],
       date: "2011",
       publisher: "Information and Privacy Commissioner"
-    },
-    "IPFS": {
-      title: "InterPlanetary File System (IPFS)",
-      href: "https://docs.ipfs.io/",
-      publisher: "Protocol Labs"
     }
   }
 };
