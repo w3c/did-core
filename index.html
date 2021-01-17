@@ -3308,6 +3308,7 @@ preserved by default and represented as major type 3 (UTF-8 String)
 
       <section>
         <h3>CBOR Extensibility</h3>
+
         <p>
 In CBOR, one point of extensibility is with the use of CBOR tags. [[RFC7049]]
 defines a basic set of data types, as well as a tagging mechanism that enables
@@ -3336,6 +3337,18 @@ empty byte string is the empty text string of other representations.
 
         <section>
           <h4>DagCBOR</h4>
+
+          <p class="issue atrisk" data-number="551">
+The Working Group is seeking feedback concerning the implementability of
+the DagCBOR canonicalization algorithm in this section and the DagCBOR
+representation in general. If implementers are unable to provide an adequate
+test suite for the canonicalization algorithm and at least two interoperable
+implementations of the canonicalization algorithm and the DagCBOR
+representation, it is likely that this section of the specification will be
+moved into a separate document and registered as a representation extension
+in the DID Specification Registries [[DID-SPEC-REGISTRIES]].
+          </p>
+
           <p>
 DagCBOR is a further restricted subset of CBOR for representing the DID Document
 as a Directed Acyclic Graph model using canonical CBOR encoding
