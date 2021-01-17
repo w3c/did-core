@@ -4873,14 +4873,15 @@ Keep Personally-Identifiable Information (PII) Private
       </h2>
 
       <p>
-If a <a>DID method</a> specification is written for a public <a>verifiable data
-registry</a> where all <a>DIDs</a> and <a>DID documents</a> are publicly
+If a <a>DID method</a> specification is written for a public <a>verifiable
+data registry</a> where all <a>DIDs</a> and <a>DID documents</a> are publicly
 available, it is <em>critical</em> that <a>DID documents</a> contain no
 personally-identifiable information.
       </p>
       <p>
-Due
-diligence should be taken around the use of URLs in service endpoints
+Personally-identifiable information can instead be placed behind <a>service
+endpoints</a> under control of the <a>DID subject</a> or <a>DID controller</a>.
+Due diligence should be taken around the use of URLs in service endpoints
 to prevent leakage of personal data or correlation within a URL
 of a service endpoint. For example, a URL that contains a username is
 dangerous to include in a <a>DID Document</a> because the username is likely
@@ -4991,9 +4992,9 @@ methods</a> need to work to improve herd privacy, particularly for those who
 legitimately need it most. Choose technologies and human interfaces that
 default to preserving anonymity and pseudonymity. To reduce <a
 href="https://en.wikipedia.org/wiki/Device_fingerprint">digital
-fingerprints</a>, share common settings across implementations, keep
-negotiated options to a minimum on wire protocols, use encrypted transport
-layers, and pad messages to standard lengths.
+fingerprints</a>, share common settings across requesting party
+implementations, keep negotiated options to a minimum on wire protocols, use
+encrypted transport layers, and pad messages to standard lengths.
       </p>
     </section>
 
