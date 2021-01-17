@@ -892,7 +892,7 @@ as specified in <a data-cite="RFC3986#section-2.1">RFC3986 Section 2.1</a>.
             </tr>
             <tr>
               <td>
-<code>version-id</code>
+<code>versionId</code>
               </td>
               <td>
 Identifies a specific version of a <a>DID document</a> to be resolved (the
@@ -2444,7 +2444,7 @@ YAML.
     <p>
 Producers MUST indicate which representation of a document has been used via a
 media type in the document's metadata. Consumers MUST determine the
-representation of a <a>DID document</a> via the <code>content-type</code> DID
+representation of a <a>DID document</a> via the <code>contentType</code> DID
 resolver metadata field (see <a href="#did-resolution"></a>), <em>not</em>
 through the content of the <a>DID document</a> alone.
     </p>
@@ -2535,7 +2535,7 @@ JSON
       <p>
 This section sets out the requirements for producing and consuming <a>DID
 documents</a> that are in plain JSON (as indicated by a
-<code>content-type</code> of <code>application/did+json</code> in the resolver
+<code>contentType</code> of <code>application/did+json</code> in the resolver
 metadata).
       </p>
 
@@ -2807,7 +2807,7 @@ JSON-LD is a JSON-based format used to serialize
 <a href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a>.
 This section establishes the requirements for producing and consuming <a>DID
 documents</a> that are expressed as JSON-LD. JSON-LD <a>DID documents</a>
-are indicated by a <code>content-type</code> resolver metadata field that is
+are indicated by a <code>contentType</code> resolver metadata field that is
 set to <code>application/did+ld+json</code>.
       </p>
 
@@ -2993,7 +2993,7 @@ self-describing and has built-in semantics for interoperability.
       <p>
 The following sections outline the rules for producing and consuming
 <a>DID documents</a> that are expressed in CBOR as indicated by a
-<code>content-type</code> of <code>application/did+cbor</code> in the resolver
+<code>contentType</code> of <code>application/did+cbor</code> in the resolver
 metadata.
       </p>
 
@@ -3817,7 +3817,7 @@ this specification are in <a href="#did-resolution-metadata-properties"></a>.
               </p>
               <p>
 If the resolution is successful, and if the <code>resolveRepresentation</code>
-function was called, this structure MUST contain a <code>content-type</code>
+function was called, this structure MUST contain a <code>contentType</code>
 property containing the mime-type of the <code>did-document-stream</code> in
 this result. If the resolution is not successful, this structure MUST contain
 an <code>error</code> property describing the error.
@@ -3912,7 +3912,7 @@ common properties.
 
             <dl>
                 <dt>
-content-type
+contentType
                 </dt>
                 <dd>
 The MIME type of the returned <code>did-document-stream</code>. This property is
@@ -3936,21 +3936,21 @@ values of this field SHOULD be registered in the DID Specification Registries
 [[?DID-SPEC-REGISTRIES]]. This specification defines the following error values:
                     <dl>
                         <dt>
-invalid-did
+invalidDid
                         </dt>
                         <dd>
 The <a>DID</a> supplied to the <a>DID resolution</a> function does not conform
 to valid syntax. (See <a href="#did-syntax"></a>.)
                         </dd>
                         <dt>
-not-found
+notFound
                         </dt>
                         <dd>
 The <a>DID resolver</a> was unable to find the <a>DID document</a>
 resulting from this resolution request.
                         </dd>
                         <dt>
-representation-not-supported
+representationNotSupported
                         </dt>
                         <dd>
 This error code is returned if the representation requested via the
@@ -4003,10 +4003,10 @@ the same formatting rules as the <code>created</code> property.
 
             <section>
                 <h4>
-                  next-update
+                  nextUpdate
                 </h4>
                 <p>
-DID document metadata SHOULD include a <code>next-update</code> property if
+DID document metadata SHOULD include a <code>nextUpdate</code> property if
 the resolved document version is not the latest version of the document. It
 indicates the timestamp of the next <a href="#update">Update operation</a>.
 The value of the property MUST follow the same formatting rules as the
@@ -4016,10 +4016,10 @@ The value of the property MUST follow the same formatting rules as the
 
           <section>
               <h4>
-                version-id
+                versionId
               </h4>
               <p>
-DID document metadata SHOULD include a <code>version-id</code> property to
+DID document metadata SHOULD include a <code>versionId</code> property to
 indicate the version of the last <a href="#update">Update operation</a> for the
 document version which was resolved. The value of the property MUST be an <a
 data-lt="ascii string">ASCII string</a>.
@@ -4028,10 +4028,10 @@ data-lt="ascii string">ASCII string</a>.
 
           <section>
               <h4>
-                next-version-id
+                nextVersionId
               </h4>
               <p>
-DID document metadata SHOULD include a <code>next-version-id</code> property if
+DID document metadata SHOULD include a <code>nextVersionId</code> property if
 the resolved document version is not the latest version of the document. It
 indicates the version of the next <a href="#update">Update operation</a>. The
 value of the property MUST be an <a data-lt="ascii string">ASCII string</a>.
@@ -4291,7 +4291,7 @@ common properties.
 
             <dl>
                 <dt>
-content-type
+contentType
                 </dt>
                 <dd>
 The MIME type of the returned <code>content-stream</code> SHOULD be expressed
@@ -4308,14 +4308,14 @@ registered in the DID Specification Registries [DID-SPEC-REGISTRIES]]. This
 specification defines the following error values:
                     <dl>
                         <dt>
-invalid-did-url
+invalidDidUrl
                         </dt>
                         <dd>
 The <a>DID URL</a> supplied to the <a>DID URL Dereferencing</a> function does
 not conform to valid syntax. (See <a href="#did-url-syntax"></a>.)
                         </dd>
                         <dt>
-not-found
+notFound
                         </dt>
                         <dd>
 The <a>DID URL dereferencer</a> was unable to find the
@@ -4397,7 +4397,7 @@ metadata</a> if a DID was not found.
         <pre class="example"
         title="JSON-encoded DID resolution metadata example">
 {
-  "error": "not-found"
+  "error": "notFound"
 }
         </pre>
 
@@ -4407,7 +4407,7 @@ This example corresponds to a metadata structure of the following format:
 
         <pre class="example" title="DID resolution metadata example">
 «[
-  "error" → "not-found"
+  "error" → "notFound"
 ]»
         </pre>
 
@@ -5395,7 +5395,7 @@ result in changes to this specification.
 <div class="issue" data-number="496"> Inconsistent definition/name of DID Document (or abstract data model?)</div>
 <div class="issue" data-number="495">`updated` property's initial value is not defined clearly</div>
 <div class="issue" data-number="494">Discussion on "localized rules for handling properties" not described anywhere</div>
-<div class="issue" data-number="483">Issue with using `version-id` and key revocation</div>
+<div class="issue" data-number="483">Issue with using `versionId` and key revocation</div>
 <div class="issue" data-number="479">Provide better service.type examples</div>
 <div class="issue" data-number="468">Should "deactivated" be an error code?</div>
 <div class="issue" data-number="463">Naming classes of properties and syntax</div>
