@@ -359,14 +359,14 @@ well as <a>services</a> that can be used to interact with the <a>DID subject</a>
   "authentication": [{
     <span class="comment">// used to authenticate as did:...fghi</span>
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "Ed25519VerificationKey2018",
+    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }],
   "service": [{
     <span class="comment">// used to retrieve Verifiable Credentials associated with the DID</span>
     "id":"did:example:123456789abcdefghi#vcs",
-    "type": "VerifiableCredentialService",
+    "type": "VerifiableCredentialService", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://example.com/vc/"
   }]
 }
@@ -650,6 +650,15 @@ comments (<code>//</code>) and the use of ellipsis (<code>...</code>) to denote
 information that adds little value to the example. Implementers are cautioned to
 remove this content if they desire to use the information as valid JSON, CBOR,
 or JSON-LD.
+      </p>
+
+      <p>
+Some examples contain terms (both property names and values) that are not
+defined in this specification, for illustrative purposes. These are indicated
+with a comment (<code>// external (property name|value)</code>). Such terms,
+when used in a <a>DID document</a>, are expected to be registered in the DID
+Specification Registries [[?DID-SPEC-REGISTRIES]] with links to both a formal
+definition and JSON-LD context.
       </p>
 
       <p>
@@ -1123,7 +1132,7 @@ tend to be more verbose than necessary.
   "id": "did:example:123456789abcdefghi",
   "verificationMethod": [{
     "id": "did:example:123456789abcdefghi#key-1",
-    "type": "Ed25519VerificationKey2018",
+    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }, ...],
@@ -1665,9 +1674,8 @@ activity by an attacker. See Section <a href="#security-considerations"></a>.
   "id": "did:example:123456789abcdefghi",
   "controller": "did:example:bcehfew7h32f32h7af3",
   "service": [{
-    <span class="comment">// used to retrieve Verifiable Credentials
-    associated with the DID</span>
-    "type": "VerifiableCredentialService",
+    <span class="comment">// used to retrieve Verifiable Credentials associated with the DID</span>
+    "type": "VerifiableCredentialService",<span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://example.com/vc/"
   }]
 }
@@ -1872,7 +1880,7 @@ property of <em>result</em>, throw an error.
     <span class="comment">// this key is embedded and may *only* be used for authentication</span>
     {
       "id": "did:example:123456789abcdefghi#keys-2",
-      "type": "Ed25519VerificationKey2018",
+      "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
       "controller": "did:example:123456789abcdefghi",
       "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
@@ -1915,17 +1923,17 @@ please see [[?DID-SPEC-REGISTRIES]].
   <span class="comment">...</span>
   "verificationMethod": [{
     "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
-    "type": "JsonWebKey2020",
+    "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
     "controller": "did:example:123",
     "publicKeyJwk": {
-      "crv": "Ed25519",
-      "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ",
-      "kty": "OKP",
-      "kid": "_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A"
+      "crv": "Ed25519", <span class="comment">// external (property name)</span>
+      "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ", <span class="comment">// external (property name)</span>
+      "kty": "OKP", <span class="comment">// external (property name)</span>
+      "kid": "_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A" <span class="comment">// external (property name)</span>
     }
   }, {
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "Ed25519VerificationKey2018",
+    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
     "controller": "did:example:pqrstuvwxyz0987654321",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }],
@@ -2059,7 +2067,7 @@ a different <a>DID controller</a>, the entity associated with the value of
     <span class="comment">// embedded here rather than using only a reference</span>
     {
       "id": "did:example:123456789abcdefghi#keys-2",
-      "type": "Ed25519VerificationKey2018",
+      "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
       "controller": "did:example:123456789abcdefghi",
       "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
@@ -2111,7 +2119,7 @@ corresponding <a>DID Document</a>.
   <span class="comment">// embedded here rather than using only a reference</span>
   {
     "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018",
+    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }
@@ -2161,7 +2169,7 @@ to wrap a decryption key for the recipient.
     <span class="comment">// embedded here rather than using only a reference</span>
     {
       "id": "did:example:123#zC9ByQ8aJs8vrNXyDhPHHNNMSHPcaSgNpjjsBYpMMjsTdS",
-      "type": "X25519KeyAgreementKey2019",
+      "type": "X25519KeyAgreementKey2019", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyBase58": "9hFgmPVfmBZwRvFEyniQDBkz9LmV7gDEqytWyGZLmDXE"
     }
@@ -2214,7 +2222,7 @@ would need to verify that the <a>verification method</a> exists in the
     <span class="comment">// embedded here rather than using only a reference</span>
     {
     "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018",
+    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
@@ -2265,7 +2273,7 @@ to a party other than themselves.
     <span class="comment">// embedded here rather than using only a reference</span>
     {
     "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018",
+    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
@@ -2352,45 +2360,45 @@ standard specification.
 {
   "service": [{
     "id":"did:example:123#linked-domain",
-    "type": "LinkedDomains",
+    "type": "LinkedDomains", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://bar.example.com"
   }, {
     "id": "did:example:123456789abcdefghi#openid",
-    "type": "OpenIdConnectVersion1.0Service",
+    "type": "OpenIdConnectVersion1.0Service", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://openid.example.com/"
   }, {
     "id": "did:example:123456789abcdefghi#vcr",
-    "type": "CredentialRepositoryService",
+    "type": "CredentialRepositoryService", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://repository.example.com/service/8377464"
   }, {
     "id": "did:example:123456789abcdefghi#xdi",
-    "type": "XdiService",
+    "type": "XdiService", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://xdi.example.com/8377464"
   }, {
     "id": "did:example:123456789abcdefghi#agent",
-    "type": "AgentService",
+    "type": "AgentService", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://agent.example.com/8377464"
   }, {
     "id": "did:example:123456789abcdefghi#hub",
-    "type": "IdentityHub",
+    "type": "IdentityHub", <span class="comment">// external (property value)</span>
     "verificationMethod": "did:example:123456789abcdefghi#key-1",
     "serviceEndpoint": ["did:example:456", "did:example:789"]
   }, {
     "id": "did:example:123456789abcdefghi#messages",
-    "type": "MessagingService",
+    "type": "MessagingService", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://example.com/messages/8377464"
   }, {
     "id": "did:example:123456789abcdefghi#inbox",
-    "type": "SocialWebInboxService",
+    "type": "SocialWebInboxService", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://social.example.com/83hfh37dj",
-    "description": "My public social inbox",
-    "spamCost": {
-      "amount": "0.50",
-      "currency": "USD"
+    "description": "My public social inbox", <span class="comment">// external (property name)</span>
+    "spamCost": { <span class="comment">// external (property name)</span>
+      "amount": "0.50", <span class="comment">// external (property name)</span>
+      "currency": "USD" <span class="comment">// external (property name)</span>
     }
   }, {
     "id": "did:example:123456789abcdefghi#authpush",
-    "type": "DidAuthPushModeVersion1",
+    "type": "DidAuthPushModeVersion1", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefg"
   }]
 }
@@ -5042,7 +5050,7 @@ practice to avoid using the same verification method for multiple purposes.
     "authentication": [
       {
         "id": "did:example:123#z6MkecaLyHuYWkayBDLw5ihndj3T1m6zKTGqau3A51G7RBf3",
-        "type": "Ed25519VerificationKey2018",
+        "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
         "publicKeyBase58": "AKJP3f7BD6W4iWEQ9jwndVTCBq8ua2Utt8EEjJ6Vxsf"
       }
@@ -5050,7 +5058,7 @@ practice to avoid using the same verification method for multiple purposes.
     "capabilityInvocation": [
       {
         "id": "did:example:123#z6MkhdmzFu659ZJ4XKj31vtEDmjvsi5yDZG5L7Caz63oP39k",
-        "type": "Ed25519VerificationKey2018",
+        "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
         "publicKeyBase58": "4BWwfeqdp1obQptLLMvPNgBw48p7og1ie6Hf9p5nTpNN"
       }
@@ -5058,7 +5066,7 @@ practice to avoid using the same verification method for multiple purposes.
     "capabilityDelegation": [
       {
         "id": "did:example:123#z6Mkw94ByR26zMSkNdCUi6FNRsWnc2DFEeDXyBGJ5KTzSWyi",
-        "type": "Ed25519VerificationKey2018",
+        "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
         "publicKeyBase58": "Hgo9PAmfeoxHG8Mn2XHXamxnnSwPpkyBHAMNF3VyXJCL"
       }
@@ -5066,7 +5074,7 @@ practice to avoid using the same verification method for multiple purposes.
     "assertionMethod": [
       {
         "id": "did:example:123#z6MkiukuAuQAE8ozxvmahnQGzApvtW7KT5XXKfojjwbdEomY",
-        "type": "Ed25519VerificationKey2018",
+        "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
         "publicKeyBase58": "5TVraf9itbKXrRvt2DSS95Gw4vqU3CHAdetoufdcKazA"
       }
@@ -5081,88 +5089,88 @@ practice to avoid using the same verification method for multiple purposes.
   "verificationMethod": [
     {
       "id": "did:example:123#ZC2jXTO6t4R501bfCXv3RxarZyUbdP2w_psLwMuY6ec",
-      "type": "Ed25519VerificationKey2018",
+      "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     },
     {
       "id": "did:example:123#zQ3shP2mWsZYWgvgM11nenXRTx9L1yiJKmkf9dfX7NaMKb1pX",
-      "type": "EcdsaSecp256k1VerificationKey2019",
+      "type": "EcdsaSecp256k1VerificationKey2019", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyBase58": "d5cW2R53NHTTkv7EQSYR8YxaKx7MVCcchjmK5EgCNXxo",
     },
     {
       "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "OKP",
-        "crv": "Ed25519",
-        "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ"
+        "kty": "OKP", <span class="comment">// external (property name)</span>
+        "crv": "Ed25519", <span class="comment">// external (property name)</span>
+        "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ" <span class="comment">// external (property name)</span>
       }
     },
     {
       "id": "did:example:123#z6LSnjagzhe8Df6gZmroW3wjDd7XQLwAuYfwa4ZeTBCGFoYc",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "OKP",
-        "crv": "X25519",
-        "x": "pE_mG098rdQjY3MKK2D5SUQ6ZOEW3a6Z6T7Z4SgnzCE"
+        "kty": "OKP", <span class="comment">// external (property name)</span>
+        "crv": "X25519", <span class="comment">// external (property name)</span>
+        "x": "pE_mG098rdQjY3MKK2D5SUQ6ZOEW3a6Z6T7Z4SgnzCE" <span class="comment">// external (property name)</span>
       },
     }
     {
       "id": "did:example:123#4SZ-StXrp5Yd4_4rxHVTCYTHyt4zyPfN1fIuYsm6k3A",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "EC",
-        "crv": "secp256k1",
-        "x": "Z4Y3NNOxv0J6tCgqOBFnHnaZhJF6LdulT7z8A-2D5_8",
-        "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk"
+        "kty": "EC", <span class="comment">// external (property name)</span>
+        "crv": "secp256k1", <span class="comment">// external (property name)</span>
+        "x": "Z4Y3NNOxv0J6tCgqOBFnHnaZhJF6LdulT7z8A-2D5_8", <span class="comment">// external (property name)</span>
+        "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk" <span class="comment">// external (property name)</span>
       }
     },
     {
       "id": "did:example:123#n4cQ-I_WkHMcwXBJa7IHkYu8CMfdNcZKnKsOrnHLpFs",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "RSA",
-        "e": "AQAB",
-        "n": "omwsC1AqEk6whvxyOltCFWheSQvv1MExu5RLCMT4jVk9khJKv8JeMXWe3bWHatjPskdf2dlaGkW5QjtOnUKL742mvr4tCldKS3ULIaT1hJInMHHxj2gcubO6eEegACQ4QSu9LO0H-LM_L3DsRABB7Qja8HecpyuspW1Tu_DbqxcSnwendamwL52V17eKhlO4uXwv2HFlxufFHM0KmCJujIKyAxjD_m3q__IiHUVHD1tDIEvLPhG9Azsn3j95d-saIgZzPLhQFiKluGvsjrSkYU5pXVWIsV-B2jtLeeLC14XcYxWDUJ0qVopxkBvdlERcNtgF4dvW4X00EHj4vCljFw"
+        "kty": "RSA", <span class="comment">// external (property name)</span>
+        "e": "AQAB", <span class="comment">// external (property name)</span>
+        "n": "omwsC1AqEk6whvxyOltCFWheSQvv1MExu5RLCMT4jVk9khJKv8JeMXWe3bWHatjPskdf2dlaGkW5QjtOnUKL742mvr4tCldKS3ULIaT1hJInMHHxj2gcubO6eEegACQ4QSu9LO0H-LM_L3DsRABB7Qja8HecpyuspW1Tu_DbqxcSnwendamwL52V17eKhlO4uXwv2HFlxufFHM0KmCJujIKyAxjD_m3q__IiHUVHD1tDIEvLPhG9Azsn3j95d-saIgZzPLhQFiKluGvsjrSkYU5pXVWIsV-B2jtLeeLC14XcYxWDUJ0qVopxkBvdlERcNtgF4dvW4X00EHj4vCljFw" <span class="comment">// external (property name)</span>
       }
     },
     {
       "id": "did:example:123#_TKzHv2jFIyvdTGF1Dsgwngfdg3SH6TpDv0Ta1aOEkw",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "EC",
-        "crv": "P-256",
-        "x": "38M1FDts7Oea7urmseiugGW7tWc3mLpJh6rKe7xINZ8",
-        "y": "nDQW6XZ7b_u2Sy9slofYLlG03sOEoug3I0aAPQ0exs4"
+        "kty": "EC", <span class="comment">// external (property name)</span>
+        "crv": "P-256", <span class="comment">// external (property name)</span>
+        "x": "38M1FDts7Oea7urmseiugGW7tWc3mLpJh6rKe7xINZ8", <span class="comment">// external (property name)</span>
+        "y": "nDQW6XZ7b_u2Sy9slofYLlG03sOEoug3I0aAPQ0exs4" <span class="comment">// external (property name)</span>
       }
     },
     {
       "id": "did:example:123#8wgRfY3sWmzoeAL-78-oALNvNj67ZlQxd1ss_NX1hZY",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "EC",
-        "crv": "P-384",
-        "x": "GnLl6mDti7a2VUIZP5w6pcRX8q5nvEIgB3Q_5RI2p9F_QVsaAlDN7IG68Jn0dS_F",
-        "y": "jq4QoAHKiIzezDp88s_cxSPXtuXYFliuCGndgU4Qp8l91xzD1spCmFIzQgVjqvcP"
+        "kty": "EC", <span class="comment">// external (property name)</span>
+        "crv": "P-384", <span class="comment">// external (property name)</span>
+        "x": "GnLl6mDti7a2VUIZP5w6pcRX8q5nvEIgB3Q_5RI2p9F_QVsaAlDN7IG68Jn0dS_F", <span class="comment">// external (property name)</span>
+        "y": "jq4QoAHKiIzezDp88s_cxSPXtuXYFliuCGndgU4Qp8l91xzD1spCmFIzQgVjqvcP" <span class="comment">// external (property name)</span>
       }
     },
     {
       "id": "did:example:123#NjQ6Y_ZMj6IUK_XkgCDwtKHlNTUTVjEYOWZtxhp1n-E",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "EC",
-        "crv": "P-521",
-        "x": "AVlZG23LyXYwlbjbGPMxZbHmJpDSu-IvpuKigEN2pzgWtSo--Rwd-n78nrWnZzeDc187Ln3qHlw5LRGrX4qgLQ-y",
-        "y": "ANIbFeRdPHf1WYMCUjcPz-ZhecZFybOqLIJjVOlLETH7uPlyG0gEoMWnIZXhQVypPy_HtUiUzdnSEPAylYhHBTX2"
+        "kty": "EC", <span class="comment">// external (property name)</span>
+        "crv": "P-521", <span class="comment">// external (property name)</span>
+        "x": "AVlZG23LyXYwlbjbGPMxZbHmJpDSu-IvpuKigEN2pzgWtSo--Rwd-n78nrWnZzeDc187Ln3qHlw5LRGrX4qgLQ-y", <span class="comment">// external (property name)</span>
+        "y": "ANIbFeRdPHf1WYMCUjcPz-ZhecZFybOqLIJjVOlLETH7uPlyG0gEoMWnIZXhQVypPy_HtUiUzdnSEPAylYhHBTX2" <span class="comment">// external (property name)</span>
       }
     }
   ]
@@ -5182,7 +5190,7 @@ Model</a> for additional examples.
 
       <pre class="example"
         title="Verifiable Credential linked to a verification method of type Ed25519VerificationKey2018">
-{
+{  <span class="comment">// external (all terms in this example)</span>
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
     "https://w3id.org/citizenship/v1"
@@ -5225,7 +5233,7 @@ Model</a> for additional examples.
 
     <pre class="example"
       title="Verifiable Credential linked to a verification method of type JsonWebKey2020">
-{
+{  <span class="comment">// external (all terms in this example)</span>
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
     "https://www.w3.org/2018/credentials/examples/v1"
@@ -5252,7 +5260,7 @@ Model</a> for additional examples.
     </pre>
 
     <pre class="example" title="Verifiable Credential as Decoded JWT">
-{
+{ <span class="comment">// external (all terms in this example)</span>
   "protected": {
     "kid": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
     "alg": "EdDSA"
@@ -5299,7 +5307,7 @@ practice to avoid dislosing unnecessary information in JWE headers.
       </p>
 
       <pre class="example" title="JWE linked to a verification method via kid">
-{
+{ <span class="comment">// external (all terms in this example)</span>
   "ciphertext": "3SHQQJajNH6q0fyAHmw...",
   "iv": "QldSPLVnFf2-VXcNLza6mbylYwphW57Q",
   "protected": "eyJlbmMiOiJYQzIwUCJ9",
