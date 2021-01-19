@@ -3736,6 +3736,12 @@ resolveRepresentation ( did, did-resolution-input-metadata ) <br>
         </code></p>
 
         <p>
+The first <code>resolve</code> form returns the DID document in its abstract form
+without ever having to deserialize or parse.
+The second <code>resolveRepresentation</code> form returns a 
+byte stream still formatted in the corresponding representation.
+        </p>
+        <p>
 The input variables of these functions are as follows:
         </p>
 
