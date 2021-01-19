@@ -2216,7 +2216,7 @@ would need to verify that the <a>verification method</a> exists in the
   "@context": "https://www.w3.org/ns/did/v1", "id":
   "did:example:123456789abcdefghi",
   <span class="comment">...</span>
-  "capabilityInvocation: [
+  "capabilityInvocation": [
     <span class="comment">// this method can be used to invoke capabilities as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
     <span class="comment">// this method is *only* approved for capability invocation usage, it may not</span>
@@ -3540,7 +3540,7 @@ use the <a>verification methods</a> listed under
 operation is allowed.
         </li>
         <li>
-use other constructs in the <a>DID Document</a> to decide this, for example, a
+use other constructs in the <a>DID Document</a> to decide if, for example, a
 verification method specified under <code><a>capabilityInvocation</a></code>
 could be used to verify the invocation of a capability to update the DID
 Document.
