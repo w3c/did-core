@@ -178,9 +178,9 @@ subject.
     </p>
     <p>
 Each <a>DID document</a> can express cryptographic material, verification
-methods, or <a>service endpoints</a>, which provide a set of mechanisms enabling
-a <a>DID controller</a> to prove control of the <a>DID</a>. <a>Service
-endpoints</a> enable trusted interactions associated with the <a>DID
+methods, or <a>services</a>, which provide a set of mechanisms enabling
+a <a>DID controller</a> to prove control of the <a>DID</a>. <a>Services</a>
+enable trusted interactions associated with the <a>DID
 subject</a>. A <a>DID document</a> might contain the <a>DID subject</a> itself,
 if the <a>DID subject</a> is an information resource such as a data model.
     </p>
@@ -402,7 +402,7 @@ Decentralization
             <td>
 Eliminate the requirement for centralized authorities or single point
 failure in identifier management, including the registration of globally unique
-identifiers, public verification keys, <a>service endpoints</a>, and other
+identifiers, public verification keys, <a>services</a>, and other
 information.
             </td>
           </tr>
@@ -1077,7 +1077,7 @@ be interpreted in the same way across representations.
             <pre class="example nohighlight">did:example:123#public-key-0</pre>
           </li>
 
-          <li>A unique <a>service endpoint</a> in a <a>DID Document</a>
+          <li>A unique <a>service</a> in a <a>DID Document</a>
             <pre class="example nohighlight">did:example:123#agent</pre>
           </li>
 
@@ -1327,7 +1327,7 @@ property.
     <ol>
       <li>properties defined for a <a>DID Document</a>, serializing the topmost <a data-cite="INFRA#ordered-map">map</a> in the  <a href="#data-model">data model</a>;</li>
       <li>properties defined for a <a>Verification Method</a>, serializing a concept represented by a <a data-cite="INFRA#ordered-map">map</a> in the <a href="#data-model">data model</a>, and specified in Section <a href="#verification-methods"></a>; </li>
-      <li>properties defined for a <a>Service Endpoint</a>, serializing a concept represented by a <a data-cite="INFRA#ordered-map">map</a> in the <a href="#data-model">data model</a>, and specified in Section <a href="#service-endpoints"></a>.</li>
+      <li>properties defined for a <a>Service</a>, serializing a concept represented by a <a data-cite="INFRA#ordered-map">map</a> in the <a href="#data-model">data model</a>, and specified in Section <a href="#services"></a>.</li>
     </ol>
 
     <p class="note" title="Repeated properties">Some of the properties (e.g., <code>id</code> or <code>type</code>) are present in different classes but with possible differences in the associated constraints. Hence their repeated presence in the tables in Section <a href="#property-summary"></a>.</p>
@@ -1417,7 +1417,7 @@ property.
             <tr>
               <td><code><a>service</a></code></td>
               <td>OPTIONAL</td>
-              <td>An <a data-cite="INFRA#ordered-set">ordered set</a> of <a>Service Endpoint</a> <a data-cite="INFRA#ordered-map">maps</a>  (see <a href="#core-properties-for-a-service-endpoint"></a>).</td>
+              <td>An <a data-cite="INFRA#ordered-set">ordered set</a> of <a>Service</a> <a data-cite="INFRA#ordered-map">maps</a>  (see <a href="#core-properties-for-a-service"></a>).</td>
             </tr>
           </tbody>
         </table>
@@ -1475,7 +1475,7 @@ property.
 
 
       <section>
-        <h2>Core Properties for a Service Endpoint</h2>
+        <h2>Core Properties for a Service</h2>
 
       <table class=simple>
           <thead>
@@ -1490,7 +1490,7 @@ property.
               <td><code>id</code></td>
               <td>REQUIRED</td>
               <td>
-                when used on a <a>Service Endpoint</a>: a <a data-cite="INFRA#string">string</a> that conforms to the rules of [[RFC3986]] for <a>URIs</a>.
+                when used on a <a>Service</a>: a <a data-cite="INFRA#string">string</a> that conforms to the rules of [[RFC3986]] for <a>URIs</a>.
               </td>
             </tr>
             <tr>
@@ -2285,10 +2285,10 @@ to a party other than themselves.
     </section>
 
     <section>
-      <h2>Service Endpoints</h2>
+      <h2>Services</h2>
 
       <p>
-<a>Service endpoints</a> are used in <a>DID documents</a> to express ways of
+<a>Services</a> are used in <a>DID documents</a> to express ways of
 communicating with the <a>DID subject</a> or associated entities.
 <a>Services</a> listed in the <a>DID document</a> can contain information about
 privacy preserving messaging services, or more public information, such as
@@ -2309,7 +2309,7 @@ properties, as well as a <code><a>serviceEndpoint</a></code> property with a
 
       <p>
 One of the primary purposes of a <a>DID document</a> is to enable discovery of
-<a>service endpoints</a>. A <a>service endpoint</a> can be any type of service
+<a>services</a>. A <a>services</a> can be any type of service
 the <a>DID subject</a> wants to advertise, including
 <a>decentralized identity management</a> services for further discovery,
 authentication, authorization, or interaction.
@@ -2325,8 +2325,8 @@ A <a>DID document</a> MAY include a <code><a>service</a></code> property.
           <p>
 If a <a>DID document</a> includes a <code>service</code> property, the value
 of the property MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
-of <a>service endpoints</a>, where each service endpoint is described by a set
-of properties. Each <a>service endpoint</a> MUST have <code><a>id</a></code>,
+of <a>services</a>, where each service is described by a set
+of properties. Each <a>service</a> MUST have <code><a>id</a></code>,
 <code>type</code>, and <code><a>serviceEndpoint</a></code> properties, and MAY
 include additional properties.
           </p>
@@ -2352,11 +2352,11 @@ with the extension.
       </dl>
 
       <p>
-It is expected that the <a>service endpoint</a> protocol is published in an open
+It is expected that the <a>service</a> protocol is published in an open
 standard specification.
       </p>
 
-      <pre class="example nohighlight" title="Various service endpoints">
+      <pre class="example nohighlight" title="Various services">
 {
   "service": [{
     "id":"did:example:123#linked-domain",
@@ -2406,7 +2406,7 @@ standard specification.
 
       <p>
 For more information about security considerations regarding authentication
-<a>service endpoints</a> see Sections <a href="#method-schemes"></a>
+<a>services</a> see Sections <a href="#method-schemes"></a>
 and <a href="#authentication"></a>.
       </p>
     </section>
@@ -3667,8 +3667,8 @@ with all known <a>DLTs</a>, the expected burdens of those resources SHOULD be
 discussed in relation to denial of service.
       </p>
       <p>
-<a>DID methods</a> that introduce new authentication <a>service endpoint</a>
-types (see Section <a href="#service-endpoints"></a>) SHOULD consider the
+<a>DID methods</a> that introduce new authentication <a>service</a>
+types (see Section <a href="#services"></a>) SHOULD consider the
 security requirements of the supported authentication protocol.
       </p>
 
@@ -4586,9 +4586,9 @@ more information, see the Verifiable Credentials Data Model [[VC-DATA-MODEL]].
       <h2>Authentication Service Endpoints</h2>
 
       <p>
-If a <a>DID document</a> publishes a <a>service endpoint</a> intended for
+If a <a>DID document</a> publishes a <a>service</a> intended for
 authentication or authorization of the <a>DID subject</a> (see Section <a
-href="#service-endpoints"></a>), it is the responsibility of the <a>service
+href="#services"></a>), it is the responsibility of the <a>service
 endpoint</a> provider, subject, or requesting party to comply with the
 requirements of the authentication protocols supported at that <a>service
 endpoint</a>.
@@ -4738,7 +4738,7 @@ the same set of features, the less it can be manipulated by malicious actors.
         <p>
 As an example, consider that a single edit to a <a>DID document</a> can change
 anything except the root <code><a>id</a></code> property of the document. But
-is it actually desirable for a <a>service endpoint</a> to change its
+is it actually desirable for a <a>service</a> to change its
 <code>type</code> after it is defined? Or for a key to change its value? Or
 would it be better to require a new <code><a>id</a></code> when certain
 fundamental properties of an object change? Malicious takeovers of a website
