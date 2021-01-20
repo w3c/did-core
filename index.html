@@ -1164,16 +1164,16 @@ the data model.
     </p>
     <p>
 A <a>DID document</a> consists of a <a data-cite="INFRA#maps">map</a> of <a
-data-cite="INFRA#map-entry">properties</a>, where each property consists of
-a property name/property value pair. The data model contains at least two
-different classes of properties. The first class of properties are called
-core properties, and are specified in section <a href="#core-properties"></a>.
-The second class of properties are called representation properties, and
+data-cite="INFRA#map-entry">entries</a>, where each entry consists of
+an entry key/entry value pair. The data model contains at least two
+different classes of entries. The first class of entries are called
+properties, and are specified in section <a href="#core-properties"></a>.
+The second class are representation-specific entries, and
 are specified in section <a href="#representations"></a>.
     </p>
     <p>
-All property names in the data model are <a
-data-cite="INFRA#strings">strings</a>. All property values are expressed
+All entry keys in the data model are <a
+data-cite="INFRA#strings">strings</a>. All entry values are expressed
 using one of the abstract data types in the table below while each
 representation specifies the concrete serialization format of each data type.
     </p>
@@ -2443,29 +2443,30 @@ through the content of the <a>DID document</a> alone.
     </p>
 
     <p>
-Unrecognized properties MUST be preserved. An unrecognized property is any
-property that does not have explicit processing rules known to the consumer or
-producer. Consumers MUST add all properties that do not have explicit processing
+Unrecognized entries in the <a href="#data-model">data
+model</a> MUST be preserved. An unrecognized entry is any
+entry that does not have explicit processing rules known to the consumer or
+producer. Consumers MUST add all entries that do not have explicit processing
 rules for the representation being consumed to the <a href="#data-model">data
 model</a> using only the representation's generic type processing rules.
-Producers MUST serialize all properties in the <a href="#data-model">data
+Producers MUST serialize all entries in the <a href="#data-model">data
 model</a> that do not have explicit processing rules for the representation
 being produced using only the representation's generic type processing rules.
     </p>
 
-    <p class="note" title="Representation-specific syntax properties">
-Note that properties that contain representation-specific syntax will only have
+    <p class="note" title="Representation-specific entries">
+Note that entries that contain representation-specific syntax will only have
 special processing rules defined by a single representation. Consumers of a
-different representation are required to include these properties in the <a
+different representation are required to include these entries in the <a
 href="#data-model">data model</a> using only their generic type processing rules
 to enable lossless conversion of representations. Similarly, producers are
-required to treat properties containing representation-specific syntax using
+required to treat entries containing representation-specific syntax using
 generic type processing rules when producing a representation for which the
-property is not defined. Representations are required to define producer
-behavior for any such properties defined by the representation.
+entry is not defined. Representations are required to define producer
+behavior for any such entries defined by the representation.
     </p>
 
-    <p class="note" title="Representation properties lexical and value space">
+    <p class="note" title="Representation lexical and value space">
 It is RECOMMENDED that representations use the lexical representation
 of registered data types. For example, JSON and JSON-LD use the XML
 Schema dateTime lexical representation to represent <a>datetimes</a>.
@@ -2494,7 +2495,7 @@ representations require the following:
       <ol>
         <li>
 A representation MUST define an unambiguous encoding and decoding for all
-property names and all <a href="#data-model">data model</a> <a
+entry key and all <a href="#data-model">data model</a> <a
 href="#data-model">data types</a> as defined in this specification. This enables
 anything that can be represented in the  <a href="#data-model">data model</a> to
 also be represented in a compliant representation.
@@ -2510,7 +2511,7 @@ are conformant with the fragment processing rules defined in section
         </li>
         <li>
 The representation MAY define representation-specific syntax that can be stored
-as properties in the <a href="#data-model">data model</a>. These properties are
+as entries in the <a href="#data-model">data model</a>. These entries are
 included when consuming or producing to aid in ensuring lossless conversion.
         </li>
       </ol>
@@ -2537,11 +2538,11 @@ metadata).
 
         <p>
 A <a>DID document</a> MUST be a single <a data-cite="RFC8259#section-4">JSON
-object</a> conforming to [[!RFC8259]]. All properties of the <a>DID
-document</a> MUST be represented by using the property name as the name of the
-member of the JSON object. The values of properties of the <a
-href="#data-model">data model</a> described in <a href="#data-model"></a>,
-including all extensions, are encoded in JSON [[RFC8259]] by mapping property
+object</a> conforming to [[!RFC8259]]. All entries of the <a>DID
+document</a> data model described in <a href="#data-model"></a>
+MUST be represented by using the entry key as the name of the
+member of the JSON object. The values of entries,
+including all extensions, are encoded in JSON [[RFC8259]] by mapping entry
 values to JSON types as follows:
         </p>
 
@@ -2563,9 +2564,9 @@ JSON Representation Type
 <a data-cite="INFRA#maps">ordered&nbsp;map</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-4">JSON Object</a>, each property is represented
-as a member of the JSON Object with the property name as the member name and the
-property value according to its type, as defined in this section
+<a data-cite="RFC8259#section-4">JSON Object</a>, each entry is represented
+as a member of the JSON Object with the entry key as the member name and the
+entry value according to its type, as defined in this section
               </td>
             </tr>
             <tr>
@@ -2650,8 +2651,8 @@ the [[INFRA]] specification.
         </p>
 
         <p>
-All properties of the <a>DID document</a> MUST be included in
-the root object. Properties MAY define additional data sub structures subject
+All entries of the <a>DID document</a> MUST be included in
+the root object. Entries MAY define additional data sub structures subject
 to the value representation rules in the list above.
         </p>
 
@@ -2663,8 +2664,8 @@ to the value representation rules in the list above.
         <p>
 The topmost element MUST be a JSON object. Any other data type at the topmost
 level is an error and MUST be rejected. The topmost JSON object represents the
-<a>DID document</a>, and all members of this object are properties of the <a>DID
-document</a>. The object member name is the property name, and the member value
+<a>DID document</a>, and all members of this object are entries of the <a>DID
+document</a>. The object member name is the entry key, and the member value
 is interpreted as follows:
         </p>
 
@@ -2687,16 +2688,16 @@ Data&nbsp;Type
               </td>
               <td>
 <a data-cite="INFRA#maps">ordered&nbsp;map</a>, each member of the JSON Object
-is added as a property to the ordered map with the property name being the
+is added as an entry to the ordered map with the entry key being the
 member name and the value converted based on the JSON type and, if available,
-property definition, as defined here; as no order is specified by JSON Objects,
+entry definition, as defined here; as no order is specified by JSON Objects,
 no insertion order is guaranteed
               </td>
             </tr>
             <tr>
               <td>
 <a data-cite="RFC8259#section-5">JSON Array</a> where <a href="#data-model">data
-model</a> property value is a <a data-cite="INFRA#list">list</a> or unknown
+model</a> entry value is a <a data-cite="INFRA#list">list</a> or unknown
               </td>
               <td>
 <a data-cite="INFRA#list">list</a>, each value of the JSON Array is added to the
@@ -2707,7 +2708,7 @@ here
             <tr>
               <td>
 <a data-cite="RFC8259#section-5">JSON Array</a> where <a href="#data-model">data
-model</a> property value is an <a
+model</a> entry value is an <a
 data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
@@ -2719,7 +2720,7 @@ the array value, as defined here
             <tr>
               <td>
 <a data-cite="RFC8259#section-7">JSON String</a> where <a
-href="#data-model">data model</a> property value is an <a>datetime</a>
+href="#data-model">data model</a> entry value is an <a>datetime</a>
               </td>
               <td>
 <a>datetime</a>
@@ -2728,7 +2729,7 @@ href="#data-model">data model</a> property value is an <a>datetime</a>
             <tr>
               <td>
 <a data-cite="RFC8259#section-7">JSON String</a>, where <a
-href="#data-model">data model</a> property value type is <a>string</a> or
+href="#data-model">data model</a> entry value type is <a>string</a> or
 unknown
               </td>
               <td>
@@ -2747,7 +2748,7 @@ fractional component
             <tr>
               <td>
 <a data-cite="RFC8259#section-6">JSON Number</a> with a fractional component, or
-when property value is a <a>double</a> regardless of inclusion of fractional
+when entry value is a <a>double</a> regardless of inclusion of fractional
 component
               </td>
               <td>
@@ -2845,7 +2846,7 @@ require them.
 The <a>DID document</a> MUST be serialized according to the
 <a href="#production">production rules for JSON</a>, with one additional
 requirement: The <a>DID document</a> MUST include the <code>@context</code>
-property.
+entry.
         </p>
 
         <dl>
@@ -2854,9 +2855,9 @@ property.
 
             <p>
 The <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD
-specification</a> defines values that are valid for this property. This property
+specification</a> defines values that are valid for this entry. This entry
 contains representation-specific syntax and therefore could be present in the <a
-href="#data-model">data model</a> to aid in lossless conversion. If the property
+href="#data-model">data model</a> to aid in lossless conversion. If the entry
 is present in the <a href="#data-model">data model</a>, it MUST be used during
 production unless either an alternative <code>@context</code> value is
 explicitly provided to the producer or if the value from the data model is not
@@ -2897,7 +2898,7 @@ type <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a> or
             </ul>
 
             <p>
-All members of the <code>@context</code> property SHOULD exist in the DID
+All members of the <code>@context</code> entry SHOULD exist in the DID
 specification registries [[?DID-SPEC-REGISTRIES]] in order to achieve
 interoperability across different representations. If a member does not exist
 in the DID specification registries, then the <a>DID document</a> might not be
@@ -2906,7 +2907,7 @@ interoperable across representations.
 
             <p>
 It is RECOMMENDED that dereferencing each <a>URI</a> value of the
-<code>@context</code> property results in a document containing
+<code>@context</code> entry results in a document containing
 machine-readable information about the context. Note that further expectations
 of additional JSON-LD contexts are described as part of the DID specification
 registries registration process.
@@ -2928,14 +2929,14 @@ defined via the <code>@context</code>. Properties that are not defined via the
 The <a>DID document</a> MUST be deserialized as a JSON document according to
 the <a href="#consumption">consumption rules for JSON</a>, with one additional
 requirement: The <a>DID document</a> MUST include the <code>@context</code>
-property and be processed according to the rules below.
+entry and be processed according to the rules below.
         </p>
 
         <dl>
           <dt>@context</dt>
           <dd>
             <p>
-The value of the <code>@context</code> property conforms to the
+The value of the <code>@context</code> entry conforms to the
 <a href="#production-0">JSON-LD Production Rules</a>. If more than one
 <a>URI</a> is provided, the <a>URIs</a> MUST be interpreted as an
 <a data-cite="INFRA#ordered-set">ordered set</a>.
@@ -2974,11 +2975,11 @@ metadata.
 
         <p>
 A <a>DID document</a> MUST be a single <a data-cite="RFC7049#section-2.1">CBOR
-Map</a> conforming to [[RFC7049]]. All topmost properties of the <a>DID
-document</a> MUST be represented by using the property name as the name of the
-key of the CBOR Map. The values of properties of the <a href="#data-model">data
+Map</a> conforming to [[RFC7049]]. All topmost entries of the <a>DID
+document</a> MUST be represented by using the entry key as the name of the
+key of the CBOR Map. The values of entries of the <a href="#data-model">data
 model</a> described in Section <a href="#data-model"></a>, including all
-extensions, are encoded in CBOR [[RFC7049]] by mapping property values to CBOR
+extensions, are encoded in CBOR [[RFC7049]] by mapping entry values to CBOR
 types as follows:
         </p>
 
@@ -3000,9 +3001,9 @@ CBOR Representation Type
 <a data-cite="INFRA#maps">ordered&nbsp;map</a>
               </td>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR map</a> (major type 5), each property
-is represented as a member of the CBOR Map with the property name as the key and
-the property value according to its type, as defined in this section
+<a data-cite="RFC7049#section-2.1">CBOR map</a> (major type 5), each entry
+is represented as a member of the CBOR Map with the entry key as the key and
+the entry value according to its type, as defined in this section
               </td>
             </tr>
             <tr>
@@ -3105,17 +3106,17 @@ length.</a>
         </p>
 
         <ul>
-          <li>Property names MUST be represented as text string (major type 3) and contain only UTF-8 strings.</li>
+          <li>Entry keys MUST be represented as text string (major type 3) and contain only UTF-8 strings.</li>
           <li>Undefined Values of Required Properties as defined in <a href="#data-model">the Data Model</a> that are absent from the CBOR representation SHOULD be labeled with Primitive type (major type 7) with value 23 (Undefined value).</li>
-          <li>Property names in each CBOR map MUST be unique.</li>
+          <li>Entry keys in each CBOR map MUST be unique.</li>
           <li>Integer encoding MUST be as short as possible.</li>
           <li>The expression of lengths in CBOR major types 2 through 5 MUST be as short as possible.</li>
           <li>The keys in every map must be sorted lowest value to highest. Sorting is performed on the bytes of the representation of the keys. If two keys have different lengths, the shorter one sorts earlier.  If two keys have the same length, the one with the lower value in (byte-wise) lexical order sorts earlier.</li>
         </ul>
 
       <p>
-All properties of the DID document represented in CBOR MUST be included in the
-root map (major type 5). Properties MAY define additional data sub structures
+All entries of the DID document represented in CBOR MUST be included in the
+root map (major type 5). Entries MAY define additional data sub structures
 represented as nested CBOR maps (major type 5) and is subject to the value
 representation rules in the lists above and conformance to section <a
 href="#extensibility"> § 4.3 Extensibility</a>.
@@ -3173,7 +3174,7 @@ The topmost element MUST be a <a data-cite="RFC7049#section-2.1">CBOR map</a>
 the <a href="#data-model">data model</a>) is an error and MUST be
 rejected. The topmost <a data-cite="RFC7049#section-2.1">CBOR map</a>
 represents the <a>DID document</a>, and all data items of this map are
-properties of the <a>DID document</a>. The data item key is the property name,
+entries of the <a>DID document</a>. The data item key is the entry key,
 and the data item value is interpreted as follows:
         </p>
 
@@ -3196,16 +3197,16 @@ Data&nbsp;Type
               </td>
               <td>
 <a data-cite="INFRA#maps">ordered&nbsp;map</a>, each data item of the CBOR map
-is added as a property to the ordered map with the property name being the data
+is added as an entry to the ordered map with the entry key being the data
 item name and the value converted based on the CBOR type and, if available,
-property definition, as defined here; as no order can be enforced for general
+entry definition, as defined here; as no order can be enforced for general
 CBOR maps, no insertion order is guaranteed.
               </td>
             </tr>
             <tr>
               <td>
 <a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), where the <a
-href="#data-model">data model</a> property value is a <a
+href="#data-model">data model</a> entry value is a <a
 data-cite="INFRA#list">list</a> or unknown
               </td>
               <td>
@@ -3217,7 +3218,7 @@ converted based on the CBOR type of the array value, as defined in this table
             <tr>
               <td>
 <a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), where the <a
-href="#data-model">data model</a> property value is an <a
+href="#data-model">data model</a> entry value is an <a
 data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
@@ -3230,7 +3231,7 @@ in this table
             <tr>
               <td>
 <a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5) where the
-<a href="#data-model">data model</a> property value is a <a>datetime</a>
+<a href="#data-model">data model</a> entry value is a <a>datetime</a>
               </td>
               <td>
   <a>datetime</a>
@@ -3239,7 +3240,7 @@ in this table
             <tr>
               <td>
 <a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5), where the <a
-href="#data-model">data model</a> property value type is <a>string</a> or
+href="#data-model">data model</a> entry value type is <a>string</a> or
 unknown
               </td>
               <td>
@@ -3299,7 +3300,7 @@ Duplicate key in the same CBOR map MUST throw an Error.
           </li>
           <li>
 <a href="https://tools.ietf.org/html/rfc7049#section-3.3.3">Unknown Additional
-Properties and Values</a> that are not defined in <a href="#data-model">data
+Entries</a> that are not defined in <a href="#data-model">data
 model</a>, represented in the `@context`, or represented in <a href="">the DID
 spec registries</a> or be explicitly documented as an extension of the DID
 document conformant to <a href="#extensibility"> § 4.3 Extensibility</a> MUST be
