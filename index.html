@@ -4046,13 +4046,13 @@ A conforming <a>DID Method</a> specification MUST guarantee that each
 <code>id</code> property value.
                   </dd>
                   <dd>
-A resolving party is expected to retain the values from the <code>id</code> and
+A requesting party is expected to retain the values from the <code>id</code> and
 <code><a>equivalentId</a></code> properties to ensure any subsequent
 interactions with any of the values they contain are correctly handled as
 logically equivalent (e.g. retain all variants in a database so an interaction
 with any one maps to the same underlying account). <span class="issue">The
-testability of resolving parties is currently under debate and normative
-statements related to resolving parties may be downgraded in the future from a
+testability of requesting parties is currently under debate and normative
+statements related to requesting parties may be downgraded in the future from a
 MUST to a SHOULD/MAY or similar language.</span>
                   </dd>
                 </dl>
@@ -4114,12 +4114,12 @@ A conforming <a>DID Method</a> specification MUST guarantee that the
 <code>id</code> property value.
                   </dd>
                   <dd>
-A resolving party is expected to use the <code><a>canonicalId</a></code> value
+A requesting party is expected to use the <code><a>canonicalId</a></code> value
 as its primary ID value for the DID subject and treat all other equivalent
 values as secondary aliases. (e.g. update corresponding primary references in
 their systems to reflect the new canonical ID directive). <span
-class="issue">The testability of resolving parties is currently under debate and
-normative statements related to resolving parties may be downgraded in the
+class="issue">The testability of requesting parties is currently under debate and
+normative statements related to requesting parties may be downgraded in the
 future from a MUST to a SHOULD/MAY or similar language.</span>
                   </dd>
                 </dl>
@@ -4791,7 +4791,7 @@ related to attacks against DIDs that are asserted to be equivalent.
 The <code><a>equivalentId</a></code> and <code><a>canonicalId</a></code>
 properties that constrain equivalence assertions to variants of a single DID
 produced by the same <a>DID method</a> (e.g. <code>did:foo:123</code> ≡
-<code>did:foo:hash(123)</code>) can be trusted to the extent the resolving party
+<code>did:foo:hash(123)</code>) can be trusted to the extent the requesting party
 trusts the <a>DID method</a> (and a conforming producer) itself.
       </p>
       <p>
