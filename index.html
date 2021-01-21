@@ -4854,6 +4854,39 @@ hash for the context as registered in the DID specification registries
 (see the registration process for more detail) [[?DID-SPEC-REGISTRIES]].
       </p>
     </section>
+
+    <section>
+      <h2>
+Level of Assurance
+      </h2>
+
+      <p>
+Especially, in regulated areas such as the financial and the public sector,
+additional information about the security context of authentication events
+is often required for compliance reasons. Examples include but are not
+limited to protection of secret keys, the identity proofing process and the
+form-factor of the authenticator. For example, <a target="_blank"
+href="https://https://ec.europa.eu/info/law/payment-services-psd-2-directive-eu-2015-2366_en">
+Payment services (PSD 2)</a> and
+<a target="_blank"
+href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2014.257.01.0073.01.ENG">
+eIDAS</a> introduce requirements on the security context. Level of 
+Assurance (LoA) frameworks define LoAs and make recommendations on how to 
+achieve them including requirements for the security context. A LoA 
+represents the level of confidence that an entity is in fact that entity.
+Some regulated use cases require the implementation of a certain LoA. Since
+<a>verification relationships</a> such as <code><a>assertionMethod</a></code>
+and <code><a>authentication</a></code> may be used in some of these use
+cases, it may be needed to express and provide to a <a>verifier</a> information
+about the applied security context. It is out of scope of this
+specification if and how to encode this information in the <a>DID document</a> 
+data model but it should be noted that the <a>DID document</a> data model can
+be extended if this is needed (<a href="#extensibility">Extensibility</a> section).
+In this case, section <a href="#privacy-considerations">Privacy Considerations</a>)
+still applies.
+      </p>
+    </section>
+
   </section>
 
   <section class="informative">
