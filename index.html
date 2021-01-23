@@ -4674,23 +4674,199 @@ of a resolver ought to be compatible with such extension behavior.
     </section>
 
     <section>
-      <h2>
-Key Revocation and Recovery
-      </h2>
+      <h2>Verification Method Rotation</h2>
+  
+      <p>Verification method rotation is a proactive security measure.</p>
+  
+      <p>
+        Verification method rotation applies only to the current or latest
+        verison of a DID Document.
+      </p>
+  
+      <p>
+        When a verification method has been active for a long time, or used
+        for many operations, a controller might wish to perform a rotation.
+      </p>
+  
+      <p class="advisement">
+        It is considered a best practice to perform verification method
+        rotation on a regular basis.
+      </p>
+
+      <p class="advisement">
+        Proofs or signatures that rely on verification methods that are not
+        present in the latest version of a DID Document are not impacted by
+        rotation, and may require additional information to mitigate compromise.
+      </p>
+  
+      <p>
+        Section <a href="#method-operations"></a> specifies the
+        <a>DID</a> operations to be supported by a
+        <a>DID method</a> specification, including
+        <a href="#update">update</a>
+        which MUST be used to perform a verification method rotation.
+      </p>
+  
+      <p>
+        A controller performs a rotation when they add a new verification
+        method that is meant to replace an existing verification method after
+        some time.
+      </p>
+  
+      <p>Not all DID Methods support verification method rotation.</p>
+  
+      <p>
+        Unlike revocation, rotation allows for new verifications associated
+        with the <code>id</code>, to be valid, while invalidating older
+        verifications once the older verification method is removed.
+      </p>
+  
+      <p>
+        Rotation is a useful mechanism for protecting against verification
+        method compromise, since frequent rotation of a verification method by
+        the controller, reduces the value of a compromised verification method
+        to an attacker.
+      </p>
+  
+      <p class="note">
+        Higher security environments tend to employ more frequent verification
+        method rotation.
+      </p>
+  
+      <p class="note">
+        Frequent rotation of a verification method might be frustrating for
+        parties that are forced to continiously renew or refresh associated
+        credentials.
+      </p>
+    </section>
+  
+    <section>
+      <h2>Verification Method Revocation</h2>
+  
+      <p>Verification method revocation is a reactive security measure.</p>
 
       <p>
-It is up to <a>DID methods</a> to define how revocation of cryptographic keys
-might occur. <a>DID method</a> specifications are also expected
-to enable support for a quorum of trusted parties to enable key recovery. Some
-of the facilities to do so are suggested in Section
-<a href="#did-controller"></a>. Not all <a>DID method</a>
-specifications will recognize control from <a>DIDs</a> registered using other
-<a>DID methods</a> and they might restrict third-party control to <a>DIDs</a>
-that use the same method. Access control and key recovery in a
-<a>DID method</a> specification can also include a time lock feature to
-protect against key compromise by maintaining a second track of control for
-recovery.
-</p>
+        Verification method revocation applies only to the current or latest
+        verison of a DID Document.
+      </p>
+  
+      <p>
+        If a verification method is no longer exclusivley accessible to the
+        controller or parties trusted to act on behalf of the controller, it
+        should be revoked immediatly to reduce the risk of masquerading, theft
+        and fraud.
+      </p>
+  
+      <p class="advisement">
+        It is considered a best practice to support key revocation.
+      </p>
+  
+      <p class="advisement">
+        A controller should revoke any verification method that is believed to
+        be compromised immediatly.
+      </p>
+  
+      <p class="advisement">
+        Cryptographic verifications associated with revoked verification
+        methods should be considered invalid regardless of when revocation
+        occurs.
+      </p>
+  
+      <p class="note">
+        As described in Section <a href="#verification-method-types"></a>,
+        absence of a verification method is the only form of revocation that
+        applies to all DID Methods.
+      </p>
+  
+      <p>
+        Section <a href="#method-operations"></a> specifies the
+        <a>DID</a> operations to be supported by a
+        <a>DID method</a> specification, including
+        <a href="#update">update</a> and <a href="#deactivate">deactivate</a>
+        which MAY be used to remove verification method from a DID Document.
+      </p>
+
+      <p>Not all DID Methods support verification method revocation.</p>
+  
+      <p>
+        Even if a verification method is present in a DID Document, additional
+        information such as a public key revocation certificate, or external
+        allow or deny list might be used to determine if a verification method
+        has been revoked.
+      </p>
+  
+      <p class="note">
+        Compromise of a verification method allows the attacker access to the verification 
+        relationship of the controller, for example authentication.
+        The attacker is indistinguishable from the legitimate controller from the 
+        time the compromised verification method was registered, to the time it was revoked.
+      </p>
+
+      <p class="note">
+        The day-to-day operation of any software relying on a compromised verification method 
+        might be impacted by a user’s operating system, antivirus, or endpoint protection software 
+        when the verification method is publicly revoked.
+      </p>
+
+    </section>
+  
+    <section>
+      <h2>DID Recovery</h2>
+  
+      <p>
+        Recovery is a reactive security measure, whereby a controller is able
+        to regain the ability to perform DID operations.
+      </p>
+  
+      <p class="advisement">
+        Recovery is advised when a controller or services trusted to act on
+        their behalf no longer has the exclusive ability to perform DID
+        operations as described in <a href="#method-operations"></a>.
+      </p>
+  
+      <p class="advisement">
+        It is considered a best practice to never reuse a verification method
+        or key material associated with recovery for any other purposes.
+      </p>
+  
+      <p>
+        Recovery is commonly performed in conjunction with
+        <a href="#verification-method-rotation"
+          >verification method rotation</a
+        >
+        and
+        <a href="#verification-method-revocation"
+          >verification method revocation</a
+        >.
+      </p>
+  
+      <p>
+        There are no common recovery mechanisms that apply to all DID Methods.
+      </p>
+  
+      <p>
+        <a>DID method</a> specifications might choose to enable support for a
+        quorum of trusted parties to faciliate recovery. Some of the
+        facilities to do so are suggested in Section
+        <a href="#did-controller"></a>.
+      </p>
+  
+      <p>
+        Not all <a>DID method</a> specifications will recognize control from
+        <a>DIDs</a> registered using other <a>DID methods</a> and they might
+        restrict third-party control to <a>DIDs</a> that use the same method.
+      </p>
+  
+      <p>
+        Access control and recovery in a <a>DID method</a>
+        specification can also include a time lock feature to protect against
+        key compromise by maintaining a second track of control for recovery.
+      </p>
+  
+      <p class="note">
+        Performing recovery proactively on an infrequent but regular basis,
+        can help to ensure that control has not been lost.
+      </p>
     </section>
 
     <section>
