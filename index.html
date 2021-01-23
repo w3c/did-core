@@ -1344,6 +1344,12 @@ represented by a <a data-cite="INFRA#ordered-map">map</a> in the
       </li>
     </ol>
 
+    <p>
+The core properties are summarized informatively in Section
+<a href="#property-summary"></a> and described in detail and specificed
+normatively in subsequent sections.
+    </p>
+
     <p class="note" title="Repeated properties">
 Some of the properties (e.g., <code>id</code> or <code>type</code>) are
 present in different classes but with possible differences in the associated
@@ -1360,24 +1366,31 @@ important and implementations are not expected to produce or consume
 deterministically ordered values.
     </p>
 
-    <section>
+    <section class="informative">
       <h2>Property Summary</h2>
 
+      <p>
+This section contains an informative reference for the core properties in a
+<a>DID document</a>, with expected values and whether or not they are
+required. The property names in the tables are linked to the normative
+definitions and more detailed descriptions of each property.
+      </p>
+
       <section>
-        <h2>Core Properties for a <a>DID Document</a></h2>
+        <h2>Core Properties for a DID Document</h2>
 
         <table class=simple>
           <thead>
             <tr>
               <th>Property</th>
-              <th>Usage constraints</th>
+              <th>Required?</th>
               <th>Value constraints</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><code>id</code></td>
-              <td>REQUIRED</td>
+              <td>yes</td>
               <td>
 A <a data-cite="INFRA#string">string</a> that conforms to the rules in Section
 <a href="#did-syntax"></a>.
@@ -1385,7 +1398,7 @@ A <a data-cite="INFRA#string">string</a> that conforms to the rules in Section
             </tr>
             <tr>
               <td><code><a>alsoKnownAs</a></code></td>
-              <td>OPTIONAL</td>
+              <td>no</td>
               <td>
 An <a data-cite="INFRA#ordered-set">ordered set</a> of
 <a data-cite="INFRA#string">strings</a> that conform to the rules of
@@ -1394,7 +1407,7 @@ An <a data-cite="INFRA#ordered-set">ordered set</a> of
             </tr>
             <tr>
               <td><code><a>controller</a></code></td>
-              <td>OPTIONAL</td>
+              <td>no</td>
               <td>
 A <a data-cite="INFRA#string">string</a> or an
 <a data-cite="INFRA#ordered-set">ordered set</a> of
@@ -1404,82 +1417,46 @@ A <a data-cite="INFRA#string">string</a> or an
             </tr>
             <tr>
               <td><code><a>verificationMethod</a></code></td>
-              <td>OPTIONAL</td>
-              <td>
+              <td>no</td>
+              <td rowspan="6">
 An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification
 Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see Section
 <a href="#core-properties-for-a-verification-method"></a>) or
-<a data-cite="INFRA#string">strings</a> that conform to the rules of
-[[RFC3986]] for <a>URIs</a>. <br/>The <a>URI</a> values SHOULD also conform to
-the rules in Section <a href="#did-url-syntax"></a>.
+<a data-cite="INFRA#string">strings</a> that conform to the rules in Section
+<a href="#did-url-syntax"></a>.
               </td>
             </tr>
             <tr>
               <td><code><a>authentication</a></code></td>
-              <td>OPTIONAL</td>
-              <td>
-An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification
-Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see Section
-<a href="#core-properties-for-a-verification-method"></a>) or
-<a data-cite="INFRA#string">strings</a> that conform to the rules of
-[[RFC3986]] for <a>URIs</a>. <br/>The <a>URI</a> values SHOULD also conform to
-the rules in Section <a href="#did-url-syntax"></a>.
-              </td>
+              <td>no</td>
+
             </tr>
             <tr>
               <td><code><a>assertionMethod</a></code></td>
-              <td>OPTIONAL</td>
-              <td>
-An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification
-Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see
-<a href="#core-properties-for-a-verification-method"></a>) or
-<a data-cite="INFRA#string">strings</a> that conform to the rules of
-[[RFC3986]] for <a>URIs</a>. <br/>The <a>URI</a> values SHOULD also conform to
-the rules in Section <a href="#did-url-syntax"></a>.
-              </td>
+              <td>no</td>
+
             </tr>
             <tr>
               <td><code><a>keyAgreement</a></code></td>
-              <td>OPTIONAL</td>
-              <td>
-An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification
-Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see
-<a href="#core-properties-for-a-verification-method"></a>) or
-<a data-cite="INFRA#string">strings</a> that conform to the rules of
-[[RFC3986]] for <a>URIs</a>. <br/>The <a>URI</a> values SHOULD also conform to
-the rules in Section <a href="#did-url-syntax"></a>.
-              </td>
+              <td>no</td>
+
             </tr>
             <tr>
               <td><code><a>capabilityInvocation</a></code></td>
-              <td>OPTIONAL</td>
-              <td>
-An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification
-Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see
-<a href="#core-properties-for-a-verification-method"></a>) or
-<a data-cite="INFRA#string">strings</a> that conform to the rules of
-[[RFC3986]] for <a>URIs</a>. <br/>The <a>URI</a> values SHOULD also conform to
-the rules in Section <a href="#did-url-syntax"></a>.
-              </td>
+              <td>no</td>
+
             </tr>
             <tr>
               <td><code><a>capabilityDelegation</a></code></td>
-              <td>OPTIONAL</td>
-              <td>
-An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification
-Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see
-<a href="#core-properties-for-a-verification-method"></a>) or
-<a data-cite="INFRA#string">strings</a> that conform to the rules of
-[[RFC3986]] for <a>URIs</a>. <br/>The <a>URI</a> values SHOULD also conform to
-the rules in Section <a href="#did-url-syntax"></a>.
-              </td>
+              <td>no</td>
+
             </tr>
             <tr>
               <td><code><a>service</a></code></td>
-              <td>OPTIONAL</td>
+              <td>no</td>
               <td>
 An <a data-cite="INFRA#ordered-set">ordered set</a> of <a>Service Endpoint</a>
-<a data-cite="INFRA#ordered-map">maps</a>(see Section
+<a data-cite="INFRA#ordered-map">maps</a> (see Section
 <a href="#core-properties-for-a-service-endpoint"></a>).
               </td>
             </tr>
@@ -1494,23 +1471,22 @@ An <a data-cite="INFRA#ordered-set">ordered set</a> of <a>Service Endpoint</a>
           <thead>
             <tr>
               <th>Property</th>
-              <th>Usage constraints</th>
+              <th>Required?</th>
               <th>Value constraints</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><code>id</code></td>
-              <td>REQUIRED</td>
+              <td>yes</td>
               <td>
-A <a data-cite="INFRA#string">string</a> that conforms to the rules of
-[[RFC3986]] for <a>URIs</a> and which SHOULD also conform to the rules in
+A <a data-cite="INFRA#string">string</a> that conforms to the rules in
 Section <a href="#did-url-syntax"></a>.
               </td>
             </tr>
             <tr>
               <td><code><a>controller</a></code></td>
-              <td>REQUIRED</td>
+              <td>yes</td>
               <td>
 A <a data-cite="INFRA#string">string</a> or an
 <a data-cite="INFRA#ordered-set">ordered set</a> of
@@ -1520,7 +1496,7 @@ A <a data-cite="INFRA#string">string</a> or an
             </tr>
             <tr>
               <td><code>type</code></td>
-              <td>REQUIRED</td>
+              <td>yes</td>
               <td>
 A <a data-cite="INFRA#string">string</a> or an
 <a data-cite="INFRA#ordered-set">ordered set</a> of
@@ -1529,18 +1505,16 @@ A <a data-cite="INFRA#string">string</a> or an
             </tr>
             <tr>
               <td><code><a>publicKeyJwk</a></code></td>
-              <td>OPTIONAL</td>
+              <td>no</td>
               <td>
 A <a data-cite="INFRA#maps">map</a> representing a JSON Web Key that conforms
-to [[RFC7517]]. This value MUST NOT contain "d", or any other members of the
-private information class as described in
-<a href="https://tools.ietf.org/html/rfc7517#section-8.1.1">Registration
-Template</a>.
+to [[RFC7517]]. See <a href="#dfn-publickeyjwk">definition of publicKeyJwk</a>
+for additional constraints.
               </td>
             </tr>
             <tr>
               <td><code><a>publicKeyBase58</a></code></td>
-              <td>OPTIONAL</td>
+              <td>no</td>
               <td>
 A <a data-cite="INFRA#string">string</a> that conforms to a base58btc encoded
 public key.
@@ -1550,10 +1524,9 @@ public key.
         </table>
 
         <p>
-As an extra constraint on the <code><a>publicKeyJwk</a></code> and
-<code><a>publicKeyBase58</a></code> properties, while both of these properties
-are OPTIONAL, a particular <a>Verification Method</a> MUST contain <em>exactly
-one</em> of the two.
+A <a>verification method</a> contains exactly one of either the
+<code><a>publicKeyJwk</a></code> and <code><a>publicKeyBase58</a></code>
+properties.
         </p>
       </section>
 
@@ -1564,14 +1537,14 @@ one</em> of the two.
           <thead>
             <tr>
               <th>Property</th>
-              <th>Usage constraints</th>
+              <th>Required?</th>
               <th>Value constraints</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><code>id</code></td>
-              <td>REQUIRED</td>
+              <td>yes</td>
               <td>
 When used on a <a>Service Endpoint</a>: a
 <a data-cite="INFRA#string">string</a> that conforms to the rules of
@@ -1580,7 +1553,7 @@ When used on a <a>Service Endpoint</a>: a
             </tr>
             <tr>
               <td><code>type</code></td>
-              <td>REQUIRED</td>
+              <td>yes</td>
               <td>
 A <a data-cite="INFRA#string">string</a> or an
 <a data-cite="INFRA#ordered-set">ordered set</a> of
@@ -1589,13 +1562,13 @@ A <a data-cite="INFRA#string">string</a> or an
             </tr>
             <tr>
               <td><code><a>serviceEndpoint</a></code></td>
-              <td>OPTIONAL</td>
+              <td>no</td>
               <td>
 A <a data-cite="INFRA#string">string</a> that conform to the rules of
 [[RFC3986]] for <a>URIs</a>, a <a data-cite="INFRA#string">map</a>, or an
 <a data-cite="INFRA#ordered-set">ordered set</a> composed of a one or more
 <a data-cite="INFRA#string">strings</a> that conform to the rules of
-[[RFC3986]] for <a>URI</a>-s and/or <a data-cite="INFRA#string">maps</a>.
+[[RFC3986]] for <a>URIs</a> and/or <a data-cite="INFRA#string">maps</a>.
               </td>
             </tr>
           </tbody>
