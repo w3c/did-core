@@ -1876,48 +1876,17 @@ allows them to be used with more than one <a>verification relationship</a>.
         </p>
 
         <p>
-The steps to use when processing a <a>verification method</a> in a
-<a>DID document</a> are:
+If the value of a <a>verification method</a> property is a
+<a data-cite="INFRA#ordered-map">map</a>, the <a>verification method</a> has
+been embedded and its properties can be accessed directly. However, if the
+value is a URL <a data-cite="INFRA#string">string</a>, the <a>verification
+method</a> has been included by reference and its properties will need to be
+retrieved from elsewhere in the <a>DID document</a> or from another <a>DID
+document</a>. This is done by dereferencing the URL and searching the
+resulting resource for a <a>verification method</a>
+<a data-cite="INFRA#ordered-map">map</a> with an <code>id</code> property
+whose value matches the URL.
         </p>
-
-        <ol class="algorithm">
-          <li>
-Let <em>value</em> be the data associated with the
-<code><a>verificationMethod</a></code> property or property for a particular
-<a>verification relationship</a> and initialize <em>result</em> to
-<code>null</code>.
-          </li>
-
-          <li>
-If <em>value</em> is an object, the verification method material is embedded.
-Set <em>result</em> to <em>value</em>.
-          </li>
-
-          <li>
-If <em>value</em> is a string, the verification method is included by
-reference. Assume <em>value</em> is a URL.
-            <ol>
-              <li>
-Dereference the URL and retrieve the <code><a>verificationMethod</a></code>
-properties associated with the URL. For example, process the
-<code><a>verificationMethod</a></code> property in the topmost
-<a data-cite="INFRA#ordered-map">map</a> of the dereferenced document.
-              </li>
-
-              <li>
-Iterating through each object, if the <code><a>id</a></code> property of the
-object matches <em>value</em>, set <em>result</em> to the object.
-              </li>
-            </ol>
-          </li>
-
-          <li>
-If <em>result</em> does not contain at least the <code>id</code>,
-<code>type</code>, and <code>controller</code> properties, as well as any
-mandatory public cryptographic material, as determined by the <code>type</code>
-property of <em>result</em>, throw an error.
-          </li>
-        </ol>
 
         <pre class="example nohighlight"
         title="Embedding and referencing verification methods">
