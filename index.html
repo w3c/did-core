@@ -1864,59 +1864,62 @@ the <a href="#data-model">data model</a>); see
 <a href="#did-controller"></a>.
       </p>
 
-      <p>
+      <section>
+        <h3>Verification Methods by reference</h3>
+        <p>
 As well as the <code><a>verificationMethod</a></code> property, verification
 methods can be embedded in or referenced from properties associated with
 various <a>verification relationships</a> (see
 <a href="#verification-relationships"></a>). Referencing verification methods
+by the value of the <a>verification method</a> <code>id</code> property
 allows them to be used with more than one <a>verification relationship</a>.
-      </p>
+        </p>
 
-      <p>
+        <p>
 The steps to use when processing a <a>verification method</a> in a
 <a>DID document</a> are:
-      </p>
+        </p>
 
-      <ol class="algorithm">
-        <li>
+        <ol class="algorithm">
+          <li>
 Let <em>value</em> be the data associated with the
 <code><a>verificationMethod</a></code> property or property for a particular
 <a>verification relationship</a> and initialize <em>result</em> to
 <code>null</code>.
-        </li>
+          </li>
 
-        <li>
+          <li>
 If <em>value</em> is an object, the verification method material is embedded.
 Set <em>result</em> to <em>value</em>.
-        </li>
+          </li>
 
-        <li>
+          <li>
 If <em>value</em> is a string, the verification method is included by
 reference. Assume <em>value</em> is a URL.
-          <ol>
-            <li>
+            <ol>
+              <li>
 Dereference the URL and retrieve the <code><a>verificationMethod</a></code>
 properties associated with the URL. For example, process the
 <code><a>verificationMethod</a></code> property in the topmost
 <a data-cite="INFRA#ordered-map">map</a> of the dereferenced document.
-            </li>
+              </li>
 
-            <li>
+              <li>
 Iterating through each object, if the <code><a>id</a></code> property of the
 object matches <em>value</em>, set <em>result</em> to the object.
-            </li>
-          </ol>
-        </li>
+              </li>
+            </ol>
+          </li>
 
-        <li>
+          <li>
 If <em>result</em> does not contain at least the <code>id</code>,
 <code>type</code>, and <code>controller</code> properties, as well as any
 mandatory public cryptographic material, as determined by the <code>type</code>
 property of <em>result</em>, throw an error.
-        </li>
-      </ol>
+          </li>
+        </ol>
 
-      <pre class="example nohighlight"
+        <pre class="example nohighlight"
         title="Embedding and referencing verification methods">
 {
 <span class="comment">...</span>
@@ -1935,10 +1938,11 @@ property of <em>result</em>, throw an error.
 
 <span class="comment">...</span>
 }
-      </pre>
+        </pre>
+      </section>
 
       <section>
-        <h3>Verification method types</h3>
+        <h3>Verification Method types</h3>
 
         <p>
 A public key can be used as a <a>verification method</a>.
