@@ -4748,75 +4748,7 @@ of a resolver ought to be compatible with such extension behavior.
       </p>
     </section>
   
-    <section>
-      <h2>Verification Method Revocation</h2>
-  
-      <p>Verification method revocation is a reactive security measure.</p>
-
-      <p>
-        Verification method revocation applies only to the current or latest
-        verison of a DID Document.
-      </p>
-  
-      <p>
-        If a verification method is no longer exclusively accessible to the
-        controller or parties trusted to act on behalf of the controller, it
-        should be revoked immediatly to reduce the risk of masquerading, theft
-        and fraud.
-      </p>
-  
-      <p class="advisement">
-        It is considered a best practice to support key revocation.
-      </p>
-  
-      <p class="advisement">
-        A controller should immediately revoke any verification method that is believed to
-        be compromised.
-      </p>
-  
-      <p class="advisement">
-        Cryptographic verifications associated with revoked verification
-        methods should be considered invalid regardless of when revocation
-        occurs.
-      </p>
-  
-      <p class="note">
-        As described in Section <a href="#verification-method-types"></a>,
-        absence of a verification method is the only form of revocation that
-        applies to all DID Methods.
-      </p>
-  
-      <p>
-        Section <a href="#method-operations"></a> specifies the
-        <a>DID</a> operations to be supported by a
-        <a>DID method</a> specification, including
-        <a href="#update">update</a> and <a href="#deactivate">deactivate</a>
-        which MAY be used to remove verification method from a DID Document.
-      </p>
-
-      <p>Not all DID Methods support verification method revocation.</p>
-  
-      <p>
-        Even if a verification method is present in a DID Document, additional
-        information such as a public key revocation certificate, or external
-        allow or deny list might be used to determine if a verification method
-        has been revoked.
-      </p>
-  
-      <p class="note">
-        Compromise of a verification method allows the attacker access to the verification 
-        relationship of the controller, for example authentication.
-        The attacker is indistinguishable from the legitimate controller from the 
-        time the compromised verification method was registered, to the time it was revoked.
-      </p>
-
-      <p class="note">
-        The day-to-day operation of any software relying on a compromised verification method 
-        might be impacted by a user’s operating system, antivirus, or endpoint protection software 
-        when the verification method is publicly revoked.
-      </p>
-
-    </section>
+    
   
     <section>
       <h2>DID Recovery</h2>
