@@ -4730,7 +4730,10 @@ of a resolver ought to be compatible with such extension behavior.
         Rotation is a useful mechanism for protecting against verification
         method compromise, since frequent rotation of a verification method by
         the controller, reduces the value of a compromised verification method
-        to an attacker.
+        to an attacker. Performing revocation immediately after rotation is
+        useful for verification methods that a controller designates for
+        short-lived verifications, such as those involved in encrypting messages
+        and authentication.
       </p>
   
       <p class="note">
