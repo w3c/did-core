@@ -4716,9 +4716,14 @@ of a resolver ought to be compatible with such extension behavior.
       <p>Not all DID Methods support verification method rotation.</p>
   
       <p>
-        Unlike revocation, rotation allows for valid new verifications, 
-        while invalidating older verifications after the older verification method is removed
-        from the latest DID Document.
+        Unlike revocation, rotation does not cause existing proofs intended
+        to be verified by the old verification method to be considered invalid. Rather,
+        rotation is a key management process that enables the private cryptographic
+        material associated with an existing verification method to be deactivated
+        or destroyed once the new verification method has been added to the DID
+        Document. Going forward, any new proofs that a controller would have generated
+        using the old cryptographic material can now instead be generated using the new
+        material and can be verified using the new verification method.
       </p>
   
       <p>
