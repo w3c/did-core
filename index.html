@@ -1777,33 +1777,21 @@ contain multiple entries with the same <code>id</code>. If the value of
           </p>
 
           <p>
-In the case where a verification method is a public key, the value of the
-<code><a>id</a></code> property might be structured as a
-<a href="https://en.wikipedia.org/wiki/Compound_key">compound key</a>. This is
-especially useful for integrating with existing key management systems and key
-formats such as JWK [[RFC7517]]. It is RECOMMENDED that JWK <code>kid</code>
-values are set to the public key fingerprint [[RFC7638]]. It is RECOMMENDED
-that verification methods that use JWKs to represent their public keys utilize
-the value of <code>kid</code> as their fragment identifier. See the first key
-in <a href="#example-16-various-verification-method-types"></a>
-for an example of a public key with a compound key identifier.
+The value of the <code>controller</code> property MUST be a <a
+data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
+href="#did-syntax"></a>.
           </p>
-
           <p>
 The value of the <code>type</code> property MUST be exactly one verification
 method type expressed as a <a data-cite="INFRA#string">string</a>. In order to
 maximize interoperability, the <a>verification method</a> type SHOULD be
 registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
           </p>
-          <p>
-The value of the <code>controller</code> property MUST be a <a
-data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
-href="#did-syntax"></a>.
-          </p>
 
           <p>
-A verification method MUST contain a property to express verification material
-as determined by the value of the <code>type</code> property, such as
+A verification method MUST contain a property to express verification
+material. The property used is determined by the value of the
+<code>type</code> property. Examples of such properties are
 <code><a>publicKeyJwk</a></code> or <code><a>publicKeyBase58</a></code>.
           </p>
 
@@ -1831,6 +1819,18 @@ MUST be a <a data-cite="INFRA#string">string</a> representation of a base58btc
 encoded public key.
         </dd>
       </dl>
+
+      <p>
+In the case where a verification method is a public key, the value of the
+<code><a>id</a></code> property might contain a <a>fragment</a>. This is
+especially useful for integrating with existing key management systems and key
+formats such as JWK [[RFC7517]]. It is RECOMMENDED that verification methods
+that use JWKs to represent their public keys use the value of <code>kid</code>
+as their fragment identifier. It is RECOMMENDED that JWK <code>kid</code>
+values are set to the public key fingerprint [[RFC7638]]. See the first key
+in <a href="#example-16-various-verification-method-types"></a>
+for an example of a public key with a compound key identifier.
+      </p>
 
       <pre class="example" title="Example verification methods">
 {
