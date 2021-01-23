@@ -1750,7 +1750,7 @@ a threshold signature. Methods need not be cryptographic.
 In order to maximize interoperability, support for public keys as verification
 methods is restricted: see Section <a href="#verification-method-types"></a>.
 For other types of verification method, the verification method SHOULD be
-registered in the [[?DID-SPEC-REGISTRIES]].
+registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
       </p>
 
       <dl>
@@ -1763,15 +1763,16 @@ verification methods, where each verification method is described by a
 <a data-cite="INFRA#ordered-map">map</a>. The <a>verification method</a>
 <a data-cite="INFRA#ordered-map">map</a> MUST include the <code>id</code>,
 <code>type</code>, <code>controller</code>, and specific verification method
-properties, and MAY include additional properties.
+properties as determined by the value of <code>type</code>, and MAY include
+additional properties.
           </p>
           <p>
-The value of the <code><a>id</a></code> property for a verification method MUST
-be a <a>URI</a>. When more than one verification method is present, the value of
-<code><a>verificationMethod</a></code> MUST NOT contain multiple entries with
-the same <code>id</code>. If the value of <code><a>verificationMethod</a></code>
-contains multiple entries with the same <code>id</code>, a <a>DID document</a>
-processor MUST produce an error.
+The value of the <code><a>id</a></code> property for a verification method
+MUST be a <a>URI</a>. When more than one verification method is present, the
+value of <code><a>verificationMethod</a></code> MUST NOT contain multiple
+entries with the same <code>id</code>. If the value of
+<code><a>verificationMethod</a></code> contains multiple entries with the same
+<code>id</code>, a <a>DID document</a> processor MUST produce an error.
           </p>
 
           <p>
@@ -1800,7 +1801,8 @@ href="#did-syntax"></a>.
           </p>
 
           <p>
-A verification method MUST contain verification material, such as
+A verification method MUST contain a property to express verification material
+as determined by the value of the <code>type</code> property, such as
 <code><a>publicKeyJwk</a></code> or <code><a>publicKeyBase58</a></code>.
           </p>
 
