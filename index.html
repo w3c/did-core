@@ -1768,9 +1768,10 @@ additional properties.
           </p>
           <p>
 The value of the <code><a>id</a></code> property for a verification method
-MUST be a <a>URI</a>. When more than one verification method is present, the
-value of <code><a>verificationMethod</a></code> MUST NOT contain multiple
-entries with the same <code>id</code>. If the value of
+MUST be a <a data-cite="INFRA#string">string</a> that conforms to the rules in
+Section <a href="#did-url-syntax"></a>. When more than one verification method
+is present, the value of <code><a>verificationMethod</a></code> MUST NOT
+contain multiple entries with the same <code>id</code>. If the value of
 <code><a>verificationMethod</a></code> contains multiple entries with the same
 <code>id</code>, a <a>DID document</a> processor MUST produce an error.
           </p>
