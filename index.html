@@ -1264,7 +1264,7 @@ href="#data-model">data model</a> and its type system.
       <p class="note">
 It is always possible for two specific implementations to agree out-of-band to
 use a mutually understood extension or <a>representation</a> that is not recorded in
-the DID Core Registries [[?DID-SPEC-REGISTRIES]]; interoperability between such
+the DID Specification Registries [[?DID-SPEC-REGISTRIES]]; interoperability between such
 implementations and the larger ecosystem will be less reliable.
       </p>
     </section>
@@ -2543,8 +2543,8 @@ included when consuming or producing to aid in ensuring lossless conversion.
       </ol>
       <p>
 In order to maximize interoperability, <a>representation</a> specification authors
-SHOULD register their <a>representation</a> in the DID Specification Registries
-[[?DID-SPEC-REGISTRIES]].
+SHOULD register their <a>representation</a> in the DID Specification
+Registries [[?DID-SPEC-REGISTRIES]].
       </p>
     </section>
 
@@ -2925,10 +2925,10 @@ type <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a> or
             </ul>
 
             <p>
-All members of the <code>@context</code> entry SHOULD exist in the DID
-specification registries [[?DID-SPEC-REGISTRIES]] in order to achieve
+All members of the <code>@context</code> property SHOULD exist in the DID
+Specification Registries [[?DID-SPEC-REGISTRIES]] in order to achieve
 interoperability across different <a>representations</a>. If a member does not exist
-in the DID specification registries, then the <a>DID document</a> might not be
+in the DID Specification Registries, then the <a>DID document</a> might not be
 interoperable across <a>representations</a>.
             </p>
 
@@ -2936,8 +2936,8 @@ interoperable across <a>representations</a>.
 It is RECOMMENDED that dereferencing each <a>URI</a> value of the
 <code>@context</code> entry results in a document containing
 machine-readable information about the context. Note that further expectations
-of additional JSON-LD contexts are described as part of the DID specification
-registries registration process.
+of additional JSON-LD contexts are described as part of the DID Specification
+Registries registration process.
             </p>
           </dd>
         </dl>
@@ -3327,11 +3327,12 @@ Duplicate key in the same CBOR map MUST throw an Error.
           </li>
           <li>
 <a href="https://tools.ietf.org/html/rfc7049#section-3.3.3">Unknown Additional
-Entries</a> that are not defined in <a href="#data-model">data
-model</a>, represented in the `@context`, or represented in <a href="">the DID
-spec registries</a> or be explicitly documented as an extension of the <a>DID
-document</a> conformant to <a href="#extensibility"> § 4.3 Extensibility</a> MUST be
-preserved by default and represented as major type 3 (UTF-8 String)
+Properties and Values</a> that are not defined in <a href="#data-model">data
+model</a>, represented in the `@context`, or represented in the DID
+Specification Registries [[?DID-SPEC-REGISTRIES]] or be explicitly documented
+as an extension of the <a>DID document</a> conformant to
+<a href="#extensibility"> § 4.3 Extensibility</a> MUST be preserved by default
+and represented as major type 3 (UTF-8 String)
           </li>
         </ul>
 
@@ -3457,8 +3458,8 @@ Because there is no central authority for allocating or approving <a>DID
 method</a> names, there is no way to know for certain if a specific <a>DID
 method</a> name is unique. To help with this challenge, a non-authoritative list
 of known <a>DID method</a> names and their associated specifications is
-maintained in the DID Methods Registry, which is part of
-[[?DID-SPEC-REGISTRIES]].
+maintained in the DID Methods Registry, which is part of the DID Specification
+Registries [[?DID-SPEC-REGISTRIES]].
         </p>
         <p>
 Authors of new <a>DID method</a> specifications are encouraged to add their
@@ -3852,8 +3853,8 @@ additional functions with different signatures in addition to the
 
             <p>
 The possible properties within this structure and their possible values are
-defined by [[?DID-SPEC-REGISTRIES]]. This specification defines the following
-common properties.
+registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]]. This
+specification defines the following common properties.
             </p>
 
             <dl>
@@ -3878,8 +3879,8 @@ available. This property is OPTIONAL. It is only used if the
 
             <p>
 The possible properties within this structure and their possible values are
-defined by [[?DID-SPEC-REGISTRIES]]. This specification defines the following
-common properties.
+registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]]. This
+specification defines the following common properties.
             </p>
 
             <dl>
@@ -4259,8 +4260,8 @@ to the <code>dereference</code> function specified here.
 
         <p>
 The possible properties within this structure and their possible values SHOULD
-be registered in the [[?DID-SPEC-REGISTRIES]]. This specification defines the
-following common properties.
+be registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
+This specification defines the following common properties.
             </p>
 
             <dl>
@@ -4281,8 +4282,8 @@ supported and available.
 
             <p>
 The possible properties within this structure and their possible values are
-defined by [[?DID-SPEC-REGISTRIES]]. This specification defines the following
-common properties.
+registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]]. This
+specification defines the following common properties.
             </p>
 
             <dl>
@@ -4977,7 +4978,7 @@ content are vulnerable to tampering.
       <p>
 <a>DID document</a> consumers can cache local static copies of JSON-LD contexts
 and/or verify the integrity of external contexts against the cryptographic
-hash for the context as registered in the DID specification registries
+hash for the context as registered in the DID Specification Registries
 (see the registration process for more detail) [[?DID-SPEC-REGISTRIES]].
       </p>
     </section>
@@ -5223,8 +5224,8 @@ through herd privacy.
       <p>
 See <a
 href="https://www.w3.org/TR/did-spec-registries/#verification-method-types">
-did-spec-registries</a> for optional extensions and other verifcation method
-types.
+Verification Method Types</a> [[?DID-SPEC-REGISTRIES]] for optional extensions
+and other verification method types.
       </p>
 
       <p class="note">
