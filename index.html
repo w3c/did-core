@@ -4170,11 +4170,14 @@ directives related to this metadata property.
 DID URL Dereferencing
       </h2>
       <p>
-The DID URL dereferencing function dereferences a <a>DID URL</a> into
+The <a>DID URL dereferencing</a> function dereferences a <a>DID URL</a> into
 a resource with contents depending on the <a>DID URL</a>'s components,
 including the <a>DID method</a>, method-specific identifier, path, query,
 and fragment. This process depends on <a>DID resolution</a> of the <a>DID</a>
-contained in the <a>DID URL</a>.
+contained in the <a>DID URL</a>. <a>DID URL dereferencing</a> might involve
+multiple steps (e.g., when the DID URL being dereferenced includes a fragment),
+and the function is defined to return the final resource after all
+steps are completed.
 The details of how this process is accomplished are outside the scope of this
 specification, but all conformant implementations implement a function
 which has the following abstract form:
