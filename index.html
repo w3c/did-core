@@ -1965,25 +1965,6 @@ performed and tracked.
 }
         </pre>
 
-        <p>
-The <a>DID document</a> does not express revoked keys using a <a>verification
-relationship</a>.
-        </p>
-        <p>
-If a referenced <a>verification method</a> is not in the <a>DID Document</a> used to
-dereference it, then that <a>verification method</a> is considered invalid or revoked.
-        </p>
-        <p>
-Each <a>DID method</a> specification is expected to detail how revocation is
-performed and tracked.
-        </p>
-
-        <p class="note">
-Caching and expiration of the keys in a <a>DID document</a> is entirely the
-responsibility of <a>DID resolvers</a> and requesting parties. For more
-information, see Section <a href="#resolution"></a>.
-        </p>
-
       </section>
     </section>
 
@@ -5531,38 +5512,20 @@ The list of issues below are under active discussion and are likely to
 result in changes to this specification.
     </p>
 
-<div class="issue" data-number="506">Correct the serviceEndpoint property to allow for a string or array of strings</div>
-<div class="issue" data-number="505">The definition of "the topmost" of the abstract data model is unclear </div>
 <div class="issue" data-number="504">Issues in "Note on Persistence" in DID Syntax section</div>
-<div class="issue" data-number="502">`Decentralized extension` is not discussed</div>
-<div class="issue" data-number="499">Metadata properties don't define data model and serialization format</div>
-<div class="issue" data-number="498">Datetime data type missing timezone and precision</div>
-<div class="issue" data-number="496"> Inconsistent definition/name of DID Document (or abstract data model?)</div>
 <div class="issue" data-number="495">`updated` property's initial value is not defined clearly</div>
-<div class="issue" data-number="494">Discussion on "localized rules for handling properties" not described anywhere</div>
-<div class="issue" data-number="483">Issue with using `versionId` and key revocation</div>
-<div class="issue" data-number="479">Provide better service.type examples</div>
 <div class="issue" data-number="468">Should "deactivated" be an error code?</div>
 <div class="issue" data-number="463">Naming classes of properties and syntax</div>
 <div class="issue" data-number="453">The relationship between Verifiable Data Registry and DID Document haven't shown in Figure 1</div>
 <div class="issue" data-number="452">Compound key is not clear and points to wikipedia not a normative definition</div>
 <div class="issue" data-number="447">Differentiate external properties in examples</div>
-<div class="issue" data-number="432">Restrictions on `@context` property values in DID Documents</div>
 <div class="issue" data-number="425">DID Spec Registries needs terminolgical criteria</div>
-<div class="issue" data-number="417">How should resolvers handle the accept header?</div>
 <div class="issue" data-number="404">Precise specification of the DID Core Vocabulary</div>
 <div class="issue" data-number="399">DID Fragment semantics cleanup needed</div>
 <div class="issue" data-number="391">Section "Authentication and Verifiable Claims": Add subsection about key security</div>
-<div class="issue" data-number="390">Section "Authentication and Verifiable Claims": Add language about legal identity</div>
 <div class="issue" data-number="386">need to clarify revocation vs. rotation</div>
-<div class="issue" data-number="384">Normative statements review</div>
-<div class="issue" data-number="382">Service Endpoints in the DID Doc might be an anti-pattern</div>
-<div class="issue" data-number="380">Why DID Document streaming (`resolveStream`)?</div>
 <div class="issue" data-number="373">Proposed Appendices on DID Identification Architecture</div>
 <div class="issue" data-number="370">Consider EFF / ACLU objections by distinguaishing accountable vs. voluntary DIDs</div>
-<div class="issue" data-number="478">How should contributors register the same DID Method on multiple networks?</div>
-<div class="issue" data-number="363">Clarify Authorization requirements.</div>
-<div class="issue" data-number="340">Add COSE key format example into CBOR section</div>
 <div class="issue" data-number="337">When should did parameters be dropped?</div>
 <div class="issue" data-number="324">Privacy Considerations for service endpoints</div>
 <div class="issue" data-number="292">Horizontal Review Tracking</div>
@@ -5576,7 +5539,6 @@ result in changes to this specification.
 <div class="issue" data-number="105">Horizontal Review: Accessibility self test</div>
 <div class="issue" data-number="104">Horizontal Review: Internationalization self test</div>
 <div class="issue" data-number="72">Privacy Considerations - Specifically call out GDPR</div>
-<div class="issue" data-number="58">Registry handling</div>
 
   </section>
 
