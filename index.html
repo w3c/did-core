@@ -775,29 +775,6 @@ For requirements on <a>DID methods</a> relating to the <a>DID</a> syntax, see
 Section <a href="#method-schemes"></a>.
       </p>
 
-      <div class="note" title="Persistence">
-        <p>
-  A <a>DID</a> is expected to be persistent and immutable. That is, a <a>DID</a>
-  is bound exclusively and permanently to its one and only subject. Even after a
-  <a>DID</a> is deactivated, it is intended that it never be repurposed.
-        </p>
-        <p>
-Ideally, a <a>DID</a> would be a completely abstract decentralized identifier
-(like a <a>UUID</a>) that could be bound to multiple underlying <a>verifiable
-data registries</a> over time, thus maintaining its persistence independent of
-any particular system. However, registering the same identifier on multiple
-<a>verifiable data registries</a> makes it extremely difficult to identify the
-authoritative version of a <a>DID document</a> if the contents diverge
-between the different <a>verifiable data registries</a>. It also greatly
-increases implementation complexity for developers.
-        </p>
-        <p>
-To avoid these issues, developers should refer to the Decentralized
-Characteristics Rubric [[?DID-RUBRIC]] to decide which <a>DID method</a> best
-addresses the needs of the use case.
-        </p>
-      </div>
-
     </section>
 
     <section class="normative">
