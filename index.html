@@ -4828,6 +4828,35 @@ a secret without transmitting that secret between systems. However, it is
 not infallible. Services that perform sensitive, high value, or
 life-critical operations should use additional factors as appropriate.
       </p>
+      <p>
+In addition to potential ambiguity from use by different controllers,
+it is impossible to guarantee, in general, that a given DID is being used
+in reference to the same subject at any given point in time. It is
+technically possible for the controller to re-use a DID for different
+subjects and, more subtly, for the precise definition of the Subject
+to either change over time or be misunderstood.
+        </p>
+        <p>
+For example, consider a DID used for a sole proprietership, receiving
+various credentials used for financial transactions. To the controller,
+that identifier referred to the business. As the business grows, and
+eventually gets incorporated as an LLC. The controller continues using 
+that same DID, because to <strong>thenm</strong> the DID refers to the 
+business. However, to the state, the tax authority, and the local 
+municipality, the DID no longer refers to the same entity. Whether or 
+not the subtle shift in meaning matters to a credit provider or supplier
+is necessarily up to them to decide. In many cases, as long as the bills
+get paid and collections can be enforced, the shift is immaterial.
+      </p>
+      <p>
+Because of these potential ambiguities, DIDs should be considered valid
+<em>contextually</em> rather than as absolutes. Their persistence does not 
+imply that the refer to the exact same Subject, nor that they are under the
+control of the same controller. Instead, one must understand the context
+in which the DID was created, how it is used, and consider the likely
+shifts in their meaning, and adopt procedures and policies to address both
+potential and inevitable semantic drift.
+        </p>
     </section>
   </section>
 
