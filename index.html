@@ -4865,22 +4865,30 @@ such as the financial and public sectors. Examples include but are not
 limited to protection of secret keys, the identity proofing process, and the
 form-factor of the authenticator. For example, <a target="_blank"
 href="https://ec.europa.eu/info/law/payment-services-psd-2-directive-eu-2015-2366_en">
-Payment services (PSD 2)</a> and
-<a target="_blank"
+Payment services (PSD 2)</a> and <a target="_blank"
 href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2014.257.01.0073.01.ENG">
-eIDAS</a> introduce requirements on the security context. Level of 
-Assurance (LoA) frameworks define LoAs and make recommendations on how to 
-achieve them including requirements for the security context. A LoA 
-represents the level of confidence that an entity is in fact that entity.
-Some regulated use cases require the implementation of a certain LoA. Since
-<a>verification relationships</a> such as <code><a>assertionMethod</a></code>
-and <code><a>authentication</a></code> might be used in some of these use
-cases, information about the applied security context might need to be
-expressed and provided to a <a>verifier</a>. It is out of scope of this
-specification if and how to encode this information in the <a>DID document</a> 
-data model, but it should be noted that the <a>DID document</a> data model can
-be extended if necessary (see <a href="#extensibility">Extensibility</a> section).
-Section <a href="#privacy-considerations">Privacy Considerations</a> remains
+eIDAS</a> introduce such requirements on the security context. Level of 
+Assurance (LoA) frameworks, for example classified by <a target="_blank"
+href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2014.257.01.0073.01.ENG">
+eIDAS</a>, 
+<a target="_blank" href="https://pages.nist.gov/800-63-3/sp800-63-3.html">
+NIST 800-63-3</a> and <a target="_blank" href="https://www.iso.org/standard/45138.html">
+ISO/IEC 29115:2013</a>, define LoAs including their requirements for the
+security context and make recommendations on how to achieve them. This might
+include strong user authentication and implementations such as <a href="_blank"
+href="https://fidoalliance.org/fido2">FIDO2</a>/<a target="_blank"
+href="https://www.w3.org/TR/webauthn-2/">WebAuthn</a> can be potential
+implementations. A LoA represents the level of confidence that an entity is in
+fact that entity. Some regulated use cases require the implementation of a
+certain LoA. Since <a>verification relationships</a> such as <code>
+<a>assertionMethod</a></code> and <code><a>authentication</a></code> might be
+used in some of these use cases, information about the applied security context
+might need to be expressed and provided to a <a>verifier</a>. It is out of
+scope of this specification if and how to encode this information in the
+<a>DID document</a> data model, but it should be noted that the
+<a>DID document</a> data model can be extended if necessary (see 
+<a href="#extensibility">Extensibility</a> section). Section
+<a href="#privacy-considerations">Privacy Considerations</a> remains
 applicable for such extensions.
       </p>
     </section>
