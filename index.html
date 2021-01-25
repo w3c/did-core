@@ -765,40 +765,6 @@ For requirements on <a>DID methods</a> relating to the <a>DID</a> syntax, see
 Section <a href="#method-schemes"></a>.
       </p>
 
-      <div class="note" title="Persistence">
-        <p>
-The persistence of a <a>DID</a>, i.e., its ability to continue to identify the
-same <a>DID subject</a> over time, is a function of: a) the <a>DID
-controller</a>'s policies for control of the <a>DID</a>, and b) the <a>DID method</a>.
-While <a>DID</a> architecture is designed to support the ability for a <a>DID</a>
-to be permanently bound to one <a>DID subject</a> as long as that binding is
-required, there are two important caveats:
-        </p>
-        <ol start="1">
-          <li>
-The <a>DID controller</a> may wish to terminate this binding—or possibly even
-bind the <a>DID</a> to a different <a>DID subject</a> at any point in time.
-          </li>
-          <li>
-If a permanent binding is desired, maintaining this binding is dependent
-on the infrastructure required by the <a>DID method</a>.
-          </li>
-        </ol>
-        <p>
-With regard to the first caveat, requesting parties are advised not to make
-assumptions about the permanence of the binding of a <a>DID</a> to a
-<a>DID subject</a> in the absence of knowledge of (and assurance of) the
-binding policies followed by the <a>DID controller</a>. This is particularly
-important from a security standpoint if the requesting party is relying on the
-binding for authentication or authorization purposes.
-        </p>
-        <p>
-With regard to the second caveat, developers should refer to the Decentralized
-Characteristics Rubric [[?DID-RUBRIC]] to decide which <a>DID method</a> best
-addresses their requirements for persistence of a <a>DID</a>.
-        </p>
-      </div>
-
     </section>
 
     <section class="normative">
@@ -4344,7 +4310,40 @@ addresses using DNS lookups is available at [[?DNS-DID]].
 
     <section>
         <h2>
-Immutability
+Persistence of DIDs
+        </h2>
+
+        <p>
+Although a <a>DID</a> is able to function as a Uniform Resource Name (URN)—a
+"persistent, location-independent resource identifier"as defined by [[RFC8141]]—
+this is not a requirement of all DIDs. Rather the persistence of a <a>DID</a>,
+is determined by the <a>DID controller</a>.
+
+If a <a>DID controller</a> intends for a <a>DID</a> to function as a URN, there
+are two important security considerations:
+        </p>
+        <ol start="1">
+          <li>
+The <a>DID controller</a> should choose a <a>DID method</a> that supports their
+requirements for persistence. <a>DID controllers</a> are advised to refer to the
+Decentralized Characteristics Rubric [[?DID-RUBRIC]] to decide which
+<a>DID method</a> best meets their persistence requirements.
+          </li>
+          <li>
+The <a>DID controller</a> should publish its operational policies so relying
+parties can determine the degree to which they can rely on the persistence of a
+<a>DID</a> controlled by that <a>DID controller</a>. In the absence of such
+policies, relying parties should not make any assumption about whether a
+<a>DID</a> is a persistent identifier for the same <a>DID subject</a>. This is
+particularly important from a security standpoint if the <a>DID</a> is used for
+authentication or authorization purposes.
+          </li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>
+Immutability of DID Documents
         </h2>
 
         <p>
