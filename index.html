@@ -4793,12 +4793,14 @@ hash for the context as registered in the DID specification registries
       <h2>Persistence</h2>
       <p>
     </section>
-DIDs are designed to be persistent in the sense that no administrator can
-take control away from the controller, nor can an administrator prevent 
-their use for any particular purpose such as authentication, 
-authorization, and attestation. There is no trusted third party with the
-capability of removing an individual's—or an organization's identifier—nor
-can they render it inoperable.
+DIDs are designed to be persistent such that a controller need not rely
+upon a single trusted third party or administrator to maintain their
+identifiers. No administrator can take control away from the controller,
+nor can an administrator prevent their identifiers' use for any particular
+purpose such as authentication, authorization, and attestation. No
+third party can act on behalf of a controller to remove or render
+inoperable an individual's (or an organization's) identifier without the
+controller's consent.
       </p>
       <p>
 However, it is important to note that in all DID Methods that enable 
@@ -4827,7 +4829,7 @@ life-critical operations should use additional factors as appropriate.
 In addition to potential ambiguity from use by different controllers,
 it is impossible to guarantee, in general, that a given DID is being used
 in reference to the same subject at any given point in time. It is
-technically possible for the controller to re-use a DID for different
+technically possible for the controller to reuse a DID for different
 subjects and, more subtly, for the precise definition of the Subject
 to either change over time or be misunderstood.
         </p>
