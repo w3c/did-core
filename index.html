@@ -3818,13 +3818,6 @@ This error code is returned if the representation requested via the
 <code>accept</code> input metadata property is not supported by the DID method
 and/or DID resolver implementation.
 </dd>
-                        <dt>
-deactivated
-                        </dt>
-                        <dd>
-The <a>DID</a> supplied to the <a>DID resolution</a> function has been
-deactivated. (See <a href="#deactivate"></a>.)
-                        </dd>
                     </dl>
                 </dd>
             </dl>
@@ -3859,6 +3852,15 @@ DID document metadata SHOULD include an <code>updated</code> property to
 indicate the timestamp of the last <a href="#update">Update operation</a> for
 the document version which was resolved. The value of the property MUST follow
 the same formatting rules as the <code>created</code> property.
+                </p>
+              </section>
+
+          <section>
+            <h4>deactivated</h4>
+            <p>
+This property MUST be populated with a <a data-cite="INFRA#boolean">boolean</a> 
+`true` value if the DID Method determines that the <a>DID</a> supplied has been 
+deactivated. (See <a href="#deactivate"></a>.)
                 </p>
               </section>
 
@@ -4182,13 +4184,6 @@ not-found
 The <a>DID URL dereferencer</a> was unable to find the
 <code>content-stream</code> resulting from this dereferencing request.
                         </dd>
-                        <dt>
-deactivated
-                        </dt>
-                        <dd>
-The <a>DID</a> in the <a>DID URL</a> supplied to the <a>DID URL
-dereferencing</a> function has been deactivated. (See
-<a href="#deactivate"></a>.)
                     </dl>
                 </dd>
             </dl>
