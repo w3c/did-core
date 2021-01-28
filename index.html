@@ -4310,33 +4310,29 @@ addresses using DNS lookups is available at [[?DNS-DID]].
 
     <section>
         <h2>
-Persistence of DIDs
+DIDs as URNs
         </h2>
 
         <p>
-Although a <a>DID</a> is able to function as a Uniform Resource Name (URN)—a
-"persistent, location-independent resource identifier"as defined by [[RFC8141]]—
-this is not a requirement of all DIDs. Rather the persistence of a <a>DID</a>,
-is determined by the <a>DID controller</a>.
-
-If a <a>DID controller</a> intends for a <a>DID</a> to function as a URN, there
-are two important security considerations:
+If desired by a <a>DID controller</a>, a <a>DID</a> is capable of fulfilling
+the functions of a Uniform Resource Name (URN) as defined by [[RFC8141]], i.e.,
+"a persistent, location-independent resource identifier". A <a>DID controller</a>
+who intends to use a <a>DID</a> for this purpose is advised to follow the
+security considerations in [[RFC8141]]. In particular:
         </p>
         <ol start="1">
           <li>
-The <a>DID controller</a> should choose a <a>DID method</a> that supports their
-requirements for persistence. <a>DID controllers</a> are advised to refer to the
-Decentralized Characteristics Rubric [[?DID-RUBRIC]] to decide which
-<a>DID method</a> best meets their persistence requirements.
+The <a>DID controller</a> should choose a <a>DID method</a> that supports the
+<a>DID controller</a>'s requirements for persistence. It is recommended to
+consult the Decentralized Characteristics Rubric [[?DID-RUBRIC]] to decide which
+<a>DID method</a> is best suited.
           </li>
           <li>
 The <a>DID controller</a> should publish its operational policies so relying
 parties can determine the degree to which they can rely on the persistence of a
 <a>DID</a> controlled by that <a>DID controller</a>. In the absence of such
 policies, relying parties should not make any assumption about whether a
-<a>DID</a> is a persistent identifier for the same <a>DID subject</a>. This is
-particularly important from a security standpoint if the <a>DID</a> is used for
-authentication or authorization purposes.
+<a>DID</a> is a persistent identifier for the same <a>DID subject</a>.
           </li>
         </ol>
     </section>
