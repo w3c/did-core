@@ -3097,6 +3097,22 @@ length.</a>
           </li>
         </ul>
 
+        <p>
+  To produce a deterministic canonical CBOR representation of a DID document and
+  faciliate maximal lossless compatiblity with other  core representations via the
+  Abstract Data Model the following constraints of a CBOR representation of a DID
+  Document model MUST be followed:
+        </p>
+
+        <ul>
+          <li>Property names MUST be represented as text string (major type 3) and contain only UTF-8 strings.</li>
+          <li>Undefined Values of Required Properties as defined in <a href="#data-model">the Data Model</a> that are absent from the CBOR representation SHOULD be labeled with Primitive type (major type 7) with value 23 (Undefined value).</li>
+          <li>Property names in each CBOR map MUST be unique.</li>
+          <li>Integer encoding MUST be as short as possible.</li>
+          <li>The expression of lengths in CBOR major types 2 through 5 MUST be as short as possible.</li>
+          <li>The keys in every map must be sorted lowest value to highest. Sorting is performed on the bytes of the representation of the keys. If two keys have different lengths, the shorter one sorts earlier.  If two keys have the same length, the one with the lower value in (byte-wise) lexical order sorts earlier.</li>
+        </ul>
+
       <p>
 All properties of the DID document represented in CBOR MUST be included in the
 root map (major type 5). Properties MAY define additional data sub structures
@@ -3332,47 +3348,6 @@ that may be ignored or lost in a round-trip decode/encode.
           </p>
 
           <p>
-To produce a deterministic canonical CBOR representation of a DID document and
-faciliate maximal lossless compatiblity with other core representations via the
-<a href="#data-model">data model</a> the following constraints of a CBOR
-representation are as follows:
-          </p>
-
-          <ul>
-            <li>
-Property names MUST be represented as text string (major type 3) and contain
-only UTF-8 strings.
-            </li>
-            <li>
-Undefined Values of Required Properties as defined in <a href="#data-model">the
-Data Model</a> that are absent from the CBOR representation SHOULD be labeled
-with Primitive type (major type 7) with value 23 (Undefined value).
-            </li>
-            <li>
-Property names in each CBOR map MUST be unique.
-            </li>
-            <li>
-Integer encoding MUST be as short as possible.
-            </li>
-            <li>
-The expression of lengths in CBOR major types 2 through 5 MUST be as short as
-possible.
-            </li>
-            <li>
-The keys in every map must be sorted lowest value to highest. Sorting is
-performed on the bytes of the representation of the keys. If two keys have
-different lengths, the shorter one sorts earlier.  If two keys have the same
-length, the one with the lower value in (byte-wise) lexical order sorts earlier.
-            </li>
-          </ul>
-
-          <p class="issue">
-How to represent Floating-point values that can exceed the range or the
-precision IEEE 754. See <a
-href="https://github.com/w3c/did-core/issues/361">issue #361</a>.
-          </p>
-
-          <p>
 When producing and consuming DID Documents representing in DagCBOR the following
 rules are followed:
           </p>
@@ -3385,7 +3360,7 @@ CBOR tags other than the CID tag (42) MUST NOT be used.
 
           <pre class="example nohighlight"
             title="DID Document as DagCBOR with tag 42 used in Proof section">
-a5                                      # map(5)
+a5                                   # map(5)
 62                                   # text(2)
    6964                              # "id"
 78 40                                # text(64)
@@ -4860,7 +4835,7 @@ used in some of these use cases, information about the applied security context
 might need to be expressed and provided to a <a>verifier</a>. Whether and
 how to encode this information in the <a>DID document</a> data model is
 out of scope for this specification, but it should be noted that the
-<a>DID document</a> data model can be extended if necessary (see 
+<a>DID document</a> data model can be extended if necessary (see
 <a href="#extensibility">Extensibility</a> section). Section
 <a href="#privacy-considerations">Privacy Considerations</a> remains
 applicable for such extensions.
