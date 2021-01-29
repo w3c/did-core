@@ -4314,9 +4314,12 @@ DIDs as URNs
         </h2>
 
         <p>
-If desired by a <a>DID controller</a>, a <a>DID</a> is capable of fulfilling
-the functions of a Uniform Resource Name (URN) as defined by [[RFC8141]], i.e.,
-"a persistent, location-independent resource identifier". A <a>DID controller</a>
+If desired by a <a>DID controller</a>, a <a>DID</a> is capable of acting
+as an enhanced Uniform Resource Name (URN) as defined by [[RFC8141]], i.e.,
+"a persistent, location-independent resource identifier". DIDs used in this way provide a cryptographically secure, location-independent identifier for a digital resource, while also providing the metadata that allows retrieval. Because of the indirection between the DID Document and the DID itself, the DID Controller can adjust the actual location of the resource--or even provide the resource directly--without adjusting the DID. DIDs of this type can definitively verify that the resource retrieved is, in fact, the resource identified.
+        </p>
+        <p>
+A <a>DID controller</a>
 who intends to use a <a>DID</a> for this purpose is advised to follow the
 security considerations in [[RFC8141]]. In particular:
         </p>
