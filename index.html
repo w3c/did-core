@@ -178,9 +178,9 @@ subject.
     </p>
     <p>
 Each <a>DID document</a> can express cryptographic material, verification
-methods, or <a>service endpoints</a>, which provide a set of mechanisms enabling
-a <a>DID controller</a> to prove control of the <a>DID</a>. <a>Service
-endpoints</a> enable trusted interactions associated with the <a>DID
+methods, or <a>services</a>, which provide a set of mechanisms enabling
+a <a>DID controller</a> to prove control of the <a>DID</a>. <a>Services</a>
+enable trusted interactions associated with the <a>DID
 subject</a>. A <a>DID document</a> might contain the <a>DID subject</a> itself,
 if the <a>DID subject</a> is an information resource such as a data model.
     </p>
@@ -243,9 +243,7 @@ Sporny, Drummond Reed, Joe Andrieu, and Heather Vescent.
   </section>
 
   <section class="informative">
-    <h1>
-Introduction
-    </h1>
+    <h1>Introduction</h1>
     <p>
 As individuals and organizations, many of us use globally unique identifiers in
 a wide variety of contexts. They serve as communications addresses (telephone
@@ -325,9 +323,7 @@ between the worlds of centralized, federated, and decentralized identifiers.
     </p>
 
     <section class="informative">
-      <h2>
-A Simple Example
-      </h2>
+      <h2>A Simple Example</h2>
 
       <p>
 A <a>DID</a> is a simple text string consisting of three parts, the:
@@ -363,14 +359,14 @@ well as <a>services</a> that can be used to interact with the <a>DID subject</a>
   "authentication": [{
     <span class="comment">// used to authenticate as did:...fghi</span>
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "Ed25519VerificationKey2018",
+    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }],
   "service": [{
     <span class="comment">// used to retrieve Verifiable Credentials associated with the DID</span>
     "id":"did:example:123456789abcdefghi#vcs",
-    "type": "VerifiableCredentialService",
+    "type": "VerifiableCredentialService", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://example.com/vc/"
   }]
 }
@@ -378,9 +374,7 @@ well as <a>services</a> that can be used to interact with the <a>DID subject</a>
     </section>
 
     <section class="informative">
-      <h2>
-Design Goals
-      </h2>
+      <h2>Design Goals</h2>
 
       <p>
 <a>Decentralized Identifiers</a> are a component of larger systems, such as
@@ -408,7 +402,7 @@ Decentralization
             <td>
 Eliminate the requirement for centralized authorities or single point
 failure in identifier management, including the registration of globally unique
-identifiers, public verification keys, <a>service endpoints</a>, and other
+identifiers, public verification keys, <a>services</a>, and other
 information.
             </td>
           </tr>
@@ -439,7 +433,7 @@ Security
             </td>
             <td>
 Enable sufficient security for requesting parties to depend on
-<a>DID documents</a> sfor their required level of assurance.
+<a>DID documents</a> for their required level of assurance.
             </td>
           </tr>
 
@@ -659,6 +653,15 @@ or JSON-LD.
       </p>
 
       <p>
+Some examples contain terms (both property names and values) that are not
+defined in this specification, for illustrative purposes. These are indicated
+with a comment (<code>// external (property name|value)</code>). Such terms,
+when used in a <a>DID document</a>, are expected to be registered in the DID
+Specification Registries [[?DID-SPEC-REGISTRIES]] with links to both a formal
+definition and JSON-LD context.
+      </p>
+
+      <p>
 Interoperability of implementations for DIDs and DID documents will be tested by
 evaluating an implementation's ability to create and parse <a>DIDs</a> and
 <a>DID documents</a> that conform to the specification. Interoperability for
@@ -710,9 +713,7 @@ produce errors when consuming non-conforming <a>DIDs</a> or <a>DID documents</a>
   </section>
 
   <section class="informative">
-    <h2>
-Terminology
-    </h2>
+    <h2>Terminology</h2>
 
     <div data-include="terms.html">
     </div>
@@ -878,7 +879,7 @@ string">ASCII string</a>.
             </tr>
             <tr>
               <td>
-<code>relative-ref</code>
+<code>relativeRef</code>
               </td>
               <td>
 A relative URI reference according to <a
@@ -903,7 +904,7 @@ data-lt="ascii string">ASCII string</a>.
             </tr>
             <tr>
               <td>
-<code>version-time</code>
+<code>versionTime</code>
               </td>
               <td>
 Identifies a certain version timestamp of a <a>DID document</a> to be resolved.
@@ -976,8 +977,8 @@ did:foo:21tDAKCERh95uGgKbJNHYp?service=agent
         </pre>
 
         <pre class="example nohighlight"
-          title="A DID URL with a 'version-time' DID parameter">
-did:foo:21tDAKCERh95uGgKbJNHYp?version-time=2002-10-10T17:00:00Z
+          title="A DID URL with a 'versionTime' DID parameter">
+did:foo:21tDAKCERh95uGgKbJNHYp?versionTime=2002-10-10T17:00:00Z
         </pre>
 
         <pre class="example nohighlight" title="A DID URL with a 'resource' DID parameter">
@@ -1076,7 +1077,7 @@ be interpreted in the same way across representations.
             <pre class="example nohighlight">did:example:123#public-key-0</pre>
           </li>
 
-          <li>A unique <a>service endpoint</a> in a <a>DID Document</a>
+          <li>A unique <a>service</a> in a <a>DID Document</a>
             <pre class="example nohighlight">did:example:123#agent</pre>
           </li>
 
@@ -1131,7 +1132,7 @@ tend to be more verbose than necessary.
   "id": "did:example:123456789abcdefghi",
   "verificationMethod": [{
     "id": "did:example:123456789abcdefghi#key-1",
-    "type": "Ed25519VerificationKey2018",
+    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }, ...],
@@ -1163,16 +1164,16 @@ the data model.
     </p>
     <p>
 A <a>DID document</a> consists of a <a data-cite="INFRA#maps">map</a> of <a
-data-cite="INFRA#map-entry">properties</a>, where each property consists of
-a property name/property value pair. The data model contains at least two
-different classes of properties. The first class of properties are called
-core properties, and are specified in section <a href="#core-properties"></a>.
-The second class of properties are called representation properties, and
+data-cite="INFRA#map-entry">entries</a>, where each entry consists of
+an entry key/entry value pair. The data model contains at least two
+different classes of entries. The first class of entries are called
+properties, and are specified in section <a href="#core-properties"></a>.
+The second class are representation-specific entries, and
 are specified in section <a href="#representations"></a>.
     </p>
     <p>
-All property names in the data model are <a
-data-cite="INFRA#strings">strings</a>. All property values are expressed
+All entry keys in the data model are <a
+data-cite="INFRA#strings">strings</a>. All entry values are expressed
 using one of the abstract data types in the table below while each
 representation specifies the concrete serialization format of each data type.
     </p>
@@ -1326,7 +1327,7 @@ property.
     <ol>
       <li>properties defined for a <a>DID Document</a>, serializing the topmost <a data-cite="INFRA#ordered-map">map</a> in the  <a href="#data-model">data model</a>;</li>
       <li>properties defined for a <a>Verification Method</a>, serializing a concept represented by a <a data-cite="INFRA#ordered-map">map</a> in the <a href="#data-model">data model</a>, and specified in Section <a href="#verification-methods"></a>; </li>
-      <li>properties defined for a <a>Service Endpoint</a>, serializing a concept represented by a <a data-cite="INFRA#ordered-map">map</a> in the <a href="#data-model">data model</a>, and specified in Section <a href="#service-endpoints"></a>.</li>
+      <li>properties defined for a <a>Service</a>, serializing a concept represented by a <a data-cite="INFRA#ordered-map">map</a> in the <a href="#data-model">data model</a>, and specified in Section <a href="#services"></a>.</li>
     </ol>
 
     <p class="note" title="Repeated properties">Some of the properties (e.g., <code>id</code> or <code>type</code>) are present in different classes but with possible differences in the associated constraints. Hence their repeated presence in the tables in Section <a href="#property-summary"></a>.</p>
@@ -1416,7 +1417,7 @@ property.
             <tr>
               <td><code><a>service</a></code></td>
               <td>OPTIONAL</td>
-              <td>An <a data-cite="INFRA#ordered-set">ordered set</a> of <a>Service Endpoint</a> <a data-cite="INFRA#ordered-map">maps</a>  (see <a href="#core-properties-for-a-service-endpoint"></a>).</td>
+              <td>An <a data-cite="INFRA#ordered-set">ordered set</a> of <a>Service</a> <a data-cite="INFRA#ordered-map">maps</a>  (see <a href="#core-properties-for-a-service"></a>).</td>
             </tr>
           </tbody>
         </table>
@@ -1474,7 +1475,7 @@ property.
 
 
       <section>
-        <h2>Core Properties for a Service Endpoint</h2>
+        <h2>Core Properties for a Service</h2>
 
       <table class=simple>
           <thead>
@@ -1489,7 +1490,7 @@ property.
               <td><code>id</code></td>
               <td>REQUIRED</td>
               <td>
-                when used on a <a>Service Endpoint</a>: a <a data-cite="INFRA#string">string</a> that conforms to the rules of [[RFC3986]] for <a>URIs</a>.
+                when used on a <a>Service</a>: a <a data-cite="INFRA#string">string</a> that conforms to the rules of [[RFC3986]] for <a>URIs</a>.
               </td>
             </tr>
             <tr>
@@ -1624,9 +1625,7 @@ necessarily appropriate, <em>even with</em> a reciprocal relationship.
     </section>
 
     <section>
-     <h2>
-DID Controller
-      </h2>
+     <h2>DID Controller</h2>
 
       <p>
 A <a>DID controller</a> is an entity that is authorized to make changes to
@@ -1675,9 +1674,8 @@ activity by an attacker. See Section <a href="#security-considerations"></a>.
   "id": "did:example:123456789abcdefghi",
   "controller": "did:example:bcehfew7h32f32h7af3",
   "service": [{
-    <span class="comment">// used to retrieve Verifiable Credentials
-    associated with the DID</span>
-    "type": "VerifiableCredentialService",
+    <span class="comment">// used to retrieve Verifiable Credentials associated with the DID</span>
+    "type": "VerifiableCredentialService",<span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://example.com/vc/"
   }]
 }
@@ -1882,7 +1880,7 @@ property of <em>result</em>, throw an error.
     <span class="comment">// this key is embedded and may *only* be used for authentication</span>
     {
       "id": "did:example:123456789abcdefghi#keys-2",
-      "type": "Ed25519VerificationKey2018",
+      "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
       "controller": "did:example:123456789abcdefghi",
       "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
@@ -1925,17 +1923,17 @@ please see [[?DID-SPEC-REGISTRIES]].
   <span class="comment">...</span>
   "verificationMethod": [{
     "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
-    "type": "JsonWebKey2020",
+    "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
     "controller": "did:example:123",
     "publicKeyJwk": {
-      "crv": "Ed25519",
-      "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ",
-      "kty": "OKP",
-      "kid": "_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A"
+      "crv": "Ed25519", <span class="comment">// external (property name)</span>
+      "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ", <span class="comment">// external (property name)</span>
+      "kty": "OKP", <span class="comment">// external (property name)</span>
+      "kid": "_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A" <span class="comment">// external (property name)</span>
     }
   }, {
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "Ed25519VerificationKey2018",
+    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
     "controller": "did:example:pqrstuvwxyz0987654321",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }],
@@ -2069,7 +2067,7 @@ a different <a>DID controller</a>, the entity associated with the value of
     <span class="comment">// embedded here rather than using only a reference</span>
     {
       "id": "did:example:123456789abcdefghi#keys-2",
-      "type": "Ed25519VerificationKey2018",
+      "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
       "controller": "did:example:123456789abcdefghi",
       "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
@@ -2121,7 +2119,7 @@ corresponding <a>DID Document</a>.
   <span class="comment">// embedded here rather than using only a reference</span>
   {
     "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018",
+    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }
@@ -2171,7 +2169,7 @@ to wrap a decryption key for the recipient.
     <span class="comment">// embedded here rather than using only a reference</span>
     {
       "id": "did:example:123#zC9ByQ8aJs8vrNXyDhPHHNNMSHPcaSgNpjjsBYpMMjsTdS",
-      "type": "X25519KeyAgreementKey2019",
+      "type": "X25519KeyAgreementKey2019", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyBase58": "9hFgmPVfmBZwRvFEyniQDBkz9LmV7gDEqytWyGZLmDXE"
     }
@@ -2216,7 +2214,7 @@ would need to verify that the <a>verification method</a> exists in the
   "@context": "https://www.w3.org/ns/did/v1", "id":
   "did:example:123456789abcdefghi",
   <span class="comment">...</span>
-  "capabilityInvocation: [
+  "capabilityInvocation": [
     <span class="comment">// this method can be used to invoke capabilities as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
     <span class="comment">// this method is *only* approved for capability invocation usage, it may not</span>
@@ -2224,7 +2222,7 @@ would need to verify that the <a>verification method</a> exists in the
     <span class="comment">// embedded here rather than using only a reference</span>
     {
     "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018",
+    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
@@ -2275,7 +2273,7 @@ to a party other than themselves.
     <span class="comment">// embedded here rather than using only a reference</span>
     {
     "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018",
+    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
     "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
@@ -2287,10 +2285,10 @@ to a party other than themselves.
     </section>
 
     <section>
-      <h2>Service Endpoints</h2>
+      <h2>Services</h2>
 
       <p>
-<a>Service endpoints</a> are used in <a>DID documents</a> to express ways of
+<a>Services</a> are used in <a>DID documents</a> to express ways of
 communicating with the <a>DID subject</a> or associated entities.
 <a>Services</a> listed in the <a>DID document</a> can contain information about
 privacy preserving messaging services, or more public information, such as
@@ -2311,7 +2309,7 @@ properties, as well as a <code><a>serviceEndpoint</a></code> property with a
 
       <p>
 One of the primary purposes of a <a>DID document</a> is to enable discovery of
-<a>service endpoints</a>. A <a>service endpoint</a> can be any type of service
+<a>services</a>. A <a>services</a> can be any type of service
 the <a>DID subject</a> wants to advertise, including
 <a>decentralized identity management</a> services for further discovery,
 authentication, authorization, or interaction.
@@ -2327,8 +2325,8 @@ A <a>DID document</a> MAY include a <code><a>service</a></code> property.
           <p>
 If a <a>DID document</a> includes a <code>service</code> property, the value
 of the property MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
-of <a>service endpoints</a>, where each service endpoint is described by a set
-of properties. Each <a>service endpoint</a> MUST have <code><a>id</a></code>,
+of <a>services</a>, where each service is described by a set
+of properties. Each <a>service</a> MUST have <code><a>id</a></code>,
 <code>type</code>, and <code><a>serviceEndpoint</a></code> properties, and MAY
 include additional properties.
           </p>
@@ -2354,53 +2352,48 @@ with the extension.
       </dl>
 
       <p>
-It is expected that the <a>service endpoint</a> protocol is published in an open
+It is expected that the <a>service</a> protocol is published in an open
 standard specification.
       </p>
 
-      <pre class="example nohighlight" title="Various service endpoints">
+      <pre class="example nohighlight" title="Various services">
 {
   "service": [{
     "id":"did:example:123#linked-domain",
-    "type": "LinkedDomains",
+    "type": "LinkedDomains", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://bar.example.com"
   }, {
     "id": "did:example:123456789abcdefghi#openid",
-    "type": "OpenIdConnectVersion1.0Service",
+    "type": "OpenIdConnectVersion1.0Service", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://openid.example.com/"
   }, {
     "id": "did:example:123456789abcdefghi#vcr",
-    "type": "CredentialRepositoryService",
+    "type": "CredentialRepositoryService", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://repository.example.com/service/8377464"
   }, {
     "id": "did:example:123456789abcdefghi#xdi",
-    "type": "XdiService",
+    "type": "XdiService", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://xdi.example.com/8377464"
   }, {
     "id": "did:example:123456789abcdefghi#agent",
-    "type": "AgentService",
+    "type": "AgentService", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://agent.example.com/8377464"
   }, {
-    "id": "did:example:123456789abcdefghi#hub",
-    "type": "IdentityHub",
-    "verificationMethod": "did:example:123456789abcdefghi#key-1",
-    "serviceEndpoint": ["did:example:456", "did:example:789"]
-  }, {
     "id": "did:example:123456789abcdefghi#messages",
-    "type": "MessagingService",
+    "type": "MessagingService", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://example.com/messages/8377464"
   }, {
     "id": "did:example:123456789abcdefghi#inbox",
-    "type": "SocialWebInboxService",
+    "type": "SocialWebInboxService", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://social.example.com/83hfh37dj",
-    "description": "My public social inbox",
-    "spamCost": {
-      "amount": "0.50",
-      "currency": "USD"
+    "description": "My public social inbox", <span class="comment">// external (property name)</span>
+    "spamCost": { <span class="comment">// external (property name)</span>
+      "amount": "0.50", <span class="comment">// external (property name)</span>
+      "currency": "USD" <span class="comment">// external (property name)</span>
     }
   }, {
     "id": "did:example:123456789abcdefghi#authpush",
-    "type": "DidAuthPushModeVersion1",
+    "type": "DidAuthPushModeVersion1", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefg"
   }]
 }
@@ -2408,7 +2401,7 @@ standard specification.
 
       <p>
 For more information about security considerations regarding authentication
-<a>service endpoints</a> see Sections <a href="#method-schemes"></a>
+<a>services</a> see Sections <a href="#method-schemes"></a>
 and <a href="#authentication"></a>.
       </p>
     </section>
@@ -2450,36 +2443,37 @@ through the content of the <a>DID document</a> alone.
     </p>
 
     <p>
-Unrecognized properties MUST be preserved. An unrecognized property is any
-property that does not have explicit processing rules known to the consumer or
-producer. Consumers MUST add all properties that do not have explicit processing
+Unrecognized entries in the <a href="#data-model">data
+model</a> MUST be preserved. An unrecognized entry is any
+entry that does not have explicit processing rules known to the consumer or
+producer. Consumers MUST add all entries that do not have explicit processing
 rules for the representation being consumed to the <a href="#data-model">data
 model</a> using only the representation's generic type processing rules.
-Producers MUST serialize all properties in the <a href="#data-model">data
+Producers MUST serialize all entries in the <a href="#data-model">data
 model</a> that do not have explicit processing rules for the representation
 being produced using only the representation's generic type processing rules.
     </p>
 
-    <p class="note" title="Representation-specific syntax properties">
-Note that properties that contain representation-specific syntax will only have
+    <p class="note" title="Representation-specific entries">
+Note that entries that contain representation-specific syntax will only have
 special processing rules defined by a single representation. Consumers of a
-different representation are required to include these properties in the <a
+different representation are required to include these entries in the <a
 href="#data-model">data model</a> using only their generic type processing rules
 to enable lossless conversion of representations. Similarly, producers are
-required to treat properties containing representation-specific syntax using
+required to treat entries containing representation-specific syntax using
 generic type processing rules when producing a representation for which the
-property is not defined. Representations are required to define producer
-behavior for any such properties defined by the representation.
+entry is not defined. Representations are required to define producer
+behavior for any such entries defined by the representation.
     </p>
 
-<p class="note" title="Representation properties lexical and value space">
+    <p class="note" title="Representation lexical and value space">
 It is RECOMMENDED that representations use the lexical representation
 of registered data types. For example, JSON and JSON-LD use the XML
 Schema dateTime lexical representation to represent <a>datetimes</a>.
 A representation MAY choose to represent the data types differently.
-For example, CBOR-LD represents some <a>datetime</a> values
+For example, some CBOR-based representations express <a>datetime</a> values
 using integers to represent the number of seconds since the Unix epoch.
-</p>
+    </p>
 
     <p>
 The production and consumption rules in this section apply to all
@@ -2501,7 +2495,7 @@ representations require the following:
       <ol>
         <li>
 A representation MUST define an unambiguous encoding and decoding for all
-property names and all <a href="#data-model">data model</a> <a
+entry key and all <a href="#data-model">data model</a> <a
 href="#data-model">data types</a> as defined in this specification. This enables
 anything that can be represented in the  <a href="#data-model">data model</a> to
 also be represented in a compliant representation.
@@ -2517,7 +2511,7 @@ are conformant with the fragment processing rules defined in section
         </li>
         <li>
 The representation MAY define representation-specific syntax that can be stored
-as properties in the <a href="#data-model">data model</a>. These properties are
+as entries in the <a href="#data-model">data model</a>. These entries are
 included when consuming or producing to aid in ensuring lossless conversion.
         </li>
       </ol>
@@ -2544,11 +2538,11 @@ metadata).
 
         <p>
 A <a>DID document</a> MUST be a single <a data-cite="RFC8259#section-4">JSON
-object</a> conforming to [[!RFC8259]]. All properties of the <a>DID
-document</a> MUST be represented by using the property name as the name of the
-member of the JSON object. The values of properties of the <a
-href="#data-model">data model</a> described in <a href="#data-model"></a>,
-including all extensions, are encoded in JSON [[RFC8259]] by mapping property
+object</a> conforming to [[!RFC8259]]. All entries of the <a>DID
+document</a> data model described in <a href="#data-model"></a>
+MUST be represented by using the entry key as the name of the
+member of the JSON object. The values of entries,
+including all extensions, are encoded in JSON [[RFC8259]] by mapping entry
 values to JSON types as follows:
         </p>
 
@@ -2570,9 +2564,9 @@ JSON Representation Type
 <a data-cite="INFRA#maps">ordered&nbsp;map</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-4">JSON Object</a>, each property is represented
-as a member of the JSON Object with the property name as the member name and the
-property value according to its type, as defined in this section
+<a data-cite="RFC8259#section-4">JSON Object</a>, each entry is represented
+as a member of the JSON Object with the entry key as the member name and the
+entry value according to its type, as defined in this section
               </td>
             </tr>
             <tr>
@@ -2657,23 +2651,21 @@ the [[INFRA]] specification.
         </p>
 
         <p>
-All properties of the <a>DID document</a> MUST be included in
-the root object. Properties MAY define additional data sub structures subject
+All entries of the <a>DID document</a> MUST be included in
+the root object. Entries MAY define additional data sub structures subject
 to the value representation rules in the list above.
         </p>
 
       </section>
 
       <section>
-        <h3>
-Consumption
-        </h3>
+        <h3>Consumption</h3>
 
         <p>
 The topmost element MUST be a JSON object. Any other data type at the topmost
 level is an error and MUST be rejected. The topmost JSON object represents the
-<a>DID document</a>, and all members of this object are properties of the <a>DID
-document</a>. The object member name is the property name, and the member value
+<a>DID document</a>, and all members of this object are entries of the <a>DID
+document</a>. The object member name is the entry key, and the member value
 is interpreted as follows:
         </p>
 
@@ -2696,16 +2688,16 @@ Data&nbsp;Type
               </td>
               <td>
 <a data-cite="INFRA#maps">ordered&nbsp;map</a>, each member of the JSON Object
-is added as a property to the ordered map with the property name being the
+is added as an entry to the ordered map with the entry key being the
 member name and the value converted based on the JSON type and, if available,
-property definition, as defined here; as no order is specified by JSON Objects,
+entry definition, as defined here; as no order is specified by JSON Objects,
 no insertion order is guaranteed
               </td>
             </tr>
             <tr>
               <td>
 <a data-cite="RFC8259#section-5">JSON Array</a> where <a href="#data-model">data
-model</a> property value is a <a data-cite="INFRA#list">list</a> or unknown
+model</a> entry value is a <a data-cite="INFRA#list">list</a> or unknown
               </td>
               <td>
 <a data-cite="INFRA#list">list</a>, each value of the JSON Array is added to the
@@ -2716,7 +2708,7 @@ here
             <tr>
               <td>
 <a data-cite="RFC8259#section-5">JSON Array</a> where <a href="#data-model">data
-model</a> property value is an <a
+model</a> entry value is an <a
 data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
@@ -2728,7 +2720,7 @@ the array value, as defined here
             <tr>
               <td>
 <a data-cite="RFC8259#section-7">JSON String</a> where <a
-href="#data-model">data model</a> property value is an <a>datetime</a>
+href="#data-model">data model</a> entry value is an <a>datetime</a>
               </td>
               <td>
 <a>datetime</a>
@@ -2737,7 +2729,7 @@ href="#data-model">data model</a> property value is an <a>datetime</a>
             <tr>
               <td>
 <a data-cite="RFC8259#section-7">JSON String</a>, where <a
-href="#data-model">data model</a> property value type is <a>string</a> or
+href="#data-model">data model</a> entry value type is <a>string</a> or
 unknown
               </td>
               <td>
@@ -2756,7 +2748,7 @@ fractional component
             <tr>
               <td>
 <a data-cite="RFC8259#section-6">JSON Number</a> with a fractional component, or
-when property value is a <a>double</a> regardless of inclusion of fractional
+when entry value is a <a>double</a> regardless of inclusion of fractional
 component
               </td>
               <td>
@@ -2848,15 +2840,13 @@ require them.
       </ul>
 
       <section>
-        <h3>
-Production
-        </h3>
+        <h3>Production</h3>
 
         <p>
 The <a>DID document</a> MUST be serialized according to the
 <a href="#production">production rules for JSON</a>, with one additional
 requirement: The <a>DID document</a> MUST include the <code>@context</code>
-property.
+entry.
         </p>
 
         <dl>
@@ -2865,9 +2855,9 @@ property.
 
             <p>
 The <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD
-specification</a> defines values that are valid for this property. This property
+specification</a> defines values that are valid for this entry. This entry
 contains representation-specific syntax and therefore could be present in the <a
-href="#data-model">data model</a> to aid in lossless conversion. If the property
+href="#data-model">data model</a> to aid in lossless conversion. If the entry
 is present in the <a href="#data-model">data model</a>, it MUST be used during
 production unless either an alternative <code>@context</code> value is
 explicitly provided to the producer or if the value from the data model is not
@@ -2908,7 +2898,7 @@ type <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a> or
             </ul>
 
             <p>
-All members of the <code>@context</code> property SHOULD exist in the DID
+All members of the <code>@context</code> entry SHOULD exist in the DID
 specification registries [[?DID-SPEC-REGISTRIES]] in order to achieve
 interoperability across different representations. If a member does not exist
 in the DID specification registries, then the <a>DID document</a> might not be
@@ -2917,7 +2907,7 @@ interoperable across representations.
 
             <p>
 It is RECOMMENDED that dereferencing each <a>URI</a> value of the
-<code>@context</code> property results in a document containing
+<code>@context</code> entry results in a document containing
 machine-readable information about the context. Note that further expectations
 of additional JSON-LD contexts are described as part of the DID specification
 registries registration process.
@@ -2933,22 +2923,20 @@ defined via the <code>@context</code>. Properties that are not defined via the
       </section>
 
       <section>
-        <h3>
-Consumption
-        </h3>
+        <h3>Consumption</h3>
 
         <p>
 The <a>DID document</a> MUST be deserialized as a JSON document according to
 the <a href="#consumption">consumption rules for JSON</a>, with one additional
 requirement: The <a>DID document</a> MUST include the <code>@context</code>
-property and be processed according to the rules below.
+entry and be processed according to the rules below.
         </p>
 
         <dl>
           <dt>@context</dt>
           <dd>
             <p>
-The value of the <code>@context</code> property conforms to the
+The value of the <code>@context</code> entry conforms to the
 <a href="#production-0">JSON-LD Production Rules</a>. If more than one
 <a>URI</a> is provided, the <a>URIs</a> MUST be interpreted as an
 <a data-cite="INFRA#ordered-set">ordered set</a>.
@@ -2987,11 +2975,11 @@ metadata.
 
         <p>
 A <a>DID document</a> MUST be a single <a data-cite="RFC7049#section-2.1">CBOR
-Map</a> conforming to [[RFC7049]]. All topmost properties of the <a>DID
-document</a> MUST be represented by using the property name as the name of the
-key of the CBOR Map. The values of properties of the <a href="#data-model">data
+Map</a> conforming to [[RFC7049]]. All topmost entries of the <a>DID
+document</a> MUST be represented by using the entry key as the name of the
+key of the CBOR Map. The values of entries of the <a href="#data-model">data
 model</a> described in Section <a href="#data-model"></a>, including all
-extensions, are encoded in CBOR [[RFC7049]] by mapping property values to CBOR
+extensions, are encoded in CBOR [[RFC7049]] by mapping entry values to CBOR
 types as follows:
         </p>
 
@@ -3013,9 +3001,9 @@ CBOR Representation Type
 <a data-cite="INFRA#maps">ordered&nbsp;map</a>
               </td>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR map</a> (major type 5), each property
-is represented as a member of the CBOR Map with the property name as the key and
-the property value according to its type, as defined in this section
+<a data-cite="RFC7049#section-2.1">CBOR map</a> (major type 5), each entry
+is represented as a member of the CBOR Map with the entry key as the key and
+the entry value according to its type, as defined in this section
               </td>
             </tr>
             <tr>
@@ -3110,9 +3098,25 @@ length.</a>
           </li>
         </ul>
 
+        <p>
+  To produce a deterministic canonical CBOR representation of a DID document and
+  faciliate maximal lossless compatiblity with other  core representations via the
+  Abstract Data Model the following constraints of a CBOR representation of a DID
+  Document model MUST be followed:
+        </p>
+
+        <ul>
+          <li>Entry keys MUST be represented as text string (major type 3) and contain only UTF-8 strings.</li>
+          <li>Undefined Values of Required Properties as defined in <a href="#data-model">the Data Model</a> that are absent from the CBOR representation SHOULD be labeled with Primitive type (major type 7) with value 23 (Undefined value).</li>
+          <li>Entry keys in each CBOR map MUST be unique.</li>
+          <li>Integer encoding MUST be as short as possible.</li>
+          <li>The expression of lengths in CBOR major types 2 through 5 MUST be as short as possible.</li>
+          <li>The keys in every map must be sorted lowest value to highest. Sorting is performed on the bytes of the representation of the keys. If two keys have different lengths, the shorter one sorts earlier.  If two keys have the same length, the one with the lower value in (byte-wise) lexical order sorts earlier.</li>
+        </ul>
+
       <p>
-All properties of the DID document represented in CBOR MUST be included in the
-root map (major type 5). Properties MAY define additional data sub structures
+All entries of the DID document represented in CBOR MUST be included in the
+root map (major type 5). Entries MAY define additional data sub structures
 represented as nested CBOR maps (major type 5) and is subject to the value
 representation rules in the lists above and conformance to section <a
 href="#extensibility"> § 4.3 Extensibility</a>.
@@ -3170,7 +3174,7 @@ The topmost element MUST be a <a data-cite="RFC7049#section-2.1">CBOR map</a>
 the <a href="#data-model">data model</a>) is an error and MUST be
 rejected. The topmost <a data-cite="RFC7049#section-2.1">CBOR map</a>
 represents the <a>DID document</a>, and all data items of this map are
-properties of the <a>DID document</a>. The data item key is the property name,
+entries of the <a>DID document</a>. The data item key is the entry key,
 and the data item value is interpreted as follows:
         </p>
 
@@ -3193,16 +3197,16 @@ Data&nbsp;Type
               </td>
               <td>
 <a data-cite="INFRA#maps">ordered&nbsp;map</a>, each data item of the CBOR map
-is added as a property to the ordered map with the property name being the data
+is added as an entry to the ordered map with the entry key being the data
 item name and the value converted based on the CBOR type and, if available,
-property definition, as defined here; as no order can be enforced for general
+entry definition, as defined here; as no order can be enforced for general
 CBOR maps, no insertion order is guaranteed.
               </td>
             </tr>
             <tr>
               <td>
 <a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), where the <a
-href="#data-model">data model</a> property value is a <a
+href="#data-model">data model</a> entry value is a <a
 data-cite="INFRA#list">list</a> or unknown
               </td>
               <td>
@@ -3214,7 +3218,7 @@ converted based on the CBOR type of the array value, as defined in this table
             <tr>
               <td>
 <a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), where the <a
-href="#data-model">data model</a> property value is an <a
+href="#data-model">data model</a> entry value is an <a
 data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
@@ -3227,7 +3231,7 @@ in this table
             <tr>
               <td>
 <a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5) where the
-<a href="#data-model">data model</a> property value is a <a>datetime</a>
+<a href="#data-model">data model</a> entry value is a <a>datetime</a>
               </td>
               <td>
   <a>datetime</a>
@@ -3236,7 +3240,7 @@ in this table
             <tr>
               <td>
 <a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5), where the <a
-href="#data-model">data model</a> property value type is <a>string</a> or
+href="#data-model">data model</a> entry value type is <a>string</a> or
 unknown
               </td>
               <td>
@@ -3296,7 +3300,7 @@ Duplicate key in the same CBOR map MUST throw an Error.
           </li>
           <li>
 <a href="https://tools.ietf.org/html/rfc7049#section-3.3.3">Unknown Additional
-Properties and Values</a> that are not defined in <a href="#data-model">data
+Entries</a> that are not defined in <a href="#data-model">data
 model</a>, represented in the `@context`, or represented in <a href="">the DID
 spec registries</a> or be explicitly documented as an extension of the DID
 document conformant to <a href="#extensibility"> § 4.3 Extensibility</a> MUST be
@@ -3345,47 +3349,6 @@ that may be ignored or lost in a round-trip decode/encode.
           </p>
 
           <p>
-To produce a deterministic canonical CBOR representation of a DID document and
-faciliate maximal lossless compatiblity with other core representations via the
-<a href="#data-model">data model</a> the following constraints of a CBOR
-representation are as follows:
-          </p>
-
-          <ul>
-            <li>
-Property names MUST be represented as text string (major type 3) and contain
-only UTF-8 strings.
-            </li>
-            <li>
-Undefined Values of Required Properties as defined in <a href="#data-model">the
-Data Model</a> that are absent from the CBOR representation SHOULD be labeled
-with Primitive type (major type 7) with value 23 (Undefined value).
-            </li>
-            <li>
-Property names in each CBOR map MUST be unique.
-            </li>
-            <li>
-Integer encoding MUST be as short as possible.
-            </li>
-            <li>
-The expression of lengths in CBOR major types 2 through 5 MUST be as short as
-possible.
-            </li>
-            <li>
-The keys in every map must be sorted lowest value to highest. Sorting is
-performed on the bytes of the representation of the keys. If two keys have
-different lengths, the shorter one sorts earlier.  If two keys have the same
-length, the one with the lower value in (byte-wise) lexical order sorts earlier.
-            </li>
-          </ul>
-
-          <p class="issue">
-How to represent Floating-point values that can exceed the range or the
-precision IEEE 754. See <a
-href="https://github.com/w3c/did-core/issues/361">issue #361</a>.
-          </p>
-
-          <p>
 When producing and consuming DID Documents representing in DagCBOR the following
 rules are followed:
           </p>
@@ -3398,7 +3361,7 @@ CBOR tags other than the CID tag (42) MUST NOT be used.
 
           <pre class="example nohighlight"
             title="DID Document as DagCBOR with tag 42 used in Proof section">
-a5                                      # map(5)
+a5                                   # map(5)
 62                                   # text(2)
    6964                              # "id"
 78 40                                # text(64)
@@ -3430,9 +3393,7 @@ d8 2a                                # tag(42)
   </section>
 
   <section>
-    <h1>
-Methods
-    </h1>
+    <h1>Methods</h1>
 
     <p>
 <a>DID methods</a> provide the means to implement this specification on
@@ -3540,7 +3501,7 @@ use the <a>verification methods</a> listed under
 operation is allowed.
         </li>
         <li>
-use other constructs in the <a>DID Document</a> to decide this, for example, a
+use other constructs in the <a>DID Document</a> to decide if, for example, a
 verification method specified under <code><a>capabilityInvocation</a></code>
 could be used to verify the invocation of a capability to update the DID
 Document.
@@ -3557,9 +3518,7 @@ operations is implemented, including any necessary cryptographic operations.
       </p>
 
       <section>
-        <h3>
-Create
-        </h3>
+        <h3>Create</h3>
 
         <p>
 The <a>DID method</a> specification MUST specify how a <a>DID controller</a>
@@ -3570,9 +3529,7 @@ proof of control.
       </section>
 
       <section>
-        <h3>
-Read/Verify
-        </h3>
+        <h3>Read/Verify</h3>
 
         <p>
 The <a>DID method</a> specification MUST specify how a <a>DID resolver</a> uses
@@ -3583,9 +3540,7 @@ of the response.
       </section>
 
       <section>
-        <h3>
-Update
-        </h3>
+        <h3>Update</h3>
 
         <p>
 The <a>DID method</a> specification MUST specify how a <a>DID controller</a> can
@@ -3605,9 +3560,7 @@ update that does not result in changes to the <a>DID document</a>.
       </section>
 
       <section>
-        <h3>
-Deactivate
-        </h3>
+        <h3>Deactivate</h3>
 
         <p>
 The <a>DID method</a> specification MUST specify how a <a>DID controller</a> can
@@ -3619,9 +3572,7 @@ cryptographic operations necessary to establish proof of deactivation,
     </section>
 
     <section>
-      <h2>
-Security Requirements
-      </h2>
+      <h2>Security Requirements</h2>
       <p>
 <a>DID method</a> specifications MUST include their own Security
 Considerations sections. This section MUST consider all the requirements
@@ -3687,17 +3638,15 @@ with all known <a>DLTs</a>, the expected burdens of those resources SHOULD be
 discussed in relation to denial of service.
       </p>
       <p>
-<a>DID methods</a> that introduce new authentication <a>service endpoint</a>
-types (see Section <a href="#service-endpoints"></a>) SHOULD consider the
+<a>DID methods</a> that introduce new authentication <a>service</a>
+types (see Section <a href="#services"></a>) SHOULD consider the
 security requirements of the supported authentication protocol.
       </p>
 
     </section>
 
     <section class='normative'>
-      <h2>
-Privacy Requirements
-      </h2>
+      <h2>Privacy Requirements</h2>
 
       <p>
 <a>DID method</a> specifications MUST include their own Privacy
@@ -3716,9 +3665,20 @@ identification, secondary use, disclosure, exclusion.
   </section>
 
   <section class='normative'>
-    <h1>
-Resolution
-    </h1>
+    <h1>Resolution</h1>
+
+    <p class="issue atrisk" data-number="549">
+The Working Group is unsure if there will be enough implementation experience
+for the DID Resolution section. We are seeking feedback from the implementation
+community as to whether they prefer to do all of this work now, or if they would
+prefer that this section is, or parts of the section are, rewritten to be non-normative,
+or published as a NOTE and taken up in a future W3C DID Resolution Working
+Group. If there is support for rewriting a subset of the DID Resolution section,
+or publishing any part of it as a NOTE during the W3C Candidate Recommendation
+process, this section will be modified and/or published as a NOTE appropriately
+before the DID Core specification proceeds to the W3C Proposed
+Recommendation stage.
+    </p>
 
     <p>
 This section defines the inputs and outputs of <a>DID resolution</a> and <a>DID
@@ -3734,9 +3694,7 @@ document</a> in at least one conformant representation.
     </p>
 
     <section>
-        <h2>
-DID Resolution
-        </h2>
+        <h2>DID Resolution</h2>
         <p>
 The <a>DID resolution</a> functions resolve a <a>DID</a> into a <a>DID
 document</a> by using the "Read" operation of the applicable <a>DID method</a>.
@@ -3756,6 +3714,12 @@ resolveRepresentation ( did, did-resolution-input-metadata ) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-resolution-metadata, did-document-stream, did-document-metadata )
         </code></p>
 
+        <p>
+The <code>resolve</code> function returns the <a>DID document</a> in its
+abstract form.
+The <code>resolveRepresentation</code> function returns a byte stream of the
+<a>DID Document</a> formatted in the corresponding representation.
+        </p>
         <p>
 The input variables of these functions are as follows:
         </p>
@@ -3857,9 +3821,7 @@ additional functions with different signatures in addition to the
         </p>
 
         <section>
-            <h3>
-DID Resolution Input Metadata Properties
-            </h3>
+            <h3>DID Resolution Input Metadata Properties</h3>
 
             <p>
 The possible properties within this structure and their possible values are
@@ -3885,9 +3847,7 @@ available. This property is OPTIONAL. It is only used if the
         </section>
 
         <section>
-            <h3>
-DID Resolution Metadata Properties
-            </h3>
+            <h3>DID Resolution Metadata Properties</h3>
 
             <p>
 The possible properties within this structure and their possible values are
@@ -4062,13 +4022,13 @@ A conforming <a>DID Method</a> specification MUST guarantee that each
 <code>id</code> property value.
                   </dd>
                   <dd>
-A resolving party is expected to retain the values from the <code>id</code> and
+A requesting party is expected to retain the values from the <code>id</code> and
 <code><a>equivalentId</a></code> properties to ensure any subsequent
 interactions with any of the values they contain are correctly handled as
 logically equivalent (e.g. retain all variants in a database so an interaction
 with any one maps to the same underlying account). <span class="issue">The
-testability of resolving parties is currently under debate and normative
-statements related to resolving parties may be downgraded in the future from a
+testability of requesting parties is currently under debate and normative
+statements related to requesting parties may be downgraded in the future from a
 MUST to a SHOULD/MAY or similar language.</span>
                   </dd>
                 </dl>
@@ -4080,6 +4040,17 @@ MUST to a SHOULD/MAY or similar language.</span>
 the governing DID method. <code><a>equivalentId</a></code> represents a full
 graph merge because the same DID document describes both the
 <code><a>equivalentId</a></code> DID and the <code>id</code> property DID.
+                  </p>
+                </div>
+
+                <div class="issue" title="Observance of equivalentId recommendations">
+                  <p>
+If a resolving party does not retain the values from the <code>id</code> and
+<code><a>equivalentId</a></code> properties and ensure any subsequent
+interactions with any of the values they contain are correctly handled as
+logically equivalent, there might be negative or unexpected issues that
+arise. Implementers are strongly advised to observe the
+directives related to this metadata property.
                   </p>
                 </div>
 
@@ -4119,12 +4090,12 @@ A conforming <a>DID Method</a> specification MUST guarantee that the
 <code>id</code> property value.
                   </dd>
                   <dd>
-A resolving party is expected to use the <code><a>canonicalId</a></code> value
+A requesting party is expected to use the <code><a>canonicalId</a></code> value
 as its primary ID value for the DID subject and treat all other equivalent
 values as secondary aliases. (e.g. update corresponding primary references in
 their systems to reflect the new canonical ID directive). <span
-class="issue">The testability of resolving parties is currently under debate and
-normative statements related to resolving parties may be downgraded in the
+class="issue">The testability of requesting parties is currently under debate and
+normative statements related to requesting parties may be downgraded in the
 future from a MUST to a SHOULD/MAY or similar language.</span>
                   </dd>
                 </dl>
@@ -4140,20 +4111,31 @@ represents a full graph merge because the same DID document describes both the
                   </p>
                 </div>
 
+                <div class="issue" title="Observance of canonicalId recommendations">
+                  <p>
+If a resolving party does not use the <code><a>canonicalId</a></code> value
+as its primary ID value for the DID subject and treat all other equivalent
+values as secondary aliases, there might be negative or unexpected issues that
+arise related to user experience. Implementers are strongly advised to observe the
+directives related to this metadata property.
+                  </p>
+                </div>
+
         </section>
       </section>
     </section>
 
     <section>
-      <h2>
-DID URL Dereferencing
-      </h2>
+      <h2>DID URL Dereferencing</h2>
       <p>
-The DID URL dereferencing function dereferences a <a>DID URL</a> into
+The <a>DID URL dereferencing</a> function dereferences a <a>DID URL</a> into
 a resource with contents depending on the <a>DID URL</a>'s components,
 including the <a>DID method</a>, method-specific identifier, path, query,
 and fragment. This process depends on <a>DID resolution</a> of the <a>DID</a>
-contained in the <a>DID URL</a>.
+contained in the <a>DID URL</a>. <a>DID URL dereferencing</a> might involve
+multiple steps (e.g., when the DID URL being dereferenced includes a fragment),
+and the function is defined to return the final resource after all
+steps are completed.
 The details of how this process is accomplished are outside the scope of this
 specification, but all conformant implementations implement a function
 which has the following abstract form:
@@ -4268,9 +4250,7 @@ supported and available.
         </section>
 
         <section>
-            <h3>
-DID URL Dereferencing Metadata Properties
-            </h3>
+            <h3>DID URL Dereferencing Metadata Properties</h3>
 
             <p>
 The possible properties within this structure and their possible values are
@@ -4325,9 +4305,7 @@ dereferencing</a> function has been deactivated. (See
     </section>
 
     <section>
-        <h2>
-Metadata Structure
-        </h2>
+        <h2>Metadata Structure</h2>
 
         <p>
 Input and output metadata is often involved during the <a>DID Resolution</a>,
@@ -4336,7 +4314,8 @@ used to communicate this metadata MUST be a <a data-cite="INFRA#maps">map</a>
 of properties. Each property name MUST be a <a
 data-cite="INFRA#string">string</a>. Each property value MUST be a <a
 data-cite="INFRA#string">string</a>, <a data-cite="INFRA#maps">map</a>, <a
-data-cite="INFRA#list">list</a>, <a data-cite="INFRA#ordered-set">ordered set</a>, <a data-cite="INFRA#boolean">boolean</a>, or
+data-cite="INFRA#list">list</a>, <a data-cite="INFRA#ordered-set">ordered
+set</a>, <a data-cite="INFRA#boolean">boolean</a>, or
 <a data-cite="INFRA#null">null</a>. The values within any complex data
 structures such as maps and lists MUST be one of these data types as well.
 All metadata property definitions MUST define the value type, including any
@@ -4429,9 +4408,7 @@ This example corresponds to a metadata structure of the following format:
   </section>
 
   <section class="informative">
-    <h1>
-Security Considerations
-    </h1>
+    <h1>Security Considerations</h1>
 
     <p class="note" title="Note to implementers">
 During the Working Draft stage, this section focuses on security topics that
@@ -4444,9 +4421,7 @@ network.
     </p>
 
     <section>
-      <h2>
-Choosing DID Resolvers
-      </h2>
+      <h2>Choosing DID Resolvers</h2>
 
       <p>
 The DID Method Registry (see [[?DID-SPEC-REGISTRIES]]) contains an informative
@@ -4460,9 +4435,7 @@ use.
     </section>
 
     <section>
-      <h2>
-Binding of Identity
-      </h2>
+      <h2>Binding of Identity</h2>
 
       <p>
 The following sections describe binding identities to <a>DIDs</a> and
@@ -4470,9 +4443,7 @@ The following sections describe binding identities to <a>DIDs</a> and
       </p>
 
       <section>
-        <h3>
-Proving Control of a DID and DID Document
-        </h3>
+        <h3>Proving Control of a DID and DID Document</h3>
 
         <p>
 Signatures and <a>verifiable timestamps</a> allow <a>DID documents</a> to be
@@ -4525,9 +4496,7 @@ applicable.
       </section>
 
       <section>
-        <h3>
-Proving Control of a Public Key
-        </h3>
+        <h3>Proving Control of a Public Key</h3>
 
         <p>
 There are two methods for proving control of the private key corresponding to a
@@ -4557,9 +4526,7 @@ Verify the signature of the response message against the
       </section>
 
       <section>
-        <h3>
-Real-World Identity
-        </h3>
+        <h3>Real-World Identity</h3>
 
         <p>
 A <a>DID</a> and <a>DID document</a> do not inherently carry any
@@ -4587,14 +4554,12 @@ more information, see the Verifiable Credentials Data Model [[VC-DATA-MODEL]].
     </section>
 
     <section>
-      <h2>
-Authentication Service Endpoints
-      </h2>
+      <h2>Authentication Service Endpoints</h2>
 
       <p>
-If a <a>DID document</a> publishes a <a>service endpoint</a> intended for
+If a <a>DID document</a> publishes a <a>service</a> intended for
 authentication or authorization of the <a>DID subject</a> (see Section <a
-href="#service-endpoints"></a>), it is the responsibility of the <a>service
+href="#services"></a>), it is the responsibility of the <a>service
 endpoint</a> provider, subject, or requesting party to comply with the
 requirements of the authentication protocols supported at that <a>service
 endpoint</a>.
@@ -4602,9 +4567,7 @@ endpoint</a>.
     </section>
 
     <section>
-      <h2>
-Non-Repudiation
-      </h2>
+      <h2>Non-Repudiation</h2>
 
       <p>
 Non-repudiation of <a>DIDs</a> and <a>DID document</a> updates is supported
@@ -4631,9 +4594,7 @@ system supports timestamps.
     </section>
 
     <section>
-      <h2>
-Notification of DID Document Changes
-      </h2>
+      <h2>Notification of DID Document Changes</h2>
 
       <p>
 One mitigation against unauthorized changes to a <a>DID document</a> is
@@ -4658,9 +4619,7 @@ vector of attack.
     </section>
 
     <section>
-      <h2>
-Key and Signature Expiration
-      </h2>
+      <h2>Key and Signature Expiration</h2>
 
       <p>
 In a <a>decentralized identifier</a> architecture, there are no centralized
@@ -4674,6 +4633,7 @@ of a resolver ought to be compatible with such extension behavior.
     </section>
 
     <section>
+
       <h2>Verification Method Rotation</h2>
   
       <p>Verification method rotation is a proactive security measure.</p>
@@ -4692,6 +4652,7 @@ of a resolver ought to be compatible with such extension behavior.
         It is considered a best practice to perform verification method
         rotation on a regular basis.
       </p>
+
 
       <p class="advisement">
         Proofs or signatures that rely on verification methods that are not
@@ -4810,9 +4771,7 @@ of a resolver ought to be compatible with such extension behavior.
     </section>
 
     <section>
-      <h2>
-The Role of Human-Friendly Identifiers
-      </h2>
+      <h2>The Role of Human-Friendly Identifiers</h2>
 
       <p>
 <a>DIDs</a> achieve global uniqueness without the need for a central
@@ -4857,9 +4816,7 @@ addresses using DNS lookups is available at [[?DNS-DID]].
     </section>
 
     <section>
-        <h2>
-Immutability
-        </h2>
+        <h2>Immutability</h2>
 
         <p>
 Many cybersecurity abuses hinge on exploiting gaps between reality and the
@@ -4872,7 +4829,7 @@ the same set of features, the less it can be manipulated by malicious actors.
         <p>
 As an example, consider that a single edit to a <a>DID document</a> can change
 anything except the root <code><a>id</a></code> property of the document. But
-is it actually desirable for a <a>service endpoint</a> to change its
+is it actually desirable for a <a>service</a> to change its
 <code>type</code> after it is defined? Or for a key to change its value? Or
 would it be better to require a new <code><a>id</a></code> when certain
 fundamental properties of an object change? Malicious takeovers of a website
@@ -4897,9 +4854,7 @@ others are of partial data where the larger context is assumed.
     </section>
 
     <section>
-      <h2>
-Encrypted Data in DID Documents
-      </h2>
+      <h2>Encrypted Data in DID Documents</h2>
       <p>
 Encryption algorithms have been known to fail due to advances in cryptography
 and computing power. Implementers are advised to assume that any encrypted
@@ -4932,7 +4887,7 @@ related to attacks against DIDs that are asserted to be equivalent.
 The <code><a>equivalentId</a></code> and <code><a>canonicalId</a></code>
 properties that constrain equivalence assertions to variants of a single DID
 produced by the same <a>DID method</a> (e.g. <code>did:foo:123</code> ≡
-<code>did:foo:hash(123)</code>) can be trusted to the extent the resolving party
+<code>did:foo:hash(123)</code>) can be trusted to the extent the requesting party
 trusts the <a>DID method</a> (and a conforming producer) itself.
       </p>
       <p>
@@ -4955,9 +4910,7 @@ re-verified.
     </section>
 
     <section>
-      <h2>
-Content Integrity Protection
-      </h2>
+      <h2>Content Integrity Protection</h2>
       <p>
 DID documents which include external JSON-LD contexts (see
 <a href="#json-ld"></a>) or any other links to external machine-readable
@@ -4970,6 +4923,46 @@ hash for the context as registered in the DID specification registries
 (see the registration process for more detail) [[?DID-SPEC-REGISTRIES]].
       </p>
     </section>
+
+    <section>
+      <h2>Level of Assurance</h2>
+
+      <p>
+Additional information about the security context of authentication events
+is often required for compliance reasons, especially in regulated areas
+such as the financial and public sectors. Examples include but are not
+limited to protection of secret keys, the identity proofing process, and the
+form-factor of the authenticator. For example, <a target="_blank"
+href="https://ec.europa.eu/info/law/payment-services-psd-2-directive-eu-2015-2366_en">
+Payment services (PSD 2)</a> and <a target="_blank"
+href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2014.257.01.0073.01.ENG">
+eIDAS</a> introduce such requirements to the security context. Level of
+Assurance (LoA) frameworks are classified and defined by, for example,
+<a target="_blank"
+href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2014.257.01.0073.01.ENG">
+eIDAS</a>,
+<a target="_blank" href="https://pages.nist.gov/800-63-3/sp800-63-3.html">
+NIST 800-63-3</a> and <a target="_blank" href="https://www.iso.org/standard/45138.html">
+ISO/IEC 29115:2013</a>, including their requirements for the security
+context, and making recommendations on how to achieve them. This might
+include strong user authentication and <a href="_blank"
+href="https://fidoalliance.org/fido2">FIDO2</a>/<a target="_blank"
+href="https://www.w3.org/TR/webauthn-2/">WebAuthn</a> can be potential
+implementations. A LoA represents the level of confidence that an entity is in
+fact that entity. Some regulated use cases require the implementation of a
+certain LoA. Since <a>verification relationships</a> such as <code>
+<a>assertionMethod</a></code> and <code><a>authentication</a></code> might be
+used in some of these use cases, information about the applied security context
+might need to be expressed and provided to a <a>verifier</a>. Whether and
+how to encode this information in the <a>DID document</a> data model is
+out of scope for this specification, but it should be noted that the
+<a>DID document</a> data model can be extended if necessary (see
+<a href="#extensibility">Extensibility</a> section). Section
+<a href="#privacy-considerations">Privacy Considerations</a> remains
+applicable for such extensions.
+      </p>
+    </section>
+
   </section>
 
   <section class="informative">
@@ -4988,9 +4981,7 @@ embedded default.
     </p>
 
     <section>
-      <h2>
-Keep Personally-Identifiable Information (PII) Private
-      </h2>
+      <h2>Keep Personally-Identifiable Information (PII) Private</h2>
 
       <p>
 If a <a>DID method</a> specification is written for a public <a>verifiable
@@ -5019,9 +5010,7 @@ forgotten</a>, because no personal data is written to an immutable
     </section>
 
     <section>
-      <h2>
-DID Correlation Risks and Pseudonymous DIDs
-      </h2>
+      <h2>DID Correlation Risks and Pseudonymous DIDs</h2>
 
       <p>
 Like any type of globally unique identifier, <a>DIDs</a> might be used for
@@ -5038,9 +5027,7 @@ identification.
     </section>
 
     <section>
-      <h2>
-DID Document Correlation Risks
-      </h2>
+      <h2>DID Document Correlation Risks</h2>
 
       <p>
 The anti-correlation protections of pseudonymous <a>DIDs</a> are easily defeated
@@ -5062,9 +5049,7 @@ See also <a href="#herd-privacy"></a>.
     </section>
 
     <section>
-      <h2>
-Assigning a type to the DID subject
-      </h2>
+      <h2>Assigning a type to the DID subject</h2>
       <p>
 It is dangerous to add properties to the <a>DID document</a> that can be used
 to indicate, explicitly or through inference, what <em>type</em> or nature of
@@ -5097,9 +5082,7 @@ related to using the <a>DID</a>.
     </section>
 
     <section>
-      <h2>
-Herd Privacy
-      </h2>
+      <h2>Herd Privacy</h2>
 
       <p>
 When a <a>DID subject</a> is indistinguishable from others in the herd,
@@ -5119,9 +5102,7 @@ encrypted transport layers, and pad messages to standard lengths.
     </section>
 
     <section>
-      <h2>
-          Service Privacy
-      </h2>
+      <h2>Service Privacy</h2>
       <p>
 The ability for a controller to optionally state at least one service endpoint
 in the DID document increases their control and agency. Each additional
@@ -5177,9 +5158,7 @@ through herd privacy.
   </section>
 
   <section class="informative">
-    <h1>
-      Examples
-    </h1>
+    <h1>Examples</h1>
     <section class="informative">
       <h2>DID Documents</h2>
 
@@ -5202,7 +5181,7 @@ practice to avoid using the same verification method for multiple purposes.
     "authentication": [
       {
         "id": "did:example:123#z6MkecaLyHuYWkayBDLw5ihndj3T1m6zKTGqau3A51G7RBf3",
-        "type": "Ed25519VerificationKey2018",
+        "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
         "publicKeyBase58": "AKJP3f7BD6W4iWEQ9jwndVTCBq8ua2Utt8EEjJ6Vxsf"
       }
@@ -5210,7 +5189,7 @@ practice to avoid using the same verification method for multiple purposes.
     "capabilityInvocation": [
       {
         "id": "did:example:123#z6MkhdmzFu659ZJ4XKj31vtEDmjvsi5yDZG5L7Caz63oP39k",
-        "type": "Ed25519VerificationKey2018",
+        "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
         "publicKeyBase58": "4BWwfeqdp1obQptLLMvPNgBw48p7og1ie6Hf9p5nTpNN"
       }
@@ -5218,7 +5197,7 @@ practice to avoid using the same verification method for multiple purposes.
     "capabilityDelegation": [
       {
         "id": "did:example:123#z6Mkw94ByR26zMSkNdCUi6FNRsWnc2DFEeDXyBGJ5KTzSWyi",
-        "type": "Ed25519VerificationKey2018",
+        "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
         "publicKeyBase58": "Hgo9PAmfeoxHG8Mn2XHXamxnnSwPpkyBHAMNF3VyXJCL"
       }
@@ -5226,7 +5205,7 @@ practice to avoid using the same verification method for multiple purposes.
     "assertionMethod": [
       {
         "id": "did:example:123#z6MkiukuAuQAE8ozxvmahnQGzApvtW7KT5XXKfojjwbdEomY",
-        "type": "Ed25519VerificationKey2018",
+        "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
         "publicKeyBase58": "5TVraf9itbKXrRvt2DSS95Gw4vqU3CHAdetoufdcKazA"
       }
@@ -5241,88 +5220,88 @@ practice to avoid using the same verification method for multiple purposes.
   "verificationMethod": [
     {
       "id": "did:example:123#ZC2jXTO6t4R501bfCXv3RxarZyUbdP2w_psLwMuY6ec",
-      "type": "Ed25519VerificationKey2018",
+      "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     },
     {
       "id": "did:example:123#zQ3shP2mWsZYWgvgM11nenXRTx9L1yiJKmkf9dfX7NaMKb1pX",
-      "type": "EcdsaSecp256k1VerificationKey2019",
+      "type": "EcdsaSecp256k1VerificationKey2019", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyBase58": "d5cW2R53NHTTkv7EQSYR8YxaKx7MVCcchjmK5EgCNXxo",
     },
     {
       "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "OKP",
-        "crv": "Ed25519",
-        "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ"
+        "kty": "OKP", <span class="comment">// external (property name)</span>
+        "crv": "Ed25519", <span class="comment">// external (property name)</span>
+        "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ" <span class="comment">// external (property name)</span>
       }
     },
     {
       "id": "did:example:123#z6LSnjagzhe8Df6gZmroW3wjDd7XQLwAuYfwa4ZeTBCGFoYc",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "OKP",
-        "crv": "X25519",
-        "x": "pE_mG098rdQjY3MKK2D5SUQ6ZOEW3a6Z6T7Z4SgnzCE"
+        "kty": "OKP", <span class="comment">// external (property name)</span>
+        "crv": "X25519", <span class="comment">// external (property name)</span>
+        "x": "pE_mG098rdQjY3MKK2D5SUQ6ZOEW3a6Z6T7Z4SgnzCE" <span class="comment">// external (property name)</span>
       },
     }
     {
       "id": "did:example:123#4SZ-StXrp5Yd4_4rxHVTCYTHyt4zyPfN1fIuYsm6k3A",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "EC",
-        "crv": "secp256k1",
-        "x": "Z4Y3NNOxv0J6tCgqOBFnHnaZhJF6LdulT7z8A-2D5_8",
-        "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk"
+        "kty": "EC", <span class="comment">// external (property name)</span>
+        "crv": "secp256k1", <span class="comment">// external (property name)</span>
+        "x": "Z4Y3NNOxv0J6tCgqOBFnHnaZhJF6LdulT7z8A-2D5_8", <span class="comment">// external (property name)</span>
+        "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk" <span class="comment">// external (property name)</span>
       }
     },
     {
       "id": "did:example:123#n4cQ-I_WkHMcwXBJa7IHkYu8CMfdNcZKnKsOrnHLpFs",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "RSA",
-        "e": "AQAB",
-        "n": "omwsC1AqEk6whvxyOltCFWheSQvv1MExu5RLCMT4jVk9khJKv8JeMXWe3bWHatjPskdf2dlaGkW5QjtOnUKL742mvr4tCldKS3ULIaT1hJInMHHxj2gcubO6eEegACQ4QSu9LO0H-LM_L3DsRABB7Qja8HecpyuspW1Tu_DbqxcSnwendamwL52V17eKhlO4uXwv2HFlxufFHM0KmCJujIKyAxjD_m3q__IiHUVHD1tDIEvLPhG9Azsn3j95d-saIgZzPLhQFiKluGvsjrSkYU5pXVWIsV-B2jtLeeLC14XcYxWDUJ0qVopxkBvdlERcNtgF4dvW4X00EHj4vCljFw"
+        "kty": "RSA", <span class="comment">// external (property name)</span>
+        "e": "AQAB", <span class="comment">// external (property name)</span>
+        "n": "omwsC1AqEk6whvxyOltCFWheSQvv1MExu5RLCMT4jVk9khJKv8JeMXWe3bWHatjPskdf2dlaGkW5QjtOnUKL742mvr4tCldKS3ULIaT1hJInMHHxj2gcubO6eEegACQ4QSu9LO0H-LM_L3DsRABB7Qja8HecpyuspW1Tu_DbqxcSnwendamwL52V17eKhlO4uXwv2HFlxufFHM0KmCJujIKyAxjD_m3q__IiHUVHD1tDIEvLPhG9Azsn3j95d-saIgZzPLhQFiKluGvsjrSkYU5pXVWIsV-B2jtLeeLC14XcYxWDUJ0qVopxkBvdlERcNtgF4dvW4X00EHj4vCljFw" <span class="comment">// external (property name)</span>
       }
     },
     {
       "id": "did:example:123#_TKzHv2jFIyvdTGF1Dsgwngfdg3SH6TpDv0Ta1aOEkw",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "EC",
-        "crv": "P-256",
-        "x": "38M1FDts7Oea7urmseiugGW7tWc3mLpJh6rKe7xINZ8",
-        "y": "nDQW6XZ7b_u2Sy9slofYLlG03sOEoug3I0aAPQ0exs4"
+        "kty": "EC", <span class="comment">// external (property name)</span>
+        "crv": "P-256", <span class="comment">// external (property name)</span>
+        "x": "38M1FDts7Oea7urmseiugGW7tWc3mLpJh6rKe7xINZ8", <span class="comment">// external (property name)</span>
+        "y": "nDQW6XZ7b_u2Sy9slofYLlG03sOEoug3I0aAPQ0exs4" <span class="comment">// external (property name)</span>
       }
     },
     {
       "id": "did:example:123#8wgRfY3sWmzoeAL-78-oALNvNj67ZlQxd1ss_NX1hZY",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "EC",
-        "crv": "P-384",
-        "x": "GnLl6mDti7a2VUIZP5w6pcRX8q5nvEIgB3Q_5RI2p9F_QVsaAlDN7IG68Jn0dS_F",
-        "y": "jq4QoAHKiIzezDp88s_cxSPXtuXYFliuCGndgU4Qp8l91xzD1spCmFIzQgVjqvcP"
+        "kty": "EC", <span class="comment">// external (property name)</span>
+        "crv": "P-384", <span class="comment">// external (property name)</span>
+        "x": "GnLl6mDti7a2VUIZP5w6pcRX8q5nvEIgB3Q_5RI2p9F_QVsaAlDN7IG68Jn0dS_F", <span class="comment">// external (property name)</span>
+        "y": "jq4QoAHKiIzezDp88s_cxSPXtuXYFliuCGndgU4Qp8l91xzD1spCmFIzQgVjqvcP" <span class="comment">// external (property name)</span>
       }
     },
     {
       "id": "did:example:123#NjQ6Y_ZMj6IUK_XkgCDwtKHlNTUTVjEYOWZtxhp1n-E",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "EC",
-        "crv": "P-521",
-        "x": "AVlZG23LyXYwlbjbGPMxZbHmJpDSu-IvpuKigEN2pzgWtSo--Rwd-n78nrWnZzeDc187Ln3qHlw5LRGrX4qgLQ-y",
-        "y": "ANIbFeRdPHf1WYMCUjcPz-ZhecZFybOqLIJjVOlLETH7uPlyG0gEoMWnIZXhQVypPy_HtUiUzdnSEPAylYhHBTX2"
+        "kty": "EC", <span class="comment">// external (property name)</span>
+        "crv": "P-521", <span class="comment">// external (property name)</span>
+        "x": "AVlZG23LyXYwlbjbGPMxZbHmJpDSu-IvpuKigEN2pzgWtSo--Rwd-n78nrWnZzeDc187Ln3qHlw5LRGrX4qgLQ-y", <span class="comment">// external (property name)</span>
+        "y": "ANIbFeRdPHf1WYMCUjcPz-ZhecZFybOqLIJjVOlLETH7uPlyG0gEoMWnIZXhQVypPy_HtUiUzdnSEPAylYhHBTX2" <span class="comment">// external (property name)</span>
       }
     }
   ]
@@ -5342,7 +5321,7 @@ Model</a> for additional examples.
 
       <pre class="example"
         title="Verifiable Credential linked to a verification method of type Ed25519VerificationKey2018">
-{
+{  <span class="comment">// external (all terms in this example)</span>
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
     "https://w3id.org/citizenship/v1"
@@ -5385,7 +5364,7 @@ Model</a> for additional examples.
 
     <pre class="example"
       title="Verifiable Credential linked to a verification method of type JsonWebKey2020">
-{
+{  <span class="comment">// external (all terms in this example)</span>
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
     "https://www.w3.org/2018/credentials/examples/v1"
@@ -5412,7 +5391,7 @@ Model</a> for additional examples.
     </pre>
 
     <pre class="example" title="Verifiable Credential as Decoded JWT">
-{
+{ <span class="comment">// external (all terms in this example)</span>
   "protected": {
     "kid": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
     "alg": "EdDSA"
@@ -5459,7 +5438,7 @@ practice to avoid dislosing unnecessary information in JWE headers.
       </p>
 
       <pre class="example" title="JWE linked to a verification method via kid">
-{
+{ <span class="comment">// external (all terms in this example)</span>
   "ciphertext": "3SHQQJajNH6q0fyAHmw...",
   "iv": "QldSPLVnFf2-VXcNLza6mbylYwphW57Q",
   "protected": "eyJlbmMiOiJYQzIwUCJ9",
@@ -5543,9 +5522,7 @@ result in changes to this specification.
   </section>
 
 <section class="appendix">
-    <h1>
-IANA Considerations
-    </h1>
+    <h1>IANA Considerations</h1>
 
     <p>
 This section will be submitted to the Internet Engineering Steering Group
