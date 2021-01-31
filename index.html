@@ -784,29 +784,6 @@ For requirements on <a>DID methods</a> relating to the <a>DID</a> syntax, see
 Section <a href="#method-schemes"></a>.
       </p>
 
-      <div class="note" title="Persistence">
-        <p>
-  A <a>DID</a> is expected to be persistent and immutable. That is, a <a>DID</a>
-  is bound exclusively and permanently to its one and only subject. Even after a
-  <a>DID</a> is deactivated, it is intended that it never be repurposed.
-        </p>
-        <p>
-Ideally, a <a>DID</a> would be a completely abstract decentralized identifier
-(like a <a>UUID</a>) that could be bound to multiple underlying <a>verifiable
-data registries</a> over time, thus maintaining its persistence independent of
-any particular system. However, registering the same identifier on multiple
-<a>verifiable data registries</a> makes it extremely difficult to identify the
-authoritative version of a <a>DID document</a> if the contents diverge
-between the different <a>verifiable data registries</a>. It also greatly
-increases implementation complexity for developers.
-        </p>
-        <p>
-To avoid these issues, developers should refer to the Decentralized
-Characteristics Rubric [[?DID-RUBRIC]] to decide which <a>DID method</a> best
-addresses the needs of the use case.
-        </p>
-      </div>
-
     </section>
 
     <section class="normative">
@@ -4823,6 +4800,43 @@ correlatable, especially if they are globally unique.
 A draft specification for discovering a <a>DID</a> from domain names and email
 addresses using DNS lookups is available at [[?DNS-DID]].
       </p>
+    </section>
+
+    <section>
+        <h2>DIDs as Enhanced URNs</h2>
+
+        <p>
+If desired by a <a>DID controller</a>, a <a>DID</a> is capable of acting
+as an enhanced Uniform Resource Name (URN) as defined by [[RFC8141]], i.e.,
+"a persistent, location-independent resource identifier". <a>DIDs</a> used in
+this way provide a cryptographically secure, location-independent identifier for
+a digital resource, while also providing metadata that enables retrieval.
+Because of the indirection between the <a>DID document</a> and the <a>DID</a>
+itself, the <a>DID controller</a> can adjust the actual location of the resource
+&mdash; or even provide the resource directly &mdash; without adjusting the
+<a>DID</a>. <a>DIDs</a> of this type can definitively verify that the resource
+retrieved is, in fact, the resource identified.
+        </p>
+        <p>
+A <a>DID controller</a> who intends to use a <a>DID</a> for this purpose is
+advised to follow the security considerations in [[RFC8141]]. In particular:
+        </p>
+        <ul>
+          <li>
+The <a>DID controller</a> is expected to choose a <a>DID method</a> that
+supports the controller's requirements for persistence. The Decentralized
+Characteristics Rubric [[?DID-RUBRIC]] is one tool available to help
+implementers decide upon the most suitable <a>DID method</a>.
+          </li>
+          <li>
+The <a>DID controller</a> is expected to publish its operational policies so
+relying parties can determine the degree to which they can rely on the
+persistence of a <a>DID</a> controlled by that <a>DID controller</a>. In the
+absence of such policies, relying parties are not expected to make any
+assumption about whether a <a>DID</a> is a persistent identifier for the same
+<a>DID subject</a>.
+          </li>
+        </ul>
     </section>
 
     <section>
