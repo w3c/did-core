@@ -4648,7 +4648,7 @@ version of a DID Document.
       <p>
         If a verification method is no longer exclusively accessible to the
         controller or parties trusted to act on behalf of the controller, it
-        should be revoked immediately to reduce the risk of masquerading, theft
+        is expected to be revoked immediately to reduce the risk of masquerading, theft,
         and fraud.
       </p>
   
@@ -4657,13 +4657,16 @@ It is considered a best practice to support key revocation.
       </p>
   
       <p class="advisement">
-A controller should immediately revoke any verification method that is believed to
+A controller is expected to immediately revoke any verification method that is believed to
 be compromised.
       </p>
   
       <p class="advisement">
-Verifiers may choose to accept or reject proofs or signatures originating 
-from revoked verification methods, at their own discretion.
+Revocation is expected to be understood as a controller expressing
+that proofs or signatures associated with revoked verification method
+might have been created by an attacker. Verifiers, however, might
+still choose to accept or reject such proofs or signatures at their
+own discretion.
       </p>
   
       <p class="note">
@@ -4676,7 +4679,7 @@ applies to all DID Methods.
 Section <a href="#method-operations"></a> specifies the <a>DID</a>
 operations to be supported by a <a>DID method</a> specification,
 including <a href="#update">update</a> and <a href="#deactivate">
-deactivate</a> which MAY be used to remove verification method from
+deactivate</a> which might be used to remove verification method from
 a DID Document.
       </p>
 
@@ -4692,21 +4695,23 @@ method has been revoked.
       </p>
   
       <p class="note">
-Compromise of a verification method allows the attacker access to the
-verification relationship of the controller, for example authentication.
-The attacker might not be indistinguishable from the legitimate
-controller from the time the compromised verification method was
-registered, to the time it was revoked.
+Compromise of the secrets associated with a verification method
+allows the attacker to use them according to the verification
+relationship expressed by controller in the DID Document, for
+example, for authentication. The attacker's use of the secrets might
+be indistinguishable from the legitimate controller's use starting
+from the time the verification method was registered, to the time it
+was revoked.
       </p>
 
       <p class="note">
 The day-to-day operation of any software relying on a compromised verification
-method, such as a user’s operating system, antivirus, or endpoint protection 
+method, such as an individual's operating system, antivirus, or endpoint protection 
 software, might be impacted when the verification method is publicly revoked.
       </p>
 
 <p class="note">
-Although verifiers may choose not to accept proofs or signatures from revoked verification method, 
+Although verifiers might choose not to accept proofs or signatures from a revoked verification method, 
 knowing whether a verification was made with a revoked verification method is trickier than it may seem.
 Some DID methods provide the ability to look back at the state of a DID at a point in time, 
 or at a particular version of the DID document. When such a feature is 
@@ -4714,12 +4719,12 @@ combined with a reliable way to determine the time or DID version that existed
 when a cryptographically verifiable statement was made, then revocation 
 does not undo that statement. This can be the basis for using DIDs to make 
 binding commitments (e.g., to sign a mortgage). 
-<br/>
+<br><br>
 If these conditions are met, revocation is not retroactive; it only nullifies future use of the method.
 <br/><br/>
 However, in order for such semantics to be safe, the second condition &mdash;
 an ability to know what the state of the DID document was at the time the
-assertion was made &mdash; MUST apply. Without that guarantee, someone
+assertion was made &mdash; is expected to apply. Without that guarantee, someone
 could discover a revoked key and use it to make cryptographically
 verifiable statements with a simulated date in the past.
 <br/><br/>
