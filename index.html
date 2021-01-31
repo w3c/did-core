@@ -4310,38 +4310,39 @@ addresses using DNS lookups is available at [[?DNS-DID]].
 
     <section>
         <h2>
-DIDs as URNs
+DIDs as Enhanced URNs
         </h2>
 
         <p>
 If desired by a <a>DID controller</a>, a <a>DID</a> is capable of acting
 as an enhanced Uniform Resource Name (URN) as defined by [[RFC8141]], i.e.,
-"a persistent, location-independent resource identifier". DIDs used in this way
-provide a cryptographically secure, location-independent identifier for a digital
-resource, while also providing the metadata that allows retrieval. Because of the
-indirection between the DID Document and the DID itself, the DID Controller can
-adjust the actual location of the resource &mdash; or even provide the resource
-directly &mdash; without adjusting the DID. DIDs of this type can definitively
-verify that the resource retrieved is, in fact, the resource identified.
+"a persistent, location-independent resource identifier". <a>DIDs</a> used in
+this way provide a cryptographically secure, location-independent identifier for
+a digital resource, while also providing metadata that enables retrieval.
+Because of the indirection between the <a>DID document</a> and the <a>DID</a>
+itself, the <a>DID controller</a> can adjust the actual location of the resource
+&mdash; or even provide the resource directly &mdash; without adjusting the
+<a>DID</a>. <a>DIDs</a> of this type can definitively verify that the resource
+retrieved is, in fact, the resource identified.
         </p>
         <p>
-A <a>DID controller</a>
-who intends to use a <a>DID</a> for this purpose is advised to follow the
-security considerations in [[RFC8141]]. In particular:
+A <a>DID controller</a> who intends to use a <a>DID</a> for this purpose is
+advised to follow the security considerations in [[RFC8141]]. In particular:
         </p>
         <ol start="1">
           <li>
-The <a>DID controller</a> is expected to choose a <a>DID method</a> that supports the
-<a>DID controller's</a> requirements for persistence. It is expected that implementers will
-consult the Decentralized Characteristics Rubric [[?DID-RUBRIC]] to decide upon
-the most suitable <a>DID method</a>.
+The <a>DID controller</a> is expected to choose a <a>DID method</a> that
+supports the controller's requirements for persistence. The Decentralized
+Characteristics Rubric [[?DID-RUBRIC]] is one tool available to help
+implementers decide upon the most suitable <a>DID method</a>.
           </li>
           <li>
-The <a>DID controller</a> is expected to publish its operational policies so relying
-parties can determine the degree to which they can rely on the persistence of a
-<a>DID</a> controlled by that <a>DID controller</a>. In the absence of such
-policies, relying parties are not expected to make any assumption about whether a
-<a>DID</a> is a persistent identifier for the same <a>DID subject</a>.
+The <a>DID controller</a> is expected to publish its operational policies so
+relying parties can determine the degree to which they can rely on the
+persistence of a <a>DID</a> controlled by that <a>DID controller</a>. In the
+absence of such policies, relying parties are not expected to make any
+assumption about whether a <a>DID</a> is a persistent identifier for the same
+<a>DID subject</a>.
           </li>
         </ol>
     </section>
