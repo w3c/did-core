@@ -4585,9 +4585,8 @@ result in changes to this specification.
     <p>
   The DID Core specification states that a <a>DID</a> identifies the
   <a>DID subject</a>—and that a <a>DID subject</a> can be anything that can be
-  identified with a URI. However some applications of <a>DIDs</a>, particularly
-  those involving the Semantic Web, may need a more precise definition of how
-  DID identification works. That is the purpose of this Appendix.
+  identified with a URI. This Appendix provides additional details about how <a>DIDs</a> 
+  work with respect to identification and description.
     </p>
     <h2>What types of resources can a DID identify?</h2>
     <p>
@@ -4615,7 +4614,7 @@ result in changes to this specification.
   <h2>How do you know what a DID identifies?</h2>
   <p>
   For any <a>DID</a>, the <a>DID controller</a> determines the <a>DID subject</a>.
-  Unfortunately it is all but impossible to determine the <a>DID subject</a>
+  It is not expected to be possible to determine the <a>DID subject</a>
   from looking at the <a>DID</a> itself. The reason is that, in order to satisfy
   several core properties of a <a>DID</a> as an identifier—especially
   decentralization and cryptographic verifiability—<a>DIDs</a> are generally
@@ -4663,22 +4662,22 @@ Diagram showing a graph model for how DID controllers assign DIDs to identify
 DID subjects and resolve to DID documents that describe the DID subjects.
           " >
           <figcaption>
-              A <a>DID</a> is an identifier assigned by a <a>DID controllers</a>
-              to identifies a <a>DID subject</a> and resolve to a
+              A <a>DID</a> is an identifier assigned by a <a>DID controller</a>
+              to identify a <a>DID subject</a> and resolve to a
               <a>DID document</a> that describes the <a>DID subject</a>. The
               <a>DID document</a> is an artifact of <a>DID resolution</a> and
               not a separate resource distinct from the <a>DID subject</a>.
           </figcaption>
         </figure>
 
-    <h2>How does the DID document describe the DID subject?</h2>
+    <h2>What does the DID document say about the DID subject?</h2>
     <p>
     Each property in a <a>DID document</a> is a statement by the
-    <a>DID controller</a> that describes:
+    <a>DID controller</a> that refers to:
     </p>
     <ul>
         <li>
-        The <a>DID subject</a> itself (e.g., the <code><a>id</a></code> and
+        The <a>string of characters defining the identifier</a> itself (e.g., the <code><a>id</a></code> and
         <code><a>alsoKnownAs</a></code> properties)
         </li>
         <li>
@@ -4733,9 +4732,8 @@ DID subjects and resolve to DID documents that describe the DID subjects.
         get a readable representation, such as HTML.
     </blockquote>
     <p>
-    Note that, although it is not required that a <a>DID document</a> use an
-    RDF-based representation such as JSON-LD, that format would meet the letter
-    of this W3C recommendation.
+    Note that it is not required that a <a>DID document</a> use an
+    RDF-based representation; see <a href="#representations"></a>.
     </p>
 
     <h2>Can the DID document serve as a representation of the DID subject?</h2>
@@ -4816,9 +4814,10 @@ DID subjects and resolve to DID documents that describe the DID subjects.
     <p>
     The second case, shown in figure 2 in the previous appendix, is when the
     <a>DID subject</a> is a separate entity from the <a>DID controller</a>. This
-    is the case when, for example, a parent creates a <a>DID</a> for a child; a
-    corporation creates a <a>DID</a> for a subsidiary; or a manufacturer creates
-    a <a>DID</a> for a product, an IoT device, or a digital file.
+    is the case when, for example, a parent creates and maintains control of a 
+    <a>DID</a> for a child; a
+    corporation creates and maintains control of a <a>DID</a> for a subsidiary; or a manufacturer creates
+    and maintains control of a <a>DID</a> for a product, an IoT device, or a digital file.
     </p>
     <p>
     From a graph model perspective, the only difference between figure 2 and
