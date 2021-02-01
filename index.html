@@ -3725,7 +3725,9 @@ This input is REQUIRED, but the structure MAY be empty.
         </dl>
 
         <p>
-The output variables of the {{DidResolver/resolve}} function are as follows:
+The return value of the {{DidResolver/resolve}} function is a
+<dfn>ResolutionResponse</dfn> <a data-cite="INFRA#maps">map</a> that
+contains the following properties:
         </p>
 
         <dl>
@@ -3819,7 +3821,8 @@ available. This property is OPTIONAL.
             <p>
 The possible properties within this structure and their possible values are
 registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]]. This
-specification defines the following common properties.
+specification defines the following common properties for a
+<dfn>ResolutionInputMetadata</dfn> <a data-cite="INFRA#maps">map</a>:
             </p>
 
             <dl>
