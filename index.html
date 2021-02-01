@@ -3721,21 +3721,15 @@ contains the following properties:
 didResolutionMetadata
             </dt>
             <dd>
-              <p>
 A <a href="#metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a>DID resolution</a> process. This structure
 is REQUIRED and MUST NOT be empty.
-              </p>
-              <p>
-This metadata is defined by <a href="#did-resolution-options"></a>.
-              </p>
-              <p>
+This metadata is defined by <a href="#did-resolution-metadata"></a>.
 If the resolution is successful this structure MUST contain a
 <code>contentType</code> property containing the mime-type of the
 <code>didDocument</code> in
 this result. If the resolution is not successful, this structure MUST contain
 an <code>error</code> property describing the error.
-              </p>
             </dd>
             <dt>
 didDocument
@@ -4031,31 +4025,34 @@ directives related to this metadata property.<br><br>
     <section>
       <h2>DID URL Dereferencing</h2>
       <p>
-The <a>DID URL dereferencing</a> function dereferences a <a>DID URL</a> into
-a <a>resource</a> with contents depending on the <a>DID URL</a>'s components,
-including the <a>DID method</a>, method-specific identifier, path, query,
-and fragment. This process depends on <a>DID resolution</a> of the <a>DID</a>
+The <a>DID URL dereferencing</a> function dereferences a <a>DID URL</a> into a
+<a>resource</a> with contents depending on the <a>DID URL</a>'s components,
+including the <a>DID method</a>, method-specific identifier, path, query, and
+fragment. This process depends on <a>DID resolution</a> of the <a>DID</a>
 contained in the <a>DID URL</a>. <a>DID URL dereferencing</a> might involve
 multiple steps (e.g., when the DID URL being dereferenced includes a fragment),
-and the function is defined to return the final resource after all
-steps are completed.
-The details of how this process is accomplished are outside the scope of this
-specification, but all conformant implementations implement a function
-which has the following abstract form:
+and the function is defined to return the final resource after all steps are
+completed. The details of how this process is accomplished are outside the scope
+of this specification, but all conforming <a>DID resolver</a> implementations
+realize at least the following interface (or one that is functionally
+equivalent):
       </p>
 
-      <p><code>
-dereference ( did-url, did-url-dereferencing-input-metadata ) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-url-dereferencing-metadata, content-stream, content-metadata )
-      </code></p>
+      <pre class="idl">
+interface mixin DidDereferencer {
+DereferencingResponse dereference(USVString did,
+                                  DereferencingOptions dereferencingOptions);
+};
+      </pre>
 
       <p>
-The input variables of this function are as follows:
+The input variables of the {{DidDereferencer/dereference}} function are as
+follows:
       </p>
 
       <dl>
         <dt>
-did-url
+didUrl
         </dt>
         <dd>
 A conformant <a>DID URL</a> as a single string. This is the <a>DID URL</a> to
@@ -4063,57 +4060,57 @@ dereference. To dereference a <a>DID fragment</a>, the complete <a>DID URL</a>
 including the <a>DID fragment</a> MUST be used. This input is REQUIRED.
         </dd>
         <dt>
-did-url-dereferencing-input-metadata
+dereferencingOptions
         </dt>
         <dd>
 A <a href="metadata-structure">metadata structure</a> consisting of input
 options to the <code>dereference</code> function in addition to the
-<code>did-url</code> itself. Properties defined by this specification are in
-<a href="#did-url-dereferencing-input-metadata-properties"></a>. This input is
-REQUIRED, but the structure MAY be empty.
+<code>didUrl</code> itself. Properties defined by this specification are in <a
+href="#did-url-dereferencing-options"></a>. This input is REQUIRED, but the
+structure MAY be empty.
         </dd>
       </dl>
 
       <p>
-The output variables of this function are as follows:
+The return value of the {{DidDereferencer/dereference}} function is a
+<dfn>DereferencingResponse</dfn> <a data-cite="INFRA#maps">map</a> that
+contains the following properties:
       </p>
 
       <dl>
         <dt>
-did-url-dereferencing-metadata
+dereferencingMetadata
         </dt>
         <dd>
 A <a href="metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a>DID URL dereferencing</a> process. This
 structure is REQUIRED and in the case of an error in the dereferencing process,
-this MUST NOT be empty.
-Properties defined by this specification are in
-<a href="#did-url-dereferencing-metadata-properties"></a>.
-If the dereferencing is not successful, this structure MUST contain an
-<code>error</code> property describing the error.
+this MUST NOT be empty. Properties defined by this specification are in <a
+href="#did-url-dereferencing-metadata"></a>. If the dereferencing is not
+successful, this structure MUST contain an <code>error</code> property
+describing the error.
         </dd>
         <dt>
-content-stream
+contentStream
         </dt>
         <dd>
 If the <code>dereferencing</code> function was called and successful, this MUST
-contain a <a>resource</a> corresponding to the <a>DID URL</a>.
-The <code>content-stream</code> SHOULD be a <a>DID document</a> in one of the
-conformant <a>representations</a> obtained through
-the resolution process.
+contain a <a>resource</a> corresponding to the <a>DID URL</a>. The
+<code>content-stream</code> SHOULD be a <a>DID document</a> in one of the
+conformant <a>representations</a> obtained through the resolution process.<br><br>
 
 If the dereferencing is unsuccessful, this value MUST be empty.
         </dd>
         <dt>
-content-metadata
+contentMetadata
         </dt>
         <dd>
 If the dereferencing is successful, this MUST be a <a href="metadata-structure">
 metadata structure</a>, but the structure MAY be empty. This structure contains
-metadata about the <code>content-stream</code>.
-If the <code>content-stream</code> is a <a>DID document</a>, this MUST be a
-<code>did-document-metadata</code> structure as described in <a>DID
-Resolution</a>.
+metadata about the <code>contentStream</code>.
+If the <code>contentStream</code> is a <a>DID document</a>, this MUST be a
+<code>didDocumentMetadata</code> structure as described in <a>DID
+Resolution</a>.<br><br>
 
 If the dereferencing is unsuccessful, this output MUST be an empty <a
 href="metadata-structure">metadata structure</a>.
@@ -4131,12 +4128,14 @@ to the <code>dereference</code> function specified here.
     </p>
 
       <section>
-        <h3>DID URL Dereferencing Input Metadata Properties</h3>
+        <h3>DID URL Dereferencing Options</h3>
 
         <p>
 The possible properties within this structure and their possible values SHOULD
 be registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
-This specification defines the following common properties.
+This specification defines the following common properties. This
+specification defines the following common properties for a
+<dfn>DereferencingOptions</dfn> <a data-cite="INFRA#maps">map</a>:
             </p>
 
             <dl>
@@ -4144,16 +4143,16 @@ This specification defines the following common properties.
 accept
                 </dt>
                 <dd>
-The MIME type the caller prefers for <code>content-stream</code>. The <a>DID
-URL dereferencing</a> implementation SHOULD use this value to determine the
-<a>representation</a> contained in the returned value if such a <a>representation</a> is
-supported and available.
+The MIME type the caller prefers for <code>contentStream</code>. The <a>DID URL
+dereferencing</a> implementation SHOULD use this value to determine the
+<a>representation</a> contained in the returned value if such a
+<a>representation</a> is supported and available.
                 </dd>
             </dl>
         </section>
 
         <section>
-            <h3>DID URL Dereferencing Metadata Properties</h3>
+            <h3>DID URL Dereferencing Metadata</h3>
 
             <p>
 The possible properties within this structure and their possible values are
