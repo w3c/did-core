@@ -4713,7 +4713,7 @@ DID subjects and resolve to DID documents that describe the DID subjects.
     A second option is to use the <code><a>alsoKnownAs</a></code> property if it
     is present in the <a>DID document</a>. The <a>DID controller</a> can use it
     to provide a list of other URIs (including other <a>DIDs</a>) that identify
-    the same <a>DID subject</a>. Resolving or dereferencing these URIs may yield
+    the same <a>DID subject</a>. Resolving or dereferencing these URIs might yield
     other descriptions or representations of the <a>DID subject</a> as
     illustrated in the figure below.
     </p>
@@ -4792,7 +4792,7 @@ DID subjects and resolve to DID documents that describe the DID subjects.
     hosting company. This is how a <a>DID</a> can effectively function as an
     enhanced <a href="https://tools.ietf.org/html/rfc8141">URN (Uniform Resource
     Name)</a>—a persistent identifier for an information resource whose network
-    location may change over time.
+    location might change over time.
     </p>
         </section>
 
@@ -4848,7 +4848,7 @@ DID subjects and resolve to DID documents that describe the DID subjects.
     <section>
     <h1>Can a DID document have multiple DID Controllers?</h1>
     <p>
-    Yes. A <a>DID document</a> may have more than one <a>DID controller</a>. In
+    Yes. A <a>DID document</a> might have more than one <a>DID controller</a>. In
     this situation there are two basic options available for how control can be
     shared.
     </p>
@@ -4856,14 +4856,14 @@ DID subjects and resolve to DID documents that describe the DID subjects.
     <h2>Option #1: Independent Control</h2>
     <p>
     In the first option, shown in the figure below, each of the <a>DID controllers</a>
-    may act on its own, i.e., each one has full power to update the
+    might act on its own, i.e., each one has full power to update the
     <a>DID document</a> independently. From a graph model perspective, in this
     configuration:
     </p>
     <ul>
         <li>
         Each additional <a>DID controller</a> is another distinct graph node
-        (which may be identified by its own <a>DID</a>).
+        (which might be identified by its own <a>DID</a>).
         </li>
         <li>
         The same arcs (“controls” and “controller”) exist between each
@@ -4885,7 +4885,7 @@ DID subjects and resolve to DID documents that describe the DID subjects.
         <section>
     <h2>Option #2: Group Control</h2>
     <p>
-    In the second option, the <a>DID controllers</a> must act together in some
+    In the second option, the <a>DID controllers</a> are expected to act together in some
     fashion, such as when using a cryptographic algorithm that requires multiple
     digital signatures (“multi-sig”) or a threshold number of digital
     signatures (“m-of-n”). From a functional standpoint, this option is similar
@@ -4901,7 +4901,7 @@ DID subjects and resolve to DID documents that describe the DID subjects.
             DID controller group to control a DID document
           " >
           <figcaption>
-              Multiple <a>DID controllers</a> who must act together as a
+              Multiple <a>DID controllers</a> who are expected to act together as a
               <a>DID controller</a> group
           </figcaption>
         </figure>
