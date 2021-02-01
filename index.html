@@ -953,7 +953,7 @@ did:foo:21tDAKCERh95uGgKbJNHYp?versionTime=2002-10-10T17:00:00Z
 The <a>DID resolution</a> and the <a>DID URL dereferencing</a> functions can
 be influenced by passing input metadata to a <a>DID resolver</a> that are
 not part of the <a>DID URL</a>. (See <a
-href="#did-resolution-input-metadata-properties"></a>). This is comparable to
+href="#did-resolution-options"></a>). This is comparable to
 HTTP, where certain parameters could either be included in an HTTP URL, or
 alternatively passed as HTTP headers during the dereferencing process. The
 important distinction is that DID parameters that are part of the <a>DID
@@ -3658,9 +3658,9 @@ Issue 549</a>.
 
     <p>
 This section defines the inputs and outputs of <a>DID resolution</a> and <a>DID
-URL dereferencing</a>. These functions are defined in an abstract way. Their
-exact implementation is out of scope for this specification, but some
-considerations for implementors are discussed in [[?DID-RESOLUTION]].
+URL dereferencing</a>.  Their exact implementation is out of scope for this
+specification, but some considerations for implementors are discussed in
+[[?DID-RESOLUTION]].
     </p>
 
     <p>
@@ -3672,28 +3672,19 @@ document</a> in at least one conformant <a>representation</a>.
     <section data-dfn-for="Resolver">
         <h2>DID Resolution</h2>
         <p>
-The <a>DID resolution</a> functions resolve a <a>DID</a> into a <a>DID
-document</a> by using the "Read" operation of the applicable <a>DID method</a>.
-(See <a href="#read-verify"></a>.) The details of how this process is
-accomplished are outside the scope of this specification, but all conformant
-implementations implement at least the following function (or one that is
-equivalent):
+The <a>DID resolution</a> function resolves a <a>DID</a> into a <a>DID
+document</a> by using the "Read" operation of the applicable <a>DID method</a>
+as described in <a href="#read-verify"></a>. The details of how this process is
+accomplished are outside the scope of this specification, but all conforming
+DID Resolver implementations realize at least the following interface (or one
+that is functionally equivalent):
         </p>
 
         <pre class="idl">
 interface mixin DidResolver {
-  ResolutionResponse resolve(USVString did, ResolutionInputMetadata didResolutionInputMetadata);
+  ResolutionResponse resolve(USVString did, ResolutionOptions resolutionOptions);
 };
         </pre>
-        <p><code>
-resolve ( did, did-resolution-input-metadata ) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-resolution-metadata, did-document, did-document-metadata )
-        </code></p>
-
-        <p><code>
-resolveRepresentation ( did, did-resolution-input-metadata ) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-resolution-metadata, did-document-stream, did-document-metadata )
-        </code></p>
 
         <p>
 The {{DidResolver/resolve}} function returns a byte stream of the
@@ -3713,13 +3704,13 @@ This is the <a>DID</a> to resolve. This input is REQUIRED and the value MUST
 be a conformant <a>DID</a> as defined in <a href="#did-syntax"></a>.
             </dd>
             <dt>
-didResolutionInputMetadata
+resolutionOptions
             </dt>
             <dd>
 A <a href="#metadata-structure">metadata structure</a> consisting of input
 options to the {{DidResolver/resolve}} function in addition to the
 <code>did</code> itself. Properties defined by this
-specification are in <a href="#did-resolution-input-metadata-properties"></a>.
+specification are in <a href="#did-resolution-options"></a>.
 This input is REQUIRED, but the structure MAY be empty.
             </dd>
         </dl>
@@ -3741,7 +3732,7 @@ relating to the results of the <a>DID resolution</a> process. This structure
 is REQUIRED and MUST NOT be empty.
               </p>
               <p>
-This metadata is defined by <a href="#did-resolution-metadata-properties"></a>.
+This metadata is defined by <a href="#did-resolution-options"></a>.
               </p>
               <p>
 If the resolution is successful this structure MUST contain a
@@ -3792,7 +3783,7 @@ additional functions with different signatures in addition to the
         </p>
 
         <section>
-            <h3>DID Resolution Input Metadata Properties</h3>
+            <h3>DID Resolution Options</h3>
 
             <p>
 The possible properties within this structure and their possible values are
@@ -4310,7 +4301,7 @@ scope of this specification.
 
         <p>
 The following example demonstrates a JSON-encoded metadata structure that
-might be used as <a href="#did-resolution-input-metadata-properties">DID
+might be used as <a href="#did-resolution-options">DID
 resolution input metadata</a>.
         </p>
 
@@ -4333,7 +4324,7 @@ This example corresponds to a metadata structure of the following format:
 
         <p>
 The next example demonstrates a JSON-encoded metadata structure that might be
-used as <a href="#did-resolution-metadata-properties">DID resolution
+used as <a href="#did-resolution-options">DID resolution
 metadata</a> if a <a>DID</a> was not found.
         </p>
 
