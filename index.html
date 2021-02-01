@@ -3676,8 +3676,8 @@ The <a>DID resolution</a> function resolves a <a>DID</a> into a <a>DID
 document</a> by using the "Read" operation of the applicable <a>DID method</a>
 as described in <a href="#read-verify"></a>. The details of how this process is
 accomplished are outside the scope of this specification, but all conforming
-DID Resolver implementations realize at least the following interface (or one
-that is functionally equivalent):
+<a>DID resolver</a> implementations realize at least the following interface
+(or one that is functionally equivalent):
         </p>
 
         <pre class="idl">
@@ -3686,11 +3686,6 @@ interface mixin DidResolver {
 };
         </pre>
 
-        <p>
-The {{DidResolver/resolve}} function returns a byte stream of the
-<a>DID Document</a> formatted in the corresponding representation,
-DID Resolution Metadata, and DID Document Metadata.
-        </p>
         <p>
 The input variables of the {{DidResolver/resolve}} function are as follows:
         </p>
@@ -3746,14 +3741,12 @@ an <code>error</code> property describing the error.
 didDocument
             </dt>
             <dd>
-If the resolution is successful, and if the <code>resolveRepresentation</code>
-function was called, this MUST be a byte stream of the resolved <a>DID
-document</a> in one of the conformant
+If the resolution is successful this MUST be a byte stream of the resolved
+<a>DID document</a> in one of the conformant
 <a href="#representations">representations</a>. The byte stream might then be
-parsed by the caller of the <code>resolveRepresentation</code> function into a
-<a href="#data-model">data model</a>, which can in turn be validated and
-processed. If the resolution is unsuccessful, this value MUST be an empty
-stream.
+parsed by the caller into a <a href="#data-model">data model</a>, which can in
+turn be validated and processed. If the resolution is unsuccessful, this value
+MUST be an empty stream.
             </dd>
             <dt>
 didDocumentMetadata
@@ -3762,13 +3755,13 @@ didDocumentMetadata
 If the resolution is successful, this MUST be a <a
 href="#metadata-structure">metadata structure</a>. This structure contains
 metadata about the <a>DID document</a> contained in the
-<code>didDocument</code>. This metadata
+<code>didDocument</code> property. This metadata
 typically does not change between invocations of the {{DidResolver/resolve}}
 function unless the <a>DID document</a> changes, as it represents data about
 the <a>DID document</a>. If the resolution is unsuccessful, this output MUST
 be an empty <a href="#metadata-structure">metadata structure</a>. Properties
 defined by this specification are in <a
-href="#did-document-metadata-properties"></a>.
+href="#did-document-metadata"></a>.
             </dd>
         </dl>
 
@@ -3807,7 +3800,7 @@ available. This property is OPTIONAL.
         </section>
 
         <section>
-            <h3>DID Resolution Metadata Properties</h3>
+            <h3>DID Resolution Metadata</h3>
 
             <p>
 The possible properties within this structure and their possible values are
@@ -3876,7 +3869,7 @@ deactivated. (See <a href="#deactivate"></a>.)
         </section>
 
         <section>
-          <h3>DID Document Metadata Properties</h3>
+          <h3>DID Document Metadata</h3>
 
           <p>
 The possible properties within this structure and their possible values SHOULD
@@ -3884,21 +3877,19 @@ be registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
 This specification defines the following common properties.
           </p>
 
-          <section>
-            <h4>created</h4>
-            <p>
+          <dl>
+            <dt><dfn>created</dfn></dt>
+            <dd>
 <a>DID document</a> metadata SHOULD include a <code>created</code> property to
 indicate the timestamp of the <a href="#create">Create operation</a>. The value
 of the property MUST be a <a data-cite="INFRA#string">string</a> formatted as an
 <a data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a> normalized to UTC
 00:00:00 and without sub-second decimal precision. For example:
 <code>2020-12-20T19:17:47Z</code>.
-            </p>
-          </section>
+            </dd>
 
-          <section>
-            <h4>updated</h4>
-            <p>
+            <dt><dfn>updated</dfn></dt>
+            <dd>
 <a>DID document</a> metadata SHOULD include an <code>updated</code> property to
 indicate the timestamp of the last <a href="#update">Update operation</a> for
 the document version which was resolved. The value of the property MUST follow
@@ -3907,83 +3898,53 @@ the same formatting rules as the <code>created</code> property. The
 performed on the <a>DID document</a>. If an <code>updated</code> property exists, it
 can be the same value as the <code>created</code> property when the difference
 between the two timestamps is less than one second.
-                </p>
-              </section>
+            </dd>
 
-          <section>
-            <h4>deactivated</h4>
-            <p>
-This property MUST be populated by a <a data-cite="INFRA#boolean">boolean</a>
-value that is true if the DID has been deactivated, and false if the DID is still active.
-`true` value if the DID Method determines that the <a>DID</a> supplied has been
-deactivated. (See <a href="#deactivate"></a>.)
-                </p>
-              </section>
-
-            <section>
-                <h4>
-                  nextUpdate
-                </h4>
-                <p>
+            <dt><dfn>nextUpdate</dfn></dt>
+            <dd>
 <a>DID document</a> metadata MAY include a <code>nextUpdate</code> property
 if the resolved document version is not the latest version of the document. It
 indicates the timestamp of the next <a href="#update">Update operation</a>. The
 value of the property MUST follow the same formatting rules as the
 <code>created</code> property.
-            </p>
-          </section>
+            </dd>
 
-          <section>
-              <h4>
-                versionId
-              </h4>
-              <p>
+            <dt><dfn>versionId</dfn></dt>
+            <dd>
 <a>DID document</a> metadata SHOULD include a <code>versionId</code> property to
 indicate the version of the last <a href="#update">Update operation</a> for the
 document version which was resolved. The value of the property MUST be an <a
 data-lt="ascii string">ASCII string</a>.
-              </p>
-            </section>
+            </dd>
 
-          <section>
-              <h4>
-                nextVersionId
-              </h4>
-              <p>
+            <dt><dfn>nextVersionId</dfn></dt>
+            <dd>
 <a>DID document</a> metadata MAY include a <code>nextVersionId</code>
 property if the resolved document version is not the latest version of the
 document. It indicates the version of the next
 <a href="#update">Update operation</a>. The value of the property MUST be an
 <a data-lt="ascii string">ASCII string</a>.
-              </p>
-            </section>
+            </dd>
 
-          <section>
-            <h4>equivalentId</h4>
-                <p>
+          <dt><dfn>equivalentId</dfn></dt>
+          <dd>
 A <a>DID Method</a> can define different forms of a <a>DID</a> that are
 logically equivalent. An example is when a <a>DID</a> takes one form prior to
 registration in a <a>verifiable data registry</a> and another form after such
 registration. In this case, the <a>DID Method</a> specification may need to
 express one or more <a>DIDs</a> that are logically equivalent to the resolved
 <a>DID</a> as a property of the <a>DID document</a>. This is the purpose of the
-<code><a>equivalentId</a></code>  property.
-                </p>
+<code><a>equivalentId</a></code>  property. <br><br>
 
-                <dl>
-                  <dt><dfn>equivalentId</dfn></dt>
-                  <dd>
 The value of <code>equivalentId</code> MUST be an
 <a data-cite="INFRA#ordered-set">ordered set</a> where each item in the list is
 a <a data-cite="INFRA#string">string</a> that conforms to the rules in Section
-<a href="#did-syntax"></a>.
-                  </dd>
-                  <dd>
+<a href="#did-syntax"></a>.<br><br>
+
 The relationship is a statement that each <code><a>equivalentId</a></code> value
 is logically equivalent to the <code>id</code> property value and thus
-identifies the same <a>DID subject</a>.
-                  </dd>
-                  <dd>
+identifies the same <a>DID subject</a>.<br><br>
+
 Each <code><a>equivalentId</a></code> DID value MUST be produced by, and a form
 of, the same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
 <code>did:example:abc</code> == <code>did:example:ABC</code>)
@@ -3991,9 +3952,8 @@ of, the same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
                   <dd>
 A conforming <a>DID Method</a> specification MUST guarantee that each
 <code><a>equivalentId</a></code> value is logically equivalent to the
-<code>id</code> property value.
-                  </dd>
-                  <dd>
+<code>id</code> property value.<br><br>
+
 A requesting party is expected to retain the values from the <code>id</code> and
 <code><a>equivalentId</a></code> properties to ensure any subsequent
 interactions with any of the values they contain are correctly handled as
@@ -4001,101 +3961,71 @@ logically equivalent (e.g., retain all variants in a database so an interaction
 with any one maps to the same underlying account). <span class="issue">The
 testability of requesting parties is currently under debate and normative
 statements related to requesting parties may be downgraded in the future from a
-MUST to a SHOULD/MAY or similar language.</span>
-                  </dd>
-                </dl>
+MUST to a SHOULD/MAY or similar language.</span><br><br>
 
-                <div class="note" title="Equivalence and equivalentId">
-                  <p>
 <code><a>equivalentId</a></code> is a much stronger form of equivalence than
 <code><a>alsoKnownAs</a></code> because the equivalence MUST be guaranteed by
 the governing <a>DID method</a>. <code><a>equivalentId</a></code> represents a
 full graph merge because the same <a>DID document</a> describes both the
 <code><a>equivalentId</a></code> <a>DID</a> and the <code>id</code> property
-<a>DID</a>.
-                  </p>
-                </div>
+<a>DID</a>.<br><br>
 
-                <div class="issue" title="Observance of equivalentId recommendations">
-                  <p>
 If a resolving party does not retain the values from the <code>id</code> and
 <code><a>equivalentId</a></code> properties and ensure any subsequent
 interactions with any of the values they contain are correctly handled as
 logically equivalent, there might be negative or unexpected issues that
 arise. Implementers are strongly advised to observe the
 directives related to this metadata property.
-                  </p>
-                </div>
-
-              </section>
-
-            <section>
-              <h4>canonicalId</h4>
-                <p>
+            </dd>
+            <dt><dfn>canonicalId</dfn></dt>
+            <dd>
 The <code><a>canonicalId</a></code> property is identical to the
 <code><a>equivalentId</a></code> property except: a) it accepts only a single
 value rather than a list, and b) that <a>DID</a> is defined to be the canonical ID for
-the <a>DID subject</a> within the scope of the containing <a>DID document</a>.
-                </p>
+the <a>DID subject</a> within the scope of the containing <a>DID document</a>.<br><br>
 
-                <dl>
-                  <dt><dfn>canonicalId</dfn></dt>
-                  <dd>
 The value of <code><a>canonicalId</a></code> MUST be a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
-href="#did-syntax"></a>.
-                  </dd>
-                  <dd>
+href="#did-syntax"></a>.<br><br>
+
 The relationship is a statement that the <code><a>canonicalId</a></code> value
 is logically equivalent to the <code>id</code> property value and that the
 <code><a>canonicalId</a></code> value is defined by the <a>DID Method</a> to be
 the canonical ID for the <a>DID subject</a> in the scope of the containing <a>DID
-document</a>.
-                  </dd>
-                  <dd>
+document</a>.<br><br>
+
 A <code><a>canonicalId</a></code> value MUST be produced by, and a form of, the
 same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
 <code>did:example:abc</code> == <code>did:example:ABC</code>)
                   </dd>
                   <dd>
+
 A conforming <a>DID Method</a> specification MUST guarantee that the
 <code><a>canonicalId</a></code> value is logically equivalent to the
-<code>id</code> property value.
-                  </dd>
-                  <dd>
+<code>id</code> property value.<br><br>
+
 A requesting party is expected to use the <code><a>canonicalId</a></code> value
 as its primary ID value for the <a>DID subject</a> and treat all other equivalent
 values as secondary aliases. (e.g., update corresponding primary references in
 their systems to reflect the new canonical ID directive). <span
 class="issue">The testability of requesting parties is currently under debate and
 normative statements related to requesting parties may be downgraded in the
-future from a MUST to a SHOULD/MAY or similar language.</span>
-                  </dd>
-                </dl>
+future from a MUST to a SHOULD/MAY or similar language.</span><br><br>
 
-                <div class="note" title="Equivalence and canonicalId">
-                  <p>
 <code><a>canonicalId</a></code> is the same statement of equivalence as
 <code><a>equivalentId</a></code> except it is constrained to a single value that
 is defined to be canonical for the <a>DID subject</a> in the scope of the <a>DID document</a>.
 Like <code><a>equivalentId</a></code>, <code><a>canonicalId</a></code>
 represents a full graph merge because the same <a>DID document</a> describes both the
-<code><a>canonicalId</a></code> DID and the <code>id</code> property <a>DID</a>.
-                  </p>
-                </div>
+<code><a>canonicalId</a></code> DID and the <code>id</code> property <a>DID</a>.<br><br>
 
-                <div class="issue" title="Observance of canonicalId recommendations">
-                  <p>
 If a resolving party does not use the <code><a>canonicalId</a></code> value
 as its primary ID value for the DID subject and treat all other equivalent
 values as secondary aliases, there might be negative or unexpected issues that
 arise related to user experience. Implementers are strongly advised to observe the
-directives related to this metadata property.
-                  </p>
-                </div>
-
-        </section>
-      </section>
+directives related to this metadata property.<br><br>
+        </dd>
+      </dl>
     </section>
 
     <section>
@@ -4347,7 +4277,7 @@ This example corresponds to a metadata structure of the following format:
 
         <p>
 The next example demonstrates a JSON-encoded metadata structure that might be
-used as <a href="#did-document-metadata-properties">DID document metadata</a>
+used as <a href="#did-document-metadata">DID document metadata</a>
 to describe timestamps associated with the <a>DID document</a>.
         </p>
 
@@ -4562,7 +4492,7 @@ access control mechanism for the <a>DID method</a> (see Section
 
       <p>
 Non-repudiation is further supported if timestamps are included (see Section
-<a href="#did-document-metadata-properties"></a>) and the target <a>DLT</a>
+<a href="#did-document-metadata"></a>) and the target <a>DLT</a>
 system supports timestamps.
       </p>
     </section>
