@@ -4581,17 +4581,13 @@ result in changes to this specification.
   </section>
 
   <section class="appendix">
-    <h1>What Does a DID Identify?</h1>
+      <h1>Frequently Asked Questions about DID Identification</h1>
+    <section>
+    <h1>What types of resources can a DID identify?</h1>
     <p>
-  The DID Core specification states that a <a>DID</a> identifies the
-  <a>DID subject</a>—and that a <a>DID subject</a> can be anything that can be
-  identified with a URI. This Appendix provides additional details about how <a>DIDs</a> 
-  work with respect to identification and description.
-    </p>
-    <h2>What types of resources can a DID identify?</h2>
-    <p>
-  Since a <a>DID</a> is a specific type of URI, the answer to this question is
-  provided by section 1.1 of the URI specification [[!RFC3986]]:
+  Since a <a>DID</a> is a specific type of URI (Uniform Resource Identifier),
+  the answer to this question is provided by section 1.1 of the URI
+  specification [[!RFC3986]]:
     </p>
 <blockquote>
     This specification does not limit the scope of what might be a resource;
@@ -4611,7 +4607,9 @@ result in changes to this specification.
   Internet—if it can be identified, it can be assigned a URI, and therefore it
   can be assigned a <a>DID</a>.
   </p>
-  <h2>How do you know what a DID identifies?</h2>
+    </section>
+    <section>
+  <h1>How do you know what a DID identifies?</h1>
   <p>
   For any <a>DID</a>, the <a>DID controller</a> determines the <a>DID subject</a>.
   It is not expected to be possible to determine the <a>DID subject</a>
@@ -4632,7 +4630,7 @@ result in changes to this specification.
     Group. This is a human-meaningful identifier (at least to someone who
     understands the English language). In this sense, the reader can be said to
     “know” what the URL identifies without having to dereference it (provided
-    the reader trusts the publisher’s label).
+    the reader trusts the publisher of the URL).
     </p>
   <p>
   The second URI—the example <a>DID</a>—is meaningless to humans no matter what
@@ -4642,7 +4640,9 @@ result in changes to this specification.
   to the <a>DID document</a>, obtaining a verifiable credential about the
   <a>DID</a>, or via some other description of the <a>DID</a>.
   </p>
-    <h2>Does the DID identify the DID document?</h2>
+        </section>
+        <section>
+    <h1>Does the DID identify the DID document?</h1>
     <p>
     No. To be very precise, the <a>DID</a> identifies the <a>DID subject</a> and
     <em>resolves to</em> the <a>DID document</a> (by following the protocol
@@ -4653,7 +4653,7 @@ result in changes to this specification.
     purpose of describing the <a>DID subject</a>.
     </p>
     <p>
-    This distinction is illustrated by the graph model shown in figure 2.
+    This distinction is illustrated by the graph model shown below.
     </p>
         <figure id="did-and-did-document-graph">
           <img style="margin: auto; display: block; width: 75%;"
@@ -4669,16 +4669,18 @@ DID subjects and resolve to DID documents that describe the DID subjects.
               not a separate resource distinct from the <a>DID subject</a>.
           </figcaption>
         </figure>
-
-    <h2>What does the DID document say about the DID subject?</h2>
+        </section>
+        <section>
+    <h1>What does the DID document say about the DID subject?</h1>
     <p>
     Each property in a <a>DID document</a> is a statement by the
     <a>DID controller</a> that refers to:
     </p>
     <ul>
         <li>
-        The <a>string of characters defining the identifier</a> itself (e.g., the <code><a>id</a></code> and
-        <code><a>alsoKnownAs</a></code> properties)
+        The string of characters defining identifiers for the <a>DID subject</a>
+        (e.g., the <code><a>id</a></code> and <code><a>alsoKnownAs</a></code>
+        properties)
         </li>
         <li>
         How to interact with the <a>DID subject</a> (e.g., the
@@ -4696,14 +4698,24 @@ DID subjects and resolve to DID documents that describe the DID subjects.
     That statement is illustrated by the solid red arrow in figure 2 asserting
     that the <a>DID</a> identifies the <a>DID subject</a>.
     </p>
-
-    <h2>How can you discover more information about the DID subject?</h2>
+        </section>
+        <section>
+    <h1>How can you discover more information about the DID subject?</h1>
     <p>
-    This is the purpose of the <code><a>alsoKnownAs</a></code> property. The
-    <a>DID controller</a> can use it to provide a list of other URIs (including
-    <a>DIDs</a>) that identify the same <a>DID subject</a>. Resolving or
-    dereferencing these URIs may yield other descriptions or representations of
-    the <a>DID subject</a> as illustrated in figure 3.
+    There are two basic options for discovery of more information about the
+    <a>DID subject</a>. The first option is to request more information from a
+    <a>service endpoint</a> if one or more are present in the <a>DID document</a>.
+    An example would be to query a <a>service endpoint</a> that supports
+    verifiable credentials for one or more claims (attributes) describing the
+    <a>DID subject</a>.
+    </p>
+    <p>
+    A second option is to use the <code><a>alsoKnownAs</a></code> property if it
+    is present in the <a>DID document</a>. The <a>DID controller</a> can use it
+    to provide a list of other URIs (including other <a>DIDs</a>) that identify
+    the same <a>DID subject</a>. Resolving or dereferencing these URIs may yield
+    other descriptions or representations of the <a>DID subject</a> as
+    illustrated in the figure below.
     </p>
         <figure id="alsoKnownAs-graph">
           <img style="margin: auto; display: block; width: 75%;"
@@ -4720,9 +4732,8 @@ DID subjects and resolve to DID documents that describe the DID subjects.
           </figcaption>
         </figure>
     <p>
-    This mechanism is how DID identification can fulfill a longstanding
-    recommendation from the W3C in <a href="https://www.w3.org/TR/cooluris/">Cool
-    URIs for the Semantic Web</a>:
+    This mechanism is how DID identification can fulfill guidance from the W3C
+    in <a href="https://www.w3.org/TR/cooluris/">Cool URIs for the Semantic Web</a>:
     </p>
     <blockquote>
         Given only a URI, machines and people should be able to retrieve a
@@ -4735,18 +4746,25 @@ DID subjects and resolve to DID documents that describe the DID subjects.
     Note that it is not required that a <a>DID document</a> use an
     RDF-based representation; see <a href="#representations"></a>.
     </p>
-
+        </section>
+        <section>
     <h2>Can the DID document serve as a representation of the DID subject?</h2>
     <p>
-    If the <a>DID subject</a> is an information resource that can be retrieved
+    If the <a>DID subject</a> is a digital resource that can be retrieved
     from the Internet, then yes, the <a>DID document</a> can serve as a
     representation of the <a>DID subject</a>. For example, a data schema that
     needs a persistent, cryptographically verifiable identifier could be
     assigned a <a>DID</a>, and its <a>DID document</a> could be used as a
     standard way to retrieve a representation of that schema.
     </p>
-
-    <h2>Can existing web resources also be assigned DIDs?</h2>
+        <p>
+        Alternately, a <a>DID</a> can be used to identify a digital resource
+        that can be returned directly from a <a>verifiable data registry</a> if
+        that functionality is supported by the applicable <a>DID method</a>.
+        </p>
+        </section>
+        <section>
+    <h1>Can existing web resources also be assigned DIDs?</h1>
     <p>
     Yes, if the controller of a web page or any other web resource wants to
     assign it a persistent, cryptographically verifiable identifier, the
@@ -4770,25 +4788,23 @@ DID subjects and resolve to DID documents that describe the DID subjects.
     <p>
     The <a>DID</a> effectively adds a layer of indirection for the blog URL.
     This layer of indirection is under the control of the author instead of
-    under external administrative authority such as a blog hosting company. This
-    is how <a>DIDs</a> can effectively function as
-    <a href="https://tools.ietf.org/html/rfc8141">URNs (Uniform Resource
-    Names)</a>—persistent identifiers for information resources whose network
+    under the control of an external administrative authority such as the blog
+    hosting company. This is how a <a>DID</a> can effectively function as an
+    enhanced <a href="https://tools.ietf.org/html/rfc8141">URN (Uniform Resource
+    Name)</a>—a persistent identifier for an information resource whose network
     location may change over time.
     </p>
-  </section>
+        </section>
 
-  <section class="appendix">
-    <h1>
-    DID Controllers and DID Subjects
-    </h1>
+    <section>
+    <h1>What is the relationship between DID controllers and DID subjects?</h1>
     <p>
-    To avoid confusion about the relationship between <a>DID controllers</a> and
-    <a>DID subject</a>s, the DID Working Group has found it helpful to classify
+    To avoid confusion, the DID Working Group has found it helpful to classify
     <a>DID subject</a>s into two disjoint sets based on their relationship to
     the <a>DID controller</a>.
     </p>
-    <h2>Set 1: The DID subject <em>is</em> the DID controller</h2>
+        <section>
+    <h2>Set #1: The DID subject <em>is</em> the DID controller</h2>
     <p>
     The first case, shown in figure 4, is the common scenario where the
     <a>DID subject</a> is also the <a>DID controller</a>. This is the case when
@@ -4808,35 +4824,38 @@ DID subjects and resolve to DID documents that describe the DID subjects.
     From a graph model perspective, even though the nodes identified as the
     <a>DID controller</a> and <a>DID subject</a> in figure 4 are distinct,
     there is a logical arc connecting them to express a semantic equivalence
-    relationship (in RDF/OWL, this is expressed using the <a href="https://www.w3.org/TR/owl-ref/#sameAs-def">owl:sameAs predicate)</a>.
+    relationship (in RDF/OWL, this is expressed using the <a href="https://www.w3.org/TR/owl-ref/#sameAs-def"><code>owl:sameAs</code> predicate)</a>.
     </p>
-    <h2>Set 2: The DID subject is <em>not</em> the DID controller</h2>
+        </section>
+        <section>
+    <h2>Set #2: The DID subject is <em>not</em> the DID controller</h2>
     <p>
-    The second case, shown in figure 2 in the previous appendix, is when the
-    <a>DID subject</a> is a separate entity from the <a>DID controller</a>. This
-    is the case when, for example, a parent creates and maintains control of a 
-    <a>DID</a> for a child; a
-    corporation creates and maintains control of a <a>DID</a> for a subsidiary; or a manufacturer creates
-    and maintains control of a <a>DID</a> for a product, an IoT device, or a digital file.
+    The second case is when the <a>DID subject</a> is a separate entity from the
+    <a>DID controller</a>. This is the case when, for example, a parent creates
+    and maintains control of a <a>DID</a> for a child; a corporation creates and
+    maintains control of a <a>DID</a> for a subsidiary; or a manufacturer
+    creates and maintains control of a <a>DID</a> for a product, an IoT device,
+    or a digital file.
     </p>
     <p>
-    From a graph model perspective, the only difference between figure 2 and
-    figure 4 is that in the latter there is an equivalence arc relationship
-    between the <a>DID subject</a> and <a>DID controller</a> nodes.
+    From a graph model perspective, the only difference from Set 1 that there is
+    no equivalence arc relationship between the <a>DID subject</a> and
+    <a>DID controller</a> nodes.
     </p>
-  </section>
+        </section>
+    </section>
 
-<section class="appendix">
-    <h1>
-Multiple DID Controllers
-    </h1>
+    <section>
+    <h1>Can a DID document have multiple DID Controllers?</h1>
     <p>
-    A <a>DID document</a> may have more than one <a>DID controller</a>. In this
-    situation there are two basic options available for how control is shared.
+    Yes. A <a>DID document</a> may have more than one <a>DID controller</a>. In
+    this situation there are two basic options available for how control can be
+    shared.
     </p>
+        <section>
     <h2>Option #1: Independent Control</h2>
     <p>
-    In the first option, shown in figure 5, each of the <a>DID controllers</a>
+    In the first option, shown in the figure below, each of the <a>DID controllers</a>
     may act on its own, i.e., each one has full power to update the
     <a>DID document</a> independently. From a graph model perspective, in this
     configuration:
@@ -4862,7 +4881,8 @@ Multiple DID Controllers
               independently
           </figcaption>
         </figure>
-
+        </section>
+        <section>
     <h2>Option #2: Group Control</h2>
     <p>
     In the second option, the <a>DID controllers</a> must act together in some
@@ -4872,7 +4892,7 @@ Multiple DID Controllers
     to a single <a>DID controller</a> because, although each of the
     <a>DID controllers</a> in the <a>DID controller</a> group has its own graph
     node, the actual control collapses into a single logical graph node
-    representing the <a>DID controller</a> group as shown in figure 6:
+    representing the <a>DID controller</a> group as shown in this figure:
     </p>
         <figure id="group-did-controllers">
           <img style="margin: auto; display: block; width: 75%;"
@@ -4887,9 +4907,11 @@ Multiple DID Controllers
         </figure>
     <p>
     This configuration will often apply when the <a>DID subject</a> is an
-    organization, corporation, government agency, community, or any other group
+    organization, corporation, government agency, community, or other group
     that is not controlled by a single individual.
     </p>
+  </section>
+
 </section>
 
 <section class="appendix">
