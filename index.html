@@ -3669,17 +3669,22 @@ functions for at least one <a>DID method</a> and MUST be able to return a <a>DID
 document</a> in at least one conformant <a>representation</a>.
     </p>
 
-    <section>
+    <section data-dfn-for="Resolver">
         <h2>DID Resolution</h2>
         <p>
 The <a>DID resolution</a> functions resolve a <a>DID</a> into a <a>DID
 document</a> by using the "Read" operation of the applicable <a>DID method</a>.
 (See <a href="#read-verify"></a>.) The details of how this process is
 accomplished are outside the scope of this specification, but all conformant
-implementations implement two functions which have the following abstract
-forms:
+implementations implement at least the following function (or one that is
+equivalent):
         </p>
 
+        <pre class="idl">
+interface mixin DidResolver {
+  ResolutionResponse resolve(USVString did, ResolutionInputMetadata didResolutionInputMetadata);
+};
+        </pre>
         <p><code>
 resolve ( did, did-resolution-input-metadata ) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt; ( did-resolution-metadata, did-document, did-document-metadata )
@@ -3691,13 +3696,12 @@ resolveRepresentation ( did, did-resolution-input-metadata ) <br>
         </code></p>
 
         <p>
-The <code>resolve</code> function returns the <a>DID document</a> in its
-abstract form.
-The <code>resolveRepresentation</code> function returns a byte stream of the
-<a>DID Document</a> formatted in the corresponding representation.
+The {{DidResolver/resolve}} function returns a byte stream of the
+<a>DID Document</a> formatted in the corresponding representation,
+DID Resolution Metadata, and DID Document Metadata.
         </p>
         <p>
-The input variables of these functions are as follows:
+The input variables of the {{DidResolver/resolve}} function are as follows:
         </p>
 
         <dl>
@@ -3709,24 +3713,24 @@ This is the <a>DID</a> to resolve. This input is REQUIRED and the value MUST
 be a conformant <a>DID</a> as defined in <a href="#did-syntax"></a>.
             </dd>
             <dt>
-did-resolution-input-metadata
+didResolutionInputMetadata
             </dt>
             <dd>
 A <a href="#metadata-structure">metadata structure</a> consisting of input
-options to the <code>resolve</code> and <code>resolveRepresentation</code>
-functions in addition to the <code>did</code> itself. Properties defined by this
+options to the {{DidResolver/resolve}} function in addition to the
+<code>did</code> itself. Properties defined by this
 specification are in <a href="#did-resolution-input-metadata-properties"></a>.
 This input is REQUIRED, but the structure MAY be empty.
             </dd>
         </dl>
 
         <p>
-The output variables of these functions are as follows:
+The output variables of the {{DidResolver/resolve}} function are as follows:
         </p>
 
         <dl>
             <dt>
-did-resolution-metadata
+didResolutionMetadata
             </dt>
             <dd>
               <p>
@@ -3735,29 +3739,18 @@ relating to the results of the <a>DID resolution</a> process. This structure
 is REQUIRED and MUST NOT be empty.
               </p>
               <p>
-This metadata typically changes between invocations of the
-<code>resolve</code> and <code>resolveRepresentation</code> functions as it
-represents data about the resolution process itself. Properties defined by
-this specification are in <a href="#did-resolution-metadata-properties"></a>.
+This metadata is defined by <a href="#did-resolution-metadata-properties"></a>.
               </p>
               <p>
-If the resolution is successful, and if the <code>resolveRepresentation</code>
-function was called, this structure MUST contain a <code>contentType</code>
-property containing the mime-type of the <code>did-document-stream</code> in
+If the resolution is successful this structure MUST contain a
+<code>contentType</code> property containing the mime-type of the
+<code>didDocument</code> in
 this result. If the resolution is not successful, this structure MUST contain
 an <code>error</code> property describing the error.
               </p>
             </dd>
             <dt>
-did-document
-            </dt>
-            <dd>
-If the resolution is successful, and if the <code>resolve</code> function was
-called, this MUST be a <a>conforming DID document</a>. If the resolution is
-unsuccessful, this value MUST be empty.
-            </dd>
-            <dt>
-did-document-stream
+didDocument
             </dt>
             <dd>
 If the resolution is successful, and if the <code>resolveRepresentation</code>
@@ -3770,14 +3763,14 @@ processed. If the resolution is unsuccessful, this value MUST be an empty
 stream.
             </dd>
             <dt>
-did-document-metadata
+didDocumentMetadata
             </dt>
             <dd>
 If the resolution is successful, this MUST be a <a
 href="#metadata-structure">metadata structure</a>. This structure contains
 metadata about the <a>DID document</a> contained in the
-<code>did-document</code> or <code>did-document-stream</code>. This metadata
-typically does not change between invocations of the <code>resolve</code>
+<code>didDocument</code>. This metadata
+typically does not change between invocations of the {{DidResolver/resolve}}
 function unless the <a>DID document</a> changes, as it represents data about
 the <a>DID document</a>. If the resolution is unsuccessful, this output MUST
 be an empty <a href="#metadata-structure">metadata structure</a>. Properties
@@ -3788,12 +3781,12 @@ href="#did-document-metadata-properties"></a>.
 
         <p>
 Conforming <a>DID resolver</a> implementations do not alter the signature of
-these functions in any way. <a>DID resolver</a> implementations might map the
-<code>resolve</code> and <code>resolveRepresentation</code> functions to a
+these functions in any way. <a>DID resolver</a> implementations might map
+this function to a
 method-specific internal function to perform the actual <a>DID resolution</a>
 process. <a>DID resolver</a> implementations might implement and expose
 additional functions with different signatures in addition to the
-<code>resolve</code> function specified here.
+{{DidResolver/resolve}} function specified here.
         </p>
 
         <section>
@@ -3814,10 +3807,8 @@ The MIME type expressed as an <a data-lt="ascii string">ASCII string</a> of the
 caller's preferred <a>representation</a> of the <a>DID
 document</a>. The <a>DID resolver</a> implementation SHOULD use this value to
 determine the <a>representation</a> contained in the returned
-<code>did-document-stream</code> if such a <a>representation</a> is supported and
-available. This property is OPTIONAL. It is only used if the
-<code>resolveRepresentation</code> function is called and MUST be ignored if the
-<code>resolve</code> function is called.
+<code>didDocument</code> if such a <a>representation</a> is supported and
+available. This property is OPTIONAL.
                 </dd>
             </dl>
         </section>
@@ -3836,14 +3827,13 @@ specification defines the following common properties.
 contentType
                 </dt>
                 <dd>
-The MIME type of the returned <code>did-document-stream</code>. This property is
-REQUIRED if resolution is successful and if the
-<code>resolveRepresentation</code> function was called. This property MUST NOT
-be present if the <code>resolve</code> function was called. The value of this
+The MIME type of the returned <code>didDocument</code>. This property is
+REQUIRED if resolution is successful. This property MUST NOT
+be present if the {{DidResolver/resolve}} function was called. The value of this
 property MUST be an <a data-lt="ascii string">ASCII string</a> that is the MIME
 type of the conformant <a>representations</a>. The
-caller of the <code>resolveRepresentation</code> function MUST use this value
-when determining how to parse and process the <code>did-document-stream</code>
+caller of {{DidResolver/resolve}} function MUST use this value
+when determining how to parse and process the <code>didDocument</code>
 returned by this function into the <a href="#data-model">data model</a>.
                 </dd>
                 <dt>
@@ -3875,9 +3865,16 @@ representationNotSupported
                         </dt>
                         <dd>
 This error code is returned if the <a>representation</a> requested via the
-<code>accept</code> input metadata property is not supported by the <a>DID method</a>
-and/or <a>DID resolver</a> implementation.
-</dd>
+<code>accept</code> input metadata property is not supported by the <a>DID
+method</a> and/or <a>DID resolver</a> implementation.
+                        </dd>
+                        <dt>
+deactivated
+                        </dt>
+                        <dd>
+The <a>DID</a> supplied to the <a>DID resolution</a> function has been
+deactivated. (See <a href="#deactivate"></a>.)
+                        </dd>
                     </dl>
                 </dd>
             </dl>
@@ -3896,11 +3893,11 @@ This specification defines the following common properties.
           <section>
             <h4>created</h4>
             <p>
-<a>DID document</a> metadata SHOULD include a <code>created</code> property to indicate
-the timestamp of the <a href="#create">Create operation</a>. The value of the
-property MUST be a <a data-cite="INFRA#string">string</a> formatted as an <a
-data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a> normalized to UTC 00:00:00
-and without sub-second decimal precision. For example:
+<a>DID document</a> metadata SHOULD include a <code>created</code> property to
+indicate the timestamp of the <a href="#create">Create operation</a>. The value
+of the property MUST be a <a data-cite="INFRA#string">string</a> formatted as an
+<a data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a> normalized to UTC
+00:00:00 and without sub-second decimal precision. For example:
 <code>2020-12-20T19:17:47Z</code>.
             </p>
           </section>
@@ -3934,10 +3931,10 @@ deactivated. (See <a href="#deactivate"></a>.)
                   nextUpdate
                 </h4>
                 <p>
-<a>DID document</a> metadata MAY include a <code>nextUpdate</code> property if
-the resolved document version is not the latest version of the document. It
-indicates the timestamp of the next <a href="#update">Update operation</a>.
-The value of the property MUST follow the same formatting rules as the
+<a>DID document</a> metadata MAY include a <code>nextUpdate</code> property
+if the resolved document version is not the latest version of the document. It
+indicates the timestamp of the next <a href="#update">Update operation</a>. The
+value of the property MUST follow the same formatting rules as the
 <code>created</code> property.
             </p>
           </section>
@@ -3959,31 +3956,33 @@ data-lt="ascii string">ASCII string</a>.
                 nextVersionId
               </h4>
               <p>
-<a>DID document</a> metadata MAY include a <code>nextVersionId</code> property if
-the resolved document version is not the latest version of the document. It
-indicates the version of the next <a href="#update">Update operation</a>. The
-value of the property MUST be an <a data-lt="ascii string">ASCII string</a>.
+<a>DID document</a> metadata MAY include a <code>nextVersionId</code>
+property if the resolved document version is not the latest version of the
+document. It indicates the version of the next
+<a href="#update">Update operation</a>. The value of the property MUST be an
+<a data-lt="ascii string">ASCII string</a>.
               </p>
             </section>
 
           <section>
             <h4>equivalentId</h4>
                 <p>
-A <a>DID Method</a> can define different forms of a <a>DID</a> that are logically
-equivalent. An example is when a <a>DID</a> takes one form prior to registration in a
-<a>verifiable data registry</a> and another form after such registration. In this case,
-the <a>DID Method</a> specification may need to express one or more <a>DIDs</a> that
-are logically equivalent to the resolved <a>DID</a> as a property of the <a>DID document</a>.
-This is the purpose of the <code><a>equivalentId</a></code>  property.
+A <a>DID Method</a> can define different forms of a <a>DID</a> that are
+logically equivalent. An example is when a <a>DID</a> takes one form prior to
+registration in a <a>verifiable data registry</a> and another form after such
+registration. In this case, the <a>DID Method</a> specification may need to
+express one or more <a>DIDs</a> that are logically equivalent to the resolved
+<a>DID</a> as a property of the <a>DID document</a>. This is the purpose of the
+<code><a>equivalentId</a></code>  property.
                 </p>
 
                 <dl>
                   <dt><dfn>equivalentId</dfn></dt>
                   <dd>
-The value of <code>equivalentId</code> MUST be an <a
-data-cite="INFRA#ordered-set">ordered set</a> where each item in the list is a <a
-data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
-href="#did-syntax"></a>.
+The value of <code>equivalentId</code> MUST be an
+<a data-cite="INFRA#ordered-set">ordered set</a> where each item in the list is
+a <a data-cite="INFRA#string">string</a> that conforms to the rules in Section
+<a href="#did-syntax"></a>.
                   </dd>
                   <dd>
 The relationship is a statement that each <code><a>equivalentId</a></code> value
@@ -4016,9 +4015,10 @@ MUST to a SHOULD/MAY or similar language.</span>
                   <p>
 <code><a>equivalentId</a></code> is a much stronger form of equivalence than
 <code><a>alsoKnownAs</a></code> because the equivalence MUST be guaranteed by
-the governing <a>DID method</a>. <code><a>equivalentId</a></code> represents a full
-graph merge because the same <a>DID document</a> describes both the
-<code><a>equivalentId</a></code> <a>DID</a> and the <code>id</code> property <a>DID</a>.
+the governing <a>DID method</a>. <code><a>equivalentId</a></code> represents a
+full graph merge because the same <a>DID document</a> describes both the
+<code><a>equivalentId</a></code> <a>DID</a> and the <code>id</code> property
+<a>DID</a>.
                   </p>
                 </div>
 
