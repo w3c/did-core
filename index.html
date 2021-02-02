@@ -3347,56 +3347,6 @@ of [[RFC4648]]).  Note that, for all three tag numbers, the encoding of the
 empty byte string is the empty text string of other <a>representations</a>.
         </p>
 
-        <section>
-          <h4>DagCBOR</h4>
-          <p>
-DagCBOR is a further restricted subset of CBOR for representing the <a>DID Document</a>
-as a Directed Acyclic Graph model using canonical CBOR encoding
-with additional constraints. DagCBOR requires that there exist a single way of
-encoding any given object, and that encoded forms contain no superfluous data
-that may be ignored or lost in a round-trip decode/encode.
-          </p>
-
-          <p>
-When producing and consuming DID Documents representing in DagCBOR the following
-rules are followed:
-          </p>
-
-          <ul>
-            <li>
-CBOR tags other than the CID tag (42) MUST NOT be used.
-            </li>
-          </ul>
-
-          <pre class="example nohighlight"
-            title="DID Document as DagCBOR with tag 42 used in Proof section">
-a5                                   # map(5)
-62                                   # text(2)
-   6964                              # "id"
-78 40                                # text(64)
-   6469643a6578616d706c653a313244334b6f6f574d4864727a6377706a6264725a7335474771455241766367715833623564707550745061396f743639796577 # "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew"
-65                                   # text(5)
-   70726f6f66                        # "proof"
-d8 2a                                # tag(42)
-   58 26                             # bytes(38)
-      000190011b20a7f3a13d0dafa9b8b640fee52173c27b9a66ff27f6669b3be73fc0ee6849e2ce # "\x00\x01\x90\x01\e \xA7\xF3\xA1=\r\xAF\xA9\xB8\xB6@\xFE\xE5!s\xC2{\x9Af\xFF'\xF6f\x9B;\xE7?\xC0\xEEhI\xE2\xCE"
-68                                   # text(8)
-   40636f6e74657874                  # "@context"
-78 1c                                # text(28)
-   68747470733a2f2f7777772e77332e6f72672f6e732f6469642f7631 # "https://www.w3.org/ns/did/v1"
-6e                                   # text(14)
-   61757468656e7469636174696f6e      # "authentication"
-81                                   # array(1)
-   78 83                             # text(131)
-      6469643a6578616d706c653a313244334b6f6f574d4864727a6377706a6264725a7335474771455241766367715833623564707550745061396f7436397965773b6b65792d69643d6261667972656963756274783577716f336e6f73633463617a726b63746668776436726577657a6770776f6534737769726c733465626468733269 # "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew;key-id=bafyreicubtx5wqo3nosc4cazrkctfhwd6rewezgpwoe4swirls4ebdhs2i"
-72                                   # text(18)
-   766572696669636174696f6e4d6574686f64 # "verificationMethod"
-81                                   # array(1)
-   78 40                             # text(64)
-      6469643a6578616d706c653a313244334b6f6f574d4864727a6377706a6264725a7335474771455241766367715833623564707550745061396f743639796577 # "did:example:12D3KooWMHdrzcwpjbdrZs5GGqERAvcgqX3b5dpuPtPa9ot69yew"
-          </pre>
-
-        </section>
       </section>
     </section>
   </section>
@@ -3609,7 +3559,7 @@ authentication, the security of the authentication method MUST be clearly
 specified.
       </p>
       <p>
-<a>DID methods</a> MUST discuss the policy mechanism by which <a>DIDs</a> are proven to be uniquely assigned. 
+<a>DID methods</a> MUST discuss the policy mechanism by which <a>DIDs</a> are proven to be uniquely assigned.
       </p>
       <p>
 Method-specific endpoint authentication MUST be discussed. Where <a>DID
@@ -4714,7 +4664,7 @@ of a resolver ought to be compatible with such extension behavior.
     <section>
 
       <h2>Verification Method Revocation</h2>
-  
+
       <p>
 Verification method revocation is a reactive security measure.
       </p>
@@ -4723,23 +4673,23 @@ Verification method revocation is a reactive security measure.
 Verification method revocation applies only to the current or latest
 version of a DID Document.
       </p>
-  
+
       <p>
         If a verification method is no longer exclusively accessible to the
         controller or parties trusted to act on behalf of the controller, it
         is expected to be revoked immediately to reduce the risk of masquerading, theft,
         and fraud.
       </p>
-  
+
       <p class="advisement">
 It is considered a best practice to support key revocation.
       </p>
-  
+
       <p class="advisement">
 A controller is expected to immediately revoke any verification method that is believed to
 be compromised.
       </p>
-  
+
       <p class="advisement">
 Revocation is expected to be understood as a controller expressing
 that proofs or signatures associated with a revoked verification method
@@ -4747,13 +4697,13 @@ might have been created by an attacker. Verifiers, however, might
 still choose to accept or reject such proofs or signatures at their
 own discretion.
       </p>
-  
+
       <p class="note">
 As described in Section <a href="#verification-method-types"></a>,
 absence of a verification method is the only form of revocation that
 applies to all DID Methods.
       </p>
-  
+
       <p>
 Section <a href="#method-operations"></a> specifies the <a>DID</a>
 operations to be supported by a <a>DID method</a> specification,
@@ -4765,14 +4715,14 @@ a DID Document.
       <p>
 Not all DID Methods support verification method revocation.
       </p>
-  
+
       <p>
 Even if a verification method is present in a DID Document, additional
 information, such as a public key revocation certificate, or an external
 allow or deny list, might be used to determine whether a verification
 method has been revoked.
       </p>
-  
+
       <p class="note">
 Compromise of the secrets associated with a verification method
 allows the attacker to use them according to the verification
@@ -4785,19 +4735,19 @@ was revoked.
 
       <p class="note">
 The day-to-day operation of any software relying on a compromised verification
-method, such as an individual's operating system, antivirus, or endpoint protection 
+method, such as an individual's operating system, antivirus, or endpoint protection
 software, might be impacted when the verification method is publicly revoked.
       </p>
 
 <p class="note">
-Although verifiers might choose not to accept proofs or signatures from a revoked verification method, 
+Although verifiers might choose not to accept proofs or signatures from a revoked verification method,
 knowing whether a verification was made with a revoked verification method is trickier than it might seem.
-Some DID methods provide the ability to look back at the state of a DID at a point in time, 
-or at a particular version of the DID document. When such a feature is 
-combined with a reliable way to determine the time or DID version that existed 
-when a cryptographically verifiable statement was made, then revocation 
-does not undo that statement. This can be the basis for using DIDs to make 
-binding commitments (e.g., to sign a mortgage). 
+Some DID methods provide the ability to look back at the state of a DID at a point in time,
+or at a particular version of the DID document. When such a feature is
+combined with a reliable way to determine the time or DID version that existed
+when a cryptographically verifiable statement was made, then revocation
+does not undo that statement. This can be the basis for using DIDs to make
+binding commitments (e.g., to sign a mortgage).
 <br><br>
 If these conditions are met, revocation is not retroactive; it only nullifies future use of the method.
 <br/><br/>
@@ -5078,27 +5028,27 @@ inoperable an individual's (or an organization's) identifier without the
 controller's consent.
       </p>
       <p>
-However, it is important to note that in all DID Methods that enable 
-cryptographic proof-of-control, the means of proving control can always be 
+However, it is important to note that in all DID Methods that enable
+cryptographic proof-of-control, the means of proving control can always be
 transferred to another party by transferring the cryptographic secrets.
-Therefore, it is vital that systems relying on the persistence of an 
+Therefore, it is vital that systems relying on the persistence of an
 identifier over time regularly check to ensure that the identifier is, in
 fact, still under the control of the intended party.
       </p>
       <p>
 Unfortunately, it is impossible to determine from the cryptography alone
-whether or not the private key material associated with a given proof 
+whether or not the private key material associated with a given proof
 mechanism has been compromised. It might well be that the expected controller
 still has access to the private keys &mdash; and as such can execute a
-proof-of-control as part of a verification process &mdash; while at the same time, 
+proof-of-control as part of a verification process &mdash; while at the same time,
 a bad actor also has access to (or a copy of) those same keys.
       </p>
       <p>
 As such, cryptographic proof-of-control is expected to only be used as one
 factor in evaluating the level of identity assurance for a given
 service. DID-based authentication provides much greater assurance than a
-username and password, thanks to the ability to determine control over 
-a secret without transmitting that secret between systems. However, it is 
+username and password, thanks to the ability to determine control over
+a secret without transmitting that secret between systems. However, it is
 not infallible. Services that perform sensitive, high value, or
 life-critical operations should use additional factors as appropriate.
       </p>
@@ -5114,17 +5064,17 @@ to either change over time or be misunderstood.
 For example, consider a DID used for a sole proprietership, receiving
 various credentials used for financial transactions. To the controller,
 that identifier referred to the business. As the business grows, it
-eventually gets incorporated as an LLC. The controller continues using 
-that same DID, because to <strong>them</strong> the DID refers to the 
-business. However, to the state, the tax authority, and the local 
-municipality, the DID no longer refers to the same entity. Whether or 
+eventually gets incorporated as an LLC. The controller continues using
+that same DID, because to <strong>them</strong> the DID refers to the
+business. However, to the state, the tax authority, and the local
+municipality, the DID no longer refers to the same entity. Whether or
 not the subtle shift in meaning matters to a credit provider or supplier
 is necessarily up to them to decide. In many cases, as long as the bills
 get paid and collections can be enforced, the shift is immaterial.
       </p>
       <p>
 Because of these potential ambiguities, DIDs should be considered valid
-<em>contextually</em> rather than absolutely. Their persistence does not 
+<em>contextually</em> rather than absolutely. Their persistence does not
 imply that they refer to the exact same Subject, nor that they are under the
 control of the same controller. Instead, one needs to understand the context
 in which the DID was created, how it is used, and consider the likely
@@ -6251,66 +6201,6 @@ websites that issue or verify W3C Verifiable Credentials.
        <p>
 Fragment identifiers used with
 <a href="#application-did-cbor">application/did+cbor</a> are treated
-according to the rules defined in <a href="#fragment"></a>.
-      </p>
-    </section>
-
-     <section>
-      <h2>application/did+dag+cbor</h2>
-      <dl>
-        <dt>Type name:</dt>
-        <dd>application</dd>
-        <dt>Subtype name:</dt>
-        <dd>did+dag+cbor</dd>
-        <dt>Required parameters:</dt>
-        <dd>None</dd>
-        <dt>Optional parameters:</dt>
-        <dd>None</dd>
-        <dt>Encoding considerations:</dt>
-        <dd>
-See <a data-cite="RFC7049#section-4.2">RFC&nbsp;7049, section 4.2</a>.
-        </dd>
-        <dt>Security considerations:</dt>
-        <dd>
-See <a data-cite="RFC7049#section-10">RFC&nbsp;7049, section 10</a> [[RFC7049]].
-        </dd>
-        <dt>Interoperability considerations:</dt>
-        <dd>Not Applicable</dd>
-        <dt>Published specification:</dt>
-        <dd>http://www.w3.org/TR/did-core/</dd>
-        <dt>Applications that use this media type:</dt>
-        <dd>
-Any application that requires an identifier that is decentralized, persistent,
-cryptographically verifiable, and resolvable. Applications typically consist of
-cryptographic identity systems, decentralized networks of devices, and
-websites that issue or verify W3C Verifiable Credentials.
-        </dd>
-        <dt>Additional information:</dt>
-        <dd>
-          <dl>
-            <dt>Magic number(s):</dt>
-            <dd>Not Applicable</dd>
-            <dt>File extension(s):</dt>
-            <dd>.did</dd>
-            <dt>Macintosh file type code(s):</dt>
-            <dd>TEXT</dd>
-          </dl>
-        </dd>
-        <dt>Person &amp; email address to contact for further information:</dt>
-        <dd>Ivan Herman &lt;ivan@w3.org&gt;</dd>
-        <dt>Intended usage:</dt>
-        <dd>Common</dd>
-        <dt>Restrictions on usage:</dt>
-        <dd>None</dd>
-        <dt>Author(s):</dt>
-        <dd>Drummond Reed, Manu Sporny, Markus Sabadello, Dave Longley, Christopher Allen</dd>
-        <dt>Change controller:</dt>
-        <dd>W3C</dd>
-      </dl>
-
-       <p>
-Fragment identifiers used with
-<a href="#application-did-dag-cbor">application/did+dag+cbor</a> are treated
 according to the rules defined in <a href="#fragment"></a>.
       </p>
     </section>
