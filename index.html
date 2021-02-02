@@ -3671,7 +3671,7 @@ specification, but some considerations for implementors are discussed in
 
     <p>
 All conformant <a>DID resolvers</a> MUST implement the <a>DID resolution</a>
-function for at least one <a>DID method</a> and MUST be able to return a <a>DID
+functions for at least one <a>DID method</a> and MUST be able to return a <a>DID
 document</a> in at least one conformant <a>representation</a>.
     </p>
 
@@ -3775,7 +3775,7 @@ processed. If the resolution is unsuccessful, this value MUST be an empty
 stream.
             </dd>
             <dt>
-didDocumentMetadata
+<dfn>didDocumentMetadata</dfn>
             </dt>
             <dd>
 If the resolution is successful, this MUST be a <a
@@ -4066,20 +4066,27 @@ contained in the <a>DID URL</a>. <a>DID URL dereferencing</a> might involve
 multiple steps (e.g., when the DID URL being dereferenced includes a fragment),
 and the function is defined to return the final resource after all steps are
 completed. The details of how this process is accomplished are outside the scope
-of this specification, but all conforming <a>DID resolver</a> implementations
-realize an interfaces that is functionally equivalent to the following example:
+of this specification, but all conforming <a>DID resolvers</a> implement
+the following function which has the following abstract form:
+      </p>
+
+      <pre title="Abstract functions for DID Dereferencing">
+dereference(didUrl, options) -> DereferencingResponse
+      </pre>
+
+      <p>
+The abstract form above might be concretely implemented in a variety of
+programming environments, such as in the following example:
       </p>
 
       <pre class="example" title="Conforming dereferencer interface in Typescript">
 interface DidDereferencer {
-  dereference(string did,
-              DereferencingOptions dereferencingOptions): DereferencingResponse;
+  dereference(didUrl: string, options: DereferencingOptions): DereferencingResponse;
 };
       </pre>
 
       <p>
-The input variables of the <code>DidDereferencer.dereference()</code> function
-are as follows:
+The input variables of the <code>dereference()</code> function are as follows:
       </p>
 
       <dl>
@@ -4092,7 +4099,7 @@ dereference. To dereference a <a>DID fragment</a>, the complete <a>DID URL</a>
 including the <a>DID fragment</a> MUST be used. This input is REQUIRED.
         </dd>
         <dt>
-dereferencingOptions
+options
         </dt>
         <dd>
 A <a href="metadata-structure">metadata structure</a> consisting of input
@@ -4104,7 +4111,7 @@ structure MAY be empty.
       </dl>
 
       <p>
-The return value of the <code>DidDereferencer.dereference()</code> function is a
+The return value of the <code>dereference()</code> function is a
 <dfn>DereferencingResponse</dfn> <a data-cite="INFRA#maps">map</a> that
 contains the following properties:
       </p>
@@ -4141,7 +4148,7 @@ If the dereferencing is successful, this MUST be a <a href="metadata-structure">
 metadata structure</a>, but the structure MAY be empty. This structure contains
 metadata about the <code>contentStream</code>.
 If the <code>contentStream</code> is a <a>DID document</a>, this MUST be a
-<code>didDocumentMetadata</code> structure as described in <a>DID
+<a>didDocumentMetadata</a> structure as described in <a>DID
 Resolution</a>.<br><br>
 
 If the dereferencing is unsuccessful, this output MUST be an empty <a
