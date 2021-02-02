@@ -3682,18 +3682,19 @@ The <a>DID resolution</a> function resolves a <a>DID</a> into a <a>DID
 document</a> by using the "Read" operation of the applicable <a>DID method</a>
 as described in <a href="#read-verify"></a>. The details of how this process is
 accomplished are outside the scope of this specification, but all conforming
-<a>DID resolver</a> implementations realize at least the following interface
-(or one that is functionally equivalent):
+<a>DID resolver</a> implementations realize an interface that is
+functionally equivalent to the following example:
         </p>
 
-        <pre class="idl">
-interface mixin DidResolver {
-  ResolutionResponse resolve(USVString did, ResolutionOptions resolutionOptions);
+        <pre class="example" title="A conforming resolver interface in Typescript ">
+interface DidResolver {
+  resolve(did: string, resolutionOptions: ResolutionOptions): ResolutionResponse;
 };
         </pre>
 
         <p>
-The input variables of the {{DidResolver/resolve}} function are as follows:
+The input variables of the <code>DidResolver.resolve()</code> function are
+as follows:
         </p>
 
         <dl>
@@ -3709,7 +3710,7 @@ resolutionOptions
             </dt>
             <dd>
 A <a href="#metadata-structure">metadata structure</a> consisting of input
-options to the {{DidResolver/resolve}} function in addition to the
+options to the <code>DidResolver.resolve()</code> function in addition to the
 <code>did</code> itself. Properties defined by this
 specification are in <a href="#did-resolution-options"></a>.
 This input is REQUIRED, but the structure MAY be empty.
@@ -3717,7 +3718,7 @@ This input is REQUIRED, but the structure MAY be empty.
         </dl>
 
         <p>
-The return value of the {{DidResolver/resolve}} function is a
+The return value of the <code>DidResolver.resolve()</code> function is a
 <dfn>ResolutionResponse</dfn> <a data-cite="INFRA#maps">map</a> that
 contains the following properties:
         </p>
@@ -3756,7 +3757,7 @@ If the resolution is successful, this MUST be a <a
 href="#metadata-structure">metadata structure</a>. This structure contains
 metadata about the <a>DID document</a> contained in the
 <code>didDocument</code> property. This metadata
-typically does not change between invocations of the {{DidResolver/resolve}}
+typically does not change between invocations of the <code>DidResolver.resolve()</code>
 function unless the <a>DID document</a> changes, as it represents data about
 the <a>DID document</a>. If the resolution is unsuccessful, this output MUST
 be an empty <a href="#metadata-structure">metadata structure</a>. Properties
@@ -3772,7 +3773,7 @@ this function to a
 method-specific internal function to perform the actual <a>DID resolution</a>
 process. <a>DID resolver</a> implementations might implement and expose
 additional functions with different signatures in addition to the
-{{DidResolver/resolve}} function specified here.
+<code>DidResolver.resolve()</code> function specified here.
         </p>
 
         <section>
@@ -3816,10 +3817,10 @@ contentType
                 <dd>
 The MIME type of the returned <code>didDocument</code>. This property is
 REQUIRED if resolution is successful. This property MUST NOT
-be present if the {{DidResolver/resolve}} function was called. The value of this
+be present if the <code>DidResolver.resolve()</code> function was called. The value of this
 property MUST be an <a data-lt="ascii string">ASCII string</a> that is the MIME
 type of the conformant <a>representations</a>. The
-caller of {{DidResolver/resolve}} function MUST use this value
+caller of <code>DidResolver.resolve()</code> function MUST use this value
 when determining how to parse and process the <code>didDocument</code>
 returned by this function into the <a href="#data-model">data model</a>.
                 </dd>
@@ -4041,20 +4042,19 @@ multiple steps (e.g., when the DID URL being dereferenced includes a fragment),
 and the function is defined to return the final resource after all steps are
 completed. The details of how this process is accomplished are outside the scope
 of this specification, but all conforming <a>DID resolver</a> implementations
-realize at least the following interface (or one that is functionally
-equivalent):
+realize an interfaces that is functionally equivalent to the following example:
       </p>
 
-      <pre class="idl">
-interface mixin DidDereferencer {
-DereferencingResponse dereference(USVString did,
-                                  DereferencingOptions dereferencingOptions);
+      <pre class="example" title="Conforming dereferencer interface in Typescript">
+interface DidDereferencer {
+  dereference(USVString did,
+              DereferencingOptions dereferencingOptions): DereferencingResponse;
 };
       </pre>
 
       <p>
-The input variables of the {{DidDereferencer/dereference}} function are as
-follows:
+The input variables of the <code>DidDereferencer.dereference()</code> function
+are as follows:
       </p>
 
       <dl>
@@ -4079,7 +4079,7 @@ structure MAY be empty.
       </dl>
 
       <p>
-The return value of the {{DidDereferencer/dereference}} function is a
+The return value of the <code>DidDereferencer.dereference()</code> function is a
 <dfn>DereferencingResponse</dfn> <a data-cite="INFRA#maps">map</a> that
 contains the following properties:
       </p>
