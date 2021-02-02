@@ -3671,7 +3671,7 @@ specification, but some considerations for implementors are discussed in
 
     <p>
 All conformant <a>DID resolvers</a> MUST implement the <a>DID resolution</a>
-functions for at least one <a>DID method</a> and MUST be able to return a <a>DID
+function for at least one <a>DID method</a> and MUST be able to return a <a>DID
 document</a> in at least one conformant <a>representation</a>.
     </p>
 
@@ -3688,13 +3688,14 @@ functionally equivalent to the following example:
 
         <pre class="example" title="A conforming resolver interface in Typescript ">
 interface DidResolver {
-  resolve(did: string, resolutionOptions: ResolutionOptions): ResolutionResponse;
+  resolveRepresentation(did: string,
+                        resolutionOptions: ResolutionOptions): ResolutionResponse;
 };
         </pre>
 
         <p>
-The input variables of the <code>DidResolver.resolve()</code> function are
-as follows:
+The input variables of the <code>DidResolver.resolveRepresentation()</code>
+function are as follows:
         </p>
 
         <dl>
@@ -3710,17 +3711,17 @@ resolutionOptions
             </dt>
             <dd>
 A <a href="#metadata-structure">metadata structure</a> consisting of input
-options to the <code>DidResolver.resolve()</code> function in addition to the
-<code>did</code> itself. Properties defined by this
-specification are in <a href="#did-resolution-options"></a>.
-This input is REQUIRED, but the structure MAY be empty.
+options to the <code>DidResolver.resolveRepresentation()</code> function in
+addition to the <code>did</code> itself. Properties defined by this
+specification are in <a href="#did-resolution-options"></a>. This input is
+REQUIRED, but the structure MAY be empty.
             </dd>
         </dl>
 
         <p>
-The return value of the <code>DidResolver.resolve()</code> function is a
-<dfn>ResolutionResponse</dfn> <a data-cite="INFRA#maps">map</a> that
-contains the following properties:
+The return value of the <code>DidResolver.resolveRepresentation()</code>
+function is a <dfn>ResolutionResponse</dfn> <a data-cite="INFRA#maps">map</a>
+that contains the following properties:
         </p>
 
         <dl>
@@ -3757,7 +3758,7 @@ If the resolution is successful, this MUST be a <a
 href="#metadata-structure">metadata structure</a>. This structure contains
 metadata about the <a>DID document</a> contained in the
 <code>didDocument</code> property. This metadata
-typically does not change between invocations of the <code>DidResolver.resolve()</code>
+typically does not change between invocations of the <code>DidResolver.resolveRepresentation()</code>
 function unless the <a>DID document</a> changes, as it represents data about
 the <a>DID document</a>. If the resolution is unsuccessful, this output MUST
 be an empty <a href="#metadata-structure">metadata structure</a>. Properties
@@ -3773,7 +3774,7 @@ this function to a
 method-specific internal function to perform the actual <a>DID resolution</a>
 process. <a>DID resolver</a> implementations might implement and expose
 additional functions with different signatures in addition to the
-<code>DidResolver.resolve()</code> function specified here.
+<code>DidResolver.resolveRepresentation()</code> function specified here.
         </p>
 
         <section>
@@ -3817,10 +3818,10 @@ contentType
                 <dd>
 The MIME type of the returned <code>didDocument</code>. This property is
 REQUIRED if resolution is successful. This property MUST NOT
-be present if the <code>DidResolver.resolve()</code> function was called. The value of this
+be present if the <code>DidResolver.resolveRepresentation()</code> function was called. The value of this
 property MUST be an <a data-lt="ascii string">ASCII string</a> that is the MIME
 type of the conformant <a>representations</a>. The
-caller of <code>DidResolver.resolve()</code> function MUST use this value
+caller of <code>DidResolver.resolveRepresentation()</code> function MUST use this value
 when determining how to parse and process the <code>didDocument</code>
 returned by this function into the <a href="#data-model">data model</a>.
                 </dd>
