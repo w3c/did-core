@@ -3609,13 +3609,7 @@ authentication, the security of the authentication method MUST be clearly
 specified.
       </p>
       <p>
-<a>DID methods</a> MUST discuss the policy mechanism by which <a>DIDs</a> are
-proven to be uniquely assigned. A <a>DID</a> fits the functional definition of
-a URN, as defined in [[RFC8141]]. That is, a <a>DID</a> is a persistent
-identifier that is assigned once to a <a>resource</a> and never reassigned to a
-different <a>resource</a>. This is particularly important in a security context
-because a <a>DID</a> might be used to identify a specific party subject to a
-specific set of authorization rights.
+<a>DID methods</a> MUST discuss the policy mechanism by which <a>DIDs</a> are proven to be uniquely assigned. 
       </p>
       <p>
 Method-specific endpoint authentication MUST be discussed. Where <a>DID
@@ -5071,6 +5065,74 @@ hash for the context as registered in the DID Specification Registries
 (see the registration process for more detail) [[?DID-SPEC-REGISTRIES]].
       </p>
     </section>
+    <section>
+      <h2>Persistence</h2>
+      <p>
+DIDs are designed to be persistent such that a controller need not rely
+upon a single trusted third party or administrator to maintain their
+identifiers. No administrator can take control away from the controller,
+nor can an administrator prevent their identifiers' use for any particular
+purpose such as authentication, authorization, and attestation. No
+third party can act on behalf of a controller to remove or render
+inoperable an individual's (or an organization's) identifier without the
+controller's consent.
+      </p>
+      <p>
+However, it is important to note that in all DID Methods that enable 
+cryptographic proof-of-control, the means of proving control can always be 
+transferred to another party by transferring the cryptographic secrets.
+Therefore, it is vital that systems relying on the persistence of an 
+identifier over time regularly check to ensure that the identifier is, in
+fact, still under the control of the intended party.
+      </p>
+      <p>
+Unfortunately, it is impossible to determine from the cryptography alone
+whether or not the private key material associated with a given proof 
+mechanism has been compromised. It might well be that the expected controller
+still has access to the private keys &mdash; and as such can execute a
+proof-of-control as part of a verification process &mdash; while at the same time, 
+a bad actor also has access to (or a copy of) those same keys.
+      </p>
+      <p>
+As such, cryptographic proof-of-control is expected to only be used as one
+factor in evaluating the level of identity assurance for a given
+service. DID-based authentication provides much greater assurance than a
+username and password, thanks to the ability to determine control over 
+a secret without transmitting that secret between systems. However, it is 
+not infallible. Services that perform sensitive, high value, or
+life-critical operations should use additional factors as appropriate.
+      </p>
+      <p>
+In addition to potential ambiguity from use by different controllers,
+it is impossible to guarantee, in general, that a given DID is being used
+in reference to the same subject at any given point in time. It is
+technically possible for the controller to reuse a DID for different
+subjects and, more subtly, for the precise definition of the Subject
+to either change over time or be misunderstood.
+        </p>
+        <p>
+For example, consider a DID used for a sole proprietership, receiving
+various credentials used for financial transactions. To the controller,
+that identifier referred to the business. As the business grows, it
+eventually gets incorporated as an LLC. The controller continues using 
+that same DID, because to <strong>them</strong> the DID refers to the 
+business. However, to the state, the tax authority, and the local 
+municipality, the DID no longer refers to the same entity. Whether or 
+not the subtle shift in meaning matters to a credit provider or supplier
+is necessarily up to them to decide. In many cases, as long as the bills
+get paid and collections can be enforced, the shift is immaterial.
+      </p>
+      <p>
+Because of these potential ambiguities, DIDs should be considered valid
+<em>contextually</em> rather than absolutely. Their persistence does not 
+imply that they refer to the exact same Subject, nor that they are under the
+control of the same controller. Instead, one needs to understand the context
+in which the DID was created, how it is used, and consider the likely
+shifts in their meaning, and adopt procedures and policies to address both
+potential and inevitable semantic drift.
+        </p>
+    </section>
+=======
 
     <section>
       <h2>Level of Assurance</h2>
@@ -5110,7 +5172,6 @@ href="#privacy-considerations">Privacy Considerations</a> remains applicable for
 such extensions.
       </p>
     </section>
-
   </section>
 
   <section class="informative">
