@@ -3609,7 +3609,7 @@ authentication, the security of the authentication method MUST be clearly
 specified.
       </p>
       <p>
-<a>DID methods</a> MUST discuss the policy mechanism by which <a>DIDs</a> are proven to be uniquely assigned. 
+<a>DID methods</a> MUST discuss the policy mechanism by which <a>DIDs</a> are proven to be uniquely assigned.
       </p>
       <p>
 Method-specific endpoint authentication MUST be discussed. Where <a>DID
@@ -4714,7 +4714,7 @@ of a resolver ought to be compatible with such extension behavior.
     <section>
 
       <h2>Verification Method Revocation</h2>
-  
+
       <p>
 Verification method revocation is a reactive security measure.
       </p>
@@ -4723,23 +4723,23 @@ Verification method revocation is a reactive security measure.
 Verification method revocation applies only to the current or latest
 version of a DID Document.
       </p>
-  
+
       <p>
         If a verification method is no longer exclusively accessible to the
         controller or parties trusted to act on behalf of the controller, it
         is expected to be revoked immediately to reduce the risk of masquerading, theft,
         and fraud.
       </p>
-  
+
       <p class="advisement">
 It is considered a best practice to support key revocation.
       </p>
-  
+
       <p class="advisement">
 A controller is expected to immediately revoke any verification method that is believed to
 be compromised.
       </p>
-  
+
       <p class="advisement">
 Revocation is expected to be understood as a controller expressing
 that proofs or signatures associated with a revoked verification method
@@ -4747,13 +4747,13 @@ might have been created by an attacker. Verifiers, however, might
 still choose to accept or reject such proofs or signatures at their
 own discretion.
       </p>
-  
+
       <p class="note">
 As described in Section <a href="#verification-method-types"></a>,
 absence of a verification method is the only form of revocation that
 applies to all DID Methods.
       </p>
-  
+
       <p>
 Section <a href="#method-operations"></a> specifies the <a>DID</a>
 operations to be supported by a <a>DID method</a> specification,
@@ -4765,14 +4765,14 @@ a DID Document.
       <p>
 Not all DID Methods support verification method revocation.
       </p>
-  
+
       <p>
 Even if a verification method is present in a DID Document, additional
 information, such as a public key revocation certificate, or an external
 allow or deny list, might be used to determine whether a verification
 method has been revoked.
       </p>
-  
+
       <p class="note">
 Compromise of the secrets associated with a verification method
 allows the attacker to use them according to the verification
@@ -4785,19 +4785,19 @@ was revoked.
 
       <p class="note">
 The day-to-day operation of any software relying on a compromised verification
-method, such as an individual's operating system, antivirus, or endpoint protection 
+method, such as an individual's operating system, antivirus, or endpoint protection
 software, might be impacted when the verification method is publicly revoked.
       </p>
 
 <p class="note">
-Although verifiers might choose not to accept proofs or signatures from a revoked verification method, 
+Although verifiers might choose not to accept proofs or signatures from a revoked verification method,
 knowing whether a verification was made with a revoked verification method is trickier than it might seem.
-Some DID methods provide the ability to look back at the state of a DID at a point in time, 
-or at a particular version of the DID document. When such a feature is 
-combined with a reliable way to determine the time or DID version that existed 
-when a cryptographically verifiable statement was made, then revocation 
-does not undo that statement. This can be the basis for using DIDs to make 
-binding commitments (e.g., to sign a mortgage). 
+Some DID methods provide the ability to look back at the state of a DID at a point in time,
+or at a particular version of the DID document. When such a feature is
+combined with a reliable way to determine the time or DID version that existed
+when a cryptographically verifiable statement was made, then revocation
+does not undo that statement. This can be the basis for using DIDs to make
+binding commitments (e.g., to sign a mortgage).
 <br><br>
 If these conditions are met, revocation is not retroactive; it only nullifies future use of the method.
 <br/><br/>
@@ -5078,27 +5078,27 @@ inoperable an individual's (or an organization's) identifier without the
 controller's consent.
       </p>
       <p>
-However, it is important to note that in all DID Methods that enable 
-cryptographic proof-of-control, the means of proving control can always be 
+However, it is important to note that in all DID Methods that enable
+cryptographic proof-of-control, the means of proving control can always be
 transferred to another party by transferring the cryptographic secrets.
-Therefore, it is vital that systems relying on the persistence of an 
+Therefore, it is vital that systems relying on the persistence of an
 identifier over time regularly check to ensure that the identifier is, in
 fact, still under the control of the intended party.
       </p>
       <p>
 Unfortunately, it is impossible to determine from the cryptography alone
-whether or not the private key material associated with a given proof 
+whether or not the private key material associated with a given proof
 mechanism has been compromised. It might well be that the expected controller
 still has access to the private keys &mdash; and as such can execute a
-proof-of-control as part of a verification process &mdash; while at the same time, 
+proof-of-control as part of a verification process &mdash; while at the same time,
 a bad actor also has access to (or a copy of) those same keys.
       </p>
       <p>
 As such, cryptographic proof-of-control is expected to only be used as one
 factor in evaluating the level of identity assurance for a given
 service. DID-based authentication provides much greater assurance than a
-username and password, thanks to the ability to determine control over 
-a secret without transmitting that secret between systems. However, it is 
+username and password, thanks to the ability to determine control over
+a secret without transmitting that secret between systems. However, it is
 not infallible. Services that perform sensitive, high value, or
 life-critical operations should use additional factors as appropriate.
       </p>
@@ -5114,17 +5114,17 @@ to either change over time or be misunderstood.
 For example, consider a DID used for a sole proprietership, receiving
 various credentials used for financial transactions. To the controller,
 that identifier referred to the business. As the business grows, it
-eventually gets incorporated as an LLC. The controller continues using 
-that same DID, because to <strong>them</strong> the DID refers to the 
-business. However, to the state, the tax authority, and the local 
-municipality, the DID no longer refers to the same entity. Whether or 
+eventually gets incorporated as an LLC. The controller continues using
+that same DID, because to <strong>them</strong> the DID refers to the
+business. However, to the state, the tax authority, and the local
+municipality, the DID no longer refers to the same entity. Whether or
 not the subtle shift in meaning matters to a credit provider or supplier
 is necessarily up to them to decide. In many cases, as long as the bills
 get paid and collections can be enforced, the shift is immaterial.
       </p>
       <p>
 Because of these potential ambiguities, DIDs should be considered valid
-<em>contextually</em> rather than absolutely. Their persistence does not 
+<em>contextually</em> rather than absolutely. Their persistence does not
 imply that they refer to the exact same Subject, nor that they are under the
 control of the same controller. Instead, one needs to understand the context
 in which the DID was created, how it is used, and consider the likely
