@@ -3389,7 +3389,23 @@ resolveRepresentation(did, resolutionOptions) →
 The <code>resolve</code> function returns the <a>DID document</a> in its
 abstract form (a <a data-cite="INFRA#maps">map</a>). The
 <code>resolveRepresentation</code> function returns a byte stream of the <a>DID
-Document</a> formatted in the corresponding representation. The input variables
+Document</a> formatted in the corresponding representation.
+      </p>
+
+      <figure id="resolve-resolverepresentation">
+        <img style="margin: auto; display: block;"
+          src="diagrams/diagram-resolve-resolverepresentation.png" alt="
+Diagram illustrating how resolve() returns the DID document data model in
+its abstract form and resolveRepresenation() returns it in one of the
+conformant representations; conversion is possible using production and
+consumption rules.">
+        <figcaption>
+Functions resolve() and resolveRepresentation().
+        </figcaption>
+      </figure>
+
+      <p>
+The input variables
 of the <code>resolve</code> and <code>resolveRepresentation</code> functions are
 as follows:
       </p>
