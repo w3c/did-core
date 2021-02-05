@@ -3709,8 +3709,8 @@ interface DidResolver {
         </pre>
 
         <p>
-The input variables of the <code>resolve()</code> and
-<code>resolveRepresentation()</code> functions are as follows:
+The input variables of the <code>resolve</code> and
+<code>resolveRepresentation</code> functions are as follows:
         </p>
 
         <dl>
@@ -3732,11 +3732,11 @@ REQUIRED, but the structure MAY be empty.
         </dl>
 
         <p>
-The return value of <code>resolve()</code> is <dfn>Resolution</dfn> which is
+The return value of <code>resolve</code> is <dfn>Resolution</dfn> which is
 a <a data-cite="INFRA#maps">map</a> that contains the
 <a>didResolutionMetadata</a>, <a>didDocument</a>, and
 <a>didDocumentMetadata</a> properties. The return value of
-<code>resolveRepresentation()</code> is <dfn>ResolutionRepresentation</dfn>
+<code>resolveRepresentation</code> is <dfn>ResolutionRepresentation</dfn>
 which is a <a data-cite="INFRA#maps">map</a> that contains
 <a>didResolutionMetadata</a>, <a>didDocumentStream</a>, and
 <a>didDocumentMetadata</a> properties. These properties are described below:
@@ -3785,7 +3785,7 @@ If the resolution is successful, this MUST be a <a
 href="#metadata-structure">metadata structure</a>. This structure contains
 metadata about the <a>DID document</a> contained in the
 <code>didDocument</code> property. This metadata
-typically does not change between invocations of the <code>resolveRepresentation()</code>
+typically does not change between invocations of the <code>resolveRepresentation</code>
 function unless the <a>DID document</a> changes, as it represents data about
 the <a>DID document</a>. If the resolution is unsuccessful, this output MUST
 be an empty <a href="#metadata-structure">metadata structure</a>. Properties
@@ -3801,7 +3801,7 @@ this function to a
 method-specific internal function to perform the actual <a>DID resolution</a>
 process. <a>DID resolver</a> implementations might implement and expose
 additional functions with different signatures in addition to the
-<code>resolveRepresentation()</code> function specified here.
+<code>resolveRepresentation</code> function specified here.
         </p>
 
         <section>
@@ -3845,10 +3845,10 @@ contentType
                 <dd>
 The MIME type of the returned <code>didDocument</code>. This property is
 REQUIRED if resolution is successful. This property MUST NOT
-be present if the <code>resolveRepresentation()</code> function was called. The value of this
+be present if the <code>resolveRepresentation</code> function was called. The value of this
 property MUST be an <a data-lt="ascii string">ASCII string</a> that is the MIME
 type of the conformant <a>representations</a>. The
-caller of <code>resolveRepresentation()</code> function MUST use this value
+caller of <code>resolveRepresentation</code> function MUST use this value
 when determining how to parse and process the <code>didDocument</code>
 returned by this function into the <a href="#data-model">data model</a>.
                 </dd>
