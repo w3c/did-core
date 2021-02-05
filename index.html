@@ -3682,13 +3682,16 @@ The <a>DID resolution</a> function resolves a <a>DID</a> into a <a>DID
 document</a> by using the "Read" operation of the applicable <a>DID method</a>
 as described in <a href="#read-verify"></a>. The details of how this process is
 accomplished are outside the scope of this specification, but all conforming
-<a>DID resolvers</a> implement two functions which have the following abstract
-forms:
+<a>DID resolvers</a> implement at least one of the functions below which
+have the following abstract forms:
         </p>
 
         <pre title="Abstract functions for DID Resolution">
-resolve(did, options) -> Resolution
-resolveRepresentation(did, options) -> ResolutionRepresentation
+resolve(did, options) →
+   « didResolutionMetadata, didDocument, didDocumentMetadata »
+
+resolveRepresentation(did, options) →
+   « didResolutionMetadata, didDocumentStream, didDocumentMetadata »
         </pre>
 
         <p>
@@ -4071,7 +4074,8 @@ the following function which has the following abstract form:
       </p>
 
       <pre title="Abstract functions for DID Dereferencing">
-dereference(didUrl, options) -> DereferencingResponse
+dereference(didUrl, options) →
+   « didUrlDereferencingMetadata, contentStream, contentMetadata »
       </pre>
 
       <p>
