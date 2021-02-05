@@ -3695,20 +3695,6 @@ resolveRepresentation(did, options) →
         </pre>
 
         <p>
-The abstract forms above might be concretely implemented in a variety of
-programming environments, such as in the following example:
-        </p>
-
-        <pre class="example" title="A conforming resolver interface in Typescript ">
-interface DidResolver {
-  resolve(did: string,
-          options: ResolutionOptions): Resolution;
-  resolveRepresentation(did: string,
-                        options: ResolutionOptions): ResolutionRepresentation;
-};
-        </pre>
-
-        <p>
 The input variables of the <code>resolve</code> and
 <code>resolveRepresentation</code> functions are as follows:
         </p>
@@ -3732,12 +3718,10 @@ REQUIRED, but the structure MAY be empty.
         </dl>
 
         <p>
-The return value of <code>resolve</code> is <dfn>Resolution</dfn> which is
-a <a data-cite="INFRA#maps">map</a> that contains the
+The return value of <code>resolve</code> is the
 <a>didResolutionMetadata</a>, <a>didDocument</a>, and
 <a>didDocumentMetadata</a> properties. The return value of
-<code>resolveRepresentation</code> is <dfn>ResolutionRepresentation</dfn>
-which is a <a data-cite="INFRA#maps">map</a> that contains
+<code>resolveRepresentation</code> the
 <a>didResolutionMetadata</a>, <a>didDocumentStream</a>, and
 <a>didDocumentMetadata</a> properties. These properties are described below:
         </p>
@@ -4079,18 +4063,7 @@ dereference(didUrl, options) →
       </pre>
 
       <p>
-The abstract form above might be concretely implemented in a variety of
-programming environments, such as in the following example:
-      </p>
-
-      <pre class="example" title="Conforming dereferencer interface in Typescript">
-interface DidDereferencer {
-  dereference(didUrl: string, options: DereferencingOptions): DereferencingResponse;
-};
-      </pre>
-
-      <p>
-The input variables of the <code>dereference()</code> function are as follows:
+The input variables of the <code>dereference</code> function are as follows:
       </p>
 
       <dl>
@@ -4115,9 +4088,8 @@ structure MAY be empty.
       </dl>
 
       <p>
-The return value of the <code>dereference()</code> function is a
-<dfn>DereferencingResponse</dfn> <a data-cite="INFRA#maps">map</a> that
-contains the following properties:
+The return value of the <code>dereference</code> function contains the
+following properties:
       </p>
 
       <dl>
