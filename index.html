@@ -3671,8 +3671,8 @@ specification, but some considerations for implementors are discussed in
 
     <p>
 All conformant <a>DID resolvers</a> MUST implement the <a>DID resolution</a>
-functions for at least one <a>DID method</a> and MUST be able to return a <a>DID
-document</a> in at least one conformant <a>representation</a>.
+functions for at least one <a>DID method</a> and MUST be able to produce a
+<a>DID document</a> in at least one conformant <a>representation</a>.
     </p>
 
     <section data-dfn-for="Resolver">
@@ -3682,8 +3682,8 @@ The <a>DID resolution</a> function resolves a <a>DID</a> into a <a>DID
 document</a> by using the "Read" operation of the applicable <a>DID method</a>
 as described in <a href="#read-verify"></a>. The details of how this process is
 accomplished are outside the scope of this specification, but all conforming
-<a>DID resolvers</a> implement at least one of the functions below which
-have the following abstract forms:
+<a>DID resolvers</a> implement the functions below which have the following
+abstract forms:
         </p>
 
         <pre title="Abstract functions for DID Resolution">
@@ -3721,7 +3721,7 @@ REQUIRED, but the structure MAY be empty.
 The return value of <code>resolve</code> is the
 <a>didResolutionMetadata</a>, <a>didDocument</a>, and
 <a>didDocumentMetadata</a> properties. The return value of
-<code>resolveRepresentation</code> the
+<code>resolveRepresentation</code> is the
 <a>didResolutionMetadata</a>, <a>didDocumentStream</a>, and
 <a>didDocumentMetadata</a> properties. These properties are described below:
         </p>
@@ -3745,7 +3745,9 @@ describing the error.
             </dt>
             <dd>
 If the resolution is successful, and if the <code>resolve</code> function was
-called, this MUST be a <a>conforming DID document</a>. If the resolution is
+called, this MUST be a <a>DID document</a> (abstract data model) as described in
+<a href="#data-model"></a> that is capable of being transformed
+into a <a>conforming DID Document</a> (representation). If the resolution is
 unsuccessful, this value MUST be empty.
             </dd>
             <dt>
@@ -3806,7 +3808,7 @@ The MIME type expressed as an <a data-lt="ascii string">ASCII string</a> of the
 caller's preferred <a>representation</a> of the <a>DID
 document</a>. The <a>DID resolver</a> implementation SHOULD use this value to
 determine the <a>representation</a> contained in the returned
-<code>didDocument</code> if such a <a>representation</a> is supported and
+<code>didDocumentStream</code> if such a <a>representation</a> is supported and
 available. This property is OPTIONAL.
                 </dd>
             </dl>
@@ -3827,13 +3829,13 @@ specification defines the following common properties for a
 contentType
                 </dt>
                 <dd>
-The MIME type of the returned <code>didDocument</code>. This property is
+The MIME type of the returned <code>didDocumentStream</code>. This property is
 REQUIRED if resolution is successful. This property MUST NOT
-be present if the <code>resolveRepresentation</code> function was called. The value of this
+be present if the <code>resolve</code> function was called. The value of this
 property MUST be an <a data-lt="ascii string">ASCII string</a> that is the MIME
 type of the conformant <a>representations</a>. The
 caller of <code>resolveRepresentation</code> function MUST use this value
-when determining how to parse and process the <code>didDocument</code>
+when determining how to parse and process the <code>didDocumentStream</code>
 returned by this function into the <a href="#data-model">data model</a>.
                 </dd>
                 <dt>
@@ -3844,7 +3846,8 @@ The error code from the resolution process. This property is REQUIRED when there
 is an error in the resolution process. The value of this property MUST be a
 single keyword <a data-lt="ascii string">ASCII string</a>. The possible property
 values of this field SHOULD be registered in the DID Specification Registries
-[[?DID-SPEC-REGISTRIES]]. This specification defines the following error values:
+[[?DID-SPEC-REGISTRIES]]. This specification defines the following
+common error values:
                     <dl>
                         <dt>
 invalidDid
