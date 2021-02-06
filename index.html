@@ -4242,19 +4242,21 @@ data-cite="INFRA#list">list</a>, <a data-cite="INFRA#ordered-set">ordered
 set</a>, <a data-cite="INFRA#boolean">boolean</a>, or
 <a data-cite="INFRA#null">null</a>. The values within any complex data
 structures such as maps and lists MUST be one of these data types as well.
-All metadata property definitions MUST define the value type, including any
+All metadata property definitions registered in the DID Specification
+Registries [[DID-SPEC-REGISTRIES] MUST define the value type, including any
 additional formats or restrictions to that value (for example, a string
 formatted as a date or as a decimal integer). It is RECOMMENDED that property
-definitions use strings for values.
+definitions use strings for values. The entire metadata structure MUST be
+serializable in a conforming <a>representation</a>.
         </p>
 
         <p>
-All implementations of functions that use metadata structures as either input
-or output are able to fully represent all data types described here in a
+All implementations of functions that use metadata structures as either input or
+output are able to fully represent all data types described here in a
 deterministic fashion. As inputs and outputs using metadata structures are
 defined in terms of data types and not their serialization, the method for
-<a>representation</a> is internal to the implementation of the function and is out of
-scope of this specification.
+<a>representation</a> is internal to the implementation of the function and is
+out of scope of this specification.
         </p>
 
         <p>
