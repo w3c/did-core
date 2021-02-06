@@ -3944,23 +3944,22 @@ document. It indicates the version of the next
 
           <dt><dfn>equivalentId</dfn></dt>
           <dd>
+            <p>
 A <a>DID Method</a> can define different forms of a <a>DID</a> that are
 logically equivalent. An example is when a <a>DID</a> takes one form prior to
 registration in a <a>verifiable data registry</a> and another form after such
-registration. In this case, the <a>DID Method</a> specification may need to
+registration. In this case, the <a>DID Method</a> specification might need to
 express one or more <a>DIDs</a> that are logically equivalent to the resolved
 <a>DID</a> as a property of the <a>DID document</a>. This is the purpose of the
-<code><a>equivalentId</a></code>  property. <br><br>
-
-The value of <code>equivalentId</code> MUST be an
-<a data-cite="INFRA#ordered-set">ordered set</a> where each item in the list is
-a <a data-cite="INFRA#string">string</a> that conforms to the rules in Section
-<a href="#did-syntax"></a>.<br><br>
-
-The relationship is a statement that each <code><a>equivalentId</a></code> value
-is logically equivalent to the <code>id</code> property value and thus
-identifies the same <a>DID subject</a>.<br><br>
-
+<code><a>equivalentId</a></code>  property.
+            </p>
+            <p>
+The value of <code>equivalentId</code> MUST be an <a
+data-cite="INFRA#ordered-set">ordered set</a> where each item in the list is a
+<a data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
+href="#did-syntax"></a>. The relationship is a statement that each
+<code><a>equivalentId</a></code> value is logically equivalent to the
+<code>id</code> property value and thus identifies the same <a>DID subject</a>.
 Each <code><a>equivalentId</a></code> DID value MUST be produced by, and a form
 of, the same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
 <code>did:example:abc</code> == <code>did:example:ABC</code>)
@@ -3968,30 +3967,31 @@ of, the same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
                   <dd>
 A conforming <a>DID Method</a> specification MUST guarantee that each
 <code><a>equivalentId</a></code> value is logically equivalent to the
-<code>id</code> property value.<br><br>
-
+<code>id</code> property value.
+            </p>
+            <p>
 A requesting party is expected to retain the values from the <code>id</code> and
 <code><a>equivalentId</a></code> properties to ensure any subsequent
 interactions with any of the values they contain are correctly handled as
-logically equivalent (e.g., retain all variants in a database so an interaction
-with any one maps to the same underlying account). <span class="issue">The
-testability of requesting parties is currently under debate and normative
-statements related to requesting parties may be downgraded in the future from a
-MUST to a SHOULD/MAY or similar language.</span><br><br>
-
+logically equivalent (e.g. retain all variants in a database so an interaction
+with any one maps to the same underlying account).
+            </p>
+            <p>
 <code><a>equivalentId</a></code> is a much stronger form of equivalence than
 <code><a>alsoKnownAs</a></code> because the equivalence MUST be guaranteed by
 the governing <a>DID method</a>. <code><a>equivalentId</a></code> represents a
 full graph merge because the same <a>DID document</a> describes both the
 <code><a>equivalentId</a></code> <a>DID</a> and the <code>id</code> property
-<a>DID</a>.<br><br>
-
-If a resolving party does not retain the values from the <code>id</code> and
+<a>DID</a>.
+            </p>
+            <p>
+If a requesting party does not retain the values from the <code>id</code> and
 <code><a>equivalentId</a></code> properties and ensure any subsequent
 interactions with any of the values they contain are correctly handled as
 logically equivalent, there might be negative or unexpected issues that
 arise. Implementers are strongly advised to observe the
 directives related to this metadata property.
+              </p>
             </dd>
             <dt><dfn>canonicalId</dfn></dt>
             <dd>
@@ -4022,11 +4022,8 @@ A conforming <a>DID Method</a> specification MUST guarantee that the
 
 A requesting party is expected to use the <code><a>canonicalId</a></code> value
 as its primary ID value for the <a>DID subject</a> and treat all other equivalent
-values as secondary aliases. (e.g., update corresponding primary references in
-their systems to reflect the new canonical ID directive). <span
-class="issue">The testability of requesting parties is currently under debate and
-normative statements related to requesting parties may be downgraded in the
-future from a MUST to a SHOULD/MAY or similar language.</span><br><br>
+values as secondary aliases. (e.g. update corresponding primary references in
+their systems to reflect the new canonical ID directive).<br><br>
 
 <code><a>canonicalId</a></code> is the same statement of equivalence as
 <code><a>equivalentId</a></code> except it is constrained to a single value that
