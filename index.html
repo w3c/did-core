@@ -3804,10 +3804,10 @@ specification defines the following common properties.
 accept
                 </dt>
                 <dd>
-The MIME type expressed as an <a data-lt="ascii string">ASCII string</a> of the
-caller's preferred <a>representation</a> of the <a>DID
-document</a>. The <a>DID resolver</a> implementation SHOULD use this value to
-determine the <a>representation</a> contained in the returned
+The MIME type of the caller's preferred <a>representation</a> of the <a>DID
+document</a>. The MIME type MUST be expressed as an  <a data-lt="ascii
+string">ASCII string</a>. The <a>DID resolver</a> implementation SHOULD use this
+value to determine the <a>representation</a> contained in the returned
 <code>didDocumentStream</code> if such a <a>representation</a> is supported and
 available. This property is OPTIONAL.
                 </dd>
@@ -4072,7 +4072,7 @@ the following function which has the following abstract form:
 
       <pre title="Abstract functions for DID Dereferencing">
 dereference(didUrl, options) →
-   « didUrlDereferencingMetadata, contentStream, contentMetadata »
+   « dereferencingMetadata, contentStream, contentMetadata »
       </pre>
 
       <p>
@@ -4124,10 +4124,11 @@ contentStream
         <dd>
 If the <code>dereferencing</code> function was called and successful, this MUST
 contain a <a>resource</a> corresponding to the <a>DID URL</a>. The
-<code>contentStream</code> SHOULD be a <a>DID document</a> in one of the
-conformant <a>representations</a> obtained through the resolution process.<br><br>
-
-If the dereferencing is unsuccessful, this value MUST be empty.
+<code>contentStream</code> SHOULD be a <a>resource</a> such as a <a href="">DID
+Document</a>,  <a href="#verification-methods">Verification Method</a>,  or <a
+href="#services">service</a> that is serializable in one of the conformant
+<a>representations</a> obtained through the resolution process. If the
+dereferencing is unsuccessful, this value MUST be empty.
         </dd>
         <dt>
 contentMetadata
@@ -4135,13 +4136,10 @@ contentMetadata
         <dd>
 If the dereferencing is successful, this MUST be a <a href="metadata-structure">
 metadata structure</a>, but the structure MAY be empty. This structure contains
-metadata about the <code>contentStream</code>.
-If the <code>contentStream</code> is a <a>DID document</a>, this MUST be a
-<a>didDocumentMetadata</a> structure as described in <a>DID
-Resolution</a>.<br><br>
-
-If the dereferencing is unsuccessful, this output MUST be an empty <a
-href="metadata-structure">metadata structure</a>.
+metadata about the <code>contentStream</code>. If the <code>contentStream</code>
+is a <a>DID document</a>, this MUST be a <a>didDocumentMetadata</a> structure as
+described in <a>DID Resolution</a>. If the dereferencing is unsuccessful, this
+output MUST be an empty <a href="metadata-structure">metadata structure</a>.
         </dd>
     </dl>
 
@@ -4167,15 +4165,16 @@ options:
             </p>
 
             <dl>
-                <dt>
+              <dt>
 accept
-                </dt>
-                <dd>
-The MIME type the caller prefers for <code>contentStream</code>. The <a>DID URL
-dereferencing</a> implementation SHOULD use this value to determine the
-<a>representation</a> contained in the returned value if such a
+              </dt>
+              <dd>
+The MIME type that the caller prefers for <code>contentStream</code>. The  MIME
+type MUST be expressed as an <a data-lt="ascii string">ASCII string</a>.
+The <a>DID URL dereferencing</a> implementation SHOULD use this value to
+determine the <a>representation</a> contained in the returned value if such a
 <a>representation</a> is supported and available.
-                </dd>
+              </dd>
             </dl>
         </section>
 
@@ -4194,17 +4193,19 @@ contentType
                 </dt>
                 <dd>
 The MIME type of the returned <code>contentStream</code> SHOULD be expressed
-using this property if dereferencing is successful.
+using this property if dereferencing is successful. The MIME
+type value MUST be expressed as an <a data-lt="ascii string">ASCII string</a>.
                 </dd>
                 <dt>
 error
                 </dt>
                 <dd>
 The error code from the dereferencing process. This property is REQUIRED when
-there is an error in the dereferencing process. The value of this property is
-a single keyword string. The possible property values of this field SHOULD be
-registered in the DID Specification Registries [DID-SPEC-REGISTRIES]]. This
-specification defines the following error values:
+there is an error in the dereferencing process. The value of this property
+MUST be a single keyword expressed as an  <a data-lt="ascii string">ASCII
+string</a>. The possible property values of this field SHOULD be registered in
+the DID Specification Registries [[DID-SPEC-REGISTRIES]]. This specification
+defines the following common error values:
                     <dl>
                         <dt>
 invalidDidUrl
