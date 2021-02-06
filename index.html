@@ -3944,6 +3944,11 @@ document. It indicates the version of the next
 
           <dt><dfn>equivalentId</dfn></dt>
           <dd>
+            <p class="issue atrisk">
+The DID Working Group is seeking implementer feedback on this feature. If there
+is not enough implementation experience with this feature at the end of the
+Candidate Recommendation period, it will be removed from the specification.
+            </p>
             <p>
 A <a>DID Method</a> can define different forms of a <a>DID</a> that are
 logically equivalent. An example is when a <a>DID</a> takes one form prior to
@@ -3995,48 +4000,56 @@ directives related to this metadata property.
             </dd>
             <dt><dfn>canonicalId</dfn></dt>
             <dd>
+              <p class="issue atrisk">
+The DID Working Group is seeking implementer feedback on this feature. If there
+is not enough implementation experience with this feature at the end of the
+Candidate Recommendation period, it will be removed from the specification.
+              </p>
+              <p>
 The <code><a>canonicalId</a></code> property is identical to the
-<code><a>equivalentId</a></code> property except: a) it accepts only a single
-value rather than a list, and b) that <a>DID</a> is defined to be the canonical ID for
-the <a>DID subject</a> within the scope of the containing <a>DID document</a>.<br><br>
-
+<code><a>equivalentId</a></code> property except: a) it is associated with a
+single value rather than a ordered set, and b) the <a>DID</a> is defined to be
+the canonical ID for the <a>DID subject</a> within the scope of the containing
+<a>DID document</a>.
+              </p>
+              <p>
 The value of <code><a>canonicalId</a></code> MUST be a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
-href="#did-syntax"></a>.<br><br>
-
-The relationship is a statement that the <code><a>canonicalId</a></code> value
-is logically equivalent to the <code>id</code> property value and that the
-<code><a>canonicalId</a></code> value is defined by the <a>DID Method</a> to be
-the canonical ID for the <a>DID subject</a> in the scope of the containing <a>DID
-document</a>.<br><br>
-
-A <code><a>canonicalId</a></code> value MUST be produced by, and a form of, the
-same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
-<code>did:example:abc</code> == <code>did:example:ABC</code>)
-                  </dd>
-                  <dd>
-
-A conforming <a>DID Method</a> specification MUST guarantee that the
+href="#did-syntax"></a>. The relationship is a statement that the
 <code><a>canonicalId</a></code> value is logically equivalent to the
-<code>id</code> property value.<br><br>
-
+<code>id</code> property value and that the <code><a>canonicalId</a></code>
+value is defined by the <a>DID Method</a> to be the canonical ID for the <a>DID
+subject</a> in the scope of the containing <a>DID document</a>. A
+<code><a>canonicalId</a></code> value MUST be produced by, and a form of, the
+same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
+<code>did:example:abc</code> == <code>did:example:ABC</code>). A conforming
+<a>DID Method</a> specification MUST guarantee that the
+<code><a>canonicalId</a></code> value is logically equivalent to the
+<code>id</code> property value.
+              </p>
+              <p>
 A requesting party is expected to use the <code><a>canonicalId</a></code> value
-as its primary ID value for the <a>DID subject</a> and treat all other equivalent
-values as secondary aliases. (e.g. update corresponding primary references in
-their systems to reflect the new canonical ID directive).<br><br>
-
+as its primary ID value for the <a>DID subject</a> and treat all other
+equivalent values as secondary aliases (e.g. update corresponding primary
+references in their systems to reflect the new canonical ID directive).
+              </p>
+              <p>
 <code><a>canonicalId</a></code> is the same statement of equivalence as
 <code><a>equivalentId</a></code> except it is constrained to a single value that
-is defined to be canonical for the <a>DID subject</a> in the scope of the <a>DID document</a>.
-Like <code><a>equivalentId</a></code>, <code><a>canonicalId</a></code>
-represents a full graph merge because the same <a>DID document</a> describes both the
-<code><a>canonicalId</a></code> DID and the <code>id</code> property <a>DID</a>.<br><br>
-
-If a resolving party does not use the <code><a>canonicalId</a></code> value
-as its primary ID value for the DID subject and treat all other equivalent
-values as secondary aliases, there might be negative or unexpected issues that
-arise related to user experience. Implementers are strongly advised to observe the
-directives related to this metadata property.<br><br>
+is defined to be canonical for the <a>DID subject</a> in the scope of the <a>DID
+document</a>. Like <code><a>equivalentId</a></code>,
+<code><a>canonicalId</a></code> represents a full graph merge because the same
+<a>DID document</a> describes both the <code><a>canonicalId</a></code> DID and
+the <code>id</code> property <a>DID</a>.
+              </p>
+              <p>
+If a resolving party does not use the <code><a>canonicalId</a></code> value as
+its primary ID value for the DID subject and treat all other equivalent values
+as secondary aliases, there might be negative or unexpected issues that arise
+related to user experience. Implementers are strongly advised to observe the
+directives related to this metadata property.
+              </p>
+              <p>
           </dd>
         </dl>
       </section>
