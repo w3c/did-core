@@ -768,7 +768,7 @@ method-specific-id = *( *idchar ":" ) 1*idchar
 idchar             = ALPHA / DIGIT / "." / "-" / "_"
       </pre>
 
-      <p class="issue atrisk" data-number="34">
+      <p class="issue atrisk" title="Should DID syntax allow an empty 'method-specific-id'?">
 This ABNF does not currently permit an empty <code>method-specific-id</code>
 string. Some DID methods have expressed an interest in providing
 resolution of an DID with an empty <code>method-specific-id</code> string,
@@ -776,7 +776,9 @@ for example to enable discovery of a DID document describing a
 <a>verifiable data registry</a> by resolving the DID method name alone.
 The Working Group is requesting feedback during the Candidate Recommendation
 stage on whether or not an empty <code>method-specific-id</code> string is
-of interest to implementers. This feature may change as a result of that feedback.
+of interest to implementers. This feature may change as a result of that
+feedback. See also <a href="https://github.com/w3c/did-core/issues/34">Issue
+34</a>.
       </p>
 
       <p>
@@ -2829,7 +2831,7 @@ are indicated by a <code>contentType</code> resolver metadata field that is
 set to <code>application/did+ld+json</code>.
       </p>
 
-      <p class="issue atrisk" data-number="208">
+      <p class="issue atrisk" title="IETF did+ld+json media type registration">
 Use of the media type <code>application/did+ld+json</code> is pending
 clarification over the registration of
 <a href="https://datatracker.ietf.org/doc/html/draft-w3cdidwg-media-types-with-multiple-suffixes">
@@ -2837,7 +2839,8 @@ media types with multiple suffixes</a>. The alternative will be to use
 <code>application/ld+json</code> with an expected profile parameter of
 <code>https://www.w3.org/ns/did/json-ld-profile</code> if multiple suffixes
 cannot be registered by the time the rest of DID Core is ready for W3C
-Proposed Recommendation.
+Proposed Recommendation. See also <a href="https://github.com/w3c/did-core/issues/208">
+Issue 208</a>.
       </p>
 
       <p>
@@ -3639,7 +3642,7 @@ identification, secondary use, disclosure, exclusion.
   <section class='normative'>
     <h1>Resolution</h1>
 
-    <p class="issue atrisk" data-number="549">
+    <p class="issue atrisk" title="Concerns regarding testability of DID Resolution and Dereferencing">
 The Working Group is unsure if there will be enough implementation experience
 for the DID Resolution section. We are seeking feedback from the implementation
 community as to whether they prefer to do all of this work now, or if they would
@@ -3649,7 +3652,8 @@ Group. If there is support for rewriting a subset of the DID Resolution section,
 or publishing any part of it as a NOTE during the W3C Candidate Recommendation
 process, this section will be modified and/or published as a NOTE appropriately
 before the DID Core specification proceeds to the W3C Proposed
-Recommendation stage.
+Recommendation stage. See also <a href="https://github.com/w3c/did-core/issues/549">
+Issue 549</a>.
     </p>
 
     <p>
@@ -6181,7 +6185,7 @@ the rules defined in <a href="#fragment"></a>.
     <section>
       <h2>application/did+ld+json</h2>
 
-      <p class="issue atrisk" data-number="208">
+      <p class="issue atrisk" title="IETF did+ld+json media type registration">
 Use of the media type <code>application/did+ld+json</code> is pending
 clarification over the registration of
 <a href="https://datatracker.ietf.org/doc/html/draft-w3cdidwg-media-types-with-multiple-suffixes">
@@ -6191,7 +6195,8 @@ media types with multiple suffixes</a>. The alternative will be to use
 cannot be registered by the time the rest of DID Core is ready for W3C
 Proposed Recommendation. Discussion is happening in the
 <a href="https://mailarchive.ietf.org/arch/msg/media-types/Sv8oT38p1nWHPYZQmnL_9GPjeic/">
-IETF media-types mailing list</a>.
+IETF media-types mailing list</a>. See also <a href="https://github.com/w3c/did-core/issues/208">
+Issue 208</a>.
       </p>
 
       <dl>
