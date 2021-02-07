@@ -5571,6 +5571,71 @@ Model</a> for additional examples.
 }
     </pre>
 
+    <pre class="example"
+    title="Verifiable Credential linked to a bls12381 verification method">
+{  <span class="comment">// external (all terms in this example)</span>
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/bbs/v1",
+    {
+      "name": "https://schema.org/name",
+      "birthDate": "https://schema.org/birthDate"
+    }
+  ],
+  "id": "urn:uuid:c499e122-3ba9-4e95-8d4d-c0ebfcf8c51a",
+  "type": ["VerifiableCredential"],
+  "issuanceDate": "2021-02-07T16:02:08.571Z",
+  "issuer": {
+    "id": "did:example:123"
+  },
+  "credentialSubject": {
+    "id": "did:example:456",
+    "name": "John Smith",
+    "birthDate": "2021-02-07"
+  },
+  "proof": {
+    "type": "BbsBlsSignature2020",
+    "created": "2021-02-07T16:02:10Z",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "o7zD2eNTp657YzkJLub+IO4Zqy/R3Lv/AWmtSA/kUlEAOa73BNyP1vOeoow35jkABolx4kYMKkp/ZsFDweuKwe/p9vxv9wrMJ9GpiOZjHcpjelDRRJLBiccg9Yv7608mHgH0N1Qrj14PZ2saUlfhpQ==",
+    "verificationMethod": "did:example:123#bls12381-g2-key"
+  }
+}
+</pre>
+
+<pre class="example"
+    title="Verifiable Credential selective disclosure zero knowledge proof linked to a bls12381 verification method">
+{  <span class="comment">// external (all terms in this example)</span>
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/bbs/v1",
+    {
+      "name": "https://schema.org/name",
+      "birthDate": "https://schema.org/birthDate"
+    }
+  ],
+  "id": "urn:uuid:c499e122-3ba9-4e95-8d4d-c0ebfcf8c51a",
+  "type": "VerifiableCredential",
+  "credentialSubject": {
+    "id": "did:example:456",
+    "birthDate": "2021-02-07"
+  },
+  "issuanceDate": "2021-02-07T16:02:08.571Z",
+  "issuer": {
+    "id": "did:example:123"
+  },
+  "proof": {
+    "type": "BbsBlsSignatureProof2020",
+    "created": "2021-02-07T16:02:10Z",
+    "nonce": "OqZHsV/aunS34BhLaSoxiHWK+SUaG4iozM3V+1jO06zRRNcDWID+I0uwtPJJ767Yo8Q=",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "AAsH34lcKsqaqPaLQWcnLMe3mDM+K7fZM0t4Iesfj7BhD//HBtuWCmZE946BqW7OHYU106MP8mLntutqB8FyGwS7AOyK+5/7iW6JwLNVCvh4Nt3IaF3AN47fqVs2VikD9DiCsaFAUU6ISj5pbad8O+6jiT9Yw6ug8t8vJn3XHvMUhCPnDZJeBEdKD1qo4Z0LOq3L8QAAAHSEgtC9BoZL2MLjz4QuPxpwbhTTRC08MIUjdJnP4JUtz6163Lsl3rpadGu2d3Te7loAAAACZBD4YWOgV0xpPoYZ5vywNA5/NTeDHDbX36gvoV5RDJtY1SLU2LN/IDPZGrfhEiASbD1/QXqj8dod6FbjBs9m/LchBcy7z4yDBv/8DnBzDJ9dEaM4bDjpwmqtgJqha2kwtlyNog67xG9tNjnp5rrbIgAAAANMVanwWmlkg5I/f1M2QJ5GRvQiBL4lyL5sttxwIOalbTZP8VqWtFJI54xMNjTiK71aFWWN8SlNEwfVIX34HO5zBIb6fvc+Or21ubYllT9eXv1epl2o2CojuieCZyxE8/Q=",
+    "verificationMethod": "did:example:123#bls12381-g2-key"
+  }
+}
+
+</pre>
+
     <pre class="example" title="Verifiable Credential as Decoded JWT">
 { <span class="comment">// external (all terms in this example)</span>
   "protected": {
