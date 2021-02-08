@@ -3750,7 +3750,7 @@ describing the error.
 If the resolution is successful, and if the <code>resolve</code> function was
 called, this MUST be a <a>DID document</a> (abstract data model) as described in
 <a href="#data-model"></a> that is capable of being transformed
-into a <a>conforming DID Document</a> (representation). If the resolution is
+into a <a>conforming DID Document</a> (representation), using the production rules specified by the representation. If the resolution is
 unsuccessful, this value MUST be empty.
             </dd>
             <dt>
@@ -3837,7 +3837,7 @@ REQUIRED if resolution is successful. This property MUST NOT
 be present if the <code>resolve</code> function was called. The value of this
 property MUST be an <a data-lt="ascii string">ASCII string</a> that is the MIME
 type of the conformant <a>representations</a>. The
-caller of <code>resolveRepresentation</code> function MUST use this value
+caller of the <code>resolveRepresentation</code> function MUST use this value
 when determining how to parse and process the <code>didDocumentStream</code>
 returned by this function into the <a href="#data-model">data model</a>.
                 </dd>
@@ -3996,7 +3996,7 @@ interactions with any of the values they contain are correctly handled as
 logically equivalent (e.g. retain all variants in a database so an interaction
 with any one maps to the same underlying account).
             </p>
-            <p>
+            <p class="note" title="Stronger equivalence">
 <code><a>equivalentId</a></code> is a much stronger form of equivalence than
 <code><a>alsoKnownAs</a></code> because the equivalence MUST be guaranteed by
 the governing <a>DID method</a>. <code><a>equivalentId</a></code> represents a
@@ -4048,7 +4048,7 @@ as its primary ID value for the <a>DID subject</a> and treat all other
 equivalent values as secondary aliases (e.g. update corresponding primary
 references in their systems to reflect the new canonical ID directive).
               </p>
-              <p>
+              <p class="note" title="Canonical equivalence">
 <code><a>canonicalId</a></code> is the same statement of equivalence as
 <code><a>equivalentId</a></code> except it is constrained to a single value that
 is defined to be canonical for the <a>DID subject</a> in the scope of the <a>DID
@@ -4139,10 +4139,11 @@ contentStream
         <dd>
 If the <code>dereferencing</code> function was called and successful, this MUST
 contain a <a>resource</a> corresponding to the <a>DID URL</a>. The
-<code>contentStream</code> SHOULD be a <a>resource</a> such as a <a href="">DID
+<code>contentStream</code> MAY be a <a>resource</a> such as a <a href="">DID
 Document</a>,  <a href="#verification-methods">Verification Method</a>,  or <a
 href="#services">service</a> that is serializable in one of the conformant
-<a>representations</a> obtained through the resolution process. If the
+<a>representations</a> obtained through the resolution process 
+or any other resource format that can be identified via a MIME type. If the
 dereferencing is unsuccessful, this value MUST be empty.
         </dd>
         <dt>
@@ -4187,7 +4188,7 @@ accept
 The MIME type that the caller prefers for <code>contentStream</code>. The  MIME
 type MUST be expressed as an <a data-lt="ascii string">ASCII string</a>.
 The <a>DID URL dereferencing</a> implementation SHOULD use this value to
-determine the <a>representation</a> contained in the returned value if such a
+determine the <code>contentType</code> of the <a>representation</a> contained in the returned value if such a
 <a>representation</a> is supported and available.
               </dd>
             </dl>
@@ -4258,7 +4259,7 @@ set</a>, <a data-cite="INFRA#boolean">boolean</a>, or
 <a data-cite="INFRA#null">null</a>. The values within any complex data
 structures such as maps and lists MUST be one of these data types as well.
 All metadata property definitions registered in the DID Specification
-Registries [[DID-SPEC-REGISTRIES] MUST define the value type, including any
+Registries [[?DID-SPEC-REGISTRIES]] MUST define the value type, including any
 additional formats or restrictions to that value (for example, a string
 formatted as a date or as a decimal integer). It is RECOMMENDED that property
 definitions use strings for values. The entire metadata structure MUST be
