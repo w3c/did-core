@@ -3992,7 +3992,7 @@ identifies the same <a>DID subject</a>.
                   </dd>
                   <dd>
 Each <code><a>equivalentId</a></code> DID value MUST be produced by, and a form
-of, the same <a>DID Method</a> as the <code>id</code> property value. (e.g.
+of, the same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
 <code>did:example:abc</code> == <code>did:example:ABC</code>)
                   </dd>
                   <dd>
@@ -4004,7 +4004,7 @@ A conforming <a>DID Method</a> specification MUST guarantee that each
 A requesting party is expected to retain the values from the <code>id</code> and
 <code><a>equivalentId</a></code> properties to ensure any subsequent
 interactions with any of the values they contain are correctly handled as
-logically equivalent (e.g. retain all variants in a database so an interaction
+logically equivalent (e.g., retain all variants in a database so an interaction
 with any one maps to the same underlying account). <span class="issue">The
 testability of requesting parties is currently under debate and normative
 statements related to requesting parties may be downgraded in the future from a
@@ -4060,7 +4060,7 @@ document</a>.
                   </dd>
                   <dd>
 A <code><a>canonicalId</a></code> value MUST be produced by, and a form of, the
-same <a>DID Method</a> as the <code>id</code> property value. (e.g.
+same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
 <code>did:example:abc</code> == <code>did:example:ABC</code>)
                   </dd>
                   <dd>
@@ -4071,7 +4071,7 @@ A conforming <a>DID Method</a> specification MUST guarantee that the
                   <dd>
 A requesting party is expected to use the <code><a>canonicalId</a></code> value
 as its primary ID value for the <a>DID subject</a> and treat all other equivalent
-values as secondary aliases. (e.g. update corresponding primary references in
+values as secondary aliases. (e.g., update corresponding primary references in
 their systems to reflect the new canonical ID directive). <span
 class="issue">The testability of requesting parties is currently under debate and
 normative statements related to requesting parties may be downgraded in the
@@ -5004,7 +5004,7 @@ related to attacks against <a>DIDs</a> that are asserted to be equivalent.
       <p>
 The <code><a>equivalentId</a></code> and <code><a>canonicalId</a></code>
 properties that constrain equivalence assertions to variants of a single <a>DID</a>
-produced by the same <a>DID method</a> (e.g. <code>did:foo:123</code> ≡
+produced by the same <a>DID method</a> (e.g., <code>did:foo:123</code> ≡
 <code>did:foo:hash(123)</code>) can be trusted to the extent the requesting party
 trusts the <a>DID method</a> (and a conforming producer) itself.
       </p>
@@ -5016,7 +5016,7 @@ outside of the governing <a>DID method</a>. See additional guidence in
 <a href="#also-known-as"></a>.
       </p>
       <p>
-As with any other sensitive properties in the <a>DID document</a> (e.g. public key
+As with any other sensitive properties in the <a>DID document</a> (e.g., public key
 references), parties relying on any equivalence statement in a <a>DID document</a>
 should guard against the values of these properties being substituted by an
 attacker after the proper verification has been performed. Any write access to a
