@@ -3838,7 +3838,9 @@ contentType
                 </dt>
                 <dd>
 The MIME type of the returned <code>didDocumentStream</code>. This property is
-REQUIRED if resolution is successful. This property MUST NOT
+REQUIRED if resolution is successful and if the
+<code>resolveRepresentation</code> function was called. 
+This property MUST NOT
 be present if the <code>resolve</code> function was called. The value of this
 property MUST be an <a data-lt="ascii string">ASCII string</a> that is the MIME
 type of the conformant <a>representations</a>. The
