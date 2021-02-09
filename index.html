@@ -3772,14 +3772,13 @@ stream.
             <dd>
 If the resolution is successful, this MUST be a <a
 href="#metadata-structure">metadata structure</a>. This structure contains
-metadata about the <a>DID document</a> contained in the
-<code>didDocument</code> property. This metadata
-typically does not change between invocations of the <code>resolveRepresentation</code>
-function unless the <a>DID document</a> changes, as it represents data about
-the <a>DID document</a>. If the resolution is unsuccessful, this output MUST
-be an empty <a href="#metadata-structure">metadata structure</a>. Properties
-defined by this specification are in <a
-href="#did-document-metadata"></a>.
+metadata about the <a>DID document</a> contained in the <code>didDocument</code>
+property. This metadata typically does not change between invocations of the
+<code>resolve</code> and <code>resolveRepresentation</code> functions unless the
+<a>DID document</a> changes, as it represents metadata about the <a>DID
+document</a>. If the resolution is unsuccessful, this output MUST be an empty <a
+href="#metadata-structure">metadata structure</a>. Properties defined by this
+specification are in <a href="#did-document-metadata"></a>.
             </dd>
         </dl>
 
