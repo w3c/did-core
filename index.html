@@ -3735,13 +3735,15 @@ The return value of <code>resolve</code> is the
             </dt>
             <dd>
 A <a href="#metadata-structure">metadata structure</a> consisting of values
-relating to the results of the <a>DID resolution</a> process. This structure is
-REQUIRED and MUST NOT be empty. This metadata is defined by <a
-href="#did-resolution-metadata"></a>. If <code>resolveRepresentation</code> was
-called, this structure MUST contain a <code>contentType</code> property
-containing the MIME type of the <code>didDocument</code>. If the resolution is
-not successful, this structure MUST contain an <code>error</code> property
-describing the error.
+relating to the results of the <a>DID resolution</a> process and typically
+changes between invocations of the <code>resolve</code> and
+<code>resolveRepresentation</code> functions as it represents data about the
+resolution process itself. This structure is REQUIRED and MUST NOT be empty.
+This metadata is defined by <a href="#did-resolution-metadata"></a>. If
+<code>resolveRepresentation</code> was called, this structure MUST contain a
+<code>contentType</code> property containing the MIME type of the
+<code>didDocument</code>. If the resolution is not successful, this structure
+MUST contain an <code>error</code> property describing the error.
             </dd>
             <dt>
 <dfn>didDocument</dfn>
