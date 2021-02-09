@@ -171,26 +171,27 @@
 enables verifiable, decentralized digital identity. A <a>DID</a> identifies any
 subject (e.g., a person, organization, thing, data model, abstract entity, etc.)
 that the controller of the <a>DID</a> decides that it identifies. In contrast to
-typical, federated identifiers, <a>DIDs</a> have been designed so that they may be
-decoupled from centralized registries, identity providers, and certificate
+typical, federated identifiers, <a>DIDs</a> have been designed so that they may
+be decoupled from centralized registries, identity providers, and certificate
 authorities. Specifically, while other parties might be used to help enable the
 discovery of information related to a <a>DID</a>, the design enables the
 controller of a <a>DID</a> to prove control over it without requiring permission
-from any other party. <a>DIDs</a> are <a>URIs</a> that associate a <a>DID subject</a>
-with a <a>DID document</a> allowing trustable interactions associated with that
-subject.
+from any other party. <a>DIDs</a> are <a>URIs</a> that associate a <a>DID
+subject</a> with a <a>DID document</a> allowing trustable interactions
+associated with that subject.
     </p>
     <p>
 Each <a>DID document</a> can express cryptographic material, <a>verification
-methods</a>, or <a>services</a>, which provide a set of mechanisms enabling
-a <a>DID controller</a> to prove control of the <a>DID</a>. <a>Services</a>
-enable trusted interactions associated with the <a>DID subject</a>. A
-<a>DID</a> might provide the means to return the <a>DID subject</a> itself,
-if the <a>DID subject</a> is an information resource such as a data model.
+methods</a>, or <a>services</a>, which provide a set of mechanisms enabling a
+<a>DID controller</a> to prove control of the <a>DID</a>. <a>Services</a> enable
+trusted interactions associated with the <a>DID subject</a>. A <a>DID</a> might
+provide the means to return the <a>DID subject</a> itself, if the <a>DID
+subject</a> is an information resource such as a data model.
     </p>
     <p>
-This document specifies a common data model, a URL format, and a set of
-operations for <a>DIDs</a>, <a>DID documents</a>, and <a>DID methods</a>.
+This document specifies the DID syntax, a common data model, core properties,
+serialization representations, DID operations, and an explanation of the process
+of resolving DIDs to the resources that they represent.
     </p>
   </section>
 
