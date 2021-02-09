@@ -3044,8 +3044,10 @@ CBOR Representation Type
               </td>
               <td>
 <a data-cite="RFC7049#section-2.1">CBOR map</a> (major type 5), each entry
-is represented as a member of the CBOR Map with the entry key as the key and
-the entry value according to its type, as defined in this section
+is represented as a member of the CBOR Map with the entry key, expressed as
+a <a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 3</a>),
+as the key and the entry value according to its type, as defined in this
+section
               </td>
             </tr>
             <tr>
@@ -3073,7 +3075,7 @@ as defined in this section
 <a>datetime</a>
               </td>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5) formatted as
+<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 3) formatted as
 an <a data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a> normalized to
 UTC 00:00 and without sub-second decimal precision. For example:
 <code>2020-12-20T19:17:47Z</code>.
@@ -3084,7 +3086,7 @@ UTC 00:00 and without sub-second decimal precision. For example:
 <a data-cite="INFRA#string">string</a>
               </td>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5)
+<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 3)
               </td>
             </tr>
             <tr>
@@ -3131,7 +3133,7 @@ subtype 24) with a simple value of 22 (Null)
           <li>
 Other Data Types not otherewise defined in the <a href="#data-model">data model</a> MUST be
 represented as a <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR
-String type. (major type 5)</a>
+String type</a> (major type 3).
           </li>
           <li>
 Indefinite-length items are not allowed and MUST be made <a
@@ -3141,28 +3143,12 @@ length.</a>
         </ul>
 
         <p>
-  To produce a deterministic canonical CBOR representation of a DID document and
-  faciliate maximal lossless compatiblity with other  core representations via the
-  Abstract Data Model the following constraints of a CBOR representation of a DID
-  Document model MUST be followed:
+In addition to the production rules in this section, implementations
+MUST implement the four
+<a href="https://tools.ietf.org/html/rfc7049#section-3.9">Canonical CBOR rules</a>
+listed in [[RFC7049]]. All CBOR tags that appear in a message MUST be retained
+regardless of whether they are optional.
         </p>
-
-        <ul>
-          <li>Entry keys MUST be represented as text string (major type 3) and contain only UTF-8 strings.</li>
-          <li>Undefined Values of Required Properties as defined in <a href="#data-model">the Data Model</a> that are absent from the CBOR representation SHOULD be labeled with Primitive type (major type 7) with value 23 (Undefined value).</li>
-          <li>Entry keys in each CBOR map MUST be unique.</li>
-          <li>Integer encoding MUST be as short as possible.</li>
-          <li>The expression of lengths in CBOR major types 2 through 5 MUST be as short as possible.</li>
-          <li>The keys in every map must be sorted lowest value to highest. Sorting is performed on the bytes of the representation of the keys. If two keys have different lengths, the shorter one sorts earlier.  If two keys have the same length, the one with the lower value in (byte-wise) lexical order sorts earlier.</li>
-        </ul>
-
-      <p>
-All entries of the <a>DID document</a> represented in CBOR MUST be included in
-the root map (major type 5). Entries MAY define additional data sub structures
-represented as nested CBOR maps (major type 5) and is subject to the value
-representation rules in the lists above and conformance to section <a
-href="#extensibility"> § 4.3 Extensibility</a>.
-      </p>
 
       <pre class="example nohighlight"
         title="Example 2 DID Document encoded as CBOR (hexadecimal)">
@@ -3272,7 +3258,7 @@ in this table
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5) where the
+<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 3) where the
 <a href="#data-model">data model</a> entry value is a <a>datetime</a>
               </td>
               <td>
@@ -3281,7 +3267,7 @@ in this table
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 5), where the <a
+<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 3), where the <a
 href="#data-model">data model</a> entry value type is <a>string</a> or
 unknown
               </td>
@@ -3342,11 +3328,7 @@ Duplicate key in the same CBOR map MUST throw an Error.
           </li>
           <li>
 <a href="https://tools.ietf.org/html/rfc7049#section-3.3.3">Unknown Additional
-Properties and Values</a> that are not defined in <a href="#data-model">data
-model</a>, represented in the `@context`, or represented in the DID
-Specification Registries [[?DID-SPEC-REGISTRIES]] or be explicitly documented
-as an extension of the <a>DID document</a> conformant to
-<a href="#extensibility"> § 4.3 Extensibility</a> MUST be preserved by default
+Properties and Values</a> MUST be preserved by default
 and represented as major type 3 (UTF-8 String)
           </li>
         </ul>
