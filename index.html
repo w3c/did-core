@@ -3682,7 +3682,7 @@ The <a>DID resolution</a> function resolves a <a>DID</a> into a <a>DID
 document</a> by using the "Read" operation of the applicable <a>DID method</a>
 as described in <a href="#read-verify"></a>. The details of how this process is
 accomplished are outside the scope of this specification, but all conforming
-<a>DID resolvers</a> implement the functions below which have the following
+<a>DID resolvers</a> implement the functions below, which have the following
 abstract forms:
         </p>
 
@@ -3735,10 +3735,10 @@ The return value of <code>resolve</code> is the
             </dt>
             <dd>
 A <a href="#metadata-structure">metadata structure</a> consisting of values
-relating to the results of the <a>DID resolution</a> process and typically
+relating to the results of the <a>DID resolution</a> process which typically
 changes between invocations of the <code>resolve</code> and
-<code>resolveRepresentation</code> functions as it represents data about the
-resolution process itself. This structure is REQUIRED and MUST NOT be empty.
+<code>resolveRepresentation</code> functions, as it represents data about the
+resolution process itself. This structure is REQUIRED, and MUST NOT be empty.
 This metadata is defined by <a href="#did-resolution-metadata"></a>. If
 <code>resolveRepresentation</code> was called, this structure MUST contain a
 <code>contentType</code> property containing the MIME type of the
@@ -3752,7 +3752,8 @@ MUST contain an <code>error</code> property describing the error.
 If the resolution is successful, and if the <code>resolve</code> function was
 called, this MUST be a <a>DID document</a> (abstract data model) as described in
 <a href="#data-model"></a> that is capable of being transformed
-into a <a>conforming DID Document</a> (representation), using the production rules specified by the representation. If the resolution is
+into a <a>conforming DID Document</a> (representation), using the production
+rules specified by the representation. If the resolution is
 unsuccessful, this value MUST be empty.
             </dd>
             <dt>
@@ -4176,9 +4177,8 @@ to the <code>dereference</code> function specified here.
         <p>
 The possible properties within this structure and their possible values SHOULD
 be registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
-This specification defines the following common properties. This
-specification defines the following common properties for dereferencing
-options:
+This specification defines the following common properties for
+dereferencing options:
             </p>
 
             <dl>
@@ -4219,7 +4219,7 @@ error
                 <dd>
 The error code from the dereferencing process. This property is REQUIRED when
 there is an error in the dereferencing process. The value of this property
-MUST be a single keyword expressed as an  <a data-lt="ascii string">ASCII
+MUST be a single keyword expressed as an <a data-lt="ascii string">ASCII
 string</a>. The possible property values of this field SHOULD be registered in
 the DID Specification Registries [[DID-SPEC-REGISTRIES]]. This specification
 defines the following common error values:
