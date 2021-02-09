@@ -3736,10 +3736,10 @@ The return value of <code>resolve</code> is the
             <dd>
 A <a href="#metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a>DID resolution</a> process. This structure is
-REQUIRED and MUST NOT be empty. This metadata is defined by
-<a href="#did-resolution-metadata"></a>. If the resolution is successful this
-structure MUST contain a <code>contentType</code> property containing the
-mime-type of the <code>didDocument</code> in this result. If the resolution is
+REQUIRED and MUST NOT be empty. This metadata is defined by <a
+href="#did-resolution-metadata"></a>. If <code>resolveRepresentation</code> was
+called, this structure MUST contain a <code>contentType</code> property
+containing the MIME type of the <code>didDocument</code>. If the resolution is
 not successful, this structure MUST contain an <code>error</code> property
 describing the error.
             </dd>
@@ -4142,7 +4142,7 @@ contain a <a>resource</a> corresponding to the <a>DID URL</a>. The
 <code>contentStream</code> MAY be a <a>resource</a> such as a <a href="">DID
 Document</a>,  <a href="#verification-methods">Verification Method</a>,  or <a
 href="#services">service</a> that is serializable in one of the conformant
-<a>representations</a> obtained through the resolution process 
+<a>representations</a> obtained through the resolution process
 or any other resource format that can be identified via a MIME type. If the
 dereferencing is unsuccessful, this value MUST be empty.
         </dd>
