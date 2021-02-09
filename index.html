@@ -2902,8 +2902,8 @@ require them.
         <p>
 The <a>DID document</a> MUST be serialized according to the
 <a href="#production">production rules for JSON</a>, with one additional
-requirement: The <a>DID document</a> MUST include the <code>@context</code>
-entry.
+requirement: The JSON object that represents the <a>DID document</a>
+MUST include the <code>@context</code> member.
         </p>
 
         <dl>
@@ -2912,8 +2912,8 @@ entry.
 
             <p>
 The <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD
-specification</a> defines values that are valid for this entry. This entry
-contains representation-specific syntax and therefore could be present in the <a
+specification</a> defines values that are valid for this member. It
+contains representation-specific syntax and therefore could be present as an entry in the <a
 href="#data-model">data model</a> to aid in lossless conversion. If the entry
 is present in the <a href="#data-model">data model</a>, it MUST be used during
 production unless either an alternative <code>@context</code> value is
@@ -2927,7 +2927,7 @@ The value of <code>@context</code> MUST be exactly one of these values.
 
             <ul>
               <li>
-The <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a>
+The <a href="https://tools.ietf.org/html/rfc8259#section-7">JSON String</a>
 <code>https://www.w3.org/ns/did/v1</code>.
                 <pre class="example">
 {
@@ -2937,11 +2937,11 @@ The <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a>
                 </pre>
               </li>
               <li>
-An <a data-cite="INFRA#ordered-set">INFRA ordered set</a>,
-with first item the <a href="https://infra.spec.whatwg.org/#strings">INFRA
-string</a> <code>https://www.w3.org/ns/did/v1</code>, and subsequent items of
-type <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a> or
-<a href="https://infra.spec.whatwg.org/#maps">INFRA map</a>.
+A <a href="https://tools.ietf.org/html/rfc8259#section-5">JSON Array</a>,
+with first item the <a href="https://tools.ietf.org/html/rfc8259#section-7">JSON
+String</a> <code>https://www.w3.org/ns/did/v1</code>, and subsequent items of
+type <a href="https://tools.ietf.org/html/rfc8259#section-7">JSON String</a> or
+<a href="https://tools.ietf.org/html/rfc8259#section-4">JSON Object</a>.
                 <pre class="example">
 {
   "@context": [
@@ -2955,9 +2955,9 @@ type <a href="https://infra.spec.whatwg.org/#strings">INFRA string</a> or
             </ul>
 
             <p>
-All members of the <code>@context</code> property SHOULD exist in the DID
+All JSON-LD terms defined by the <code>@context</code> SHOULD exist in the DID
 Specification Registries [[?DID-SPEC-REGISTRIES]] in order to achieve
-interoperability across different <a>representations</a>. If a member does not exist
+interoperability across different <a>representations</a>. If a term does not exist
 in the DID Specification Registries, then the <a>DID document</a> might not be
 interoperable across <a>representations</a>.
             </p>
@@ -2985,15 +2985,15 @@ defined via the <code>@context</code>. Properties that are not defined via the
         <p>
 The <a>DID document</a> MUST be deserialized as a JSON document according to
 the <a href="#consumption">consumption rules for JSON</a>, with one additional
-requirement: The <a>DID document</a> MUST include the <code>@context</code>
-entry and be processed according to the rules below.
+requirement: The JSON object that represents the <a>DID document</a> MUST include the <code>@context</code>
+member and be processed according to the rules below.
         </p>
 
         <dl>
           <dt>@context</dt>
           <dd>
             <p>
-The value of the <code>@context</code> entry conforms to the
+The value of the <code>@context</code> member conforms to the
 <a href="#production-0">JSON-LD Production Rules</a>. If more than one
 <a>URI</a> is provided, the <a>URIs</a> MUST be interpreted as an
 <a data-cite="INFRA#ordered-set">ordered set</a>.
