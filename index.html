@@ -3671,14 +3671,14 @@ specification, but some considerations for implementors are discussed in
 
     <p>
 All conformant <a>DID resolvers</a> MUST implement the <a>DID resolution</a>
-functions for at least one <a>DID method</a> and MUST be able to produce a
+functions for at least one <a>DID method</a> and MUST be able to return a
 <a>DID document</a> in at least one conformant <a>representation</a>.
     </p>
 
     <section data-dfn-for="Resolver">
         <h2>DID Resolution</h2>
         <p>
-The <a>DID resolution</a> function resolves a <a>DID</a> into a <a>DID
+The <a>DID resolution</a> functions resolve a <a>DID</a> into a <a>DID
 document</a> by using the "Read" operation of the applicable <a>DID method</a>
 as described in <a href="#read-verify"></a>. The details of how this process is
 accomplished are outside the scope of this specification, but all conforming
@@ -3687,10 +3687,10 @@ abstract forms:
         </p>
 
         <pre title="Abstract functions for DID Resolution">
-resolve(did, options) →
+resolve(did, resolutionOptions) →
    « didResolutionMetadata, didDocument, didDocumentMetadata »
 
-resolveRepresentation(did, options) →
+resolveRepresentation(did, resolutionOptions) →
    « didResolutionMetadata, didDocumentStream, didDocumentMetadata »
         </pre>
 
@@ -3711,7 +3711,7 @@ This is the <a>DID</a> to resolve. This input is REQUIRED and the value MUST
 be a conformant <a>DID</a> as defined in <a href="#did-syntax"></a>.
             </dd>
             <dt>
-options
+resolutionOptions
             </dt>
             <dd>
 A <a href="#metadata-structure">metadata structure</a> containing properties
@@ -3721,12 +3721,14 @@ REQUIRED, but the structure MAY be empty.
         </dl>
 
         <p>
-The return value of <code>resolve</code> is the
+These functions each return multiple values, and no limitations
+are placed on how these values are returned together.
+The return values of <code>resolve</code> are
 <a>didResolutionMetadata</a>, <a>didDocument</a>, and
-<a>didDocumentMetadata</a> properties. The return value of
-<code>resolveRepresentation</code> is the
+<a>didDocumentMetadata</a>. The return values of
+<code>resolveRepresentation</code> are
 <a>didResolutionMetadata</a>, <a>didDocumentStream</a>, and
-<a>didDocumentMetadata</a> properties. These properties are described below:
+<a>didDocumentMetadata</a>. These values are described below:
         </p>
 
         <dl>
@@ -3742,7 +3744,7 @@ resolution process itself. This structure is REQUIRED, and MUST NOT be empty.
 This metadata is defined by <a href="#did-resolution-metadata"></a>. If
 <code>resolveRepresentation</code> was called, this structure MUST contain a
 <code>contentType</code> property containing the MIME type of the
-<code>didDocument</code>. If the resolution is not successful, this structure
+representation found in the <code>didDocumentStream</code>. If the resolution is not successful, this structure
 MUST contain an <code>error</code> property describing the error.
             </dd>
             <dt>
@@ -3750,7 +3752,7 @@ MUST contain an <code>error</code> property describing the error.
             </dt>
             <dd>
 If the resolution is successful, and if the <code>resolve</code> function was
-called, this MUST be a <a>DID document</a> (abstract data model) as described in
+called, this MUST be a <a>DID document</a> abstract data model (a <a data-cite="INFRA#maps">map</a>) as described in
 <a href="#data-model"></a> that is capable of being transformed
 into a <a>conforming DID Document</a> (representation), using the production
 rules specified by the representation. If the resolution is
@@ -3792,7 +3794,7 @@ these functions in any way. <a>DID resolver</a> implementations might map the
 method-specific internal function to perform the actual <a>DID resolution</a>
 process. <a>DID resolver</a> implementations might implement and expose
 additional functions with different signatures in addition to the
-<code>resolveRepresentation</code> function specified here.
+<code>resolve</code> and <code>resolveRepresentation</code> functions specified here.
         </p>
 
         <section>
@@ -3814,7 +3816,8 @@ document</a>. The MIME type MUST be expressed as an  <a data-lt="ascii
 string">ASCII string</a>. The <a>DID resolver</a> implementation SHOULD use this
 value to determine the <a>representation</a> contained in the returned
 <code>didDocumentStream</code> if such a <a>representation</a> is supported and
-available. This property is OPTIONAL.
+available. This property is OPTIONAL for the <code>resolveResolution</code> function
+and MUST NOT be used with the <code>resolve</code> function.
                 </dd>
             </dl>
         </section>
@@ -4088,7 +4091,7 @@ the following function which has the following abstract form:
       </p>
 
       <pre title="Abstract functions for DID Dereferencing">
-dereference(didUrl, options) →
+dereference(didUrl, dereferenceOptions) →
    « dereferencingMetadata, contentStream, contentMetadata »
       </pre>
 
@@ -4106,7 +4109,7 @@ dereference. To dereference a <a>DID fragment</a>, the complete <a>DID URL</a>
 including the <a>DID fragment</a> MUST be used. This input is REQUIRED.
         </dd>
         <dt>
-options
+dereferencingOptions
         </dt>
         <dd>
 A <a href="metadata-structure">metadata structure</a> consisting of input
@@ -4118,8 +4121,11 @@ structure MAY be empty.
       </dl>
 
       <p>
-The return value of the <code>dereference</code> function contains the
-following properties:
+This function returns multiple values, and no limitations
+are placed on how these values are returned together.
+The return values of the <code>dereference</code> include
+<code>dereferencingMetadata</code>, <code>contentStream</code>,
+and <code>contentMetadata</code>:
       </p>
 
       <dl>
