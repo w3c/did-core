@@ -2902,8 +2902,8 @@ require them.
         <p>
 The <a>DID document</a> MUST be serialized according to the
 <a href="#production">production rules for JSON</a>, with one additional
-requirement: The JSON object that represents the <a>DID document</a>
-MUST include the <code>@context</code> member.
+requirement: The serialized <a>DID document</a> MUST include the
+<code>@context</code> member.
         </p>
 
         <dl>
@@ -2913,7 +2913,8 @@ MUST include the <code>@context</code> member.
             <p>
 The <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD
 specification</a> defines values that are valid for this member. It
-contains representation-specific syntax and therefore could be present as an entry in the <a
+contains representation-specific syntax and therefore could be present as an
+entry in the <a
 href="#data-model">data model</a> to aid in lossless conversion. If the entry
 is present in the <a href="#data-model">data model</a>, it MUST be used during
 production unless either an alternative <code>@context</code> value is
@@ -2985,8 +2986,8 @@ defined via the <code>@context</code>. Properties that are not defined via the
         <p>
 The <a>DID document</a> MUST be deserialized as a JSON document according to
 the <a href="#consumption">consumption rules for JSON</a>, with one additional
-requirement: The JSON object that represents the <a>DID document</a> MUST include the <code>@context</code>
-member and be processed according to the rules below.
+requirement: The serialized <a>DID document</a> MUST include the
+<code>@context</code> member and be processed according to the rules below.
         </p>
 
         <dl>
