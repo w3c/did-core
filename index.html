@@ -343,30 +343,32 @@ methods, that conform to the ecosystem described by this document.
       <h2>A Simple Example</h2>
 
       <p>
-A <a>DID</a> is a simple text string consisting of three parts, the:
+A <a>DID</a> is a simple text string consisting of three parts: 1) the
+<code>did</code> URI scheme identifier, 2) the identifier for the <a>DID
+method</a>, and 3) the DID method-specific identifier.
       </p>
-        <ul>
-          <li>
-URI scheme identifier (<code>did</code>)
-          </li>
-          <li>
-Identifier for the <a>DID method</a>
-          </li>
-          <li>
-DID method-specific identifier.
-          </li>
-        </ul>
 
-      <pre class="example nohighlight"
-      title="A simple example of a decentralized identifier (DID)">
-did:example:123456789abcdefghi
-      </pre>
+      <figure id="parts-of-a-did">
+          <img style="margin: auto; display: block; width: 75%;"
+            src="diagrams/parts-of-a-did.svg" alt="
+A diagram showing the parts of a DID. The left-most letters spell 'did' in blue,
+are enclosed in a horizontal bracket from above and a label that reads 'scheme'
+above the bracket. A gray colon follows the 'did' letters. The middle letters
+spell 'example' in magenta, are enclosed in a horizontal bracket from below and
+a label that reads 'DID Method' below the bracket. A gray colon follows the
+DID Method. Finally, the letters at the end read '123456789abcdefghijk' in
+green, are enclosed in a horizontal bracket from below and a label that
+reads 'DID Method Specific String' below the bracket.
+          ">
+          <figcaption>
+A simple example of a decentralized identifier (DID)
+          </figcaption>
+      </figure>
 
       <p>
 The example <a>DID</a> above resolves to a <a>DID document</a>. A <a>DID
 document</a> contains information associated with the <a>DID</a>, such as ways
-to cryptographically <a>authenticate</a> the <a>DID controller</a>, as
-well as <a>services</a> that can be used to interact with the <a>DID subject</a>.
+to cryptographically <a>authenticate</a> with a <a>DID controller</a>.
       </p>
 
       <pre class="example nohighlight" title="Minimal self-managed DID document">
@@ -376,15 +378,9 @@ well as <a>services</a> that can be used to interact with the <a>DID subject</a>
   "authentication": [{
     <span class="comment">// used to authenticate as did:...fghi</span>
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
+    "type": "Ed25519VerificationKey2020",
     "controller": "did:example:123456789abcdefghi",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-  }],
-  "service": [{
-    <span class="comment">// used to retrieve Verifiable Credentials associated with the DID</span>
-    "id":"did:example:123456789abcdefghi#vcs",
-    "type": "VerifiableCredentialService", <span class="comment">// external (property value)</span>
-    "serviceEndpoint": "https://example.com/vc/"
+    "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }]
 }
       </pre>
