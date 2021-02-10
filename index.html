@@ -271,78 +271,73 @@ As individuals and organizations, many of us use globally unique identifiers in
 a wide variety of contexts. They serve as communications addresses (telephone
 numbers, email addresses, usernames on social media), ID numbers (for passports,
 drivers licenses, tax IDs, health insurance), and product identifiers (serial
-numbers, barcodes, RFIDs). Resources on the Internet are identified by globally
-unique identifiers in the form of <abbr title="Media Access Control">MAC</abbr>
-addresses; URIs (Uniform Resource Identifiers) are used for resources on the Web
-and each web page you view in a browser has a globally unique URL (Uniform
-Resource Locator).
+numbers, barcodes, RFIDs). URIs (Uniform Resource Identifiers) are used for
+resources on the Web and each web page you view in a browser has a globally
+unique URL (Uniform Resource Locator).
     </p>
     <p>
 The vast majority of these globally unique identifiers are not under our
 control. They are issued by external authorities that decide who or what they
 identify and when they can be revoked. They are useful only in certain contexts
-and recognized only by certain bodies (not of our choosing). They may disappear
-or cease to be valid with the failure of an organization. They may unnecessarily
-reveal personal information. And in many cases they can be fraudulently
-replicated and asserted by a malicious third-party ("identity theft").
+and recognized only by certain bodies not of our choosing. They might
+disappear or cease to be valid with the failure of an organization. They might
+unnecessarily reveal personal information. In many cases, they can be
+fraudulently replicated and asserted by a malicious third-party, which is
+more commonly known as "identity theft".
     </p>
     <p>
 The Decentralized Identifiers (DIDs) defined in this specification are a new
-type of globally unique identifier designed to enable individuals and
-organizations to generate our own identifiers using systems we trust, and to
-prove control of those identifiers (authenticate) using cryptographic proofs
-(for example, digital signatures).
+type of globally unique identifier. They are designed to enable individuals and
+organizations to generate our own identifiers using systems we trust. These
+new identifiers enable us to prove control of over them by authenticating
+using cryptographic proofs such as digital signatures.
     </p>
     <p>
-Because we control the generation and assertion of these identifiers, each of us
-can have as many DIDs as we need to respect our desired separation of
-identities, personas, and contexts (in the everyday sense of these words). We
-can scope the use of these identifiers to the most appropriate contexts. We can
-interact with other people, institutions or systems that require us to identify
-ourselves (or things we control) while maintaining control over how much
-personal or private data should be revealed, and without depending on a central
-authority to guarantee the continued existence of the identifier.
+Since we control the generation and assertion of Decentralized Identifiers, each
+of us can have as many DIDs as we need to respect our desired separation of
+identities, personas, and interactions. We can scope the use of these
+identifiers to the most appropriate contexts. We can interact with other people,
+institutions or systems that require us to identify ourselves, or things we
+control, while maintaining control over how much personal or private data should
+be revealed, and without depending on a central authority to guarantee the
+continued existence of the identifier.
     </p>
     <p>
-This specification does not presuppose any particular technology or
-cryptography to underpin the generation, persistence, resolution or
-interpretation of DIDs. Rather, it defines: a) the generic syntax for all
-DIDs, and b) the generic requirements for performing the four basic CRUD
-operations (create, read, update, deactivate) on the information associated
-with a DID (called the DID document).
+This specification does not presuppose any particular technology or cryptography
+to underpin the generation, persistence, resolution, or interpretation of DIDs.
+For example, implementers can create Decentralized Identifiers based on
+identifiers registered in federated or centralized identity management systems.
+Indeed, almost all types of identifier systems can add support for DIDs. This
+creates an interoperability bridge between the worlds of centralized, federated,
+and decentralized identifiers. This enables implementers to design specific
+types of DIDs to work with the computing infrastructure they trust, such as
+distributed ledgers, decentralized file systems, distributed databases, and
+peer-to-peer networks.
     </p>
     <p>
-This enables implementers to design specific types of DIDs to work with the
-computing infrastructure they trust (e.g., distributed ledger, decentralized
-file system, distributed database, peer-to-peer network). The specification
-for a specific type of DID is called a DID method. Implementers of
-applications or systems using DIDs can choose to support the DID methods most
-appropriate for their particular use cases.
     </p>
     <p>
 This specification is for:
     </p>
     <ul>
       <li>
-Developers who want to enable users of their system to generate and assert their
-own identifiers (producers of DIDs);
+Anyone that wants to understand the core architectural principles that
+are the foundation for Decentralized Identifiers;
+      </li>
+
+      <li>
+Software developers that want to produce and consume Decentralized Identifiers
+and their associated data formats;
       </li>
       <li>
-Developers who want to enable their systems to accept user-controlled
-identifiers (consumers of DIDs);
+Systems integrators that want to understand how to utilize Decentralized
+Identifiers in their software and hardware systems;
       </li>
       <li>
-Developers who wish to enable the use of DIDs with particular computing
-infrastructure (DID method developers).
+Specification authors that want to create new DID infrastructures, known as DID
+methods, that conform to the ecosystem described by this document.
       </li>
     </ul>
-
-    <p class="note" title="Diversity of DID systems">
-DID methods can also be developed for identifiers registered in federated or
-centralized identity management systems. Indeed, almost all types of identifier
-systems can add support for DIDs. This creates an interoperability bridge
-between the worlds of centralized, federated, and decentralized identifiers.
-    </p>
 
     <section class="informative">
       <h2>A Simple Example</h2>
