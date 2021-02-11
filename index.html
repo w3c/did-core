@@ -801,24 +801,42 @@ Section <a href="#method-schemes"></a>.
       <h3>DID URL Syntax</h3>
 
       <p>
-A <a>DID URL</a> always identifies a <a>resource</a> to be located. It can be
-used, for example, to identify a specific part of a <a>DID document</a>.
+A <a>DID URL</a> is a network location identifier for a specific
+<a>resource</a>. It can be used to identify things like <a>DID subjects</a>,
+<a>verification methods</a>, <a>services</a>, and a specific part of a <a>DID
+document</a> at a specific point in time.
       </p>
 
       <p>
-This following is the ABNF definition using the syntax in [[!RFC5234]]. It
-builds on the <code>did</code> scheme defined in <a href="#did-syntax"></a>. The
-<a data-cite="!rfc3986#section-3.3"><code>path-abempty</code></a>,
-<a data-cite="!rfc3986#section-3.4"><code>query</code></a>, and
-<a data-cite="!rfc3986#section-3.5"><code>fragment</code></a>
-components are identical to the ABNF rules defined in [[!RFC3986]].
+The following is the ABNF definition using the syntax in [[!RFC5234]]. It builds
+on the <code>did</code> scheme defined in <a href="#did-syntax"></a>. The <a
+data-cite="!rfc3986#section-3.3"><code>path-abempty</code></a>, <a
+data-cite="!rfc3986#section-3.4"><code>query</code></a>, and <a
+data-cite="!rfc3986#section-3.5"><code>fragment</code></a> components are
+defined in [[!RFC3986]]. All <a>DID URLs</a> MUST conform to the
+DID URL Syntax ABNF Rules.
       </p>
 
-      <pre class="nohighlight">
+      <table class="simple">
+        <thead>
+          <tr>
+            <th>
+The DID URL Syntax ABNF Rules
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <pre class="nohighlight">
 did-url = did path-abempty [ "?" query ] [ "#" fragment ]
-      </pre>
+              </pre>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-      <p class="note">
+      <p class="note" title="Semicolon character is reserved for future use">
 This specification reserves the semicolon (<code>;</code>) character for
 possible future use as a sub-delimiter for parameters as described in
 [[?MATRIX-URIS]].
