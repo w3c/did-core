@@ -842,95 +842,81 @@ possible future use as a sub-delimiter for parameters as described in
 [[?MATRIX-URIS]].
       </p>
 
-      <section>
+      <section class="notoc">
         <h2>Path</h2>
 
         <p>
-A <a>DID path</a> is identical to a generic <a>URI</a> path and MUST conform to the
-<a data-cite="!rfc3986#section-3.3"><code>path-abempty</code></a> ABNF rule in
-[[!RFC3986]].
-        </p>
-
-        <p>
-A <a>DID method</a> specification MAY specify ABNF rules for <a>DID paths</a>
-that are more restrictive than the generic rules in this section.
+A <a>DID path</a> is identical to a generic <a>URI</a> path and conforms to the
+<code>path-abempty</code> ABNF rule in <a
+data-cite="RFC3986#section-3.3">RFC&nbsp;3986, section 3.3</a>.
         </p>
 
         <pre class="example nohighlight">
 did:example:123456/path
         </pre>
+
       </section>
 
-      <section>
+      <section class="notoc">
         <h2>Query</h2>
 
         <p>
-A <a>DID query</a> is derived from a generic <a>URI</a> query and MUST conform to the
-<code>did-query</code> ABNF rule in Section <a href="#did-url-syntax">
-</a>. If a <a>DID query</a> is present, it MUST be used
-as described in Section <a href="#did-parameters"></a>.
-        </p>
-
-        <p>
-A <a>DID method</a> specification MAY specify ABNF rules for <a>DID queries</a>
-that are more restrictive than the generic rules in this section.
+A <a>DID query</a> is identical to a generic <a>URI</a> query and conforms to
+the <code>query</code> ABNF rule in <a
+data-cite="RFC3986#section-3.4">RFC&nbsp;3986, section 3.4</a>. This syntax
+feature is elaborated upon in <a href="#did-parameters"></a>.
         </p>
 
         <pre class="example nohighlight">
-did:example:123456?query=true
+did:example:123456?versionId=1
         </pre>
       </section>
 
-      <section>
+      <section class="notoc">
         <h2>Fragment</h2>
 
         <p>
-A <a>DID fragment</a> is used as method-independent reference into a <a>DID
-document</a> or external <a>resource</a>.
-        </p>
-
-        <p>
 <a>DID fragment</a> syntax and semantics are identical to a generic <a>URI</a>
-fragment and MUST conform to <a data-cite="RFC3986#section-3.5">RFC&nbsp;3986,
-section 3.5</a>.
-        </p>
-        <p>
-For information about how to dereference a <a>DID fragment</a>, see
-<a href="#did-url-dereferencing"></a>.
+fragment and conforms to the <code>fragment</code> ABNF rule in <a
+data-cite="RFC3986#section-3.5">RFC&nbsp;3986, section 3.5</a>.
         </p>
 
         <p>
-A <a>DID method</a> specification MAY specify ABNF rules for <a>DID
-fragments</a> that are more restrictive than the generic rules in this section.
+A <a>DID fragment</a> is used as method-independent reference into a <a>DID
+document</a> or external <a>resource</a>. Some examples of DID fragment
+identifiers are shown below.
         </p>
 
-        <p>
+        <pre class="example nohighlight"
+             title="A unique verification method in a DID Document">
+did:example:123#public-key-0
+        </pre>
+
+        <pre class="example nohighlight"
+             title="A unique service in a DID Document">
+did:example:123#agent
+        </pre>
+
+        <pre class="example nohighlight"
+             title="A resource external to a DID Document">
+did:example:123?service=agent&relativeRef=/credentials#degree
+        </pre>
+
+        <p class="note"
+          title="Fragment semantics across representations">
 In order to maximize interoperability, implementers are urged to ensure that
-<a>DID fragments</a> are interpreted in the same way across <a>representations</a> (as
-described in Section <a href="#representations"></a>). For example, while
-JSON Pointer [[?RFC6901]] can be used in a <a>DID fragment</a>, it will not
-be interpreted in the same way across <a>representations</a>.
+<a>DID fragments</a> are interpreted in the same way across
+<a>representations</a> (see <a href="#representations"></a>). For example, while
+JSON Pointer [[?RFC6901]] can be used in a <a>DID fragment</a>, it will not be
+interpreted in the same way across non-JSON <a>representations</a>.
         </p>
-
-        <p>For example:</p>
-        <ul>
-          <li>A unique <a>verification method</a> in a <a>DID Document</a>
-            <pre class="example nohighlight">did:example:123#public-key-0</pre>
-          </li>
-
-          <li>A unique <a>service</a> in a <a>DID Document</a>
-            <pre class="example nohighlight">did:example:123#agent</pre>
-          </li>
-
-          <li>A <a>resource</a> external to a <a>DID Document</a>
-            <pre class="example nohighlight">did:example:123?service=agent&relativeRef=/credentials#degree</pre>
-          </li>
-        </ul>
 
         <p>
 Additional semantics for fragment identifiers, which are compatible with and
 layered upon the semantics in this section, are described for JSON-LD
-representations in Section <a href="#application-did-ld-json"></a>.
+representations in <a href="#application-did-ld-json"></a>. For information
+about how to dereference a <a>DID fragment</a>, see <a
+href="#did-url-dereferencing"></a>.
         </p>
 
       </section>
@@ -3490,6 +3476,22 @@ Implementers are advised to avoid assuming any meanings or
 behaviors associated with a colon that are generically applicable to all
 <a>DID methods</a>.
       </p>
+
+      <p>
+A <a>DID method</a> specification MAY specify ABNF rules for <a>DID paths</a>
+that are more restrictive than the generic rules in <a href="#path"></a>.
+      </p>
+
+      <p>
+A <a>DID method</a> specification MAY specify ABNF rules for <a>DID queries</a>
+that are more restrictive than the generic rules in this section.
+      </p>
+
+      <p>
+A <a>DID method</a> specification MAY specify ABNF rules for <a>DID
+fragments</a> that are more restrictive than the generic rules in this section.
+      </p>
+
 
     </section>
 
