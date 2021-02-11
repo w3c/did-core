@@ -736,54 +736,59 @@ data-cite="INFRA#maps">map</a>, it is linked directly to that specification.
   <section>
     <h2>Identifier</h2>
     <p>
-This section describes the formal syntax for <a>DIDs</a> and <a>DID URLs</a>. The term
-"generic" is used to differentiate the syntax defined here from syntax defined
-by <em>specific</em> <a>DID methods</a> in their respective specifications.
+This section describes the formal syntax for <a>DIDs</a> and <a>DID URLs</a>.
+The term "generic" is used to differentiate the syntax defined here from syntax
+defined by <em>specific</em> <a>DID methods</a> in their respective
+specifications.
     </p>
 
     <section class="normative">
       <h3>DID Syntax</h3>
 
       <p>
-The generic <a>DID scheme</a> is a <a>URI</a> scheme conformant with [[!RFC3986]].
+The generic <a>DID scheme</a> is a <a>URI</a> scheme conformant with
+[[!RFC3986]]. The ABNF definition can be found below, which uses the syntax in
+[[!RFC5234]] and the corresponding definitions for <code>ALPHA</code> and
+<code>DIGIT</code>. All other rule names not defined in the ABNF below are
+defined in [[RFC3986]]. All Decentralized Identifiers MUST conform to the
+DID Syntax ABNF Rules.
       </p>
 
-      <p>
-The <a>DID scheme</a> name MUST be an
-<a data-lt="ascii lowercase">ASCII lowercase string</a>.
-      </p>
-      <p>
-The <a>DID method</a> name MUST be a string which consists of
-<a data-lt="ascii lower alpha">ASCII lowercase characters</a> and
-<a data-lt="ascii digit">ASCII digits</a>.
-      </p>
-
-      <p>
-The following is the ABNF definition using the syntax in [[!RFC5234]], which
-defines <code>ALPHA</code> and <code>DIGIT</code>. All other rule names not
-defined in this ABNF are defined in [[RFC3986]].
+      <p class="issue atrisk"
+         title="Should DID syntax allow an empty 'method-specific-id'?">
+This ABNF does not currently permit an empty <code>method-specific-id</code>
+string. Some DID methods have expressed an interest in providing resolution of
+an DID with an empty <code>method-specific-id</code> string, for example to
+enable discovery of a DID document describing a <a>verifiable data registry</a>
+by resolving the DID method name alone. The Working Group is requesting feedback
+during the Candidate Recommendation stage on whether or not an empty
+<code>method-specific-id</code> string is of interest to implementers. This
+feature may change as a result of that feedback. See also <a
+href="https://github.com/w3c/did-core/issues/34">Issue 34</a>.
       </p>
 
-      <pre class="nohighlight">
+      <table class="simple">
+        <thead>
+          <tr>
+            <th>
+The DID Syntax ABNF Rules
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <pre class="nohighlight">
 did                = "did:" method-name ":" method-specific-id
 method-name        = 1*method-char
 method-char        = %x61-7A / DIGIT
 method-specific-id = *( *idchar ":" ) 1*idchar
 idchar             = ALPHA / DIGIT / "." / "-" / "_"
-      </pre>
-
-      <p class="issue atrisk" title="Should DID syntax allow an empty 'method-specific-id'?">
-This ABNF does not currently permit an empty <code>method-specific-id</code>
-string. Some DID methods have expressed an interest in providing
-resolution of an DID with an empty <code>method-specific-id</code> string,
-for example to enable discovery of a DID document describing a
-<a>verifiable data registry</a> by resolving the DID method name alone.
-The Working Group is requesting feedback during the Candidate Recommendation
-stage on whether or not an empty <code>method-specific-id</code> string is
-of interest to implementers. This feature may change as a result of that
-feedback. See also <a href="https://github.com/w3c/did-core/issues/34">Issue
-34</a>.
-      </p>
+              </pre>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
       <p>
 For requirements on <a>DID methods</a> relating to the <a>DID</a> syntax, see
