@@ -8,36 +8,36 @@ included whenever they appear in this specification.
 
   <dt><dfn data-lt="authenticated">authenticate</dfn></dt>
   <dd>
-Authentication is a process (typically some type of protocol) by which an
-entity can prove it has a specific attribute or controls a specific secret
-using one or more <a>verification methods</a>. With <a>DIDs</a>, a common
-example would be proving control of the private key associated with a public
-key published in a
-<a>DID document</a>.
+Authentication is a process by which an entity can prove it has a specific
+attribute or controls a specific secret using one or more <a>verification
+methods</a>. With <a>DIDs</a>, a common example would be proving control of the
+cryptographic private key associated with a public key published in a <a>DID
+document</a>.
   </dd>
 
   <dt><dfn>binding</dfn></dt>
   <dd>
 A concrete mechanism used by a caller to invoke a <a>DID resolver</a> or a
-<a>DID URL dereferencer</a>. This could be a local command line tool, a
-software library, or a network call such as an HTTPS request.
+<a>DID URL dereferencer</a>. This could be a local command line tool, a software
+library, or a network call such as an HTTPS request.
   </dd>
 
   <dt><dfn data-lt="decentralized identifiers|DID|DIDs">decentralized identifier</dfn> (DID)</dt>
 
   <dd>
 A globally unique persistent identifier that does not require a centralized
-registration authority because it is generated and/or registered cryptographically.
-The generic format of a DID is defined in <a href="#did-syntax"></a>.
-A specific <a>DID scheme</a> is defined in a <a>DID method</a> specification.
-Many—but not all—DID methods make use of <a>distributed ledger technology</a>
-(DLT) or some other form of decentralized network.
+registration authority because it is generated and/or registered
+cryptographically. The generic format of a DID is defined in <a
+href="#did-syntax"></a>. A specific <a>DID scheme</a> is defined in a <a>DID
+method</a> specification. Many—but not all—DID methods make use of
+<a>distributed ledger technology</a> (DLT) or some other form of decentralized
+network.
   </dd>
 
   <dt><dfn>decentralized identity management</dfn></dt>
 
   <dd>
-<a href="https://en.wikipedia.org/wiki/Identity_management">identity
+<a href="https://en.wikipedia.org/wiki/Identity_management">Identity
 management</a> that is based on the use of <a>decentralized identifiers</a>.
 Decentralized identity management extends authority for identifier generation,
 registration, and assignment beyond traditional roots of trust such as
@@ -50,46 +50,48 @@ and most national ID systems.
 
   <dd>
 <a href="https://en.wikipedia.org/wiki/Public_key_infrastructure">Public key
-infrastructure</a> that does not rely on traditional
-<a href="https://en.wikipedia.org/wiki/Certificate_authority">certificate
-authorities</a> because it uses <a>decentralized identifiers</a> and
-<a>DID documents</a> to discover and verify <a>public key descriptions</a>.
+infrastructure</a> that does not rely on traditional <a
+href="https://en.wikipedia.org/wiki/Certificate_authority">certificate
+authorities</a> because it uses <a>decentralized identifiers</a> and <a>DID
+documents</a> to discover and verify <a>public key descriptions</a>.
   </dd>
 
   <dt><dfn data-lt="did controllers|did controller(s)">DID controller</dfn></dt>
 
   <dd>
-An entity that has the capability to make changes to a <a>DID document</a>.
-A <a>DID</a> might have more than one DID controller. The <a>DID controller(s)</a>
-can be denoted by the optional `controller` property at the top level of the <a>DID
-document</a>. Note that one <a>DID controller</a> might be the <a>DID subject</a>.
+An entity that has the capability to make changes to a <a>DID document</a>. A
+<a>DID</a> might have more than one DID controller. The <a>DID controller(s)</a>
+can be denoted by the optional `controller` property at the top level of the
+<a>DID document</a>. Note that a <a>DID controller</a> might be the <a>DID
+subject</a>.
   </dd>
 
   <dt><dfn>DID delegate</dfn></dt>
 
   <dd>
-An entity to whom a <a>DID controller</a> has granted permission to use
-a <a>verification method</a> associated with a <a>DID</a> via a <a>DID document</a>.
-For example, a parent who controls a child's <a>DID document</a> might permit
-the child to use their personal device in order to <a>authenticate</a>. In
-this case, the child is the <a>DID delegate</a>. The child's personal device
-would contain the private cryptographic material enabling the child to
-<a>authenticate</a> using the DID. However the child might not be permitted to
-add other personal devices without the parent's permission.
+An entity to whom a <a>DID controller</a> has granted permission to use a
+<a>verification method</a> associated with a <a>DID</a> via a <a>DID
+document</a>. For example, a parent who controls a child's <a>DID document</a>
+might permit the child to use their personal device in order to
+<a>authenticate</a>. In this case, the child is the <a>DID delegate</a>. The
+child's personal device would contain the private cryptographic material
+enabling the child to <a>authenticate</a> using the DID. However, the child
+might not be permitted to add other personal devices without the parent's
+permission.
   </dd>
 
   <dt><dfn data-lt="DID documents">DID document</dfn></dt>
 
   <dd>
 A set of data describing the <a>DID subject</a>, including mechanisms, such as
-public keys and pseudonymous biometrics, that the <a>DID subject</a> or a
-<a>DID delegate</a> can use to <a>authenticate</a> itself and prove its
-association with the <a>DID</a>. A DID document might also contain other
-<a href="https://en.wikipedia.org/wiki/Attribute_(computing)">attributes</a> or
-<a href="https://en.wikipedia.org/wiki/Claims-based_identity">claims</a>
-describing the <a>DID subject</a>. A DID document might have one or more different
-<a>representations</a> as defined in <a href="#representations"></a> or in
-the W3C DID Specification Registries [[DID-SPEC-REGISTRIES]].
+cryptographic public keys, that the <a>DID subject</a> or a <a>DID delegate</a>
+can use to <a>authenticate</a> itself and prove its association with the
+<a>DID</a>. A DID document might also contain other <a
+href="https://en.wikipedia.org/wiki/Attribute_(computing)">attributes</a> or <a
+href="https://en.wikipedia.org/wiki/Claims-based_identity">claims</a> describing
+the <a>DID subject</a>. A DID document might have one or more different
+<a>representations</a> as defined in <a href="#representations"></a> or in the
+W3C DID Specification Registries [[DID-SPEC-REGISTRIES]].
   </dd>
 
   <dt><dfn data-lt="DID fragments">DID fragment</dfn></dt>
@@ -102,21 +104,21 @@ The portion of a <a>DID URL</a> that follows the first hash sign character
   <dt><dfn data-lt="DID methods">DID method</dfn></dt>
 
   <dd>
-A definition of how a specific <a>DID scheme</a> must be implemented to work
-with a specific <a>verifiable data registry</a>. A DID method is defined by a
-DID method specification, which must specify the precise operations by which
-<a>DIDs</a> are created, resolved and deactivated and <a>DID documents</a> are
-written and updated. See <a href="#methods"></a>.
+A definition of how a specific <a>DID scheme</a> is implemented to work with a
+specific <a>verifiable data registry</a>. A DID method is defined by a DID
+method specification, which must specify the precise operations by which
+<a>DIDs</a> and <a>DID documents</a> are created, resolved, updated, and
+deactivated. See <a href="#methods"></a>.
   </dd>
 
   <dt><dfn data-lt="DID paths">DID path</dfn></dt>
 
   <dd>
 The portion of a <a>DID URL</a> that begins with and includes the first forward
-slash (<code>/</code>) character and ends with either a question mark (<code>?</code>)
-character or a fragment hash sign (<code>#</code>) character (or the end of the
-DID URL). DID path syntax is identical to URI path syntax. See
-<a href="#path"></a>.
+slash (<code>/</code>) character and ends with either a question mark
+(<code>?</code>) character, or a fragment hash sign (<code>#</code>) character,
+or the end of the DID URL. DID path syntax is identical to URI path syntax.
+See <a href="#path"></a>.
   </dd>
 
   <dt><dfn data-lt="DID queries">DID query</dfn></dt>
@@ -130,10 +132,10 @@ syntax. See <a href="#query"></a>.
   <dt><dfn>DID resolution</dfn></dt>
 
   <dd>
-The function that takes as its input a <a>DID</a> and a set of input
-metadata and returns a <a>DID document</a> in a conforming <a>representation</a>
+The process that takes as its input a <a>DID</a> and a set of resolution
+options and returns a <a>DID document</a> in a conforming <a>representation</a>
 plus additional metadata. This function relies on the "Read" operation of the
-applicable <a>DID method</a>. The inputs and outputs of this function are
+applicable <a>DID method</a>. The inputs and outputs of this process are
 defined in <a href="#did-resolution"></a>.
   </dd>
 
@@ -149,25 +151,33 @@ conforming <a>DID document</a> as output.
 
   <dd>
 The formal syntax of a <a>decentralized identifier</a>. The generic DID scheme
-begins with the prefix <code>did:</code> as defined in <a href="#did-syntax"></a>.
-Each <a>DID method</a> specification must define a specific DID
-scheme that works with that specific <a>DID method</a>. In a specific DID method
-scheme, the DID method name must follow the first colon and terminate with the
-second colon, e.g., <code>did:example:</code>
+begins with the prefix <code>did:</code> as defined in <a
+href="#did-syntax"></a>. Each <a>DID method</a> specification defines a specific
+DID scheme that works with that specific <a>DID method</a>. In a specific DID
+method scheme, the DID method name follows the first colon and terminates with
+the second colon, e.g., <code>did:example:</code>
   </dd>
 
   <dt><dfn data-lt="DID subjects">DID subject</dfn></dt>
 
   <dd>
-The entity identified by a <a>DID</a> and described by a <a>DID document</a>. A
-<a>DID</a> has exactly one DID subject. Anything can be a DID subject: person,
-group, organization, physical thing, digital thing, logical thing, etc.
+The entity identified by a <a>DID</a> and described by a <a>DID document</a>.
+Anything can be a DID subject: person, group, organization, physical thing,
+digital thing, logical thing, etc.
+  </dd>
+
+  <dt><dfn data-lt="service">DID services</dfn></dt>
+  <dd>
+Means of communicating or interacting with the <a>DID subject</a> or
+associated entities via one or more <a>service endpoints</a>.
+Examples include discovery services, agent services, social networking
+services, file storage services, and verifiable credential repository services.
   </dd>
 
   <dt><dfn data-lt="DID URLs">DID URL</dfn></dt>
 
   <dd>
-A <a>DID</a> plus any additional syntactic component that conforms to  the
+A <a>DID</a> plus any additional syntactic component that conforms to the
 definition in <a href="#did-url-syntax"></a>. This includes an optional <a>DID
 path</a> (with its leading <code>/</code> character), optional <a>DID query</a>
 (with its leading <code>?</code> character), and optional <a>DID fragment</a>
@@ -177,17 +187,16 @@ path</a> (with its leading <code>/</code> character), optional <a>DID query</a>
   <dt><dfn>DID URL dereferencing</dfn></dt>
 
   <dd>
-The function that takes as its input a <a>DID URL</a>
-and a set of input metadata, and returns a <a>resource</a>. This
-resource might be a <a>DID document</a> plus additional metadata, or it might be a
-secondary resource contained within the <a>DID document</a>, or it might be a
-resource entirely external to the <a>DID document</a>. The function
-uses the <a>DID resolution</a> function to fetch a
-<a>DID document</a> indicated by the <a>DID</a> contained within the
-<a>DID URL</a>. The dereferencing function then can perform additional
-processing on the <a>DID document</a> to return the dereferenced resource
-indicated by the <a>DID URL</a>. The inputs and outputs of this function are
-defined in <a href="#did-url-dereferencing"></a>.
+The function that takes as its input a <a>DID URL</a> and a set of input
+metadata, and returns a <a>resource</a>. This resource might be a <a>DID
+document</a> plus additional metadata, or it might be a secondary resource
+contained within the <a>DID document</a>, or it might be a resource entirely
+external to the <a>DID document</a>. The function uses the <a>DID resolution</a>
+function to fetch a <a>DID document</a> indicated by the <a>DID</a> contained
+within the <a>DID URL</a>. The dereferencing function then can perform
+additional processing on the <a>DID document</a> to return the dereferenced
+resource indicated by the <a>DID URL</a>. The inputs and outputs of this
+function are defined in <a href="#did-url-dereferencing"></a>.
   </dd>
 
   <dt><dfn data-lt="DID URL dereferencers">DID URL dereferencer</dfn></dt>
@@ -201,12 +210,12 @@ function for a given <a>DID URL</a> or <a>DID document</a>.
 
   <dd>
 A non-centralized system for recording events. These systems establish
-sufficient confidence for participants to rely upon the data recorded
-by others to make operational decisions. They typically use distributed
-databases where different nodes use a consensus protocol to confirm the
-ordering of cryptographically signed transactions. The linking of digitally
-signed transactions over time often makes the history of the ledger
-effectively immutable.
+sufficient confidence for participants to rely upon the data recorded by others
+to make operational decisions. They typically use distributed databases where
+different nodes use a consensus protocol to confirm the ordering of
+cryptographically signed transactions. The linking of digitally signed
+transactions over time often makes the history of the ledger effectively
+immutable.
   </dd>
 
   <dt><dfn>public key description</dfn></dt>
@@ -231,24 +240,15 @@ As defined for HTTP by [[RFC7231]]: "information that is intended to reflect a
 past, current, or desired state of a given resource, in a format that can be
 readily communicated via the protocol, and that consists of a set of
 representation metadata and a potentially unbounded stream of representation
-data." A <a>DID document</a> is a representation of information
-describing a <a>DID subject</a>. The <a href="#representations"></a>
-section of the <a href="https://w3.org/TR/did-core">DID Core specification</a>
-defines several representation formats for a <a>DID document</a>.
-  </dd>
-
-  <dt><dfn data-lt="service">services</dfn></dt>
-  <dd>
-Means of communicating or interacting with the <a>DID subject</a> or
-associated entities via one or more <a>service endpoints</a>.
-Examples  include discovery services, agent services, social networking
-services, file storage services, and verifiable credential repository services.
+data." A <a>DID document</a> is a representation of information describing a
+<a>DID subject</a>. See <a href="https://w3.org/TR/did-core#representations">DID
+Core: Representations</a>.
   </dd>
 
   <dt><dfn data-lt="service endpoints">service endpoint</dfn></dt>
 
   <dd>
-A network address (such as an HTTP URL) at which <a>services</a> operate on
+A network address, such as an HTTP URL, at which <a>services</a> operate on
 behalf of a <a>DID subject</a>.
   </dd>
 
@@ -263,18 +263,22 @@ defined by [[RFC3986]]. A <a>DID</a> is a type of URI scheme.
 
   <dd>
 A standard data model and representation format for cryptographically-verifiable
-digital credentials as defined by the W3C [[VC-DATA-MODEL]].
+digital credentials as defined by the W3C Verifiable Credentials specification
+[[VC-DATA-MODEL]].
   </dd>
 
-  <dt><dfn data-lt="verifiable data registry|verifiable data registries">verifiable
-  data registry</dfn></dt>
+  <dt>
+    <dfn data-lt="verifiable data registry|verifiable data registries">
+    verifiable data registry</dfn>
+  </dt>
 
   <dd>
 A system that facilitates the creation, verification, updating, and/or
 deactivation of <a>decentralized identifiers</a> and <a>DID documents</a>. A
-verifiable data registry might also be used for other cryptographically-verifiable
-data structures such as <a>verifiable credentials</a>. For more information, see
-[[VC-DATA-MODEL]].
+verifiable data registry might also be used for other
+cryptographically-verifiable data structures such as <a>verifiable
+credentials</a>. For more information, see the W3C Verifiable Credentials
+specification [[VC-DATA-MODEL]].
   </dd>
 
   <dt><dfn>verifiable timestamp</dfn></dt>
@@ -282,8 +286,8 @@ data structures such as <a>verifiable credentials</a>. For more information, see
   <dd>
 A verifiable timestamp enables a third-party to verify that a data object
 existed at a specific moment in time and that it has not been modified or
-corrupted since that moment in time. If the data integrity could reasonably
-have modified or corrupted since that moment in time, the timestamp is not
+corrupted since that moment in time. If the data integrity could reasonably have
+been modified or corrupted since that moment in time, the timestamp is not
 verifiable.
   </dd>
 
@@ -291,18 +295,18 @@ verifiable.
 
   <dd>
     <p>
-A set of parameters that can be used together with a process or protocol to
-independently verify a proof. For example, a public key can be used as a
+A set of parameters that can be used together with a process to independently
+verify a proof. For example, a cryptographic public key can be used as a
 verification method with respect to a digital signature; in such usage, it
-verifies that the signer possessed the associated private key.
+verifies that the signer possessed the associated cryptographic private key.
     </p>
     <p>
 "Verification" and "proof" in this definition are intended to apply broadly. For
-example, a public key might be used during Diffie-Hellman key exchange to
-negotiate a shared symmetric key for encryption. This guarantees the integrity
-of the key agreement process. It is thus another type of verification method,
-even though descriptions of the process might not use the words "verification"
-or "proof."
+example, a cryptographic public key might be used during Diffie-Hellman key
+exchange to negotiate a shared symmetric key for encryption. This guarantees the
+integrity of the key agreement process. It is thus another type of verification
+method, even though descriptions of the process might not use the words
+"verification" or "proof."
     </p>
   </dd>
 
@@ -320,8 +324,8 @@ An expression of the relationship between the <a>DID subject</a> and a
 
   <dd>
 A type of globally unique identifier defined by [[RFC4122]]. UUIDs are similar
-to DIDs in that they do not require a centralized registration authority.
-UUIDs differ from DIDs in that they are not resolvable or
+to DIDs in that they do not require a centralized registration authority. UUIDs
+differ from DIDs in that they are not resolvable or
 cryptographically-verifiable.
   </dd>
 
