@@ -2999,7 +2999,7 @@ section will be removed from this specification.
 
       <p>
 Like Javascript Object Notation (JSON) [[RFC8259]], Concise Binary Object
-Representation (CBOR) [[RFC7049]] defines a set of formatting rules for the
+Representation (CBOR) [[RFC8949]] defines a set of formatting rules for the
 portable representation of structured data. CBOR is a more concise,
 machine-readable, language-independent data interchange format that is
 self-describing and has built-in semantics for interoperability.
@@ -3016,12 +3016,12 @@ metadata.
         <h3>Production</h3>
 
         <p>
-A <a>DID document</a> MUST be a single <a data-cite="RFC7049#section-2.1">CBOR
-Map</a> conforming to [[RFC7049]]. All topmost entries of the <a>DID
+A <a>DID document</a> MUST be a single <a data-cite="RFC8949#section-3.1">CBOR
+Map</a> conforming to [[RFC8949]]. All topmost entries of the <a>DID
 document</a> MUST be represented by using the entry key as the name of the
 key of the CBOR Map. The values of entries of the <a href="#data-model">data
 model</a> described in Section <a href="#data-model"></a>, including all
-extensions, are encoded in CBOR [[RFC7049]] by mapping entry values to CBOR
+extensions, are encoded in CBOR [[RFC8949]] by mapping entry values to CBOR
 types as follows:
         </p>
 
@@ -3043,9 +3043,9 @@ CBOR Representation Type
 <a data-cite="INFRA#maps">ordered&nbsp;map</a>
               </td>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR map</a> (major type 5), each entry
+<a data-cite="RFC8949#section-3.1">CBOR map</a> (major type 5), each entry
 is represented as a member of the CBOR Map with the entry key, expressed as
-a <a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 3</a>),
+a <a data-cite="RFC8949#section-3.1">CBOR string</a> (major type 3</a>),
 as the key and the entry value according to its type, as defined in this
 section
               </td>
@@ -3055,7 +3055,7 @@ section
 <a data-cite="INFRA#list">list</a>
               </td>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), each element
+<a data-cite="RFC8949#section-3.1">CBOR array</a> (major type 4), each element
 of the list is added, in order, as a value of the array according to its type,
 as defined in this section
               </td>
@@ -3065,7 +3065,7 @@ as defined in this section
 <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), each element
+<a data-cite="RFC8949#section-3.1">CBOR array</a> (major type 4), each element
 of the list is added, in order, as a value of the array according to its type,
 as defined in this section
               </td>
@@ -3075,7 +3075,7 @@ as defined in this section
 <a>datetime</a>
               </td>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 3) formatted as
+<a data-cite="RFC8949#section-3.1">CBOR string</a> (major type 3) formatted as
 an <a data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a> normalized to
 UTC 00:00 and without sub-second decimal precision. For example:
 <code>2020-12-20T19:17:47Z</code>.
@@ -3086,7 +3086,7 @@ UTC 00:00 and without sub-second decimal precision. For example:
 <a data-cite="INFRA#string">string</a>
               </td>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 3)
+<a data-cite="RFC8949#section-3.1">CBOR string</a> (major type 3)
               </td>
             </tr>
             <tr>
@@ -3094,7 +3094,7 @@ UTC 00:00 and without sub-second decimal precision. For example:
 <a>integer</a>
               </td>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR integer</a> (major type 0 or 1),
+<a data-cite="RFC8949#section-3.1">CBOR integer</a> (major type 0 or 1),
 choosing the shortest byte representation
               </td>
             </tr>
@@ -3103,7 +3103,7 @@ choosing the shortest byte representation
 <a>double</a>
               </td>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR floating-point number</a> (major type
+<a data-cite="RFC8949#section-3.1">CBOR floating-point number</a> (major type
 7). All floating point values MUST be encoded as 64-bits (additional type
 value 27), even for integral values.
               </td>
@@ -3113,7 +3113,7 @@ value 27), even for integral values.
 <a data-cite="INFRA#boolean">boolean</a>
               </td>
               <td>
-<a data-cite="RFC7049#section-2.3">CBOR simple value</a> (major type 7,
+<a data-cite="RFC8949#section-3.3">CBOR simple value</a> (major type 7,
 subtype 24) with a simple value of 21 (True) or 20 (False)
               </td>
             </tr>
@@ -3122,7 +3122,7 @@ subtype 24) with a simple value of 21 (True) or 20 (False)
 <a data-cite="INFRA#null">null</a>
               </td>
               <td>
-<a data-cite="RFC7049#section-2.3">CBOR simple value</a> (major type 7,
+<a data-cite="RFC8949#section-3.3">CBOR simple value</a> (major type 7,
 subtype 24) with a simple value of 22 (Null)
               </td>
             </tr>
@@ -3132,12 +3132,12 @@ subtype 24) with a simple value of 22 (Null)
         <ul>
           <li>
 Other Data Types not otherewise defined in the <a href="#data-model">data model</a> MUST be
-represented as a <a href="https://tools.ietf.org/html/rfc7049#section-2.1">CBOR
+represented as a <a data-cite="RFC8949#section-3.1">CBOR
 String type</a> (major type 3).
           </li>
           <li>
 Indefinite-length items are not allowed and MUST be made <a
-href="https://tools.ietf.org/html/rfc7049#section-2.2.1">CBOR definite
+data-cite="RFC8949#section-3.2.2">CBOR definite
 length.</a>
           </li>
         </ul>
@@ -3145,8 +3145,8 @@ length.</a>
         <p>
 In addition to the production rules in this section, implementations
 MUST implement the four
-<a href="https://tools.ietf.org/html/rfc7049#section-3.9">Canonical CBOR rules</a>
-listed in [[RFC7049]]. All CBOR tags that appear in a message MUST be retained
+<a data-cite="RFC8949#section-4.2.1">Canonical CBOR rules</a>
+listed in [[RFC8949]]. All CBOR tags that appear in a message MUST be retained
 regardless of whether they are optional.
         </p>
 
@@ -3196,11 +3196,11 @@ A2                                   # map(2)
       <section>
         <h3>Consumption</h3>
         <p>
-The topmost element MUST be a <a data-cite="RFC7049#section-2.1">CBOR map</a>
+The topmost element MUST be a <a data-cite="RFC8949#section-3.1">CBOR map</a>
 (major type 5). Any other data type at the highest level of the
 <a>DID document</a> (the topmost <a data-cite="INFRA#ordered-map">map</a> in
 the <a href="#data-model">data model</a>) is an error and MUST be
-rejected. The topmost <a data-cite="RFC7049#section-2.1">CBOR map</a>
+rejected. The topmost <a data-cite="RFC8949#section-3.1">CBOR map</a>
 represents the <a>DID document</a>, and all data items of this map are
 entries of the <a>DID document</a>. The data item key is the entry key,
 and the data item value is interpreted as follows:
@@ -3221,7 +3221,7 @@ Data&nbsp;Type
           <tbody>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR map</a> (major type 5)
+<a data-cite="RFC8949#section-3.1">CBOR map</a> (major type 5)
               </td>
               <td>
 <a data-cite="INFRA#maps">ordered&nbsp;map</a>, each data item of the CBOR map
@@ -3233,32 +3233,32 @@ CBOR maps, no insertion order is guaranteed.
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), where the <a
+<a data-cite="RFC8949#section-3.1">CBOR array</a> (major type 4), where the <a
 href="#data-model">data model</a> entry value is a <a
 data-cite="INFRA#list">list</a> or unknown
               </td>
               <td>
 <a data-cite="INFRA#list">list</a>, each value of the
-<a data-cite="RFC7049#section-2.1">CBOR array</a> is added to the list in order,
+<a data-cite="RFC8949#section-3.1">CBOR array</a> is added to the list in order,
 converted based on the CBOR type of the array value, as defined in this table
               </td>
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR array</a> (major type 4), where the <a
+<a data-cite="RFC8949#section-3.1">CBOR array</a> (major type 4), where the <a
 href="#data-model">data model</a> entry value is an <a
 data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
 <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>, each value of the
-<a data-cite="RFC7049#section-2.1">CBOR array</a> is added to the ordered set
+<a data-cite="RFC8949#section-3.1">CBOR array</a> is added to the ordered set
 in order, converted based on the CBOR type of the array value as defined
 in this table
               </td>
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 3) where the
+<a data-cite="RFC8949#section-3.1">CBOR string</a> (major type 3) where the
 <a href="#data-model">data model</a> entry value is a <a>datetime</a>
               </td>
               <td>
@@ -3267,7 +3267,7 @@ in this table
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR string</a> (major type 3), where the <a
+<a data-cite="RFC8949#section-3.1">CBOR string</a> (major type 3), where the <a
 href="#data-model">data model</a> entry value type is <a>string</a> or
 unknown
               </td>
@@ -3277,7 +3277,7 @@ unknown
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR integer</a> (major type 0 or 1),
+<a data-cite="RFC8949#section-3.1">CBOR integer</a> (major type 0 or 1),
 choosing the shortest byte representation
               </td>
               <td>
@@ -3286,7 +3286,7 @@ choosing the shortest byte representation
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.1">CBOR floating-point number</a> (major type
+<a data-cite="RFC8949#section-3.1">CBOR floating-point number</a> (major type
 7).
               </td>
               <td>
@@ -3295,7 +3295,7 @@ choosing the shortest byte representation
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.3">CBOR simple value</a> (major type 7,
+<a data-cite="RFC8949#section-3.3">CBOR simple value</a> (major type 7,
 subtype 24) with a simple value of 21 (True) or 20 (False)
               </td>
               <td>
@@ -3304,7 +3304,7 @@ subtype 24) with a simple value of 21 (True) or 20 (False)
             </tr>
             <tr>
               <td>
-<a data-cite="RFC7049#section-2.3">CBOR simple value</a> (major type 7,
+<a data-cite="RFC8949#section-3.3">CBOR simple value</a> (major type 7,
 subtype 24) with a simple value of 22 (Null)
               </td>
               <td>
@@ -3320,14 +3320,14 @@ Additional Considerations:
 
         <ul>
           <li>
-<a href="https://tools.ietf.org/html/rfc7049#section-2.2.1">CBOR
+<a data-cite="RFC8949#section-3.2.2">CBOR
 Indefinite-length items</a> are not allowed and MUST throw an Error.
           </li>
           <li>
 Duplicate key in the same CBOR map MUST throw an Error.
           </li>
           <li>
-<a href="https://tools.ietf.org/html/rfc7049#section-3.3.3">Unknown Additional
+<a data-cite="RFC8949#section-7.1">Unknown Additional
 Properties and Values</a> MUST be preserved by default
 and represented as major type 3 (UTF-8 String)
           </li>
@@ -3338,7 +3338,7 @@ and represented as major type 3 (UTF-8 String)
       <section>
         <h3>CBOR Extensibility</h3>
         <p>
-In CBOR, one point of extensibility is with the use of CBOR tags. [[RFC7049]]
+In CBOR, one point of extensibility is with the use of CBOR tags. [[RFC8949]]
 defines a basic set of data types, as well as a tagging mechanism that enables
 extending the set of data types supported via the <a
 href="https://www.iana.org/assignments/cbor-tags/cbor-tags.xhtml">IANA CBOR Tag
@@ -5908,11 +5908,11 @@ media type</a> [[JSON-LD11]].
         <dd>None</dd>
         <dt>Encoding considerations:</dt>
         <dd>
-See <a data-cite="RFC7049#section-3.9">RFC&nbsp;7049, section 4.2</a>.
+See <a data-cite="RFC8949#section-4.2.1">RFC&nbsp;8949, section 4.2.1</a>.
         </dd>
         <dt>Security considerations:</dt>
         <dd>
-See <a data-cite="RFC7049#section-10">RFC&nbsp;7049, section 10</a> [[RFC7049]].
+See <a data-cite="RFC8949#section-10">RFC&nbsp;8949, section 10</a> [[RFC8949]].
         </dd>
         <dt>Interoperability considerations:</dt>
         <dd>Not Applicable</dd>
@@ -5968,11 +5968,11 @@ according to the rules defined in <a href="#fragment"></a>.
         <dd>None</dd>
         <dt>Encoding considerations:</dt>
         <dd>
-See <a data-cite="RFC7049#section-4.2">RFC&nbsp;7049, section 4.2</a>.
+See <a data-cite="RFC8949#section-4.2.1">RFC&nbsp;8949, section 4.2.1</a>.
         </dd>
         <dt>Security considerations:</dt>
         <dd>
-See <a data-cite="RFC7049#section-10">RFC&nbsp;7049, section 10</a> [[RFC7049]].
+See <a data-cite="RFC8949#section-10">RFC&nbsp;8949, section 10</a> [[RFC8949]].
         </dd>
         <dt>Interoperability considerations:</dt>
         <dd>Not Applicable</dd>
