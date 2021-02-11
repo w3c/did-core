@@ -2335,7 +2335,7 @@ for further discovery, authentication, authorization, or interaction.
       <p>
 Revealing public information through <a>services</a> (such as social media
 accounts, personal websites, and email addresses) is discouraged. See Section
-<a href="#keep-personally-identifiable-information-pii-private"></a> and
+<a href="#keep-personal-data-private"></a> and
 <a href="#service-privacy"></a> for additional details.
 The information associated with <a>services</a> are often
 service-specific. For example, the information associated with an encrypted
@@ -4518,9 +4518,8 @@ Verify the signature of the response message against the
 
         <p>
 A <a>DID</a> and <a>DID document</a> do not inherently carry any
-<a href="https://en.wikipedia.org/wiki/Personally_identifiable_information">
-  PII</a>
-(personally-identifiable information).
+<a href="https://en.wikipedia.org/wiki/Personal_data">
+personal data</a>.
         </p>
 
         <p>
@@ -4991,8 +4990,7 @@ This is particularly pertinent if the <a>DID document</a> is public.
       <p>
 Encrypting all or parts of <a>DID documents</a> is <em>not</em> an appropriate means
 to protect data in the long term. Similarly, placing encrypted data in <a>DID
-documents</a> is not an appropriate means to include personally identifiable
-information.
+documents</a> is not an appropriate means to include personal data.
       </p>
       <p>
 Given the caveats above, if encrypted data is included in a <a>DID document</a>,
@@ -5174,16 +5172,16 @@ embedded default.
     </p>
 
     <section>
-      <h2>Keep Personally-Identifiable Information (PII) Private</h2>
+      <h2>Keep Personal Data Private</h2>
 
       <p>
 If a <a>DID method</a> specification is written for a public <a>verifiable
 data registry</a> where all <a>DIDs</a> and <a>DID documents</a> are publicly
 available, it is <em>critical</em> that <a>DID documents</a> contain no
-personally-identifiable information.
+personal data.
       </p>
       <p>
-Personally-identifiable information can instead be placed behind <a>service
+Personal data can instead be placed behind <a>service
 endpoints</a> under control of the <a>DID subject</a> or <a>DID controller</a>.
 Due diligence should be taken around the use of URLs in <a>service endpoints</a>
 to prevent leakage of personal data or correlation within a URL
@@ -5250,9 +5248,8 @@ thing the <a>DID subject</a> is, particularly if the <a>DID subject</a> is a
 person.
       </p>
       <p>
-Not only do such properties potentially result in personally identifiable
-information (see
-<a href="#keep-personally-identifiable-information-pii-private"></a>) or
+Not only do such properties potentially result in personal data (see
+<a href="#keep-personal-data-private"></a>) or
 correlatable data (see <a href="#did-correlation-risks-and-pseudonymous-dids">
 </a> and <a href="#did-document-correlation-risks"></a>) being present in the
 <a>DID document</a>, but they can be used for grouping particular <a>DIDs</a>
