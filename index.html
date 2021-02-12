@@ -693,14 +693,14 @@ relevant normative statements in <a href="#methods"></a>.
 
       <p>
 A <dfn>conforming producer</dfn> is any algorithm realized as software and/or
-hardware that generates <a>conforming DIDs</a> or 
+hardware that generates <a>conforming DIDs</a> or
 <a>conforming DID Documents</a>. A conforming producer
 MUST NOT produce non-conforming <a>DIDs</a> or <a>DID documents</a>.
       </p>
 
       <p>
 A <dfn>conforming consumer</dfn> is any algorithm realized as software and/or
-hardware that consumes <a>conforming DIDs</a> or 
+hardware that consumes <a>conforming DIDs</a> or
 <a>conforming DID documents</a>. A conforming consumer
 MUST produce errors when consuming non-conforming <a>DIDs</a> or <a>DID
 documents</a>.
@@ -814,7 +814,8 @@ data-cite="!rfc3986#section-3.3"><code>path-abempty</code></a>, <a
 data-cite="!rfc3986#section-3.4"><code>query</code></a>, and <a
 data-cite="!rfc3986#section-3.5"><code>fragment</code></a> components are
 defined in [[!RFC3986]]. All <a>DID URLs</a> MUST conform to the
-DID URL Syntax ABNF Rules.
+DID URL Syntax ABNF Rules. <a>DID methods</a> can further restrict these
+rules, as described in <a href="#method-schemes"></a>.
       </p>
 
       <table class="simple">
