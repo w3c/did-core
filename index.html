@@ -5346,37 +5346,36 @@ surveillance and inference tool.
       </p>
 <p>
 The variety of possible endpoints makes it particularly challenging to maintain 
-herd privacy, in which no information about the DID Subject is leaked by features 
-in DID Core.
+herd privacy, in which no information about the <a>DID subject</a> is leaked.
 </p>
 <p>
-<strong>First</strong>, because service endpoints may be specified as URIs, they could 
+First, because service endpoints may be specified as <a>URIs</a>, they could 
 unintentionally leak personal information because of the architecture of the service. 
-For example, a service endpoint of “http://example.com/MyFirstName” is leaking the term 
-“MyFirstName” to everyone who can access the DID Document. When linking to legacy systems, 
+For example, a service endpoint of <code>http://example.com/MyFirstName</code> is leaking the term 
+<code>MyFirstName</code> to everyone who can access the DID Document. When linking to legacy systems, 
 this is an unavoidable risk and care should be taken in such cases. We encourage new, 
 DID-aware endpoints to use nothing more than the DID itself for any identification necessary,
-e.g., “http://example.com/did%3Aexample%3Aabc123”. Since that “did:example:abc123” is already 
+e.g., <code>http://example.com/did%3Aexample%3Aabc123</code>. Since that <code>did:example:abc123</code> is already 
 exposed in the DID Document, it leaks no additional information.
 </p>
 
 <p>
-<strong>Second</strong>, because a DID Document may list multiple service endpoints, it is possible to 
+Second, because a <a>DID document</a> can list multiple service endpoints, it is possible to 
 irreversibly associate services that are not associated in any other context. This 
 correlation on its own may lead to de-anonymization, revealing information about the 
-DID Subject even if the URIs used did not.
+<a>DID subject</a> even if the <a>URIs</a> used did not.
 </p>
 <p>
-<strong>Third</strong>, because some types of Subjects may be more or less likely to list specific 
-endpoints, e.g., a DID for an automobile may include a pointer to a public title 
-record at the Department of Motor Vehicles, while a DID for an individual would not.
+Third, because some types of <a>DID subjects</a> may be more or less likely to list specific 
+endpoints, e.g., a <a>DID</a> for an automobile may include a pointer to a public title 
+record at the Department of Motor Vehicles, while a <a>DID</a> for an individual would not.
 As such, the listing of a given service could, by itself, leak information that can 
 be used to infer something about the subject.
 </p>
 <p>
 It is the goal of herd privacy to ensure that the nature of specific subjects is 
 obscured by the population of the whole. To maximize herd privacy, implementers 
-should rely on one--and only one--service endpoint, with that endpoint providing 
+need to rely on one &mdash; and only one &mdash; service endpoint, with that endpoint providing 
 a proxy or mediator service to further blind requests.
 </p>
 <p>
@@ -5386,26 +5385,24 @@ Torward this end, consider any of the following:
   agreeable communications channels, preferably using private set intersection. The
     output of negotiation is a communication channel and whatever credentials may be 
     needed to access it. </li>
-  <li><strong>Tor Endpoint</strong> (Tor Onion Router) &mdash; 
-  <a href="https://www.torproject.org/about/history/">https://www.torproject.org/about/history/</a> 
-  Provide a privacy-respecting address for reach service endpoints. Any service that
+  <li><strong>Tor Endpoint</strong> (<a href="https://www.torproject.org/about/history/">Tor Onion Router</a>) &mdash;  
+  Provide a privacy-respecting address for reaching service endpoints. Any service that
   can be provided online can be provided through TOR for additional privacy.</li>
   <li><strong>Mediator Endpoint</strong> &mdash; 
-  <a href="https://hyperledger-indy.readthedocs.io/projects/hipe/en/latest/text/0036-mediators-and-relays/README.html">
-  https://hyperledger-indy.readthedocs.io/projects/hipe/en/latest/text/0036-mediators-and-relays/README.html</a> Mediators
+  <a href="https://hyperledger-indy.readthedocs.io/projects/hipe/en/latest/text/0036-mediators-and-relays/README.html">Mediators</a>
   provide a generic endpoint, for multiple parties, receive encrypted messages on behalf of those parties, and forward
   them to the intended recipient. This avoids the need to have a specific endpoint per subject, which could create a
   correlation risk. Also called a proxy.
 </li>
   <li><strong>Confidential Storage</strong> &mdash; Proprietary or confidential personal 
   information may need to be kept off-registry to provide additional privacy and/or
-  security guarantees, especially for those methods where DID Documents are published 
+  security guarantees, especially for those methods where <a>DID documents</a> are published 
   on a public ledger. Pointing to external resource services provides a means for 
   authorization checks and deletion.
 </li>
   <li><strong>Polymorphic Proxy</strong> &mdash; A proxy endpoint that can act as any 
   number of services, depending on how it is called. For example, the same URL could
-  be used for both negotiator and mediator functions, depending on a mechanism for re-routing
+  be used for both negotiator and mediator functions, depending on a mechanism for re-routing.
 </li>
   </ul>
 </p>
