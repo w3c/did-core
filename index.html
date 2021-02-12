@@ -1063,31 +1063,31 @@ dereferenced</em>.
         <h2>Relative DID URLs</h2>
 
         <p>
-A relative <a>DID URL</a> is any URL value in a <a>DID document</a> that does not start
-with <code>did:&lt;method-name>:&lt;method-specific-id></code>. More
+A relative <a>DID URL</a> is any URL value in a <a>DID document</a> that does
+not start with <code>did:&lt;method-name>:&lt;method-specific-id></code>. More
 specifically, it is any URL value that does not start with the ABNF defined  in
-Section <a href="#did-syntax"></a>. The contents of the URL typically
-refers to a <a>resource</a> in the same <a>DID document</a>. Relative <a>DID URLs</a>
-MAY contain relative path components, query parameters, and fragment
-identifiers.
+<a href="#did-syntax"></a>. The contents of the URL typically refers to
+a <a>resource</a> in the same <a>DID document</a>. Relative <a>DID URLs</a> MAY
+contain relative path components, query parameters, and fragment identifiers.
         </p>
 
         <p>
-When resolving a relative <a>DID URL</a> reference, the algorithm specified in <a
-data-cite="RFC3986#section-5">RFC3986 Section 5: Reference Resolution</a> MUST
-be used. The <strong>base URI</strong> value is the <a>DID</a> that is
-associated with the <a>DID subject</a>, see Section <a href="#did-subject"></a>.
-The <strong>scheme</strong> is <code>did</code>. The <strong>authority</strong>
-is a combination of <code>&lt;method-name>:&lt;method-specific-id></code>, and
-the <strong>path</strong>, <strong>query</strong>, and <strong>fragment</strong>
-values are those defined in Section <a href="#path"></a>, Section <a
-href="#query"></a>, and Section <a href="#fragment"></a>, respectively.
+When resolving a relative <a>DID URL</a> reference, the algorithm specified in
+<a data-cite="RFC3986#section-5">RFC3986 Section 5: Reference Resolution</a>
+MUST be used. The <strong>base URI</strong> value is the <a>DID</a> that is
+associated with the <a>DID subject</a>, see <a href="#did-subject"></a>. The
+<strong>scheme</strong> is <code>did</code>. The <strong>authority</strong> is a
+combination of <code>&lt;method-name>:&lt;method-specific-id></code>, and the
+<strong>path</strong>, <strong>query</strong>, and <strong>fragment</strong>
+values are those defined in <a href="#path"></a>, <a href="#query"></a>, and <a
+href="#fragment"></a>, respectively.
         </p>
 
         <p>
-Relative <a>DID URLs</a> are often used to identify <a>verification methods</a> and
-<a>services</a> in a <a>DID Document</a> without having to use absolute URLs, which
-tend to be more verbose than necessary.
+Relative <a>DID URLs</a> are often used to identify <a>verification methods</a>
+and <a>services</a> in a <a>DID Document</a> without having to use absolute
+URLs. <a>DID methods</a> where storage size is a consideration might use
+relative URLs to reduce the storage size of <a>DID documents</a>.
         </p>
 
         <pre class="example nohighlight"
@@ -1109,8 +1109,9 @@ tend to be more verbose than necessary.
         </pre>
 
         <p>
-In the example above, the relative <a>DID URL</a> value will be transformed to an
-absolute <a>DID URL</a> value of <code>did:example:123456789abcdefghi#key-1</code>.
+In the example above, the relative <a>DID URL</a> value will be transformed to
+an absolute <a>DID URL</a> value of
+<code>did:example:123456789abcdefghi#key-1</code>.
         </p>
       </section>
 
