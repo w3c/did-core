@@ -1785,7 +1785,7 @@ formats such as JWK [[RFC7517]]. It is RECOMMENDED that JWK <code>kid</code>
 values are set to the public key fingerprint [[RFC7638]]. It is RECOMMENDED
 that verification methods that use JWKs to represent their public keys utilize
 the value of <code>kid</code> as their fragment identifier. See the first key
-in <a href="#example-15-various-verification-method-types"></a>
+in <a href="#example-various-verification-method-types"></a>
 for an example of a public key with a compound key identifier.
           </p>
 
@@ -1850,7 +1850,7 @@ formats such as JWK [[RFC7517]]. It is RECOMMENDED that verification methods
 that use JWKs to represent their public keys use the value of <code>kid</code>
 as their fragment identifier. It is RECOMMENDED that JWK <code>kid</code>
 values are set to the public key fingerprint [[RFC7638]]. See the first key
-in <a href="#example-15-various-verification-method-types"></a>
+in <a href="#example-various-verification-method-types"></a>
 for an example of a public key with a compound key identifier.
       </p>
 
@@ -1973,7 +1973,8 @@ Each <a>DID method</a> specification is expected to detail how revocation is
 performed and tracked.
         </p>
 
-        <pre class="example nohighlight"
+        <pre id="example-various-verification-method-types"
+          class="example nohighlight"
           title="Various verification method types">
 {
   "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
