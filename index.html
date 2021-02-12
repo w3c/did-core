@@ -2891,13 +2891,11 @@ entry.
             <p>
 The <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD
 specification</a> defines values that are valid for this entry. This entry
-contains representation-specific syntax and therefore could be present in the <a
-href="#data-model">data model</a> to aid in lossless conversion. If the entry
-is present in the <a href="#data-model">data model</a>, it MUST be used during
-production unless either an alternative <code>@context</code> value is
-explicitly provided to the producer or if the value from the data model is not
-valid according to the consumption rules.
-            </p>
+contains representation-specific syntax that could be present in the <a
+href="#data-model">data model</a> as a result of consuming <code>application/did+ld+json</code>. 
+If absent, this entry MUST be added to the <a href="#data-model">data model</a>, 
+prior to serialization of <code>application/did+ld+json</code>. 
+          </p>
 
             <p>
 The value of <code>@context</code> MUST be exactly one of these values.
