@@ -2686,6 +2686,19 @@ the root object. Entries MAY define additional data sub structures subject
 to the value representation rules in the list above.
         </p>
 
+      <pre class="example nohighlight"
+        title="Example DID document in JSON representation">
+{
+	"id": "did:example:123456789abcdefghi",
+	"authentication": [{
+		"id": "did:example:123456789abcdefghi#keys-1",
+		"type": "Ed25519VerificationKey2018",
+		"controller": "did:example:123456789abcdefghi",
+		"publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+	}]
+}
+      </pre>
+
       </section>
 
       <section>
