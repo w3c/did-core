@@ -1122,20 +1122,20 @@ an absolute <a>DID URL</a> value of
   <section>
     <h1>Data Model</h1>
     <p>
-This specification defines a data model for <a>DID documents</a> that
-is capable of being serialized into multiple concrete <a>representations</a>. This
-section provides a high-level description of the data model, how different types
-of properties are expressed in the data model, and instructions for extending
-the data model.
+This specification defines a data model that can be used to express <a>DID
+documents</a> and other data structures that might then be serialized into
+multiple concrete <a>representations</a>. This section provides a high-level
+description of the data model, how different types of properties are expressed
+in the data model, and instructions for extending the data model.
     </p>
     <p>
 A <a>DID document</a> consists of a <a data-cite="INFRA#maps">map</a> of <a
-data-cite="INFRA#map-entry">entries</a>, where each entry consists of
-an entry key/entry value pair. The data model contains at least two
-different classes of entries. The first class of entries are called
-properties, and are specified in section <a href="#core-properties"></a>.
-The second class are representation-specific entries, and
-are specified in section <a href="#representations"></a>.
+data-cite="INFRA#map-entry">entries</a>, where each entry consists of an entry
+key/entry value pair. The <a>DID document</a> data model contains at least two
+different classes of entries. The first class of entries are called properties,
+and are specified in section <a href="#core-properties"></a>. The second class
+are representation-specific entries, and are specified in section <a
+href="#representations"></a>.
     </p>
 
     <figure id="did-document-entries">
@@ -1150,10 +1150,10 @@ The entries in a DID document.
     </figure>
 
     <p>
-All entry keys in the data model are <a
-data-cite="INFRA#strings">strings</a>. All entry values are expressed
-using one of the abstract data types in the table below while each
-<a>representation</a> specifies the concrete serialization format of each data type.
+All entry keys in the <a>DID Document</a> data model are <a
+data-cite="INFRA#strings">strings</a>. All entry values are expressed using one
+of the abstract data types in the table below while each <a>representation</a>
+specifies the concrete serialization format of each data type.
     </p>
 
     <table class="simple" id="data-types">
@@ -1255,6 +1255,22 @@ A value that is used to indicate the lack of a value as defined in [[INFRA]].
       </tbody>
     </table>
 
+    <p>
+Other data structures that are not <a>DID documents</a> can also use the data
+model and <a>representations</a> to express information. An example of this
+is elaborated upon in <a href="#metadata-structure"></a>.
+    </p>
+
+    <p class="note" title="Ordering of values">
+As a result of the <a href="#data-model">data model</a> being defined using
+terminology from [[INFRA]], property values which can contain more than one
+item, such as <a data-cite="INFRA#ordered-map">maps</a> and
+<a data-cite="INFRA#ordered-set">sets</a>, are explicitly ordered. For the
+purposes of this specification, unless otherwise stated, ordering is not
+important and implementations are not expected to produce or consume
+deterministically ordered values.
+    </p>
+
     <section>
       <h2>Extensibility</h2>
       <p>
@@ -1265,26 +1281,26 @@ The data model supports two types of extensibility.
 For maximum interoperability, it is RECOMMENDED that extensions use the official
 W3C DID Specification Registries mechanism [[?DID-SPEC-REGISTRIES]]. The use of
 this mechanism for new properties or other extensions is the only specified
-method that ensures that two different <a>representations</a> will be able to work
-together.
+method that ensures that two different <a>representations</a> will be able to
+work together.
         </li>
       <li>
-<a>Representations</a> MAY define other extensibility mechanisms, including ones that
-do not require the use of the DID Specification Registries. Such extension
+<a>Representations</a> MAY define other extensibility mechanisms, including ones
+that do not require the use of the DID Specification Registries. Such extension
 mechanisms SHOULD support lossless conversion into any other conformant
-<a>representation</a>. Extension mechanisms for a <a>representation</a> SHOULD define a
-mapping of all properties and <a>representation</a> syntax into the <a
+<a>representation</a>. Extension mechanisms for a <a>representation</a> SHOULD
+define a mapping of all properties and <a>representation</a> syntax into the <a
 href="#data-model">data model</a> and its type system.
       </li>
       </ol>
-      <p class="note">
+      <p class="note" title="Unregistered extensions are less reliable">
 It is always possible for two specific implementations to agree out-of-band to
-use a mutually understood extension or <a>representation</a> that is not recorded in
-the DID Specification Registries [[?DID-SPEC-REGISTRIES]]; interoperability between such
-implementations and the larger ecosystem will be less reliable.
+use a mutually understood extension or <a>representation</a> that is not
+recorded in the DID Specification Registries [[?DID-SPEC-REGISTRIES]];
+interoperability between such implementations and the larger ecosystem will be
+less reliable.
       </p>
     </section>
-
   </section>
 
   <section>
@@ -5273,64 +5289,64 @@ correlation of their <a>service endpoints</a> could become a powerful
 surveillance and inference tool. An example of this is that including multiple common country-level top level domain such as <code>https://example.co.uk</code> could be used to infer the approximate location of the <a>DID Subject</a> with a greater degree of probability.
       </p>
 <p>
-The variety of possible endpoints makes it particularly challenging to maintain 
+The variety of possible endpoints makes it particularly challenging to maintain
 herd privacy, in which no information about the <a>DID subject</a> is leaked.
 </p>
 <p>
-First, because service endpoints may be specified as <a>URIs</a>, they could 
-unintentionally leak personal information because of the architecture of the service. 
-For example, a service endpoint of <code>http://example.com/MyFirstName</code> is leaking the term 
-<code>MyFirstName</code> to everyone who can access the DID Document. When linking to legacy systems, 
-this is an unavoidable risk and care should be taken in such cases. We encourage new, 
+First, because service endpoints may be specified as <a>URIs</a>, they could
+unintentionally leak personal information because of the architecture of the service.
+For example, a service endpoint of <code>http://example.com/MyFirstName</code> is leaking the term
+<code>MyFirstName</code> to everyone who can access the DID Document. When linking to legacy systems,
+this is an unavoidable risk and care should be taken in such cases. We encourage new,
 DID-aware endpoints to use nothing more than the DID itself for any identification necessary,
-e.g., <code>http://example.com/did%3Aexample%3Aabc123</code>. Since that <code>did:example:abc123</code> is already 
+e.g., <code>http://example.com/did%3Aexample%3Aabc123</code>. Since that <code>did:example:abc123</code> is already
 exposed in the DID Document, it leaks no additional information.
 </p>
 
 <p>
-Second, because a <a>DID document</a> can list multiple service endpoints, it is possible to 
-irreversibly associate services that are not associated in any other context. This 
-correlation on its own may lead to de-anonymization, revealing information about the 
+Second, because a <a>DID document</a> can list multiple service endpoints, it is possible to
+irreversibly associate services that are not associated in any other context. This
+correlation on its own may lead to de-anonymization, revealing information about the
 <a>DID subject</a> even if the <a>URIs</a> used did not.
 </p>
 <p>
-Third, because some types of <a>DID subjects</a> may be more or less likely to list specific 
-endpoints, e.g., a <a>DID</a> for an automobile may include a pointer to a public title 
+Third, because some types of <a>DID subjects</a> may be more or less likely to list specific
+endpoints, e.g., a <a>DID</a> for an automobile may include a pointer to a public title
 record at the Department of Motor Vehicles, while a <a>DID</a> for an individual would not.
-As such, the listing of a given service could, by itself, leak information that can 
+As such, the listing of a given service could, by itself, leak information that can
 be used to infer something about the subject.
 </p>
 <p>
-It is the goal of herd privacy to ensure that the nature of specific subjects is 
-obscured by the population of the whole. To maximize herd privacy, implementers 
-need to rely on one &mdash; and only one &mdash; service endpoint, with that endpoint providing 
-a proxy or mediator service that the controller is willing to depend on to protect 
+It is the goal of herd privacy to ensure that the nature of specific subjects is
+obscured by the population of the whole. To maximize herd privacy, implementers
+need to rely on one &mdash; and only one &mdash; service endpoint, with that endpoint providing
+a proxy or mediator service that the controller is willing to depend on to protect
 such associations and that blinds requests to the ultimate service.
 </p>
 <p>
 Torward this end, consider any of the following:
   <ul>
-  <li><strong>Negotiator Endpoint</strong> &mdash; Service for negotiating mutually 
+  <li><strong>Negotiator Endpoint</strong> &mdash; Service for negotiating mutually
   agreeable communications channels, preferably using private set intersection. The
-    output of negotiation is a communication channel and whatever credentials may be 
+    output of negotiation is a communication channel and whatever credentials may be
     needed to access it. </li>
-  <li><strong>Tor Endpoint</strong> (<a href="https://www.torproject.org/about/history/">Tor Onion Router</a>) &mdash;  
+  <li><strong>Tor Endpoint</strong> (<a href="https://www.torproject.org/about/history/">Tor Onion Router</a>) &mdash;
   Provide a privacy-respecting address for reaching service endpoints. Any service that
   can be provided online can be provided through TOR for additional privacy.</li>
-  <li><strong>Mediator Endpoint</strong> &mdash; 
+  <li><strong>Mediator Endpoint</strong> &mdash;
   <a href="https://github.com/hyperledger/aries-rfcs/blob/720bdab50e2d0437fda03028c1b17c69781bdd69/concepts/0046-mediators-and-relays/README.md">Mediators</a>
-  provide a generic endpoint, for multiple parties, receive encrypted messages on 
+  provide a generic endpoint, for multiple parties, receive encrypted messages on
   behalf of those parties, and forward
   them to the intended recipient. This avoids the need to have a specific endpoint per subject, which could create a
   correlation risk. Also called a proxy.
 </li>
-  <li><strong>Confidential Storage</strong> &mdash; Proprietary or confidential personal 
+  <li><strong>Confidential Storage</strong> &mdash; Proprietary or confidential personal
   information may need to be kept off-registry to provide additional privacy and/or
-  security guarantees, especially for those methods where <a>DID documents</a> are published 
-  on a public ledger. Pointing to external resource services provides a means for 
+  security guarantees, especially for those methods where <a>DID documents</a> are published
+  on a public ledger. Pointing to external resource services provides a means for
   authorization checks and deletion.
 </li>
-  <li><strong>Polymorphic Proxy</strong> &mdash; A proxy endpoint that can act as any 
+  <li><strong>Polymorphic Proxy</strong> &mdash; A proxy endpoint that can act as any
   number of services, depending on how it is called. For example, the same URL could
   be used for both negotiator and mediator functions, depending on a mechanism for re-routing.
 </li>
