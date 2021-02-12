@@ -1291,274 +1291,230 @@ implementations and the larger ecosystem will be less reliable.
     <h1>Core Properties</h1>
 
     <p>
-A <a>DID</a> points to a <a>DID document</a>. <a>DID documents</a> are the
-serialization of the <a href="#data-model">data model</a>.
+A <a>DID</a> is associated with a <a>DID document</a>.
+<a>DID documents</a> are expressed using the
+<a href="#data-model">data model</a> and can be serialized into a
+<a href="#representations">representation</a>.
 The following sections define the properties in a <a>DID document</a>,
 including whether these properties are required or optional. These properties
 describe relationships between the <a>DID subject</a> and the value of the
 property.
     </p>
-
     <p>
-This specification defines three classes of core properties:
-    </p>
-
-    <ol>
-      <li>
-properties defined for a <a>DID Document</a>, the topmost
-<a data-cite="INFRA#ordered-map">map</a> in the <a href="#data-model">data
-model</a>;
-      </li>
-      <li>
-properties defined for a <a>Verification Method</a>, a concept
-represented by a <a data-cite="INFRA#ordered-map">map</a> in the
-<a href="#data-model">data model</a>, and specified in
-Section <a href="#verification-methods"></a>;
-      </li>
-      <li>
-properties defined for a <a>Service</a>, a concept
-represented by a <a data-cite="INFRA#ordered-map">map</a> in the
-<a href="#data-model">data model</a>, and specified in Section
-<a href="#services"></a>.
-      </li>
-    </ol>
-
-    <p>
-The core properties are summarized informatively in Section
-<a href="#summary"></a>, and described in detail and specified
-normatively in subsequent sections.
-    </p>
-
-
-    <p class="note" title="Ordering of values">
-As a result of the <a href="#data-model">data model</a> being defined using
-terminology from [[INFRA]], property values which can contain more than one
-item, such as <a data-cite="INFRA#ordered-map">maps</a> and
-<a data-cite="INFRA#ordered-set">sets</a>, are explicitly ordered. For the
-purposes of this specification, unless otherwise stated, ordering is not
-important and implementations are not expected to produce or consume
-deterministically ordered values.
-    </p>
-
-    <section class="informative">
-      <h2>Summary</h2>
-
-      <p>
-This section contains an informative reference for the core properties defined
-by this specification, with expected values and whether or not they are
+The following tables contain informative references for the core properties
+defined by this specification, with expected values, and whether or not they are
 required. The property names in the tables are linked to the normative
 definitions and more detailed descriptions of each property.
-      </p>
-      <p class="note" title="Property names used in multiple classes">
-  The property names <code>id</code>, <code>type</code>, and
-  <code>controller</code> can be present in different classes with possible
-  differences in constraints.
-      </p>
+    </p>
+    <p class="note" title="Property names used in multiple classes">
+The property names <code>id</code>, <code>type</code>, and
+<code>controller</code> can be present in different classes with possible
+differences in constraints.
+    </p>
 
-      <section>
-        <h3>DID Document properties</h3>
+    <section class="notoc">
+      <h2>DID Document properties</h2>
 
-        <table class=simple>
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Required?</th>
-              <th>Value constraints</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code><a>id</a></code></td>
-              <td>yes</td>
-              <td>
-A <a data-cite="INFRA#string">string</a> that conforms to the rules in Section
+      <table class=simple>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Required?</th>
+            <th>Value constraints</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code><a>id</a></code></td>
+            <td>yes</td>
+            <td>
+A <a data-cite="INFRA#string">string</a> that conforms to the rules in
 <a href="#did-syntax"></a>.
-              </td>
-            </tr>
-            <tr>
-              <td><code><a>alsoKnownAs</a></code></td>
-              <td>no</td>
-              <td>
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>alsoKnownAs</a></code></td>
+            <td>no</td>
+            <td>
 An <a data-cite="INFRA#ordered-set">ordered set</a> of
 <a data-cite="INFRA#string">strings</a> that conform to the rules of
 [[RFC3986]] for <a>URIs</a>.
-              </td>
-            </tr>
-            <tr>
-              <td><code><a>controller</a></code></td>
-              <td>no</td>
-              <td>
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>controller</a></code></td>
+            <td>no</td>
+            <td>
 A <a data-cite="INFRA#string">string</a> or an
 <a data-cite="INFRA#ordered-set">ordered set</a> of
-<a data-cite="INFRA#string">strings</a> that conform to the rules in Section
+<a data-cite="INFRA#string">strings</a> that conform to the rules in
 <a href="#did-syntax"></a>.
-              </td>
-            </tr>
-            <tr>
-              <td><code><a>verificationMethod</a></code></td>
-              <td>no</td>
-              <td>
-An <a data-cite="INFRA#ordered-set">ordered set</a> of <a>Verification
-Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see Section
-<a href="#verification-method-properties"></a>).
-              </td>
-            </tr>
-            <tr>
-              <td><code><a>authentication</a></code></td>
-              <td>no</td>
-              <td rowspan="5">
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>verificationMethod</a></code></td>
+            <td>no</td>
+            <td>
+An <a data-cite="INFRA#ordered-set">ordered set</a> of
+<a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a>
+that conform to the rules in <a href="#verification-method-properties"></a>.
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>authentication</a></code></td>
+            <td>no</td>
+            <td rowspan="5">
 An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification
-Method</a> <a data-cite="INFRA#ordered-map">maps</a> (see Section
-<a href="#verification-method-properties"></a>) or
-<a data-cite="INFRA#string">strings</a> that conform to the rules in Section
+Method</a> <a data-cite="INFRA#ordered-map">maps</a> that conform to
+the rules in <a href="#verification-method-properties"></a>) or
+<a data-cite="INFRA#string">strings</a> that conform to the rules in
 <a href="#did-url-syntax"></a>.
-              </td>
+            </td>
 
-            </tr>
-            <tr>
-              <td><code><a>assertionMethod</a></code></td>
-              <td>no</td>
+          </tr>
+          <tr>
+            <td><code><a>assertionMethod</a></code></td>
+            <td>no</td>
 
-            </tr>
-            <tr>
-              <td><code><a>keyAgreement</a></code></td>
-              <td>no</td>
+          </tr>
+          <tr>
+            <td><code><a>keyAgreement</a></code></td>
+            <td>no</td>
 
-            </tr>
-            <tr>
-              <td><code><a>capabilityInvocation</a></code></td>
-              <td>no</td>
+          </tr>
+          <tr>
+            <td><code><a>capabilityInvocation</a></code></td>
+            <td>no</td>
 
-            </tr>
-            <tr>
-              <td><code><a>capabilityDelegation</a></code></td>
-              <td>no</td>
+          </tr>
+          <tr>
+            <td><code><a>capabilityDelegation</a></code></td>
+            <td>no</td>
 
-            </tr>
-            <tr>
-              <td><code><a>service</a></code></td>
-              <td>no</td>
-              <td>
+          </tr>
+          <tr>
+            <td><code><a>service</a></code></td>
+            <td>no</td>
+            <td>
 An <a data-cite="INFRA#ordered-set">ordered set</a> of <a>Service Endpoint</a>
-<a data-cite="INFRA#ordered-map">maps</a> (see Section
-<a href="#service-properties"></a>).
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+<a data-cite="INFRA#ordered-map">maps</a> that conform to the rules in
+<a href="#service-properties"></a>.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-      <section>
-        <h3>Verification Method properties</h3>
+    <section class="notoc">
+      <h2>Verification Method properties</h2>
 
-        <table class=simple>
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Required?</th>
-              <th>Value constraints</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>id</code></td>
-              <td>yes</td>
-              <td>
+      <table class=simple>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Required?</th>
+            <th>Value constraints</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>id</code></td>
+            <td>yes</td>
+            <td>
 A <a data-cite="INFRA#string">string</a> that conforms to the rules in
-Section <a href="#did-url-syntax"></a>.
-              </td>
-            </tr>
-            <tr>
-              <td><code><a>controller</a></code></td>
-              <td>yes</td>
-              <td>
+<a href="#did-url-syntax"></a>.
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>controller</a></code></td>
+            <td>yes</td>
+            <td>
 A <a data-cite="INFRA#string">string</a> or an
 <a data-cite="INFRA#ordered-set">ordered set</a> of
-<a data-cite="INFRA#string">strings</a> that conform to the rules in Section
+<a data-cite="INFRA#string">strings</a> that conform to the rules in
 <a href="#did-syntax"></a>.
-              </td>
-            </tr>
-            <tr>
-              <td><code>type</code></td>
-              <td>yes</td>
-              <td>
+            </td>
+          </tr>
+          <tr>
+            <td><code>type</code></td>
+            <td>yes</td>
+            <td>
 A <a data-cite="INFRA#string">string</a>.
-              </td>
-            </tr>
-            <tr>
-              <td><code><a>publicKeyJwk</a></code></td>
-              <td>no</td>
-              <td>
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>publicKeyJwk</a></code></td>
+            <td>no</td>
+            <td>
 A <a data-cite="INFRA#maps">map</a> representing a JSON Web Key that conforms
 to [[RFC7517]]. See <a href="#dfn-publickeyjwk">definition of publicKeyJwk</a>
 for additional constraints.
-              </td>
-            </tr>
-            <tr>
-              <td><code><a>publicKeyBase58</a></code></td>
-              <td>no</td>
-              <td>
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>publicKeyBase58</a></code></td>
+            <td>no</td>
+            <td>
 A <a data-cite="INFRA#string">string</a> that conforms to a base58btc encoded
 public key.
-              </td>
-            </tr>
-          </tbody>
-        </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-      </section>
+    </section>
 
-      <section>
-        <h3>Service properties</h3>
+    <section class="notoc">
+      <h3>Service properties</h3>
 
-      <table class=simple>
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Required?</th>
-              <th>Value constraints</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>id</code></td>
-              <td>yes</td>
-              <td>
+    <table class=simple>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Required?</th>
+            <th>Value constraints</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>id</code></td>
+            <td>yes</td>
+            <td>
 A <a data-cite="INFRA#string">string</a> that conforms to the rules of
 [[RFC3986]] for <a>URIs</a>.
-              </td>
-            </tr>
-            <tr>
-              <td><code>type</code></td>
-              <td>yes</td>
-              <td>
+            </td>
+          </tr>
+          <tr>
+            <td><code>type</code></td>
+            <td>yes</td>
+            <td>
 A <a data-cite="INFRA#string">string</a> or an
 <a data-cite="INFRA#ordered-set">ordered set</a> of
 <a data-cite="INFRA#string">strings</a>.
-              </td>
-            </tr>
-            <tr>
-              <td><code><a>serviceEndpoint</a></code></td>
-              <td>yes</td>
-              <td>
+            </td>
+          </tr>
+          <tr>
+            <td><code><a>serviceEndpoint</a></code></td>
+            <td>yes</td>
+            <td>
 A <a data-cite="INFRA#string">string</a> that conforms to the rules of
 [[RFC3986]] for <a>URIs</a>, a <a data-cite="INFRA#string">map</a>, or an
 <a data-cite="INFRA#ordered-set">ordered set</a> composed of a one or more
 <a data-cite="INFRA#string">strings</a> that conform to the rules of
 [[RFC3986]] for <a>URIs</a> and/or <a data-cite="INFRA#string">maps</a>.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section>
       <h2>DID Subject</h2>
 
       <p>
-  The <a>DID subject</a> is the entity that the <a>DID document</a> is about.
-  That is, it is the entity identified by the <a>DID</a> and described by the
-  <a>DID document</a>.
+The <a>DID subject</a> is the entity that the <a>DID document</a> is about.
+That is, it is the entity identified by the <a>DID</a> and described by the
+<a>DID document</a>.
       </p>
 
       <section>
