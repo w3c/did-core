@@ -926,18 +926,24 @@ href="#did-url-dereferencing"></a>.
         <h2>DID Parameters</h2>
 
         <p>
-The <a>DID URL</a> syntax supports a simple format for parameters
-based on the <code>query</code> component (See <a href="#query"></a>). Adding
-a DID parameter to a <a>DID URL</a> means that the parameter becomes part of
-the identifier for a <a>resource</a>.
+The <a>DID URL</a> syntax supports a simple format for parameters based on the
+<code>query</code> component described in <a href="#query"></a>. Adding a DID
+parameter to a <a>DID URL</a> means that the parameter becomes part of the
+identifier for a <a>resource</a>.
         </p>
+
+        <pre class="example nohighlight"
+          title="A DID URL with a 'versionTime' DID parameter">
+did:example:123?versionTime=2021-05-10T17:00:00Z
+        </pre>
+
         <p>
 Some DID parameters are completely independent of of any specific <a>DID
-method</a>, and function the same way for all <a>DIDs</a>. Other DID
-parameters are not necessarily supported by all <a>DID methods</a>. Where
-optional parameters are supported, they are expected to operate uniformly
-across the <a>DID methods</a> that do support them. Requirements which enable
-this are detailed in the following table.
+method</a> and function the same way for all <a>DIDs</a>. Other DID parameters
+are not supported by all <a>DID methods</a>. Where optional parameters are
+supported, they are expected to operate uniformly across the <a>DID methods</a>
+that do support them. The following table provides common DID parameters
+that function the same way across all <a>DID methods</a>.
         </p>
 
         <table class="simple">
@@ -959,8 +965,8 @@ Description
               </td>
               <td>
 Identifies a service from the <a>DID document</a> by service ID. Support for
-this parameter is REQUIRED. The associated value MUST be an <a data-lt="ascii
-string">ASCII string</a>.
+this parameter is OPTIONAL. If present, the associated value MUST be an <a
+data-lt="ascii string">ASCII string</a>.
               </td>
             </tr>
             <tr>
@@ -969,12 +975,13 @@ string">ASCII string</a>.
               </td>
               <td>
 A relative <a>URI</a> reference according to <a
-data-cite="RFC3986#section-4.2">RFC3986 Section 4.2</a>
-that identifies a <a>resource</a> at a <a>service endpoint</a>, which is selected from
-a <a>DID document</a> by using the <code>service</code> parameter. Support for
-this parameter is REQUIRED. The associated value MUST be an <a data-lt="ascii
-string">ASCII string</a> and MUST use percent-encoding for certain characters
-as specified in <a data-cite="RFC3986#section-2.1">RFC3986 Section 2.1</a>.
+data-cite="RFC3986#section-4.2">RFC3986 Section 4.2</a> that identifies a
+<a>resource</a> at a <a>service endpoint</a>, which is selected from a <a>DID
+document</a> by using the <code>service</code> parameter. Support for this
+parameter is OPTIONAL. If present, the associated value MUST be an <a
+data-lt="ascii string">ASCII string</a> and MUST use percent-encoding for
+certain characters as specified in <a data-cite="RFC3986#section-2.1">RFC3986
+Section 2.1</a>.
               </td>
             </tr>
             <tr>
@@ -1000,7 +1007,8 @@ MUST be an <a data-lt="ascii string">ASCII string</a> which is a valid XML
 datetime value, as defined in section 3.3.7 of <a
 href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition Language
 (XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This datetime value MUST be
-normalized to UTC 00:00, as indicated by the trailing "Z".
+normalized to UTC 00:00:00 and without sub-second decimal precision.
+For example: <code>2020-12-20T19:17:47Z</code>.
               </td>
             </tr>
             <tr>
@@ -1021,45 +1029,24 @@ parameter is OPTIONAL. If present, the associated value MUST be an
         <p>
 Implementers as well as <a>DID method</a> specification authors might use
 additional DID parameters that are not listed here. For maximum
-interoperability, it is RECOMMENDED that DID parameters use the official W3C
-DID Specification Registries mechanism [[?DID-SPEC-REGISTRIES]], to avoid
-collision with other uses of the same DID parameter with different semantics.
+interoperability, it is RECOMMENDED that DID parameters use the official W3C DID
+Specification Registries mechanism [[?DID-SPEC-REGISTRIES]], to avoid collision
+with other uses of the same DID parameter with different semantics.
         </p>
 
         <p>
 DID parameters might be used if there is a clear use case where the parameter
-needs to be part of a <a>URI</a> that can be used as a link, or as a <a>resource</a>
-in RDF / JSON-LD documents.
+needs to be part of a <a>URL</a> that references a <a>resource</a> with more
+precision than merely using the <a>DID</a>. It is expected that DID parameters
+will <em>not</em> be used if the same functionality can be expressed by passing
+input metadata to a <a>DID resolver</a>. Additional considerations for
+processing these parameters are discussed in [[?DID-RESOLUTION]].
         </p>
-
-        <p>
-It is expected that DID parameters will <em>not</em> be used if the same
-functionality can be expressed by passing input metadata to a <a>DID resolver</a>.
-        </p>
-
-        <p>
-Additional considerations for processing these parameters are discussed in
-[[?DID-RESOLUTION]].
-        </p>
-
-        <p>
-Some example <a>DID URLs</a> using DID parameters are shown below.
-        </p>
-
-        <pre class="example nohighlight"
-          title="A DID URL with a 'service' DID parameter">
-did:foo:21tDAKCERh95uGgKbJNHYp?service=agent
-        </pre>
-
-        <pre class="example nohighlight"
-          title="A DID URL with a 'versionTime' DID parameter">
-did:foo:21tDAKCERh95uGgKbJNHYp?versionTime=2002-10-10T17:00:00Z
-        </pre>
 
         <p class="note" title="DID parameters and DID resolution">
 The <a>DID resolution</a> and the <a>DID URL dereferencing</a> functions can
 be influenced by passing input metadata to a <a>DID resolver</a> that are
-not part of the <a>DID URL</a>. (See <a
+not part of the <a>DID URL</a> (see <a
 href="#did-resolution-options"></a>). This is comparable to
 HTTP, where certain parameters could either be included in an HTTP URL, or
 alternatively passed as HTTP headers during the dereferencing process. The
