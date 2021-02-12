@@ -60,9 +60,9 @@ documents</a> to discover and verify <a>public key descriptions</a>.
 
   <dd>
 An entity that has the capability to make changes to a <a>DID document</a>. A
-<a>DID</a> might have more than one DID controller. The <a>DID controller(s)</a>
+<a>DID</a> might have more than one DID controller. The DID controller(s)
 can be denoted by the optional `controller` property at the top level of the
-<a>DID document</a>. Note that a <a>DID controller</a> might be the <a>DID
+<a>DID document</a>. Note that a DID controller might be the <a>DID
 subject</a>.
   </dd>
 
@@ -75,7 +75,7 @@ document</a>. For example, a parent who controls a child's <a>DID document</a>
 might permit the child to use their personal device in order to
 <a>authenticate</a>. In this case, the child is the <a>DID delegate</a>. The
 child's personal device would contain the private cryptographic material
-enabling the child to <a>authenticate</a> using the DID. However, the child
+enabling the child to <a>authenticate</a> using the <a>DID</a>. However, the child
 might not be permitted to add other personal devices without the parent's
 permission.
   </dd>
@@ -86,10 +86,7 @@ permission.
 A set of data describing the <a>DID subject</a>, including mechanisms, such as
 cryptographic public keys, that the <a>DID subject</a> or a <a>DID delegate</a>
 can use to <a>authenticate</a> itself and prove its association with the
-<a>DID</a>. A DID document might also contain other <a
-href="https://en.wikipedia.org/wiki/Attribute_(computing)">attributes</a> or <a
-href="https://en.wikipedia.org/wiki/Claims-based_identity">claims</a> describing
-the <a>DID subject</a>. A DID document might have one or more different
+<a>DID</a>. A DID document might have one or more different
 <a>representations</a> as defined in <a href="#representations"></a> or in the
 W3C DID Specification Registries [[DID-SPEC-REGISTRIES]].
   </dd>
@@ -116,8 +113,8 @@ deactivated. See <a href="#methods"></a>.
   <dd>
 The portion of a <a>DID URL</a> that begins with and includes the first forward
 slash (<code>/</code>) character and ends with either a question mark
-(<code>?</code>) character, or a fragment hash sign (<code>#</code>) character,
-or the end of the DID URL. DID path syntax is identical to URI path syntax.
+(<code>?</code>) character, a fragment hash sign (<code>#</code>) character,
+or the end of the <a>DID URL</a>. DID path syntax is identical to URI path syntax.
 See <a href="#path"></a>.
   </dd>
 
@@ -134,7 +131,7 @@ syntax. See <a href="#query"></a>.
   <dd>
 The process that takes as its input a <a>DID</a> and a set of resolution
 options and returns a <a>DID document</a> in a conforming <a>representation</a>
-plus additional metadata. This function relies on the "Read" operation of the
+plus additional metadata. This process relies on the "Read" operation of the
 applicable <a>DID method</a>. The inputs and outputs of this process are
 defined in <a href="#did-resolution"></a>.
   </dd>
@@ -153,7 +150,7 @@ conforming <a>DID document</a> as output.
 The formal syntax of a <a>decentralized identifier</a>. The generic DID scheme
 begins with the prefix <code>did:</code> as defined in <a
 href="#did-syntax"></a>. Each <a>DID method</a> specification defines a specific
-DID scheme that works with that specific <a>DID method</a>. In a specific DID
+DID method scheme that works with that specific <a>DID method</a>. In a specific DID
 method scheme, the DID method name follows the first colon and terminates with
 the second colon, e.g., <code>did:example:</code>
   </dd>
@@ -179,16 +176,16 @@ path</a> (with its leading <code>/</code> character), optional <a>DID query</a>
   <dt><dfn>DID URL dereferencing</dfn></dt>
 
   <dd>
-The function that takes as its input a <a>DID URL</a> and a set of input
+The process that takes as its input a <a>DID URL</a> and a set of input
 metadata, and returns a <a>resource</a>. This resource might be a <a>DID
 document</a> plus additional metadata, or it might be a secondary resource
 contained within the <a>DID document</a>, or it might be a resource entirely
-external to the <a>DID document</a>. The function uses the <a>DID resolution</a>
-function to fetch a <a>DID document</a> indicated by the <a>DID</a> contained
-within the <a>DID URL</a>. The dereferencing function then can perform
-additional processing on the <a>DID document</a> to return the dereferenced
-resource indicated by the <a>DID URL</a>. The inputs and outputs of this
-function are defined in <a href="#did-url-dereferencing"></a>.
+external to the <a>DID document</a>. The process uses <a>DID resolution</a> to
+fetch a <a>DID document</a> indicated by the <a>DID</a> contained within the
+<a>DID URL</a>. The dereferencing process can then perform additional processing
+on the <a>DID document</a> to return the dereferenced resource indicated by the
+<a>DID URL</a>. The inputs and outputs of this process are defined in
+<a href="#did-url-dereferencing"></a>.
   </dd>
 
   <dt><dfn data-lt="DID URL dereferencers">DID URL dereferencer</dfn></dt>
