@@ -1525,45 +1525,40 @@ A <a data-cite="INFRA#string">string</a> that conforms to the rules of
     </section>
 
     <section>
-      <h2>DID Subject</h2>
+      <h2>Identification</h2>
 
       <p>
-The <a>DID subject</a> is the entity that the <a>DID document</a> is about.
-That is, it is the entity identified by the <a>DID</a> and described by the
-<a>DID document</a>.
+It is useful to be able to identify the <a>DID subject</a>, the <a>DID
+controller</a>, and any alternate identifiers that the <a>DID subject</a>
+might also be known as. The following section elaborates on the mechanisms for
+doing so in the <a>DID document</a> data model.
       </p>
 
       <section>
-        <h3>
-Identifier
-        </h3>
+        <h3>DID Subject</h3>
         <p>
-The <a>DID</a> for a particular <a>DID subject</a> is denoted with the
+The <a>DID</a> for a particular <a>DID subject</a> is expressed using the
 <code><a>id</a></code> property in the <a>DID document</a>.
-        </p>
-
-        <p>
-<a>DID documents</a> MUST include the <code><a>id</a></code> property in the
-the topmost <a data-cite="INFRA#ordered-map">map</a> in the
-<a href="#data-model">data model</a>.
         </p>
 
         <dl>
           <dt><dfn>id</dfn></dt>
           <dd>
 The value of <code>id</code> MUST be a <a
-data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
-href="#did-syntax"></a>.
+data-cite="INFRA#string">string</a> that conforms to the rules in <a
+href="#did-syntax"></a> and MUST exist in the topmost <a
+data-cite="INFRA#ordered-map">map</a> of the <a href="#data-model">data
+model</a> for the <a>DID document</a>.
           </dd>
         </dl>
 
         <pre class="example nohighlight">
 {
-"id": "did:example:21tDAKCERh95uGgKbJNHYp"
+  "id": "did:example:123456789abcdefghijk"
 }
         </pre>
 
-        <p class="note" title="Multiple occurrences of the id property">
+        <p>
 The <code>id</code> property only denotes the <a>DID</a> of the
 <a>DID subject</a> when it is present in the <em>topmost</em>
 <a data-cite="INFRA#ordered-map">map</a> of the <a>DID document</a>.
@@ -1573,20 +1568,72 @@ The <code>id</code> property only denotes the <a>DID</a> of the
 <a>DID document</a> that do not contain the <code><a>id</a></code> property,
 such as when a <a>DID resolver</a> is performing <a>DID resolution</a>.
 However, the fully resolved <a>DID document</a> always contains a valid
-<code><a>id</a></code> property. The value of <code><a>id</a></code> in the
-resolved <a>DID document</a> MUST match the <a>DID</a> that was
-resolved.
+<code><a>id</a></code> property.
         </p>
 
       </section>
 
       <section>
+       <h3>DID Controller</h3>
+
+        <p>
+A <a>DID controller</a> is an entity that is authorized to make changes to a
+<a>DID document</a>. The process of authorizing a <a>DID controller</a> is
+defined by the <a>DID Method</a>.
+        </p>
+
+        <dl>
+          <dt><dfn>controller</dfn></dt>
+          <dd>
+The <code>controller</code> property is OPTIONAL. If present, the value MUST
+be a <a data-cite="INFRA#string">string</a> or an <a
+data-cite="INFRA#ordered-set">ordered set</a> of <a
+data-cite="INFRA#string">strings</a> that conform to the rules in <a
+href="#did-syntax"></a>. The corresponding <a>DID document</a>(s) SHOULD
+contain <a>verification relationships</a> that explicitly permit the use of
+certain <a>verification methods</a> for specific purposes.
+          </dd>
+        </dl>
+
+        <p>
+When a <code><a>controller</a></code> property is present in a <a>DID
+Document</a>, its value expresses one or more <a>DIDs</a>. Any <a>verification
+methods</a> contained in the <a>DID Documents</a> for those <a>DIDs</a> SHOULD
+be accepted as authoritative, such that proofs that satisfy those
+<a>verification methods</a> are to be considered equivalent to proofs provided
+by the <a>DID Subject</a>.
+        </p>
+
+        <pre class="example nohighlight"
+          title="DID document with a controller property">
+{
+  "@context": "https://www.w3.org/ns/did/v1",
+  "id": "did:example:123456789abcdefghi",
+  "controller": "did:example:bcehfew7h32f32h7af3",
+}
+        </pre>
+
+        <p class="note" title="Authorization vs authentication">
+Note that authorization provided by the value of <code>controller</code> is
+separate from authentication as described in <a href="#authentication"></a>.
+This is particularly important for key recovery in the case of cryptographic
+key loss, when the subject no longer has access to their keys, or key
+compromise, where the <a>DID controller</a>'s trusted third parties need to
+override malicious activity by an attacker. See
+<a href="#security-considerations"></a> for information related to threat
+models and attack vectors.
+        </p>
+      </section>
+
+      <section>
         <h3>Also Known As</h3>
 
-        <p class="issue atrisk" data-number="584">
-This property is at risk of being removed from DID Core in favour of putting
-it in the DID Specification Registries [[?DID-SPEC-REGISTRIES]] pending
-feedback from implementers and reviewers.
+        <p class="issue atrisk" title="Implementation of alsoKnownAs">
+The DID Working Group is current seeking implementer feedback regarding
+the alsoKnownAs feature. If there is not enough
+implementer interest in implementing this feature, it will be removed
+from this specification and placed into the DID Specification Registries
+[[?DID-SPEC-REGISTRIES]] as an extension.
         </p>
 
         <p>
@@ -1617,75 +1664,19 @@ Applications might choose to consider two identifiers related by
 direction. It is best practice <em>not</em> to consider them equivalent in the
 absence of this inverse relationship. In other words, the presence of an
 <code><a>alsoKnownAs</a></code> assertion does not prove that this assertion
-is true. Therefore it is strongly advised that a requesting party obtain
+is true. Therefore, it is strongly advised that a requesting party obtain
 independent verification of an <code>alsoKnownAs</code> assertion.
           </p>
           <p>
 Given that the <a>DID subject</a> might use different identifiers for different
 purposes, an expectation of strong equivalence between the two identifiers, or
-merging the graphs of the two corresponding <a>DID documents</a>, is not
+merging the information of the two corresponding <a>DID documents</a>, is not
 necessarily appropriate, <em>even with</em> a reciprocal relationship.
           </p>
         </div>
 
       </section>
 
-    </section>
-
-    <section>
-     <h2>DID Controller</h2>
-
-      <p>
-A <a>DID controller</a> is an entity that is authorized to make changes to
-a <a>DID document</a>. The process of authorizing a <a>DID controller</a> is
-defined by the <a>DID Method</a>.
-      </p>
-
-      <dl>
-          <dt><dfn>controller</dfn></dt>
-          <dd>
-The <code>controller</code> property is OPTIONAL. If present, the value MUST
-be a <a data-cite="INFRA#string">string</a> or an <a
-data-cite="INFRA#ordered-set">ordered set</a> of <a
-data-cite="INFRA#string">strings</a> that conform to the rules in Section <a
-href="#did-syntax"></a>. The corresponding <a>DID document</a>(s) SHOULD
-contain <a>verification relationships</a> that explicitly permit the use of
-certain <a>verification methods</a> for specific purposes.
-          </dd>
-      </dl>
-
-      <p>
-When a <code><a>controller</a></code> property is present in a
-<a>DID Document</a>, its value expresses one or more <a>DIDs</a>. Any
-<a>verification methods</a> contained in the <a>DID Documents</a> for those
-<a>DIDs</a> SHOULD be accepted as authoritative, such that proofs that satisfy
-those <a>verification methods</a> are to be considered equivalent to proofs provided
-by the <a>DID Subject</a>.
-      </p>
-
-      <pre class="example nohighlight"
-        title="DID document with a controller property">
-{
-  "@context": "https://www.w3.org/ns/did/v1",
-  "id": "did:example:123456789abcdefghi",
-  "controller": "did:example:bcehfew7h32f32h7af3",
-  "service": [{
-    <span class="comment">// used to retrieve Verifiable Credentials associated with the DID</span>
-    "type": "VerifiableCredentialService",<span class="comment">// external (property value)</span>
-    "serviceEndpoint": "https://example.com/vc/"
-  }]
-}
-      </pre>
-
-      <p class="note" title="Authorization vs authentication">
-Note that authorization provided by the value of <code>controller</code> is
-separate from authentication (see Section <a href="#authentication"></a>).
-This is particularly important for key recovery in the case of cryptographic
-key loss, when the subject no longer has access to their keys, or key
-compromise, where the <a>DID controller</a>'s trusted third parties need to
-override malicious activity by an attacker. See Section
-<a href="#security-considerations"></a>.
-      </p>
     </section>
 
     <section>
@@ -3754,11 +3745,13 @@ MUST contain an <code>error</code> property describing the error.
             </dt>
             <dd>
 If the resolution is successful, and if the <code>resolve</code> function was
-called, this MUST be a <a>DID document</a> abstract data model (a <a data-cite="INFRA#maps">map</a>) as described in
-<a href="#data-model"></a> that is capable of being transformed
-into a <a>conforming DID Document</a> (representation), using the production
-rules specified by the representation. If the resolution is
-unsuccessful, this value MUST be empty.
+called, this MUST be a <a>DID document</a> abstract data model (a <a
+data-cite="INFRA#maps">map</a>) as described in <a href="#data-model"></a> that
+is capable of being transformed into a <a>conforming DID Document</a>
+(representation), using the production rules specified by the representation.
+The value of <code><a>id</a></code> in the resolved <a>DID document</a> MUST
+match the <a>DID</a> that was resolved. If the resolution is unsuccessful, this
+value MUST be empty.
             </dd>
             <dt>
 <dfn>didDocumentStream</dfn>
