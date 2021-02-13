@@ -1684,131 +1684,59 @@ necessarily appropriate, <em>even with</em> a reciprocal relationship.
       <h2>Verification Methods</h2>
       <p>
 A <a>DID document</a> can express <a>verification methods</a>, such as
-cryptographic keys, which can be used to <a>authenticate</a>1 or authorize interactions
-with the <a>DID subject</a> or associated parties. The information expressed
-often includes globally unambiguous identifiers and public key material, which
-can be used to verify digital signatures. For example, a public key can be
-used as a <a>verification method</a> with respect to a digital signature; in such
-usage, it verifies that the signer possessed the associated private key.
-      </p>
-      <p>
-<a>Verification methods</a> might take many parameters. An example of this is a set
-of five cryptographic keys from which any three are required to contribute to
-a threshold signature. Methods need not be cryptographic.
-      </p>
-
-      <p>
-In order to maximize interoperability, support for public keys as
-<a>verification methods</a> is restricted: see
-<a href="#verification-method-types"></a>. For other types of <a>verification
-method</a>, the <a>verification method</a> SHOULD be registered in the DID
-Specification Registries [[?DID-SPEC-REGISTRIES]].
+cryptographic public keys, which can be used to <a>authenticate</a> or authorize
+interactions with the <a>DID subject</a> or associated parties. For example, a
+cryptographic public key can be used as a <a>verification method</a> with
+respect to a digital signature; in such usage, it verifies that the signer
+possessed the associated cryptographic private key. <a>Verification methods</a>
+might take many parameters. An example of this is a set of five cryptographic
+keys from which any three are required to contribute to a cryptographic
+threshold signature.
       </p>
 
       <dl>
         <dt><dfn>verificationMethod</dfn></dt>
         <dd>
           <p>
-The <code>verificationMethod</code> property is OPTIONAL. If present, the
-value MUST be an <a data-cite="INFRA#ordered-set">ordered
-set</a> of <a>verification methods</a>, where each <a>verification method</a> is described by
-a <a data-cite="INFRA#ordered-map">map</a>. The <a>verification method</a>
-<a data-cite="INFRA#ordered-map">map</a> MUST include the <code>id</code>,
-<code>type</code>, <code>controller</code>, and specific verification method
-properties as determined by the value of <code>type</code>, and MAY include
-additional properties.
-          </p>
-          <p>
-The value of the <code><a>id</a></code> property for a <a>verification method</a>
-MUST be a <a data-cite="INFRA#string">string</a> that conforms to the rules in
-Section <a href="#did-url-syntax"></a>. When more than one <a>verification method</a>
-is present, the value of <code><a>verificationMethod</a></code> MUST NOT
-contain multiple entries with the same <code>id</code>. If the value of
-<code><a>verificationMethod</a></code> contains multiple entries with the same
-<code>id</code>, a <a>DID document</a> processor MUST produce an error.
+The <code>verificationMethod</code> property is OPTIONAL. If present, the value
+MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of <a>verification
+methods</a>, where each <a>verification method</a> is expressed using a <a
+data-cite="INFRA#ordered-map">map</a>. The <a>verification method</a> <a
+data-cite="INFRA#ordered-map">map</a> MUST include the <code>id</code>,
+<code>type</code>, <code>controller</code>, and specific verification material
+properties that are determined by the value of <code>type</code> and are defined
+in <a href="#verification-material"></a>. A <a>verification method</a> MAY
+include additional properties.
           </p>
 
-          <p>
-In the case where a <a>verification method</a> is a public key, the value of the
-<code><a>id</a></code> property might be structured as a
-<a href="https://en.wikipedia.org/wiki/Compound_key">compound key</a>. This is
-especially useful for integrating with existing key management systems and key
-formats such as JWK [[RFC7517]]. It is RECOMMENDED that JWK <code>kid</code>
-values are set to the public key fingerprint [[RFC7638]]. It is RECOMMENDED
-that verification methods that use JWKs to represent their public keys utilize
-the value of <code>kid</code> as their fragment identifier. See the first key
-in <a href="#example-various-verification-method-types"></a>
-for an example of a public key with a compound key identifier.
-          </p>
-
-          <p>
+          <dl>
+            <dt>id</dt>
+            <dd>
+              <p>
+The value of the <code><a>id</a></code> property for a <a>verification
+method</a> MUST be a <a data-cite="INFRA#string">string</a> that conforms to the
+rules in Section <a href="#did-url-syntax"></a>.
+              </p>
+            </dd>
+            <dt>type</dt>
+            <dd>
 The value of the <code>type</code> property MUST be exactly one <a>verification
 method</a> type. In order to maximize global interoperability, the
 <a>verification method</a> type SHOULD be registered in the DID Specification
 Registries [[?DID-SPEC-REGISTRIES]].
-          </p>
-          <p>
+            </dd>
+            <dt>controller</dt>
+            <dd>
 The value of the <code>controller</code> property MUST be a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
 href="#did-syntax"></a>.
-          </p>
-          <p>
-The value of the <code>type</code> property MUST be exactly one verification
-method type expressed as a <a data-cite="INFRA#string">string</a>. In order to
-maximize interoperability, the <a>verification method</a> type SHOULD be
-registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
-          </p>
-
-          <p>
-A <a>verification method</a> MUST contain a property to express verification
-material. The property used is determined by the value of the
-<code>type</code> property. Examples of such properties are
-<code><a>publicKeyJwk</a></code> or <code><a>publicKeyBase58</a></code>;
-others can be found in the DID Specification Registries
-[[?DID-SPEC-REGISTRIES]].
-          </p>
-
-          <p>
-A <a>verification method</a> MUST NOT contain multiple verification material
-properties for the same material. For example, expressing key material in a
-<a>verification method</a> using both <code>publicKeyJwk</code> and
-<code>publicKeyBase58</code> at the same time is prohibited.
-          </p>
+            </dd>
+          </dl>
         </dd>
-        <dt><dfn>publicKeyJwk</dfn></dt>
-        <dd>
-The <code>publicKeyJwk</code> property is OPTIONAL. If present, the value MUST
-be a <a data-cite="INFRA#ordered-map">map</a> representing a JSON Web Key that
-conforms to [[RFC7517]]. The <a data-cite="INFRA#ordered-map">map</a> MUST NOT
-contain "d", or any other members of the private information class as
-described in <a
-href="https://tools.ietf.org/html/rfc7517#section-8.1.1">Registration
-Template</a>.
-        </dd>
-        <dt><dfn>publicKeyBase58</dfn></dt>
-        <dd>
-The <code>publicKeyBase58</code> property is OPTIONAL. If present, the value
-MUST be a <a data-cite="INFRA#string">string</a> representation of a base58btc
-encoded public key.
-        </dd>
-      </dl>
 
-      <p>
-In the case where a verification method is a public key, the value of the
-<code><a>id</a></code> property might contain a
-<a href="#fragment">fragment</a>. This is
-especially useful for integrating with existing key management systems and key
-formats such as JWK [[RFC7517]]. It is RECOMMENDED that verification methods
-that use JWKs to represent their public keys use the value of <code>kid</code>
-as their fragment identifier. It is RECOMMENDED that JWK <code>kid</code>
-values are set to the public key fingerprint [[RFC7638]]. See the first key
-in <a href="#example-various-verification-method-types"></a>
-for an example of a public key with a compound key identifier.
-      </p>
-
-      <pre class="example" title="Example verification methods">
+      <pre class="example" title="Example verification method structure">
 {
-  "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
+  "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "verificationMethod": [{
@@ -1828,18 +1756,140 @@ for an example of a public key with a compound key identifier.
       <p class="note"
         title="Verification method controller(s) and DID controller(s)">
 The semantics of the <code>controller</code> property are the same when the
-subject of the relationship is the <a>DID document</a> as when the subject
-of the relationship is a <a>verification method</a>, such as a public key. Since a
-key (for example) can't control itself, and the key controller cannot be
-inferred from the <a>DID document</a>, it is necessary to explicitly express
-the identity of the controller of the key. The difference is that the value of
-<code>controller</code> for a <a>verification method</a> is <em>not</em> necessarily
-a <a>DID controller</a>. <a>DID controller(s)</a> are expressed using the
-<code><a>controller</a></code> property at the highest level of the
-<a>DID document</a> (the topmost <a data-cite="INFRA#ordered-map">map</a> in
-the <a href="#data-model">data model</a>); see
-<a href="#did-controller"></a>.
+subject of the relationship is the <a>DID document</a> as when the subject of
+the relationship is a <a>verification method</a>, such as a cryptographic public
+key. Since a key can't control itself, and the key controller cannot be inferred
+from the <a>DID document</a>, it is necessary to explicitly express the identity
+of the controller of the key. The difference is that the value of
+<code>controller</code> for a <a>verification method</a> is <em>not</em>
+necessarily a <a>DID controller</a>. <a>DID controller(s)</a> are expressed
+using the <code><a>controller</a></code> property at the highest level of the
+<a>DID document</a> (the topmost <a data-cite="INFRA#ordered-map">map</a> in the
+<a href="#data-model">data model</a>); see <a href="#did-controller"></a>.
       </p>
+
+      <section>
+        <h3>Verification Material</h3>
+
+        <p>
+A public key can be used as a <a>verification method</a>.
+        </p>
+
+        <p>
+This specification strives to limit the number of formats for expressing public
+key material in a <a>DID document</a> to the fewest possible, to increase the
+likelihood of interoperability. The fewer formats that implementers have to
+implement, the more likely it will be that they will support all of them. This
+approach attempts to strike a delicate balance between ease of implementation
+and supporting formats that have historically had broad deployment.
+        </p>
+
+        <p>
+A suite definition is responsible for specifying the <a>verification method</a>
+<code>type</code> and proof <code>type</code>. For example, see
+<a href="https://w3c-ccg.github.io/lds-jws2020/">JSON Web Signature 2020</a> and
+<a href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature
+2018</a>. For all registered and supported <a>verification method</a> types
+available for <a>DIDs</a>, please see the DID Specification Registries
+[[?DID-SPEC-REGISTRIES]].
+        </p>
+
+        <p>
+The property used is determined by the value of the
+<code>type</code> property. Examples of such properties are
+<code><a>publicKeyJwk</a></code> or <code><a>publicKeyBase58</a></code>;
+others can be found in the DID Specification Registries
+[[?DID-SPEC-REGISTRIES]].
+        </p>
+
+        <dl>
+          <dt><dfn>publicKeyJwk</dfn></dt>
+          <dd>
+The <code>publicKeyJwk</code> property is OPTIONAL. If present, the value MUST
+be a <a data-cite="INFRA#ordered-map">map</a> representing a JSON Web Key that
+conforms to [[RFC7517]]. The <a data-cite="INFRA#ordered-map">map</a> MUST NOT
+contain "d", or any other members of the private information class as
+described in <a
+href="https://tools.ietf.org/html/rfc7517#section-8.1.1">Registration
+Template</a>.
+          </dd>
+          <dt><dfn>publicKeyBase58</dfn></dt>
+          <dd>
+The <code>publicKeyBase58</code> property is OPTIONAL. If present, the value
+MUST be a <a data-cite="INFRA#string">string</a> representation of a base58btc
+encoded public key.
+          </dd>
+      </dl>
+
+        <p>
+In the case where a verification method is a public key, the value of the
+<code><a>id</a></code> property might contain a
+<a href="#fragment">fragment</a>. This is
+especially useful for integrating with existing key management systems and key
+formats such as JWK [[RFC7517]]. It is RECOMMENDED that verification methods
+that use JWKs to represent their public keys use the value of <code>kid</code>
+as their fragment identifier. It is RECOMMENDED that JWK <code>kid</code>
+values are set to the public key fingerprint [[RFC7638]]. See the first key
+in <a href="#example-various-verification-method-types"></a>
+for an example of a public key with a compound key identifier.
+        </p>
+
+        <p>
+A <a>verification method</a> MUST NOT contain multiple verification material
+properties for the same material. For example, expressing key material in a
+<a>verification method</a> using both <code>publicKeyJwk</code> and
+<code>publicKeyBase58</code> at the same time is prohibited.
+        </p>
+
+        <p>
+In order to maximize interoperability, support for public keys as
+<a>verification methods</a> is restricted: see
+<a href="#verification-method-types"></a>. For other types of <a>verification
+method</a>, the <a>verification method</a> SHOULD be registered in the DID
+Specification Registries [[?DID-SPEC-REGISTRIES]].
+        </p>
+
+        <p>
+The <a>DID document</a> does not express revoked keys using a <a>verification
+relationship</a>.
+        </p>
+        <p>
+If a referenced verification method is not in the <a>DID Document</a> used to
+dereference it, then that verification method is considered invalid or revoked.
+        </p>
+        <p>
+Each <a>DID method</a> specification is expected to detail how revocation is
+performed and tracked.
+        </p>
+
+        <pre id="example-various-verification-method-types"
+          class="example nohighlight"
+          title="Various verification method types">
+{
+  "@context": "https://www.w3.org/ns/did/v1",
+  "id": "did:example:123456789abcdefghi",
+  <span class="comment">...</span>
+  "verificationMethod": [{
+    "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
+    "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+    "controller": "did:example:123",
+    "publicKeyJwk": {
+      "crv": "Ed25519", <span class="comment">// external (property name)</span>
+      "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ", <span class="comment">// external (property name)</span>
+      "kty": "OKP", <span class="comment">// external (property name)</span>
+      "kid": "_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A" <span class="comment">// external (property name)</span>
+    }
+  }, {
+    "id": "did:example:123456789abcdefghi#keys-1",
+    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
+    "controller": "did:example:pqrstuvwxyz0987654321",
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+  }],
+  <span class="comment">...</span>
+}
+        </pre>
+
+      </section>
 
       <section>
         <h3>Verification Methods by reference</h3>
@@ -1884,74 +1934,6 @@ whose value matches the URL.
 <span class="comment">...</span>
 }
         </pre>
-      </section>
-
-      <section>
-        <h3>Verification Method types</h3>
-
-        <p>
-A public key can be used as a <a>verification method</a>.
-        </p>
-
-        <p>
-This specification strives to limit the number of formats for expressing public
-key material in a <a>DID document</a> to the fewest possible, to increase the
-likelihood of interoperability. The fewer formats that implementers have to
-implement, the more likely it will be that they will support all of them. This
-approach attempts to strike a delicate balance between ease of implementation
-and supporting formats that have historically had broad deployment.
-        </p>
-
-        <p>
-A suite definition is responsible for specifying the <a>verification method</a>
-<code>type</code> and proof <code>type</code>. For example, see
-<a href="https://w3c-ccg.github.io/lds-jws2020/">JSON Web Signature 2020</a> and
-<a href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature
-2018</a>. For all registered and supported <a>verification method</a> types
-available for <a>DIDs</a>, please see the DID Specification Registries
-[[?DID-SPEC-REGISTRIES]].
-        </p>
-
-        <p>
-The <a>DID document</a> does not express revoked keys using a <a>verification
-relationship</a>.
-        </p>
-        <p>
-If a referenced verification method is not in the <a>DID Document</a> used to
-dereference it, then that verification method is considered invalid or revoked.
-        </p>
-        <p>
-Each <a>DID method</a> specification is expected to detail how revocation is
-performed and tracked.
-        </p>
-
-        <pre id="example-various-verification-method-types"
-          class="example nohighlight"
-          title="Various verification method types">
-{
-  "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/v1"],
-  "id": "did:example:123456789abcdefghi",
-  <span class="comment">...</span>
-  "verificationMethod": [{
-    "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
-    "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
-    "controller": "did:example:123",
-    "publicKeyJwk": {
-      "crv": "Ed25519", <span class="comment">// external (property name)</span>
-      "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ", <span class="comment">// external (property name)</span>
-      "kty": "OKP", <span class="comment">// external (property name)</span>
-      "kid": "_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A" <span class="comment">// external (property name)</span>
-    }
-  }, {
-    "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
-    "controller": "did:example:pqrstuvwxyz0987654321",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-  }],
-  <span class="comment">...</span>
-}
-        </pre>
-
       </section>
     </section>
 
@@ -2433,6 +2415,13 @@ media type in the document's metadata. Consumers MUST determine the
 <a>representation</a> of a <a>DID document</a> via the <code>contentType</code> <a>DID
 resolver</a> metadata field (see <a href="#did-resolution"></a>), <em>not</em>
 through the content of the <a>DID document</a> alone.
+    </p>
+
+    <p>
+A <a>conforming producer</a>
+MUST NOT produce a <a>DID document</a> containing different entries with
+the same <code>id</code> value. A <a>conforming consumer</a> MUST produce
+an error if it detects different entries with the same <code>id</code> value.
     </p>
 
     <p>
