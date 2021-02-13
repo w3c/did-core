@@ -120,7 +120,7 @@ var ccg = {
     },
     "BASE58": {
       title: "The Base58 Encoding Scheme",
-      date: "December 2019",
+      date: "October 2020",
       href: "https://tools.ietf.org/html/draft-msporny-base58",
       authors: [
         "Manu Sporny"
@@ -166,6 +166,17 @@ var ccg = {
       ],
       date: "2011",
       publisher: "Information and Privacy Commissioner"
+    },
+    "MULTIBASE": {
+      title: "The Multibase Encoding Scheme",
+      date: "August 2020",
+      href: "https://tools.ietf.org/html/draft-multiformats-multibase",
+      authors: [
+        "Juan Benet",
+        "Manu Sporny"
+      ],
+      status: "Internet-Draft",
+      publisher: "IETF"
     }
   }
 };
