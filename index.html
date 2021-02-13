@@ -904,7 +904,7 @@ did:example:123#agent
 
         <pre class="example nohighlight"
              title="A resource external to a DID Document">
-did:example:123?service=agent&relativeRef=/credentials#degree
+did:example:123?service=agent&amp;relativeRef=/credentials#degree
         </pre>
 
         <p class="note"
@@ -3304,7 +3304,7 @@ href="https://github.com/w3c/did-core/issues/549"> Issue 549</a>.
 
     <p>
 This section defines the inputs and outputs of <a>DID resolution</a> and <a>DID
-URL dereferencing</a>.  Their exact implementation is out of scope for this
+URL dereferencing</a>. Their exact implementation is out of scope for this
 specification, but some considerations for implementors are discussed in
 [[?DID-RESOLUTION]].
     </p>
@@ -3644,7 +3644,7 @@ A conforming <a>DID Method</a> specification MUST guarantee that each
 A requesting party is expected to retain the values from the <code>id</code> and
 <code><a>equivalentId</a></code> properties to ensure any subsequent
 interactions with any of the values they contain are correctly handled as
-logically equivalent (e.g. retain all variants in a database so an interaction
+logically equivalent (e.g., retain all variants in a database so an interaction
 with any one maps to the same underlying account).
             </p>
             <p class="note" title="Stronger equivalence">
@@ -3696,7 +3696,7 @@ same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
             <p>
 A requesting party is expected to use the <code><a>canonicalId</a></code> value
 as its primary ID value for the <a>DID subject</a> and treat all other
-equivalent values as secondary aliases (e.g. update corresponding primary
+equivalent values as secondary aliases (e.g., update corresponding primary
 references in their systems to reflect the new canonical ID directive).
             </p>
             <p class="note" title="Canonical equivalence">
@@ -5034,7 +5034,6 @@ shifts in their meaning, and adopt procedures and policies to address both
 potential and inevitable semantic drift.
       </p>
     </section>
-=======
 
     <section>
       <h2>Level of Assurance</h2>
@@ -5057,7 +5056,7 @@ eIDAS</a>,
 NIST 800-63-3</a> and <a target="_blank" href="https://www.iso.org/standard/45138.html">
 ISO/IEC 29115:2013</a>, including their requirements for the security
 context, and making recommendations on how to achieve them. This might
-include strong user authentication and <a href="_blank"
+include strong user authentication and <a target="_blank"
 href="https://fidoalliance.org/fido2">FIDO2</a>/<a target="_blank"
 href="https://www.w3.org/TR/webauthn-2/">WebAuthn</a> can be potential
 implementations. A LoA represents the level of confidence that an entity is in
@@ -5690,7 +5689,7 @@ practice to avoid dislosing unnecessary information in JWE headers.
     <p>
 Following is a diagram showing the relationships among
 <a href="#data-model"></a>, <a href="#core-properties"></a>, and
-<a href="#methods"></a>, and </a><a href="#resolution"></a>.
+<a href="#methods"></a>, and <a href="#resolution"></a>.
     </p>
 
     <figure id="detailed-architecture-overview">
@@ -5934,7 +5933,7 @@ specification [[!RFC3986]]:
       <blockquote>
 This specification does not limit the scope of what might be a resource;
 rather, the term "resource" is used in a general sense for whatever might be
-identified by a URI.  Familiar examples include an electronic document, an
+identified by a URI. Familiar examples include an electronic document, an
 image, a source of information with a consistent purpose (e.g., "today's
 weather report for Los Angeles"), a service (e.g., an HTTP-to-SMS gateway),
 and a collection of other resources.  A resource is not necessarily
