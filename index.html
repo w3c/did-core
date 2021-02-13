@@ -2060,8 +2060,8 @@ embedded or referenced.
 
         <p>
 An example of when this property is useful is during the processing of a
-<a>verifiable credential</a> by a verifier. During validation, a verifier checks
-to see if a <a>verifiable credential</a> has been signed by the <a>DID
+<a>verifiable credential</a> by a verifier. During verification, a verifier
+checks to see if a <a>verifiable credential</a> has been signed by the <a>DID
 Subject</a> by checking that the <a>verification method</a> used to assert the
 proof is associated with the <code><a>assertionMethod</a></code> property in the
 corresponding <a>DID Document</a>.
@@ -2076,9 +2076,9 @@ corresponding <a>DID Document</a>.
 "assertionMethod": [
   <span class="comment">// this method can be used to assert statements as did:...fghi</span>
   "did:example:123456789abcdefghi#keys-1",
-  <span class="comment">// this method is *only* approved for assertion of statements, it may not</span>
-  <span class="comment">// be used for any other verification relationship, so its full description is</span>
-  <span class="comment">// embedded here rather than using only a reference</span>
+  <span class="comment">// this method is *only* approved for assertion of statements, it is not</span>
+  <span class="comment">// used for any other verification relationship, so its full description is</span>
+  <span class="comment">// embedded here rather than using a reference</span>
   {
     "id": "did:example:123456789abcdefghi#keys-2",
     "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
