@@ -1968,8 +1968,9 @@ Specification Registries [[?DID-SPEC-REGISTRIES]].
 
         <p>
 The `authentication` <a>verification relationship</a> is used to specify how the
-<a>DID subject</a> is expected to be <a>authenticated</a>, such as for the purposes of
-logging into a website.
+<a>DID subject</a> is expected to be <a>authenticated</a>, such as for the
+purposes of logging into a website or engaging in any sort of challenge-response
+protocol.
         </p>
 
         <dl>
@@ -2005,8 +2006,7 @@ referenced.
 }
         </pre>
 
-        <div class="note" title="Uses of authentication">
-          <p>
+        <p>
 If authentication is established, it is up to the <a>DID method</a> or other
 application to decide what to do with that information. A particular <a>DID
 method</a> could decide that authenticating as a <a>DID controller</a> is
@@ -2014,31 +2014,29 @@ sufficient to, for example, update or delete the <a>DID document</a>. Another
 <a>DID method</a> could require different keys, or a different <a>verification
 method</a> entirely, to be presented in order to update or delete the <a>DID
 document</a> than that used to <a>authenticate</a>. In other words, what is done
-<em>after</em> the authentication check is out of scope for the
-<a href="#data-model">data model</a>, but <a>DID methods</a> and applications
-are expected to define this themselves.
-          </p>
-          <p>
-This is useful to any <em>authentication verifier</em> that needs
-to check to see if an entity that is attempting to <a>authenticate</a> is, in
-fact, presenting a valid proof of authentication. When a <em>verifier</em>
-receives some data (in some protocol-specific format) that contains a proof
-that was made for the purpose of "authentication", and that says that an
-entity is identified by the <a>DID</a>, then that <em>verifier</em> checks to
-ensure that the proof can be verified using a <a>verification method</a> (e.g.,
-public key) listed under <code><a>authentication</a></code> in the
-<a>DID Document</a>.
-          </p>
-          <p>
+<em>after</em> the authentication check is out of scope for the <a
+href="#data-model">data model</a>, but <a>DID methods</a> and applications are
+expected to define this themselves.
+        </p>
+        <p>
+This is useful to any <em>authentication verifier</em> that needs to check to
+see if an entity that is attempting to <a>authenticate</a> is, in fact,
+presenting a valid proof of authentication. When a <em>verifier</em> receives
+some data (in some protocol-specific format) that contains a proof that was made
+for the purpose of "authentication", and that says that an entity is identified
+by the <a>DID</a>, then that <em>verifier</em> checks to ensure that the proof
+can be verified using a <a>verification method</a> (e.g., public key) listed
+under <code><a>authentication</a></code> in the <a>DID Document</a>.
+        </p>
+        <p>
 Note that the <a>verification method</a> indicated by the
-<code><a>authentication</a></code> property of a <a>DID document</a> can only
-be used to <a>authenticate</a> the <a>DID subject</a>. To <a>authenticate</a>
-a different <a>DID controller</a>, the entity associated with the value of
-<code>controller</code> (see Section <a href="#did-controller"></a>) needs to
-<a>authenticate</a> with its <em>own</em> <a>DID document</a> and attached
+<code><a>authentication</a></code> property of a <a>DID document</a> can only be
+used to <a>authenticate</a> the <a>DID subject</a>. To <a>authenticate</a> a
+different <a>DID controller</a>, the entity associated with the value of
+<code>controller</code>, as defined in <a href="#did-controller"></a>, needs to
+<a>authenticate</a> with its <em>own</em> <a>DID document</a> and associated
 <code><a>authentication</a></code> <a>verification relationship</a>.
-          </p>
-        </div>
+        </p>
       </section>
 
       <section>
