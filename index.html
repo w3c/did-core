@@ -1706,7 +1706,8 @@ data-cite="INFRA#ordered-map">map</a> MUST include the <code>id</code>,
 <code>type</code>, <code>controller</code>, and specific verification material
 properties that are determined by the value of <code>type</code> and are defined
 in <a href="#verification-material"></a>. A <a>verification method</a> MAY
-include additional properties.
+include additional properties. <a>Verification methods</a> SHOULD be registered
+in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
           </p>
 
           <dl>
@@ -1733,6 +1734,7 @@ href="#did-syntax"></a>.
             </dd>
           </dl>
         </dd>
+      </dl>
 
       <pre class="example" title="Example verification method structure">
 {
@@ -1772,67 +1774,67 @@ using the <code><a>controller</a></code> property at the highest level of the
         <h3>Verification Material</h3>
 
         <p>
-A public key can be used as a <a>verification method</a>.
+Verification material is defined as any information that is used by a process
+that applies a <a>verification method</a> and is typically determined by the
+value of the <a>verification method</a>'s <code>type</code> property. Examples
+of verification material properties are <code><a>publicKeyJwk</a></code> or
+<code><a>publicKeyBase58</a></code>. A verification suite definition is
+responsible for specifying the <a>verification method</a> <code>type</code> and
+its associated verification material. For example, see <a
+href="https://w3c-ccg.github.io/lds-jws2020/">JSON Web Signature 2020</a> and <a
+href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature 2018</a>.
+For all registered <a>verification method</a> types and associated  verification
+material available for <a>DIDs</a>, please see the DID Specification Registries
+[[?DID-SPEC-REGISTRIES]].
         </p>
 
         <p>
-This specification strives to limit the number of formats for expressing public
-key material in a <a>DID document</a> to the fewest possible, to increase the
-likelihood of interoperability. The fewer formats that implementers have to
+In order to increase the likelihood of interoperability, this specification
+limits the number of formats for expressing verification material in a <a>DID
+document</a> to the fewest possible. The fewer formats that implementers have to
 implement, the more likely it will be that they will support all of them. This
 approach attempts to strike a delicate balance between ease of implementation
-and supporting formats that have historically had broad deployment.
-        </p>
-
-        <p>
-A suite definition is responsible for specifying the <a>verification method</a>
-<code>type</code> and proof <code>type</code>. For example, see
-<a href="https://w3c-ccg.github.io/lds-jws2020/">JSON Web Signature 2020</a> and
-<a href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature
-2018</a>. For all registered and supported <a>verification method</a> types
-available for <a>DIDs</a>, please see the DID Specification Registries
-[[?DID-SPEC-REGISTRIES]].
-        </p>
-
-        <p>
-The property used is determined by the value of the
-<code>type</code> property. Examples of such properties are
-<code><a>publicKeyJwk</a></code> or <code><a>publicKeyBase58</a></code>;
-others can be found in the DID Specification Registries
-[[?DID-SPEC-REGISTRIES]].
+and supporting formats that have historically had broad deployment. The two most
+common supported verification material properties are listed below:
         </p>
 
         <dl>
+          <dt><dfn>publicKeyBase58</dfn></dt>
+          <dd>
+            <p>
+The <code>publicKeyBase58</code> property is OPTIONAL. This feature is
+non-normative. If present, the value MUST be a <a
+data-cite="INFRA#string">string</a> representation of a [[?BASE58]] encoded
+public key.
+            </p>
+            <p class="issue atrisk"
+               title="publicKeyBase58 and publicKeyMultibase">
+The DID Working Group is seeking implementer feedback on the preference of the
+ecosystem with respect to using <code>publicKeyBase58</code> [[?BASE58]]  or
+<code>publicKeyMultibase</code> [[?MULTIBASE]]. The latter can be used for
+encoding more base-representation formats and provides a more future proof path.
+Depending on implementer feedback, one or both options might be included in the
+final specification, or migrated into the DID Specification Registries as an
+extension.
+             </p>
+          </dd>
           <dt><dfn>publicKeyJwk</dfn></dt>
           <dd>
+            <p>
 The <code>publicKeyJwk</code> property is OPTIONAL. If present, the value MUST
 be a <a data-cite="INFRA#ordered-map">map</a> representing a JSON Web Key that
 conforms to [[RFC7517]]. The <a data-cite="INFRA#ordered-map">map</a> MUST NOT
-contain "d", or any other members of the private information class as
-described in <a
-href="https://tools.ietf.org/html/rfc7517#section-8.1.1">Registration
-Template</a>.
-          </dd>
-          <dt><dfn>publicKeyBase58</dfn></dt>
-          <dd>
-The <code>publicKeyBase58</code> property is OPTIONAL. If present, the value
-MUST be a <a data-cite="INFRA#string">string</a> representation of a base58btc
-encoded public key.
+contain "d", or any other members of the private information class as described
+in <a href="https://tools.ietf.org/html/rfc7517#section-8.1.1">Registration
+Template</a>. It is RECOMMENDED that verification methods that use JWKs
+[[RFC7517]] to represent their public keys use the value of <code>kid</code> as
+their <a href="#fragment">fragment identifier</a>. It is RECOMMENDED that JWK
+<code>kid</code> values are set to the public key fingerprint [[RFC7638]]. See
+the first key in <a href="#example-various-verification-method-types"></a> for
+an example of a public key with a compound key identifier.
+            </p>
           </dd>
       </dl>
-
-        <p>
-In the case where a verification method is a public key, the value of the
-<code><a>id</a></code> property might contain a
-<a href="#fragment">fragment</a>. This is
-especially useful for integrating with existing key management systems and key
-formats such as JWK [[RFC7517]]. It is RECOMMENDED that verification methods
-that use JWKs to represent their public keys use the value of <code>kid</code>
-as their fragment identifier. It is RECOMMENDED that JWK <code>kid</code>
-values are set to the public key fingerprint [[RFC7638]]. See the first key
-in <a href="#example-various-verification-method-types"></a>
-for an example of a public key with a compound key identifier.
-        </p>
 
         <p>
 A <a>verification method</a> MUST NOT contain multiple verification material
@@ -1842,29 +1844,13 @@ properties for the same material. For example, expressing key material in a
         </p>
 
         <p>
-In order to maximize interoperability, support for public keys as
-<a>verification methods</a> is restricted: see
-<a href="#verification-method-types"></a>. For other types of <a>verification
-method</a>, the <a>verification method</a> SHOULD be registered in the DID
-Specification Registries [[?DID-SPEC-REGISTRIES]].
-        </p>
-
-        <p>
-The <a>DID document</a> does not express revoked keys using a <a>verification
-relationship</a>.
-        </p>
-        <p>
-If a referenced verification method is not in the <a>DID Document</a> used to
-dereference it, then that verification method is considered invalid or revoked.
-        </p>
-        <p>
-Each <a>DID method</a> specification is expected to detail how revocation is
-performed and tracked.
+An example of a <a>DID document</a> containing <a>verification methods</a> using
+both properties above is shown below.
         </p>
 
         <pre id="example-various-verification-method-types"
           class="example nohighlight"
-          title="Various verification method types">
+          title="Verification methods using publicKeyJwk and publicKeyBase58">
 {
   "@context": "https://www.w3.org/ns/did/v1",
   "id": "did:example:123456789abcdefghi",
@@ -1961,6 +1947,13 @@ relationship</a>. For example, a <a>verification method</a> in the value of
 the <code><a>authentication</a></code> property cannot be used to engage in
 key agreement protocols with the <a>DID subject</a>&mdash;the value of the
 <code><a>keyAgreement</a></code> property needs to be used for that.
+      </p>
+      <p>
+The <a>DID document</a> does not express revoked keys using a <a>verification
+relationship</a>. If a referenced verification method is not in the <a>DID
+Document</a> used to dereference it, then that verification method is considered
+invalid or revoked. Each <a>DID method</a> specification is expected to detail
+how revocation is performed and tracked.
       </p>
       <p>
 This specification defines several <a>verification relationships</a> below. A
@@ -4688,7 +4681,7 @@ own discretion.
       </p>
 
       <p class="note">
-As described in Section <a href="#verification-method-types"></a>,
+As described in <a href="#verification-material"></a>,
 absence of a verification method is the only form of revocation that
 applies to all DID Methods.
       </p>
