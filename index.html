@@ -1878,26 +1878,24 @@ both properties above is shown below.
       </section>
 
       <section>
-        <h3>Verification Methods by reference</h3>
+        <h3>Referring to Verification Methods</h3>
         <p>
-As well as the <code><a>verificationMethod</a></code> property, <a>verification
-methods</a> can be embedded in or referenced from properties associated with
-various <a>verification relationships</a> (see
-<a href="#verification-relationships"></a>). Referencing <a>verification methods</a>
-allows them to be used with more than one <a>verification relationship</a>.
+<a>Verification methods</a> can be embedded in or referenced from properties
+associated with various <a>verification relationships</a> as described in <a
+href="#verification-relationships"></a>. Referencing <a>verification methods</a>
+allows them to be used by more than one <a>verification relationship</a>.
         </p>
 
         <p>
-If the value of a <a>verification method</a> property is a
-<a data-cite="INFRA#ordered-map">map</a>, the <a>verification method</a> has
-been embedded and its properties can be accessed directly. However, if the
-value is a URL <a data-cite="INFRA#string">string</a>, the <a>verification
-method</a> has been included by reference and its properties will need to be
-retrieved from elsewhere in the <a>DID document</a> or from another <a>DID
-document</a>. This is done by dereferencing the URL and searching the
-resulting resource for a <a>verification method</a>
-<a data-cite="INFRA#ordered-map">map</a> with an <code>id</code> property
-whose value matches the URL.
+If the value of a <a>verification method</a> property is a <a
+data-cite="INFRA#ordered-map">map</a>, the <a>verification method</a> has been
+embedded and its properties can be accessed directly. However, if the value is a
+URL <a data-cite="INFRA#string">string</a>, the <a>verification method</a> has
+been included by reference and its properties will need to be retrieved from
+elsewhere in the <a>DID document</a> or from another <a>DID document</a>. This
+is done by dereferencing the URL and searching the resulting resource for a
+<a>verification method</a> <a data-cite="INFRA#ordered-map">map</a> with an
+<code>id</code> property whose value matches the URL.
         </p>
 
         <pre class="example nohighlight"
@@ -1906,7 +1904,8 @@ whose value matches the URL.
 <span class="comment">...</span>
 
   "authentication": [
-    <span class="comment">// this key is referenced, it may be used with more than one verification relationship</span>
+    <span class="comment">// this key is referenced and might be used by</span>
+    <span class="comment">// more than one verification relationship</span>
     "did:example:123456789abcdefghi#keys-1",
     <span class="comment">// this key is embedded and may *only* be used for authentication</span>
     {
