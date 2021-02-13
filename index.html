@@ -314,8 +314,6 @@ distributed ledgers, decentralized file systems, distributed databases, and
 peer-to-peer networks.
     </p>
     <p>
-    </p>
-    <p>
 This specification is for:
     </p>
     <ul>
@@ -348,8 +346,8 @@ method</a>, and 3) the DID method-specific identifier.
       </p>
 
       <figure id="parts-of-a-did">
-          <img style="margin: auto; display: block; width: 75%;"
-            src="diagrams/parts-of-a-did.svg" alt="
+        <img style="margin: auto; display: block; width: 75%;"
+          src="diagrams/parts-of-a-did.svg" alt="
 A diagram showing the parts of a DID. The left-most letters spell 'did' in blue,
 are enclosed in a horizontal bracket from above and a label that reads 'scheme'
 above the bracket. A gray colon follows the 'did' letters. The middle letters
@@ -358,10 +356,10 @@ a label that reads 'DID Method' below the bracket. A gray colon follows the
 DID Method. Finally, the letters at the end read '123456789abcdefghijk' in
 green, are enclosed in a horizontal bracket from below and a label that
 reads 'DID Method Specific String' below the bracket.
-          ">
-          <figcaption>
+        " >
+        <figcaption>
 A simple example of a decentralized identifier (DID)
-          </figcaption>
+        </figcaption>
       </figure>
 
       <p>
@@ -523,16 +521,16 @@ Decentralized Identifier architecture.
       </p>
 
       <figure id="brief-architecture-overview">
-          <img style="margin: auto; display: block; width: 75%;"
-            src="diagrams/did_brief_architecture_overview.svg" alt="
+        <img style="margin: auto; display: block; width: 75%;"
+          src="diagrams/did_brief_architecture_overview.svg" alt="
 DIDs and DID documents are recorded on a Verifiable Data Registry; DIDs resolve
 to DID documents; DIDs identify DID subjects; a DID controller controls a DID
 document; DID URLs contains a DID; DID URLs dereferenced to DID document
 fragments or external resources.
-          " >
-          <figcaption>
+        " >
+        <figcaption>
 Overview of DID architecture and the relationship of the basic components.
-          </figcaption>
+        </figcaption>
       </figure>
 
       <dl>
@@ -1494,7 +1492,7 @@ public key.
     <section class="notoc">
       <h3>Service properties</h3>
 
-    <table class=simple>
+      <table class=simple>
         <thead>
           <tr>
             <th>Property</th>
@@ -1584,7 +1582,7 @@ However, the fully resolved <a>DID document</a> always contains a valid
       </section>
 
       <section>
-       <h3>DID Controller</h3>
+        <h3>DID Controller</h3>
 
         <p>
 A <a>DID controller</a> is an entity that is authorized to make changes to a
@@ -3318,52 +3316,52 @@ functions for at least one <a>DID method</a> and MUST be able to return a
     </p>
 
     <section data-dfn-for="Resolver">
-        <h2>DID Resolution</h2>
-        <p>
+      <h2>DID Resolution</h2>
+      <p>
 The <a>DID resolution</a> functions resolve a <a>DID</a> into a <a>DID
 document</a> by using the "Read" operation of the applicable <a>DID method</a>
 as described in <a href="#method-operations"></a>. The details of how this
 process is accomplished are outside the scope of this specification, but all
 conforming <a>DID resolvers</a> implement the functions below, which have the
 following abstract forms:
-        </p>
+      </p>
 
-        <pre title="Abstract functions for DID Resolution">
+      <pre title="Abstract functions for DID Resolution">
 resolve(did, resolutionOptions) →
    « didResolutionMetadata, didDocument, didDocumentMetadata »
 
 resolveRepresentation(did, resolutionOptions) →
    « didResolutionMetadata, didDocumentStream, didDocumentMetadata »
-        </pre>
+      </pre>
 
-        <p>
+      <p>
 The <code>resolve</code> function returns the <a>DID document</a> in its
 abstract form (a <a data-cite="INFRA#maps">map</a>). The
 <code>resolveRepresentation</code> function returns a byte stream of the <a>DID
 Document</a> formatted in the corresponding representation. The input variables
 of the <code>resolve</code> and <code>resolveRepresentation</code> functions are
 as follows:
-        </p>
+      </p>
 
-        <dl>
-            <dt>
+      <dl>
+        <dt>
 did
-            </dt>
-            <dd>
+        </dt>
+        <dd>
 This is the <a>DID</a> to resolve. This input is REQUIRED and the value MUST
 be a conformant <a>DID</a> as defined in <a href="#did-syntax"></a>.
-            </dd>
-            <dt>
+        </dd>
+        <dt>
 resolutionOptions
-            </dt>
-            <dd>
+        </dt>
+        <dd>
 A <a href="#metadata-structure">metadata structure</a> containing properties
 defined in <a href="#did-resolution-options"></a>. This input is
 REQUIRED, but the structure MAY be empty.
-            </dd>
-        </dl>
+        </dd>
+      </dl>
 
-        <p>
+      <p>
 These functions each return multiple values, and no limitations
 are placed on how these values are returned together.
 The return values of <code>resolve</code> are
@@ -3372,13 +3370,13 @@ The return values of <code>resolve</code> are
 <code>resolveRepresentation</code> are
 <a>didResolutionMetadata</a>, <a>didDocumentStream</a>, and
 <a>didDocumentMetadata</a>. These values are described below:
-        </p>
+      </p>
 
-        <dl>
-            <dt>
+      <dl>
+        <dt>
 <dfn>didResolutionMetadata</dfn>
-            </dt>
-            <dd>
+        </dt>
+        <dd>
 A <a href="#metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a>DID resolution</a> process which typically
 changes between invocations of the <code>resolve</code> and
@@ -3390,11 +3388,11 @@ This metadata is defined by <a href="#did-resolution-metadata"></a>. If
 <code>contentType</code> property containing the Media Type of the
 representation found in the <code>didDocumentStream</code>. If the resolution is not successful, this structure
 MUST contain an <code>error</code> property describing the error.
-            </dd>
-            <dt>
+        </dd>
+        <dt>
 <dfn>didDocument</dfn>
-            </dt>
-            <dd>
+        </dt>
+        <dd>
 If the resolution is successful, and if the <code>resolve</code> function was
 called, this MUST be a <a>DID document</a> abstract data model (a <a
 data-cite="INFRA#maps">map</a>) as described in <a href="#data-model"></a> that
@@ -3403,11 +3401,11 @@ is capable of being transformed into a <a>conforming DID Document</a>
 The value of <code><a>id</a></code> in the resolved <a>DID document</a> MUST
 match the <a>DID</a> that was resolved. If the resolution is unsuccessful, this
 value MUST be empty.
-            </dd>
-            <dt>
+        </dd>
+        <dt>
 <dfn>didDocumentStream</dfn>
-            </dt>
-            <dd>
+        </dt>
+        <dd>
 If the resolution is successful, and if the <code>resolveRepresentation</code>
 function was called, this MUST be a byte stream of the resolved <a>DID
 document</a> in one of the conformant
@@ -3416,11 +3414,11 @@ parsed by the caller of the <code>resolveRepresentation</code> function into a
 <a href="#data-model">data model</a>, which can in turn be validated and
 processed. If the resolution is unsuccessful, this value MUST be an empty
 stream.
-            </dd>
-            <dt>
+        </dd>
+        <dt>
 <dfn>didDocumentMetadata</dfn>
-            </dt>
-            <dd>
+        </dt>
+        <dd>
 If the resolution is successful, this MUST be a <a
 href="#metadata-structure">metadata structure</a>. This structure contains
 metadata about the <a>DID document</a> contained in the <code>didDocument</code>
@@ -3430,10 +3428,10 @@ property. This metadata typically does not change between invocations of the
 document</a>. If the resolution is unsuccessful, this output MUST be an empty <a
 href="#metadata-structure">metadata structure</a>. Properties defined by this
 specification are in <a href="#did-document-metadata"></a>.
-            </dd>
-        </dl>
+        </dd>
+      </dl>
 
-        <p>
+      <p>
 Conforming <a>DID resolver</a> implementations do not alter the signature of
 these functions in any way. <a>DID resolver</a> implementations might map the
 <code>resolve</code> and <code>resolveRepresentation</code> functions to a
@@ -3441,22 +3439,22 @@ method-specific internal function to perform the actual <a>DID resolution</a>
 process. <a>DID resolver</a> implementations might implement and expose
 additional functions with different signatures in addition to the
 <code>resolve</code> and <code>resolveRepresentation</code> functions specified here.
-        </p>
+      </p>
 
-        <section>
-            <h3>DID Resolution Options</h3>
+      <section>
+        <h3>DID Resolution Options</h3>
 
-            <p>
+        <p>
 The possible properties within this structure and their possible values are
 registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]]. This
 specification defines the following common properties.
-            </p>
+        </p>
 
-            <dl>
-                <dt>
+        <dl>
+          <dt>
 accept
-                </dt>
-                <dd>
+          </dt>
+          <dd>
 The Media Type of the caller's preferred <a>representation</a> of the <a>DID
 document</a>. The Media Type MUST be expressed as an  <a data-lt="ascii
 string">ASCII string</a>. The <a>DID resolver</a> implementation SHOULD use this
@@ -3464,24 +3462,24 @@ value to determine the <a>representation</a> contained in the returned
 <code>didDocumentStream</code> if such a <a>representation</a> is supported and
 available. This property is OPTIONAL for the <code>resolveRepresentation</code>
 function and MUST NOT be used with the <code>resolve</code> function.
-                </dd>
-            </dl>
-        </section>
+          </dd>
+        </dl>
+      </section>
 
-        <section>
-            <h3>DID Resolution Metadata</h3>
+      <section>
+        <h3>DID Resolution Metadata</h3>
 
-            <p>
+        <p>
 The possible properties within this structure and their possible values are
 registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]]. This
 specification defines the following DID resolution metadata properties:
-            </p>
+        </p>
 
-            <dl>
-                <dt>
+        <dl>
+          <dt>
 contentType
-                </dt>
-                <dd>
+          </dt>
+          <dd>
 The Media Type of the returned <code>didDocumentStream</code>. This property is
 REQUIRED if resolution is successful and if the
 <code>resolveRepresentation</code> function was called.
@@ -3492,68 +3490,68 @@ Type of the conformant <a>representations</a>. The
 caller of the <code>resolveRepresentation</code> function MUST use this value
 when determining how to parse and process the <code>didDocumentStream</code>
 returned by this function into the <a href="#data-model">data model</a>.
-                </dd>
-                <dt>
+          </dd>
+          <dt>
 error
-                </dt>
-                <dd>
+          </dt>
+          <dd>
 The error code from the resolution process. This property is REQUIRED when there
 is an error in the resolution process. The value of this property MUST be a
 single keyword <a data-lt="ascii string">ASCII string</a>. The possible property
 values of this field SHOULD be registered in the DID Specification Registries
 [[?DID-SPEC-REGISTRIES]]. This specification defines the following
 common error values:
-                    <dl>
-                        <dt>
+            <dl>
+              <dt>
 invalidDid
-                        </dt>
-                        <dd>
+              </dt>
+              <dd>
 The <a>DID</a> supplied to the <a>DID resolution</a> function does not conform
 to valid syntax. (See <a href="#did-syntax"></a>.)
-                        </dd>
-                        <dt>
+              </dd>
+              <dt>
 notFound
-                        </dt>
-                        <dd>
+              </dt>
+              <dd>
 The <a>DID resolver</a> was unable to find the <a>DID document</a>
 resulting from this resolution request.
-                        </dd>
-                        <dt>
+              </dd>
+              <dt>
 representationNotSupported
-                        </dt>
-                        <dd>
+              </dt>
+              <dd>
 This error code is returned if the <a>representation</a> requested via the
 <code>accept</code> input metadata property is not supported by the <a>DID
 method</a> and/or <a>DID resolver</a> implementation.
-                        </dd>
-                    </dl>
-                </dd>
+              </dd>
             </dl>
+          </dd>
+        </dl>
 
-        </section>
+      </section>
 
-        <section>
-          <h3>DID Document Metadata</h3>
+      <section>
+        <h3>DID Document Metadata</h3>
 
-          <p>
+        <p>
 The possible properties within this structure and their possible values SHOULD
 be registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
 This specification defines the following common properties.
-          </p>
+        </p>
 
-          <dl>
-            <dt><dfn>created</dfn></dt>
-            <dd>
+        <dl>
+          <dt><dfn>created</dfn></dt>
+          <dd>
 <a>DID document</a> metadata SHOULD include a <code>created</code> property to
 indicate the timestamp of the <a href="#method-operations">Create operation</a>.
 The value of the property MUST be a <a data-cite="INFRA#string">string</a>
 formatted as an <a data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a>
 normalized to UTC 00:00:00 and without sub-second decimal precision. For
 example: <code>2020-12-20T19:17:47Z</code>.
-            </dd>
+          </dd>
 
-            <dt><dfn>updated</dfn></dt>
-            <dd>
+          <dt><dfn>updated</dfn></dt>
+          <dd>
 <a>DID document</a> metadata SHOULD include an <code>updated</code> property to
 indicate the timestamp of the last <a href="#method-operations">Update
 operation</a> for the document version which was resolved. The value of the
@@ -3562,53 +3560,53 @@ property. The <code>updated</code> property is omitted if an Update operation
 has never been performed on the <a>DID document</a>. If an <code>updated</code>
 property exists, it can be the same value as the <code>created</code> property
 when the difference between the two timestamps is less than one second.
-            </dd>
+          </dd>
 
-            <dt><dfn>deactivated</dfn></dt>
-            <dd>
+          <dt><dfn>deactivated</dfn></dt>
+          <dd>
 If a DID has been <a href="#method-operations">deactivated</a>,
 <a>DID document</a> metadata MUST include this property with the boolean value
 <code>true</code>. If a DID has not been deactivated, this property is OPTIONAL,
 but if included, MUST have the boolean value <code>false</code>.
-            </dd>
+          </dd>
 
-            <dt><dfn>nextUpdate</dfn></dt>
-            <dd>
-              <p class="issue atrisk">
+          <dt><dfn>nextUpdate</dfn></dt>
+          <dd>
+            <p class="issue atrisk">
 The DID Working Group is seeking implementer feedback on this feature. If there
 is not enough implementation experience with this feature at the end of the
 Candidate Recommendation period, it will be removed from the specification.
-              </p>
+            </p>
 
 <a>DID document</a> metadata MAY include a <code>nextUpdate</code> property if
 the resolved document version is not the latest version of the document. It
 indicates the timestamp of the next <a href="#method-operations">Update
 operation</a>. The value of the property MUST follow the same formatting rules
 as the <code>created</code> property.
-            </dd>
+          </dd>
 
-            <dt><dfn>versionId</dfn></dt>
-            <dd>
+          <dt><dfn>versionId</dfn></dt>
+          <dd>
 <a>DID document</a> metadata SHOULD include a <code>versionId</code> property to
 indicate the version of the last <a href="#method-operations">Update
 operation</a> for the document version which was resolved. The value of the
 property MUST be an <a data-lt="ascii string">ASCII string</a>.
-            </dd>
+          </dd>
 
-            <dt><dfn>nextVersionId</dfn></dt>
-            <dd>
-              <p class="issue atrisk">
+          <dt><dfn>nextVersionId</dfn></dt>
+          <dd>
+            <p class="issue atrisk">
 The DID Working Group is seeking implementer feedback on this feature. If there
 is not enough implementation experience with this feature at the end of the
 Candidate Recommendation period, it will be removed from the specification.
-              </p>
+            </p>
 
 <a>DID document</a> metadata MAY include a <code>nextVersionId</code> property
 if the resolved document version is not the latest version of the document. It
 indicates the version of the next <a href="#method-operations">Update
 operation</a>. The value of the property MUST be an <a data-lt="ascii
 string">ASCII string</a>.
-            </dd>
+          </dd>
 
           <dt><dfn>equivalentId</dfn></dt>
           <dd>
@@ -3636,8 +3634,8 @@ href="#did-syntax"></a>. The relationship is a statement that each
 Each <code><a>equivalentId</a></code> DID value MUST be produced by, and a form
 of, the same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
 <code>did:example:abc</code> == <code>did:example:ABC</code>)
-                  </dd>
-                  <dd>
+            </p>
+            <p>
 A conforming <a>DID Method</a> specification MUST guarantee that each
 <code><a>equivalentId</a></code> value is logically equivalent to the
 <code>id</code> property value.
@@ -3664,23 +3662,23 @@ interactions with any of the values they contain are correctly handled as
 logically equivalent, there might be negative or unexpected issues that
 arise. Implementers are strongly advised to observe the
 directives related to this metadata property.
-              </p>
-            </dd>
-            <dt><dfn>canonicalId</dfn></dt>
-            <dd>
-              <p class="issue atrisk">
+            </p>
+          </dd>
+          <dt><dfn>canonicalId</dfn></dt>
+          <dd>
+            <p class="issue atrisk">
 The DID Working Group is seeking implementer feedback on this feature. If there
 is not enough implementation experience with this feature at the end of the
 Candidate Recommendation period, it will be removed from the specification.
-              </p>
-              <p>
+            </p>
+            <p>
 The <code><a>canonicalId</a></code> property is identical to the
 <code><a>equivalentId</a></code> property except: a) it is associated with a
 single value rather than a set, and b) the <a>DID</a> is defined to be
 the canonical ID for the <a>DID subject</a> within the scope of the containing
 <a>DID document</a>.
-              </p>
-              <p>
+            </p>
+            <p>
 The value of <code><a>canonicalId</a></code> MUST be a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
 href="#did-syntax"></a>. The relationship is a statement that the
@@ -3694,14 +3692,14 @@ same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
 <a>DID Method</a> specification MUST guarantee that the
 <code><a>canonicalId</a></code> value is logically equivalent to the
 <code>id</code> property value.
-              </p>
-              <p>
+            </p>
+            <p>
 A requesting party is expected to use the <code><a>canonicalId</a></code> value
 as its primary ID value for the <a>DID subject</a> and treat all other
 equivalent values as secondary aliases (e.g. update corresponding primary
 references in their systems to reflect the new canonical ID directive).
-              </p>
-              <p class="note" title="Canonical equivalence">
+            </p>
+            <p class="note" title="Canonical equivalence">
 <code><a>canonicalId</a></code> is the same statement of equivalence as
 <code><a>equivalentId</a></code> except it is constrained to a single value that
 is defined to be canonical for the <a>DID subject</a> in the scope of the <a>DID
@@ -3709,15 +3707,14 @@ document</a>. Like <code><a>equivalentId</a></code>,
 <code><a>canonicalId</a></code> represents a full graph merge because the same
 <a>DID document</a> describes both the <code><a>canonicalId</a></code> DID and
 the <code>id</code> property <a>DID</a>.
-              </p>
-              <p>
+            </p>
+            <p>
 If a resolving party does not use the <code><a>canonicalId</a></code> value as
 its primary ID value for the DID subject and treat all other equivalent values
 as secondary aliases, there might be negative or unexpected issues that arise
 related to user experience. Implementers are strongly advised to observe the
 directives related to this metadata property.
-              </p>
-              <p>
+            </p>
           </dd>
         </dl>
       </section>
@@ -3829,9 +3826,9 @@ is a <a>DID document</a>, this MUST be a <a>didDocumentMetadata</a> structure as
 described in <a>DID Resolution</a>. If the dereferencing is unsuccessful, this
 output MUST be an empty <a href="metadata-structure">metadata structure</a>.
         </dd>
-    </dl>
+      </dl>
 
-    <p>
+      <p>
 Conforming <a>DID URL dereferencing</a> implementations do not alter the
 signature of these functions in any way. <a>DID URL dereferencing</a>
 implementations might map the <code>dereference</code> function to a
@@ -3839,7 +3836,7 @@ method-specific internal function to perform the actual <a>DID URL
 dereferencing</a> process. <a>DID URL dereferencing</a> implementations might
 implement and expose additional functions with different signatures in addition
 to the <code>dereference</code> function specified here.
-    </p>
+      </p>
 
       <section>
         <h3>DID URL Dereferencing Options</h3>
@@ -3849,76 +3846,76 @@ The possible properties within this structure and their possible values SHOULD
 be registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
 This specification defines the following common properties for
 dereferencing options:
-            </p>
+        </p>
 
-            <dl>
-              <dt>
+        <dl>
+          <dt>
 accept
-              </dt>
-              <dd>
+          </dt>
+          <dd>
 The Media Type that the caller prefers for <code>contentStream</code>. The Media
 Type MUST be expressed as an <a data-lt="ascii string">ASCII string</a>.
 The <a>DID URL dereferencing</a> implementation SHOULD use this value to
 determine the <code>contentType</code> of the <a>representation</a> contained in the returned value if such a
 <a>representation</a> is supported and available.
-              </dd>
-            </dl>
-        </section>
+          </dd>
+        </dl>
+      </section>
 
-        <section>
-            <h3>DID URL Dereferencing Metadata</h3>
+      <section>
+        <h3>DID URL Dereferencing Metadata</h3>
 
-            <p>
+        <p>
 The possible properties within this structure and their possible values are
 registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]]. This
 specification defines the following common properties.
-            </p>
+        </p>
 
-            <dl>
-                <dt>
+        <dl>
+          <dt>
 contentType
-                </dt>
-                <dd>
+          </dt>
+          <dd>
 The Media Type of the returned <code>contentStream</code> SHOULD be expressed
 using this property if dereferencing is successful. The Media
 Type value MUST be expressed as an <a data-lt="ascii string">ASCII string</a>.
-                </dd>
-                <dt>
+          </dd>
+          <dt>
 error
-                </dt>
-                <dd>
+          </dt>
+          <dd>
 The error code from the dereferencing process. This property is REQUIRED when
 there is an error in the dereferencing process. The value of this property
 MUST be a single keyword expressed as an <a data-lt="ascii string">ASCII
 string</a>. The possible property values of this field SHOULD be registered in
 the DID Specification Registries [[DID-SPEC-REGISTRIES]]. This specification
 defines the following common error values:
-                    <dl>
-                        <dt>
+            <dl>
+              <dt>
 invalidDidUrl
-                        </dt>
-                        <dd>
+              </dt>
+              <dd>
 The <a>DID URL</a> supplied to the <a>DID URL dereferencing</a> function does
 not conform to valid syntax. (See <a href="#did-url-syntax"></a>.)
-                        </dd>
-                        <dt>
+              </dd>
+              <dt>
 notFound
-                        </dt>
-                        <dd>
+              </dt>
+              <dd>
 The <a>DID URL dereferencer</a> was unable to find the
 <code>contentStream</code> resulting from this dereferencing request.
-                        </dd>
-                    </dl>
-                </dd>
+              </dd>
             </dl>
+          </dd>
+        </dl>
 
-        </section>
+      </section>
     </section>
 
     <section>
-        <h2>Metadata Structure</h2>
+      <h2>Metadata Structure</h2>
 
-        <p>
+      <p>
 Input and output metadata is often involved during the <a>DID Resolution</a>,
 <a>DID URL dereferencing</a>, and other DID-related processes. The structure
 used to communicate this metadata MUST be a <a data-cite="INFRA#maps">map</a>
@@ -3938,86 +3935,89 @@ serializable according to the <a
 data-cite="INFRA#serialize-an-infra-value-to-json-bytes">JSON
 serialization rules</a> in the [[INFRA]] specification. Implementations MAY
 serialize the metadata structure to other data formats.
-        </p>
+      </p>
 
-        <p>
+      <p>
 All implementations of functions that use metadata structures as either input or
 output are able to fully represent all data types described here in a
 deterministic fashion. As inputs and outputs using metadata structures are
 defined in terms of data types and not their serialization, the method for
 <a>representation</a> is internal to the implementation of the function and is
 out of scope of this specification.
-        </p>
+      </p>
 
-        <p>
+      <p>
 The following example demonstrates a JSON-encoded metadata structure that
 might be used as <a href="#did-resolution-options">DID
 resolution input metadata</a>.
-        </p>
+      </p>
 
-        <pre class="example"
-          title="JSON-encoded DID resolution input metadata example">
+      <pre class="example"
+        title="JSON-encoded DID resolution input metadata example">
 {
   "accept": "application/did+ld+json"
 }
-        </pre>
+      </pre>
 
-        <p>
+      <p>
 This example corresponds to a metadata structure of the following format:
-        </p>
+      </p>
 
-        <pre class="example" title="DID resolution input metadata example">
+      <pre class="example"
+        title="DID resolution input metadata example">
 «[
   "accept" → "application/did+ld+json"
 ]»
-        </pre>
+      </pre>
 
-        <p>
+      <p>
 The next example demonstrates a JSON-encoded metadata structure that might be
 used as <a href="#did-resolution-options">DID resolution
 metadata</a> if a <a>DID</a> was not found.
-        </p>
+      </p>
 
-        <pre class="example"
+      <pre class="example"
         title="JSON-encoded DID resolution metadata example">
 {
   "error": "notFound"
 }
-        </pre>
+      </pre>
 
-        <p>
+      <p>
 This example corresponds to a metadata structure of the following format:
-        </p>
+      </p>
 
-        <pre class="example" title="DID resolution metadata example">
+      <pre class="example"
+        title="DID resolution metadata example">
 «[
   "error" → "notFound"
 ]»
-        </pre>
+      </pre>
 
-        <p>
+      <p>
 The next example demonstrates a JSON-encoded metadata structure that might be
 used as <a href="#did-document-metadata">DID document metadata</a>
 to describe timestamps associated with the <a>DID document</a>.
-        </p>
+      </p>
 
-        <pre class="example" title="JSON-encoded DID document metadata example">
+      <pre class="example" title="JSON-encoded DID document metadata example">
 {
   "created": "2019-03-23T06:35:22Z",
   "updated": "2023-08-10T13:40:06Z"
 }
-        </pre>
+      </pre>
 
-        <p>
+      <p>
 This example corresponds to a metadata structure of the following format:
-        </p>
+      </p>
 
-        <pre class="example" title="DID document metadata example">
+      <pre class="example"
+        title="DID document metadata example">
 «[
   "created" → "2019-03-23T06:35:22Z",
   "updated" → "2023-08-10T13:40:06Z"
 ]»
-        </pre>
+      </pre>
 
     </section>
 
@@ -4665,7 +4665,7 @@ method, such as an individual's operating system, antivirus, or endpoint protect
 software, might be impacted when the verification method is publicly revoked.
       </p>
 
-<p class="note">
+      <p class="note">
 Although verifiers might choose not to accept proofs or signatures from a revoked verification method,
 knowing whether a verification was made with a revoked verification method is trickier than it might seem.
 Some DID methods provide the ability to look back at the state of a DID at a point in time,
@@ -4691,7 +4691,7 @@ apply both forward and backward in time. DID ecosystems that
 take this approach essentially provide cryptographically verifiable
 statements as ephemeral tokens that can be invalidated at any time by
 the DID controller.
-</p>
+      </p>
     </section>
 
 
@@ -4824,9 +4824,9 @@ addresses using DNS lookups is available at [[?DNS-DID]].
     </section>
 
     <section>
-        <h2>DIDs as Enhanced URNs</h2>
+      <h2>DIDs as Enhanced URNs</h2>
 
-        <p>
+      <p>
 If desired by a <a>DID controller</a>, a <a>DID</a> is capable of acting
 as an enhanced Uniform Resource Name (URN) as defined by [[RFC8141]], i.e.,
 "a persistent, location-independent resource identifier". <a>DIDs</a> used in
@@ -4837,41 +4837,41 @@ itself, the <a>DID controller</a> can adjust the actual location of the resource
 &mdash; or even provide the resource directly &mdash; without adjusting the
 <a>DID</a>. <a>DIDs</a> of this type can definitively verify that the resource
 retrieved is, in fact, the resource identified.
-        </p>
-        <p>
+      </p>
+      <p>
 A <a>DID controller</a> who intends to use a <a>DID</a> for this purpose is
 advised to follow the security considerations in [[RFC8141]]. In particular:
-        </p>
-        <ul>
-          <li>
+      </p>
+      <ul>
+        <li>
 The <a>DID controller</a> is expected to choose a <a>DID method</a> that
 supports the controller's requirements for persistence. The Decentralized
 Characteristics Rubric [[?DID-RUBRIC]] is one tool available to help
 implementers decide upon the most suitable <a>DID method</a>.
-          </li>
-          <li>
+        </li>
+        <li>
 The <a>DID controller</a> is expected to publish its operational policies so
 relying parties can determine the degree to which they can rely on the
 persistence of a <a>DID</a> controlled by that <a>DID controller</a>. In the
 absence of such policies, relying parties are not expected to make any
 assumption about whether a <a>DID</a> is a persistent identifier for the same
 <a>DID subject</a>.
-          </li>
-        </ul>
+        </li>
+      </ul>
     </section>
 
     <section>
-        <h2>Immutability</h2>
+      <h2>Immutability</h2>
 
-        <p>
+      <p>
 Many cybersecurity abuses hinge on exploiting gaps between reality and the
 assumptions of rational, good-faith actors. Immutability of <a>DID documents</a> can
 provide some security benefits. Individual <a>DID methods</a> ought to
 consider constraints that would eliminate behaviors or semantics they do not
 need. The more <em>locked down</em> a <a>DID method</a> is, while providing
 the same set of features, the less it can be manipulated by malicious actors.
-        </p>
-        <p>
+      </p>
+      <p>
 As an example, consider that a single edit to a <a>DID document</a> can change
 anything except the root <code><a>id</a></code> property of the document. But
 is it actually desirable for a <a>service</a> to change its
@@ -4885,8 +4885,8 @@ target="_blank"
 href="https://en.wikipedia.org/wiki/Autonomous_system_(Internet)">ASN</a>
 associated with its IP address), such attacks might be much harder and more
 expensive to carry out, and anomaly detection would be easier.
-        </p>
-        <p>
+      </p>
+      <p>
 For <a>DID methods</a> tied to a global source of truth, a direct,
 just-in-time lookup of the latest version of a <a>DID document</a> is always
 possible. However, it seems likely that layers of cache might eventually sit
@@ -4895,7 +4895,7 @@ the attributes of an object in the <a>DID document</a> to have a given state
 when they are actually subtly different might invite exploits. This is
 particularly true if some lookups are of a full <a>DID document</a>, and
 others are of partial data where the larger context is assumed.
-        </p>
+      </p>
     </section>
 
     <section>
@@ -5011,8 +5011,8 @@ in reference to the same subject at any given point in time. It is
 technically possible for the controller to reuse a DID for different
 subjects and, more subtly, for the precise definition of the Subject
 to either change over time or be misunderstood.
-        </p>
-        <p>
+      </p>
+      <p>
 For example, consider a DID used for a sole proprietership, receiving
 various credentials used for financial transactions. To the controller,
 that identifier referred to the business. As the business grows, it
@@ -5032,7 +5032,7 @@ control of the same controller. Instead, one needs to understand the context
 in which the DID was created, how it is used, and consider the likely
 shifts in their meaning, and adopt procedures and policies to address both
 potential and inevitable semantic drift.
-        </p>
+      </p>
     </section>
 =======
 
@@ -5236,11 +5236,11 @@ with individual people, households, clubs, and employers &mdash; and
 correlation of their <a>service endpoints</a> could become a powerful
 surveillance and inference tool. An example of this is that including multiple common country-level top level domain such as <code>https://example.co.uk</code> could be used to infer the approximate location of the <a>DID Subject</a> with a greater degree of probability.
       </p>
-<p>
+      <p>
 The variety of possible endpoints makes it particularly challenging to maintain
 herd privacy, in which no information about the <a>DID subject</a> is leaked.
-</p>
-<p>
+      </p>
+      <p>
 First, because service endpoints may be specified as <a>URIs</a>, they could
 unintentionally leak personal information because of the architecture of the service.
 For example, a service endpoint of <code>http://example.com/MyFirstName</code> is leaking the term
@@ -5249,58 +5249,65 @@ this is an unavoidable risk and care should be taken in such cases. We encourage
 DID-aware endpoints to use nothing more than the DID itself for any identification necessary,
 e.g., <code>http://example.com/did%3Aexample%3Aabc123</code>. Since that <code>did:example:abc123</code> is already
 exposed in the DID Document, it leaks no additional information.
-</p>
+      </p>
 
-<p>
+      <p>
 Second, because a <a>DID document</a> can list multiple service endpoints, it is possible to
 irreversibly associate services that are not associated in any other context. This
 correlation on its own may lead to de-anonymization, revealing information about the
 <a>DID subject</a> even if the <a>URIs</a> used did not.
-</p>
-<p>
+      </p>
+      <p>
 Third, because some types of <a>DID subjects</a> may be more or less likely to list specific
 endpoints, e.g., a <a>DID</a> for an automobile may include a pointer to a public title
 record at the Department of Motor Vehicles, while a <a>DID</a> for an individual would not.
 As such, the listing of a given service could, by itself, leak information that can
 be used to infer something about the subject.
-</p>
-<p>
+      </p>
+      <p>
 It is the goal of herd privacy to ensure that the nature of specific subjects is
 obscured by the population of the whole. To maximize herd privacy, implementers
 need to rely on one &mdash; and only one &mdash; service endpoint, with that endpoint providing
 a proxy or mediator service that the controller is willing to depend on to protect
 such associations and that blinds requests to the ultimate service.
-</p>
-<p>
+      </p>
+      <p>
 Torward this end, consider any of the following:
-  <ul>
-  <li><strong>Negotiator Endpoint</strong> &mdash; Service for negotiating mutually
-  agreeable communications channels, preferably using private set intersection. The
-    output of negotiation is a communication channel and whatever credentials may be
-    needed to access it. </li>
-  <li><strong>Tor Endpoint</strong> (<a href="https://www.torproject.org/about/history/">Tor Onion Router</a>) &mdash;
-  Provide a privacy-respecting address for reaching service endpoints. Any service that
-  can be provided online can be provided through TOR for additional privacy.</li>
-  <li><strong>Mediator Endpoint</strong> &mdash;
-  <a href="https://github.com/hyperledger/aries-rfcs/blob/720bdab50e2d0437fda03028c1b17c69781bdd69/concepts/0046-mediators-and-relays/README.md">Mediators</a>
-  provide a generic endpoint, for multiple parties, receive encrypted messages on
-  behalf of those parties, and forward
-  them to the intended recipient. This avoids the need to have a specific endpoint per subject, which could create a
-  correlation risk. Also called a proxy.
-</li>
-  <li><strong>Confidential Storage</strong> &mdash; Proprietary or confidential personal
-  information may need to be kept off-registry to provide additional privacy and/or
-  security guarantees, especially for those methods where <a>DID documents</a> are published
-  on a public ledger. Pointing to external resource services provides a means for
-  authorization checks and deletion.
-</li>
-  <li><strong>Polymorphic Proxy</strong> &mdash; A proxy endpoint that can act as any
-  number of services, depending on how it is called. For example, the same URL could
-  be used for both negotiator and mediator functions, depending on a mechanism for re-routing.
-</li>
-  </ul>
-</p>
-<p>These service endpoint types continue to be an area of innovation.</p>
+      </p>
+      <ul>
+        <li>
+<strong>Negotiator Endpoint</strong> &mdash; Service for negotiating mutually
+agreeable communications channels, preferably using private set intersection. The
+output of negotiation is a communication channel and whatever credentials may be
+needed to access it.
+        </li>
+        <li>
+<strong>Tor Endpoint</strong> (<a href="https://www.torproject.org/about/history/">Tor Onion Router</a>) &mdash;
+Provide a privacy-respecting address for reaching service endpoints. Any service that
+can be provided online can be provided through TOR for additional privacy.</li>
+<li><strong>Mediator Endpoint</strong> &mdash;
+<a href="https://github.com/hyperledger/aries-rfcs/blob/720bdab50e2d0437fda03028c1b17c69781bdd69/concepts/0046-mediators-and-relays/README.md">Mediators</a>
+provide a generic endpoint, for multiple parties, receive encrypted messages on
+behalf of those parties, and forward
+them to the intended recipient. This avoids the need to have a specific endpoint per subject, which could create a
+correlation risk. Also called a proxy.
+        </li>
+        <li>
+<strong>Confidential Storage</strong> &mdash; Proprietary or confidential personal
+information may need to be kept off-registry to provide additional privacy and/or
+security guarantees, especially for those methods where <a>DID documents</a> are published
+on a public ledger. Pointing to external resource services provides a means for
+authorization checks and deletion.
+        </li>
+        <li>
+<strong>Polymorphic Proxy</strong> &mdash; A proxy endpoint that can act as any
+number of services, depending on how it is called. For example, the same URL could
+be used for both negotiator and mediator functions, depending on a mechanism for re-routing.
+        </li>
+      </ul>
+      <p>
+These service endpoint types continue to be an area of innovation.
+      </p>
 
     </section>
   </section>
@@ -5508,10 +5515,10 @@ Model</a> for additional examples.
     "jws": "eyJjcml0IjpbImI2NCJdLCJiNjQiOmZhbHNlLCJhbGciOiJFZERTQSJ9..BhWew0x-txcroGjgdtK-yBCqoetg9DD9SgV4245TmXJi-PmqFzux6Cwaph0r-mbqzlE17yLebjfqbRT275U1AA"
   }
 }
-    </pre>
+      </pre>
 
-    <pre class="example"
-      title="Verifiable Credential linked to a verification method of type JsonWebKey2020">
+      <pre class="example"
+        title="Verifiable Credential linked to a verification method of type JsonWebKey2020">
 {  <span class="comment">// external (all terms in this example)</span>
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
@@ -5536,10 +5543,10 @@ Model</a> for additional examples.
     "jws": "eyJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdLCJhbGciOiJFZERTQSJ9..Y0KqovWCPAeeFhkJxfQ22pbVl43Z7UI-X-1JX32CA9MkFHkmNprcNj9Da4Q4QOl0cY3obF8cdDRdnKr0IwNrAw"
   }
 }
-    </pre>
+      </pre>
 
-    <pre class="example"
-    title="Verifiable Credential linked to a bls12381 verification method">
+      <pre class="example"
+        title="Verifiable Credential linked to a bls12381 verification method">
 {  <span class="comment">// external (all terms in this example)</span>
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
@@ -5568,10 +5575,10 @@ Model</a> for additional examples.
     "verificationMethod": "did:example:123#bls12381-g2-key"
   }
 }
-</pre>
+      </pre>
 
-<pre class="example"
-    title="Verifiable Credential selective disclosure zero knowledge proof linked to a bls12381 verification method">
+      <pre class="example"
+        title="Verifiable Credential selective disclosure zero knowledge proof linked to a bls12381 verification method">
 {  <span class="comment">// external (all terms in this example)</span>
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
@@ -5600,10 +5607,10 @@ Model</a> for additional examples.
     "verificationMethod": "did:example:123#bls12381-g2-key"
   }
 }
+      </pre>
 
-</pre>
-
-    <pre class="example" title="Verifiable Credential as Decoded JWT">
+      <pre class="example"
+        title="Verifiable Credential as Decoded JWT">
 { <span class="comment">// external (all terms in this example)</span>
   "protected": {
     "kid": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
@@ -5650,7 +5657,8 @@ These examples are for information purposes only, it is considered a best
 practice to avoid dislosing unnecessary information in JWE headers.
       </p>
 
-      <pre class="example" title="JWE linked to a verification method via kid">
+      <pre class="example"
+        title="JWE linked to a verification method via kid">
 { <span class="comment">// external (all terms in this example)</span>
   "ciphertext": "3SHQQJajNH6q0fyAHmw...",
   "iv": "QldSPLVnFf2-VXcNLza6mbylYwphW57Q",
@@ -6107,7 +6115,7 @@ author can include an alsoKnownAs property pointing to the current URL of
 the blog:
       </p>
       <code>
-          "alsoKnownAs": ["https://myblog.blogging-host.example/home"]
+        "alsoKnownAs": ["https://myblog.blogging-host.example/home"]
       </code>
       <p>
 If the author subsequently moves the blog to a different hosting company
@@ -6115,7 +6123,7 @@ If the author subsequently moves the blog to a different hosting company
 to point to the new URL for the blog:
       </p>
       <code>
-          "alsoKnownAs": ["https://myblog.example/"]
+        "alsoKnownAs": ["https://myblog.example/"]
       </code>
       <p>
 The <a>DID</a> effectively adds a layer of indirection for the blog URL.
