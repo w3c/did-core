@@ -2149,7 +2149,7 @@ decryption key for the recipient.
 The `capabilityInvocation` <a>verification relationship</a> is used to specify
 a <a>verification method</a> that might be used by the <a>DID subject</a> to
 invoke a cryptographic capability, such as the authorization to update the
-<a>DID Document</a> or the authorization to access an HTTP API.
+<a>DID Document</a>.
         </p>
 
         <dl>
@@ -2163,12 +2163,22 @@ embedded or referenced.
         </dl>
 
         <p>
-An example of when this property is useful is when a <a>DID subject</a>
-chooses to invoke their capability to start a vehicle through the combined
-usage of a <a>verification method</a> and the <code>StartCar</code>
-capability. In this example, the vehicle would be the <em>verifier</em> and
-would need to verify that the <a>verification method</a> exists in the
-<code><a>capabilityInvocation</a></code> property.
+An example of when this property is useful is when a <a>DID subject</a> needs to
+access a protected HTTP API that requires authorization in order to use it. In
+order to authorize when using the HTTP API, the <a>DID subject</a>
+<em>invokes</em> a capability that is associated with a particular URL that is
+exposed via the HTTP API. The invocation of the capability is typically a
+digitally signed message that is placed into the HTTP Headers.
+        </p>
+        <p>
+The server providing the HTTP API is the <em>verifier</em> of the capability and
+would need to verify that the <a>verification method</a> referred to by the
+invoked capability exists in the <code><a>capabilityInvocation</a></code>
+property of the <a>DID document</a>. The verifier would also check to make sure
+that the action being performed is valid and the capability matches the resource
+being accessed. If the verification is successful, the server has
+cryptographically determined that the invoker is authorized to access the
+protected resource.
         </p>
 
         <pre class="example nohighlight" title="Capability invocation property
@@ -2180,7 +2190,7 @@ would need to verify that the <a>verification method</a> exists in the
   "capabilityInvocation": [
     <span class="comment">// this method can be used to invoke capabilities as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this method is *only* approved for capability invocation usage, it may not</span>
+    <span class="comment">// this method is *only* approved for capability invocation usage, it will not</span>
     <span class="comment">// be used for any other verification relationship, so its full description is</span>
     <span class="comment">// embedded here rather than using only a reference</span>
     {
