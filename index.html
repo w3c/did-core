@@ -2267,123 +2267,87 @@ example described in <a href="#capability-invocation"></a>.
 
       <p>
 <a>Services</a> are used in <a>DID documents</a> to express ways of
-communicating with the <a>DID subject</a> or associated entities.
-A <a>service</a> can be any type of service the <a>DID subject</a> wants
-to advertise, including <a>decentralized identity management</a> services
-for further discovery, authentication, authorization, or interaction.
+communicating with the <a>DID subject</a> or associated entities. A
+<a>service</a> can be any type of service the <a>DID subject</a> wants to
+advertise, including <a>decentralized identity management</a> services for
+further discovery, authentication, authorization, or interaction.
       </p>
 
       <p>
-Revealing public information through <a>services</a> (such as social media
-accounts, personal websites, and email addresses) is discouraged. See Section
-<a href="#keep-personal-data-private"></a> and
-<a href="#service-privacy"></a> for additional details.
-The information associated with <a>services</a> are often
-service-specific. For example, the information associated with an encrypted
-messaging service can express how to initiate the encrypted link before
-messaging begins.
+Due to privacy concerns, revealing public information through <a>services</a>,
+such as social media accounts, personal websites, and email addresses, is
+discouraged. Further  exploration of privacy concerns can be found in <a
+href="#keep-personal-data-private"></a> and <a href="#service-privacy"></a>. The
+information associated with <a>services</a> are often service-specific. For
+example, the information associated with an encrypted messaging service can
+express how to initiate the encrypted link before messaging begins.
       </p>
 
       <p>
-Pointers to <a>services</a> are expressed using the <code><a>service</a></code>
-property. Each service has its own <code>id</code> and <code>type</code>
-properties, as well as a <code><a>serviceEndpoint</a></code> property with a
-<a>URI</a> or a set of other properties describing the service.
+<a>Services</a> are expressed using the <code><a>service</a></code> property,
+which is described below:
       </p>
 
       <dl>
         <dt>service</dt>
         <dd>
           <p>
-The <code>service</code> property is OPTIONAL. If present, the associated
-value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a>
-of <a>services</a>, where each service is described by a
-<a data-cite="INFRA#ordered-map">map</a>. Each <a>service</a>
-<a data-cite="INFRA#ordered-map">map</a> MUST have <code><a>id</a></code>,
-<code>type</code>, and <code><a>serviceEndpoint</a></code> properties, and MAY
-include additional properties.
-          </p>
-          <p>
-The value of the <code>id</code> property MUST be a <a>URI</a>
-conforming to [[RFC3986]]. The value of <code>service</code> MUST NOT contain
-multiple entries with the same <code>id</code>. In this case, a
-<a>DID document</a> processor MUST produce an error.
-          </p>
-          <p>
-The value of the <code>type</code> property MUST be a
-<a data-cite="INFRA#string">string</a> or an
-<a data-cite="INFRA#ordered-set">ordered set</a> of
-<a data-cite="INFRA#string">strings</a>.
-          </p>
-        </dd>
-
-        <dt><dfn>serviceEndpoint</dfn></dt>
-        <dd>
-          <p>
-The value of the <code>serviceEndpoint</code> property MUST be a
-<a data-cite="INFRA#string">string</a>, a <a data-cite="INFRA#string">map</a>,
-or an <a data-cite="INFRA#ordered-set">ordered set</a> composed of a one or more
-<a data-cite="INFRA#string">strings</a> and/or
-<a data-cite="INFRA#string">maps</a>. All <a data-cite="INFRA#string">string</a>
-values MUST be valid <a>URIs</a> conforming to [[RFC3986]] and normalized
-according to the rules in section 6 of [[RFC3986]] and to any normalization
-rules in its applicable <a>URI</a> scheme specification. Extension
-specifications for services MAY further restrict the properties associated
+The <code>service</code> property is OPTIONAL. If present, the associated value
+MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of <a>services</a>,
+where each service is described by a <a data-cite="INFRA#ordered-map">map</a>.
+Each <a>service</a> <a data-cite="INFRA#ordered-map">map</a> MUST contain
+<code><a>id</a></code>, <code>type</code>, and
+<code><a>serviceEndpoint</a></code> properties. Each service extension MAY
+include additional properties and MAY further restrict the properties associated
 with the extension.
           </p>
-        </dd>
+          <dl>
+            <dt>id</dt>
+            <dd>
+The value of the <code>id</code> property MUST be a <a>URI</a> conforming to
+[[RFC3986]]. A <a>conforming producer</a> MUST NOT produce
+multiple <code>service</code> entries with the same <code>id</code>.
+A <a>conforming consumer</a> MUST produce an error if it detects
+multiple <code>service</code> entries with the same <code>id</code>.
+            </dd>
+          <dt>type</dt>
+          <dd>
+The value of the <code>type</code> property MUST be a <a
+data-cite="INFRA#string">string</a> or an <a
+data-cite="INFRA#ordered-set">ordered set</a> of <a
+data-cite="INFRA#string">strings</a>.  In order to maximize interoperability,
+the <a>verification method</a> type and  its associated properties SHOULD be
+registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
+          </dd>
+          <dt><dfn>serviceEndpoint</dfn></dt>
+          <dd>
+The value of the <code>serviceEndpoint</code> property MUST be a <a
+data-cite="INFRA#string">string</a>, a <a data-cite="INFRA#string">map</a>, or
+an <a data-cite="INFRA#ordered-set">ordered set</a> composed of one or more <a
+data-cite="INFRA#string">strings</a> and/or <a
+data-cite="INFRA#string">maps</a>. All <a data-cite="INFRA#string">string</a>
+values MUST be valid <a>URIs</a> conforming to [[RFC3986]] and normalized
+according to the <a data-cite="RFC3986#section-6">Normalization and Comparison
+rules in RFC3986</a> and to any normalization rules in its applicable <a>URI</a>
+scheme specification.
+          </dd>
+        </dl>
       </dl>
 
       <p>
-It is expected that the <a>service</a> protocol is published in an open
-standard specification.
+For more information regarding privacy and security considerations related
+to <a>services</a> see <a href="#service-privacy"></a>, <a
+href="#keep-personal-data-private"></a>, <a
+href="#did-document-correlation-risks"></a>, and <a
+href="#authentication-service-endpoints"></a>.
       </p>
 
-      <p>
-For more information about security considerations regarding authentication
-<a>services</a> see Sections <a href="#method-schemes"></a>
-and <a href="#authentication"></a>.
-      </p>
-
-      <pre class="example nohighlight" title="Various services">
+      <pre class="example nohighlight" title="Usage of the service property">
 {
   "service": [{
     "id":"did:example:123#linked-domain",
     "type": "LinkedDomains", <span class="comment">// external (property value)</span>
     "serviceEndpoint": "https://bar.example.com"
-  }, {
-    "id": "did:example:123456789abcdefghi#openid",
-    "type": "OpenIdConnectVersion1.0Service", <span class="comment">// external (property value)</span>
-    "serviceEndpoint": "https://openid.example.com/"
-  }, {
-    "id": "did:example:123456789abcdefghi#vcr",
-    "type": "CredentialRepositoryService", <span class="comment">// external (property value)</span>
-    "serviceEndpoint": "https://repository.example.com/service/8377464"
-  }, {
-    "id": "did:example:123456789abcdefghi#xdi",
-    "type": "XdiService", <span class="comment">// external (property value)</span>
-    "serviceEndpoint": "https://xdi.example.com/8377464"
-  }, {
-    "id": "did:example:123456789abcdefghi#agent",
-    "type": "AgentService", <span class="comment">// external (property value)</span>
-    "serviceEndpoint": "https://agent.example.com/8377464"
-  }, {
-    "id": "did:example:123456789abcdefghi#messages",
-    "type": "MessagingService", <span class="comment">// external (property value)</span>
-    "serviceEndpoint": "https://example.com/messages/8377464"
-  }, {
-    "id": "did:example:123456789abcdefghi#inbox",
-    "type": "SocialWebInboxService", <span class="comment">// external (property value)</span>
-    "serviceEndpoint": "https://social.example.com/83hfh37dj",
-    "description": "My public social inbox", <span class="comment">// external (property name)</span>
-    "spamCost": { <span class="comment">// external (property name)</span>
-      "amount": "0.50", <span class="comment">// external (property name)</span>
-      "currency": "USD" <span class="comment">// external (property name)</span>
-    }
-  }, {
-    "id": "did:example:123456789abcdefghi#authpush",
-    "type": "DidAuthPushModeVersion1", <span class="comment">// external (property value)</span>
-    "serviceEndpoint": "http://auth.example.com/did:example:123456789abcdefg"
   }]
 }
       </pre>
