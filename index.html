@@ -2210,10 +2210,10 @@ protected resource.
         <h2>Capability Delegation</h2>
 
         <p>
-The `capabilityDelegation` <a>verification relationship</a> is used to specify
-a mechanism that might be used by the <a>DID subject</a> to delegate
-a cryptographic capability to another party, such as delegating the
-authority to access a specific HTTP API to a subordinate.
+The `capabilityDelegation` <a>verification relationship</a> is used to specify a
+mechanism that might be used by the <a>DID subject</a> to delegate a
+cryptographic capability to another party, such as delegating the authority to
+access a specific HTTP API to a subordinate.
         </p>
 
         <dl>
@@ -2227,10 +2227,14 @@ embedded or referenced.
         </dl>
 
         <p>
-An example of when this property is useful is when a <a>DID Subject</a>
-chooses to grant their capability to start a vehicle through the combined
-usage of a <a>verification method</a> and the <code>StartCar</code> capability
-to a party other than themselves.
+An example of when this property is useful is when a <a>DID subject</a> chooses
+to delegate their capability to access a protected HTTP API to a party other
+than themselves. In order to delegate the capability, the <a>DID subject</a>
+would use a <a>verification method</a> associated with the
+<code>capabilityDelegation</code> <a>verification relationship</a> to
+cryptographically sign the capability over to another <a>DID subject</a>. The
+delegate would then invoke the capability in a manner that is similar to the
+example described in <a href="#capability-invocation"></a>.
         </p>
 
         <pre class="example nohighlight" title="Capability Delegation property
@@ -2242,7 +2246,7 @@ to a party other than themselves.
   "capabilityDelegation": [
     <span class="comment">// this method can be used to perform capability delegation as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this method is *only* approved for granting capabilities it may not</span>
+    <span class="comment">// this method is *only* approved for granting capabilities it will not</span>
     <span class="comment">// be used for any other verification relationship, so its full description is</span>
     <span class="comment">// embedded here rather than using only a reference</span>
     {
