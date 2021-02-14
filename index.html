@@ -2095,9 +2095,10 @@ corresponding <a>DID document</a>.
         <h2>Key Agreement</h2>
 
         <p>
-The `keyAgreement` <a>verification relationship</a> is used to specify how
-to encrypt information to the <a>DID subject</a>, such as for the purposes
-of establishing a secure communication channel with the recipient.
+The `keyAgreement` <a>verification relationship</a> is used to specify how an
+entity can generate encryption material in order to secretly transmit
+information intended for the <a>DID subject</a>, such as for the purposes of
+establishing a secure communication channel with the recipient.
         </p>
 
         <dl>
@@ -2111,10 +2112,10 @@ referenced.
         </dl>
 
         <p>
-An example of when this property is useful is when encrypting a message
-intended for the <a>DID Subject</a>. In this case, the counterparty uses the
-public cryptographic key information in the <a>verification method</a>
-to wrap a decryption key for the recipient.
+An example of when this property is useful is when encrypting a message intended
+for the <a>DID Subject</a>. In this case, the counterparty uses the
+cryptographic public key information in the <a>verification method</a> to wrap a
+decryption key for the recipient.
         </p>
 
         <pre class="example nohighlight" title="Key agreement property
@@ -2126,7 +2127,7 @@ to wrap a decryption key for the recipient.
   "keyAgreement": [
     <span class="comment">// this method can be used to perform key agreement as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this method is *only* approved for key agreement usage, it may not</span>
+    <span class="comment">// this method is *only* approved for key agreement usage, it will not</span>
     <span class="comment">// be used for any other verification relationship, so its full description is</span>
     <span class="comment">// embedded here rather than using only a reference</span>
     {
