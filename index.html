@@ -5342,7 +5342,7 @@ harms are typically unintended consequences. <a>DIDs</a> can identify documents,
 <a>services</a>, schemas, and other things that may be associated
 with individual people, households, clubs, and employers &mdash; and
 correlation of their <a>service endpoints</a> could become a powerful
-surveillance and inference tool.
+surveillance and inference tool. An example of this is that including multiple common country-level top level domain such as <code>https://example.co.uk</code> could be used to infer the approximate location of the <a>DID Subject</a> with a greater degree of probability.
       </p>
 <p>
 The variety of possible endpoints makes it particularly challenging to maintain 
@@ -5376,7 +5376,8 @@ be used to infer something about the subject.
 It is the goal of herd privacy to ensure that the nature of specific subjects is 
 obscured by the population of the whole. To maximize herd privacy, implementers 
 need to rely on one &mdash; and only one &mdash; service endpoint, with that endpoint providing 
-a proxy or mediator service to further blind requests.
+a proxy or mediator service that the controller is willing to depend on to protect 
+such associations and that blinds requests to the ultimate service.
 </p>
 <p>
 Torward this end, consider any of the following:
@@ -5389,8 +5390,9 @@ Torward this end, consider any of the following:
   Provide a privacy-respecting address for reaching service endpoints. Any service that
   can be provided online can be provided through TOR for additional privacy.</li>
   <li><strong>Mediator Endpoint</strong> &mdash; 
-  <a href="https://hyperledger-indy.readthedocs.io/projects/hipe/en/latest/text/0036-mediators-and-relays/README.html">Mediators</a>
-  provide a generic endpoint, for multiple parties, receive encrypted messages on behalf of those parties, and forward
+  <a href="https://github.com/hyperledger/aries-rfcs/blob/720bdab50e2d0437fda03028c1b17c69781bdd69/concepts/0046-mediators-and-relays/README.md">Mediators</a>
+  provide a generic endpoint, for multiple parties, receive encrypted messages on 
+  behalf of those parties, and forward
   them to the intended recipient. This avoids the need to have a specific endpoint per subject, which could create a
   correlation risk. Also called a proxy.
 </li>
