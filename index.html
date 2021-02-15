@@ -2366,120 +2366,129 @@ href="#authentication-service-endpoints"></a>.
     <h1>Representations</h1>
 
     <p>
-All concrete <a>representations</a> of a <a>DID document</a> are serialized using a
-deterministic mapping that is able to be unambiguously parsed into the <a
-href="#data-model">data model</a> defined in this specification. All
-serialization methods MUST define rules for the bidirectional translation of a
-<a>DID document</a> both into and out of the <a>representation</a> in question. An
-implementation MUST NOT convert between <a>representations</a> without first parsing to
-a <a href="#data-model">data model</a> (described in Sections <a
-href="#data-model"></a> and <a href="#core-properties"></a>); translation
-between any two <a>representations</a> is done by parsing the source <a>representation</a>
-into the <a href="#data-model">data model</a> and then serializing the <a
-href="#data-model">data model</a> into the target <a>representation</a>.
-    </p>
-
-    <p>
-Although syntactic mappings are provided for JSON, JSON-LD, and CBOR here,
-applications and services MAY use any other data <a>representation</a> syntax that is
-capable of expressing the <a href="#data-model">data model</a>, such as XML or
-YAML.
-    </p>
-
-    <p>
-Producers MUST indicate which <a>representation</a> of a document has been used via a
-media type in the document's metadata. Consumers MUST determine the
-<a>representation</a> of a <a>DID document</a> via the <code>contentType</code> <a>DID
-resolver</a> metadata field (see <a href="#did-resolution"></a>), <em>not</em>
-through the content of the <a>DID document</a> alone.
-    </p>
-
-    <p>
-A <a>conforming producer</a>
-MUST NOT produce a <a>DID document</a> containing different entries with
-the same <code>id</code> value. A <a>conforming consumer</a> MUST produce
-an error if it detects different entries with the same <code>id</code> value.
-    </p>
-
-    <p>
-Unrecognized entries in the <a href="#data-model">data model</a> MUST be
-preserved. An unrecognized entry is any entry that does not have explicit
-processing rules known to the consumer or producer. Consumers MUST add all
-entries that do not have explicit processing rules for the
-<a>representation</a> being consumed to the <a href="#data-model">data
-model</a> using only the <a>representation</a>'s generic type processing rules.
-Producers MUST serialize all entries in the <a href="#data-model">data
-model</a> that do not have explicit processing rules for the
-<a>representation</a> being produced using only the <a>representation</a>'s
-generic type processing rules.
-    </p>
-
-    <p class="note" title="Representation-specific entries">
-Note that entries that contain representation-specific syntax will only have
-special processing rules defined by a single <a>representation</a>. Consumers of a
-different <a>representation</a> are required to include these entries in the <a
-href="#data-model">data model</a> using only their generic type processing rules
-to enable lossless conversion of <a>representations</a>. Similarly, producers are
-required to treat entries containing representation-specific syntax using
-generic type processing rules when producing a <a>representation</a> for which
-the entry is not defined. <a>Representations</a> are required to define
-producer behavior for any such entries defined by the <a>representation</a>.
-    </p>
-
-    <p class="note" title="Representation lexical and value space">
-It is RECOMMENDED that <a>representations</a> use the lexical representation
-of registered data types. For example, JSON and JSON-LD use the XML
-Schema dateTime lexical representation to represent <a>datetimes</a>.
-A <a>representation</a> MAY choose to represent the data types differently.
-For example, some CBOR-based <a>representations</a> express <a>datetime</a>
-values using integers to represent the number of seconds since the Unix epoch.
-    </p>
-
-    <p>
-The production and consumption rules in this section apply to all
-implementations seeking to be fully compatible with independent implementations
-of the specification. Deployments of this specification MAY use a custom
-agreed-upon <a>representation</a>, including rules agreed to by a pair of producers
-and consumers for handling properties not listed in the registry. See Section
-<a href="#extensibility"></a> for more information.
+A concrete serialization of any data structure in this specification is called a
+<a>representation</a>. A <a>representation</a> is created by serializing the <a
+href="#data-model">data model</a> through a process called
+<dfn>production</dfn>. A <a>representation</a> is transformed back into the <a
+href="#data-model">data model</a> through a process called
+<dfn>consumption</dfn>. The <em>production</em> and <em>consumption</em> process
+enables the conversion of information from one <a>representation</a> to another.
+Although this specification defines <a>representations</a> for JSON, JSON-LD,
+and CBOR, developers can use any other <a>representation</a>, such as XML or
+YAML, that is capable of expressing the <a href="#data-model">data model</a>.
+The following sections define the general rules for <a>production</a> and
+<a>consumption</a> and the JSON, JSON-LD, and CBOR <a>representations</a>.
     </p>
 
     <section>
-      <h2>Representation Requirements</h2>
+      <h2>Production and Consumption</h2>
+
       <p>
-The <a href="#data-model">data model</a> provided in this specification
-supports being serialized into a variety of existing <a>representations</a>. Some
-applications might require the creation of a new <a>representation</a>. All
-<a>representations</a> require the following:
+The rules in this section apply to all implementations seeking to be compatible
+with independent implementations of the specification. Deployments of this
+specification can use a custom agreed-upon <a>representation</a>, including
+rules agreed to by a pair of producers and consumers for handling properties not
+listed in the registry. See <a href="#extensibility"></a> for more information.
+      </p>
+      <p>
+The requirements for all <a>representations</a> are as follows:
       </p>
       <ol>
         <li>
-A <a>representation</a> MUST define an unambiguous encoding and decoding for all
-property names and all <a href="#data-model">data model</a> <a
-href="#data-model">data types</a> as defined in this specification. This enables
-anything that can be represented in the  <a href="#data-model">data model</a> to
-also be represented in a compliant <a>representation</a>.
+A <a>representation</a> MUST define deterministic production and consumption
+rules for all data types specified in <a href="#data-model"></a>.
         </li>
         <li>
-The <a>representation</a> MUST be uniquely associated with an IANA-registered MIME
-type.
+A <a>representation</a> MUST be uniquely associated with an IANA-registered
+MIME type.
         </li>
         <li>
-The <a>representation</a> MUST define fragment processing rules for its MIME type that
-are conformant with the fragment processing rules defined in section
-<a href="#fragment"></a> of this specification.
+A <a>representation</a> MUST define fragment processing rules for its MIME
+type that are conformant with the fragment processing rules defined in
+<a href="#fragment"></a>.
         </li>
         <li>
-The <a>representation</a> MAY define representation-specific syntax that can be stored
-as entries in the <a href="#data-model">data model</a>. These entries are
-included when consuming or producing to aid in ensuring lossless conversion.
+A <a>representations</a> SHOULD use the lexical representation of <a
+href="#data-model">data model</a> data types. For example, JSON and JSON-LD use
+the XML Schema <code>dateTime</code> lexical serialization to represent
+<a>datetimes</a>. A <a>representation</a> MAY choose to serialize the <a
+href="#data-model">data model</a> data types using a different lexical
+serializations as long as the <a>consumption</a> process back into the <a
+href="#data-model">data model</a> is lossless. For example, some CBOR-based
+<a>representations</a> express <a>datetime</a> values using integers to
+represent the number of seconds since the Unix epoch.
+        </li>
+        <li>
+A <a>representation</a> MAY define representation-specific entries that can be
+stored in a data structure expressible using the <a href="#data-model">data
+model</a> for use during the <a>production</a> and <a>consumption</a> process.
+These entries are utilized when consuming or producing to aid in ensuring
+lossless conversion.
+        </li>
+        <li>
+In order to maximize interoperability, <a>representation</a> specification
+authors SHOULD register their <a>representation</a> in the DID Specification
+Registries [[?DID-SPEC-REGISTRIES]].
         </li>
       </ol>
-      <p>
-In order to maximize interoperability, <a>representation</a> specification authors
-SHOULD register their <a>representation</a> in the DID Specification
-Registries [[?DID-SPEC-REGISTRIES]].
+
+      <p class="note" title="Representation-specific entries">
+Note that representation-specific entries will only have special processing
+rules defined by a single <a>representation</a>. Consumers of a different
+<a>representation</a> are required to preserve these entries in the
+<a>DID document</a> <a
+href="#data-model">data model</a> using their generic type processing rules
+to enable lossless conversion of <a>representations</a>. Similarly, producers
+are required to treat entries containing representation-specific syntax using
+generic type processing rules when producing a <a>representation</a> for which
+the entry is not defined. <a>Representations</a> are required to define producer
+behavior for any such entries defined by the <a>representation</a>.
       </p>
+
+      <p>
+The requirements for all <a>conforming producers</a> are as follows:
+      </p>
+
+      <ol>
+        <li>
+A <a>conforming producer</a> MUST serialize all entries in the <a
+href="#data-model">data model</a> that do not have explicit processing rules for
+the <a>representation</a> being produced using only the <a>representation</a>'s
+data type processing rules.
+        </li>
+        <li>
+A <a>conforming producer</a> MUST indicate which <a>representation</a> has been
+used for a <a>DID document</a> via a MIME type as described in <a
+href="#did-resolution-metadata"></a>.
+        </li>
+      </ol>
+
+      <p>
+The requirements for all <a>conforming consumers</a> are as follows:
+      </p>
+
+      <ol>
+        <li>
+A <a>conforming consumer</a> MUST add all entries that do not have explicit
+processing rules for the <a>representation</a> being consumed to the <a
+href="#data-model">data model</a> using only the <a>representation</a>'s data
+type processing rules.
+        </li>
+        <li>
+A <a>conforming consumer</a> MUST determine the <a>representation</a> of a
+<a>DID document</a> using the associated MIME type as described in <a
+href="#did-resolution-metadata"></a>.
+        </li>
+      </ol>
+
+      <p class="note" title="Conversion between representations">
+An implementation is expected to convert between <a>representations</a> by using the
+<em>consumption</em> rules on the source representation resulting in the <a
+href="#data-model">data model</a> and then using the <em>production</em> rules
+to serialize <a href="#data-model">data model</a> to the target representation,
+or any other mechanism that results in the same target representation.
+      </p>
+
     </section>
 
     <section>
