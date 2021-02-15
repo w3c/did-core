@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
   <title>
@@ -2506,7 +2506,7 @@ for the JSON <a>representation</a>.
         <p>
 All data structures expressed by the <a href="#data-model">data model</a>
 MUST be serialized to the JSON <a>representation</a> according to the
-following production rules:
+following <a>production</a> rules:
         </p>
 
         <table class="simple" id="json-representation-production">
@@ -2577,7 +2577,7 @@ A <a data-cite="RFC8259#section-7">JSON String</a>.
 <a>integer</a>
               </td>
               <td>
-A <a data-cite="RFC8259#section-6">JSON Number</a> without a decimal and
+A <a data-cite="RFC8259#section-6">JSON Number</a> without a decimal or
 fractional component.
               </td>
             </tr>
@@ -2646,17 +2646,15 @@ applications such as described in <a href="#did-resolution-metadata"></a>.
         <h3>Consumption</h3>
 
         <p>
-The topmost element MUST be a JSON object. Any other data type at the topmost
-level is an error and MUST be rejected. The topmost JSON object represents the
-<a>DID document</a>, and all members of this object are entries of the <a>DID
-document</a>. The object member name is the entry key, and the member value
-is interpreted as follows:
+All data structures expressed by a JSON <a>representation</a> MUST be
+deserialized into the <a href="#data-model">data model</a> according to the
+following <a>consumption</a> rules:
         </p>
 
         <table class="simple" id="json-representation-consumption">
           <thead>
             <tr>
-              <th>
+              <th width="50%">
 JSON Representation Type
               </th>
               <th>
@@ -2671,53 +2669,54 @@ Data&nbsp;Type
 <a data-cite="RFC8259#section-4">JSON Object</a>
               </td>
               <td>
-<a data-cite="INFRA#maps">ordered&nbsp;map</a>, each member of the JSON Object
-is added as an entry to the ordered map with the entry key being the
-member name and the value converted based on the JSON type and, if available,
-entry definition, as defined here; as no order is specified by JSON Objects,
-no insertion order is guaranteed
+An <a data-cite="INFRA#maps">ordered&nbsp;map</a>, where each member of the JSON
+Object is added as an entry to the ordered map. Each entry key is set as the
+JSON Object member name. Each entry value is set by converting the JSON Object
+member value according to the JSON representation type as defined in this table.
+Since order is not specified by JSON Objects, no insertion order is guaranteed.
               </td>
             </tr>
             <tr>
               <td>
-<a data-cite="RFC8259#section-5">JSON Array</a> where <a href="#data-model">data
-model</a> entry value is a <a data-cite="INFRA#list">list</a> or unknown
+<a data-cite="RFC8259#section-5">JSON Array</a> where the <a
+href="#data-model">data model</a> entry value is a <a
+data-cite="INFRA#list">list</a> or unknown
               </td>
               <td>
-<a data-cite="INFRA#list">list</a>, each value of the JSON Array is added to the
-list in order, converted based on the JSON type of the array value, as defined
-here
+A <a data-cite="INFRA#list">list</a>, where each value of the JSON Array is
+added to the list in order, converted based on the JSON representation type of
+the array value, as defined in this table.
               </td>
             </tr>
             <tr>
               <td>
-<a data-cite="RFC8259#section-5">JSON Array</a> where <a href="#data-model">data
-model</a> entry value is an <a
+<a data-cite="RFC8259#section-5">JSON Array</a> where the <a
+href="#data-model">data model</a> entry value is an <a
 data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
-<a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>, each value of the JSON
-Array is added to the ordered set in order, converted based on the JSON type of
-the array value, as defined here
+An <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>, where each value of
+the JSON Array is added to the ordered set in order, converted based on the JSON
+representation type of the array value, as defined in this table.
               </td>
             </tr>
             <tr>
               <td>
 <a data-cite="RFC8259#section-7">JSON String</a> where <a
-href="#data-model">data model</a> entry value is an <a>datetime</a>
+href="#data-model">data model</a> entry value is a <a>datetime</a>
               </td>
               <td>
-<a>datetime</a>
+A <a>datetime</a>.
               </td>
             </tr>
             <tr>
               <td>
-<a data-cite="RFC8259#section-7">JSON String</a>, where <a
+<a data-cite="RFC8259#section-7">JSON String</a>, where the <a
 href="#data-model">data model</a> entry value type is <a>string</a> or
 unknown
               </td>
               <td>
-<a data-cite="INFRA#string">string</a>
+A <a data-cite="INFRA#string">string</a>.
               </td>
             </tr>
             <tr>
@@ -2726,17 +2725,17 @@ unknown
 fractional component
               </td>
               <td>
-<a>integer</a>
+An <a>integer</a>.
               </td>
             </tr>
             <tr>
               <td>
-<a data-cite="RFC8259#section-6">JSON Number</a> with a fractional component, or
-when entry value is a <a>double</a> regardless of inclusion of fractional
-component
+<a data-cite="RFC8259#section-6">JSON Number</a> with a decimal and fractional
+component, or when entry value is a <a>double</a> regardless of inclusion of
+fractional component
               </td>
               <td>
-<a>double</a>
+A <a>double</a>.
               </td>
             </tr>
             <tr>
@@ -2744,7 +2743,7 @@ component
 <a data-cite="RFC8259#section-3">JSON Boolean</a>
               </td>
               <td>
-<a data-cite="INFRA#boolean">boolean</a>
+A <a data-cite="INFRA#boolean">boolean</a>.
               </td>
             </tr>
             <tr>
@@ -2752,25 +2751,34 @@ component
 <a data-cite="RFC8259#section-3">JSON null literal</a>
               </td>
               <td>
-<a data-cite="INFRA#null">null</a>
+A <a data-cite="INFRA#null">null</a> value.
               </td>
             </tr>
           </tbody>
         </table>
 
-        <p>
-Implementers consuming JSON are advised to ensure that their algorithms are
-aligned with the <a
+        <p class="advisement">
+All implementers creating <a>conforming producers</a> that produce JSON
+<a>representations</a> are advised to ensure that their algorithms are aligned
+with the  <a
 data-cite="INFRA#convert-a-json-derived-javascript-value-to-an-infra-value">JSON
-consumption rules</a> in the [[INFRA]] specification.
+conversion rules</a> in the [[INFRA]] specification and the <a
+data-cite="RFC7159#section-6">precision advisements regarding Numbers</a> in the
+JSON [[RFC7159]] specification.
         </p>
-        <p>
-Note that the <code>@context</code> object member, if present, will not have
-additional processing applied to its value, which will be added verbatim to the
-<a href="#data-model">data model</a>.
-        </p>
-      </section>
 
+        <p>
+If media type information is available to a <a>conforming consumer</a> and the
+media type value is <code>application/did+json</code>, the data structure being
+consumed is a <a>DID document</a>, the root element MUST be a <a
+data-cite="RFC8259#section-4">JSON Object</a>, and all members of this object
+are entries of the <a>DID document</a>. A <a>conforming consumer</a> for a JSON
+<a>representation</a> that is consuming a <a>DID document</a> with a root
+element that is not a <a data-cite="RFC8259#section-4">JSON Object</a> MUST
+report an error.
+        </p>
+
+      </section>
     </section>
 
     <section>
