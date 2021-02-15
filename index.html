@@ -2910,13 +2910,15 @@ valid according to the consumption rules.
             </p>
 
             <p>
-The value of <code>@context</code> MUST be exactly one of these values.
+The value of <code>@context</code> MUST be registered in the DID
+Specification Registries [[?DID-SPEC-REGISTRIES]].
             </p>
 
             <ul>
               <li>
 The <a href="https://tools.ietf.org/html/rfc8259#section-7">JSON String</a>
-<code>https://www.w3.org/ns/did/v1</code>.
+being registered in the DID
+Specification Registries [[?DID-SPEC-REGISTRIES]].
                 <pre class="example">
 {
   "@context": "https://www.w3.org/ns/did/v1",
@@ -2927,7 +2929,8 @@ The <a href="https://tools.ietf.org/html/rfc8259#section-7">JSON String</a>
               <li>
 A <a href="https://tools.ietf.org/html/rfc8259#section-5">JSON Array</a>,
 with first item the <a href="https://tools.ietf.org/html/rfc8259#section-7">JSON
-String</a> <code>https://www.w3.org/ns/did/v1</code>, and subsequent items of
+  String</a> being a registered value in the DID Specification Registries
+[[?DID-SPEC-REGISTRIES]] and subsequent items of
 type <a href="https://tools.ietf.org/html/rfc8259#section-7">JSON String</a> or
 <a href="https://tools.ietf.org/html/rfc8259#section-4">JSON Object</a>.
                 <pre class="example">
