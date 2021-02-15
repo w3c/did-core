@@ -2782,20 +2782,104 @@ report an error.
     </section>
 
     <section>
-      <h2>
-JSON-LD
-      </h2>
+      <h2>JSON-LD</h2>
 
       <p>
-JSON-LD is a JSON-based format used to serialize
-<a href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a>.
-This section establishes the requirements for producing and consuming <a>DID
-documents</a> that are expressed as JSON-LD. JSON-LD <a>DID documents</a>
-are indicated by a <code>contentType</code> resolver metadata field that is
-set to <code>application/did+ld+json</code>.
+JSON-LD [[JSON-LD11]] is a JSON-based format used to serialize <a
+href="http://www.w3.org/TR/ld-glossary/#linked-data">Linked Data</a>. This
+section defines the <a>production</a> and <a>consumption</a> rules for the
+JSON-LD <a>representation</a>.
       </p>
 
-      <p class="issue atrisk" title="IETF did+ld+json media type registration">
+      <p>
+The JSON-LD <a>representation</a> defines the following representation-specific
+entries:
+      </p>
+
+      <dl>
+        <dt><dfn>@context</dfn></dt>
+        <dd>
+The <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD Context</a>
+is either a <a data-cite="INFRA#string">string</a> or a <a
+data-cite="INFRA#list">list</a> containing any combination of <a
+data-cite="INFRA#string">strings</a> and/or <a data-cite="INFRA#maps">ordered
+maps</a>.
+        </dd>
+      </dl>
+
+      <section>
+        <h3>Production</h3>
+
+        <p>
+All data structures expressed by the <a href="#data-model">data model</a> MUST
+be serialized to the JSON-LD <a>representation</a> according to the JSON
+<a>representation</a> <a>production</a> rules as defined in <a
+href="#json"></a>.
+        </p>
+
+        <p>
+In addition to using the JSON <a>representation</a> <a>production</a> rules,
+JSON-LD production MUST include the representation-specific
+<a><code>@context</code></a> entry. The serialized value of
+<code>@context</code> MUST be the <a data-cite="RFC8259#section-7">JSON
+String</a> <code>https://www.w3.org/ns/did/v1</code>, or a <a
+data-cite="RFC8259#section-5">JSON Array</a> where the first item is the <a
+data-cite="RFC8259#section-7">JSON String</a>
+<code>https://www.w3.org/ns/did/v1</code> and the subsequent items are
+serialized according to the JSON <a>representation</a> <a>production</a>
+rules.
+        </p>
+
+        <pre class="example"
+          title="A valid serialization of a simple @context entry">
+{
+  "@context": "https://www.w3.org/ns/did/v1",
+  ...
+}
+        </pre>
+        <pre class="example"
+          title="A valid serialization of a layered @context entry">
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://did-method-extension.example/v1"
+  ],
+  ...
+}
+        </pre>
+
+        <p class="advisement" title="JSON-LD serialization rules">
+All implementers creating <a>conforming producers</a> that produce JSON-LD
+<a>representations</a> are advised to ensure that their algorithms
+produce valid JSON-LD [[JSON-LD11]] documents. Invalid JSON-LD documents will
+cause JSON-LD processors to produce errors.
+        </p>
+
+        <p>
+In order to achieve interoperability across different <a>representations</a>,
+all JSON-LD Contexts and their terms SHOULD be registered in the DID
+Specification Registries [[?DID-SPEC-REGISTRIES]]. If a term does not exist in
+the DID Specification Registries, then any <a>DID document</a> that uses it
+might not be interoperable across <a>representations</a>. It is RECOMMENDED that
+dereferencing each <a>URI</a> value of the <code>@context</code> entry results
+in a document containing machine-readable information about the JSON-LD Context.
+        </p>
+
+        <p>
+A <a>conforming producer</a> that generates a JSON-LD <a>representation</a>
+SHOULD NOT produce a <a>DID document</a> that contains properties not defined
+via the <code>@context</code> as <a>conforming consumers</a> might remove
+unknown properties.
+        </p>
+
+        <p>
+When serializing a JSON-LD <a>representation</a> of a <a>DID document</a>, a
+<a>conforming producer</a> MUST specify a media type of
+<code>application/did+ld+json</code> to downstream applications such as
+described in <a href="#did-resolution-metadata"></a>.
+        </p>
+
+        <p class="issue atrisk" title="IETF did+ld+json media type registration">
 Use of the media type <code>application/did+ld+json</code> is pending
 clarification over the registration of
 <a href="https://datatracker.ietf.org/doc/html/draft-w3cdidwg-media-types-with-multiple-suffixes">
@@ -2805,113 +2889,6 @@ media types with multiple suffixes</a>. The alternative will be to use
 cannot be registered by the time the rest of DID Core is ready for W3C
 Proposed Recommendation. See also <a href="https://github.com/w3c/did-core/issues/208">
 Issue 208</a>.
-      </p>
-
-      <p>
-The following application-specific modifications are made by this specification
-to the JSON-LD specification [[JSON-LD11]] to ease interoperability between
-JSON and JSON-LD implementations:
-      </p>
-
-      <ul>
-        <li>
-The <code>@id</code> and <code>@type</code> keywords are aliased to
-<code><a>id</a></code> and <code>type</code> respectively, enabling developers
-to use this specification as idiomatic JSON.
-        </li>
-        <li>
-Even though JSON-LD allows any IRI as node identifiers, <a>DID documents</a>
-are explicitly restricted to only describe <a>DIDs</a>. This means that the value of
-<code><a>id</a></code> that refers to the <a>DID subject</a> MUST be a valid
-<a>DID</a> and not any other kind of IRI.
-        </li>
-        <li>
-Data types, such as integers, dates, units of measure, and URLs, are
-automatically typed to provide stronger type guarantees for use cases that
-require them.
-        </li>
-      </ul>
-
-      <section>
-        <h3>Production</h3>
-
-        <p>
-The <a>DID document</a> MUST be serialized according to the
-<a href="#production">production rules for JSON</a>, with one additional
-requirement: The serialized <a>DID document</a> MUST include the
-<code>@context</code> member.
-        </p>
-
-        <dl>
-          <dt>@context</dt>
-          <dd>
-
-            <p>
-The <a href="https://www.w3.org/TR/json-ld11/#the-context">JSON-LD
-specification</a> defines values that are valid for this member. It
-contains representation-specific syntax and therefore could be present as an
-entry in the <a
-href="#data-model">data model</a> to aid in lossless conversion. If the entry
-is present in the <a href="#data-model">data model</a>, it MUST be used during
-production unless either an alternative <code>@context</code> value is
-explicitly provided to the producer or if the value from the data model is not
-valid according to the consumption rules.
-            </p>
-
-            <p>
-The value of <code>@context</code> MUST be exactly one of these values.
-            </p>
-
-            <ul>
-              <li>
-The <a href="https://tools.ietf.org/html/rfc8259#section-7">JSON String</a>
-<code>https://www.w3.org/ns/did/v1</code>.
-                <pre class="example">
-{
-  "@context": "https://www.w3.org/ns/did/v1",
-  ...
-}
-                </pre>
-              </li>
-              <li>
-A <a href="https://tools.ietf.org/html/rfc8259#section-5">JSON Array</a>,
-with first item the <a href="https://tools.ietf.org/html/rfc8259#section-7">JSON
-String</a> <code>https://www.w3.org/ns/did/v1</code>, and subsequent items of
-type <a href="https://tools.ietf.org/html/rfc8259#section-7">JSON String</a> or
-<a href="https://tools.ietf.org/html/rfc8259#section-4">JSON Object</a>.
-                <pre class="example">
-{
-  "@context": [
-    "https://www.w3.org/ns/did/v1",
-    "https://example.com/blockchain-identity/v1"
-  ],
-  ...
-}
-                </pre>
-              </li>
-            </ul>
-
-            <p>
-All JSON-LD terms defined by the <code>@context</code> SHOULD exist in the DID
-Specification Registries [[?DID-SPEC-REGISTRIES]] in order to achieve
-interoperability across different <a>representations</a>. If a term does not exist
-in the DID Specification Registries, then the <a>DID document</a> might not be
-interoperable across <a>representations</a>.
-            </p>
-
-            <p>
-It is RECOMMENDED that dereferencing each <a>URI</a> value of the
-<code>@context</code> entry results in a document containing
-machine-readable information about the context. Note that further expectations
-of additional JSON-LD contexts are described as part of the DID Specification
-Registries registration process.
-            </p>
-          </dd>
-        </dl>
-        <p>
-Producers SHOULD NOT produce <a>DID documents</a> that contain properties not
-defined via the <code>@context</code>. Properties that are not defined via the
-<code>@context</code> MAY be dropped by Consumers.
         </p>
 
       </section>
@@ -2920,27 +2897,30 @@ defined via the <code>@context</code>. Properties that are not defined via the
         <h3>Consumption</h3>
 
         <p>
-The <a>DID document</a> MUST be deserialized as a JSON document according to
-the <a href="#consumption">consumption rules for JSON</a>, with one additional
-requirement: The serialized <a>DID document</a> MUST include the
-<code>@context</code> member and be processed according to the rules below.
+All data structures expressed by a JSON-LD <a>representation</a> MUST be
+deserialized into the <a href="#data-model">data model</a> according to the JSON
+<a>representation</a> <a>consumption</a> rules as defined in <a
+href="#json"></a>.
         </p>
 
-        <dl>
-          <dt>@context</dt>
-          <dd>
-            <p>
-The value of the <code>@context</code> member conforms to the
-<a href="#production-0">JSON-LD Production Rules</a>. If more than one
-<a>URI</a> is provided, the <a>URIs</a> MUST be interpreted as an
-<a data-cite="INFRA#ordered-set">ordered set</a>.
-            </p>
-          </dd>
-        </dl>
+        <p>
+In addition to using the JSON <a>representation</a> <a>consumption</a> rules,
+JSON-LD consumption MUST add the representation-specific entries into a
+representation-specific <a href="#data-model">data model</a> according to the
+JSON <a>representation</a> <a>consumption</a> rules.
+        </p>
+
+        <p class="advisement" title="JSON-LD serialization rules">
+All implementers creating <a>conforming consumers</a> that consume JSON-LD
+<a>representations</a> are advised to ensure that their algorithms only accept
+valid JSON-LD [[JSON-LD11]] documents. Invalid JSON-LD documents will cause
+JSON-LD processors to produce errors.
+        </p>
 
         <p>
-Consumers SHOULD drop all properties from a <a>DID document</a> that are not
-defined via the <code>@context</code>.
+<a>Conforming consumers</a> that consume a JSON-LD <a>representation</a> SHOULD
+drop all properties from a <a>DID document</a> that are not defined via the
+<code>@context</code>.
         </p>
 
       </section>
