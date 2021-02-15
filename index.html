@@ -2493,28 +2493,20 @@ or any other mechanism that results in the same target representation.
     </section>
 
     <section>
-      <h2>
-JSON
-      </h2>
+      <h2>JSON</h2>
 
       <p>
-This section sets out the requirements for producing and consuming <a>DID
-documents</a> that are in plain JSON (as indicated by a
-<code>contentType</code> of <code>application/did+json</code> in the resolver
-metadata).
+This section defines the <a>production</a> and <a>consumption</a> rules
+for the JSON <a>representation</a>.
       </p>
 
       <section>
         <h3>Production</h3>
 
         <p>
-A <a>DID document</a> MUST be a single <a data-cite="RFC8259#section-4">JSON
-object</a> conforming to [[!RFC8259]]. All entries of the <a>DID
-document</a> data model described in <a href="#data-model"></a>
-MUST be represented by using the entry key as the name of the
-member of the JSON object. The values of entries,
-including all extensions, are encoded in JSON [[RFC8259]] by mapping entry
-values to JSON types as follows:
+All data structures expressed by the <a href="#data-model">data model</a>
+MUST be serialized to the JSON <a>representation</a> according to the
+following production rules:
         </p>
 
         <table class="simple" id="json-representation-production">
@@ -2535,9 +2527,10 @@ JSON Representation Type
 <a data-cite="INFRA#maps">ordered&nbsp;map</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-4">JSON Object</a>, each entry is represented
-as a member of the JSON Object with the entry key as the member name and the
-entry value according to its type, as defined in this section
+A <a data-cite="RFC8259#section-4">JSON Object</a>, where each entry is
+serialized as a member of the JSON Object with the entry key as a <a
+data-cite="RFC8259#section-7">JSON String</a> member name and the entry value
+according to its type, as defined in this table.
               </td>
             </tr>
             <tr>
@@ -2545,9 +2538,9 @@ entry value according to its type, as defined in this section
 <a data-cite="INFRA#list">list</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-5">JSON Array</a>, each element of the list is
-added, in order, as a value of the array according to its type, as defined in
-this section
+A <a data-cite="RFC8259#section-5">JSON Array</a>, where each element of the
+list is serialized, in order, as a value of the array according to its type, as
+defined in this table.
               </td>
             </tr>
             <tr>
@@ -2555,9 +2548,9 @@ this section
 <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-5">JSON Array</a>, each element of the set is
-added, in order, as a value of the array according to its type, as defined in
-this section
+A <a data-cite="RFC8259#section-5">JSON Array</a>, where each element of the set
+is added, in order, as a value of the array according to its type, as defined in
+this table.
               </td>
             </tr>
             <tr>
@@ -2565,7 +2558,7 @@ this section
 <a>datetime</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-7">JSON String</a> formatted as an
+A <a data-cite="RFC8259#section-7">JSON String</a> serialized as an
 <a data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a> normalized to
 UTC 00:00:00 and without sub-second decimal precision. For example:
 <code>2020-12-20T19:17:47Z</code>.
@@ -2576,7 +2569,7 @@ UTC 00:00:00 and without sub-second decimal precision. For example:
 <a data-cite="INFRA#string">string</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-7">JSON String</a>
+A <a data-cite="RFC8259#section-7">JSON String</a>.
               </td>
             </tr>
             <tr>
@@ -2584,8 +2577,8 @@ UTC 00:00:00 and without sub-second decimal precision. For example:
 <a>integer</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-6">JSON Number</a> without a decimal or
-fractional component
+A <a data-cite="RFC8259#section-6">JSON Number</a> without a decimal and
+fractional component.
               </td>
             </tr>
             <tr>
@@ -2593,7 +2586,8 @@ fractional component
 <a>double</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-6">JSON Number</a> with a fractional component
+A <a data-cite="RFC8259#section-6">JSON Number</a> with a decimal and
+fractional component.
               </td>
             </tr>
             <tr>
@@ -2601,7 +2595,7 @@ fractional component
 <a data-cite="INFRA#boolean">boolean</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-3">JSON Boolean</a>
+A <a data-cite="RFC8259#section-3">JSON Boolean</a>.
               </td>
             </tr>
             <tr>
@@ -2609,22 +2603,28 @@ fractional component
 <a data-cite="INFRA#null">null</a>
               </td>
               <td>
-<a data-cite="RFC8259#section-3">JSON null literal</a>
+A <a data-cite="RFC8259#section-3">JSON null literal</a>.
               </td>
             </tr>
           </tbody>
         </table>
 
-        <p>
-Implementers producing JSON are advised to ensure that their algorithms are
-aligned with the <a data-cite="INFRA#json">JSON serialization rules</a> in
-the [[INFRA]] specification.
+        <p class="advisement" title="INFRA JSON serialization rules">
+All implementers creating <a>conforming producers</a> that produce JSON
+<a>representations</a> are advised to ensure that their algorithms are aligned
+with the <a data-cite="INFRA#json">JSON serialization rules</a> in the [[INFRA]]
+specification and the
+<a data-cite="RFC7159#section-6">precision advisements regarding Numbers</a>
+in the JSON [[RFC7159]] specification.
         </p>
 
         <p>
-All entries of the <a>DID document</a> MUST be included in
-the root object. Entries MAY define additional data sub structures subject
-to the value representation rules in the list above.
+All entries of a <a>DID document</a> MUST be included in the root <a
+data-cite="RFC8259#section-4">JSON Object</a>. Entries MAY contain additional
+data substructures subject to the value representation rules in the list above.
+When serializing a <a>DID document</a>, a <a>conforming producer</a> MUST
+specify a media type of <code>application/did+json</code> to downstream
+applications such as described in <a href="#did-resolution-metadata"></a>.
         </p>
 
       <pre class="example nohighlight"
