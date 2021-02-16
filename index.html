@@ -1123,15 +1123,15 @@ an absolute <a>DID URL</a> value of
     <h1>Data Model</h1>
     <p>
 This specification defines a data model that can be used to express <a>DID
-documents</a> and other data structures that might then be serialized into
+documents</a> and other data structures that can then be serialized into
 multiple concrete <a>representations</a>. This section provides a high-level
 description of the data model, how different types of properties are expressed
 in the data model, and instructions for extending the data model.
     </p>
     <p>
 A <a>DID document</a> consists of a <a data-cite="INFRA#maps">map</a> of <a
-data-cite="INFRA#map-entry">entries</a>, where each entry consists of an entry
-key/entry value pair. The <a>DID document</a> data model contains at least two
+data-cite="INFRA#map-entry">entries</a>, where each entry consists of a
+key/value pair. The <a>DID document</a> data model contains at least two
 different classes of entries. The first class of entries are called properties,
 and are specified in section <a href="#core-properties"></a>. The second class
 are representation-specific entries, and are specified in section <a
@@ -1150,9 +1150,9 @@ The entries in a DID document.
     </figure>
 
     <p>
-All entry keys in the <a>DID Document</a> data model are <a
+All entry keys in the <a>DID document</a> data model are <a
 data-cite="INFRA#strings">strings</a>. All entry values are expressed using one
-of the abstract data types in the table below while each <a>representation</a>
+of the abstract data types in the table below, and each <a>representation</a>
 specifies the concrete serialization format of each data type.
     </p>
 
@@ -1278,10 +1278,10 @@ The data model supports two types of extensibility.
       </p>
       <ol>
         <li>
-For maximum interoperability, it is RECOMMENDED that extensions use the official
+For maximum interoperability, it is RECOMMENDED that extensions use the
 W3C DID Specification Registries mechanism [[?DID-SPEC-REGISTRIES]]. The use of
 this mechanism for new properties or other extensions is the only specified
-method that ensures that two different <a>representations</a> will be able to
+mechanism that ensures that two different <a>representations</a> will be able to
 work together.
         </li>
       <li>
