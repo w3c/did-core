@@ -2864,8 +2864,8 @@ Specification Registries [[?DID-SPEC-REGISTRIES]].
         <p>
 A <a>conforming producer</a> that generates a JSON-LD <a>representation</a>
 SHOULD NOT produce a <a>DID document</a> that contains terms not defined
-via the <code>@context</code> as <a>conforming consumers</a> might remove
-unknown terms. When serializing a JSON-LD <a>representation</a> of a <a>DID
+via the <code>@context</code> as <a>conforming consumers</a> are expected
+to remove unknown terms. When serializing a JSON-LD <a>representation</a> of a <a>DID
 document</a>, a <a>conforming producer</a> MUST specify a media type of
 <code>application/did+ld+json</code> to downstream applications such as
 described in <a href="#did-resolution-metadata"></a>.
