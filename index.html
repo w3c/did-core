@@ -2227,13 +2227,13 @@ embedded or referenced.
         </dl>
 
         <p>
-An example of when this property is useful is when a <a>DID subject</a> chooses
+An example of when this property is useful is when a <a>DID controller</a> chooses
 to delegate their capability to access a protected HTTP API to a party other
 than themselves. In order to delegate the capability, the <a>DID subject</a>
 would use a <a>verification method</a> associated with the
 <code>capabilityDelegation</code> <a>verification relationship</a> to
 cryptographically sign the capability over to another <a>DID subject</a>. The
-delegate would then invoke the capability in a manner that is similar to the
+delegate would then use the capability in a manner that is similar to the
 example described in <a href="#capability-invocation"></a>.
         </p>
 
@@ -2246,7 +2246,7 @@ example described in <a href="#capability-invocation"></a>.
   "capabilityDelegation": [
     <span class="comment">// this method can be used to perform capability delegation as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
-    <span class="comment">// this method is *only* approved for granting capabilities it will not</span>
+    <span class="comment">// this method is *only* approved for granting capabilities; it will not</span>
     <span class="comment">// be used for any other verification relationship, so its full description is</span>
     <span class="comment">// embedded here rather than using only a reference</span>
     {
