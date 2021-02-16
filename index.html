@@ -1525,13 +1525,14 @@ A <a data-cite="INFRA#string">string</a> that conforms to the rules of
     </section>
 
     <section>
-      <h2>Identification</h2>
+      <h2>Identifiers</h2>
 
       <p>
-It is useful to be able to identify the <a>DID subject</a>, the <a>DID
-controller</a>, and any alternate identifiers that the <a>DID subject</a>
-might also be known as. The following section elaborates on the mechanisms for
-doing so in the <a>DID document</a> data model.
+It is necessary to learn the identifiers used within a <a>DID document</a> to
+refer to the <a>DID subject</a> and the <a>DID controller</a>, as well as any
+alternate identifiers that might also be used to reference the <a>DID subject</a>.
+The following section elaborates on the mechanisms the <a>DID document</a> data
+model provides for so doing.
       </p>
 
       <section>
@@ -1546,7 +1547,7 @@ The <a>DID</a> for a particular <a>DID subject</a> is expressed using the
           <dd>
 The value of <code>id</code> MUST be a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in <a
-href="#did-syntax"></a> and MUST exist in the topmost <a
+href="#did-syntax"></a> and MUST exist in the root <a
 data-cite="INFRA#ordered-map">map</a> of the <a href="#data-model">data
 model</a> for the <a>DID document</a>.
           </dd>
@@ -1579,7 +1580,7 @@ However, the fully resolved <a>DID document</a> always contains a valid
         <p>
 A <a>DID controller</a> is an entity that is authorized to make changes to a
 <a>DID document</a>. The process of authorizing a <a>DID controller</a> is
-defined by the <a>DID Method</a>.
+defined by the <a>DID method</a>.
         </p>
 
         <dl>
@@ -1597,11 +1598,11 @@ certain <a>verification methods</a> for specific purposes.
 
         <p>
 When a <code><a>controller</a></code> property is present in a <a>DID
-Document</a>, its value expresses one or more <a>DIDs</a>. Any <a>verification
-methods</a> contained in the <a>DID Documents</a> for those <a>DIDs</a> SHOULD
+document</a>, its value expresses one or more <a>DIDs</a>. Any <a>verification
+methods</a> contained in the <a>DID documents</a> for those <a>DIDs</a> SHOULD
 be accepted as authoritative, such that proofs that satisfy those
 <a>verification methods</a> are to be considered equivalent to proofs provided
-by the <a>DID Subject</a>.
+by the <a>DID subject</a>.
         </p>
 
         <pre class="example nohighlight"
@@ -1617,7 +1618,7 @@ by the <a>DID Subject</a>.
 Note that authorization provided by the value of <code>controller</code> is
 separate from authentication as described in <a href="#authentication"></a>.
 This is particularly important for key recovery in the case of cryptographic
-key loss, when the subject no longer has access to their keys, or key
+key loss, where the <a>DID subject</a> no longer has access to their keys, or key
 compromise, where the <a>DID controller</a>'s trusted third parties need to
 override malicious activity by an attacker. See
 <a href="#security-considerations"></a> for information related to threat
@@ -1629,7 +1630,7 @@ models and attack vectors.
         <h3>Also Known As</h3>
 
         <p class="issue atrisk" title="Implementation of alsoKnownAs">
-The DID Working Group is current seeking implementer feedback regarding
+The DID Working Group is seeking implementer feedback regarding
 the alsoKnownAs feature. If there is not enough
 implementer interest in implementing this feature, it will be removed
 from this specification and placed into the DID Specification Registries
