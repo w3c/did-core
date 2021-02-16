@@ -1688,7 +1688,7 @@ cryptographic public keys, which can be used to <a>authenticate</a> or authorize
 interactions with the <a>DID subject</a> or associated parties. For example, a
 cryptographic public key can be used as a <a>verification method</a> with
 respect to a digital signature; in such usage, it verifies that the signer
-possessed the associated cryptographic private key. <a>Verification methods</a>
+could use the associated cryptographic private key. <a>Verification methods</a>
 might take many parameters. An example of this is a set of five cryptographic
 keys from which any three are required to contribute to a cryptographic
 threshold signature.
@@ -1764,7 +1764,7 @@ key. Since a key can't control itself, and the key controller cannot be inferred
 from the <a>DID document</a>, it is necessary to explicitly express the identity
 of the controller of the key. The difference is that the value of
 <code>controller</code> for a <a>verification method</a> is <em>not</em>
-necessarily a <a>DID controller</a>. <a>DID controller(s)</a> are expressed
+necessarily a <a>DID controller</a>. <a>DID controllers</a> are expressed
 using the <code><a>controller</a></code> property at the highest level of the
 <a>DID document</a> (the topmost <a data-cite="INFRA#ordered-map">map</a> in the
 <a href="#data-model">data model</a>); see <a href="#did-controller"></a>.
@@ -1774,28 +1774,29 @@ using the <code><a>controller</a></code> property at the highest level of the
         <h3>Verification Material</h3>
 
         <p>
-Verification material is defined as any information that is used by a process
-that applies a <a>verification method</a> and is typically determined by the
-value of the <a>verification method</a>'s <code>type</code> property. Examples
+Verification material is any information that is used by a process
+that applies a <a>verification method</a>. The <code>type</code>
+of a <a>verification method</a> is expected to be used to determine
+its compatibility with such processes. Examples
 of verification material properties are <code><a>publicKeyJwk</a></code> or
 <code><a>publicKeyBase58</a></code>. A verification suite definition is
 responsible for specifying the <a>verification method</a> <code>type</code> and
 its associated verification material. For example, see <a
 href="https://w3c-ccg.github.io/lds-jws2020/">JSON Web Signature 2020</a> and <a
 href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature 2018</a>.
-For all registered <a>verification method</a> types and associated  verification
+For all registered <a>verification method</a> types and associated verification
 material available for <a>DIDs</a>, please see the DID Specification Registries
 [[?DID-SPEC-REGISTRIES]].
         </p>
 
         <p>
-In order to increase the likelihood of interoperability, this specification
+To increase the likelihood of interoperable implementations, this specification
 limits the number of formats for expressing verification material in a <a>DID
-document</a> to the fewest possible. The fewer formats that implementers have to
+document</a>. The fewer formats that implementers have to
 implement, the more likely it will be that they will support all of them. This
 approach attempts to strike a delicate balance between ease of implementation
-and supporting formats that have historically had broad deployment. The two most
-common supported verification material properties are listed below:
+and supporting formats that have historically had broad deployment.
+Two supported verification material properties are listed below:
         </p>
 
         <dl>
@@ -1893,7 +1894,7 @@ embedded and its properties can be accessed directly. However, if the value is a
 URL <a data-cite="INFRA#string">string</a>, the <a>verification method</a> has
 been included by reference and its properties will need to be retrieved from
 elsewhere in the <a>DID document</a> or from another <a>DID document</a>. This
-is done by dereferencing the URL and searching the resulting resource for a
+is done by dereferencing the URL and searching the resulting <a>resource</a> for a
 <a>verification method</a> <a data-cite="INFRA#ordered-map">map</a> with an
 <code>id</code> property whose value matches the URL.
         </p>
