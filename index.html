@@ -1029,7 +1029,7 @@ parameter is OPTIONAL. If present, the associated value MUST be an
         <p>
 Implementers as well as <a>DID method</a> specification authors might use
 additional DID parameters that are not listed here. For maximum
-interoperability, it is RECOMMENDED that DID parameters use the official W3C DID
+interoperability, it is RECOMMENDED that DID parameters use the DID
 Specification Registries mechanism [[?DID-SPEC-REGISTRIES]], to avoid collision
 with other uses of the same DID parameter with different semantics.
         </p>
@@ -1037,8 +1037,8 @@ with other uses of the same DID parameter with different semantics.
         <p>
 DID parameters might be used if there is a clear use case where the parameter
 needs to be part of a <a>URL</a> that references a <a>resource</a> with more
-precision than merely using the <a>DID</a>. It is expected that DID parameters
-will <em>not</em> be used if the same functionality can be expressed by passing
+precision than using the <a>DID</a> alone. It is expected that DID parameters
+are <em>not</em> used if the same functionality can be expressed by passing
 input metadata to a <a>DID resolver</a>. Additional considerations for
 processing these parameters are discussed in [[?DID-RESOLUTION]].
         </p>
