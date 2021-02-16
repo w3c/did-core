@@ -3270,36 +3270,6 @@ and represented as major type 3 (UTF-8 String)
         </ul>
 
       </section>
-
-      <section>
-        <h3>CBOR Extensibility</h3>
-        <p>
-In CBOR, one point of extensibility is with the use of CBOR tags. [[RFC8949]]
-defines a basic set of data types, as well as a tagging mechanism that enables
-extending the set of data types supported via the <a
-href="https://www.iana.org/assignments/cbor-tags/cbor-tags.xhtml">IANA CBOR Tag
-Registry</a>. This allows for tags to enhance the semantic description of the
-data that follows.  Extensibility with CBOR tags also facilitates lossless
-conversion to other core <a>representations</a>. CBOR Tags number 21 to 23 indicate
-that a following byte string might require a specific encoding when
-interoperating with a text-based <a>representation</a> such as JSON.  These tags are
-useful when an encoder knows that the byte string data it is writing is likely
-to be later converted to a particular text-based usage such as JSON.  These
-three tag numbers suggest conversions to three of the base data encodings
-defined in [[RFC4648]].  Tag number 21 suggests conversion to base64url encoding
-(Section 5 of [[RFC4648]]), where padding is not used (see Section 3.2 of
-[[RFC4648]]); that is, all trailing equals signs ("=") are removed from the
-encoded string.  Tag number 22 suggests conversion to classical base64 encoding
-(Section 4 of [[RFC4648]] ), with padding as defined in [[RFC4648]].  For both
-base64url and base64, padding bits are set to zero (see Section 3.5 of
-[[RFC4648]] ), and encoding is performed without the inclusion of any line
-breaks, whitespace, or other additional characters.  Tag number 23 suggests
-conversion to base16 (hex) encoding, with uppercase alphabetics (see Section 8
-of [[RFC4648]]).  Note that, for all three tag numbers, the encoding of the
-empty byte string is the empty text string of other <a>representations</a>.
-        </p>
-
-      </section>
     </section>
   </section>
 
