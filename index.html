@@ -1065,8 +1065,8 @@ dereferenced</em>.
         <p>
 A relative <a>DID URL</a> is any URL value in a <a>DID document</a> that does
 not start with <code>did:&lt;method-name>:&lt;method-specific-id></code>. More
-specifically, it is any URL value that does not start with the ABNF defined  in
-<a href="#did-syntax"></a>. The contents of the URL typically refers to
+specifically, it is any URL value that does not start with the ABNF defined in
+<a href="#did-syntax"></a>. The URL is expected to reference
 a <a>resource</a> in the same <a>DID document</a>. Relative <a>DID URLs</a> MAY
 contain relative path components, query parameters, and fragment identifiers.
         </p>
@@ -1084,7 +1084,7 @@ href="#fragment"></a>, respectively.
         </p>
 
         <p>
-Relative <a>DID URLs</a> are often used to identify <a>verification methods</a>
+Relative <a>DID URLs</a> are often used to reference <a>verification methods</a>
 and <a>services</a> in a <a>DID Document</a> without having to use absolute
 URLs. <a>DID methods</a> where storage size is a consideration might use
 relative URLs to reduce the storage size of <a>DID documents</a>.
