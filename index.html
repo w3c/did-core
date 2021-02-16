@@ -2369,26 +2369,27 @@ href="#authentication-service-endpoints"></a>.
 A concrete serialization of any data structure in this specification is called a
 <a>representation</a>. A <a>representation</a> is created by serializing the <a
 href="#data-model">data model</a> through a process called
-<dfn>production</dfn>. A <a>representation</a> is transformed back into the <a
+<dfn>production</dfn>. A <a>representation</a> is transformed into the <a
 href="#data-model">data model</a> through a process called
-<dfn>consumption</dfn>. The <em>production</em> and <em>consumption</em> process
-enables the conversion of information from one <a>representation</a> to another.
-Although this specification defines <a>representations</a> for JSON, JSON-LD,
-and CBOR, developers can use any other <a>representation</a>, such as XML or
+<dfn>consumption</dfn>. The <em>production</em> and <em>consumption</em> processes
+enable the conversion of information from one <a>representation</a> to another.
+This specification defines <a>representations</a> for JSON, JSON-LD,
+and CBOR, and developers can use any other <a>representation</a>, such as XML or
 YAML, that is capable of expressing the <a href="#data-model">data model</a>.
 The following sections define the general rules for <a>production</a> and
-<a>consumption</a> and the JSON, JSON-LD, and CBOR <a>representations</a>.
+<a>consumption</a>, as well as the JSON, JSON-LD, and CBOR <a>representations</a>.
     </p>
 
     <section>
       <h2>Production and Consumption</h2>
 
       <p>
-The rules in this section apply to all implementations seeking to be compatible
-with independent implementations of the specification. Deployments of this
-specification can use a custom agreed-upon <a>representation</a>, including
-rules agreed to by a pair of producers and consumers for handling properties not
-listed in the registry. See <a href="#extensibility"></a> for more information.
+In addition to the <a>representations</a> defined in this specification,
+implementers can use other <a>representations</a>, providing each such
+<a>representation</a> is properly specified (including rules for
+interoperable handling of properties not listed in the DID Specification
+Registries [[?DID-SPEC-REGISTRIES]]). See <a href="#extensibility"></a>
+for more information.
       </p>
       <p>
 The requirements for all <a>representations</a> are as follows:
@@ -2408,7 +2409,7 @@ type that are conformant with the fragment processing rules defined in
 <a href="#fragment"></a>.
         </li>
         <li>
-A <a>representations</a> SHOULD use the lexical representation of <a
+A <a>representation</a> SHOULD use the lexical representation of <a
 href="#data-model">data model</a> data types. For example, JSON and JSON-LD use
 the XML Schema <code>dateTime</code> lexical serialization to represent
 <a>datetimes</a>. A <a>representation</a> MAY choose to serialize the <a
@@ -2422,7 +2423,7 @@ represent the number of seconds since the Unix epoch.
 A <a>representation</a> MAY define representation-specific entries that can be
 stored in a data structure expressible using the <a href="#data-model">data
 model</a> for use during the <a>production</a> and <a>consumption</a> process.
-These entries are utilized when consuming or producing to aid in ensuring
+These entries are used when consuming or producing to aid in ensuring
 lossless conversion.
         </li>
         <li>
