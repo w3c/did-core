@@ -2852,29 +2852,21 @@ rules.
 All implementers creating <a>conforming producers</a> that produce JSON-LD
 <a>representations</a> are advised to ensure that their algorithms
 produce valid JSON-LD [[JSON-LD11]] documents. Invalid JSON-LD documents will
-cause JSON-LD processors to produce errors.
+cause JSON-LD processors to halt and report errors.
         </p>
 
         <p>
 In order to achieve interoperability across different <a>representations</a>,
 all JSON-LD Contexts and their terms SHOULD be registered in the DID
-Specification Registries [[?DID-SPEC-REGISTRIES]]. If a term does not exist in
-the DID Specification Registries, then any <a>DID document</a> that uses it
-might not be interoperable across <a>representations</a>. It is RECOMMENDED that
-dereferencing each <a>URI</a> value of the <code>@context</code> entry results
-in a document containing machine-readable information about the JSON-LD Context.
+Specification Registries [[?DID-SPEC-REGISTRIES]].
         </p>
 
         <p>
 A <a>conforming producer</a> that generates a JSON-LD <a>representation</a>
-SHOULD NOT produce a <a>DID document</a> that contains properties not defined
+SHOULD NOT produce a <a>DID document</a> that contains terms not defined
 via the <code>@context</code> as <a>conforming consumers</a> might remove
-unknown properties.
-        </p>
-
-        <p>
-When serializing a JSON-LD <a>representation</a> of a <a>DID document</a>, a
-<a>conforming producer</a> MUST specify a media type of
+unknown terms. When serializing a JSON-LD <a>representation</a> of a <a>DID
+document</a>, a <a>conforming producer</a> MUST specify a media type of
 <code>application/did+ld+json</code> to downstream applications such as
 described in <a href="#did-resolution-metadata"></a>.
         </p>
@@ -2914,12 +2906,12 @@ JSON <a>representation</a> <a>consumption</a> rules.
 All implementers creating <a>conforming consumers</a> that consume JSON-LD
 <a>representations</a> are advised to ensure that their algorithms only accept
 valid JSON-LD [[JSON-LD11]] documents. Invalid JSON-LD documents will cause
-JSON-LD processors to produce errors.
+JSON-LD processors to halt and report errors.
         </p>
 
         <p>
-<a>Conforming consumers</a> that consume a JSON-LD <a>representation</a> SHOULD
-drop all properties from a <a>DID document</a> that are not defined via the
+<a>Conforming consumers</a> that process a JSON-LD <a>representation</a> SHOULD
+drop all terms from a <a>DID document</a> that are not defined via the
 <code>@context</code>.
         </p>
 
