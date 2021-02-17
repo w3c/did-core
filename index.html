@@ -3440,35 +3440,45 @@ out-of-band mechanism.
 
     <section>
       <h2>Security Requirements</h2>
+
       <p>
-<a>DID method</a> specifications MUST include their own Security
-Considerations sections. This section MUST consider all the requirements
-mentioned in section 5 of [[RFC3552]] (page 27) for the <a>DID</a> operations
-defined in the specification.
-      </p>
+The requirements for all <a>DID method</a> specifications when authoring the
+<em>Security Considerations</em> section are:
       <p>
-At least the following forms of attack MUST be considered: eavesdropping,
-replay, message insertion, deletion, modification, and man-in-the-middle.
-Potential denial of service attacks MUST be identified as well.
-      </p>
-      <p>
-This section MUST discuss, per Section 5 of [[RFC3552]], residual risks (such
-as the risks from compromise in a related protocol, incorrect implementation,
-or cipher) after threat mitigation was deployed.
-      </p>
-      <p>
-This section MUST provide integrity protection and update authentication for
-all operations required by Section <a href="#method-operations"></a>.
-      </p>
-      <p>
-If the technology involves authentication, particularly user-host
-authentication, the security of the authentication method MUST be clearly
-specified.
-      </p>
-      <p>
-<a>DID methods</a> MUST discuss the policy mechanism by which <a>DIDs</a> are proven to be uniquely assigned.
-      </p>
-      <p>
+
+      <ol>
+        <li>
+A <a>DID method</a> specifications MUST follow all guidelines and normative
+language provided in <a data-cite="RFC3552#section-5">RFC3552: Writing Security
+Considerations Sections</a> for the <a>DID</a> operations defined in the <a>DID
+method</a> specification.
+        </li>
+        <li>
+At least the following forms of attack MUST be documented for the <a>DID</a>
+operations defined in the <a>DID method</a> specification: eavesdropping,
+replay, message insertion, deletion, modification, denial of service,  storage
+or network amplification, and man-in-the-middle.
+        </li>
+        <li>
+The Security Considerations section MUST discuss residual risks, such as the
+risks from compromise in a related protocol, incorrect implementation, or cipher
+after threat mitigation was deployed.
+        </li>
+        <li>
+The Security Considerations section MUST provide integrity protection and update
+authentication for all operations required by Section <a
+href="#method-operations"></a>.
+        </li>
+        <li>
+If authentication is involved, particularly user-host authentication, the
+security characteristics of the authentication method MUST be clearly
+documented.
+        </li>
+        <li>
+The Security Considerations section MUST discuss the policy mechanism by which
+<a>DIDs</a> are proven to be uniquely assigned.
+        </li>
+        <li>
 Method-specific endpoint authentication MUST be discussed. Where <a>DID
 methods</a> make use of <a>DLTs</a> with varying network topology, sometimes
 offered as <em>light node</em> or <em>
@@ -3476,34 +3486,33 @@ offered as <em>light node</em> or <em>
 implementations to reduce required computing resources, the security assumptions
 of the topology available to implementations of the <a>DID method</a> MUST be
 discussed.
-      </p>
-      <p>
-If the protocol incorporates cryptographic protection mechanisms, the
-<a>DID method</a> specification MUST clearly indicate which portions of the
-data are protected and what the protections are, and SHOULD give an indication
-to what sorts of attacks the cryptographic protection is susceptible.
-For example, integrity only, confidentiality, endpoint authentication, and so
-on.
-      </p>
-      <p>
+        </li>
+        <li>
+If a protocol incorporates cryptographic protection mechanisms, the <a>DID
+method</a> specification MUST clearly indicate which portions of the data are
+protected, what the protections are, and SHOULD give an indication to what
+sorts of attacks the cryptographic protection is susceptible. For example,
+integrity only, confidentiality, or endpoint authentication.
+        </li>
+        <li>
 Data which is to be held secret (keying material, random seeds, and so on)
 SHOULD be clearly labeled.
-      </p>
-      <p>
+        </li>
+        <li>
 <a>DID method</a> specifications SHOULD explain and specify the implementation
 of signatures on <a>DID documents</a>, if applicable.
-      </p>
-      <p>
+        </li>
+        <li>
 Where <a>DID methods</a> make use of peer-to-peer computing resources, such as
 with all known <a>DLTs</a>, the expected burdens of those resources SHOULD be
 discussed in relation to denial of service.
-      </p>
-      <p>
+        </li>
+        <li>
 <a>DID methods</a> that introduce new authentication <a>service</a>
-types (see Section <a href="#services"></a>) SHOULD consider the
+types, as described in <a href="#services"></a>, SHOULD consider the
 security requirements of the supported authentication protocol.
-      </p>
-
+        </li>
+      </ol>
     </section>
 
     <section class='normative'>
