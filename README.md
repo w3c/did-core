@@ -25,3 +25,11 @@ W3C functions under a [code of conduct](https://www.w3.org/Consortium/cepc/).
 * [W3C Decentralized Characteristics Rubric v1.0](https://github.com/w3c/did-rubric)
 * [Decentralized Identifier Use Cases v1.0](https://github.com/w3c/did-use-cases)
 * [W3C DID Test Suite and Implementation Report](https://github.com/w3c/did-test-suite)
+
+## Notes on Diagram related workflow and the tool
+
+* Some of the diagrams were created by diagram drawing tool [diagrams.net](https://www.diagrams.net) (formerly `draw.io`), then exported to SVG format. The file extension of diagrams.net file is `.drawio`. When export to SVG, please use the following options:
+  * Zoom at 100%
+  * Border Width to 10
+  * Size to `Diagram`
+  * Uncheck all of the following options: "Transparent Background," "Shadow," "Embed Images," "Include a copy of my diagram."
