@@ -2775,7 +2775,7 @@ JSON [[RFC7159]] specification.
 
         <p>
 If media type information is available to a <a>conforming consumer</a> and the
-media type value is <code>application/did+json</code>: the data structure 
+media type value is <code>application/did+json</code>: the data structure
 being consumed is a <a>DID document</a> and the root element MUST be a <a
 data-cite="RFC8259#section-4">JSON Object</a> where all members of the object
 are entries of the <a>DID document</a>. A <a>conforming consumer</a> for a JSON
@@ -3284,94 +3284,88 @@ root element that is not a <a data-cite="RFC8949#section-3.1">CBOR map</a>
     <h1>Methods</h1>
 
     <p>
-<a>DID methods</a> provide the means to implement this specification on
-different <a>verifiable data registries</a>. New <a>DID methods</a> are
-defined in their own specifications, so that interoperability between
-different implementations of the same <a>DID method</a> is ensured. This
-section specifies the requirements on any <a>DID method</a>, which are met by
-the <a>DID method</a>'s associated specification.
-    </p>
-
-    <p class="note">
-Conceptually, the relationship between this specification and a <a>DID
-method</a> specification is similar to the relationship between the IETF generic
-<a>URI</a> specification ([[RFC3986]]) and a specific <a>URI</a> scheme
-([[IANA-URI-SCHEMES]] (such as the http: and https: schemes specified in
-[[RFC7230]]). It is also similar to the relationship between the IETF generic
-URN specification ([[RFC8141]]) and a specific URN namespace definition (such as
-the <a>UUID</a> URN namespace defined in [[RFC4122]]). The difference is that a
-DID method specification, in addition to defining a specific <a>DID scheme</a>,
-also specifies the methods creating, resolving, updating, and deactivating
-<a>DIDs</a> and <a>DID documents</a> using a specific type of <a>verifiable data
-registry</a>.
+A <a>DID method</a> defines how implementers can realize the features
+described by this specification. <a>DID methods</a> are often associated with a
+particular <a>verifiable data registry</a>. New <a>DID methods</a> are defined
+in their own specifications to enable interoperability between different
+implementations of the same <a>DID method</a>.
     </p>
 
     <p>
-For adding properties to a <a>DID document</a> which are specific to a
-particular <a>DID method</a>, see <a href="#extensibility"></a>.
+Conceptually, the relationship between this specification and a <a>DID
+method</a> specification is similar to the relationship between the IETF generic
+<a>URI</a> specification [[?RFC3986]] and a specific <a>URI</a> scheme
+[[?IANA-URI-SCHEMES]], such as the <code>http</code> scheme [[?RFC7230]].  In
+addition, to defining a specific <a>DID scheme</a>, a <a>DID method</a>
+specification also defines the mechanisms for creating, resolving, updating, and
+deactivating <a>DIDs</a> and <a>DID documents</a> using a specific type of
+<a>verifiable data registry</a>. It also documents all implementation
+considerations related to <a>DIDs</a> as well as Security and Privacy
+Considerations.
+    </p>
+
+    <p>
+This section specifies the requirements for authoring <a>DID method</a>
+specifications.
     </p>
 
     <section class="normative">
-      <h2>Method Schemes</h2>
+      <h2>Method Syntax</h2>
 
       <p>
-A <a>DID method</a> specification MUST define exactly one method-specific
-<a>DID scheme</a>, identified by exactly one method name (see the
-<code>method-name</code> rule in Section <a href="#did-syntax"></a>).
-      </p>
-
+The requirements for all <a>DID method</a> specifications when defining the
+method-specific DID Syntax are:
       <p>
-The authors of a new <a>DID method</a> specification are expected to use a
-method name that is unique among all <a>DID method</a> names known to them at
-the time of publication.
-      </p>
 
-      <div class="note" title="Unique DID method names">
-        <p>
-Because there is no central authority for allocating or approving <a>DID
-method</a> names, there is no way to know for certain if a specific <a>DID
-method</a> name is unique. To help with this challenge, a non-authoritative list
-of known <a>DID method</a> names and their associated specifications is
-maintained in the DID Methods Registry, which is part of the DID Specification
-Registries [[?DID-SPEC-REGISTRIES]].
-        </p>
-        <p>
-Authors of new <a>DID method</a> specifications are encouraged to add their
-method names to the DID Methods Registry so that other implementors
-and members of the community have a place to see an overview of existing
-<a>DID methods</a>.
-        </p>
-      </div>
-
-      <p>
+      <ol>
+        <li>
+A <a>DID method</a> specification MUST define exactly one method-specific <a>DID
+scheme</a> that is identified by exactly one method name as specified by the
+<code>method-name</code> rule in <a href="#did-syntax"></a>.
+        </li>
+        <li>
 The <a>DID method</a> specification MUST specify how to generate the
 <code>method-specific-id</code> component of a <a>DID</a>.
-      </p>
-      <p>
-Case sensitivity and normalization of the value of the
-<code>method-specific-id</code> rule MUST be defined by the <a>DID method</a>
-specification.
-      </p>
-      <p>
-The <code>method-specific-id</code> value MUST be able to be generated without
-the use of a centralized registry service.
-      </p>
-      <p>
-The <code>method-specific-id</code> value might be globally unique by itself.
-The <code>method-specific-id</code> value MUST be unique within a method.
-Any <a>DID</a> generated by the method MUST be globally unique.
-      </p>
-
-      <p>
-If needed, a method-specific <a>DID scheme</a> MAY define multiple
-<code>method-specific-id</code> formats.
-      </p>
-
-      <p>
+        </li>
+        <li>
+The <a>DID method</a> specification MUST define sensitivity and normalization of
+the value of the <code>method-specific-id</code>.
+        </li>
+        <li>
+The <code>method-specific-id</code> value MUST be unique within a <a>DID
+method</a>. The <code>method-specific-id</code> value might be globally unique
+by itself.
+        </li>
+        <li>
+Any <a>DID</a> generated by a <a>DID method</a> MUST be globally unique.
+        </li>
+        <li>
+In order to reduce the chances of <code>method-name</code> conflicts, a <a>DID
+method</a> specification SHOULD be registered in the DID Specification
+Registries [[?DID-SPEC-REGISTRIES]].
+        </li>
+        <li>
+A <a>DID method</a> MAY define multiple <code>method-specific-id</code> formats.
+        </li>
+        <li>
 The <code>method-specific-id</code> format MAY include colons. The use of
 colons MUST comply syntactically with the <code>method-specific-id</code> ABNF
 rule.
-      </p>
+        </li>
+        <li>
+A <a>DID method</a> specification MAY specify ABNF rules for <a>DID paths</a>
+that are more restrictive than the generic rules in <a href="#path"></a>.
+        </li>
+        <li>
+A <a>DID method</a> specification MAY specify ABNF rules for <a>DID queries</a>
+that are more restrictive than the generic rules in this section.
+        </li>
+        <li>
+A <a>DID method</a> specification MAY specify ABNF rules for <a>DID
+fragments</a> that are more restrictive than the generic rules in this section.
+        </li>
+      </ol>
+
       <p class="note" title="Colons in method-specific-id">
 The meaning of colons in the <code>method-specific-id</code> is entirely
 method-specific. Colons might be used by <a>DID methods</a> for establishing
@@ -3381,22 +3375,6 @@ Implementers are advised to avoid assuming any meanings or
 behaviors associated with a colon that are generically applicable to all
 <a>DID methods</a>.
       </p>
-
-      <p>
-A <a>DID method</a> specification MAY specify ABNF rules for <a>DID paths</a>
-that are more restrictive than the generic rules in <a href="#path"></a>.
-      </p>
-
-      <p>
-A <a>DID method</a> specification MAY specify ABNF rules for <a>DID queries</a>
-that are more restrictive than the generic rules in this section.
-      </p>
-
-      <p>
-A <a>DID method</a> specification MAY specify ABNF rules for <a>DID
-fragments</a> that are more restrictive than the generic rules in this section.
-      </p>
-
 
     </section>
 
