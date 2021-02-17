@@ -3380,92 +3380,62 @@ behaviors associated with a colon that are generically applicable to all
 
     <section>
       <h2>Method Operations</h2>
+
       <p>
-This section sets out the requirements for <a>DID method</a> specifications
-with regards to operations that can be performed on a <a>DID document</a>.
-      </p>
+The requirements for all <a>DID method</a> specifications when defining the
+method operations are:
       <p>
-Determining the authority of a party to carry out the operations is
-method-specific. For example, a <a>DID method</a> might:
+
+      <ol>
+        <li>
+A <a>DID method</a> specification MUST define how authorization is performed to
+execute all operations, including any necessary cryptographic processes.
+        </li>
+        <li>
+A <a>DID method</a> specification MUST specify how a <a>DID controller</a>
+creates a <a>DID</a> and its associated <a>DID document</a>.
+        </li>
+        <li>
+A <a>DID method</a> specification MUST specify how a <a>DID resolver</a> uses a
+<a>DID</a> to resolve a <a>DID document</a>, including how the <a>DID
+resolver</a> can verify the authenticity of the response.
+        </li>
+        <li>
+A <a>DID method</a> specification MUST specify what constitutes an update to a
+<a>DID document</a> and how a <a>DID controller</a> can update a <a>DID
+document</a> <em>or</em> state that updates are not possible.
+        </li>
+        <li>
+The <a>DID method</a> specification MUST specify how a <a>DID controller</a> can
+deactivate a <a>DID</a> <em>or</em> state that deactivation is not possible.
+        </li>
+      </ol>
+
+      <p>
+The authority of a party that is performing authorization to carry out the
+operations is specific to a <a>DID method</a>. For example, a <a>DID method</a>
+might:
       </p>
+
       <ul>
         <li>
 make use of the <code><a>controller</a></code> property.
         </li>
         <li>
 use the <a>verification methods</a> listed under
-<code><a>authentication</a></code> to decide whether an update/deactivate
-operation is allowed.
+<code><a>authentication</a></code>.
         </li>
         <li>
-use other constructs in the <a>DID Document</a> to decide if, for example, a
-<a>verification method</a> specified under <code><a>capabilityInvocation</a></code>
-could be used to verify the invocation of a capability to update the <a>DID
-Document</a>.
+use other constructs in the <a>DID Document</a> such as the
+<a>verification method</a> specified via the <code><a>capabilityInvocation</a></code>
+<a>verification relationship</a>.
         </li>
         <li>
-not use the <a>DID document</a> at all to decide this, but have rules that are
-"built into" the method.
+not use the <a>DID document</a> at all to decide this and depend, instead, on an
+out-of-band mechanism.
         </li>
       </ul>
 
-      <p>
-Each <a>DID method</a> MUST define how authorization to perform <a>DID method</a>
-operations is implemented, including any necessary cryptographic operations.
-      </p>
-
-      <section>
-        <h3>Create</h3>
-
-        <p>
-The <a>DID method</a> specification MUST specify how a <a>DID controller</a>
-creates a <a>DID</a> and its associated <a>DID document</a> on the <a>verifiable
-data registry</a>, including all cryptographic operations necessary to establish
-proof of control.
-        </p>
-      </section>
-
-      <section>
-        <h3>Read/Verify</h3>
-
-        <p>
-The <a>DID method</a> specification MUST specify how a <a>DID resolver</a> uses
-a <a>DID</a> to request a <a>DID document</a> from the <a>verifiable data
-registry</a>, including how the <a>DID resolver</a> can verify the authenticity
-of the response.
-        </p>
-      </section>
-
-      <section>
-        <h3>Update</h3>
-
-        <p>
-The <a>DID method</a> specification MUST specify how a <a>DID controller</a> can
-update a <a>DID document</a> on the <a>verifiable data registry</a>, including
-all cryptographic operations necessary to establish proof of control,
-<em>or</em> state that updates are not possible.
-        </p>
-
-        <p>
-An update to a <a>DID</a> is any change, after creation, in the data used to
-produce a <a>DID document</a>. <a>DID Method</a> implementers are responsible
-for defining what constitutes an update, and what properties of the <a>DID
-document</a> are supported by a given <a>DID method</a>. For example, an update
-operation which replaces key material without changing it could be a valid
-update that does not result in changes to the <a>DID document</a>.
-        </p>
-      </section>
-
-      <section>
-        <h3>Deactivate</h3>
-
-        <p>
-The <a>DID method</a> specification MUST specify how a <a>DID controller</a> can
-deactivate a <a>DID</a> on the <a>verifiable data registry</a>, including all
-cryptographic operations necessary to establish proof of deactivation,
-<em>or</em> state that deactivation is not possible.
-        </p>
-      </section>
     </section>
 
     <section>
