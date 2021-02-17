@@ -2758,7 +2758,7 @@ A <a data-cite="INFRA#null">null</a> value.
         </table>
 
         <p class="advisement">
-All implementers creating <a>conforming producers</a> that produce JSON
+All implementers creating <a>conforming consumers</a> that produce JSON
 <a>representations</a> are advised to ensure that their algorithms are aligned
 with the  <a
 data-cite="INFRA#convert-a-json-derived-javascript-value-to-an-infra-value">JSON
@@ -2768,9 +2768,9 @@ JSON [[RFC7159]] specification.
         </p>
 
         <p>
-If media type information is available to a <a>conforming consumer</a> and the
-media type value is <code>application/did+json</code>, the data structure being
-consumed is a <a>DID document</a>, the root element MUST be a <a
+If media type information is available to a <a>conforming consumer</a>, the
+media type value is <code>application/did+json</code>, and the data structure 
+being consumed is a <a>DID document</a>, then the root element MUST be a <a
 data-cite="RFC8259#section-4">JSON Object</a>, and all members of this object
 are entries of the <a>DID document</a>. A <a>conforming consumer</a> for a JSON
 <a>representation</a> that is consuming a <a>DID document</a> with a root
