@@ -3129,15 +3129,11 @@ A2                                   # map(2)
 
       <section>
         <h3>Consumption</h3>
+
         <p>
-The topmost element MUST be a <a data-cite="RFC8949#section-3.1">CBOR map</a>
-(major type 5). Any other data type at the highest level of the
-<a>DID document</a> (the topmost <a data-cite="INFRA#ordered-map">map</a> in
-the <a href="#data-model">data model</a>) is an error and MUST be
-rejected. The topmost <a data-cite="RFC8949#section-3.1">CBOR map</a>
-represents the <a>DID document</a>, and all data items of this map are
-entries of the <a>DID document</a>. The data item key is the entry key,
-and the data item value is interpreted as follows:
+All data structures expressed by a CBOR <a>representation</a> MUST be
+deserialized into the <a href="#data-model">data model</a> according to the
+following <a>consumption</a> rules:
         </p>
 
         <table class="simple" id="cbor-representation-consumption">
@@ -3158,11 +3154,11 @@ Data&nbsp;Type
 <a data-cite="RFC8949#section-3.1">CBOR map</a> (major type 5)
               </td>
               <td>
-<a data-cite="INFRA#maps">ordered&nbsp;map</a>, each data item of the CBOR map
-is added as an entry to the ordered map with the entry key being the data
-item name and the value converted based on the CBOR type and, if available,
-entry definition, as defined here; as no order can be enforced for general
-CBOR maps, no insertion order is guaranteed.
+An <a data-cite="INFRA#maps">ordered&nbsp;map</a>, where each data item of the
+CBOR map is added as an entry to the ordered map with the entry key being the
+data item name and the value converted based on the CBOR type and, if available,
+entry definition, as defined here; as no order can be enforced for general CBOR
+maps, no insertion order is guaranteed.
               </td>
             </tr>
             <tr>
@@ -3172,9 +3168,9 @@ href="#data-model">data model</a> entry value is a <a
 data-cite="INFRA#list">list</a> or unknown
               </td>
               <td>
-<a data-cite="INFRA#list">list</a>, each value of the
-<a data-cite="RFC8949#section-3.1">CBOR array</a> is added to the list in order,
-converted based on the CBOR type of the array value, as defined in this table
+A <a data-cite="INFRA#list">list</a>, where each value of the <a
+data-cite="RFC8949#section-3.1">CBOR array</a> is added to the list in order,
+converted based on the CBOR type of the array value, as defined in this table.
               </td>
             </tr>
             <tr>
@@ -3184,10 +3180,10 @@ href="#data-model">data model</a> entry value is an <a
 data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
               </td>
               <td>
-<a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>, each value of the
-<a data-cite="RFC8949#section-3.1">CBOR array</a> is added to the ordered set
-in order, converted based on the CBOR type of the array value as defined
-in this table
+An <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>, where each value of
+the <a data-cite="RFC8949#section-3.1">CBOR array</a> is added to the ordered
+set in order, converted based on the CBOR type of the array value as defined in
+this table.
               </td>
             </tr>
             <tr>
@@ -3196,7 +3192,7 @@ in this table
 <a href="#data-model">data model</a> entry value is a <a>datetime</a>
               </td>
               <td>
-  <a>datetime</a>
+A <a>datetime</a>.
               </td>
             </tr>
             <tr>
@@ -3206,7 +3202,7 @@ href="#data-model">data model</a> entry value type is <a>string</a> or
 unknown
               </td>
               <td>
-<a data-cite="INFRA#string">string</a>
+A <a data-cite="INFRA#string">string</a>.
               </td>
             </tr>
             <tr>
@@ -3215,16 +3211,16 @@ unknown
 choosing the shortest byte representation
               </td>
               <td>
-<a>integer</a>
+An <a>integer</a>.
               </td>
             </tr>
             <tr>
               <td>
 <a data-cite="RFC8949#section-3.1">CBOR floating-point number</a> (major type
-7).
+7)
               </td>
               <td>
-<a>double</a>
+A <a>double</a>.
               </td>
             </tr>
             <tr>
@@ -3233,7 +3229,7 @@ choosing the shortest byte representation
 subtype 24) with a simple value of 21 (True) or 20 (False)
               </td>
               <td>
-<a data-cite="INFRA#boolean">boolean</a>
+A <a data-cite="INFRA#boolean">boolean</a>.
               </td>
             </tr>
             <tr>
@@ -3242,30 +3238,42 @@ subtype 24) with a simple value of 21 (True) or 20 (False)
 subtype 24) with a simple value of 22 (Null)
               </td>
               <td>
-<a data-cite="INFRA#null">null</a>
+A <a data-cite="INFRA#null">null</a> value.
               </td>
             </tr>
           </tbody>
         </table>
 
         <p>
-Additional Considerations:
+In addition to the data type consumption rules above, the following rules apply
+for <a>conforming consumers</a> that deserialize CBOR <a>representations</a>:
         </p>
 
-        <ul>
+        <ol>
           <li>
 <a data-cite="RFC8949#section-3.2.2">CBOR
-Indefinite-length items</a> are not allowed and MUST throw an Error.
+indefinite-length items</a> are not allowed and MUST produce an error.
           </li>
           <li>
-Duplicate key in the same CBOR map MUST throw an Error.
+A duplicate key in the same CBOR map MUST produce an error.
           </li>
           <li>
-<a data-cite="RFC8949#section-7.1">Unknown Additional
-Properties and Values</a> MUST be preserved by default
-and represented as major type 3 (UTF-8 String)
+All CBOR tags MUST be retained for CBOR <a>production</a> regardless of whether
+they are optional.
           </li>
-        </ul>
+        </ol>
+
+        <p>
+If media type information is available to a <a>conforming consumer</a> and the
+media type value is <code>application/did+json</code>: the data structure  being
+consumed is a <a>DID document</a> and the root element MUST be a <a
+data-cite="RFC8949#section-3.1">CBOR map</a> (major type 5) where all members of
+the object are entries of the <a>DID document</a>. A <a>conforming consumer</a>
+for a CBOR <a>representation</a> that is consuming a <a>DID document</a> with a
+root element that is not a <a data-cite="RFC8949#section-3.1">CBOR map</a>
+(major type 5) MUST report an error.
+        </p>
+
 
       </section>
     </section>
