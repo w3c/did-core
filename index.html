@@ -2969,7 +2969,7 @@ CBOR Representation Type
 A <a data-cite="RFC8949#section-3.1">CBOR map</a> (major type 5), where each
 entry is represented as a member of the CBOR map. The entry key is expressed
 as a <a data-cite="RFC8949#section-3.1">CBOR string</a> (major type 3) as the
-key and the entry value according to its type, as defined in this table.
+key, and the entry value according to its type, as defined in this table.
               </td>
             </tr>
             <tr>
@@ -3057,7 +3057,7 @@ for <a>conforming producers</a> that serialize CBOR <a>representations</a>:
         </p>
         <ol>
           <li>
-Indefinite-length items are not allowed and MUST be made <a
+Indefinite-length items are not allowed and MUST be made a <a
 data-cite="RFC8949#section-3.2.2">CBOR definite length.</a>
           </li>
           <li>
@@ -3073,14 +3073,14 @@ listed in [[RFC8949]] MUST be applied to all relevant data types.
 All entries of a <a>DID document</a> MUST be included in the root <a
 data-cite="RFC8949#section-3.1">CBOR map</a> (major type 5). Entries MAY contain
 additional data substructures subject to the value representation rules in the
-list above. When serializing a <a>DID document</a> in the CBOR
+list above. When serializing a <a>DID document</a> to its CBOR
 <a>representation</a>, a <a>conforming producer</a> MUST specify a media type of
 <code>application/did+cbor</code> to downstream applications such as described
 in <a href="#did-resolution-metadata"></a>.
         </p>
 
         <p>
-The following examples express a CBOR <a>representation</a> of a
+The following examples express the CBOR <a>representation</a> of a
 <a>DID document</a> in hexidecimal notation, and in CBOR diagnostic notation:
         </p>
 
@@ -3265,8 +3265,8 @@ they are optional.
 
         <p>
 If media type information is available to a <a>conforming consumer</a> and the
-media type value is <code>application/did+json</code>: the data structure  being
-consumed is a <a>DID document</a> and the root element MUST be a <a
+media type value is <code>application/did+json</code>, then the data structure being
+consumed is a <a>DID document</a>, and the root element MUST be a <a
 data-cite="RFC8949#section-3.1">CBOR map</a> (major type 5) where all members of
 the object are entries of the <a>DID document</a>. A <a>conforming consumer</a>
 for a CBOR <a>representation</a> that is consuming a <a>DID document</a> with a
