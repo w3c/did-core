@@ -1275,11 +1275,12 @@ is elaborated upon in <a href="#metadata-structure"></a>.
     <p class="advisement" title="Ordering of values">
 As a result of the <a href="#data-model">data model</a> being defined using
 terminology from [[INFRA]], property values which can contain more than one
-item, such as <a data-cite="INFRA#ordered-map">maps</a> and
-<a data-cite="INFRA#ordered-set">sets</a>, are explicitly ordered. For the
-purposes of this specification, unless otherwise stated, ordering is not
-important and implementations are not expected to produce or consume
-deterministically ordered values.
+item, such as <a data-cite="INFRA#ordered-map">maps</a> and <a
+data-cite="INFRA#ordered-set">sets</a>, are explicitly ordered. All list-like
+value structures in [[INFRA]] are ordered, whether or not that order is
+significant. For the purposes of this specification, unless otherwise stated,
+ordering is not important and implementations are not expected to produce or
+consume deterministically ordered values.
     </p>
 
     <section>
