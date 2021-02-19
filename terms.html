@@ -101,7 +101,7 @@ The portion of a <a>DID URL</a> that follows the first hash sign character
   <dt><dfn data-lt="DID methods">DID method</dfn></dt>
 
   <dd>
-A definition of how a specific <a>DID method</a> scheme is implemented. A DID method is
+A definition of how a specific <a>DID method scheme</a> is implemented. A DID method is
 defined by a DID method specification, which specifies the precise operations by
 which <a>DIDs</a> and <a>DID documents</a> are created, resolved, updated,
 and deactivated. See <a href="#methods"></a>.
@@ -143,7 +143,7 @@ A <a>DID resolver</a> is a software and/or hardware component that performs the
 conforming <a>DID document</a> as output.
   </dd>
 
-  <dt><dfn data-lt="DID schemes">DID scheme</dfn></dt>
+  <dt><dfn data-lt="DID schemes|DID method scheme">DID scheme</dfn></dt>
 
   <dd>
 The formal syntax of a <a>decentralized identifier</a>. The generic DID scheme
@@ -177,8 +177,8 @@ path</a> (with its leading <code>/</code> character), optional <a>DID query</a>
   <dd>
 The process that takes as its input a <a>DID URL</a> and a set of input
 metadata, and returns a <a>resource</a>. This resource might be a <a>DID
-document</a> plus additional metadata, or it might be a secondary resource
-contained within the <a>DID document</a>, or it might be a resource entirely
+document</a> plus additional metadata, a secondary resource
+contained within the <a>DID document</a>, or a resource entirely
 external to the <a>DID document</a>. The process uses <a>DID resolution</a> to
 fetch a <a>DID document</a> indicated by the <a>DID</a> contained within the
 <a>DID URL</a>. The dereferencing process can then perform additional processing
@@ -210,7 +210,7 @@ immutable.
 
   <dd>
 A data object contained inside a <a>DID document</a> that contains all the
-metadata necessary to use a public key or verification key.
+metadata necessary to use a public key or a verification key.
   </dd>
 
   <dt><dfn data-lt="resources">resource</dfn></dt>
@@ -229,8 +229,7 @@ past, current, or desired state of a given resource, in a format that can be
 readily communicated via the protocol, and that consists of a set of
 representation metadata and a potentially unbounded stream of representation
 data." A <a>DID document</a> is a representation of information describing a
-<a>DID subject</a>. See <a href="https://w3.org/TR/did-core#representations">DID
-Core: Representations</a>.
+<a>DID subject</a>. See <a href="#representations"></a>.
   </dd>
 
   <dt><dfn data-lt="service">services</dfn></dt>
