@@ -1,10 +1,9 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-  <title>
-    Decentralized Identifiers (DIDs) v1.0
-  </title>
-  <meta content='text/html; charset=utf-8' http-equiv='Content-Type'><!--
+  <title>Decentralized Identifiers (DIDs) v1.0</title>
+  <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+  <!--
     === NOTA BENE ===
     For the three scripts below, if your spec resides on dev.w3 you can check
     them out in the same tree and use relative links so that they'll work
@@ -206,10 +205,11 @@ test the implementability of all of the features in this document.
 
     <p>
 To exit the W3C Candidate Recommendation phase, the W3C DID Working Group will
-require two things: 1) for normative statements that are machine testable, at least two
-interoperable implementations per feature, and 2) for normative statements that are
-not machine testable, at least two demonstrations of implementation per feature. A
-feature is defined as one or more functionally related normative statements in the specification.
+require two things: 1) for normative statements that are machine testable, at
+least two interoperable implementations per feature, and 2) for normative
+statements that are not machine testable, at least two demonstrations of
+implementation per feature. A feature is defined as one or more functionally
+related normative statements in the specification.
     </p>
 
     <p>
@@ -240,9 +240,10 @@ Portions of the work on this specification have been funded by the United States
 Department of Homeland Security's (US DHS) Science and Technology Directorate
 under contracts HSHQDC-16-R00012-H-SB2016-1-002, and HSHQDC-17-C-00019, as well
 as the US DHS Silicon Valley Innovation Program under contracts
-70RSAT20T00000010, 70RSAT20T00000029, 70RSAT20T00000030, 70RSAT20T00000045, 70RSAT20T00000003, 70RSAT20T00000033. The content of this
-specification does not necessarily reflect the position or the policy of the
-U.S. Government and no official endorsement should be inferred.
+70RSAT20T00000010, 70RSAT20T00000029, 70RSAT20T00000030, 70RSAT20T00000045,
+70RSAT20T00000003, 70RSAT20T00000033. The content of this specification does not
+necessarily reflect the position or the policy of the U.S. Government and no
+official endorsement should be inferred.
     </p>
 
     <p>
@@ -295,12 +296,12 @@ using cryptographic proofs such as digital signatures.
     <p>
 Since the generation and assertion of Decentralized Identifiers is
 entity-controlled, each entity can have as many DIDs as necessary to maintain
-their desired separation of identities, personas, and interactions. The use of these
-identifiers can be scoped appropriately to different contexts. They support
-interactions with other people, institutions, or systems that require entities to
-identify themselves, or things they control, while providing control over how
-much personal or private data should be revealed, all without depending on a
-central authority to guarantee the continued existence of the identifier.
+their desired separation of identities, personas, and interactions. The use of
+these identifiers can be scoped appropriately to different contexts. They
+support interactions with other people, institutions, or systems that require
+entities to identify themselves, or things they control, while providing control
+over how much personal or private data should be revealed, all without depending
+on a central authority to guarantee the continued existence of the identifier.
     </p>
     <p>
 This specification does not presuppose any particular technology or cryptography
@@ -526,10 +527,10 @@ Decentralized Identifier architecture.
       <figure id="brief-architecture-overview">
           <img style="margin: auto; display: block; width: 75%;"
             src="diagrams/did_brief_architecture_overview.svg" alt="
-DIDs and DID documents are recorded on a Verifiable Data Registry;
-DIDs resolve to DID documents; DIDs identify DID subjects; a DID controller controls
-a DID document; DID URLs contains a DID; DID URLs dereferenced to DID document fragments or
-external resources.
+DIDs and DID documents are recorded on a Verifiable Data Registry; DIDs resolve
+to DID documents; DIDs identify DID subjects; a DID controller controls a DID
+document; DID URLs contains a DID; DID URLs dereferenced to DID document
+fragments or external resources.
           " >
           <figcaption>
 Overview of DID architecture and the relationship of the basic components.
@@ -713,8 +714,8 @@ and/or hardware that complies with the relevant normative statements in
       </p>
 
       <p>
-A <dfn>conforming DID URL dereferencer</dfn> is any algorithm realized as software
-and/or hardware that complies with the relevant normative statements in
+A <dfn>conforming DID URL dereferencer</dfn> is any algorithm realized as
+software and/or hardware that complies with the relevant normative statements in
 <a href="#did-url-dereferencing"></a>.
       </p>
 
@@ -1629,12 +1630,12 @@ by the <a>DID subject</a>.
         <p class="note" title="Authorization vs authentication">
 Note that authorization provided by the value of <code>controller</code> is
 separate from authentication as described in <a href="#authentication"></a>.
-This is particularly important for key recovery in the case of cryptographic
-key loss, where the <a>DID subject</a> no longer has access to their keys, or key
+This is particularly important for key recovery in the case of cryptographic key
+loss, where the <a>DID subject</a> no longer has access to their keys, or key
 compromise, where the <a>DID controller</a>'s trusted third parties need to
-override malicious activity by an attacker. See
-<a href="#security-considerations"></a> for information related to threat
-models and attack vectors.
+override malicious activity by an attacker. See <a
+href="#security-considerations"></a> for information related to threat models
+and attack vectors.
         </p>
       </section>
 
@@ -1962,10 +1963,10 @@ key agreement protocols with the <a>DID subject</a>&mdash;the value of the
       </p>
       <p>
 The <a>DID document</a> does not express revoked keys using a <a>verification
-relationship</a>. If a referenced verification method is not in the latest <a>DID
-Document</a> used to dereference it, then that verification method is considered
-invalid or revoked. Each <a>DID method</a> specification is expected to detail
-how revocation is performed and tracked.
+relationship</a>. If a referenced verification method is not in the latest
+<a>DID Document</a> used to dereference it, then that verification method is
+considered invalid or revoked. Each <a>DID method</a> specification is expected
+to detail how revocation is performed and tracked.
       </p>
       <p>
 The following sections define several useful <a>verification relationships</a>.
@@ -2188,8 +2189,8 @@ The server providing the HTTP API is the <em>verifier</em> of the capability and
 it would need to verify that the <a>verification method</a> referred to by the
 invoked capability exists in the <code><a>capabilityInvocation</a></code>
 property of the <a>DID document</a>. The verifier would also check to make sure
-that the action being performed is valid and the capability is appropriate for the
-resource being accessed. If the verification is successful, the server has
+that the action being performed is valid and the capability is appropriate for
+the resource being accessed. If the verification is successful, the server has
 cryptographically determined that the invoker is authorized to access the
 protected resource.
         </p>
@@ -2239,10 +2240,10 @@ embedded or referenced.
         </dl>
 
         <p>
-An example of when this property is useful is when a <a>DID controller</a> chooses
-to delegate their capability to access a protected HTTP API to a party other
-than themselves. In order to delegate the capability, the <a>DID subject</a>
-would use a <a>verification method</a> associated with the
+An example of when this property is useful is when a <a>DID controller</a>
+chooses to delegate their capability to access a protected HTTP API to a party
+other than themselves. In order to delegate the capability, the <a>DID
+subject</a> would use a <a>verification method</a> associated with the
 <code>capabilityDelegation</code> <a>verification relationship</a> to
 cryptographically sign the capability over to another <a>DID subject</a>. The
 delegate would then use the capability in a manner that is similar to the
@@ -2372,18 +2373,19 @@ href="#authentication-service-endpoints"></a>.
     <h1>Representations</h1>
 
     <p>
-A concrete serialization of a <a>DID document</a> in this specification is called a
-<a>representation</a>. A <a>representation</a> is created by serializing the <a
-href="#data-model">data model</a> through a process called
+A concrete serialization of a <a>DID document</a> in this specification is
+called a <a>representation</a>. A <a>representation</a> is created by
+serializing the <a href="#data-model">data model</a> through a process called
 <dfn>production</dfn>. A <a>representation</a> is transformed into the <a
 href="#data-model">data model</a> through a process called
-<dfn>consumption</dfn>. The <em>production</em> and <em>consumption</em> processes
-enable the conversion of information from one <a>representation</a> to another.
-This specification defines <a>representations</a> for JSON, JSON-LD,
+<dfn>consumption</dfn>. The <em>production</em> and <em>consumption</em>
+processes enable the conversion of information from one <a>representation</a> to
+another. This specification defines <a>representations</a> for JSON, JSON-LD,
 and CBOR, and developers can use any other <a>representation</a>, such as XML or
 YAML, that is capable of expressing the <a href="#data-model">data model</a>.
 The following sections define the general rules for <a>production</a> and
-<a>consumption</a>, as well as the JSON, JSON-LD, and CBOR <a>representations</a>.
+<a>consumption</a>, as well as the JSON, JSON-LD, and CBOR
+<a>representations</a>.
     </p>
 
     <section>
@@ -2410,8 +2412,8 @@ A <a>representation</a> MUST be uniquely associated with an IANA-registered
 Media Type.
         </li>
         <li>
-A <a>representation</a> MUST define fragment processing rules for its MIME
-type that are conformant with the fragment processing rules defined in
+A <a>representation</a> MUST define fragment processing rules for its Media
+Type that are conformant with the fragment processing rules defined in
 <a href="#fragment"></a>.
         </li>
         <li>
@@ -2895,10 +2897,10 @@ Issue 208</a>.
         <h3>Consumption</h3>
 
         <p>
-The <a>DID document</a> and any DID document data structures expressed by a JSON-LD <a>representation</a> MUST be
-deserialized into the <a href="#data-model">data model</a> according to the JSON
-<a>representation</a> <a>consumption</a> rules as defined in <a
-href="#json"></a>.
+The <a>DID document</a> and any DID document data structures expressed by a
+JSON-LD <a>representation</a> MUST be deserialized into the <a
+href="#data-model">data model</a> according to the JSON <a>representation</a>
+<a>consumption</a> rules as defined in <a href="#json"></a>.
         </p>
 
         <p>
@@ -2944,9 +2946,9 @@ section will be removed from this specification.
         <h3>Production</h3>
 
         <p>
-All <a>DID document</a> data structures expressed by the <a href="#data-model">data model</a>
-MUST be serialized to the CBOR <a>representation</a> according to the
-following <a>production</a> rules:
+All <a>DID document</a> data structures expressed by the <a
+href="#data-model">data model</a> MUST be serialized to the CBOR
+<a>representation</a> according to the following <a>production</a> rules:
         </p>
 
         <table class="simple" id="cbor-representation-production">
@@ -3266,8 +3268,8 @@ they are optional.
 
         <p>
 If media type information is available to a <a>conforming consumer</a> and the
-media type value is <code>application/did+json</code>, then the data structure being
-consumed is a <a>DID document</a>, and the root element MUST be a <a
+media type value is <code>application/did+json</code>, then the data structure
+being consumed is a <a>DID document</a>, and the root element MUST be a <a
 data-cite="RFC8949#section-3.1">CBOR map</a> (major type 5) where all members of
 the object are entries of the <a>DID document</a>. A <a>conforming consumer</a>
 for a CBOR <a>representation</a> that is consuming a <a>DID document</a> with a
@@ -3426,8 +3428,8 @@ use the <a>verification methods</a> listed under
 <code><a>authentication</a></code>.
         </li>
         <li>
-use other constructs in the <a>DID Document</a> such as the
-<a>verification method</a> specified via the <code><a>capabilityInvocation</a></code>
+use other constructs in the <a>DID Document</a> such as the <a>verification
+method</a> specified via the <code><a>capabilityInvocation</a></code>
 <a>verification relationship</a>.
         </li>
         <li>
@@ -3544,14 +3546,14 @@ identification, secondary use, disclosure, and exclusion.
 The Working Group is unsure if there will be enough implementation experience
 for the DID Resolution section. We are seeking feedback from the implementation
 community as to whether they prefer to do all of this work now, or if they would
-prefer that this section is, or parts of the section are, rewritten to be non-normative,
-or published as a NOTE and taken up in a future W3C DID Resolution Working
-Group. If there is support for rewriting a subset of the DID Resolution section,
-or publishing any part of it as a NOTE during the W3C Candidate Recommendation
-process, this section will be modified and/or published as a NOTE appropriately
-before the DID Core specification proceeds to the W3C Proposed
-Recommendation stage. See also <a href="https://github.com/w3c/did-core/issues/549">
-Issue 549</a>.
+prefer that this section is, or parts of the section are, rewritten to be
+non-normative, or published as a NOTE and taken up in a future W3C DID
+Resolution Working Group. If there is support for rewriting a subset of the DID
+Resolution section, or publishing any part of it as a NOTE during the W3C
+Candidate Recommendation process, this section will be modified and/or published
+as a NOTE appropriately before the DID Core specification proceeds to the W3C
+Proposed Recommendation stage. See also <a
+href="https://github.com/w3c/did-core/issues/549"> Issue 549</a>.
     </p>
 
     <p>
@@ -3588,10 +3590,11 @@ resolveRepresentation(did, resolutionOptions) →
 
         <p>
 The <code>resolve</code> function returns the <a>DID document</a> in its
-abstract form (a <a data-cite="INFRA#maps">map</a>). The <code>resolveRepresentation</code> function returns a byte
-stream of the <a>DID Document</a> formatted in the corresponding representation.
-The input variables of the <code>resolve</code> and
-<code>resolveRepresentation</code> functions are as follows:
+abstract form (a <a data-cite="INFRA#maps">map</a>). The
+<code>resolveRepresentation</code> function returns a byte stream of the <a>DID
+Document</a> formatted in the corresponding representation. The input variables
+of the <code>resolve</code> and <code>resolveRepresentation</code> functions are
+as follows:
         </p>
 
         <dl>
@@ -3710,8 +3713,8 @@ document</a>. The Media Type MUST be expressed as an  <a data-lt="ascii
 string">ASCII string</a>. The <a>DID resolver</a> implementation SHOULD use this
 value to determine the <a>representation</a> contained in the returned
 <code>didDocumentStream</code> if such a <a>representation</a> is supported and
-available. This property is OPTIONAL for the <code>resolveResolution</code> function
-and MUST NOT be used with the <code>resolve</code> function.
+available. This property is OPTIONAL for the <code>resolveResolution</code>
+function and MUST NOT be used with the <code>resolve</code> function.
                 </dd>
             </dl>
         </section>
@@ -3736,8 +3739,8 @@ REQUIRED if resolution is successful and if the
 <code>resolveRepresentation</code> function was called.
 This property MUST NOT
 be present if the <code>resolve</code> function was called. The value of this
-property MUST be an <a data-lt="ascii string">ASCII string</a> that is the MIME
-type of the conformant <a>representations</a>. The
+property MUST be an <a data-lt="ascii string">ASCII string</a> that is the Media
+Type of the conformant <a>representations</a>. The
 caller of the <code>resolveRepresentation</code> function MUST use this value
 when determining how to parse and process the <code>didDocumentStream</code>
 returned by this function into the <a href="#data-model">data model</a>.
@@ -3815,9 +3818,9 @@ indicate the timestamp of the last <a href="#update">Update operation</a> for
 the document version which was resolved. The value of the property MUST follow
 the same formatting rules as the <code>created</code> property. The
 <code>updated</code> property is omitted if an Update operation has never been
-performed on the <a>DID document</a>. If an <code>updated</code> property exists, it
-can be the same value as the <code>created</code> property when the difference
-between the two timestamps is less than one second.
+performed on the <a>DID document</a>. If an <code>updated</code> property
+exists, it can be the same value as the <code>created</code> property when the
+difference between the two timestamps is less than one second.
             </dd>
 
             <dt><dfn>nextUpdate</dfn></dt>
@@ -4088,8 +4091,8 @@ dereferencing options:
 accept
               </dt>
               <dd>
-The Media Type that the caller prefers for <code>contentStream</code>. The  MIME
-type MUST be expressed as an <a data-lt="ascii string">ASCII string</a>.
+The Media Type that the caller prefers for <code>contentStream</code>. The Media
+Type MUST be expressed as an <a data-lt="ascii string">ASCII string</a>.
 The <a>DID URL dereferencing</a> implementation SHOULD use this value to
 determine the <code>contentType</code> of the <a>representation</a> contained in the returned value if such a
 <a>representation</a> is supported and available.
@@ -4112,8 +4115,8 @@ contentType
                 </dt>
                 <dd>
 The Media Type of the returned <code>contentStream</code> SHOULD be expressed
-using this property if dereferencing is successful. The MIME
-type value MUST be expressed as an <a data-lt="ascii string">ASCII string</a>.
+using this property if dereferencing is successful. The Media
+Type value MUST be expressed as an <a data-lt="ascii string">ASCII string</a>.
                 </dd>
                 <dt>
 error
