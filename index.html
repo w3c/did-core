@@ -954,7 +954,7 @@ method</a> and function the same way for all <a>DIDs</a>. Other DID parameters
 are not supported by all <a>DID methods</a>. Where optional parameters are
 supported, they are expected to operate uniformly across the <a>DID methods</a>
 that do support them. The following table provides common DID parameters
-that function the same way across all <a>DID methods</a>.
+that function the same way across all <a>DID methods</a>. Support for all <a>DID Parameters</a> is OPTIONAL.
         </p>
 
         <table class="simple">
@@ -975,8 +975,8 @@ Description
 <code><a>service</a></code>
               </td>
               <td>
-Identifies a service from the <a>DID document</a> by service ID. Support for
-this parameter is OPTIONAL. If present, the associated value MUST be an <a
+Identifies a service from the <a>DID document</a> by service ID.
+If present, the associated value MUST be an <a
 data-lt="ascii string">ASCII string</a>.
               </td>
             </tr>
@@ -988,8 +988,8 @@ data-lt="ascii string">ASCII string</a>.
 A relative <a>URI</a> reference according to <a
 data-cite="RFC3986#section-4.2">RFC3986 Section 4.2</a> that identifies a
 <a>resource</a> at a <a>service endpoint</a>, which is selected from a <a>DID
-document</a> by using the <code>service</code> parameter. Support for this
-parameter is OPTIONAL. If present, the associated value MUST be an <a
+document</a> by using the <code>service</code> parameter. 
+If present, the associated value MUST be an <a
 data-lt="ascii string">ASCII string</a> and MUST use percent-encoding for
 certain characters as specified in <a data-cite="RFC3986#section-2.1">RFC3986
 Section 2.1</a>.
@@ -1001,8 +1001,8 @@ Section 2.1</a>.
               </td>
               <td>
 Identifies a specific version of a <a>DID document</a> to be resolved (the
-version ID could be sequential, or a <a>UUID</a>, or method-specific). Support
-for this parameter is OPTIONAL. If present, the associated value MUST be an <a
+version ID could be sequential, or a <a>UUID</a>, or method-specific).
+If present, the associated value MUST be an <a
 data-lt="ascii string">ASCII string</a>.
               </td>
             </tr>
@@ -1013,7 +1013,7 @@ data-lt="ascii string">ASCII string</a>.
               <td>
 Identifies a certain version timestamp of a <a>DID document</a> to be resolved.
 That is, the <a>DID document</a> that was valid for a <a>DID</a> at a certain
-time. Support for this parameter is OPTIONAL. If present, the associated value
+time. If present, the associated value
 MUST be an <a data-lt="ascii string">ASCII string</a> which is a valid XML
 datetime value, as defined in section 3.3.7 of <a
 href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition Language
@@ -1028,8 +1028,8 @@ For example: <code>2020-12-20T19:17:47Z</code>.
               </td>
               <td>
 A resource hash of the <a>DID document</a> to add integrity protection, as
-specified in [[?HASHLINK]]. This parameter is non-normative. Support for this
-parameter is OPTIONAL. If present, the associated value MUST be an
+specified in [[?HASHLINK]]. This parameter is non-normative. 
+If present, the associated value MUST be an
 <a data-lt="ascii string">ASCII string</a>.
               </td>
             </tr>
