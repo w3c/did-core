@@ -14,7 +14,7 @@
     src="https://unpkg.com/browse/jquery/dist/jquery.min.js"></script>
   <script class="remove"
     src="https://www.w3.org/Tools/respec/respec-w3c"></script>
-  <script class="remove"
+  <script class="removeOnSave"
     src="https://unpkg.com/reqlist/lib/reqlist.js"></script>
   <link class="removeOnSave" rel="stylesheet" type="text/css"
     href="https://unpkg.com/reqlist/lib/reqlist.css" />
@@ -64,8 +64,8 @@
 
     // Uncomment these to use the respec extension that generates a list of
     //   normative statements:
-    preProcess: [/*prepare_reqlist*/],
-    postProcess: [/*add_reqlist_button,*/ restrictRefs],
+    preProcess: [prepare_reqlist],
+    postProcess: [add_reqlist_button, restrictRefs],
 
     // list of specification editors
     editors: [{
