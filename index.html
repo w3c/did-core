@@ -988,7 +988,7 @@ data-lt="ascii string">ASCII string</a>.
 A relative <a>URI</a> reference according to <a
 data-cite="RFC3986#section-4.2">RFC3986 Section 4.2</a> that identifies a
 <a>resource</a> at a <a>service endpoint</a>, which is selected from a <a>DID
-document</a> by using the <code>service</code> parameter. 
+document</a> by using the <code>service</code> parameter.
 If present, the associated value MUST be an <a
 data-lt="ascii string">ASCII string</a> and MUST use percent-encoding for
 certain characters as specified in <a data-cite="RFC3986#section-2.1">RFC3986
@@ -1028,7 +1028,7 @@ For example: <code>2020-12-20T19:17:47Z</code>.
               </td>
               <td>
 A resource hash of the <a>DID document</a> to add integrity protection, as
-specified in [[?HASHLINK]]. This parameter is non-normative. 
+specified in [[?HASHLINK]]. This parameter is non-normative.
 If present, the associated value MUST be an
 <a data-lt="ascii string">ASCII string</a>.
               </td>
@@ -2407,7 +2407,7 @@ rules for all data types specified in <a href="#data-model"></a>.
         </li>
         <li>
 A <a>representation</a> MUST be uniquely associated with an IANA-registered
-MIME type.
+Media Type.
         </li>
         <li>
 A <a>representation</a> MUST define fragment processing rules for its MIME
@@ -2465,7 +2465,7 @@ data type processing rules.
         </li>
         <li>
 A <a>conforming producer</a> MUST indicate which <a>representation</a> has been
-used for a <a>DID document</a> via a MIME type as described in <a
+used for a <a>DID document</a> via a Media Type as described in <a
 href="#did-resolution-metadata"></a>.
         </li>
       </ol>
@@ -2483,7 +2483,7 @@ type processing rules.
         </li>
         <li>
 A <a>conforming consumer</a> MUST determine the <a>representation</a> of a
-<a>DID document</a> using the associated MIME type as described in <a
+<a>DID document</a> using the associated Media Type as described in <a
 href="#did-resolution-metadata"></a>.
         </li>
       </ol>
@@ -3635,7 +3635,7 @@ changes between invocations of the <code>resolve</code> and
 resolution process itself. This structure is REQUIRED, and MUST NOT be empty.
 This metadata is defined by <a href="#did-resolution-metadata"></a>. If
 <code>resolveRepresentation</code> was called, this structure MUST contain a
-<code>contentType</code> property containing the MIME type of the
+<code>contentType</code> property containing the Media Type of the
 representation found in the <code>didDocumentStream</code>. If the resolution is not successful, this structure
 MUST contain an <code>error</code> property describing the error.
             </dd>
@@ -3705,8 +3705,8 @@ specification defines the following common properties.
 accept
                 </dt>
                 <dd>
-The MIME type of the caller's preferred <a>representation</a> of the <a>DID
-document</a>. The MIME type MUST be expressed as an  <a data-lt="ascii
+The Media Type of the caller's preferred <a>representation</a> of the <a>DID
+document</a>. The Media Type MUST be expressed as an  <a data-lt="ascii
 string">ASCII string</a>. The <a>DID resolver</a> implementation SHOULD use this
 value to determine the <a>representation</a> contained in the returned
 <code>didDocumentStream</code> if such a <a>representation</a> is supported and
@@ -3731,7 +3731,7 @@ specification defines the following common properties for a
 contentType
                 </dt>
                 <dd>
-The MIME type of the returned <code>didDocumentStream</code>. This property is
+The Media Type of the returned <code>didDocumentStream</code>. This property is
 REQUIRED if resolution is successful and if the
 <code>resolveRepresentation</code> function was called.
 This property MUST NOT
@@ -4046,7 +4046,7 @@ contain a <a>resource</a> corresponding to the <a>DID URL</a>. The
 <code>contentStream</code> MAY be a <a>resource</a> such as a <a href="">DID
 Document</a> that is serializable in one of the conformant
 <a>representations</a>,  a <a href="#verification-methods">Verification Method</a>,  a <a
-href="#services">service</a>, or any other resource format that can be identified via a MIME type
+href="#services">service</a>, or any other resource format that can be identified via a Media Type
 and obtained through the resolution process. If the
 dereferencing is unsuccessful, this value MUST be empty.
         </dd>
@@ -4088,7 +4088,7 @@ dereferencing options:
 accept
               </dt>
               <dd>
-The MIME type that the caller prefers for <code>contentStream</code>. The  MIME
+The Media Type that the caller prefers for <code>contentStream</code>. The  MIME
 type MUST be expressed as an <a data-lt="ascii string">ASCII string</a>.
 The <a>DID URL dereferencing</a> implementation SHOULD use this value to
 determine the <code>contentType</code> of the <a>representation</a> contained in the returned value if such a
@@ -4111,7 +4111,7 @@ specification defines the following common properties.
 contentType
                 </dt>
                 <dd>
-The MIME type of the returned <code>contentStream</code> SHOULD be expressed
+The Media Type of the returned <code>contentStream</code> SHOULD be expressed
 using this property if dereferencing is successful. The MIME
 type value MUST be expressed as an <a data-lt="ascii string">ASCII string</a>.
                 </dd>
