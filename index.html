@@ -1180,7 +1180,7 @@ Considerations
       <tbody>
         <tr>
           <td>
-<a data-cite="INFRA#maps">ordered&nbsp;map</a>
+<a data-cite="INFRA#maps">map</a>
           </td>
           <td>
 A finite ordered sequence of key/value pairs, with no key appearing twice as
@@ -1729,7 +1729,8 @@ rules in Section <a href="#did-url-syntax"></a>.
             </dd>
             <dt>type</dt>
             <dd>
-The value of the <code>type</code> property MUST be exactly one <a>verification
+The value of the <code>type</code> property MUST be a <a
+data-cite="INFRA#string">string</a> that references exactly one <a>verification
 method</a> type. In order to maximize global interoperability, the
 <a>verification method</a> type SHOULD be registered in the DID Specification
 Registries [[?DID-SPEC-REGISTRIES]].
@@ -1737,7 +1738,7 @@ Registries [[?DID-SPEC-REGISTRIES]].
             <dt>controller</dt>
             <dd>
 The value of the <code>controller</code> property MUST be a <a
-data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
+data-cite="INFRA#string">string</a> that conforms to the rules in <a
 href="#did-syntax"></a>.
             </dd>
           </dl>
@@ -2527,7 +2528,7 @@ JSON Representation Type
           <tbody>
             <tr>
               <td>
-<a data-cite="INFRA#maps">ordered&nbsp;map</a>
+<a data-cite="INFRA#maps">map</a>
               </td>
               <td>
 A <a data-cite="RFC8259#section-4">JSON Object</a>, where each entry is
@@ -2672,8 +2673,8 @@ Data&nbsp;Type
 <a data-cite="RFC8259#section-4">JSON Object</a>
               </td>
               <td>
-An <a data-cite="INFRA#maps">ordered&nbsp;map</a>, where each member of the JSON
-Object is added as an entry to the ordered map. Each entry key is set as the
+An <a data-cite="INFRA#maps">map</a>, where each member of the JSON
+Object is added as an entry to the map. Each entry key is set as the
 JSON Object member name. Each entry value is set by converting the JSON Object
 member value according to the JSON representation type as defined in this table.
 Since order is not specified by JSON Objects, no insertion order is guaranteed.
@@ -2961,7 +2962,7 @@ CBOR Representation Type
           <tbody>
             <tr>
               <td>
-<a data-cite="INFRA#maps">ordered&nbsp;map</a>
+<a data-cite="INFRA#maps">map</a>
               </td>
               <td>
 A <a data-cite="RFC8949#section-3.1">CBOR map</a> (major type 5), where each
@@ -3152,8 +3153,8 @@ Data&nbsp;Type
 <a data-cite="RFC8949#section-3.1">CBOR map</a> (major type 5)
               </td>
               <td>
-An <a data-cite="INFRA#maps">ordered&nbsp;map</a>, where each data item of the
-CBOR map is added as an entry to the ordered map with the entry key being the
+An <a data-cite="INFRA#maps">map</a>, where each data item of the
+CBOR map is added as an entry to the map with the entry key being the
 data item name and the value converted based on the CBOR type and, if available,
 entry definition, as defined here; as no order can be enforced for general CBOR
 maps, no insertion order is guaranteed.
@@ -3741,9 +3742,10 @@ The input variables of the <code>dereference</code> function are as follows:
 didUrl
         </dt>
         <dd>
-A conformant <a>DID URL</a> as a single string. This is the <a>DID URL</a> to
-dereference. To dereference a <a>DID fragment</a>, the complete <a>DID URL</a>
-including the <a>DID fragment</a> MUST be used. This input is REQUIRED.
+A conformant <a>DID URL</a> as a single <a data-cite="INFRA#string">string</a>.
+This is the <a>DID URL</a> to dereference. To dereference a <a>DID fragment</a>,
+the complete <a>DID URL</a> including the <a>DID fragment</a> MUST be used. This
+input is REQUIRED.
         </dd>
         <dt>
 dereferencingOptions
