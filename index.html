@@ -4715,7 +4715,8 @@ verifiable statements with a simulated date in the past.
 <br/><br/>
 For example, for a DID method that supports the `versionId` query parameter as
 well as the `updated` and `nextUpdate` DID document metadata properties, a
-verifier can validate a signature or proof of a revoked key IFF:
+verifier can validate a signature or proof of a revoked key if and only if 
+all of the following are true:
   <ol>
     <li>
 The proof or signature contains the `versionId` to refer to the DID document
