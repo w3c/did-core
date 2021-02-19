@@ -2419,11 +2419,11 @@ href="#data-model">data model</a> is lossless. For example, some CBOR-based
 represent the number of seconds since the Unix epoch.
         </li>
         <li>
-A <a>representation</a> MAY define representation-specific entries that can be
-stored in a data structure expressible using the <a href="#data-model">data
-model</a> for use during the <a>production</a> and <a>consumption</a> process.
-These entries are used when consuming or producing to aid in ensuring
-lossless conversion.
+A <a>representation</a> MAY define representation-specific entries that are
+stored in a representation-specific entries <a data-cite="INFRA#maps">map</a>
+for use during the <a>production</a> and <a>consumption</a> process. These
+entries are used when consuming or producing to aid in ensuring lossless
+conversion.
         </li>
         <li>
 In order to maximize interoperability, <a>representation</a> specification
@@ -2432,34 +2432,30 @@ Registries [[?DID-SPEC-REGISTRIES]].
         </li>
       </ol>
 
-      <p class="note" title="Representation-specific entries">
-Note that representation-specific entries will only have special processing
-rules defined by a single <a>representation</a>. Consumers of a different
-<a>representation</a> are required to preserve these entries in the
-<a>DID document</a> <a
-href="#data-model">data model</a> using their generic type processing rules
-to enable lossless conversion of <a>representations</a>. Similarly, producers
-are required to treat entries containing representation-specific syntax using
-generic type processing rules when producing a <a>representation</a> for which
-the entry is not defined. <a>Representations</a> are required to define producer
-behavior for any such entries defined by the <a>representation</a>.
-      </p>
-
       <p>
 The requirements for all <a>conforming producers</a> are as follows:
       </p>
 
       <ol>
         <li>
-A <a>conforming producer</a> MUST serialize all entries in the <a
-href="#data-model">data model</a> that do not have explicit processing rules for
-the <a>representation</a> being produced using only the <a>representation</a>'s
-data type processing rules.
+A <a>conforming producer</a> MUST take a <a>DID document</a> <a
+href="#data-model">data model</a> and a representation-specific entries <a
+data-cite="INFRA#maps">map</a> as input into the <a>production</a> process.
+The <a>conforming producer</a> MAY accept additional options as input
+into the <a>production</a> process.
         </li>
         <li>
-A <a>conforming producer</a> MUST indicate which <a>representation</a> has been
-used for a <a>DID document</a> via a Media Type as described in <a
-href="#did-resolution-metadata"></a>.
+A <a>conforming producer</a> MUST serialize all entries in the <a>DID
+document</a> <a href="#data-model">data model</a>, and the
+representation-specific entries <a data-cite="INFRA#maps">map</a>, that do not
+have explicit processing rules for the <a>representation</a> being produced
+using only the <a>representation</a>'s data type processing rules and
+return the serialization after the <a>production</a> process completes.
+        </li>
+        <li>
+A <a>conforming producer</a> MUST return the Media Type <a
+data-cite="INFRA#string">string</a> associated with the <a>representation</a>
+after the <a>production</a> process completes.
         </li>
       </ol>
 
@@ -2469,15 +2465,30 @@ The requirements for all <a>conforming consumers</a> are as follows:
 
       <ol>
         <li>
-A <a>conforming consumer</a> MUST add all entries that do not have explicit
-processing rules for the <a>representation</a> being consumed to the <a
-href="#data-model">data model</a> using only the <a>representation</a>'s data
-type processing rules.
+A <a>conforming consumer</a> MUST take a <a>representation</a> and
+Media Type <a data-cite="INFRA#string">string</a> as input into
+the <a>consumption</a> process. A <a>conforming consumer</a> MAY accept
+additional options as input into the <a>consumption</a> process.
         </li>
         <li>
 A <a>conforming consumer</a> MUST determine the <a>representation</a> of a
-<a>DID document</a> using the associated Media Type as described in <a
-href="#did-resolution-metadata"></a>.
+<a>DID document</a> using the Media Type input <a
+data-cite="INFRA#string">string</a>.
+        </li>
+        <li>
+A <a>conforming consumer</a> MUST detect any representation-specific
+entry across all known <a>representations</a> and place the entry into a
+representation-specific entries <a data-cite="INFRA#maps">map</a> which is
+returned after the <a>consumption</a> process completes. A list of
+all known representation-specific entries is available in the
+DID Specification Registries [[DID-SPEC-REGISTRIES]].
+        </li>
+        <li>
+A <a>conforming consumer</a> MUST add all non-representation-specific entries
+that do not have explicit processing rules for the <a>representation</a> being
+consumed to the <a>DID document</a> <a href="#data-model">data model</a> using
+only the <a>representation</a>'s data type processing rules and return the
+<a>DID document</a> data model after the <a>consumption</a> process completes.
         </li>
       </ol>
 
@@ -2503,9 +2514,10 @@ for the JSON <a>representation</a>.
         <h3>Production</h3>
 
         <p>
-The <a>DID document</a> and any DID document data structures expressed by the <a href="#data-model">data model</a>
-MUST be serialized to the JSON <a>representation</a> according to the
-following <a>production</a> rules:
+The <a>DID document</a>, DID document data structures, and
+representation-specific entries <a data-cite="INFRA#maps">map</a> MUST be
+serialized to the JSON <a>representation</a> according to the following
+<a>production</a> rules:
         </p>
 
         <table class="simple" id="json-representation-production">
@@ -2611,7 +2623,7 @@ A <a data-cite="RFC8259#section-3">JSON null literal</a>.
         <p class="advisement" title="INFRA JSON serialization rules">
 All implementers creating <a>conforming producers</a> that produce JSON
 <a>representations</a> are advised to ensure that their algorithms are aligned
-with the <a data-cite="INFRA##serialize-an-infra-value-to-json-bytes">JSON
+with the <a data-cite="INFRA#serialize-an-infra-value-to-json-bytes">JSON
 serialization rules</a> in the [[INFRA]] specification and the <a
 data-cite="RFC7159#section-6">precision advisements regarding Numbers</a> in the
 JSON [[RFC7159]] specification.
@@ -2645,9 +2657,9 @@ applications such as described in <a href="#did-resolution-metadata"></a>.
         <h3>Consumption</h3>
 
         <p>
-The <a>DID document</a> and any DID document data structures expressed by a JSON <a>representation</a> MUST be
-deserialized into the <a href="#data-model">data model</a> according to the
-following <a>consumption</a> rules:
+The <a>DID document</a> and DID document data structures JSON
+<a>representation</a> MUST be deserialized into the <a href="#data-model">data
+model</a> according to the following <a>consumption</a> rules:
         </p>
 
         <table class="simple" id="json-representation-consumption">
@@ -2810,7 +2822,8 @@ maps</a>.
         <h3>Production</h3>
 
         <p>
-The <a>DID document</a> and any DID document data structures expressed by the <a href="#data-model">data model</a> MUST
+The <a>DID document</a>, DID document data structures, and
+representation-specific entries <a data-cite="INFRA#maps">map</a> MUST be MUST
 be serialized to the JSON-LD <a>representation</a> according to the JSON
 <a>representation</a> <a>production</a> rules as defined in <a
 href="#json"></a>.
@@ -2894,13 +2907,6 @@ href="#data-model">data model</a> according to the JSON <a>representation</a>
 <a>consumption</a> rules as defined in <a href="#json"></a>.
         </p>
 
-        <p>
-In addition to using the JSON <a>representation</a> <a>consumption</a> rules,
-JSON-LD consumption MUST add the representation-specific entries into
-the <a href="#data-model">data model</a> according to the
-JSON <a>representation</a> <a>consumption</a> rules.
-        </p>
-
         <p class="advisement" title="JSON-LD serialization rules">
 All implementers creating <a>conforming consumers</a> that consume JSON-LD
 <a>representations</a> are advised to ensure that their algorithms only accept
@@ -2937,9 +2943,10 @@ section will be removed from this specification.
         <h3>Production</h3>
 
         <p>
-The <a>DID document</a> and any DID document data structures expressed by the <a
-href="#data-model">data model</a> MUST be serialized to the CBOR
-<a>representation</a> according to the following <a>production</a> rules:
+The <a>DID document</a>, DID document data structures, and
+representation-specific entries <a data-cite="INFRA#maps">map</a> MUST be
+serialized to the CBOR <a>representation</a> according to the following
+<a>production</a> rules:
         </p>
 
         <table class="simple" id="cbor-representation-production">
