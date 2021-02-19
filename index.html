@@ -64,13 +64,8 @@
 
     // Uncomment these to use the respec extension that generates a list of
     //   normative statements:
-    // preProcess: [
-    //   prepare_reqlist
-    // ],
-    postProcess: [
-    //   add_reqlist_button,
-      restrictRefs
-    ],
+    preProcess: [/*prepare_reqlist*/],
+    postProcess: [/*add_reqlist_button,*/ restrictRefs],
 
     // list of specification editors
     editors: [{
@@ -954,8 +949,9 @@ Some DID parameters are completely independent of of any specific <a>DID
 method</a> and function the same way for all <a>DIDs</a>. Other DID parameters
 are not supported by all <a>DID methods</a>. Where optional parameters are
 supported, they are expected to operate uniformly across the <a>DID methods</a>
-that do support them. The following table provides common DID parameters
-that function the same way across all <a>DID methods</a>. Support for all <a>DID Parameters</a> is OPTIONAL.
+that do support them. The following table provides common DID parameters that
+function the same way across all <a>DID methods</a>.  Support for all
+<a href="#did-parameters">DID Parameters</a> is OPTIONAL.
         </p>
 
         <table class="simple">
@@ -3574,10 +3570,10 @@ functions for at least one <a>DID method</a> and MUST be able to return a
         <p>
 The <a>DID resolution</a> functions resolve a <a>DID</a> into a <a>DID
 document</a> by using the "Read" operation of the applicable <a>DID method</a>
-as described in <a href="#read-verify"></a>. The details of how this process is
-accomplished are outside the scope of this specification, but all conforming
-<a>DID resolvers</a> implement the functions below, which have the following
-abstract forms:
+as described in <a href="#method-operations"></a>. The details of how this
+process is accomplished are outside the scope of this specification, but all
+conforming <a>DID resolvers</a> implement the functions below, which have the
+following abstract forms:
         </p>
 
         <pre title="Abstract functions for DID Resolution">
@@ -3783,7 +3779,7 @@ deactivated
                         </dt>
                         <dd>
 The <a>DID</a> supplied to the <a>DID resolution</a> function has been
-deactivated. (See <a href="#deactivate"></a>.)
+deactivated as described in <a href="#method-operations"></a>.
                         </dd>
                     </dl>
                 </dd>
@@ -3804,23 +3800,23 @@ This specification defines the following common properties.
             <dt><dfn>created</dfn></dt>
             <dd>
 <a>DID document</a> metadata SHOULD include a <code>created</code> property to
-indicate the timestamp of the <a href="#create">Create operation</a>. The value
-of the property MUST be a <a data-cite="INFRA#string">string</a> formatted as an
-<a data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a> normalized to UTC
-00:00:00 and without sub-second decimal precision. For example:
-<code>2020-12-20T19:17:47Z</code>.
+indicate the timestamp of the <a href="#method-operations">Create operation</a>.
+The value of the property MUST be a <a data-cite="INFRA#string">string</a>
+formatted as an <a data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a>
+normalized to UTC 00:00:00 and without sub-second decimal precision. For
+example: <code>2020-12-20T19:17:47Z</code>.
             </dd>
 
             <dt><dfn>updated</dfn></dt>
             <dd>
 <a>DID document</a> metadata SHOULD include an <code>updated</code> property to
-indicate the timestamp of the last <a href="#update">Update operation</a> for
-the document version which was resolved. The value of the property MUST follow
-the same formatting rules as the <code>created</code> property. The
-<code>updated</code> property is omitted if an Update operation has never been
-performed on the <a>DID document</a>. If an <code>updated</code> property
-exists, it can be the same value as the <code>created</code> property when the
-difference between the two timestamps is less than one second.
+indicate the timestamp of the last <a href="#method-operations">Update
+operation</a> for the document version which was resolved. The value of the
+property MUST follow the same formatting rules as the <code>created</code>
+property. The <code>updated</code> property is omitted if an Update operation
+has never been performed on the <a>DID document</a>. If an <code>updated</code>
+property exists, it can be the same value as the <code>created</code> property
+when the difference between the two timestamps is less than one second.
             </dd>
 
             <dt><dfn>nextUpdate</dfn></dt>
@@ -3831,19 +3827,19 @@ is not enough implementation experience with this feature at the end of the
 Candidate Recommendation period, it will be removed from the specification.
               </p>
 
-<a>DID document</a> metadata MAY include a <code>nextUpdate</code> property
-if the resolved document version is not the latest version of the document. It
-indicates the timestamp of the next <a href="#update">Update operation</a>. The
-value of the property MUST follow the same formatting rules as the
-<code>created</code> property.
+<a>DID document</a> metadata MAY include a <code>nextUpdate</code> property if
+the resolved document version is not the latest version of the document. It
+indicates the timestamp of the next <a href="#method-operations">Update
+operation</a>. The value of the property MUST follow the same formatting rules
+as the <code>created</code> property.
             </dd>
 
             <dt><dfn>versionId</dfn></dt>
             <dd>
 <a>DID document</a> metadata SHOULD include a <code>versionId</code> property to
-indicate the version of the last <a href="#update">Update operation</a> for the
-document version which was resolved. The value of the property MUST be an <a
-data-lt="ascii string">ASCII string</a>.
+indicate the version of the last <a href="#method-operations">Update
+operation</a> for the document version which was resolved. The value of the
+property MUST be an <a data-lt="ascii string">ASCII string</a>.
             </dd>
 
             <dt><dfn>nextVersionId</dfn></dt>
@@ -3854,11 +3850,11 @@ is not enough implementation experience with this feature at the end of the
 Candidate Recommendation period, it will be removed from the specification.
               </p>
 
-<a>DID document</a> metadata MAY include a <code>nextVersionId</code>
-property if the resolved document version is not the latest version of the
-document. It indicates the version of the next
-<a href="#update">Update operation</a>. The value of the property MUST be an
-<a data-lt="ascii string">ASCII string</a>.
+<a>DID document</a> metadata MAY include a <code>nextVersionId</code> property
+if the resolved document version is not the latest version of the document. It
+indicates the version of the next <a href="#method-operations">Update
+operation</a>. The value of the property MUST be an <a data-lt="ascii
+string">ASCII string</a>.
             </dd>
 
           <dt><dfn>equivalentId</dfn></dt>
@@ -4519,7 +4515,7 @@ of a resolver ought to be compatible with such extension behavior.
         Section <a href="#method-operations"></a> specifies the
         <a>DID</a> operations to be supported by a
         <a>DID method</a> specification, including
-        <a href="#update">update</a>
+        <a href="#method-operations">update</a>
         which is expected to be used to perform a verification method rotation.
       </p>
 
@@ -4606,11 +4602,11 @@ applies to all DID Methods.
       </p>
 
       <p>
-Section <a href="#method-operations"></a> specifies the <a>DID</a>
-operations to be supported by a <a>DID method</a> specification,
-including <a href="#update">update</a> and <a href="#deactivate">
-deactivate</a> which might be used to remove verification method from
-a DID Document.
+<a href="#method-operations"></a> specifies the <a>DID</a> operations to be
+supported by a <a>DID method</a> specification, including <a
+href="#method-operations">update</a> and <a href="#method-operations">
+deactivate</a> which might be used to remove verification method from a DID
+Document.
       </p>
 
       <p>
