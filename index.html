@@ -1132,10 +1132,10 @@ an absolute <a>DID URL</a> value of
     <h1>Data Model</h1>
     <p>
 This specification defines a data model that can be used to express <a>DID
-documents</a> and other data structures that can then be serialized into
-multiple concrete <a>representations</a>. This section provides a high-level
-description of the data model, how different types of properties are expressed
-in the data model, and instructions for extending the data model.
+documents</a> and DID document data structures, which can then be serialized
+into multiple concrete <a>representations</a>. This section provides a
+high-level description of the data model, how different types of properties are
+expressed in the data model, and instructions for extending the data model.
     </p>
     <p>
 A <a>DID document</a> consists of a <a data-cite="INFRA#maps">map</a> of <a
@@ -1264,12 +1264,6 @@ A value that is used to indicate the lack of a value as defined in [[INFRA]].
         </tr>
       </tbody>
     </table>
-
-    <p>
-Other data structures that are not <a>DID documents</a> can also use the data
-model and <a>representations</a> to express information. An example of this
-is elaborated upon in <a href="#metadata-structure"></a>.
-    </p>
 
     <p class="advisement" title="Ordering of values">
 As a result of the <a href="#data-model">data model</a> being defined using
@@ -2617,10 +2611,10 @@ A <a data-cite="RFC8259#section-3">JSON null literal</a>.
         <p class="advisement" title="INFRA JSON serialization rules">
 All implementers creating <a>conforming producers</a> that produce JSON
 <a>representations</a> are advised to ensure that their algorithms are aligned
-with the <a data-cite="INFRA#json">JSON serialization rules</a> in the [[INFRA]]
-specification and the
-<a data-cite="RFC8259#section-6">precision advisements regarding Numbers</a>
-in the JSON [[RFC8259]] specification.
+with the <a data-cite="INFRA##serialize-an-infra-value-to-json-bytes">JSON
+serialization rules</a> in the [[INFRA]] specification and the <a
+data-cite="RFC7159#section-6">precision advisements regarding Numbers</a> in the
+JSON [[RFC7159]] specification.
         </p>
 
         <p>
@@ -2766,7 +2760,7 @@ A <a data-cite="INFRA#null">null</a> value.
 All implementers creating <a>conforming consumers</a> that produce JSON
 <a>representations</a> are advised to ensure that their algorithms are aligned
 with the  <a
-data-cite="INFRA#convert-a-json-derived-javascript-value-to-an-infra-value">JSON
+data-cite="INFRA#parse-json-bytes-to-an-infra-value">JSON
 conversion rules</a> in the [[INFRA]] specification and the <a
 data-cite="RFC8259#section-6">precision advisements regarding Numbers</a> in the
 JSON [[RFC8259]] specification.
@@ -2943,7 +2937,7 @@ section will be removed from this specification.
         <h3>Production</h3>
 
         <p>
-All <a>DID document</a> data structures expressed by the <a
+The <a>DID document</a> and any DID document data structures expressed by the <a
 href="#data-model">data model</a> MUST be serialized to the CBOR
 <a>representation</a> according to the following <a>production</a> rules:
         </p>
@@ -3131,9 +3125,10 @@ A2                                   # map(2)
         <h3>Consumption</h3>
 
         <p>
-All data structures expressed by a CBOR <a>representation</a> MUST be
-deserialized into the <a href="#data-model">data model</a> according to the
-following <a>consumption</a> rules:
+The <a>DID document</a> and any DID document data structures expressed by the <a
+href="#data-model">data model</a> MUST be deserialized into the <a
+href="#data-model">data model</a> according to the following <a>consumption</a>
+rules:
         </p>
 
         <table class="simple" id="cbor-representation-consumption">
@@ -3909,7 +3904,10 @@ Registries [[?DID-SPEC-REGISTRIES]] MUST define the value type, including any
 additional formats or restrictions to that value (for example, a string
 formatted as a date or as a decimal integer). It is RECOMMENDED that property
 definitions use strings for values. The entire metadata structure MUST be
-serializable in a conforming <a>representation</a>.
+serializable according to the <a
+data-cite="INFRA#serialize-an-infra-value-to-json-bytes">JSON
+serialization rules</a> in the [[INFRA]] specification. Implementations MAY
+serialize the metadata structure to other data formats.
         </p>
 
         <p>
