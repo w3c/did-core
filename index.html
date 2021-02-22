@@ -3520,13 +3520,6 @@ This error code is returned if the <a>representation</a> requested via the
 <code>accept</code> input metadata property is not supported by the <a>DID
 method</a> and/or <a>DID resolver</a> implementation.
                         </dd>
-                        <dt>
-deactivated
-                        </dt>
-                        <dd>
-The <a>DID</a> supplied to the <a>DID resolution</a> function has been
-deactivated as described in <a href="#method-operations"></a>.
-                        </dd>
                     </dl>
                 </dd>
             </dl>
@@ -3563,6 +3556,14 @@ property. The <code>updated</code> property is omitted if an Update operation
 has never been performed on the <a>DID document</a>. If an <code>updated</code>
 property exists, it can be the same value as the <code>created</code> property
 when the difference between the two timestamps is less than one second.
+            </dd>
+
+            <dt><dfn>deactivated</dfn></dt>
+            <dd>
+If a DID has been <a href="#method-operations">deactivated</a>,
+<a>DID document</a> metadata MUST include this property with the boolean value
+<code>true</code>. If a DID has not been deactivated, this property is OPTIONAL,
+but if included, MUST have the boolean value <code>false</code>.
             </dd>
 
             <dt><dfn>nextUpdate</dfn></dt>
