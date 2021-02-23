@@ -3381,7 +3381,8 @@ A <a href="#metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a>DID resolution</a> process which typically
 changes between invocations of the <code>resolve</code> and
 <code>resolveRepresentation</code> functions, as it represents data about the
-resolution process itself. This structure is REQUIRED, and MUST NOT be empty.
+resolution process itself. This structure is REQUIRED, and in the case of an
+error in the resolution process, this MUST NOT be empty.
 This metadata is defined by <a href="#did-resolution-metadata"></a>. If
 <code>resolveRepresentation</code> was called, this structure MUST contain a
 <code>contentType</code> property containing the Media Type of the
