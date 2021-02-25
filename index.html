@@ -3732,7 +3732,22 @@ contained in the <a>DID URL</a>. <a>DID URL dereferencing</a> might involve
 multiple steps (e.g., when the DID URL being dereferenced includes a fragment),
 and the function is defined to return the final resource after all steps are
 completed. The details of how this process is accomplished are outside the scope
-of this specification, but all conforming <a>DID resolvers</a> implement
+of this specification. The following figure depicts the relationship described above.
+      </p>
+
+      <figure id="did-url-dereference-overview">
+        <img style="margin: auto; display: block; width: 75%;"
+          src="diagrams/did_url_dereference_overview.svg" alt="
+DIDs resolve to DID documents; DID URLs contains a DID; DID URLs dereferenced to DID document fragments or
+external resources.
+        " >
+        <figcaption>
+Overview of DID URL dereferece
+        </figcaption>
+    </figure>
+
+      <p>
+All conforming <a>DID resolvers</a> implement
 the following function which has the following abstract form:
       </p>
 
