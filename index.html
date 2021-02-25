@@ -4713,25 +4713,6 @@ assertion was made &mdash; is expected to apply. Without that guarantee, someone
 could discover a revoked key and use it to make cryptographically
 verifiable statements with a simulated date in the past.
 <br/><br/>
-For example, for a DID method that supports the `versionId` query parameter as
-well as the `updated` and `nextUpdate` DID document metadata properties, a
-verifier can validate a signature or proof of a revoked key if and only if 
-all of the following are true:
-  <ol>
-    <li>
-The proof or signature contains the `versionId` to refer to the DID document
-that was used at the point the signature or proof was created.
-    </li>
-    <li>
-The verifier can determine at what point in time the signature or proof was
-made, e.g., it was anchored on a blockchain.
-    </li>
-    <li>
-For the DID document resolved using `versionId`, the `updated` timestamp is
-before 2, and the `nextUpdate` timestamp is after 2.
-    </li>
-  </ol>
-<br/><br/>
 Some DID methods only allow the retrieval of the current state of a DID.
 When this is true, or when the state of a DID at the time of
 cryptographically verifiable statement cannot be reliably determined,
@@ -4744,6 +4725,23 @@ the DID controller.
     </section>
 
 
+    <p class="note">
+In order to verify a signature of proof for a verification method which has
+been revoked in a trustless system a DID meethod needs to support either
+`versionId` or `versionTime`, as well as the `updated` and `nextUpdate` DID
+document metadata properties. A verifier can validate a signature or proof of a
+revoked key if and only if all of the following are true:
+    <br/><br/>
+The proof or signature contains the `versionId` or `versionTime` to refer to
+the DID document that was used at the point the signature or proof was created.
+    <br/>
+The verifier can determine the point in time at which the signature or proof
+was made, e.g., it was anchored on a blockchain.
+    <br/>
+For the resolved DID document metadata, the `updated` timestamp is before, and
+the `nextUpdate` timestamp is after, the point in time at which the signature or
+proof was made.
+    </p>
 
     <section>
       <h2>DID Recovery</h2>
