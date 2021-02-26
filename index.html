@@ -4725,23 +4725,30 @@ the DID controller.
     </section>
 
 
-    <p class="note">
-In order to verify a signature of proof for a verification method which has
-been revoked in a trustless system a DID meethod needs to support either
-`versionId` or `versionTime`, as well as the `updated` and `nextUpdate` DID
-document metadata properties. A verifier can validate a signature or proof of a
-revoked key if and only if all of the following are true:
-    <br/><br/>
-The proof or signature contains the `versionId` or `versionTime` to refer to
-the DID document that was used at the point the signature or proof was created.
-    <br/>
+    <div class="note">
+      <p>
+To verify a signature of proof for a verification method which has been revoked
+in a trustless system, a DID method needs to support either or both of the
+`versionId` or `versionTime`, as well as both the `updated` and `nextUpdate`,
+DID document metadata properties. A verifier can validate a signature or proof
+of a revoked key if and only if all of the following are true:
+      </p>
+      <ul>
+        <li>
+The proof or signature includes the `versionId` or `versionTime` of the DID
+document that was used at the point the signature or proof was created.
+        </li>
+        <li>
 The verifier can determine the point in time at which the signature or proof
 was made, e.g., it was anchored on a blockchain.
-    <br/>
+        </li>
+        <li>
 For the resolved DID document metadata, the `updated` timestamp is before, and
 the `nextUpdate` timestamp is after, the point in time at which the signature or
 proof was made.
-    </p>
+        </li>
+      </ul>
+    </div>
 
     <section>
       <h2>DID Recovery</h2>
