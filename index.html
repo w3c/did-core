@@ -732,7 +732,7 @@ In addition to the terminology above, this specification also uses terminology
 from the [[INFRA]] specification to formally define the <a
 href="#data-model">data model</a>. When [[INFRA]] terminology is used, such as
 <a data-cite="INFRA#strings">string</a>, <a
-data-cite="INFRA#ordered-set">ordered set</a>, and <a
+data-cite="INFRA#ordered-set">set</a>, and <a
 data-cite="INFRA#maps">map</a>, it is linked directly to that specification.
     </p>
 
@@ -1202,11 +1202,12 @@ A finite ordered sequence of items as specified in [[INFRA]].
         </tr>
         <tr>
           <td>
-<a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
+<a data-cite="INFRA#ordered-set">set</a>
           </td>
           <td>
 A finite ordered sequence of items that does not contain the same item twice
-as specified in [[INFRA]].
+as specified in [[INFRA]]. A set is sometimes referred to as an
+<a data-cite="INFRA#ordered-set">ordered set</a> in [[INFRA]].
           </td>
         </tr>
         <tr>
@@ -1272,12 +1273,15 @@ A value that is used to indicate the lack of a value as defined in [[INFRA]].
     <p class="advisement" title="Ordering of values">
 As a result of the <a href="#data-model">data model</a> being defined using
 terminology from [[INFRA]], property values which can contain more than one
-item, such as <a data-cite="INFRA#ordered-map">maps</a> and <a
+item, such as <a data-cite="INFRA#list">lists</a>, <a
+data-cite="INFRA#ordered-map">maps</a> and <a
 data-cite="INFRA#ordered-set">sets</a>, are explicitly ordered. All list-like
 value structures in [[INFRA]] are ordered, whether or not that order is
-significant. For the purposes of this specification, unless otherwise stated,
-ordering is not important and implementations are not expected to produce or
-consume deterministically ordered values.
+significant. For the purposes of this specification, unless otherwise stated, <a
+data-cite="INFRA#ordered-map">map</a> and  <a
+data-cite="INFRA#ordered-set">set</a> ordering is not important and
+implementations are not expected to produce or consume deterministically ordered
+values.
     </p>
 
     <section>
@@ -1361,7 +1365,7 @@ A <a data-cite="INFRA#string">string</a> that conforms to the rules in
             <td><code><a>alsoKnownAs</a></code></td>
             <td>no</td>
             <td>
-An <a data-cite="INFRA#ordered-set">ordered set</a> of
+A <a data-cite="INFRA#ordered-set">set</a> of
 <a data-cite="INFRA#string">strings</a> that conform to the rules of
 [[RFC3986]] for <a>URIs</a>.
             </td>
@@ -1370,8 +1374,8 @@ An <a data-cite="INFRA#ordered-set">ordered set</a> of
             <td><code><a>controller</a></code></td>
             <td>no</td>
             <td>
-A <a data-cite="INFRA#string">string</a> or an
-<a data-cite="INFRA#ordered-set">ordered set</a> of
+A <a data-cite="INFRA#string">string</a> or a
+<a data-cite="INFRA#ordered-set">set</a> of
 <a data-cite="INFRA#string">strings</a> that conform to the rules in
 <a href="#did-syntax"></a>.
             </td>
@@ -1380,7 +1384,7 @@ A <a data-cite="INFRA#string">string</a> or an
             <td><code><a>verificationMethod</a></code></td>
             <td>no</td>
             <td>
-An <a data-cite="INFRA#ordered-set">ordered set</a> of
+A <a data-cite="INFRA#ordered-set">set</a> of
 <a>Verification Method</a> <a data-cite="INFRA#ordered-map">maps</a>
 that conform to the rules in <a href="#verification-method-properties"></a>.
             </td>
@@ -1389,7 +1393,7 @@ that conform to the rules in <a href="#verification-method-properties"></a>.
             <td><code><a>authentication</a></code></td>
             <td>no</td>
             <td rowspan="5">
-An <a data-cite="INFRA#ordered-set">ordered set</a> of either <a>Verification
+A <a data-cite="INFRA#ordered-set">set</a> of either <a>Verification
 Method</a> <a data-cite="INFRA#ordered-map">maps</a> that conform to
 the rules in <a href="#verification-method-properties"></a>) or
 <a data-cite="INFRA#string">strings</a> that conform to the rules in
@@ -1421,7 +1425,7 @@ the rules in <a href="#verification-method-properties"></a>) or
             <td><code><a>service</a></code></td>
             <td>no</td>
             <td>
-An <a data-cite="INFRA#ordered-set">ordered set</a> of <a>Service Endpoint</a>
+A <a data-cite="INFRA#ordered-set">set</a> of <a>Service Endpoint</a>
 <a data-cite="INFRA#ordered-map">maps</a> that conform to the rules in
 <a href="#service-properties"></a>.
             </td>
@@ -1454,8 +1458,8 @@ A <a data-cite="INFRA#string">string</a> that conforms to the rules in
             <td><code><a>controller</a></code></td>
             <td>yes</td>
             <td>
-A <a data-cite="INFRA#string">string</a> or an
-<a data-cite="INFRA#ordered-set">ordered set</a> of
+A <a data-cite="INFRA#string">string</a> or a
+<a data-cite="INFRA#ordered-set">set</a> of
 <a data-cite="INFRA#string">strings</a> that conform to the rules in
 <a href="#did-syntax"></a>.
             </td>
@@ -1513,8 +1517,8 @@ A <a data-cite="INFRA#string">string</a> that conforms to the rules of
             <td><code>type</code></td>
             <td>yes</td>
             <td>
-A <a data-cite="INFRA#string">string</a> or an
-<a data-cite="INFRA#ordered-set">ordered set</a> of
+A <a data-cite="INFRA#string">string</a> or a
+<a data-cite="INFRA#ordered-set">set</a> of
 <a data-cite="INFRA#string">strings</a>.
             </td>
           </tr>
@@ -1523,8 +1527,8 @@ A <a data-cite="INFRA#string">string</a> or an
             <td>yes</td>
             <td>
 A <a data-cite="INFRA#string">string</a> that conforms to the rules of
-[[RFC3986]] for <a>URIs</a>, a <a data-cite="INFRA#string">map</a>, or an
-<a data-cite="INFRA#ordered-set">ordered set</a> composed of a one or more
+[[RFC3986]] for <a>URIs</a>, a <a data-cite="INFRA#string">map</a>, or a
+<a data-cite="INFRA#ordered-set">set</a> composed of a one or more
 <a data-cite="INFRA#string">strings</a> that conform to the rules of
 [[RFC3986]] for <a>URIs</a> and/or <a data-cite="INFRA#string">maps</a>.
             </td>
@@ -1594,8 +1598,8 @@ defined by the <a>DID method</a>.
           <dt><dfn>controller</dfn></dt>
           <dd>
 The <code>controller</code> property is OPTIONAL. If present, the value MUST
-be a <a data-cite="INFRA#string">string</a> or an <a
-data-cite="INFRA#ordered-set">ordered set</a> of <a
+be a <a data-cite="INFRA#string">string</a> or a <a
+data-cite="INFRA#ordered-set">set</a> of <a
 data-cite="INFRA#string">strings</a> that conform to the rules in <a
 href="#did-syntax"></a>. The corresponding <a>DID document</a>(s) SHOULD
 contain <a>verification relationships</a> that explicitly permit the use of
@@ -1655,7 +1659,7 @@ of <a>URI</a>) identify the same <a>DID subject</a> can be made using the
           <dt><dfn>alsoKnownAs</dfn></dt>
           <dd>
 The <code>alsoKnownAs</code> property is OPTIONAL. If present, the value MUST
-be an <a data-cite="INFRA#ordered-set">ordered set</a> where each item in the
+be a <a data-cite="INFRA#ordered-set">set</a> where each item in the
 set is a <a>URI</a> conforming to [[RFC3986]].
           </dd>
           <dd>
@@ -1706,7 +1710,7 @@ threshold signature.
         <dd>
           <p>
 The <code>verificationMethod</code> property is OPTIONAL. If present, the value
-MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of <a>verification
+MUST be a <a data-cite="INFRA#ordered-set">set</a> of <a>verification
 methods</a>, where each <a>verification method</a> is expressed using a <a
 data-cite="INFRA#ordered-map">map</a>. The <a>verification method</a> <a
 data-cite="INFRA#ordered-map">map</a> MUST include the <code>id</code>,
@@ -1985,7 +1989,7 @@ challenge-response protocol.
           <dt><dfn>authentication</dfn></dt>
           <dd>
 The <code>authentication</code> property is OPTIONAL. If present, the associated
-value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of one or more
+value MUST be a <a data-cite="INFRA#ordered-set">set</a> of one or more
 <a>verification methods</a>. Each <a>verification method</a> MAY be embedded or
 referenced.
           </dd>
@@ -2060,7 +2064,7 @@ the purposes of issuing a Verifiable Credential [[?VC-DATA-MODEL]].
           <dt><dfn>assertionMethod</dfn></dt>
           <dd>
 The <code>assertionMethod</code> property is OPTIONAL. If present, the
-associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of
+associated value MUST be a <a data-cite="INFRA#ordered-set">set</a> of
 one or more <a>verification methods</a>. Each <a>verification method</a> MAY be
 embedded or referenced.
           </dd>
@@ -2113,7 +2117,7 @@ the purposes of establishing a secure communication channel with the recipient.
           <dt><dfn>keyAgreement</dfn></dt>
           <dd>
 The <code>keyAgreement</code> property is OPTIONAL. If present, the associated
-value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of one or more
+value MUST be a <a data-cite="INFRA#ordered-set">set</a> of one or more
 <a>verification methods</a>. Each <a>verification method</a> MAY be embedded or
 referenced.
           </dd>
@@ -2164,7 +2168,7 @@ update the <a>DID Document</a>.
           <dt><dfn>capabilityInvocation</dfn></dt>
           <dd>
 The <code>capabilityInvocation</code> property is OPTIONAL. If present, the
-associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of
+associated value MUST be a <a data-cite="INFRA#ordered-set">set</a> of
 one or more <a>verification methods</a>. Each <a>verification method</a> MAY be
 embedded or referenced.
           </dd>
@@ -2228,7 +2232,7 @@ to access a specific HTTP API to a subordinate.
           <dt><dfn>capabilityDelegation</dfn></dt>
           <dd>
 The <code>capabilityDelegation</code> property is OPTIONAL. If present, the
-associated value MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of
+associated value MUST be a <a data-cite="INFRA#ordered-set">set</a> of
 one or more <a>verification methods</a>. Each <a>verification method</a> MAY be
 embedded or referenced.
           </dd>
@@ -2301,7 +2305,7 @@ which is described below:
         <dd>
           <p>
 The <code>service</code> property is OPTIONAL. If present, the associated value
-MUST be an <a data-cite="INFRA#ordered-set">ordered set</a> of <a>services</a>,
+MUST be a <a data-cite="INFRA#ordered-set">set</a> of <a>services</a>,
 where each service is described by a <a data-cite="INFRA#ordered-map">map</a>.
 Each <a>service</a> <a data-cite="INFRA#ordered-map">map</a> MUST contain
 <code><a>id</a></code>, <code>type</code>, and
@@ -2321,8 +2325,8 @@ multiple <code>service</code> entries with the same <code>id</code>.
           <dt>type</dt>
           <dd>
 The value of the <code>type</code> property MUST be a <a
-data-cite="INFRA#string">string</a> or an <a
-data-cite="INFRA#ordered-set">ordered set</a> of <a
+data-cite="INFRA#string">string</a> or a <a
+data-cite="INFRA#ordered-set">set</a> of <a
 data-cite="INFRA#string">strings</a>.  In order to maximize interoperability,
 the <a>verification method</a> type and  its associated properties SHOULD be
 registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
@@ -2331,7 +2335,7 @@ registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
           <dd>
 The value of the <code>serviceEndpoint</code> property MUST be a <a
 data-cite="INFRA#string">string</a>, a <a data-cite="INFRA#string">map</a>, or
-an <a data-cite="INFRA#ordered-set">ordered set</a> composed of one or more <a
+a <a data-cite="INFRA#ordered-set">set</a> composed of one or more <a
 data-cite="INFRA#string">strings</a> and/or <a
 data-cite="INFRA#string">maps</a>. All <a data-cite="INFRA#string">string</a>
 values MUST be valid <a>URIs</a> conforming to [[RFC3986]] and normalized
@@ -2560,7 +2564,7 @@ defined in this table.
             </tr>
             <tr>
               <td>
-<a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
+<a data-cite="INFRA#ordered-set">set</a>
               </td>
               <td>
 A <a data-cite="RFC8259#section-5">JSON Array</a>, where each element of the set
@@ -2707,11 +2711,11 @@ the array value, as defined in this table.
               <td>
 <a data-cite="RFC8259#section-5">JSON Array</a> where the <a
 href="#data-model">data model</a> entry value is an <a
-data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
+data-cite="INFRA#ordered-set">set</a>
               </td>
               <td>
-An <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>, where each value of
-the JSON Array is added to the ordered set in order, converted based on the JSON
+An <a data-cite="INFRA#ordered-set">set</a>, where each value of
+the JSON Array is added to the set in order, converted based on the JSON
 representation type of the array value, as defined in this table.
               </td>
             </tr>
@@ -2989,7 +2993,7 @@ type, as defined in this table.
             </tr>
             <tr>
               <td>
-<a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
+<a data-cite="INFRA#ordered-set">set</a>
               </td>
               <td>
 A <a data-cite="RFC8949#section-3.1">CBOR array</a> (major type 4), where each
@@ -3183,11 +3187,11 @@ converted based on the CBOR type of the array value, as defined in this table.
               <td>
 <a data-cite="RFC8949#section-3.1">CBOR array</a> (major type 4), where the <a
 href="#data-model">data model</a> entry value is an <a
-data-cite="INFRA#ordered-set">ordered&nbsp;set</a>
+data-cite="INFRA#ordered-set">set</a>
               </td>
               <td>
-An <a data-cite="INFRA#ordered-set">ordered&nbsp;set</a>, where each value of
-the <a data-cite="RFC8949#section-3.1">CBOR array</a> is added to the ordered
+An <a data-cite="INFRA#ordered-set">set</a>, where each value of
+the <a data-cite="RFC8949#section-3.1">CBOR array</a> is added to the
 set in order, converted based on the CBOR type of the array value as defined in
 this table.
               </td>
@@ -3625,8 +3629,8 @@ express one or more <a>DIDs</a> that are logically equivalent to the resolved
 <code><a>equivalentId</a></code>  property.
             </p>
             <p>
-The value of <code>equivalentId</code> MUST be an <a
-data-cite="INFRA#ordered-set">ordered set</a> where each item in the list is a
+The value of <code>equivalentId</code> MUST be a <a
+data-cite="INFRA#ordered-set">set</a> where each item is a
 <a data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
 href="#did-syntax"></a>. The relationship is a statement that each
 <code><a>equivalentId</a></code> value is logically equivalent to the
@@ -3674,7 +3678,7 @@ Candidate Recommendation period, it will be removed from the specification.
               <p>
 The <code><a>canonicalId</a></code> property is identical to the
 <code><a>equivalentId</a></code> property except: a) it is associated with a
-single value rather than a ordered set, and b) the <a>DID</a> is defined to be
+single value rather than a set, and b) the <a>DID</a> is defined to be
 the canonical ID for the <a>DID subject</a> within the scope of the containing
 <a>DID document</a>.
               </p>
@@ -3923,8 +3927,8 @@ used to communicate this metadata MUST be a <a data-cite="INFRA#maps">map</a>
 of properties. Each property name MUST be a <a
 data-cite="INFRA#string">string</a>. Each property value MUST be a <a
 data-cite="INFRA#string">string</a>, <a data-cite="INFRA#maps">map</a>, <a
-data-cite="INFRA#list">list</a>, <a data-cite="INFRA#ordered-set">ordered
-set</a>, <a data-cite="INFRA#boolean">boolean</a>, or
+data-cite="INFRA#list">list</a>, <a data-cite="INFRA#ordered-set">set</a>,
+<a data-cite="INFRA#boolean">boolean</a>, or
 <a data-cite="INFRA#null">null</a>. The values within any complex data
 structures such as maps and lists MUST be one of these data types as well.
 All metadata property definitions registered in the DID Specification
@@ -4695,8 +4699,8 @@ the DID controller.
 
     <div class="note">
       <p>
-Trustless systems are those where all trust is derived from cryptographically 
-provable assertions, and more specifically, where no metadata outside of the 
+Trustless systems are those where all trust is derived from cryptographically
+provable assertions, and more specifically, where no metadata outside of the
 cryptographic system is factored into the determination of trust in the system.
 To verify a signature of proof for a verification method which has been revoked
 in a trustless system, a DID method needs to support either or both of the
