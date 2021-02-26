@@ -943,7 +943,7 @@ did:example:123?versionTime=2021-05-10T17:00:00Z
 
         <pre class="example nohighlight"
           title="A DID URL with a 'service' and a 'relativeRef' DID parameter">
-did:example:123?service=files&relativeRef=/resume.pdf
+did:example:123?service=files&amp;relativeRef=/resume.pdf
         </pre>
 
         <p>
@@ -952,7 +952,7 @@ method</a> and function the same way for all <a>DIDs</a>. Other DID parameters
 are not supported by all <a>DID methods</a>. Where optional parameters are
 supported, they are expected to operate uniformly across the <a>DID methods</a>
 that do support them. The following table provides common DID parameters that
-function the same way across all <a>DID methods</a>.  Support for all
+function the same way across all <a>DID methods</a>. Support for all
 <a href="#did-parameters">DID Parameters</a> is OPTIONAL.
         </p>
 
@@ -1342,7 +1342,7 @@ with possible differences in constraints.
     <section class="notoc">
       <h2>DID Document properties</h2>
 
-      <table class=simple>
+      <table class="simple">
         <thead>
           <tr>
             <th>Property</th>
@@ -1435,7 +1435,7 @@ A <a data-cite="INFRA#ordered-set">set</a> of <a>Service Endpoint</a>
     <section class="notoc">
       <h2>Verification Method properties</h2>
 
-      <table class=simple>
+      <table class="simple">
         <thead>
           <tr>
             <th>Property</th>
@@ -1492,7 +1492,7 @@ public key.
     <section class="notoc">
       <h3>Service properties</h3>
 
-      <table class=simple>
+      <table class="simple">
         <thead>
           <tr>
             <th>Property</th>
@@ -2323,7 +2323,7 @@ multiple <code>service</code> entries with the same <code>id</code>.
 The value of the <code>type</code> property MUST be a <a
 data-cite="INFRA#string">string</a> or a <a
 data-cite="INFRA#ordered-set">set</a> of <a
-data-cite="INFRA#string">strings</a>.  In order to maximize interoperability,
+data-cite="INFRA#string">strings</a>. In order to maximize interoperability,
 the <a>verification method</a> type and  its associated properties SHOULD be
 registered in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
           </dd>
@@ -3741,7 +3741,7 @@ DIDs resolve to DID documents; DID URLs contains a DID; DID URLs dereferenced to
 external resources.
         " >
         <figcaption>
-Overview of DID URL dereferece
+Overview of DID URL dereference
         </figcaption>
     </figure>
 
@@ -4038,7 +4038,7 @@ implementations of the same <a>DID method</a>.
 Conceptually, the relationship between this specification and a <a>DID
 method</a> specification is similar to the relationship between the IETF generic
 <a>URI</a> specification [[?RFC3986]] and a specific <a>URI</a> scheme
-[[?IANA-URI-SCHEMES]], such as the <code>http</code> scheme [[?RFC7230]].  In
+[[?IANA-URI-SCHEMES]], such as the <code>http</code> scheme [[?RFC7230]]. In
 addition to defining a specific <a>DID scheme</a>, a <a>DID method</a>
 specification also defines the mechanisms for creating, resolving, updating, and
 deactivating <a>DIDs</a> and <a>DID documents</a> using a specific type of
@@ -4058,7 +4058,7 @@ specifications.
       <p>
 The requirements for all <a>DID method</a> specifications when defining the
 method-specific DID Syntax are as follows:
-      <p>
+      </p>
 
       <ol>
         <li>
@@ -4127,7 +4127,7 @@ behaviors associated with a colon that are generically applicable to all
       <p>
 The requirements for all <a>DID method</a> specifications when defining the
 method operations are as follows:
-      <p>
+      </p>
 
       <ol>
         <li>
@@ -4187,7 +4187,7 @@ out-of-band mechanism, instead.
       <p>
 The requirements for all <a>DID method</a> specifications when authoring the
 <em>Security Considerations</em> section are as follows:
-      <p>
+      </p>
 
       <ol>
         <li>
@@ -4265,7 +4265,7 @@ security requirements of the supported authentication protocol.
       <p>
 The requirements for all <a>DID method</a> specifications when authoring the
 <em>Privacy Considerations</em> section are:
-      <p>
+      </p>
 
       <ol>
         <li>
@@ -5270,7 +5270,7 @@ a proxy or mediator service that the controller is willing to depend on to prote
 such associations and that blinds requests to the ultimate service.
       </p>
       <p>
-Torward this end, consider any of the following:
+Toward this end, consider any of the following:
       </p>
       <ul>
         <li>
