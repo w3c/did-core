@@ -786,7 +786,8 @@ did                = "did:" method-name ":" method-specific-id
 method-name        = 1*method-char
 method-char        = %x61-7A / DIGIT
 method-specific-id = *( *idchar ":" ) 1*idchar
-idchar             = ALPHA / DIGIT / "." / "-" / "_"
+idchar             = ALPHA / DIGIT / "." / "-" / "_" / pct-encoded
+pct-encoded        = "%" HEXDIG HEXDIG
               </pre>
             </td>
           </tr>
