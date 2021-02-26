@@ -4693,6 +4693,33 @@ the DID controller.
     </section>
 
 
+    <div class="note">
+      <p>
+Trustless systems are those where all trust is derived from cryptographically 
+provable assertions, and more specifically, where no metadata outside of the 
+cryptographic system is factored into the determination of trust in the system.
+To verify a signature of proof for a verification method which has been revoked
+in a trustless system, a DID method needs to support either or both of the
+`versionId` or `versionTime`, as well as both the `updated` and `nextUpdate`,
+DID document metadata properties. A verifier can validate a signature or proof
+of a revoked key if and only if all of the following are true:
+      </p>
+      <ul>
+        <li>
+The proof or signature includes the `versionId` or `versionTime` of the DID
+document that was used at the point the signature or proof was created.
+        </li>
+        <li>
+The verifier can determine the point in time at which the signature or proof
+was made, e.g., it was anchored on a blockchain.
+        </li>
+        <li>
+For the resolved DID document metadata, the `updated` timestamp is before, and
+the `nextUpdate` timestamp is after, the point in time at which the signature or
+proof was made.
+        </li>
+      </ul>
+    </div>
 
     <section>
       <h2>DID Recovery</h2>
