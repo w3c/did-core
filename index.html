@@ -225,6 +225,72 @@ that might result in alterations to this specification.
     </p>
 
     <p>
+Changes since the <a
+href="https://www.w3.org/TR/2019/WD-did-core-20191107/">First Public Working
+Draft</a> include:
+    </p>
+
+    <ul>
+      <li>
+The introduction of an abstract data model that can be serialized to multiple
+representations including JSON, JSON-LD, and CBOR.
+      </li>
+      <li>
+The introduction of a DID Specifications Registry for the purposes of
+registering extension properties, representations, DID Resolution input
+metadata and output metadata, DID Document metadata, DID parameters, and  DID
+Methods.
+      </li>
+      <li>
+Separation of DID Document metadata, such as created and updated values,
+from DID Document properties.
+      </li>
+      <li>
+The removal of embedded proofs in the DID Document.
+      </li>
+      <li>
+The addition of verification relationships for the purposes of authentication,
+assertion, key agreement, capability invocation and capability delegation.
+      </li>
+      <li>
+The ability to support relating multiple identifiers with the DID Document,
+such as the DID controller, also known as, equivalent IDs, and canonical IDs.
+      </li>
+      <li>
+Enhancing privacy by reducing information that could contain personally
+identifiable information in the DID Document.
+      </li>
+      <li>
+The addition of a large section on security considerations and privacy
+considerations.
+      </li>
+      <li>
+A Representations section that details how the abstract data model can be
+produced and consumed in a variety of different formats along with general
+rules for all representations, producers, and consumers.
+      </li>
+      <li>
+A section detailing the DID Resolution and DID URL Dereferencing interface
+definition that all DID resolvers are expected to expose as well as inputs
+and outputs to those processes.
+      </li>
+      <li>
+DID Document examples in an appendix that provide more complex examples of
+DID Document serializations.
+      </li>
+      <li>
+IANA Considerations for multiple representations specified in DID Core.
+      </li>
+      <li>
+Removal of the Future Work section as much of the work has now been
+accomplished.
+      </li>
+      <li>
+An acknowledgements section.
+      </li>
+    </ul>
+
+    <p>
 Comments regarding this document are welcome. Please file issues
 directly on <a href="https://github.com/w3c/did-core/issues/">GitHub</a>,
 or send them
