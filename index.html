@@ -722,23 +722,17 @@ bi-directional, and lossless, as described in <a href="#representations"></a>.
       </p>
 
       <p>
-A <dfn>conforming DID method</dfn> is any specification that complies with the
-relevant normative statements in <a href="#methods"></a>.
-      </p>
-
-      <p>
 A <dfn>conforming producer</dfn> is any algorithm realized as software and/or
-hardware that generates <a>conforming DIDs</a> or
-<a>conforming DID Documents</a>. A conforming producer
-MUST NOT produce non-conforming <a>DIDs</a> or <a>DID documents</a>.
+hardware that generates <a>conforming DIDs</a> or <a>conforming DID
+Documents</a> and complies with the relevant normative statements in <a
+href="#representations"></a>.
       </p>
 
       <p>
 A <dfn>conforming consumer</dfn> is any algorithm realized as software and/or
-hardware that consumes <a>conforming DIDs</a> or
-<a>conforming DID documents</a>. A conforming consumer
-MUST produce errors when consuming non-conforming <a>DIDs</a> or <a>DID
-documents</a>.
+hardware that consumes <a>conforming DIDs</a> or <a>conforming DID documents</a>
+and complies with the relevant normative statements in <a
+href="#representations"></a>.
       </p>
 
       <p>
@@ -751,6 +745,11 @@ and/or hardware that complies with the relevant normative statements in
 A <dfn>conforming DID URL dereferencer</dfn> is any algorithm realized as
 software and/or hardware that complies with the relevant normative statements in
 <a href="#did-url-dereferencing"></a>.
+      </p>
+
+      <p>
+A <dfn>conforming DID method</dfn> is any specification that complies with the
+relevant normative statements in <a href="#methods"></a>.
       </p>
 
     </section>
@@ -2502,6 +2501,10 @@ A <a>conforming producer</a> MUST return the Media Type <a
 data-cite="INFRA#string">string</a> associated with the <a>representation</a>
 after the <a>production</a> process completes.
         </li>
+        <li>
+A conforming producer MUST NOT produce non-conforming <a>DIDs</a> or <a>DID
+documents</a>.
+        </li>
       </ol>
 
       <p>
@@ -2534,6 +2537,10 @@ that do not have explicit processing rules for the <a>representation</a> being
 consumed to the <a>DID document</a> <a href="#data-model">data model</a> using
 only the <a>representation</a>'s data type processing rules and return the
 <a>DID document</a> data model after the <a>consumption</a> process completes.
+        </li>
+        <li>
+A conforming consumer MUST produce errors when consuming non-conforming
+<a>DIDs</a> or <a>DID documents</a>.
         </li>
       </ol>
 
