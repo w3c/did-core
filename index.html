@@ -2427,16 +2427,6 @@ The following sections define the general rules for <a>production</a> and
     <section>
       <h2>Production and Consumption</h2>
 
-      <figure id="production-consumption">
-        <img style="margin: auto; display: block;"
-          src="diagrams/diagram-production-consumption.png" alt="
-Diagram illustrating how representations of the data model are produced
-and consumed, including in JSON, JSON-LD, and CBOR.">
-        <figcaption>
-Production and consumption of representations.
-        </figcaption>
-      </figure>
-
       <p>
 In addition to the <a>representations</a> defined in this specification,
 implementers can use other <a>representations</a>, providing each such
@@ -2546,6 +2536,16 @@ only the <a>representation</a>'s data type processing rules and return the
 <a>DID document</a> data model after the <a>consumption</a> process completes.
         </li>
       </ol>
+
+      <figure id="production-consumption">
+        <img style="margin: auto; display: block;"
+          src="diagrams/diagram-production-consumption.png" alt="
+Diagram illustrating how representations of the data model are produced
+and consumed, including in JSON, JSON-LD, and CBOR.">
+        <figcaption>
+Production and consumption of representations.
+        </figcaption>
+      </figure>
 
       <p class="note" title="Conversion between representations">
 An implementation is expected to convert between <a>representations</a> by using the
