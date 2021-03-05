@@ -588,7 +588,7 @@ related normative statements in the specification.
 
     <p>
 At present, there exist
-<a href="https://w3c-ccg.github.io/did-method-registry/#did-methods">82
+<a href="https://w3c.github.io/did-spec-registries/#did-methods">82
 experimental DID Method specifications</a>, 32 experimental DID Method driver
 implementations, and a Candidate Recommendation <a href="https://w3c.github.io/did-test-suite/">test suite</a> that determines
 whether or not a given implementation is conformant with this specification.
@@ -1952,7 +1952,7 @@ A value that is either true or false as defined in [<cite><a class="bibref" data
         </tr>
         <tr>
           <td>
-<a href="https://infra.spec.whatwg.org/#null">null</a>
+<a href="https://infra.spec.whatwg.org/#nulls">null</a>
           </td>
           <td>
 A value that is used to indicate the lack of a value as defined in [<cite><a class="bibref" data-link-type="biblio" href="#bib-infra" title="Infra Standard">INFRA</a></cite>].
@@ -3298,7 +3298,7 @@ A <a href="https://tools.ietf.org/html/rfc8259#section-3">JSON Boolean</a>.
             </tr>
             <tr>
               <td>
-<a href="https://infra.spec.whatwg.org/#null">null</a>
+<a href="https://infra.spec.whatwg.org/#nulls">null</a>
               </td>
               <td>
 A <a href="https://tools.ietf.org/html/rfc8259#section-3">JSON null literal</a>.
@@ -3442,7 +3442,7 @@ A <a href="https://infra.spec.whatwg.org/#boolean">boolean</a>.
 <a href="https://tools.ietf.org/html/rfc8259#section-3">JSON null literal</a>
               </td>
               <td>
-A <a href="https://infra.spec.whatwg.org/#null">null</a> value.
+A <a href="https://infra.spec.whatwg.org/#nulls">null</a> value.
               </td>
             </tr>
           </tbody>
@@ -3714,7 +3714,7 @@ subtype 24) with a simple value of 21 (true) or 20 (false).
             </tr>
             <tr>
               <td>
-<a href="https://infra.spec.whatwg.org/#null">null</a>
+<a href="https://infra.spec.whatwg.org/#nulls">null</a>
               </td>
               <td>
 A <a href="https://tools.ietf.org/html/rfc8949#section-3.3">CBOR simple value</a> (major type 7,
@@ -3904,7 +3904,7 @@ A <a href="https://infra.spec.whatwg.org/#boolean">boolean</a>.
 subtype 24) with a simple value of 22 (Null)
               </td>
               <td>
-A <a href="https://infra.spec.whatwg.org/#null">null</a> value.
+A <a href="https://infra.spec.whatwg.org/#nulls">null</a> value.
               </td>
             </tr>
           </tbody>
@@ -4434,7 +4434,7 @@ input is <em class="rfc2119">REQUIRED</em>.
 dereferencingOptions
         </dt>
         <dd>
-A <a href="metadata-structure">metadata structure</a> consisting of input
+A <a href="#metadata-structure">metadata structure</a> consisting of input
 options to the <code>dereference</code> function in addition to the
 <code>didUrl</code> itself. Properties defined by this specification are in <a href="#did-url-dereferencing-options" class="sec-ref">§&nbsp;<bdi class="secno">7.2.1 </bdi>DID URL Dereferencing Options</a>. This input is <em class="rfc2119">REQUIRED</em>, but the
 structure <em class="rfc2119">MAY</em> be empty.
@@ -4454,7 +4454,7 @@ and <code>contentMetadata</code>:
 dereferencingMetadata
         </dt>
         <dd>
-A <a href="metadata-structure">metadata structure</a> consisting of values
+A <a href="#metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a href="#dfn-did-url-dereferencing" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-url-dereferencing-8">DID URL dereferencing</a> process. This
 structure is <em class="rfc2119">REQUIRED</em> and in the case of an error in the dereferencing process,
 this <em class="rfc2119">MUST NOT</em> be empty. Properties defined by this specification are in <a href="#did-url-dereferencing-metadata" class="sec-ref">§&nbsp;<bdi class="secno">7.2.2 </bdi>DID URL Dereferencing Metadata</a>. If the dereferencing is not
@@ -4477,12 +4477,12 @@ dereferencing is unsuccessful, this value <em class="rfc2119">MUST</em> be empty
 contentMetadata
         </dt>
         <dd>
-If the dereferencing is successful, this <em class="rfc2119">MUST</em> be a <a href="metadata-structure">
+If the dereferencing is successful, this <em class="rfc2119">MUST</em> be a <a href="#metadata-structure">
 metadata structure</a>, but the structure <em class="rfc2119">MAY</em> be empty. This structure contains
 metadata about the <code>contentStream</code>. If the <code>contentStream</code>
 is a <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-148">DID document</a>, this <em class="rfc2119">MUST</em> be a <a href="#dfn-diddocumentmetadata" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-diddocumentmetadata-3">didDocumentMetadata</a> structure as
 described in <a href="#dfn-did-resolution" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-resolution-14">DID Resolution</a>. If the dereferencing is unsuccessful, this
-output <em class="rfc2119">MUST</em> be an empty <a href="metadata-structure">metadata structure</a>.
+output <em class="rfc2119">MUST</em> be an empty <a href="#metadata-structure">metadata structure</a>.
         </dd>
       </dl>
 
@@ -4579,7 +4579,7 @@ Input and output metadata is often involved during the <a href="#dfn-did-resolut
 used to communicate this metadata <em class="rfc2119">MUST</em> be a <a href="https://infra.spec.whatwg.org/#maps">map</a>
 of properties. Each property name <em class="rfc2119">MUST</em> be a <a href="https://infra.spec.whatwg.org/#string">string</a>. Each property value <em class="rfc2119">MUST</em> be a <a href="https://infra.spec.whatwg.org/#string">string</a>, <a href="https://infra.spec.whatwg.org/#maps">map</a>, <a href="https://infra.spec.whatwg.org/#list">list</a>, <a href="https://infra.spec.whatwg.org/#ordered-set">set</a>,
 <a href="https://infra.spec.whatwg.org/#boolean">boolean</a>, or
-<a href="https://infra.spec.whatwg.org/#null">null</a>. The values within any complex data
+<a href="https://infra.spec.whatwg.org/#nulls">null</a>. The values within any complex data
 structures such as maps and lists <em class="rfc2119">MUST</em> be one of these data types as well.
 All metadata property definitions registered in the DID Specification
 Registries [<cite><a class="bibref" data-link-type="biblio" href="#bib-did-spec-registries" title="DID Specification Registries">DID-SPEC-REGISTRIES</a></cite>] <em class="rfc2119">MUST</em> define the value type, including any
