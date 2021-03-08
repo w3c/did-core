@@ -177,6 +177,26 @@ var ccg = {
       ],
       status: "Internet-Draft",
       publisher: "IETF"
+    },
+    "JSON-LD11": {
+      title: "JSON-LD 1.1",
+      date: "2020-07-16",
+      authors: [
+        "Gregg Kellogg", "Pierre-Antoine Champin", "Dave Longley"
+      ],
+      status: "W3C Recommendation",
+      publisher: "W3C",
+      href: "https://www.w3.org/TR/json-ld11/"
+    },
+    "VC-DATA-MODEL": {
+      title: "Verifiable Credentials Data Model 1.0",
+      date: "2019-11-19",
+      authors: [
+        "Manu Sporny", "Grant Noble", "Dave Longley", "Daniel Burnett", "Brent Zundel"
+      ],
+      status: "W3C Recommendation",
+      publisher: "W3C",
+      href: "https://www.w3.org/TR/vc-data-model/"
     }
   }
 };
