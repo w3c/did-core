@@ -169,8 +169,8 @@ var ccg = {
     },
     "MULTIBASE": {
       title: "The Multibase Encoding Scheme",
-      date: "August 2020",
-      href: "https://tools.ietf.org/html/draft-multiformats-multibase",
+      date: "February 2021",
+      href: "https://datatracker.ietf.org/doc/html/draft-multiformats-multibase-03",
       authors: [
         "Juan Benet",
         "Manu Sporny"
