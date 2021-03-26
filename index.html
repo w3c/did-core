@@ -3690,10 +3690,10 @@ is not enough implementation experience with this feature at the end of the
 Candidate Recommendation period, it will be removed from the specification.
             </p>
             <p>
-A <a>DID Method</a> can define different forms of a <a>DID</a> that are
+A <a>DID method</a> can define different forms of a <a>DID</a> that are
 logically equivalent. An example is when a <a>DID</a> takes one form prior to
 registration in a <a>verifiable data registry</a> and another form after such
-registration. In this case, the <a>DID Method</a> specification might need to
+registration. In this case, the <a>DID method</a> specification might need to
 express one or more <a>DIDs</a> that are logically equivalent to the resolved
 <a>DID</a> as a property of the <a>DID document</a>. This is the purpose of the
 <code><a>equivalentId</a></code>  property.
@@ -3706,11 +3706,11 @@ href="#did-syntax"></a>. The relationship is a statement that each
 <code><a>equivalentId</a></code> value is logically equivalent to the
 <code>id</code> property value and thus identifies the same <a>DID subject</a>.
 Each <code><a>equivalentId</a></code> DID value MUST be produced by, and a form
-of, the same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
+of, the same <a>DID method</a> as the <code>id</code> property value. (e.g.,
 <code>did:example:abc</code> == <code>did:example:ABC</code>)
             </p>
             <p>
-A conforming <a>DID Method</a> specification MUST guarantee that each
+A conforming <a>DID method</a> specification MUST guarantee that each
 <code><a>equivalentId</a></code> value is logically equivalent to the
 <code>id</code> property value.
             </p>
@@ -3758,12 +3758,14 @@ data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
 href="#did-syntax"></a>. The relationship is a statement that the
 <code><a>canonicalId</a></code> value is logically equivalent to the
 <code>id</code> property value and that the <code><a>canonicalId</a></code>
-value is defined by the <a>DID Method</a> to be the canonical ID for the <a>DID
+value is defined by the <a>DID method</a> to be the canonical ID for the <a>DID
 subject</a> in the scope of the containing <a>DID document</a>. A
 <code><a>canonicalId</a></code> value MUST be produced by, and a form of, the
-same <a>DID Method</a> as the <code>id</code> property value. (e.g.,
-<code>did:example:abc</code> == <code>did:example:ABC</code>). A conforming
-<a>DID Method</a> specification MUST guarantee that the
+same <a>DID method</a> as the <code>id</code> property value. (e.g.,
+<code>did:example:abc</code> == <code>did:example:ABC</code>).
+            </p>
+            <p>
+A conforming <a>DID method</a> specification MUST guarantee that the
 <code><a>canonicalId</a></code> value is logically equivalent to the
 <code>id</code> property value.
             </p>
@@ -3870,7 +3872,7 @@ dereferencingMetadata
         <dd>
 A <a href="metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a>DID URL dereferencing</a> process. This
-structure is REQUIRED and in the case of an error in the dereferencing process,
+structure is REQUIRED, and in the case of an error in the dereferencing process,
 this MUST NOT be empty. Properties defined by this specification are in <a
 href="#did-url-dereferencing-metadata"></a>. If the dereferencing is not
 successful, this structure MUST contain an <code>error</code> property
