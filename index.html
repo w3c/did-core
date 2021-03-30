@@ -3699,7 +3699,8 @@ express one or more <a>DIDs</a> that are logically equivalent to the resolved
 <code><a>equivalentId</a></code>  property.
             </p>
             <p>
-The value of <code>equivalentId</code> MUST be a <a
+<a>DID document</a> metadata MAY include an <code>equivalentId</code> property.
+If present, the value MUST be a <a
 data-cite="INFRA#ordered-set">set</a> where each item is a
 <a data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
 href="#did-syntax"></a>. The relationship is a statement that each
@@ -3753,7 +3754,8 @@ the canonical ID for the <a>DID subject</a> within the scope of the containing
 <a>DID document</a>.
             </p>
             <p>
-The value of <code><a>canonicalId</a></code> MUST be a <a
+<a>DID document</a> metadata MAY include a <code>canonicalId</code> property.
+If present, the value MUST be a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in Section <a
 href="#did-syntax"></a>. The relationship is a statement that the
 <code><a>canonicalId</a></code> value is logically equivalent to the
