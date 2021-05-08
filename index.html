@@ -1842,7 +1842,7 @@ processes. Examples of verification material properties are
 material. For example, see
 <a href="https://w3c-ccg.github.io/lds-jws2020/">JSON
 Web Signature 2020</a> and <a
-href="https://w3c-ccg.github.io/lds-ed25519-2018/">Ed25519 Signature 2018</a>.
+href="https://w3c-ccg.github.io/lds-ed25519-2020/">Ed25519 Signature 2020</a>.
 For all registered <a>verification method</a> types and associated verification
 material available for <a>DIDs</a>, please see the DID Specification Registries
 [[?DID-SPEC-REGISTRIES]].
@@ -1867,16 +1867,6 @@ non-normative. If present, the value MUST be a <a
 data-cite="INFRA#string">string</a> representation of a [[?MULTIBASE]] encoded
 public key.
             </p>
-            <p class="issue atrisk"
-               title="publicKeyMultibase and publicKeyMultibase">
-The DID Working Group is seeking implementer feedback on the preference of the
-ecosystem with respect to using <code>publicKeyMultibase</code> [[?BASE58]]  or
-<code>publicKeyMultibase</code> [[?MULTIBASE]]. The latter can be used for
-encoding more base-representation formats and provides a more future proof path.
-Depending on implementer feedback, one or both options might be included in the
-final specification, or migrated into the DID Specification Registries as an
-extension.
-             </p>
           </dd>
           <dt><dfn>publicKeyJwk</dfn></dt>
           <dd>
