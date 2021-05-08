@@ -408,7 +408,10 @@ to cryptographically <a>authenticate</a> a <a>DID controller</a>.
 
       <pre class="example nohighlight" title="A simple DID document">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ]
   "id": "did:example:123456789abcdefghi",
   "authentication": [{
     <span class="comment">// used to authenticate as did:...fghi</span>
@@ -1143,13 +1146,16 @@ relative URLs to reduce the storage size of <a>DID documents</a>.
         <pre class="example nohighlight"
           title="An example of a relative DID URL">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ]
   "id": "did:example:123456789abcdefghi",
   "verificationMethod": [{
     "id": "did:example:123456789abcdefghi#key-1",
-    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
+    "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }, ...],
   "authentication": [
 <span class="comment">    // a relative DID URL used to reference a verification method above</span>
@@ -1517,7 +1523,7 @@ for additional constraints.
             </td>
           </tr>
           <tr>
-            <td><code><a>publicKeyBase58</a></code></td>
+            <td><code><a>publicKeyMultibase</a></code></td>
             <td>no</td>
             <td>
 A <a data-cite="INFRA#string">string</a> that conforms to a base58btc encoded
@@ -1786,7 +1792,11 @@ href="#did-syntax"></a>.
 
       <pre class="example" title="Example verification method structure">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/jws-2020/v1"
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ]
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "verificationMethod": [{
@@ -1798,7 +1808,7 @@ href="#did-syntax"></a>.
     "id": <span class="comment">...</span>,
     "type": <span class="comment">...</span>,
     "controller": <span class="comment">...</span>,
-    "publicKeyBase58": <span class="comment">...</span>
+    "publicKeyMultibase": <span class="comment">...</span>
   }]
 }
       </pre>
@@ -1826,7 +1836,7 @@ Verification material is any information that is used by a process that applies
 a <a>verification method</a>. The <code>type</code> of a <a>verification
 method</a> is expected to be used to determine its compatibility with such
 processes. Examples of verification material properties are
-<code><a>publicKeyJwk</a></code> or <code><a>publicKeyBase58</a></code>. A
+<code><a>publicKeyJwk</a></code> or <code><a>publicKeyMultibase</a></code>. A
 <a>cryptographic suite</a> specification is responsible for specifying the
 <a>verification method</a> <code>type</code> and its associated verification
 material. For example, see
@@ -1849,18 +1859,18 @@ Two supported verification material properties are listed below:
         </p>
 
         <dl>
-          <dt><dfn>publicKeyBase58</dfn></dt>
+          <dt><dfn>publicKeyMultibase</dfn></dt>
           <dd>
             <p>
-The <code>publicKeyBase58</code> property is OPTIONAL. This feature is
+The <code>publicKeyMultibase</code> property is OPTIONAL. This feature is
 non-normative. If present, the value MUST be a <a
-data-cite="INFRA#string">string</a> representation of a [[?BASE58]] encoded
+data-cite="INFRA#string">string</a> representation of a [[?MULTIBASE]] encoded
 public key.
             </p>
             <p class="issue atrisk"
-               title="publicKeyBase58 and publicKeyMultibase">
+               title="publicKeyMultibase and publicKeyMultibase">
 The DID Working Group is seeking implementer feedback on the preference of the
-ecosystem with respect to using <code>publicKeyBase58</code> [[?BASE58]]  or
+ecosystem with respect to using <code>publicKeyMultibase</code> [[?BASE58]]  or
 <code>publicKeyMultibase</code> [[?MULTIBASE]]. The latter can be used for
 encoding more base-representation formats and provides a more future proof path.
 Depending on implementer feedback, one or both options might be included in the
@@ -1890,7 +1900,7 @@ an example of a public key with a compound key identifier.
 A <a>verification method</a> MUST NOT contain multiple verification material
 properties for the same material. For example, expressing key material in a
 <a>verification method</a> using both <code>publicKeyJwk</code> and
-<code>publicKeyBase58</code> at the same time is prohibited.
+<code>publicKeyMultibase</code> at the same time is prohibited.
         </p>
 
         <p>
@@ -1900,9 +1910,13 @@ both properties above is shown below.
 
         <pre id="example-various-verification-method-types"
           class="example nohighlight"
-          title="Verification methods using publicKeyJwk and publicKeyBase58">
+          title="Verification methods using publicKeyJwk and publicKeyMultibase">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ]
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "verificationMethod": [{
@@ -1917,9 +1931,9 @@ both properties above is shown below.
     }
   }, {
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
+    "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
     "controller": "did:example:pqrstuvwxyz0987654321",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
   }],
   <span class="comment">...</span>
 }
@@ -1960,9 +1974,9 @@ is done by dereferencing the URL and searching the resulting <a>resource</a> for
     <span class="comment">// this key is embedded and may *only* be used for authentication</span>
     {
       "id": "did:example:123456789abcdefghi#keys-2",
-      "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
+      "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123456789abcdefghi",
-      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+      "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
   ],
 
@@ -2035,7 +2049,10 @@ referenced.
         <pre class="example nohighlight" title="Authentication property
                       containing three verification methods">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ],
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "authentication": [
@@ -2046,9 +2063,9 @@ referenced.
     <span class="comment">// embedded here rather than using only a reference</span>
     {
       "id": "did:example:123456789abcdefghi#keys-2",
-      "type": "Ed25519VerificationKey2018",
+      "type": "Ed25519VerificationKey2020",
       "controller": "did:example:123456789abcdefghi",
-      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+      "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
   ],
   <span class="comment">...</span>
@@ -2119,23 +2136,26 @@ corresponding <a>DID document</a>.
         <pre class="example nohighlight" title="Assertion method property
                     containing two verification methods">
 {
-"@context": "https://www.w3.org/ns/did/v1",
-"id": "did:example:123456789abcdefghi",
-<span class="comment">...</span>
-"assertionMethod": [
-  <span class="comment">// this method can be used to assert statements as did:...fghi</span>
-  "did:example:123456789abcdefghi#keys-1",
-  <span class="comment">// this method is *only* approved for assertion of statements, it is not</span>
-  <span class="comment">// used for any other verification relationship, so its full description is</span>
-  <span class="comment">// embedded here rather than using a reference</span>
-  {
-    "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
-    "controller": "did:example:123456789abcdefghi",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-  }
-],
-<span class="comment">...</span>
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ],
+  "id": "did:example:123456789abcdefghi",
+  <span class="comment">...</span>
+  "assertionMethod": [
+    <span class="comment">// this method can be used to assert statements as did:...fghi</span>
+    "did:example:123456789abcdefghi#keys-1",
+    <span class="comment">// this method is *only* approved for assertion of statements, it is not</span>
+    <span class="comment">// used for any other verification relationship, so its full description is</span>
+    <span class="comment">// embedded here rather than using a reference</span>
+    {
+      "id": "did:example:123456789abcdefghi#keys-2",
+      "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
+      "controller": "did:example:123456789abcdefghi",
+      "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    }
+  ],
+  <span class="comment">...</span>
 }
         </pre>
       </section>
@@ -2183,7 +2203,7 @@ decryption key for the recipient.
       "id": "did:example:123#zC9ByQ8aJs8vrNXyDhPHHNNMSHPcaSgNpjjsBYpMMjsTdS",
       "type": "X25519KeyAgreementKey2019", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
-      "publicKeyBase58": "9hFgmPVfmBZwRvFEyniQDBkz9LmV7gDEqytWyGZLmDXE"
+      "publicKeyMultibase": "z9hFgmPVfmBZwRvFEyniQDBkz9LmV7gDEqytWyGZLmDXE"
     }
   ],
   <span class="comment">...</span>
@@ -2234,8 +2254,11 @@ protected resource.
         <pre class="example nohighlight" title="Capability invocation property
                       containing two verification methods">
 {
-  "@context": "https://www.w3.org/ns/did/v1", "id":
-  "did:example:123456789abcdefghi",
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ],
+  "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "capabilityInvocation": [
     <span class="comment">// this method can be used to invoke capabilities as did:...fghi</span>
@@ -2245,9 +2268,9 @@ protected resource.
     <span class="comment">// embedded here rather than using only a reference</span>
     {
     "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
+    "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
   ],
   <span class="comment">...</span>
@@ -2289,8 +2312,11 @@ example described in <a href="#capability-invocation"></a>.
         <pre class="example nohighlight" title="Capability Delegation property
                       containing two verification methods">
 {
-  "@context": "https://www.w3.org/ns/did/v1", "id":
-  "did:example:123456789abcdefghi",
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ],
+  "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "capabilityDelegation": [
     <span class="comment">// this method can be used to perform capability delegation as did:...fghi</span>
@@ -2300,9 +2326,9 @@ example described in <a href="#capability-invocation"></a>.
     <span class="comment">// embedded here rather than using only a reference</span>
     {
     "id": "did:example:123456789abcdefghi#keys-2",
-    "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
+    "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     }
   ],
   <span class="comment">...</span>
@@ -2707,9 +2733,9 @@ applications such as described in <a href="#did-resolution-metadata"></a>.
 	"id": "did:example:123456789abcdefghi",
 	"authentication": [{
 		"id": "did:example:123456789abcdefghi#keys-1",
-		"type": "Ed25519VerificationKey2018",
+		"type": "Ed25519VerificationKey2020",
 		"controller": "did:example:123456789abcdefghi",
-		"publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+		"publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
 	}]
 }
       </pre>
@@ -3178,15 +3204,15 @@ A2                                   # map(2)
       64                             # text(4)
          74797065                    # "type"
       78 1A                          # text(26)
-         45643235353139566572696669636174696F6E4B657932303138 # "Ed25519VerificationKey2018"
+         45643235353139566572696669636174696F6E4B657932303138 # "Ed25519VerificationKey2020"
       6A                             # text(10)
          636F6E74726F6C6C6572        # "controller"
       78 1E                          # text(30)
          6469643A6578616D706C653A313233343536373839616263646566676869 # "did:example:123456789abcdefghi"
       6F                             # text(15)
-         7075626C69634B6579426173653538 # "publicKeyBase58"
+         7075626C69634B6579426173653538 # "publicKeyMultibase"
       78 2C                          # text(44)
-         483343324156764C4D7636676D4D4E616D337556416A5A70666B634A437744776E5A6E367A3377586D715056 # "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+         483343324156764C4D7636676D4D4E616D337556416A5A70666B634A437744776E5A6E367A3377586D715056 # "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
               </pre>
 
       </section>
@@ -5399,38 +5425,41 @@ practice to avoid using the same <a>verification method</a> for multiple purpose
 
       <pre class="example" title="DID Document with 1 verification method type">
   {
-    "@context": "https://www.w3.org/ns/did/v1",
+    "@context": [
+      "https://www.w3.org/ns/did/v1",
+      "https://w3id.org/security/suites/ed25519-2020/v1"
+    ],
     "id": "did:example:123",
     "authentication": [
       {
         "id": "did:example:123#z6MkecaLyHuYWkayBDLw5ihndj3T1m6zKTGqau3A51G7RBf3",
-        "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
+        "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
-        "publicKeyBase58": "AKJP3f7BD6W4iWEQ9jwndVTCBq8ua2Utt8EEjJ6Vxsf"
+        "publicKeyMultibase": "zAKJP3f7BD6W4iWEQ9jwndVTCBq8ua2Utt8EEjJ6Vxsf"
       }
     ],
     "capabilityInvocation": [
       {
         "id": "did:example:123#z6MkhdmzFu659ZJ4XKj31vtEDmjvsi5yDZG5L7Caz63oP39k",
-        "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
+        "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
-        "publicKeyBase58": "4BWwfeqdp1obQptLLMvPNgBw48p7og1ie6Hf9p5nTpNN"
+        "publicKeyMultibase": "z4BWwfeqdp1obQptLLMvPNgBw48p7og1ie6Hf9p5nTpNN"
       }
     ],
     "capabilityDelegation": [
       {
         "id": "did:example:123#z6Mkw94ByR26zMSkNdCUi6FNRsWnc2DFEeDXyBGJ5KTzSWyi",
-        "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
+        "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
-        "publicKeyBase58": "Hgo9PAmfeoxHG8Mn2XHXamxnnSwPpkyBHAMNF3VyXJCL"
+        "publicKeyMultibase": "zHgo9PAmfeoxHG8Mn2XHXamxnnSwPpkyBHAMNF3VyXJCL"
       }
     ],
     "assertionMethod": [
       {
         "id": "did:example:123#z6MkiukuAuQAE8ozxvmahnQGzApvtW7KT5XXKfojjwbdEomY",
-        "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
+        "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
-        "publicKeyBase58": "5TVraf9itbKXrRvt2DSS95Gw4vqU3CHAdetoufdcKazA"
+        "publicKeyMultibase": "z5TVraf9itbKXrRvt2DSS95Gw4vqU3CHAdetoufdcKazA"
       }
     ]
 }
@@ -5438,14 +5467,18 @@ practice to avoid using the same <a>verification method</a> for multiple purpose
 
       <pre class="example" title="DID Document with many different verification methods">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/jws-2020/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ],
   "id": "did:example:123",
   "verificationMethod": [
     {
       "id": "did:example:123#ZC2jXTO6t4R501bfCXv3RxarZyUbdP2w_psLwMuY6ec",
-      "type": "Ed25519VerificationKey2018", <span class="comment">// external (property value)</span>
+      "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
-      "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+      "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
     },
     {
       "id": "did:example:123#zQ3shP2mWsZYWgvgM11nenXRTx9L1yiJKmkf9dfX7NaMKb1pX",
@@ -5543,7 +5576,7 @@ Model</a> for additional examples.
       </p>
 
       <pre class="example"
-        title="Verifiable Credential linked to a verification method of type Ed25519VerificationKey2018">
+        title="Verifiable Credential linked to a verification method of type Ed25519VerificationKey2020">
 {  <span class="comment">// external (all terms in this example)</span>
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
