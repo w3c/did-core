@@ -6019,6 +6019,16 @@ about the <a>DID subject</a> is only discoverable by resolving the <a>DID</a>
 to the <a>DID document</a>, obtaining a verifiable credential about the
 <a>DID</a>, or via some other description of the <a>DID</a>.
       </p>
+      <p>
+While the value of the <code><a>id</a></code> property in the retrieved
+<a>DID document</a> must always match the <a>DID</a> being resolved, whether
+or not the actual resource to which the <a>DID</a> refers can change over time
+is dependent upon the <a>DID method</a>. For example, a <a>DID method</a>
+that permits the <a>DID subject</a> to change could be used to generate a
+<a>DID</a> for the current occupant of a particular role&mdash;such as the CEO
+of a company&mdash;where the actual person occupying the role can be different
+depending on when the <a>DID</a> is resolved.
+      </p>
     </section>
     <section>
       <h2>Referring to the DID document</h2>
