@@ -6114,16 +6114,17 @@ same <a>DID subject</a>
       <h2>Serving a representation of the DID subject</h2>
       <p>
 If the <a>DID subject</a> is a digital resource that can be retrieved
-from the internet, the <a>DID document</a> can serve as a
-representation of the <a>DID subject</a>. For example, a data schema that
-needs a persistent, cryptographically verifiable identifier could be
-assigned a <a>DID</a>, and its <a>DID document</a> could be used as a
-standard way to retrieve a representation of that schema.
+from the internet, a <a>DID method</a> can choose to construct a <a>DID URL</a>
+which returns a representation of the <a>DID subject</a> itself. For example,
+a data schema that needs a persistent, cryptographically verifiable identifier
+could be assigned a <a>DID</a>, and passing a specified DID parameter (see
+<a href="#did-parameters"></a>) could be used as a standard way to retrieve a
+representation of that schema.
       </p>
       <p>
-Alternately, a <a>DID</a> can be used to refer to a digital resource
-that can be returned directly from a <a>verifiable data registry</a> if
-that functionality is supported by the applicable <a>DID method</a>.
+Similarly, a <a>DID</a> can be used to refer to a digital resource (such as
+an image) that can be returned directly from a <a>verifiable data registry</a>
+if that functionality is supported by the applicable <a>DID method</a>.
       </p>
     </section>
     <section>
