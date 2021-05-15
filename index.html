@@ -233,7 +233,7 @@ Draft</a> include:
     <ul>
       <li>
 The introduction of an abstract data model that can be serialized to multiple
-representations including JSON, JSON-LD, and CBOR.
+representations including JSON and JSON-LD.
       </li>
       <li>
 The introduction of a DID Specifications Registry for the purposes of
@@ -679,11 +679,11 @@ is elaborated upon in <a href="#did-url-dereferencing"></a>.
     <section id="conformance">
 
       <p>
-This document contains examples that contain JSON, CBOR, and JSON-LD content.
+This document contains examples that contain JSON and JSON-LD content.
 Some of these examples contain characters that are invalid, such as inline
 comments (<code>//</code>) and the use of ellipsis (<code>...</code>) to denote
 information that adds little value to the example. Implementers are cautioned to
-remove this content if they desire to use the information as valid JSON, CBOR,
+remove this content if they desire to use the information as valid JSON
 or JSON-LD.
       </p>
 
@@ -2432,12 +2432,11 @@ serializing the <a href="#data-model">data model</a> through a process called
 href="#data-model">data model</a> through a process called
 <dfn>consumption</dfn>. The <em>production</em> and <em>consumption</em>
 processes enable the conversion of information from one <a>representation</a> to
-another. This specification defines <a>representations</a> for JSON, JSON-LD,
-and CBOR, and developers can use any other <a>representation</a>, such as XML or
+another. This specification defines <a>representations</a> for JSON and JSON-LD,
+and developers can use any other <a>representation</a>, such as XML or
 YAML, that is capable of expressing the <a href="#data-model">data model</a>.
 The following sections define the general rules for <a>production</a> and
-<a>consumption</a>, as well as the JSON, JSON-LD, and CBOR
-<a>representations</a>.
+<a>consumption</a>, as well as the JSON and JSON-LD <a>representations</a>.
     </p>
 
     <section>
@@ -2565,7 +2564,7 @@ A conforming consumer MUST produce errors when consuming non-conforming
         <img style="margin: auto; display: block;"
           src="diagrams/diagram-production-consumption.png" alt="
 Diagram illustrating how representations of the data model are produced
-and consumed, including in JSON, JSON-LD, and CBOR.">
+and consumed, including in JSON and JSON-LD.">
         <figcaption>
 Production and consumption of representations.
         </figcaption>
