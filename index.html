@@ -1526,8 +1526,8 @@ for additional constraints.
             <td><code><a>publicKeyMultibase</a></code></td>
             <td>no</td>
             <td>
-A <a data-cite="INFRA#string">string</a> that conforms to a base58btc encoded
-public key.
+A <a data-cite="INFRA#string">string</a> that conforms to a
+[[?MULTIBASE]] encoded public key.
             </td>
           </tr>
         </tbody>
@@ -2720,13 +2720,13 @@ applications such as described in <a href="#did-resolution-metadata"></a>.
       <pre class="example nohighlight"
         title="Example DID document in JSON representation">
 {
-	"id": "did:example:123456789abcdefghi",
-	"authentication": [{
-		"id": "did:example:123456789abcdefghi#keys-1",
-		"type": "Ed25519VerificationKey2020",
-		"controller": "did:example:123456789abcdefghi",
-		"publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-	}]
+  "id": "did:example:123456789abcdefghi",
+  "authentication": [{
+    "id": "did:example:123456789abcdefghi#keys-1",
+    "type": "Ed25519VerificationKey2018",
+    "controller": "did:example:123456789abcdefghi",
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+  }]
 }
       </pre>
 
