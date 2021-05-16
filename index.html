@@ -4111,26 +4111,27 @@ endpoint</a>.
       <h2>Non-Repudiation</h2>
 
       <p>
-Non-repudiation of <a>DIDs</a> and <a>DID document</a> updates is supported
-under the assumption that the subject:
+Non-repudiation of <a>DIDs</a> and <a>DID document</a> updates is supported if:
       </p>
 
       <ul>
         <li>
-Is monitoring for unauthorized updates (see Section
-<a href="#notification-of-did-document-changes"></a>).
+The <a>verifiable data registry</a> supports
+<a>verifiable timestamps</a>. See <a href="#did-document-metadata"></a>
+for further information on useful timestamps that can be used during the
+<a>DID resolution</a> process.
         </li>
         <li>
-Has had adequate opportunity to revert malicious updates according to the
-access control mechanism for the <a>DID method</a> (see Section
-<a href="#authentication"></a>).
+The subject is monitoring for unauthorized updates as elaborated upon in
+<a href="#notification-of-did-document-changes"></a>.
+        </li>
+        <li>
+The subject has had adequate opportunity to revert malicious updates according
+to the authorization mechanism for the <a>DID method</a>.
         </li>
       </ul>
 
       <p>
-Non-repudiation is further supported if timestamps are included (see Section
-<a href="#did-document-metadata"></a>) and the target <a>DLT</a>
-system supports timestamps.
       </p>
     </section>
 
