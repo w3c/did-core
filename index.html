@@ -4035,127 +4035,61 @@ implementation to use.
     </section>
 
     <section>
-      <h2>Binding of Identity</h2>
+      <h2>Proving Control and Binding</h2>
 
       <p>
-The following sections describe binding identities to <a>DIDs</a> and
-<a>DID documents</a>.
+Binding an entity in the digital world or the physical world to a <a>DID</a>,
+<a>DID document</a>, or cryptographic material requires the use of security
+protocols contemplated by this specification. The following sections describe
+some of these scenarios and how an entity might prove control over a
+<a>DID</a> or a <a>DID document</a> for the purposes of authentication or
+authorization.
       </p>
 
-      <section>
+      <section class="notoc">
         <h3>Proving Control of a DID and DID Document</h3>
 
-        <p class="issue" data-number="583">
-This section is inaccurate and needs revision.
-        </p>
-
         <p>
-Signatures and <a>verifiable timestamps</a> allow <a>DID documents</a> to be
-cryptographically verifiable.
-        </p>
-
-        <p>
-By itself, a verified signature on a self-signed <a>DID document</a> does not
-prove control of a <a>DID</a>. It only proves that the:
-        </p>
-
-        <ul>
-          <li>
-<a>DID document</a> was not tampered with since it was timestamped.
-          </li>
-
-          <li>
-<a>DID controller(s)</a> controlled the private key used for the signature at
-the time the timestamp was created.
-          </li>
-        </ul>
-
-        <p>
-Proving control of a <a>DID</a>, that is, the <a>binding</a> between the <a>DID</a>
-and the <a>DID document</a> that describes it, requires a two step process:
-        </p>
-
-        <ol start="1">
-          <li>
-Resolving the <a>DID</a> to a <a>DID document</a> according to its
-<a>DID method</a> specification.
-          </li>
-
-          <li>
-Verifying that the <code><a>id</a></code> property of the resulting <a>DID
-document</a> matches the <a>DID</a> that was resolved.
-          </li>
-        </ol>
-
-        <p>
-It should be noted that this process proves control of a <a>DID</a> and
-<a>DID document</a> regardless of whether the <a>DID document</a> is signed.
-        </p>
-
-        <p>
-Signatures on <a>DID documents</a> are optional. <a>DID method</a>
-specifications are expected to explain and specify their implementation if
-applicable.
+Proving control over a <a>DID</a> or <a>DID Document</a> is useful when
+authenticating with remote systems or updating either in a <a>verifiable data
+registry</a>. Cryptographic digital signatures and <a>verifiable timestamps</a>
+enable certain security protocols related to <a>DID documents</a> to be
+cryptographically verifiable. For these purposes, this specification defines
+useful <a>verification relationships</a> in <a href="#authentication"></a> and
+<a href="#capability-invocation"></a>. The secret cryptographic material
+associated with the <a>verification methods</a> can be used to generate a
+cryptographic digital signature as a part of an authentication or authorization
+security protocol.
         </p>
       </section>
 
-      <section>
-        <h3>Proving Control of a Public Key</h3>
-
-        <p class="issue" data-number="583">
-This section is inaccurate and needs revision.
-        </p>
-
-        <p>
-There are two methods for proving control of the private key corresponding to a
-<a>public key description</a> in the <a>DID document</a>: static and dynamic.
-        </p>
-
-        <p>
-The static method is to sign the <a>DID document</a> with the private key. This
-proves control of the private key at a time no later than the
-<a>DID document</a> was registered. If the <a>DID document</a> is not signed,
-control of a public key described in the <a>DID document</a> can still be proven
-dynamically as follows:
-        </p>
-
-        <ol start="1">
-          <li>
-Send a challenge message containing a <a>public key description</a> from the
-<a>DID document</a> and a nonce to an appropriate <a>service endpoint</a>
-described in the <a>DID document</a>.
-          </li>
-
-          <li>
-Verify the signature of the response message against the
-<a>public key description</a>.
-          </li>
-        </ol>
-      </section>
-
-      <section>
-        <h3>Real-World Identity</h3>
+      <section class="notoc">
+        <h3>Binding to Physical Identity</h3>
 
         <p>
 A <a>DID</a> and <a>DID document</a> do not inherently carry any
-<a href="https://en.wikipedia.org/wiki/Personal_data">
-personal data</a>.
+<a href="https://en.wikipedia.org/wiki/Personal_data">personal data</a> and
+it is strongly advised that non-public entities do not publish personal data in
+<a>DID documents</a>.
         </p>
 
         <p>
-It can be useful to express a binding of <a>DID</a> to a person's or company's
-real world identity, in a way that is provably asserted by a trusted authority
-such as a government. This can enable interactions that can be considered
-legally valid under one or more jurisdictions; establishing such bindings has to
-be carefully balanced against privacy considerations (see <a
-href="#privacy-considerations"></a>).
+It can be useful to express a binding of a <a>DID</a> to a person's or
+organization's physical identity in a way that is provably asserted by a
+trusted authority, such as a government. This specification provides a
+<a>verification relationship</a> in <a href="#assertion"></a> for these
+purposes. This feature can enable interactions that are private and can be
+considered legally enforceable under one or more jurisdictions; establishing
+such bindings has to be carefully balanced against privacy considerations (see
+<a href="#privacy-considerations"></a>).
         </p>
 
         <p>
 The process of binding a <a>DID</a> to something in the real world, such as a
-person or a company, for example using <a>verifiable credentials</a> with the
-same subject as that <a>DID</a>, is out of scope for this specification. For
-more information, see the Verifiable Credentials Data Model [[VC-DATA-MODEL]].
+person or an organization, for example using <a>verifiable credentials</a> with
+the same subject as that <a>DID</a>, is contemplated by this specification
+and further defined in the Verifiable Credentials
+Data Model [[VC-DATA-MODEL]].
         </p>
       </section>
     </section>
