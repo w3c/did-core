@@ -4164,13 +4164,24 @@ vector of attack.
       <h2>Key and Signature Expiration</h2>
 
       <p>
-In a <a>decentralized identifier</a> architecture, there are no centralized
-authorities to enforce key or signature expiration policies. Therefore
-<a>DID resolvers</a> and requesting parties need to validate that keys
-were not expired at the time they were used. Because some use cases have
-legitimate reasons why already-expired keys can be extended, make sure key
-expiration does not prevent any further use of the key. Implementations
-of a resolver ought to be compatible with such extension behavior.
+In a <a>decentralized identifier</a> architecture, there might not be
+centralized authorities to enforce cryptographic material or cryptographic
+digital signature expiration policies. Therefore, it is supporting software such
+as <a>DID resolvers</a> and verification libraries that requesting parties use
+to validate that cryptographic material were not expired at the time they were
+used. Requesting parties might employ their own expiration policies in addition
+to inputs into their verification processes. For example, some requesting
+parties might accept authentications from five minutes in the past, while others
+with access to high precision time sources might require authentications to be
+time stamped within the last 500 milliseconds.
+      </p>
+      <p>
+There are some requesting parties that have legitimate needs to extend the use
+of already-expired cryptographic material, such as verifying legacy
+cryptographic digital signatures. In these scenarios, a requesting party might
+instruct their verification software to ignore cryptographic key material
+expiration or determine if the cryptographic key material was expired at the
+time it was used.
       </p>
     </section>
 
