@@ -4240,78 +4240,80 @@ time it was used.
     </section>
 
     <section>
-
       <h2>Verification Method Rotation</h2>
 
-      <p>Verification method rotation is a proactive security measure.</p>
-
       <p>
-        Verification method rotation applies only to the current or latest
-        version of a DID Document.
-      </p>
-
-      <p>
-        When a verification method has been active for a long time, or used
-        for many operations, a controller might wish to perform a rotation.
-      </p>
-
-      <p class="advisement">
-        It is considered a best practice to perform verification method
-        rotation on a regular basis.
-      </p>
-
-
-      <p class="advisement">
-        Proofs or signatures that rely on verification methods that are not
-        present in the latest version of a DID Document are not impacted by
-        rotation, and might require additional information to mitigate compromise.
+Rotation is a management process that enables the secret cryptographic material
+associated with an existing <a>verification method</a> to be deactivated or
+destroyed once a new <a>verification method</a> has been added to the  <a>DID
+document</a>. Going forward, any new proofs that a <a>controller</a> would have
+generated using the old secret cryptographic material can now instead be
+generated using the new  cryptographic material and can be verified using the
+new <a>verification method</a>.
       </p>
 
       <p>
-        Section <a href="#method-operations"></a> specifies the
-        <a>DID</a> operations to be supported by a
-        <a>DID method</a> specification, including
-        <a href="#method-operations">update</a>
-        which is expected to be used to perform a verification method rotation.
+Rotation is a useful mechanism for protecting against verification method
+compromise, since frequent rotation of a verification method by the controller
+reduces the value of a single compromised verification method to an attacker.
+Performing revocation immediately after rotation is useful for verification
+methods that a controller designates for short-lived verifications, such as
+those involved in encrypting messages and authentication.
       </p>
 
       <p>
-        A controller performs a rotation when they add a new verification
-        method that is meant to replace an existing verification method after
-        some time.
+The following considerations might be of use when contemplating the use of
+<a>verification method</a> rotation:
       </p>
 
-      <p>Not all DID Methods support verification method rotation.</p>
-
-      <p>
-        Rotation is a key management process that enables the private cryptographic
-        material associated with an existing verification method to be deactivated
-        or destroyed once a new verification method has been added to the DID
-        Document. Going forward, any new proofs that a controller would have generated
-        using the old cryptographic material can now instead be generated using the new
-        material and can be verified using the new verification method.
-      </p>
-
-      <p>
-        Rotation is a useful mechanism for protecting against verification
-        method compromise, since frequent rotation of a verification method by
-        the controller reduces the value of a single compromised verification method
-        to an attacker. Performing revocation immediately after rotation is
-        useful for verification methods that a controller designates for
-        short-lived verifications, such as those involved in encrypting messages
-        and authentication.
-      </p>
-
-      <p class="note">
-        Higher security environments tend to employ more frequent verification
-        method rotation.
-      </p>
-
-      <p class="note">
-        Frequent rotation of a verification method might be frustrating for
-        parties that are forced to continuously renew or refresh associated
-        credentials.
-      </p>
+      <ul>
+        <li>
+<a>Verification method</a> rotation is a proactive security measure.
+        </li>
+        <li>
+It is considered a best practice to perform <a>verification method</a> rotation
+on a regular basis.
+        </li>
+        <li>
+Higher security environments tend to employ more frequent verification method
+rotation.
+        </li>
+        <li>
+<a>Verification method</a> rotation applies only to the current or latest
+version of a <a>DID document</a>.
+        </li>
+        <li>
+When a <a>verification method</a> has been active for a long time, or used for
+many operations, a controller might wish to perform a rotation.
+        </li>
+        <li>
+Frequent rotation of a <a>verification method</a> might be frustrating for
+parties that are forced to continuously renew or refresh associated credentials.
+        </li>
+        <li>
+Proofs or signatures that rely on <a>verification methods</a> that are not
+present in the latest version of a <a>DID document</a> are not impacted by
+rotation. In these cases, verification software might require additional
+information, such as when a particular <a>verification method</a> was
+expected to be valid as well as access to a <a>verifiable data registry</a>
+containing a historical record, to determine the validity of the proof or
+signature.
+        </li>
+        <li>
+The section on <a href="#method-operations">DID method operations</a> specifies
+the <a>DID</a> operations to be supported by a <a>DID method</a> specification,
+including <a href="#method-operations">update</a> which is expected to be used
+to perform a <a>verification method</a> rotation.
+        </li>
+        <li>
+A <a>controller</a> performs a rotation when they add a new <a>verification
+method</a> that is meant to replace an existing <a>verification method</a> after
+some time.
+        </li>
+        <li>
+Not all <a>DID methods</a> support <a>verification method</a> rotation.
+        </li>
+      </ul>
     </section>
 
     <section>
