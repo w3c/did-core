@@ -4261,140 +4261,168 @@ time it was used.
     </section>
 
     <section>
-
       <h2>Verification Method Revocation</h2>
 
       <p>
-Verification method revocation is a reactive security measure.
+Revocation is a management process that enables the secret cryptographic
+material associated with an existing <a>verification method</a> to be
+deactivated such that it ceases to be a valid form of creating new
+proofs of digital signatures.
+      </p>
+      <p>
+Revocation is a useful mechanism for reacting to a verification method
+compromise. Performing revocation immediately after rotation is useful for
+verification methods that a controller designates for short-lived verifications,
+such as those involved in encrypting messages and authentication.
       </p>
 
       <p>
-Verification method revocation applies only to the current or latest
-version of a DID Document.
+Compromise of the secrets associated with a <a>verification method</a> allows
+the attacker to use them according to the <a>verification relationship</a>
+expressed by <a>controller</a> in the <a>DID document</a>, for example, for
+authentication. The attacker's use of the secrets might be indistinguishable
+from the legitimate <a href="#did-controller">controller's</a> use starting from the
+time the <a>verification method</a> was registered, to the time it was revoked.
       </p>
+
 
       <p>
-        If a verification method is no longer exclusively accessible to the
-        controller or parties trusted to act on behalf of the controller, it
-        is expected to be revoked immediately to reduce the risk of masquerading, theft,
-        and fraud.
+The following considerations might be of use when contemplating the use of
+<a>verification method</a> revocation:
       </p>
 
-      <p class="advisement">
+      <ul>
+        <li>
+<a>Verification method</a> revocation is a reactive security measure.
+        </li>
+
+        <li>
 It is considered a best practice to support key revocation.
-      </p>
+        </li>
 
-      <p class="advisement">
-A controller is expected to immediately revoke any verification method that is believed to
-be compromised.
-      </p>
+        <li>
+A <a>controller</a> is expected to immediately revoke any <a>verification
+method</a> that is believed to be compromised.
+        </li>
 
-      <p class="advisement">
-Revocation is expected to be understood as a controller expressing
-that proofs or signatures associated with a revoked verification method
-might have been created by an attacker. Verifiers, however, might
-still choose to accept or reject such proofs or signatures at their
-own discretion.
-      </p>
+        <li>
+<a>Verification method</a> revocation applies only to the latest version of a
+<a>DID Document</a>.
+        </li>
 
-      <p class="note">
-As described in <a href="#verification-material"></a>,
-absence of a verification method is the only form of revocation that
-applies to all DID Methods.
-      </p>
+        <li>
+As described in <a href="#verification-material"></a>, absence of a verification
+method is the only form of revocation that applies to all DID Methods.
+        </li>
 
-      <p>
-<a href="#method-operations"></a> specifies the <a>DID</a> operations to be
-supported by a <a>DID method</a> specification, including <a
-href="#method-operations">update</a> and <a href="#method-operations">
-deactivate</a> which might be used to remove verification method from a DID
-Document.
-      </p>
+        <li>
+If a <a>verification method</a> is no longer exclusively accessible to the
+<a>controller</a> or parties trusted to act on behalf of the <a>controller</a>,
+it is expected to be revoked immediately to reduce the risk of
+compromises such as masquerading, theft, and fraud.
+        </li>
 
-      <p>
-Not all DID Methods support verification method revocation.
-      </p>
+        <li>
+Revocation is expected to be understood as a <a>controller</a> expressing that
+proofs or signatures associated with a revoked <a>verification method</a> might
+have been created by an attacker. Verifiers, however, might still choose to
+accept or reject such proofs or signatures at their own discretion.
+        </li>
 
-      <p>
-Even if a verification method is present in a DID Document, additional
-information, such as a public key revocation certificate, or an external
-allow or deny list, might be used to determine whether a verification
-method has been revoked.
-      </p>
+        <li>
+The section on <a href="#method-operations">DID method operations</a> specifies
+the <a>DID</a> operations to be supported by a <a>DID method</a> specification,
+including <a href="#method-operations">update</a> and <a
+href="#method-operations"> deactivate</a>, which might be used to remove
+<a>verification method</a> from a <a>DID document</a>.
+        </li>
 
-      <p class="note">
-Compromise of the secrets associated with a verification method
-allows the attacker to use them according to the verification
-relationship expressed by controller in the DID Document, for
-example, for authentication. The attacker's use of the secrets might
-be indistinguishable from the legitimate controller's use starting
-from the time the verification method was registered, to the time it
-was revoked.
-      </p>
+        <li>
+Not all <a>DID methods</a> support <a>verification method</a> revocation.
+        </li>
 
-      <p class="note">
-The day-to-day operation of any software relying on a compromised verification
-method, such as an individual's operating system, antivirus, or endpoint protection
-software, might be impacted when the verification method is publicly revoked.
-      </p>
+        <li>
+Even if a <a>verification method</a> is present in a <a>DID document</a>,
+additional information, such as a public key revocation certificate, or an
+external allow or deny list, could be used to determine whether a
+<a>verification method</a> has been revoked.
+        </li>
 
-      <p class="note">
-Although verifiers might choose not to accept proofs or signatures from a revoked verification method,
-knowing whether a verification was made with a revoked verification method is trickier than it might seem.
-Some DID methods provide the ability to look back at the state of a DID at a point in time,
-or at a particular version of the DID document. When such a feature is
-combined with a reliable way to determine the time or DID version that existed
-when a cryptographically verifiable statement was made, then revocation
-does not undo that statement. This can be the basis for using DIDs to make
-binding commitments (e.g., to sign a mortgage).
-<br><br>
-If these conditions are met, revocation is not retroactive; it only nullifies future use of the method.
-<br/><br/>
-However, in order for such semantics to be safe, the second condition &mdash;
-an ability to know what the state of the DID document was at the time the
+        <li>
+The day-to-day operation of any software relying on a compromised
+<a>verification method</a>, such as an individual's operating system, antivirus,
+or endpoint protection software, could be impacted when the <a>verification
+method</a> is publicly revoked.
+      </li>
+
+      <section class="notoc">
+        <h3>Revocation Semantics</h3>
+
+        <p>
+Although verifiers might choose not to accept proofs or signatures from a
+revoked verification method, knowing whether a verification was made with a
+revoked <a>verification method</a> is trickier than it might seem. Some  <a>DID
+methods</a> provide the ability to look back at the state of a <a>DID</a> at a
+point in time, or at a particular version of the <a>DID document</a>. When such
+a feature is combined with a reliable way to determine the time or <a>DID</a>
+version that existed when a cryptographically verifiable statement was made,
+then revocation does not undo that statement. This can be the basis for using
+<a>DIDs</a> to make binding commitments; for example, to sign a mortgage.
+        </p>
+        <p>
+If these conditions are met, revocation is not retroactive; it only nullifies
+future use of the method.
+        </p>
+        <p>
+However, in order for such semantics to be safe, the second condition &mdash; an
+ability to know what the state of the <a>DID document</a> was at the time the
 assertion was made &mdash; is expected to apply. Without that guarantee, someone
-could discover a revoked key and use it to make cryptographically
-verifiable statements with a simulated date in the past.
-<br/><br/>
-Some DID methods only allow the retrieval of the current state of a DID.
-When this is true, or when the state of a DID at the time of
-cryptographically verifiable statement cannot be reliably determined,
-then the only safe interpretation of revocation is to make it
-apply both forward and backward in time. DID ecosystems that
-take this approach essentially provide cryptographically verifiable
-statements as ephemeral tokens that can be invalidated at any time by
-the DID controller.
-      </p>
-    </section>
+could discover a revoked key and use it to make cryptographically verifiable
+statements with a simulated date in the past.
+        </p>
+        <p>
+Some <a>DID methods</a> only allow the retrieval of the current state of a
+<a>DID</a>. When this is true, or when the state of a <a>DID</a> at the time of
+cryptographically verifiable statement cannot be reliably determined, then the
+only safe interpretation of revocation is to make it apply both forward and
+backward in time. <a>DID</a> ecosystems that take this approach essentially
+provide cryptographically verifiable statements as ephemeral tokens that can be
+invalidated at any time by the <a>DID controller</a>.
+        </p>
+      </section>
 
+      <section class="notoc">
+        <h3>Revocation in Trustless Systems</h3>
 
-    <div class="note">
-      <p>
+        <p>
 Trustless systems are those where all trust is derived from cryptographically
 provable assertions, and more specifically, where no metadata outside of the
 cryptographic system is factored into the determination of trust in the system.
-To verify a signature of proof for a verification method which has been revoked
-in a trustless system, a DID method needs to support either or both of the
-`versionId` or `versionTime`, as well as both the `updated` and `nextUpdate`,
-DID document metadata properties. A verifier can validate a signature or proof
-of a revoked key if and only if all of the following are true:
-      </p>
-      <ul>
-        <li>
-The proof or signature includes the `versionId` or `versionTime` of the DID
-document that was used at the point the signature or proof was created.
-        </li>
-        <li>
-The verifier can determine the point in time at which the signature or proof
-was made, e.g., it was anchored on a blockchain.
-        </li>
-        <li>
-For the resolved DID document metadata, the `updated` timestamp is before, and
-the `nextUpdate` timestamp is after, the point in time at which the signature or
-proof was made.
-        </li>
-      </ul>
-    </div>
+To verify a signature of proof for a <a>verification method</a> which has been
+revoked in a trustless system, a <a>DID method</a> needs to support either or
+both of the `versionId` or `versionTime`, as well as both the `updated` and
+`nextUpdate`, <a>DID document</a> metadata properties. A verifier can validate a
+signature or proof of a revoked key if and only if all of the following are
+true:
+        </p>
+
+        <ul>
+          <li>
+The proof or signature includes the `versionId` or `versionTime` of the  <a>DID
+document</a> that was used at the point the signature or proof was created.
+          </li>
+          <li>
+The verifier can determine the point in time at which the signature or proof was
+made; for example, it was anchored on a blockchain.
+          </li>
+          <li>
+For the resolved <a>DID document</a> metadata, the `updated` timestamp is
+before, and the `nextUpdate` timestamp is after, the point in time at which the
+signature or proof was made.
+          </li>
+        </ul>
+      </section>
+    </section>
 
     <section>
       <h2>DID Recovery</h2>
