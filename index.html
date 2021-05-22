@@ -5048,103 +5048,149 @@ practice to avoid using the same <a>verification method</a> for multiple purpose
 }
       </pre>
 
-      <pre class="example" title="DID Document with many different verification methods">
+      <pre class="example" title="DID Document with many different key types">
 {
   "@context": [
     "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/suites/jws-2020/v1",
-    "https://w3id.org/security/suites/ed25519-2020/v1"
+    "https://w3id.org/security/suites/jws-2020/v1"
   ],
-  "id": "did:example:123",
   "verificationMethod": [
     {
-      "id": "did:example:123#ZC2jXTO6t4R501bfCXv3RxarZyUbdP2w_psLwMuY6ec",
-      "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
-      "controller": "did:example:123",
-      "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-    },
-    {
-      "id": "did:example:123#zQ3shP2mWsZYWgvgM11nenXRTx9L1yiJKmkf9dfX7NaMKb1pX",
-      "type": "EcdsaSecp256k1VerificationKey2019", <span class="comment">// external (property value)</span>
-      "controller": "did:example:123",
-      "publicKeyBase58": "d5cW2R53NHTTkv7EQSYR8YxaKx7MVCcchjmK5EgCNXxo",
-    },
-    {
-      "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+      "id": "did:example:123#key-0",
+      "type": "JsonWebKey2020",
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "OKP", <span class="comment">// external (property name)</span>
-        "crv": "Ed25519", <span class="comment">// external (property name)</span>
-        "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ" <span class="comment">// external (property name)</span>
+        "kty": "OKP", // external (property name)
+        "crv": "Ed25519", // external (property name)
+        "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ" // external (property name)
       }
     },
     {
-      "id": "did:example:123#z6LSnjagzhe8Df6gZmroW3wjDd7XQLwAuYfwa4ZeTBCGFoYc",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+      "id": "did:example:123#key-1",
+      "type": "JsonWebKey2020",
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "OKP", <span class="comment">// external (property name)</span>
-        "crv": "X25519", <span class="comment">// external (property name)</span>
-        "x": "pE_mG098rdQjY3MKK2D5SUQ6ZOEW3a6Z6T7Z4SgnzCE" <span class="comment">// external (property name)</span>
-      },
-    }
-    {
-      "id": "did:example:123#4SZ-StXrp5Yd4_4rxHVTCYTHyt4zyPfN1fIuYsm6k3A",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
-      "controller": "did:example:123",
-      "publicKeyJwk": {
-        "kty": "EC", <span class="comment">// external (property name)</span>
-        "crv": "secp256k1", <span class="comment">// external (property name)</span>
-        "x": "Z4Y3NNOxv0J6tCgqOBFnHnaZhJF6LdulT7z8A-2D5_8", <span class="comment">// external (property name)</span>
-        "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk" <span class="comment">// external (property name)</span>
+        "kty": "OKP", // external (property name)
+        "crv": "X25519", // external (property name)
+        "x": "pE_mG098rdQjY3MKK2D5SUQ6ZOEW3a6Z6T7Z4SgnzCE" // external (property name)
       }
     },
     {
-      "id": "did:example:123#n4cQ-I_WkHMcwXBJa7IHkYu8CMfdNcZKnKsOrnHLpFs",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+      "id": "did:example:123#key-2",
+      "type": "JsonWebKey2020",
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "RSA", <span class="comment">// external (property name)</span>
-        "e": "AQAB", <span class="comment">// external (property name)</span>
-        "n": "omwsC1AqEk6whvxyOltCFWheSQvv1MExu5RLCMT4jVk9khJKv8JeMXWe3bWHatjPskdf2dlaGkW5QjtOnUKL742mvr4tCldKS3ULIaT1hJInMHHxj2gcubO6eEegACQ4QSu9LO0H-LM_L3DsRABB7Qja8HecpyuspW1Tu_DbqxcSnwendamwL52V17eKhlO4uXwv2HFlxufFHM0KmCJujIKyAxjD_m3q__IiHUVHD1tDIEvLPhG9Azsn3j95d-saIgZzPLhQFiKluGvsjrSkYU5pXVWIsV-B2jtLeeLC14XcYxWDUJ0qVopxkBvdlERcNtgF4dvW4X00EHj4vCljFw" <span class="comment">// external (property name)</span>
+        "kty": "EC", // external (property name)
+        "crv": "secp256k1", // external (property name)
+        "x": "Z4Y3NNOxv0J6tCgqOBFnHnaZhJF6LdulT7z8A-2D5_8", // external (property name)
+        "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk" // external (property name)
       }
     },
     {
-      "id": "did:example:123#_TKzHv2jFIyvdTGF1Dsgwngfdg3SH6TpDv0Ta1aOEkw",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+      "id": "did:example:123#key-3",
+      "type": "JsonWebKey2020",
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "EC", <span class="comment">// external (property name)</span>
-        "crv": "P-256", <span class="comment">// external (property name)</span>
-        "x": "38M1FDts7Oea7urmseiugGW7tWc3mLpJh6rKe7xINZ8", <span class="comment">// external (property name)</span>
-        "y": "nDQW6XZ7b_u2Sy9slofYLlG03sOEoug3I0aAPQ0exs4" <span class="comment">// external (property name)</span>
+        "kty": "EC", // external (property name)
+        "crv": "secp256k1", // external (property name)
+        "x": "U1V4TVZVMUpUa0ZVU1NBcU9CRm5IbmFaaEpGNkxkdWx", // external (property name)
+        "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk" // external (property name)
       }
     },
     {
-      "id": "did:example:123#8wgRfY3sWmzoeAL-78-oALNvNj67ZlQxd1ss_NX1hZY",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+      "id": "did:example:123#key-4",
+      "type": "JsonWebKey2020",
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "EC", <span class="comment">// external (property name)</span>
-        "crv": "P-384", <span class="comment">// external (property name)</span>
-        "x": "GnLl6mDti7a2VUIZP5w6pcRX8q5nvEIgB3Q_5RI2p9F_QVsaAlDN7IG68Jn0dS_F", <span class="comment">// external (property name)</span>
-        "y": "jq4QoAHKiIzezDp88s_cxSPXtuXYFliuCGndgU4Qp8l91xzD1spCmFIzQgVjqvcP" <span class="comment">// external (property name)</span>
+        "kty": "EC", // external (property name)
+        "crv": "P-256", // external (property name)
+        "x": "Ums5WVgwRkRTVVFnU3k5c2xvZllMbEcwM3NPRW91ZzN", // external (property name)
+        "y": "nDQW6XZ7b_u2Sy9slofYLlG03sOEoug3I0aAPQ0exs4" // external (property name)
       }
     },
     {
-      "id": "did:example:123#NjQ6Y_ZMj6IUK_XkgCDwtKHlNTUTVjEYOWZtxhp1n-E",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+      "id": "did:example:123#key-5",
+      "type": "JsonWebKey2020",
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "EC", <span class="comment">// external (property name)</span>
-        "crv": "P-521", <span class="comment">// external (property name)</span>
-        "x": "AVlZG23LyXYwlbjbGPMxZbHmJpDSu-IvpuKigEN2pzgWtSo--Rwd-n78nrWnZzeDc187Ln3qHlw5LRGrX4qgLQ-y", <span class="comment">// external (property name)</span>
-        "y": "ANIbFeRdPHf1WYMCUjcPz-ZhecZFybOqLIJjVOlLETH7uPlyG0gEoMWnIZXhQVypPy_HtUiUzdnSEPAylYhHBTX2" <span class="comment">// external (property name)</span>
+        "kty": "EC", // external (property name)
+        "crv": "P-384", // external (property name)
+        "x": "VUZKSlUwMGdpSXplekRwODhzX2N4U1BYdHVYWUZsaXVDR25kZ1U0UXA4bDkxeHpE", // external (property name)
+        "y": "jq4QoAHKiIzezDp88s_cxSPXtuXYFliuCGndgU4Qp8l91xzD1spCmFIzQgVjqvcP" // external (property name)
+      }
+    },
+    {
+      "id": "did:example:123#key-6",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC", // external (property name)
+        "crv": "P-521", // external (property name)
+        "x": "VTI5c1lYSmZWMmx1WkhNZ0dQTXhaYkhtSnBEU3UtSXZwdUtpZ0VOMnB6Z1d0U28tLVJ3ZC1uNzhuclduWnplRGMx", // external (property name)
+        "y": "UW5WNVgwSnBkR052YVc0Z1VqY1B6LVpoZWNaRnliT3FMSUpqVk9sTEVUSDd1UGx5RzBnRW9NV25JWlhoUVZ5cFB5" // external (property name)
+      }
+    },
+    {
+      "id": "did:example:123#key-7",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "RSA", // external (property name)
+        "e": "AQAB", // external (property name)
+        "n": "UkhWaGJGOUZRMTlFVWtKSElBdENGV2hlU1F2djFNRXh1NVJMQ01UNGpWazlraEpLdjhKZU1YV2UzYldIYXRqUHNrZGYyZGxhR2tXNVFqdE9uVUtMNzQybXZyNHRDbGRLUzNVTElhVDFoSkluTUhIeGoyZ2N1Yk82ZUVlZ0FDUTRRU3U5TE8wSC1MTV9MM0RzUkFCQjdRamE4SGVjcHl1c3BXMVR1X0RicXhjU253ZW5kYW13TDUyVjE3ZUtobE80dVh3djJIRmx4dWZGSE0wS21DSnVqSUt5QXhqRF9tM3FfX0lpSFVWSEQxdERJRXZMUGhHOUF6c24zajk1ZC1zYU" // external (property name)
       }
     }
   ]
-}
+}        
+      </pre>
+      <pre class="example" title="DID Document with different verification method types">
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2018/v1",
+    "https://w3id.org/security/suites/x25519-2019/v1",
+    "https://w3id.org/security/suites/secp256k1-2019/v1",
+    "https://w3id.org/security/suites/secp256k1recovery-2020/v1",
+    "https://w3id.org/security/suites/jws-2020/v1"
+  ],
+  "verificationMethod": [
+    {
+      "id": "did:example:123#key-0",
+      "type": "Ed25519VerificationKey2018",
+      "controller": "did:example:123",
+      "publicKeyBase58": "3M5RCDjPTWPkKSN3sxUmmMqHbmRPegYP1tjcKyrDbt9J" // external (property name)
+    },
+    {
+      "id": "did:example:123#key-1",
+      "type": "X25519KeyAgreementKey2019",
+      "controller": "did:example:123",
+      "publicKeyBase58": "FbQWLPRhTH95MCkQUeFYdiSoQt8zMwetqfWoxqPgaq7x" // external (property name)
+    },
+    {
+      "id": "did:example:123#key-2",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:example:123",
+      "publicKeyBase58": "ns2aFDq25fEV1NUd3wZ65sgj5QjFW8JCAHdUJfLwfodt" // external (property name)
+    },
+    {
+      "id": "did:example:123#key-3",
+      "type": "EcdsaSecp256k1RecoverySignature2020",
+      "controller": "did:example:123",
+      "ethereumAddress": "0x89a932207c485f85226d86f7cd486a89a24fcc12" // external (property name)
+    },
+    {
+      "id": "did:example:123#key-4",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC", // external (property name)
+        "crv": "P-256", // external (property name)
+        "x": "Er6KSSnAjI70ObRWhlaMgqyIOQYrDJTE94ej5hybQ2M", // external (property name)
+        "y": "pPVzCOTJwgikPjuUE6UebfZySqEJ0ZtsWFpj7YSPGEk" // external (property name)
+      }
+    }
+  ]
+}        
       </pre>
 
     </section>
