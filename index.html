@@ -4496,16 +4496,17 @@ correlatable, especially if they are globally unique.
       <h2>DIDs as Enhanced URNs</h2>
 
       <p>
-If desired by a <a>DID controller</a>, a <a>DID</a> is capable of acting
-as an enhanced Uniform Resource Name (URN) as defined by [[RFC8141]], i.e.,
-"a persistent, location-independent resource identifier". <a>DIDs</a> used in
-this way provide a cryptographically secure, location-independent identifier for
-a digital resource, while also providing metadata that enables retrieval.
-Because of the indirection between the <a>DID document</a> and the <a>DID</a>
-itself, the <a>DID controller</a> can adjust the actual location of the resource
-&mdash; or even provide the resource directly &mdash; without adjusting the
-<a>DID</a>. <a>DIDs</a> of this type can definitively verify that the resource
-retrieved is, in fact, the resource identified.
+If desired by a <a>DID controller</a>, a <a>DID</a> is capable of acting as a
+persistent, location-independent resource identifier. These sorts of identifiers
+are classified as Uniform Resource Names (URNs) and are defined in [[RFC8141]].
+<a>DIDs</a> are an enhanced form of URNs that provide a
+cryptographically secure, location-independent identifier for a digital
+resource, while also providing metadata that enables retrieval. Due to the
+indirection between the <a>DID document</a> and the <a>DID</a> itself, the
+<a>DID controller</a> can adjust the actual location of the resource &mdash; or
+even provide the resource directly &mdash; without adjusting the <a>DID</a>.
+<a>DIDs</a> of this type can definitively verify that the resource retrieved is,
+in fact, the resource identified.
       </p>
       <p>
 A <a>DID controller</a> who intends to use a <a>DID</a> for this purpose is
@@ -4520,9 +4521,9 @@ implementers decide upon the most suitable <a>DID method</a>.
         </li>
         <li>
 The <a>DID controller</a> is expected to publish its operational policies so
-relying parties can determine the degree to which they can rely on the
+requesting parties can determine the degree to which they can rely on the
 persistence of a <a>DID</a> controlled by that <a>DID controller</a>. In the
-absence of such policies, relying parties are not expected to make any
+absence of such policies, requesting parties are not expected to make any
 assumption about whether a <a>DID</a> is a persistent identifier for the same
 <a>DID subject</a>.
         </li>
