@@ -4573,20 +4573,22 @@ others are of partial data where the larger context is assumed.
       <h2>Encrypted Data in DID Documents</h2>
       <p>
 Encryption algorithms have been known to fail due to advances in cryptography
-and computing power. Implementers are advised to assume that any encrypted
-data placed in a <a>DID document</a> might eventually be made available in
-clear text to the same audience to which the encrypted data is available.
-This is particularly pertinent if the <a>DID document</a> is public.
+and computing power. Implementers are advised to assume that any encrypted data
+placed in a <a>DID document</a> might eventually be made available in clear text
+to the same audience to which the encrypted data is available. This is
+particularly pertinent if the <a>DID document</a> is public.
       </p>
       <p>
-Encrypting all or parts of <a>DID documents</a> is <em>not</em> an appropriate means
-to protect data in the long term. Similarly, placing encrypted data in <a>DID
-documents</a> is not an appropriate means to include personal data.
+Encrypting all or parts of <a>DID documents</a> is <em>not</em> an appropriate
+means to protect data in the long term. Similarly, placing encrypted data in
+<a>DID documents</a> is not an appropriate means to protect personal data.
       </p>
       <p>
 Given the caveats above, if encrypted data is included in a <a>DID document</a>,
-implementers are advised to not encrypt with the public keys of entities that
-do not wish to be correlated with the <a>DID</a>.
+implementers are advised to not associate any correlatable information,
+such as receiving party public keys, identifiers, or other information
+that could be used to infer a relationship between the encrypted data
+and an associated party.
       </p>
 
     </section>
