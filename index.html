@@ -4039,20 +4039,20 @@ implementation to use.
 
       <p>
 Binding an entity in the digital world or the physical world to a <a>DID</a>,
-<a>DID document</a>, or cryptographic material requires the use of security
+to a <a>DID document</a>, or to cryptographic material requires, the use of security
 protocols contemplated by this specification. The following sections describe
-some of these scenarios and how an entity might prove control over a
+some possible scenarios and how an entity therein might prove control over a
 <a>DID</a> or a <a>DID document</a> for the purposes of authentication or
 authorization.
       </p>
 
       <section class="notoc">
-        <h3>Proving Control of a DID and DID Document</h3>
+        <h3>Proving Control of a DID and/or DID Document</h3>
 
         <p>
-Proving control over a <a>DID</a> or <a>DID Document</a> is useful when
-authenticating with remote systems or updating either in a <a>verifiable data
-registry</a>. Cryptographic digital signatures and <a>verifiable timestamps</a>
+Proving control over a <a>DID</a> and/or a <a>DID Document</a> is useful when
+updating either in a <a>verifiable data registry</a> or authenticating with
+remote systems. Cryptographic digital signatures and <a>verifiable timestamps</a>
 enable certain security protocols related to <a>DID documents</a> to be
 cryptographically verifiable. For these purposes, this specification defines
 useful <a>verification relationships</a> in <a href="#authentication"></a> and
@@ -4077,7 +4077,7 @@ it is strongly advised that non-public entities do not publish personal data in
 It can be useful to express a binding of a <a>DID</a> to a person's or
 organization's physical identity in a way that is provably asserted by a
 trusted authority, such as a government. This specification provides a
-<a>verification relationship</a> in <a href="#assertion"></a> for these
+the <a href="#assertion"></a> <a>verification relationship</a> for these
 purposes. This feature can enable interactions that are private and can be
 considered legally enforceable under one or more jurisdictions; establishing
 such bindings has to be carefully balanced against privacy considerations (see
