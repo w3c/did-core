@@ -4585,10 +4585,12 @@ means to protect data in the long term. Similarly, placing encrypted data in
       </p>
       <p>
 Given the caveats above, if encrypted data is included in a <a>DID document</a>,
-implementers are advised to not associate any correlatable information,
-such as receiving party public keys, identifiers, or other information
+implementers are advised to not associate any correlatable information
 that could be used to infer a relationship between the encrypted data
-and an associated party.
+and an associated party. Examples of correlatable information include
+receiving party public keys, identifiers to digital assets known to be
+under the control of a receiving party, or human readable descriptions of a
+receiving party.
       </p>
 
     </section>
