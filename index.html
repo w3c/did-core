@@ -4456,10 +4456,11 @@ proof was made.
       <p>
 <a>DIDs</a> achieve global uniqueness without the need for a central
 registration authority. This comes at the cost of human memorability.
-The algorithms capable of generating globally unique identifiers
-produce random strings of characters that have no human meaning (see also
+Algorithms capable of generating globally unique identifiers
+produce random strings of characters that have no human meaning. This
+trade-off is often referred to as
 <a href="https://en.wikipedia.org/wiki/Zooko%27s_triangle">Zooko's
-Triangle</a>).
+Triangle</a>.
       </p>
 
       <p>
@@ -4468,14 +4469,14 @@ starting from a human-friendly identifier. For example, a natural language
 name, a domain name, or a conventional address for a <a>DID controller</a>,
 such as a mobile telephone number, email address, social media username, or
 blog URL. However, the problem of mapping human-friendly identifiers to
-<a>DIDs</a> (and doing so in a way that can be verified and trusted) is
+<a>DIDs</a>, and doing so in a way that can be verified and trusted, is
 outside the scope of this specification.
       </p>
 
       <p>
-Solutions to this problem should be defined in separate specifications that
-reference this specification. It is strongly recommended that such
-specifications carefully consider the:
+Solutions to this problem are defined in separate specifications, such as
+[[?DNS-DID]], that reference this specification. It is strongly recommended that
+such specifications carefully consider the:
       </p>
 
       <ul>
@@ -4489,10 +4490,6 @@ correlatable, especially if they are globally unique.
         </li>
       </ul>
 
-      <p class="note">
-A draft specification for discovering a <a>DID</a> from domain names and email
-addresses using DNS lookups is available at [[?DNS-DID]].
-      </p>
     </section>
 
     <section>
