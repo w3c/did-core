@@ -4647,32 +4647,32 @@ receiving party.
     <section>
       <h2>Equivalence Properties</h2>
       <p>
-The three equivalence properties—<code><a>alsoKnownAs</a></code>, <code><a>equivalentId</a></code>, and
-<code><a>canonicalId</a></code>—are subject to special security considerations
-related to attacks against <a>DIDs</a> that are asserted to be equivalent.
+The three equivalence properties—<code><a>alsoKnownAs</a></code>,
+<code><a>equivalentId</a></code>, and <code><a>canonicalId</a></code>—are
+subject to special security considerations related to attacks against
+<a>DIDs</a> that are asserted to be equivalent.
       </p>
       <p>
 The <code><a>equivalentId</a></code> and <code><a>canonicalId</a></code>
-properties that constrain equivalence assertions to variants of a single <a>DID</a>
-produced by the same <a>DID method</a> (e.g., <code>did:foo:123</code> ≡
-<code>did:foo:hash(123)</code>) can be trusted to the extent the requesting party
-trusts the <a>DID method</a> (and a conforming producer) itself.
+properties express equivalence assertions to variants of a single <a>DID</a>
+produced by the same <a>DID method</a> and can be trusted to the extent the
+requesting party trusts the <a>DID method</a> and a conforming producer and
+resolver.
       </p>
       <p>
-The <code><a>alsoKnownAs</a></code> property that permits an equivalence
-assertion to <a>URIs</a> that are not governed by the same <a>DID method</a> (or may
-not be <a>DIDs</a> at all) cannot be trusted without performing verification steps
-outside of the governing <a>DID method</a>. See additional guidance in
-<a href="#also-known-as"></a>.
+The <code><a>alsoKnownAs</a></code> property permits an equivalence assertion to
+<a>URIs</a> that are not governed by the same <a>DID method</a> and cannot be
+trusted without performing verification steps outside of the governing <a>DID
+method</a>. See additional guidance in <a href="#also-known-as"></a>.
       </p>
       <p>
-As with any other sensitive properties in the <a>DID document</a> (e.g., public key
-references), parties relying on any equivalence statement in a <a>DID document</a>
-should guard against the values of these properties being substituted by an
-attacker after the proper verification has been performed. Any write access to a
-<a>DID document</a> stored in memory or disk after verification has been performed is
-an attack vector that will circumvent verification unless the <a>DID document</a> is
-re-verified.
+As with any other security-related properties in the <a>DID document</a>,
+parties relying on any equivalence statement in a <a>DID document</a> should
+guard against the values of these properties being substituted by an attacker
+after the proper verification has been performed. Any write access to a <a>DID
+document</a> stored in memory or disk after verification has been performed is
+an attack vector that might circumvent verification unless the <a>DID
+document</a> is re-verified.
       </p>
 
     </section>
