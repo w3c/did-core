@@ -4704,68 +4704,68 @@ version of the external JSON-LD Context.
     <section>
       <h2>Persistence</h2>
       <p>
-DIDs are designed to be persistent such that a controller need not rely
-upon a single trusted third party or administrator to maintain their
-identifiers. No administrator can take control away from the controller,
-nor can an administrator prevent their identifiers' use for any particular
-purpose such as authentication, authorization, and attestation. No
-third party can act on behalf of a controller to remove or render
-inoperable an individual's (or an organization's) identifier without the
-controller's consent.
+<a>DIDs</a> are designed to be persistent such that a <a>controller</a> need not
+rely upon a single trusted third party or administrator to maintain their
+identifiers. In an ideal case, no administrator can take control away from the
+<a>controller</a>, nor can an administrator prevent their identifiers' use for
+any particular purpose such as authentication, authorization, and attestation.
+No third party can act on behalf of a <a>controller</a> to remove or render
+inoperable an entity's identifier without the <a>controller</a>'s consent.
       </p>
       <p>
-However, it is important to note that in all DID Methods that enable
+However, it is important to note that in all <a>DID methods</a> that enable
 cryptographic proof-of-control, the means of proving control can always be
-transferred to another party by transferring the cryptographic secrets.
-Therefore, it is vital that systems relying on the persistence of an
-identifier over time regularly check to ensure that the identifier is, in
-fact, still under the control of the intended party.
+transferred to another party by transferring the secret cryptographic material.
+Therefore, it is vital that systems relying on the persistence of an identifier
+over time regularly check to ensure that the identifier is, in fact, still under
+the control of the intended party.
       </p>
       <p>
-Unfortunately, it is impossible to determine from the cryptography alone
-whether or not the private key material associated with a given proof
-mechanism has been compromised. It might well be that the expected controller
-still has access to the private keys &mdash; and as such can execute a
-proof-of-control as part of a verification process &mdash; while at the same time,
-a bad actor also has access to (or a copy of) those same keys.
+Unfortunately, it is impossible to determine from the cryptography alone whether
+or not the secret cryptographic material associated with a given
+<a>verification method</a> has been compromised. It might well be that the
+expected <a>controller</a> still has access to the secret cryptographic material
+&mdash; and as such can execute a proof-of-control as part of a verification
+process &mdash; while at the same time, a bad actor also has access to, or a
+copy of, those same keys.
       </p>
       <p>
 As such, cryptographic proof-of-control is expected to only be used as one
-factor in evaluating the level of identity assurance for a given
-service. DID-based authentication provides much greater assurance than a
-username and password, thanks to the ability to determine control over
-a secret without transmitting that secret between systems. However, it is
-not infallible. Services that perform sensitive, high value, or
-life-critical operations should use additional factors as appropriate.
+factor in evaluating the level of identity assurance required for high-stakes
+scenarios. <a>DID</a>-based authentication provides much greater assurance than
+a username and password, thanks to the ability to determine control over a
+cryptographic secret without transmitting that secret between systems. However,
+it is not infallible. Scenarios that involve sensitive, high value, or
+life-critical operations  are expected to use additional factors as appropriate.
       </p>
       <p>
-In addition to potential ambiguity from use by different controllers,
-it is impossible to guarantee, in general, that a given DID is being used
-in reference to the same subject at any given point in time. It is
-technically possible for the controller to reuse a DID for different
-subjects and, more subtly, for the precise definition of the Subject
-to either change over time or be misunderstood.
+In addition to potential ambiguity from use by different <a>controllers</a>, it
+is impossible to guarantee, in general, that a given <a>DID</a> is being used in
+reference to the same subject at any given point in time. It is technically
+possible for the controller to reuse a <a>DID</a> for different subjects and,
+more subtly, for the precise definition of the subject to either change over
+time or be misunderstood.
       </p>
       <p>
-For example, consider a DID used for a sole proprietorship, receiving
-various credentials used for financial transactions. To the controller,
-that identifier referred to the business. As the business grows, it
-eventually gets incorporated as an LLC. The controller continues using
-that same DID, because to <strong>them</strong> the DID refers to the
-business. However, to the state, the tax authority, and the local
-municipality, the DID no longer refers to the same entity. Whether or
-not the subtle shift in meaning matters to a credit provider or supplier
-is necessarily up to them to decide. In many cases, as long as the bills
-get paid and collections can be enforced, the shift is immaterial.
+For example, consider a <a>DID</a> used for a sole proprietorship, receiving
+various credentials used for financial transactions. To the <a>controller</a>,
+that identifier referred to the business. As the business grows, it eventually
+gets incorporated as a Limited Liability Company. The <a>controller</a>
+continues using that same <a>DID</a>, because to <strong>them</strong> the
+<a>DID</a> refers to the business. However, to the state, the tax authority, and
+the local municipality, the <a>DID</a> no longer refers to the same entity.
+Whether or not the subtle shift in meaning matters to a credit provider or
+supplier is necessarily up to them to decide. In many cases, as long as the
+bills get paid and collections can be enforced, the shift is immaterial.
       </p>
       <p>
-Because of these potential ambiguities, DIDs should be considered valid
-<em>contextually</em> rather than absolutely. Their persistence does not
-imply that they refer to the exact same Subject, nor that they are under the
-control of the same controller. Instead, one needs to understand the context
-in which the DID was created, how it is used, and consider the likely
-shifts in their meaning, and adopt procedures and policies to address both
-potential and inevitable semantic drift.
+Due to these potential ambiguities, <a>DIDs</a> are to be considered valid
+<em>contextually</em> rather than absolutely. Their persistence does not imply
+that they refer to the exact same subject, nor that they are under the control
+of the same <a>controller</a>. Instead, one needs to understand the context in
+which the <a>DID</a> was created, how it is used, and consider the likely shifts
+in their meaning, and adopt procedures and policies to address both potential
+and inevitable semantic drift.
       </p>
     </section>
 
