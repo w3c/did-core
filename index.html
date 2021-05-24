@@ -4773,38 +4773,47 @@ and inevitable semantic drift.
       <h2>Level of Assurance</h2>
 
       <p>
-Additional information about the security context of authentication events
-is often required for compliance reasons, especially in regulated areas
-such as the financial and public sectors. Examples include but are not
-limited to protection of secret keys, the identity proofing process, and the
-form-factor of the authenticator. For example, <a target="_blank"
+Additional information about the security context of authentication events is
+often required for compliance reasons, especially in regulated areas such as the
+financial and public sectors. This information is often referred to as a Level
+of Assurance (LOA). Examples include the protection of secret cryptographic
+material, the identity proofing process, and the form-factor of the
+authenticator.
+      </p>
+
+      <p>
+<a target="_blank"
 href="https://ec.europa.eu/info/law/payment-services-psd-2-directive-eu-2015-2366_en">
 Payment services (PSD 2)</a> and <a target="_blank"
 href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2014.257.01.0073.01.ENG">
 eIDAS</a> introduce such requirements to the security context. Level of
-Assurance (LoA) frameworks are classified and defined by, for example,
-<a target="_blank"
+assurance frameworks are classified and defined by regulations and
+standards such as <a
+target="_blank"
 href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2014.257.01.0073.01.ENG">
-eIDAS</a>,
-<a target="_blank" href="https://pages.nist.gov/800-63-3/sp800-63-3.html">
-NIST 800-63-3</a> and <a target="_blank" href="https://www.iso.org/standard/45138.html">
-ISO/IEC 29115:2013</a>, including their requirements for the security
-context, and making recommendations on how to achieve them. This might
-include strong user authentication and <a target="_blank"
+eIDAS</a>, <a target="_blank"
+href="https://pages.nist.gov/800-63-3/sp800-63-3.html"> NIST 800-63-3</a> and <a
+target="_blank" href="https://www.iso.org/standard/45138.html"> ISO/IEC
+29115:2013</a>, including their requirements for the security context, and
+making recommendations on how to achieve them. This might include strong user
+authentication where <a target="_blank"
 href="https://fidoalliance.org/fido2">FIDO2</a>/<a target="_blank"
-href="https://www.w3.org/TR/webauthn-2/">WebAuthn</a> can be potential
-implementations. A LoA represents the level of confidence that an entity is in
-fact that entity. Some regulated use cases require the implementation of a
-certain LoA. Since <a>verification relationships</a> such as <code>
+href="https://www.w3.org/TR/webauthn-2/">WebAuthn</a> can fulfill the
+requirement.
+      </p>
+
+      <p>
+Some regulated scenarios require the implementation of a specific level of
+assurance. Since <a>verification relationships</a> such as <code>
 <a>assertionMethod</a></code> and <code><a>authentication</a></code> might be
-used in some of these use cases, information about the applied security context
-might need to be expressed and provided to a <em>verifier</em>.
-Whether and how to encode this information in the <a>DID document</a> data model
-is out of scope for this specification, but it should be noted that the <a>DID
-document</a> data model can be extended if necessary (see <a
-href="#extensibility">Extensibility</a> section). Section <a
-href="#privacy-considerations">Privacy Considerations</a> remains applicable for
-such extensions.
+used in some of these situations, information about the applied security context
+might need to be expressed and provided to a <em>verifier</em>. Whether and how
+to encode this information in the <a>DID document</a> data model is out of scope
+for this specification. Interested readers might note that 1) the information
+could be transmitted using Verifiable Credentials [[?VC-DATA-MODEL]], and 2) the
+<a>DID document</a> data model can be extended to incorporate this information
+as described in <a href="#extensibility"></a>, and where <a
+href="#privacy-considerations"></a> is applicable for such extensions.
       </p>
     </section>
   </section>
