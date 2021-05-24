@@ -4107,6 +4107,17 @@ associated with the <a>verification methods</a> can be used to generate a
 cryptographic digital signature as a part of an authentication or authorization
 security protocol.
         </p>
+
+        <p class="advisement" title="Signed DID documents">
+Some <a>DID methods</a> allow digital signatures and other proofs to be
+included in the <a>DID document</a> or a <a href="#metadata-structure"></a>.
+However, such proofs by themselves do not necessarily prove control over a
+<a>DID</a>, or guarantee that the <a>DID document</a> is the correct one for
+the <a>DID</a>. In order to obtain
+the correct <a>DID document</a> and verify control over a <a>DID</a>, it is
+necessary to perform the <a>DID resolution</a> process as defined by the
+<a>DID method</a>.
+        </p>
       </section>
 
       <section class="notoc">
