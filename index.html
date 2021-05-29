@@ -797,19 +797,6 @@ defined in [[RFC3986]]. All <a>DIDs</a> MUST conform to the
 DID Syntax ABNF Rules.
       </p>
 
-      <p class="issue atrisk"
-         title="Should DID syntax allow an empty 'method-specific-id'?">
-This ABNF does not currently permit an empty <code>method-specific-id</code>
-string. Some DID methods have expressed an interest in providing resolution of
-a DID with an empty <code>method-specific-id</code> string, for example to
-enable discovery of a DID document describing a <a>verifiable data registry</a>
-by resolving the DID method name alone. The Working Group is requesting feedback
-during the Candidate Recommendation stage on whether or not an empty
-<code>method-specific-id</code> string is of interest to implementers. This
-feature may change as a result of that feedback. See also <a
-href="https://github.com/w3c/did-core/issues/34">Issue 34</a>.
-      </p>
-
       <table class="simple">
         <thead>
           <tr>
@@ -4306,14 +4293,14 @@ method</a> that is known to be compromised.
         </li>
 
         <li>
-<a>Verification method</a> revocation can only be embodied in changes to 
-the latest version of a <a>DID Document</a>; it cannot retroactively adjust 
+<a>Verification method</a> revocation can only be embodied in changes to
+the latest version of a <a>DID Document</a>; it cannot retroactively adjust
 previous versions.
         </li>
 
         <li>
 As described in <a href="#verification-material"></a>, absence of a verification
-method is the only form of revocation that applies to all <a>DID Methods</a> 
+method is the only form of revocation that applies to all <a>DID Methods</a>
 that support revocation.
         </li>
 
@@ -4426,10 +4413,10 @@ signature or proof was made.
           </li>
         </ul>
         <p>
-In systems that are willing to admit metadata other than those constituting 
-cryptographic input, similar trust may be achieved -- but always on the 
-same basis where a careful judgment is made about whether a 
-<a>DID document</a>'s content at the moment of a signing event 
+In systems that are willing to admit metadata other than those constituting
+cryptographic input, similar trust may be achieved -- but always on the
+same basis where a careful judgment is made about whether a
+<a>DID document</a>'s content at the moment of a signing event
 contained the expected content.
         </p>
       </section>
@@ -5209,7 +5196,7 @@ practice to avoid using the same <a>verification method</a> for multiple purpose
       }
     }
   ]
-}        
+}
       </pre>
       <pre class="example" title="DID Document with different verification method types">
 {
@@ -5251,7 +5238,7 @@ practice to avoid using the same <a>verification method</a> for multiple purpose
       }
     }
   ]
-}        
+}
       </pre>
 
     </section>
