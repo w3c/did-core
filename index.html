@@ -797,19 +797,6 @@ defined in [[RFC3986]]. All <a>DIDs</a> MUST conform to the
 DID Syntax ABNF Rules.
       </p>
 
-      <p class="issue atrisk"
-         title="Should DID syntax allow an empty 'method-specific-id'?">
-This ABNF does not currently permit an empty <code>method-specific-id</code>
-string. Some DID methods have expressed an interest in providing resolution of
-a DID with an empty <code>method-specific-id</code> string, for example to
-enable discovery of a DID document describing a <a>verifiable data registry</a>
-by resolving the DID method name alone. The Working Group is requesting feedback
-during the Candidate Recommendation stage on whether or not an empty
-<code>method-specific-id</code> string is of interest to implementers. This
-feature may change as a result of that feedback. See also <a
-href="https://github.com/w3c/did-core/issues/34">Issue 34</a>.
-      </p>
-
       <table class="simple">
         <thead>
           <tr>
