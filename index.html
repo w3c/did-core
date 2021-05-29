@@ -4302,17 +4302,19 @@ It is considered a best practice to support key revocation.
 
         <li>
 A <a>controller</a> is expected to immediately revoke any <a>verification
-method</a> that is believed to be compromised.
+method</a> that is known to be compromised.
         </li>
 
         <li>
-<a>Verification method</a> revocation applies only to the latest version of a
-<a>DID Document</a>.
+<a>Verification method</a> revocation can only be embodied in changes to 
+the latest version of a <a>DID Document</a>; it cannot retroactively adjust 
+previous versions.
         </li>
 
         <li>
 As described in <a href="#verification-material"></a>, absence of a verification
-method is the only form of revocation that applies to all DID Methods.
+method is the only form of revocation that applies to all <a>DID Methods</a> 
+that support revocation.
         </li>
 
         <li>
@@ -4324,17 +4326,19 @@ compromises such as masquerading, theft, and fraud.
 
         <li>
 Revocation is expected to be understood as a <a>controller</a> expressing that
-proofs or signatures associated with a revoked <a>verification method</a> might
-have been created by an attacker. Verifiers, however, might still choose to
-accept or reject such proofs or signatures at their own discretion.
+proofs or signatures associated with a revoked <a>verification method</a>
+created after its revocation should be treated as invalid. It could also imply
+a concern that existing proofs or signatures might have been created by an
+attacker, but this is not necessarily the case. Verifiers, however, might still
+choose to accept or reject any such proofs or signatures at their own discretion.
         </li>
 
         <li>
 The section on <a href="#method-operations">DID method operations</a> specifies
 the <a>DID</a> operations to be supported by a <a>DID method</a> specification,
 including <a href="#method-operations">update</a> and <a
-href="#method-operations"> deactivate</a>, which might be used to remove
-<a>verification method</a> from a <a>DID document</a>.
+href="#method-operations">deactivate</a>, which might be used to remove
+a <a>verification method</a> from a <a>DID document</a>.
         </li>
 
         <li>
@@ -4361,7 +4365,7 @@ method</a> is publicly revoked.
         <p>
 Although verifiers might choose not to accept proofs or signatures from a
 revoked verification method, knowing whether a verification was made with a
-revoked <a>verification method</a> is trickier than it might seem. Some  <a>DID
+revoked <a>verification method</a> is trickier than it might seem. Some <a>DID
 methods</a> provide the ability to look back at the state of a <a>DID</a> at a
 point in time, or at a particular version of the <a>DID document</a>. When such
 a feature is combined with a reliable way to determine the time or <a>DID</a>
@@ -4383,11 +4387,11 @@ statements with a simulated date in the past.
         <p>
 Some <a>DID methods</a> only allow the retrieval of the current state of a
 <a>DID</a>. When this is true, or when the state of a <a>DID</a> at the time of
-cryptographically verifiable statement cannot be reliably determined, then the
-only safe interpretation of revocation is to make it apply both forward and
-backward in time. <a>DID</a> ecosystems that take this approach essentially
-provide cryptographically verifiable statements as ephemeral tokens that can be
-invalidated at any time by the <a>DID controller</a>.
+a cryptographically verifiable statement cannot be reliably determined, then the
+only safe course is to disallow any consideration of DID state with respect to
+time, except the present moment. <a>DID</a> ecosystems that take this approach
+essentially provide cryptographically verifiable statements as ephemeral tokens
+that can be invalidated at any time by the <a>DID controller</a>.
         </p>
       </section>
 
@@ -4421,6 +4425,13 @@ before, and the `nextUpdate` timestamp is after, the point in time at which the
 signature or proof was made.
           </li>
         </ul>
+        <p>
+In systems that are willing to admit metadata other than those constituting 
+cryptographic input, similar trust may be achieved -- but always on the 
+same basis where a careful judgment is made about whether a 
+<a>DID document</a>'s content at the moment of a signing event 
+contained the expected content.
+        </p>
       </section>
     </section>
 
