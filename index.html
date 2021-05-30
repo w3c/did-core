@@ -4925,19 +4925,18 @@ forgotten</a>, because no personal data is written to an immutable
     </section>
 
     <section>
-      <h2>DID Correlation Risks and Pseudonymous DIDs</h2>
+      <h2>DID Correlation Risks</h2>
 
       <p>
-Like any type of globally unique identifier, <a>DIDs</a> might be used for
+Like any type of globally unambiguous identifier, <a>DIDs</a> might be used for
 correlation. <a>DID controllers</a> can mitigate this privacy risk by using
-pairwise unique <a>DIDs</a>, that is, sharing a different private <a>DID</a> for
-every relationship. In effect, each <a>DID</a> acts as a pseudonym. A
-pseudonymous <a>DID</a> need only be shared with more than one party when
-the <a>DID subject</a> explicitly authorizes correlation between those parties.
-If pseudonymous <a>DIDs</a> are the default, then the only need for a public
-<a>DID</a> (a <a>DID</a> published openly or shared with a large number of
-parties) is when the <a>DID subject</a> explicitly desires public
-identification.
+pairwise <a>DIDs</a> that are unique to each relationship; in effect, each
+<a>DID</a> acts as a pseudonym. A pairwise <a>DID</a> need only be shared with
+more than one party when correlation is explicitly desired. If pairwise
+<a>DIDs</a> are the default, then the only need to publish a <a>DID</a> openly,
+or to share it with a large number of parties, is when the <a
+href="dfn-did-controller">DID controller(s)</a> and/or <a>DID subject</a>
+explicitly desires public identification and correlation.
       </p>
     </section>
 
@@ -4974,7 +4973,7 @@ person.
       <p>
 Not only do such properties potentially result in personal data (see
 <a href="#keep-personal-data-private"></a>) or
-correlatable data (see <a href="#did-correlation-risks-and-pseudonymous-dids">
+correlatable data (see <a href="#did-correlation-risks">
 </a> and <a href="#did-document-correlation-risks"></a>) being present in the
 <a>DID document</a>, but they can be used for grouping particular <a>DIDs</a>
 in such a way that they are included in or excluded from certain operations or
