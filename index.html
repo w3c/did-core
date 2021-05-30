@@ -4897,24 +4897,26 @@ utilize <a>decentralized identifiers</a>.
       <h2>Keep Personal Data Private</h2>
 
       <p>
-If a <a>DID method</a> specification is written for a public <a>verifiable
-data registry</a> where all <a>DIDs</a> and <a>DID documents</a> are publicly
-available, it is <em>critical</em> that <a>DID documents</a> contain no
-personal data.
+If a <a>DID method</a> specification is written for a public-facing
+<a>verifiable data registry</a> where corresponding <a>DIDs</a> and <a>DID
+documents</a> might be made publicly available, it is <em>critical</em> that
+those <a>DID documents</a> contain no personal data. Personal data can instead
+be trasmitted through other means such as 1) Verifiable Credentials
+[[?VC-DATA-MODEL]], or 2) <a>service endpoints</a> under control of the <a>DID
+subject</a> or <a>DID controller</a>.
       </p>
+
       <p>
-Personal data can instead be placed behind <a>service
-endpoints</a> under control of the <a>DID subject</a> or <a>DID controller</a>.
-Due diligence should be taken around the use of URLs in <a>service endpoints</a>
-to prevent leakage of personal data or correlation within a URL
-of a <a>service endpoint</a>. For example, a URL that contains a username is
-dangerous to include in a <a>DID Document</a> because the username is likely
-to be human-meaningful in a way that can reveal information
-that the <a>DID subject</a> did not consent to sharing. With this privacy
-architecture, personal data can be exchanged on a private, peer-to-peer basis
-using communications channels identified and secured by <a>public key
-descriptions</a> in <a>DID documents</a>. This also enables <a>DID
-subjects</a> and requesting parties to implement the <a
+Due diligence is expected to be taken around the use of URLs in <a>service
+endpoints</a> to prevent leakage of personal data or correlation within a URL of
+a <a>service endpoint</a>. For example, a URL that contains a username is
+dangerous to include in a <a>DID Document</a> because the username is likely to
+be human-meaningful in a way that can reveal information that the <a>DID
+subject</a> did not consent to sharing. With the privacy architecture  suggested
+by this specification, personal data can be exchanged on a private, peer-to-peer
+basis using communication channels identified and secured by <a>verification
+methods</a> in <a>DID documents</a>. This also enables <a>DID subjects</a> and
+requesting parties to implement the <a
 href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>
 <a href="https://en.wikipedia.org/wiki/Right_to_be_forgotten">right to be
 forgotten</a>, because no personal data is written to an immutable
