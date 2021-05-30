@@ -4944,21 +4944,24 @@ explicitly desires public identification and correlation.
       <h2>DID Document Correlation Risks</h2>
 
       <p>
-The anti-correlation protections of pseudonymous <a>DIDs</a> are easily defeated
-if the data in the corresponding <a>DID documents</a> can be correlated. For
-example, using same <a>public key descriptions</a> or bespoke
-<a>service endpoints</a> in multiple <a>DID documents</a> can provide as much
-correlation information as using the same <a>DID</a>. Therefore the
-<a>DID document</a> for a pseudonymous <a>DID</a> also needs to use pairwise
-unique public keys.
+The anti-correlation protections of pairwise <a>DIDs</a> are easily defeated if
+the data in the corresponding <a>DID documents</a> can be correlated. For
+example, using identical <a>verification methods</a> or bespoke <a>service
+endpoints</a> in multiple <a>DID documents</a> can provide as much correlation
+information as using the same <a>DID</a>. Therefore, the <a>DID document</a> for
+a pairwise <a>DID</a> also needs to use pairwise unique information, such as
+ensuring that <a>verification methods</a> are unique to the pairwise
+relationship.
+      </p>
 
+      <p>
 It might seem natural to also use pairwise unique <a>service endpoints</a> in
-the <a>DID document</a> for a pseudonymous <a>DID</a>. However, unique endpoints
+the <a>DID document</a> for a pairwise <a>DID</a>. However, unique endpoints
 allow all traffic between two <a>DIDs</a> to be isolated perfectly into unique
 buckets, where timing correlation and similar analysis is easy. Therefore, a
-better strategy for endpoint privacy might be to share an endpoint among
-thousands or millions of <a>DIDs</a> controlled by many different subjects.
-See also <a href="#herd-privacy"></a>.
+better strategy for endpoint privacy might be to share an endpoint among a large
+number of <a>DIDs</a> controlled by many different subjects (see <a
+href="#herd-privacy"></a>).
       </p>
     </section>
 
