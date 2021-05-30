@@ -5020,104 +5020,129 @@ encrypted transport layers, and pad messages to standard lengths.
     <section>
       <h2>Service Privacy</h2>
       <p>
-The ability for a controller to optionally state at least one <a>service endpoint</a>
-in the <a>DID document</a> increases their control and agency. Each additional
-endpoint in the <a>DID document</a> adds privacy risk either due to correlation
-(e.g., across endpoint descriptions) or because the <a>services</a> are not
-protected by an authorization mechanism, or both.
+The ability for a <a>controller</a> to optionally express at least one
+<a>service endpoint</a> in the <a>DID document</a> increases their control and
+agency. Each additional endpoint in the <a>DID document</a> adds privacy risk
+either due to correlation, such as across endpoint descriptions, or because the
+<a>services</a> are not protected by an authorization mechanism, or both.
       </p>
       <p>
-<a>DID documents</a> are often public and will be stored and indexed
-efficiently by their very standards-based nature. This risk is worse if <a>DID
-documents</a> are published to immutable Verifiable Data Registries. Access to
-a history of the <a>DID documents</a> referenced by a <a>DID</a> represents a
-form of traffic analysis made more efficient through the use of standards.
+<a>DID documents</a> are often public and, since they are standardized,  will be
+stored and indexed efficiently by their very standards-based nature. This risk
+is worse if <a>DID documents</a> are published to immutable <a>verifiable data
+registries</a>. Access to a history of the <a>DID documents</a> referenced by a
+<a>DID</a> represents a form of traffic analysis made more efficient through the
+use of standards.
       </p>
       <p>
 The degree of additional privacy risk caused by using multiple <a>service
 endpoints</a> in one <a>DID document</a> can be difficult to estimate. Privacy
-harms are typically unintended consequences. <a>DIDs</a> can refer to
-documents, <a>services</a>, schemas, and other things that may be associated
-with individual people, households, clubs, and employers &mdash; and
-correlation of their <a>service endpoints</a> could become a powerful
-surveillance and inference tool. An example of this is that including multiple
-common country-level top level domain such as
-<code>https://example.co.uk</code> could be used to infer the approximate
-location of the <a>DID subject</a> with a greater degree of probability.
-      </p>
-      <p>
-The variety of possible endpoints makes it particularly challenging to maintain
-herd privacy, in which no information about the <a>DID subject</a> is leaked.
-      </p>
-      <p>
-First, because service endpoints may be specified as <a>URIs</a>, they could
-unintentionally leak personal information because of the architecture of the service.
-For example, a service endpoint of <code>http://example.com/MyFirstName</code> is leaking the term
-<code>MyFirstName</code> to everyone who can access the DID Document. When linking to legacy systems,
-this is an unavoidable risk and care should be taken in such cases. We encourage new,
-DID-aware endpoints to use nothing more than the DID itself for any identification necessary,
-e.g., <code>http://example.com/did%3Aexample%3Aabc123</code>. Since that <code>did:example:abc123</code> is already
-exposed in the DID Document, it leaks no additional information.
+harms are typically unintended consequences. <a>DIDs</a> can refer to documents,
+<a>services</a>, schemas, and other things that might be associated with
+individual people, households, clubs, and employers &mdash; and correlation of
+their <a>service endpoints</a> could become a powerful surveillance and
+inference tool. An example of this potential harm can  be seen when multiple
+common country-level top level domain such as <code>https://example.co.uk</code>
+might be used to infer the approximate location of the <a>DID subject</a> with a
+greater degree of probability.
       </p>
 
-      <p>
-Second, because a <a>DID document</a> can list multiple service endpoints, it is possible to
-irreversibly associate services that are not associated in any other context. This
-correlation on its own may lead to de-anonymization, revealing information about the
-<a>DID subject</a> even if the <a>URIs</a> used did not.
-      </p>
-      <p>
-Third, because some types of <a>DID subjects</a> may be more or less likely to list specific
-endpoints, e.g., a <a>DID</a> for an automobile may include a pointer to a public title
-record at the Department of Motor Vehicles, while a <a>DID</a> for an individual would not.
-As such, the listing of a given service could, by itself, leak information that can
-be used to infer something about the subject.
-      </p>
-      <p>
-It is the goal of herd privacy to ensure that the nature of specific subjects is
-obscured by the population of the whole. To maximize herd privacy, implementers
-need to rely on one &mdash; and only one &mdash; service endpoint, with that endpoint providing
-a proxy or mediator service that the controller is willing to depend on to protect
-such associations and that blinds requests to the ultimate service.
-      </p>
-      <p>
-Toward this end, consider any of the following:
-      </p>
-      <ul>
-        <li>
+      <section class="notoc">
+        <h3>Maintaining Herd Privacy</h3>
+        <p>
+The variety of possible endpoints makes it particularly challenging to maintain
+herd privacy in which no information about the <a>DID subject</a> is leaked (see
+<a href="#herd-privacy"></a>).
+        </p>
+
+        <p>
+First, because service endpoints might be specified as <a>URIs</a>, they could
+unintentionally leak personal information because of the architecture of the
+service. For example, a service endpoint of
+<code>http://example.com/MyFirstName</code> is leaking the term
+<code>MyFirstName</code> to everyone who can access the <a>DID document</a>.
+When linking to legacy systems, this is an unavoidable risk and care is expected
+to be taken in such cases. This specification encourages new, <a>DID</a>-aware
+endpoints to use nothing more than the <a>DID</a> itself for any identification
+necessary. For example, if a service description were to include
+<code>http://example.com/did%3Aexample%3Aabc123</code>, no harm would be done
+because <code>did:example:abc123</code> is already exposed in the DID Document;
+it leaks no additional information.
+        </p>
+
+        <p>
+Second, because a <a>DID document</a> can list multiple service endpoints, it is
+possible to irreversibly associate services that are not associated in any other
+context. This correlation on its own may lead to privacy harms by revealing
+information about the <a>DID subject</a> even if the <a>URIs</a> used did not
+contain any sensitive information.
+        </p>
+        <p>
+Third, because some types of <a>DID subjects</a> might be more or less likely to
+list specific endpoints. For example, a <a>DID</a> for an automobile might
+include a pointer to a public title record at the Department of Motor Vehicles,
+while a <a>DID</a> for an individual would not include that information. As
+such, the listing of a given service could, by itself, leak information that can
+be used to infer something about the <a>DID subject</a>.
+        </p>
+        <p>
+It is the goal of herd privacy to ensure that the nature of specific <a>DID
+subjects</a> is obscured by the population of the whole. To maximize herd
+privacy, implementers need to rely on one &mdash; and only one &mdash; service
+endpoint, with that endpoint providing a proxy or mediator service that the
+controller is willing to depend on to protect such associations and that blinds
+requests to the ultimate service.
+        </p>
+      </section>
+
+      <section class="notoc">
+        <h3>Service Endpoint Alternatives</h3>
+
+        <p>
+Given the concerns in the previous section, implementers are urged to
+consider any of the following service endpoint approaches:
+        </p>
+
+        <ul>
+          <li>
 <strong>Negotiator Endpoint</strong> &mdash; Service for negotiating mutually
-agreeable communications channels, preferably using private set intersection. The
-output of negotiation is a communication channel and whatever credentials may be
-needed to access it.
-        </li>
-        <li>
-<strong>Tor Endpoint</strong> (<a href="https://www.torproject.org/about/history/">Tor Onion Router</a>) &mdash;
-Provide a privacy-respecting address for reaching service endpoints. Any service that
-can be provided online can be provided through TOR for additional privacy.</li>
-<li><strong>Mediator Endpoint</strong> &mdash;
-<a href="https://github.com/hyperledger/aries-rfcs/blob/720bdab50e2d0437fda03028c1b17c69781bdd69/concepts/0046-mediators-and-relays/README.md">Mediators</a>
+agreeable communications channels, preferably using private set intersection.
+The output of negotiation is a communication channel and whatever credentials
+might be needed to access it.
+          </li>
+          <li>
+<strong>Tor Endpoint</strong> (<a
+href="https://www.torproject.org/about/history/">Tor Onion Router</a>) &mdash;
+Provide a privacy-respecting address for reaching service endpoints. Any service
+that can be provided online can be provided through TOR for additional
+privacy.</li> <li><strong>Mediator Endpoint</strong> &mdash; <a
+href="https://github.com/hyperledger/aries-rfcs/blob/720bdab50e2d0437fda03028c1b17c69781bdd69/concepts/0046-mediators-and-relays/README.md">Mediators</a>
 provide a generic endpoint, for multiple parties, receive encrypted messages on
-behalf of those parties, and forward
-them to the intended recipient. This avoids the need to have a specific endpoint per subject, which could create a
-correlation risk. Also called a proxy.
-        </li>
-        <li>
-<strong>Confidential Storage</strong> &mdash; Proprietary or confidential personal
-information may need to be kept off-registry to provide additional privacy and/or
-security guarantees, especially for those methods where <a>DID documents</a> are published
+behalf of those parties, and forward them to the intended recipient. This avoids
+the need to have a specific endpoint per subject, which could create a
+correlation risk. This approach is also called a proxy.
+          </li>
+          <li>
+<strong>Confidential Storage</strong> &mdash; Proprietary or confidential
+personal information might need to be kept off of a  <a>verifiable data
+registry</a> to provide additional privacy and/or security guarantees,
+especially for those <a>DID methods</a> where <a>DID documents</a> are published
 on a public ledger. Pointing to external resource services provides a means for
 authorization checks and deletion.
-        </li>
-        <li>
+          </li>
+          <li>
 <strong>Polymorphic Proxy</strong> &mdash; A proxy endpoint that can act as any
-number of services, depending on how it is called. For example, the same URL could
-be used for both negotiator and mediator functions, depending on a mechanism for re-routing.
-        </li>
-      </ul>
-      <p>
-These service endpoint types continue to be an area of innovation.
-      </p>
+number of services, depending on how it is called. For example, the same URL
+could be used for both negotiator and mediator functions, depending on a
+mechanism for re-routing.
+          </li>
+        </ul>
 
+        <p>
+These service endpoint types continue to be an area of innovation and
+exploration.
+        </p>
+      </section>
     </section>
   </section>
 
