@@ -1357,7 +1357,7 @@ A value that is either true or false as defined in [[INFRA]].
         </tr>
         <tr>
           <td>
-<a data-cite="INFRA#null">null</a>
+<a data-cite="INFRA#nulls">null</a>
           </td>
           <td>
 A value that is used to indicate the lack of a value as defined in [[INFRA]].
@@ -2750,7 +2750,7 @@ A <a data-cite="RFC8259#section-3">JSON Boolean</a>.
             </tr>
             <tr>
               <td>
-<a data-cite="INFRA#null">null</a>
+<a data-cite="INFRA#nulls">null</a>
               </td>
               <td>
 A <a data-cite="RFC8259#section-3">JSON null literal</a>.
@@ -2901,7 +2901,7 @@ A <a data-cite="INFRA#boolean">boolean</a>.
 <a data-cite="RFC8259#section-3">JSON null literal</a>
               </td>
               <td>
-A <a data-cite="INFRA#null">null</a> value.
+A <a data-cite="INFRA#nulls">null</a> value.
               </td>
             </tr>
           </tbody>
@@ -3549,7 +3549,7 @@ input is REQUIRED.
 dereferencingOptions
         </dt>
         <dd>
-A <a href="metadata-structure">metadata structure</a> consisting of input
+A <a href="#metadata-structure">metadata structure</a> consisting of input
 options to the <code>dereference</code> function in addition to the
 <code>didUrl</code> itself. Properties defined by this specification are in <a
 href="#did-url-dereferencing-options"></a>. This input is REQUIRED, but the
@@ -3570,7 +3570,7 @@ and <code>contentMetadata</code>:
 dereferencingMetadata
         </dt>
         <dd>
-A <a href="metadata-structure">metadata structure</a> consisting of values
+A <a href="#metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a>DID URL dereferencing</a> process. This
 structure is REQUIRED, and in the case of an error in the dereferencing process,
 this MUST NOT be empty. Properties defined by this specification are in <a
@@ -3595,12 +3595,12 @@ dereferencing is unsuccessful, this value MUST be empty.
 contentMetadata
         </dt>
         <dd>
-If the dereferencing is successful, this MUST be a <a href="metadata-structure">
+If the dereferencing is successful, this MUST be a <a href="#metadata-structure">
 metadata structure</a>, but the structure MAY be empty. This structure contains
 metadata about the <code>contentStream</code>. If the <code>contentStream</code>
 is a <a>DID document</a>, this MUST be a <a>didDocumentMetadata</a> structure as
 described in <a>DID Resolution</a>. If the dereferencing is unsuccessful, this
-output MUST be an empty <a href="metadata-structure">metadata structure</a>.
+output MUST be an empty <a href="#metadata-structure">metadata structure</a>.
         </dd>
       </dl>
 
@@ -3700,7 +3700,7 @@ data-cite="INFRA#string">string</a>. Each property value MUST be a <a
 data-cite="INFRA#string">string</a>, <a data-cite="INFRA#maps">map</a>, <a
 data-cite="INFRA#list">list</a>, <a data-cite="INFRA#ordered-set">set</a>,
 <a data-cite="INFRA#boolean">boolean</a>, or
-<a data-cite="INFRA#null">null</a>. The values within any complex data
+<a data-cite="INFRA#nulls">null</a>. The values within any complex data
 structures such as maps and lists MUST be one of these data types as well.
 All metadata property definitions registered in the DID Specification
 Registries [[?DID-SPEC-REGISTRIES]] MUST define the value type, including any
@@ -4849,7 +4849,7 @@ target="_blank" href="https://www.iso.org/standard/45138.html"> ISO/IEC
 29115:2013</a>, including their requirements for the security context, and
 making recommendations on how to achieve them. This might include strong user
 authentication where <a target="_blank"
-href="https://fidoalliance.org/fido2">FIDO2</a>/<a target="_blank"
+href="https://fidoalliance.org/fido2/">FIDO2</a>/<a target="_blank"
 href="https://www.w3.org/TR/webauthn-2/">WebAuthn</a> can fulfill the
 requirement.
       </p>
