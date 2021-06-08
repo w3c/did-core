@@ -6006,6 +6006,27 @@ that is not controlled by a single individual.
         </p>
       </section>
     </section>
+      <section>
+      <h2>Changing the DID controller</h2>
+      <p>
+The <a>DID controller</a> for a <a>DID document</a> might change over time. However,
+depending on how it is implemented, a change in the <a>DID controller</a> might
+not be made apparent by changes to the <a>DID document</a> itself. For example,
+if the change is implemented through a shift in ownership of the underlying
+cryptographic keys or other controls used for one or more of the <a>verification
+methods</a> in the <a>DID document</a>, it might be indistinguishable from a
+standard key rotation.
+      </p>
+      <p>
+On the other hand, if the change is implemented by changing the value of the
+<a>`controller`</a> property, it will be transparent.
+      </p>
+      <p>
+If it is important to verify a change of <a>DID controller</a>, implementers are advised
+to <a>authenticate</a> the new <a>DID controller</a> against the
+<a>verification methods</a> in the revised <a>DID document</a>.
+      </p>
+      </section>
 
   </section>
 
