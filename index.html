@@ -5041,8 +5041,8 @@ harms are typically unintended consequences. <a>DIDs</a> can refer to documents,
 <a>services</a>, schemas, and other things that might be associated with
 individual people, households, clubs, and employers &mdash; and correlation of
 their <a>service endpoints</a> could become a powerful surveillance and
-inference tool. An example of this potential harm can  be seen when multiple
-common country-level top level domain such as <code>https://example.co.uk</code>
+inference tool. An example of this potential harm can be seen when multiple
+common country-level top level domains such as <code>https://example.co.uk</code>
 might be used to infer the approximate location of the <a>DID subject</a> with a
 greater degree of probability.
       </p>
@@ -5051,7 +5051,7 @@ greater degree of probability.
         <h3>Maintaining Herd Privacy</h3>
         <p>
 The variety of possible endpoints makes it particularly challenging to maintain
-herd privacy in which no information about the <a>DID subject</a> is leaked (see
+herd privacy, in which no information about the <a>DID subject</a> is leaked (see
 <a href="#herd-privacy"></a>).
         </p>
 
@@ -5061,7 +5061,7 @@ unintentionally leak personal information because of the architecture of the
 service. For example, a service endpoint of
 <code>http://example.com/MyFirstName</code> is leaking the term
 <code>MyFirstName</code> to everyone who can access the <a>DID document</a>.
-When linking to legacy systems, this is an unavoidable risk and care is expected
+When linking to legacy systems, this is an unavoidable risk, and care is expected
 to be taken in such cases. This specification encourages new, <a>DID</a>-aware
 endpoints to use nothing more than the <a>DID</a> itself for any identification
 necessary. For example, if a service description were to include
@@ -5074,23 +5074,23 @@ it leaks no additional information.
 Second, because a <a>DID document</a> can list multiple service endpoints, it is
 possible to irreversibly associate services that are not associated in any other
 context. This correlation on its own may lead to privacy harms by revealing
-information about the <a>DID subject</a> even if the <a>URIs</a> used did not
+information about the <a>DID subject</a>, even if the <a>URIs</a> used did not
 contain any sensitive information.
         </p>
         <p>
 Third, because some types of <a>DID subjects</a> might be more or less likely to
-list specific endpoints. For example, a <a>DID</a> for an automobile might
-include a pointer to a public title record at the Department of Motor Vehicles,
-while a <a>DID</a> for an individual would not include that information. As
-such, the listing of a given service could, by itself, leak information that can
-be used to infer something about the <a>DID subject</a>.
+list specific endpoints, the listing of a given service could, by itself, leak
+information that can be used to infer something about the <a>DID subject</a>.
+For example, a <a>DID</a> for an automobile might include a pointer to a public
+title record at the Department of Motor Vehicles, while a <a>DID</a> for an
+individual would not include that information.
         </p>
         <p>
 It is the goal of herd privacy to ensure that the nature of specific <a>DID
 subjects</a> is obscured by the population of the whole. To maximize herd
 privacy, implementers need to rely on one &mdash; and only one &mdash; service
 endpoint, with that endpoint providing a proxy or mediator service that the
-controller is willing to depend on to protect such associations and that blinds
+controller is willing to depend on, to protect such associations and to blind
 requests to the ultimate service.
         </p>
       </section>
@@ -5115,7 +5115,10 @@ might be needed to access it.
 href="https://www.torproject.org/about/history/">Tor Onion Router</a>) &mdash;
 Provide a privacy-respecting address for reaching service endpoints. Any service
 that can be provided online can be provided through TOR for additional
-privacy.</li> <li><strong>Mediator Endpoint</strong> &mdash; <a
+privacy.
+           </li>
+           <li>
+<strong>Mediator Endpoint</strong> &mdash; <a
 href="https://github.com/hyperledger/aries-rfcs/blob/720bdab50e2d0437fda03028c1b17c69781bdd69/concepts/0046-mediators-and-relays/README.md">Mediators</a>
 provide a generic endpoint, for multiple parties, receive encrypted messages on
 behalf of those parties, and forward them to the intended recipient. This avoids
