@@ -30,10 +30,10 @@
     shortName: "did-core",
 
     // specification status (e.g., WD, LCWD, NOTE, etc.). If in doubt use ED.
-    specStatus: "WD",
+    specStatus: "CRD",
 
     // W3C Candidate Recommendation information
-    crEnd: "2021-05-04",
+    crEnd: "2021-07-13",
     implementationReportURI: "https://w3c.github.io/did-test-suite/",
 
     // Editor's Draft URL
@@ -43,12 +43,12 @@
     subtitle: "Core architecture, data model, and representations",
 
     // if you wish the publication date to be other than today, set this
-    //publishDate:  "2019-11-07",
+    //publishDate:  "2021-06-15",
 
     // previously published draft, uncomment this and set its
     // YYYY-MM-DD date and its maturity status
-    previousPublishDate:  "2021-03-01",
-    previousMaturity:  "WD",
+    previousPublishDate:  "2021-03-18",
+    previousMaturity:  "CR",
 
     // automatically allow term pluralization
     pluralize: true,
@@ -212,17 +212,53 @@ related normative statements in the specification.
 
     <p>
 At present, there exist
-<a href="https://w3c-ccg.github.io/did-method-registry/#did-methods">82
+<a href="https://w3c-ccg.github.io/did-method-registry/#did-methods">98
 experimental DID Method specifications</a>, 32 experimental DID Method driver
-implementations, and a Candidate Recommendation <a
+implementations, a Candidate Recommendation <a
 href="https://w3c.github.io/did-test-suite/">test suite</a> that determines
-whether or not a given implementation is conformant with this specification.
+whether or not a given implementation is conformant with this specification
+and 18 implementations submitted to the conformance test suite.
 Readers are advised to heed the  <a
 href="https://github.com/w3c/did-core/issues">DID Core issues</a> and <a
 href="https://github.com/w3c/did-test-suite/issues"> DID Core Test Suite
 issues</a> that each contain the latest list of concerns and proposed changes
 that might result in alterations to this specification.
     </p>
+
+    <p>
+Changes since the <a
+href="https://www.w3.org/TR/2021/CR-did-core-20210318/">First Candidate
+Recommendation</a> include:
+    </p>
+
+    <ul>
+      <li>
+Addition of at risk markers to most of the DID Parameters, the data model
+datatypes that are expected to not be implemented, and the
+application/did+ld+json media type. This change resulted in the DID WG's
+decision to perform a second Candidate Recommendation phase. All other
+changes were either editorial or predicted in "at risk" issue markers.
+      </li>
+      <li>
+Removal of the at risk issue marker for the `method-specific-id` ABNF rule
+and for `nextUpdate` and `nextVersionId`.
+      </li>
+      <li>
+Clarification that `equivalentId` and `canonicalId` are optional.
+      </li>
+      <li>
+Addition of a definitions for "amplification attack" and "cryptographic suite".
+      </li>
+      <li>
+Replacing the use of `publicKeyBase58` with `publicKeyMultibase`.
+      </li>
+      <li>
+Updates to the DID Document examples section.
+      </li>
+      <li>
+A large number of editorial clean ups to the Security Considerations section.
+      </li>
+    </ul>
 
     <p>
 Changes since the <a
@@ -797,19 +833,6 @@ defined in [[RFC3986]]. All <a>DIDs</a> MUST conform to the
 DID Syntax ABNF Rules.
       </p>
 
-      <p class="issue atrisk"
-         title="Should DID syntax allow an empty 'method-specific-id'?">
-This ABNF does not currently permit an empty <code>method-specific-id</code>
-string. Some DID methods have expressed an interest in providing resolution of
-a DID with an empty <code>method-specific-id</code> string, for example to
-enable discovery of a DID document describing a <a>verifiable data registry</a>
-by resolving the DID method name alone. The Working Group is requesting feedback
-during the Candidate Recommendation stage on whether or not an empty
-<code>method-specific-id</code> string is of interest to implementers. This
-feature may change as a result of that feedback. See also <a
-href="https://github.com/w3c/did-core/issues/34">Issue 34</a>.
-      </p>
-
       <table class="simple">
         <thead>
           <tr>
@@ -1017,6 +1040,12 @@ Description
 <code><a>service</a></code>
               </td>
               <td>
+                <p class="issue atrisk">
+The DID Working Group is seeking implementer feedback on this feature. If there
+is not enough implementation experience with this feature at the end of the
+Candidate Recommendation period, it will be removed from the specification.
+                </p>
+
 Identifies a service from the <a>DID document</a> by service ID.
 If present, the associated value MUST be an <a
 data-lt="ascii string">ASCII string</a>.
@@ -1027,6 +1056,12 @@ data-lt="ascii string">ASCII string</a>.
 <code>relativeRef</code>
               </td>
               <td>
+                <p class="issue atrisk">
+The DID Working Group is seeking implementer feedback on this feature. If there
+is not enough implementation experience with this feature at the end of the
+Candidate Recommendation period, it will be removed from the specification.
+                </p>
+
 A relative <a>URI</a> reference according to <a
 data-cite="RFC3986#section-4.2">RFC3986 Section 4.2</a> that identifies a
 <a>resource</a> at a <a>service endpoint</a>, which is selected from a <a>DID
@@ -1053,6 +1088,12 @@ data-lt="ascii string">ASCII string</a>.
 <code>versionTime</code>
               </td>
               <td>
+                <p class="issue atrisk">
+The DID Working Group is seeking implementer feedback on this feature. If there
+is not enough implementation experience with this feature at the end of the
+Candidate Recommendation period, it will be removed from the specification.
+                </p>
+
 Identifies a certain version timestamp of a <a>DID document</a> to be resolved.
 That is, the <a>DID document</a> that was valid for a <a>DID</a> at a certain
 time. If present, the associated value
@@ -1069,6 +1110,12 @@ For example: <code>2020-12-20T19:17:47Z</code>.
 <code>hl</code>
               </td>
               <td>
+                <p class="issue atrisk">
+The DID Working Group is seeking implementer feedback on this feature. If there
+is not enough implementation experience with this feature at the end of the
+Candidate Recommendation period, it will be removed from the specification.
+                </p>
+
 A resource hash of the <a>DID document</a> to add integrity protection, as
 specified in [[?HASHLINK]]. This parameter is non-normative.
 If present, the associated value MUST be an
@@ -1305,7 +1352,7 @@ A value that is either true or false as defined in [[INFRA]].
         </tr>
         <tr>
           <td>
-<a data-cite="INFRA#null">null</a>
+<a data-cite="INFRA#nulls">null</a>
           </td>
           <td>
 A value that is used to indicate the lack of a value as defined in [[INFRA]].
@@ -2588,6 +2635,15 @@ This section defines the <a>production</a> and <a>consumption</a> rules
 for the JSON <a>representation</a>.
       </p>
 
+      <p class="issue atrisk" title="Unused JSON data model types">
+There are a number of normative <a href="#data-model">data model</a> types such
+as double, boolean, integer, and null that might not be immediately useful to
+DID ecosystem implementers. It is expected that even if these features are not
+implemented, that the DID WG will resolve to keep the features for future use.
+If such a resolution is not made, or is not compatible with the W3C Process, the
+features might be removed.
+      </p>
+
       <section>
         <h3>Production</h3>
 
@@ -2689,7 +2745,7 @@ A <a data-cite="RFC8259#section-3">JSON Boolean</a>.
             </tr>
             <tr>
               <td>
-<a data-cite="INFRA#null">null</a>
+<a data-cite="INFRA#nulls">null</a>
               </td>
               <td>
 A <a data-cite="RFC8259#section-3">JSON null literal</a>.
@@ -2840,7 +2896,7 @@ A <a data-cite="INFRA#boolean">boolean</a>.
 <a data-cite="RFC8259#section-3">JSON null literal</a>
               </td>
               <td>
-A <a data-cite="INFRA#null">null</a> value.
+A <a data-cite="INFRA#nulls">null</a> value.
               </td>
             </tr>
           </tbody>
@@ -2965,11 +3021,11 @@ described in <a href="#did-resolution-metadata"></a>.
 Use of the media type <code>application/did+ld+json</code> is pending
 clarification over the registration of
 <a href="https://datatracker.ietf.org/doc/html/draft-w3cdidwg-media-types-with-multiple-suffixes">
-media types with multiple suffixes</a>. The alternative will be to use
-<code>application/ld+json</code> with an expected profile parameter of
-<code>https://www.w3.org/ns/did/json-ld-profile</code> if multiple suffixes
-cannot be registered by the time the rest of DID Core is ready for W3C
-Proposed Recommendation. See also <a href="https://github.com/w3c/did-core/issues/208">
+media types with multiple suffixes</a>. Depending on the outcome of the
+discussion with the IETF Application and Real Time (ART) Media Type group,
+the media type might change, sections involving the media type might change,
+or other changes related to the media type might be applied to this
+specification. See also <a href="https://github.com/w3c/did-core/issues/208">
 Issue 208</a>.
         </p>
 
@@ -3331,11 +3387,6 @@ string">ASCII string</a>.
 
           <dt><dfn>equivalentId</dfn></dt>
           <dd>
-            <p class="issue atrisk">
-The DID Working Group is seeking implementer feedback on this feature. If there
-is not enough implementation experience with this feature at the end of the
-Candidate Recommendation period, it will be removed from the specification.
-            </p>
             <p>
 A <a>DID method</a> can define different forms of a <a>DID</a> that are
 logically equivalent. An example is when a <a>DID</a> takes one form prior to
@@ -3388,11 +3439,6 @@ directives related to this metadata property.
           </dd>
           <dt><dfn>canonicalId</dfn></dt>
           <dd>
-            <p class="issue atrisk">
-The DID Working Group is seeking implementer feedback on this feature. If there
-is not enough implementation experience with this feature at the end of the
-Candidate Recommendation period, it will be removed from the specification.
-            </p>
             <p>
 The <code><a>canonicalId</a></code> property is identical to the
 <code><a>equivalentId</a></code> property except: a) it is associated with a
@@ -3498,7 +3544,7 @@ input is REQUIRED.
 dereferencingOptions
         </dt>
         <dd>
-A <a href="metadata-structure">metadata structure</a> consisting of input
+A <a href="#metadata-structure">metadata structure</a> consisting of input
 options to the <code>dereference</code> function in addition to the
 <code>didUrl</code> itself. Properties defined by this specification are in <a
 href="#did-url-dereferencing-options"></a>. This input is REQUIRED, but the
@@ -3519,7 +3565,7 @@ and <code>contentMetadata</code>:
 dereferencingMetadata
         </dt>
         <dd>
-A <a href="metadata-structure">metadata structure</a> consisting of values
+A <a href="#metadata-structure">metadata structure</a> consisting of values
 relating to the results of the <a>DID URL dereferencing</a> process. This
 structure is REQUIRED, and in the case of an error in the dereferencing process,
 this MUST NOT be empty. Properties defined by this specification are in <a
@@ -3544,12 +3590,12 @@ dereferencing is unsuccessful, this value MUST be empty.
 contentMetadata
         </dt>
         <dd>
-If the dereferencing is successful, this MUST be a <a href="metadata-structure">
+If the dereferencing is successful, this MUST be a <a href="#metadata-structure">
 metadata structure</a>, but the structure MAY be empty. This structure contains
 metadata about the <code>contentStream</code>. If the <code>contentStream</code>
 is a <a>DID document</a>, this MUST be a <a>didDocumentMetadata</a> structure as
 described in <a>DID Resolution</a>. If the dereferencing is unsuccessful, this
-output MUST be an empty <a href="metadata-structure">metadata structure</a>.
+output MUST be an empty <a href="#metadata-structure">metadata structure</a>.
         </dd>
       </dl>
 
@@ -3649,7 +3695,7 @@ data-cite="INFRA#string">string</a>. Each property value MUST be a <a
 data-cite="INFRA#string">string</a>, <a data-cite="INFRA#maps">map</a>, <a
 data-cite="INFRA#list">list</a>, <a data-cite="INFRA#ordered-set">set</a>,
 <a data-cite="INFRA#boolean">boolean</a>, or
-<a data-cite="INFRA#null">null</a>. The values within any complex data
+<a data-cite="INFRA#nulls">null</a>. The values within any complex data
 structures such as maps and lists MUST be one of these data types as well.
 All metadata property definitions registered in the DID Specification
 Registries [[?DID-SPEC-REGISTRIES]] MUST define the value type, including any
@@ -4061,6 +4107,17 @@ associated with the <a>verification methods</a> can be used to generate a
 cryptographic digital signature as a part of an authentication or authorization
 security protocol.
         </p>
+
+        <p class="note" title="Signed DID documents">
+Some <a>DID methods</a> allow digital signatures and other proofs to be
+included in the <a>DID document</a> or a <a href="#metadata-structure"></a>.
+However, such proofs by themselves do not necessarily prove control over a
+<a>DID</a>, or guarantee that the <a>DID document</a> is the correct one for
+the <a>DID</a>. In order to obtain
+the correct <a>DID document</a> and verify control over a <a>DID</a>, it is
+necessary to perform the <a>DID resolution</a> process as defined by the
+<a>DID method</a>.
+        </p>
       </section>
 
       <section class="notoc">
@@ -4261,193 +4318,243 @@ time it was used.
     </section>
 
     <section>
-
       <h2>Verification Method Revocation</h2>
 
       <p>
-Verification method revocation is a reactive security measure.
+Revocation is a management process that enables the secret cryptographic
+material associated with an existing <a>verification method</a> to be
+deactivated such that it ceases to be a valid form of creating new
+proofs of digital signatures.
+      </p>
+      <p>
+Revocation is a useful mechanism for reacting to a verification method
+compromise. Performing revocation immediately after rotation is useful for
+verification methods that a controller designates for short-lived verifications,
+such as those involved in encrypting messages and authentication.
       </p>
 
       <p>
-Verification method revocation applies only to the current or latest
-version of a DID Document.
+Compromise of the secrets associated with a <a>verification method</a> allows
+the attacker to use them according to the <a>verification relationship</a>
+expressed by <a>controller</a> in the <a>DID document</a>, for example, for
+authentication. The attacker's use of the secrets might be indistinguishable
+from the legitimate <a href="#did-controller">controller's</a> use starting from the
+time the <a>verification method</a> was registered, to the time it was revoked.
       </p>
+
 
       <p>
-        If a verification method is no longer exclusively accessible to the
-        controller or parties trusted to act on behalf of the controller, it
-        is expected to be revoked immediately to reduce the risk of masquerading, theft,
-        and fraud.
+The following considerations might be of use when contemplating the use of
+<a>verification method</a> revocation:
       </p>
 
-      <p class="advisement">
+      <ul>
+        <li>
+<a>Verification method</a> revocation is a reactive security measure.
+        </li>
+
+        <li>
 It is considered a best practice to support key revocation.
-      </p>
+        </li>
 
-      <p class="advisement">
-A controller is expected to immediately revoke any verification method that is believed to
-be compromised.
-      </p>
+        <li>
+A <a>controller</a> is expected to immediately revoke any <a>verification
+method</a> that is known to be compromised.
+        </li>
 
-      <p class="advisement">
-Revocation is expected to be understood as a controller expressing
-that proofs or signatures associated with a revoked verification method
-might have been created by an attacker. Verifiers, however, might
-still choose to accept or reject such proofs or signatures at their
-own discretion.
-      </p>
+        <li>
+<a>Verification method</a> revocation can only be embodied in changes to
+the latest version of a <a>DID Document</a>; it cannot retroactively adjust
+previous versions.
+        </li>
 
-      <p class="note">
-As described in <a href="#verification-material"></a>,
-absence of a verification method is the only form of revocation that
-applies to all DID Methods.
-      </p>
+        <li>
+As described in <a href="#verification-material"></a>, absence of a verification
+method is the only form of revocation that applies to all <a>DID Methods</a>
+that support revocation.
+        </li>
 
-      <p>
-<a href="#method-operations"></a> specifies the <a>DID</a> operations to be
-supported by a <a>DID method</a> specification, including <a
-href="#method-operations">update</a> and <a href="#method-operations">
-deactivate</a> which might be used to remove verification method from a DID
-Document.
-      </p>
+        <li>
+If a <a>verification method</a> is no longer exclusively accessible to the
+<a>controller</a> or parties trusted to act on behalf of the <a>controller</a>,
+it is expected to be revoked immediately to reduce the risk of
+compromises such as masquerading, theft, and fraud.
+        </li>
 
-      <p>
-Not all DID Methods support verification method revocation.
-      </p>
+        <li>
+Revocation is expected to be understood as a <a>controller</a> expressing that
+proofs or signatures associated with a revoked <a>verification method</a>
+created after its revocation should be treated as invalid. It could also imply
+a concern that existing proofs or signatures might have been created by an
+attacker, but this is not necessarily the case. Verifiers, however, might still
+choose to accept or reject any such proofs or signatures at their own discretion.
+        </li>
 
-      <p>
-Even if a verification method is present in a DID Document, additional
-information, such as a public key revocation certificate, or an external
-allow or deny list, might be used to determine whether a verification
-method has been revoked.
-      </p>
+        <li>
+The section on <a href="#method-operations">DID method operations</a> specifies
+the <a>DID</a> operations to be supported by a <a>DID method</a> specification,
+including <a href="#method-operations">update</a> and <a
+href="#method-operations">deactivate</a>, which might be used to remove
+a <a>verification method</a> from a <a>DID document</a>.
+        </li>
 
-      <p class="note">
-Compromise of the secrets associated with a verification method
-allows the attacker to use them according to the verification
-relationship expressed by controller in the DID Document, for
-example, for authentication. The attacker's use of the secrets might
-be indistinguishable from the legitimate controller's use starting
-from the time the verification method was registered, to the time it
-was revoked.
-      </p>
+        <li>
+Not all <a>DID methods</a> support <a>verification method</a> revocation.
+        </li>
 
-      <p class="note">
-The day-to-day operation of any software relying on a compromised verification
-method, such as an individual's operating system, antivirus, or endpoint protection
-software, might be impacted when the verification method is publicly revoked.
-      </p>
+        <li>
+Even if a <a>verification method</a> is present in a <a>DID document</a>,
+additional information, such as a public key revocation certificate, or an
+external allow or deny list, could be used to determine whether a
+<a>verification method</a> has been revoked.
+        </li>
 
-      <p class="note">
-Although verifiers might choose not to accept proofs or signatures from a revoked verification method,
-knowing whether a verification was made with a revoked verification method is trickier than it might seem.
-Some DID methods provide the ability to look back at the state of a DID at a point in time,
-or at a particular version of the DID document. When such a feature is
-combined with a reliable way to determine the time or DID version that existed
-when a cryptographically verifiable statement was made, then revocation
-does not undo that statement. This can be the basis for using DIDs to make
-binding commitments (e.g., to sign a mortgage).
-<br><br>
-If these conditions are met, revocation is not retroactive; it only nullifies future use of the method.
-<br/><br/>
-However, in order for such semantics to be safe, the second condition &mdash;
-an ability to know what the state of the DID document was at the time the
+        <li>
+The day-to-day operation of any software relying on a compromised
+<a>verification method</a>, such as an individual's operating system, antivirus,
+or endpoint protection software, could be impacted when the <a>verification
+method</a> is publicly revoked.
+        </li>
+      </ul>
+
+      <section class="notoc">
+        <h3>Revocation Semantics</h3>
+
+        <p>
+Although verifiers might choose not to accept proofs or signatures from a
+revoked verification method, knowing whether a verification was made with a
+revoked <a>verification method</a> is trickier than it might seem. Some <a>DID
+methods</a> provide the ability to look back at the state of a <a>DID</a> at a
+point in time, or at a particular version of the <a>DID document</a>. When such
+a feature is combined with a reliable way to determine the time or <a>DID</a>
+version that existed when a cryptographically verifiable statement was made,
+then revocation does not undo that statement. This can be the basis for using
+<a>DIDs</a> to make binding commitments; for example, to sign a mortgage.
+        </p>
+        <p>
+If these conditions are met, revocation is not retroactive; it only nullifies
+future use of the method.
+        </p>
+        <p>
+However, in order for such semantics to be safe, the second condition &mdash; an
+ability to know what the state of the <a>DID document</a> was at the time the
 assertion was made &mdash; is expected to apply. Without that guarantee, someone
-could discover a revoked key and use it to make cryptographically
-verifiable statements with a simulated date in the past.
-<br/><br/>
-Some DID methods only allow the retrieval of the current state of a DID.
-When this is true, or when the state of a DID at the time of
-cryptographically verifiable statement cannot be reliably determined,
-then the only safe interpretation of revocation is to make it
-apply both forward and backward in time. DID ecosystems that
-take this approach essentially provide cryptographically verifiable
-statements as ephemeral tokens that can be invalidated at any time by
-the DID controller.
-      </p>
-    </section>
+could discover a revoked key and use it to make cryptographically verifiable
+statements with a simulated date in the past.
+        </p>
+        <p>
+Some <a>DID methods</a> only allow the retrieval of the current state of a
+<a>DID</a>. When this is true, or when the state of a <a>DID</a> at the time of
+a cryptographically verifiable statement cannot be reliably determined, then the
+only safe course is to disallow any consideration of DID state with respect to
+time, except the present moment. <a>DID</a> ecosystems that take this approach
+essentially provide cryptographically verifiable statements as ephemeral tokens
+that can be invalidated at any time by the <a>DID controller</a>.
+        </p>
+      </section>
 
+      <section class="notoc">
+        <h3>Revocation in Trustless Systems</h3>
 
-    <div class="note">
-      <p>
+        <p>
 Trustless systems are those where all trust is derived from cryptographically
 provable assertions, and more specifically, where no metadata outside of the
 cryptographic system is factored into the determination of trust in the system.
-To verify a signature of proof for a verification method which has been revoked
-in a trustless system, a DID method needs to support either or both of the
-`versionId` or `versionTime`, as well as both the `updated` and `nextUpdate`,
-DID document metadata properties. A verifier can validate a signature or proof
-of a revoked key if and only if all of the following are true:
-      </p>
-      <ul>
-        <li>
-The proof or signature includes the `versionId` or `versionTime` of the DID
-document that was used at the point the signature or proof was created.
-        </li>
-        <li>
-The verifier can determine the point in time at which the signature or proof
-was made, e.g., it was anchored on a blockchain.
-        </li>
-        <li>
-For the resolved DID document metadata, the `updated` timestamp is before, and
-the `nextUpdate` timestamp is after, the point in time at which the signature or
-proof was made.
-        </li>
-      </ul>
-    </div>
+To verify a signature of proof for a <a>verification method</a> which has been
+revoked in a trustless system, a <a>DID method</a> needs to support either or
+both of the `versionId` or `versionTime`, as well as both the `updated` and
+`nextUpdate`, <a>DID document</a> metadata properties. A verifier can validate a
+signature or proof of a revoked key if and only if all of the following are
+true:
+        </p>
+
+        <ul>
+          <li>
+The proof or signature includes the `versionId` or `versionTime` of the  <a>DID
+document</a> that was used at the point the signature or proof was created.
+          </li>
+          <li>
+The verifier can determine the point in time at which the signature or proof was
+made; for example, it was anchored on a blockchain.
+          </li>
+          <li>
+For the resolved <a>DID document</a> metadata, the `updated` timestamp is
+before, and the `nextUpdate` timestamp is after, the point in time at which the
+signature or proof was made.
+          </li>
+        </ul>
+        <p>
+In systems that are willing to admit metadata other than those constituting
+cryptographic input, similar trust may be achieved -- but always on the
+same basis where a careful judgment is made about whether a
+<a>DID document</a>'s content at the moment of a signing event
+contained the expected content.
+        </p>
+      </section>
+    </section>
 
     <section>
       <h2>DID Recovery</h2>
 
       <p>
-        Recovery is a reactive security measure, whereby a controller is able
-        to regain the ability to perform DID operations.
-      </p>
-
-      <p class="advisement">
-        Recovery is advised when a controller or services trusted to act on
-        their behalf no longer have the exclusive ability to perform DID
-        operations as described in <a href="#method-operations"></a>.
-      </p>
-
-      <p class="advisement">
-        It is considered a best practice to never reuse a verification method
-        or key material associated with recovery for any other purposes.
+Recovery is a reactive security measure whereby a <a>controller</a> that has
+lost the ability to perform DID operations, such as through the loss of a
+device, is able to regain the ability to perform DID operations.
       </p>
 
       <p>
-        Recovery is commonly performed in conjunction with
-        <a href="#verification-method-rotation">verification method rotation</a>
-        and <a href="#verification-method-revocation">verification method revocation</a>.
+The following considerations might be of use when contemplating the use of
+<a>DID</a> recovery:
       </p>
 
-      <p>
-        There are no common recovery mechanisms that apply to all DID Methods.
-      </p>
+      <ul>
 
-      <p>
-        <a>DID method</a> specifications might choose to enable support for a
-        quorum of trusted parties to facilitate recovery. Some of the
-        facilities to do so are suggested in Section
-        <a href="#did-controller"></a>.
-      </p>
+        <li>
+Performing recovery proactively on an infrequent but regular basis, can help to
+ensure that control has not been lost.
+        </li>
 
-      <p>
-        Not all <a>DID method</a> specifications will recognize control from
-        <a>DIDs</a> registered using other <a>DID methods</a> and they might
-        restrict third-party control to <a>DIDs</a> that use the same method.
-      </p>
+        <li>
+It is considered a best practice to never reuse cryptographic material
+associated with recovery for any other purposes.
+        </li>
 
-      <p>
-        Access control and recovery in a <a>DID method</a>
-        specification can also include a time lock feature to protect against
-        key compromise by maintaining a second track of control for recovery.
-      </p>
+        <li>
+Recovery is commonly performed in conjunction with <a
+href="#verification-method-rotation">verification method rotation</a> and <a
+href="#verification-method-revocation">verification method revocation</a>.
+        </li>
 
-      <p class="note">
-        Performing recovery proactively on an infrequent but regular basis,
-        can help to ensure that control has not been lost.
-      </p>
+        <li>
+Recovery is advised when a <a>controller</a> or services trusted to act on their
+behalf no longer have the exclusive ability to perform DID operations as
+described in <a href="#method-operations"></a>.
+        </li>
+
+        <li>
+<a>DID method</a> specifications might choose to enable support for a quorum of
+trusted parties to facilitate recovery. Some of the facilities to do so are
+suggested in <a href="#did-controller"></a>.
+        </li>
+
+        <li>
+Not all <a>DID method</a> specifications will recognize control from <a>DIDs</a>
+registered using other <a>DID methods</a> and they might restrict third-party
+control to <a>DIDs</a> that use the same method.
+        </li>
+
+        <li>
+Access control and recovery in a <a>DID method</a> specification can also
+include a time lock feature to protect against key compromise by maintaining a
+second track of control for recovery.
+        </li>
+
+        <li>
+There are currently no common recovery mechanisms that apply to all
+<a>DID methods</a>.
+        </li>
+      </ul>
+
     </section>
 
     <section>
@@ -4456,10 +4563,11 @@ proof was made.
       <p>
 <a>DIDs</a> achieve global uniqueness without the need for a central
 registration authority. This comes at the cost of human memorability.
-The algorithms capable of generating globally unique identifiers
-produce random strings of characters that have no human meaning (see also
+Algorithms capable of generating globally unambiguous identifiers
+produce random strings of characters that have no human meaning. This
+trade-off is often referred to as
 <a href="https://en.wikipedia.org/wiki/Zooko%27s_triangle">Zooko's
-Triangle</a>).
+Triangle</a>.
       </p>
 
       <p>
@@ -4468,14 +4576,14 @@ starting from a human-friendly identifier. For example, a natural language
 name, a domain name, or a conventional address for a <a>DID controller</a>,
 such as a mobile telephone number, email address, social media username, or
 blog URL. However, the problem of mapping human-friendly identifiers to
-<a>DIDs</a> (and doing so in a way that can be verified and trusted) is
+<a>DIDs</a>, and doing so in a way that can be verified and trusted, is
 outside the scope of this specification.
       </p>
 
       <p>
-Solutions to this problem should be defined in separate specifications that
-reference this specification. It is strongly recommended that such
-specifications carefully consider the:
+Solutions to this problem are defined in separate specifications, such as
+[[?DNS-DID]], that reference this specification. It is strongly recommended that
+such specifications carefully consider the:
       </p>
 
       <ul>
@@ -4489,26 +4597,24 @@ correlatable, especially if they are globally unique.
         </li>
       </ul>
 
-      <p class="note">
-A draft specification for discovering a <a>DID</a> from domain names and email
-addresses using DNS lookups is available at [[?DNS-DID]].
-      </p>
     </section>
 
     <section>
       <h2>DIDs as Enhanced URNs</h2>
 
       <p>
-If desired by a <a>DID controller</a>, a <a>DID</a> is capable of acting
-as an enhanced Uniform Resource Name (URN) as defined by [[RFC8141]], i.e.,
-"a persistent, location-independent resource identifier". <a>DIDs</a> used in
-this way provide a cryptographically secure, location-independent identifier for
-a digital resource, while also providing metadata that enables retrieval.
-Because of the indirection between the <a>DID document</a> and the <a>DID</a>
-itself, the <a>DID controller</a> can adjust the actual location of the resource
-&mdash; or even provide the resource directly &mdash; without adjusting the
-<a>DID</a>. <a>DIDs</a> of this type can definitively verify that the resource
-retrieved is, in fact, the resource identified.
+If desired by a <a>DID controller</a>, a <a>DID</a> or a <a>DID URL</a> is
+capable of acting as persistent, location-independent resource identifier.
+These sorts of identifiers
+are classified as Uniform Resource Names (URNs) and are defined in [[RFC8141]].
+<a>DIDs</a> are an enhanced form of URN that provide a
+cryptographically secure, location-independent identifier for a digital
+resource, while also providing metadata that enables retrieval. Due to the
+indirection between the <a>DID document</a> and the <a>DID</a> itself, the
+<a>DID controller</a> can adjust the actual location of the resource &mdash; or
+even provide the resource directly &mdash; without adjusting the <a>DID</a>.
+<a>DIDs</a> of this type can definitively verify that the resource retrieved is,
+in fact, the resource identified.
       </p>
       <p>
 A <a>DID controller</a> who intends to use a <a>DID</a> for this purpose is
@@ -4523,9 +4629,9 @@ implementers decide upon the most suitable <a>DID method</a>.
         </li>
         <li>
 The <a>DID controller</a> is expected to publish its operational policies so
-relying parties can determine the degree to which they can rely on the
+requesting parties can determine the degree to which they can rely on the
 persistence of a <a>DID</a> controlled by that <a>DID controller</a>. In the
-absence of such policies, relying parties are not expected to make any
+absence of such policies, requesting parties are not expected to make any
 assumption about whether a <a>DID</a> is a persistent identifier for the same
 <a>DID subject</a>.
         </li>
@@ -4550,13 +4656,13 @@ is it actually desirable for a <a>service</a> to change its
 <code>type</code> after it is defined? Or for a key to change its value? Or
 would it be better to require a new <code><a>id</a></code> when certain
 fundamental properties of an object change? Malicious takeovers of a website
-often aim for an outcome where the site keeps its identifier (the host name),
-but is subtly changed underneath. If certain properties of the site were
-required by the specification to be immutable (for example, the <a
-target="_blank"
+often aim for an outcome where the site keeps its host name identifier,
+but is subtly changed underneath. If certain properties of the site, such
+as the <a target="_blank"
 href="https://en.wikipedia.org/wiki/Autonomous_system_(Internet)">ASN</a>
-associated with its IP address), such attacks might be much harder and more
-expensive to carry out, and anomaly detection would be easier.
+associated with its IP address, were required by the specification to be
+immutable, anomaly detection would be easier, and attacks would be much
+harder and more expensive to carry out.
       </p>
       <p>
 For <a>DID methods</a> tied to a global source of truth, a direct,
@@ -4574,20 +4680,24 @@ others are of partial data where the larger context is assumed.
       <h2>Encrypted Data in DID Documents</h2>
       <p>
 Encryption algorithms have been known to fail due to advances in cryptography
-and computing power. Implementers are advised to assume that any encrypted
-data placed in a <a>DID document</a> might eventually be made available in
-clear text to the same audience to which the encrypted data is available.
-This is particularly pertinent if the <a>DID document</a> is public.
+and computing power. Implementers are advised to assume that any encrypted data
+placed in a <a>DID document</a> might eventually be made available in clear text
+to the same audience to which the encrypted data is available. This is
+particularly pertinent if the <a>DID document</a> is public.
       </p>
       <p>
-Encrypting all or parts of <a>DID documents</a> is <em>not</em> an appropriate means
-to protect data in the long term. Similarly, placing encrypted data in <a>DID
-documents</a> is not an appropriate means to include personal data.
+Encrypting all or parts of a <a>DID document</a> is <em>not</em> an appropriate
+means to protect data in the long term. Similarly, placing encrypted data in
+a <a>DID document</a> is not an appropriate means to protect personal data.
       </p>
       <p>
 Given the caveats above, if encrypted data is included in a <a>DID document</a>,
-implementers are advised to not encrypt with the public keys of entities that
-do not wish to be correlated with the <a>DID</a>.
+implementers are advised to not associate any correlatable information
+that could be used to infer a relationship between the encrypted data
+and an associated party. Examples of correlatable information include
+public keys of a receiving party, identifiers to digital assets known to be
+under the control of a receiving party, or human readable descriptions of a
+receiving party.
       </p>
 
     </section>
@@ -4595,32 +4705,37 @@ do not wish to be correlated with the <a>DID</a>.
     <section>
       <h2>Equivalence Properties</h2>
       <p>
-The three equivalence properties—<code><a>alsoKnownAs</a></code>, <code><a>equivalentId</a></code>, and
-<code><a>canonicalId</a></code>—are subject to special security considerations
-related to attacks against <a>DIDs</a> that are asserted to be equivalent.
+Given the <code><a>equivalentId</a></code> and
+<code><a>canonicalId</a></code> properties are generated by
+<a>DID methods</a> themselves, the same security and accuracy
+guarantees that apply to the resolved <a>DID</a> present in the
+<code>id</code> field of a <a>DID document</a> also apply to
+these properties. The <code><a>alsoKnownAs</a></code> property
+is not guaranteed to be an accurate statement of equivalence, and
+should not be relied upon without performing validation steps
+beyond the resolution of the <a>DID document</a>.
       </p>
       <p>
 The <code><a>equivalentId</a></code> and <code><a>canonicalId</a></code>
-properties that constrain equivalence assertions to variants of a single <a>DID</a>
-produced by the same <a>DID method</a> (e.g., <code>did:foo:123</code> ≡
-<code>did:foo:hash(123)</code>) can be trusted to the extent the requesting party
-trusts the <a>DID method</a> (and a conforming producer) itself.
+properties express equivalence assertions to variants of a single <a>DID</a>
+produced by the same <a>DID method</a> and can be trusted to the extent the
+requesting party trusts the <a>DID method</a> and a conforming producer and
+resolver.
       </p>
       <p>
-The <code><a>alsoKnownAs</a></code> property that permits an equivalence
-assertion to <a>URIs</a> that are not governed by the same <a>DID method</a> (or may
-not be <a>DIDs</a> at all) cannot be trusted without performing verification steps
-outside of the governing <a>DID method</a>. See additional guidance in
-<a href="#also-known-as"></a>.
+The <code><a>alsoKnownAs</a></code> property permits an equivalence assertion to
+<a>URIs</a> that are not governed by the same <a>DID method</a> and cannot be
+trusted without performing verification steps outside of the governing <a>DID
+method</a>. See additional guidance in <a href="#also-known-as"></a>.
       </p>
       <p>
-As with any other sensitive properties in the <a>DID document</a> (e.g., public key
-references), parties relying on any equivalence statement in a <a>DID document</a>
-should guard against the values of these properties being substituted by an
-attacker after the proper verification has been performed. Any write access to a
-<a>DID document</a> stored in memory or disk after verification has been performed is
-an attack vector that will circumvent verification unless the <a>DID document</a> is
-re-verified.
+As with any other security-related properties in the <a>DID document</a>,
+parties relying on any equivalence statement in a <a>DID document</a> should
+guard against the values of these properties being substituted by an attacker
+after the proper verification has been performed. Any write access to a <a>DID
+document</a> stored in memory or disk after verification has been performed is
+an attack vector that might circumvent verification unless the <a>DID
+document</a> is re-verified.
       </p>
 
     </section>
@@ -4628,82 +4743,87 @@ re-verified.
     <section>
       <h2>Content Integrity Protection</h2>
       <p>
-<a>DID documents</a> which include external JSON-LD contexts (see
-<a href="#json-ld"></a>) or any other links to external machine-readable
-content are vulnerable to tampering.
+<a>DID documents</a> which include links to external machine-readable content
+such as images, web pages, or schemas are vulnerable to tampering. It is
+strongly advised that external links are integrity protected using solutions
+such as a hashlink [[?HASHLINK]]. External links are to be avoided if they
+cannot be integrity protected and the <a>DID document</a>'s integrity is
+dependent on the external link.
       </p>
       <p>
-<a>DID document</a> consumers can cache local static copies of JSON-LD contexts
-and/or verify the integrity of external contexts against the cryptographic
-hash for the context as registered in the DID Specification Registries
-(see the registration process for more detail) [[?DID-SPEC-REGISTRIES]].
+One example of an external link where the integrity of the <a>DID document</a>
+itself could be affected is the JSON-LD Context [[JSON-LD]]. To protect against
+compromise, <a>DID document</a> consumers are advised to cache local static
+copies of JSON-LD contexts and/or verify the integrity of external contexts
+against a cryptographic hash that is known to be associated with a safe
+version of the external JSON-LD Context.
       </p>
     </section>
     <section>
       <h2>Persistence</h2>
       <p>
-DIDs are designed to be persistent such that a controller need not rely
-upon a single trusted third party or administrator to maintain their
-identifiers. No administrator can take control away from the controller,
-nor can an administrator prevent their identifiers' use for any particular
-purpose such as authentication, authorization, and attestation. No
-third party can act on behalf of a controller to remove or render
-inoperable an individual's (or an organization's) identifier without the
-controller's consent.
+<a>DIDs</a> are designed to be persistent such that a <a>controller</a> need not
+rely upon a single trusted third party or administrator to maintain their
+identifiers. In an ideal case, no administrator can take control away from the
+<a>controller</a>, nor can an administrator prevent their identifiers' use for
+any particular purpose such as authentication, authorization, and attestation.
+No third party can act on behalf of a <a>controller</a> to remove or render
+inoperable an entity's identifier without the <a>controller</a>'s consent.
       </p>
       <p>
-However, it is important to note that in all DID Methods that enable
+However, it is important to note that in all <a>DID methods</a> that enable
 cryptographic proof-of-control, the means of proving control can always be
-transferred to another party by transferring the cryptographic secrets.
-Therefore, it is vital that systems relying on the persistence of an
-identifier over time regularly check to ensure that the identifier is, in
-fact, still under the control of the intended party.
+transferred to another party by transferring the secret cryptographic material.
+Therefore, it is vital that systems relying on the persistence of an identifier
+over time regularly check to ensure that the identifier is, in fact, still under
+the control of the intended party.
       </p>
       <p>
-Unfortunately, it is impossible to determine from the cryptography alone
-whether or not the private key material associated with a given proof
-mechanism has been compromised. It might well be that the expected controller
-still has access to the private keys &mdash; and as such can execute a
-proof-of-control as part of a verification process &mdash; while at the same time,
-a bad actor also has access to (or a copy of) those same keys.
+Unfortunately, it is impossible to determine from the cryptography alone whether
+or not the secret cryptographic material associated with a given
+<a>verification method</a> has been compromised. It might well be that the
+expected <a>controller</a> still has access to the secret cryptographic material
+&mdash; and as such can execute a proof-of-control as part of a verification
+process &mdash; while at the same time, a bad actor also has access to those
+same keys, or to a copy thereof.
       </p>
       <p>
 As such, cryptographic proof-of-control is expected to only be used as one
-factor in evaluating the level of identity assurance for a given
-service. DID-based authentication provides much greater assurance than a
-username and password, thanks to the ability to determine control over
-a secret without transmitting that secret between systems. However, it is
-not infallible. Services that perform sensitive, high value, or
-life-critical operations should use additional factors as appropriate.
+factor in evaluating the level of identity assurance required for high-stakes
+scenarios. <a>DID</a>-based authentication provides much greater assurance than
+a username and password, thanks to the ability to determine control over a
+cryptographic secret without transmitting that secret between systems. However,
+it is not infallible. Scenarios that involve sensitive, high value, or
+life-critical operations are expected to use additional factors as appropriate.
       </p>
       <p>
-In addition to potential ambiguity from use by different controllers,
-it is impossible to guarantee, in general, that a given DID is being used
-in reference to the same subject at any given point in time. It is
-technically possible for the controller to reuse a DID for different
-subjects and, more subtly, for the precise definition of the Subject
-to either change over time or be misunderstood.
+In addition to potential ambiguity from use by different <a>controllers</a>, it
+is impossible to guarantee, in general, that a given <a>DID</a> is being used in
+reference to the same subject at any given point in time. It is technically
+possible for the controller to reuse a <a>DID</a> for different subjects and,
+more subtly, for the precise definition of the subject to either change over
+time or be misunderstood.
       </p>
       <p>
-For example, consider a DID used for a sole proprietorship, receiving
-various credentials used for financial transactions. To the controller,
-that identifier referred to the business. As the business grows, it
-eventually gets incorporated as an LLC. The controller continues using
-that same DID, because to <strong>them</strong> the DID refers to the
-business. However, to the state, the tax authority, and the local
-municipality, the DID no longer refers to the same entity. Whether or
-not the subtle shift in meaning matters to a credit provider or supplier
-is necessarily up to them to decide. In many cases, as long as the bills
-get paid and collections can be enforced, the shift is immaterial.
+For example, consider a <a>DID</a> used for a sole proprietorship, receiving
+various credentials used for financial transactions. To the <a>controller</a>,
+that identifier referred to the business. As the business grows, it eventually
+gets incorporated as a Limited Liability Company. The <a>controller</a>
+continues using that same <a>DID</a>, because to <strong>them</strong> the
+<a>DID</a> refers to the business. However, to the state, the tax authority, and
+the local municipality, the <a>DID</a> no longer refers to the same entity.
+Whether or not the subtle shift in meaning matters to a credit provider or
+supplier is necessarily up to them to decide. In many cases, as long as the
+bills get paid and collections can be enforced, the shift is immaterial.
       </p>
       <p>
-Because of these potential ambiguities, DIDs should be considered valid
-<em>contextually</em> rather than absolutely. Their persistence does not
-imply that they refer to the exact same Subject, nor that they are under the
-control of the same controller. Instead, one needs to understand the context
-in which the DID was created, how it is used, and consider the likely
-shifts in their meaning, and adopt procedures and policies to address both
-potential and inevitable semantic drift.
+Due to these potential ambiguities, <a>DIDs</a> are to be considered valid
+<em>contextually</em> rather than absolutely. Their persistence does not imply
+that they refer to the exact same subject, nor that they are under the control
+of the same <a>controller</a>. Instead, one needs to understand the context in
+which the <a>DID</a> was created, how it is used, and consider the likely shifts
+in their meaning, and adopt procedures and policies to address both potential
+and inevitable semantic drift.
       </p>
     </section>
 
@@ -4711,38 +4831,47 @@ potential and inevitable semantic drift.
       <h2>Level of Assurance</h2>
 
       <p>
-Additional information about the security context of authentication events
-is often required for compliance reasons, especially in regulated areas
-such as the financial and public sectors. Examples include but are not
-limited to protection of secret keys, the identity proofing process, and the
-form-factor of the authenticator. For example, <a target="_blank"
+Additional information about the security context of authentication events is
+often required for compliance reasons, especially in regulated areas such as the
+financial and public sectors. This information is often referred to as a Level
+of Assurance (LOA). Examples include the protection of secret cryptographic
+material, the identity proofing process, and the form-factor of the
+authenticator.
+      </p>
+
+      <p>
+<a target="_blank"
 href="https://ec.europa.eu/info/law/payment-services-psd-2-directive-eu-2015-2366_en">
 Payment services (PSD 2)</a> and <a target="_blank"
 href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2014.257.01.0073.01.ENG">
 eIDAS</a> introduce such requirements to the security context. Level of
-Assurance (LoA) frameworks are classified and defined by, for example,
-<a target="_blank"
+assurance frameworks are classified and defined by regulations and
+standards such as <a
+target="_blank"
 href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2014.257.01.0073.01.ENG">
-eIDAS</a>,
-<a target="_blank" href="https://pages.nist.gov/800-63-3/sp800-63-3.html">
-NIST 800-63-3</a> and <a target="_blank" href="https://www.iso.org/standard/45138.html">
-ISO/IEC 29115:2013</a>, including their requirements for the security
-context, and making recommendations on how to achieve them. This might
-include strong user authentication and <a target="_blank"
-href="https://fidoalliance.org/fido2">FIDO2</a>/<a target="_blank"
-href="https://www.w3.org/TR/webauthn-2/">WebAuthn</a> can be potential
-implementations. A LoA represents the level of confidence that an entity is in
-fact that entity. Some regulated use cases require the implementation of a
-certain LoA. Since <a>verification relationships</a> such as <code>
+eIDAS</a>, <a target="_blank"
+href="https://pages.nist.gov/800-63-3/sp800-63-3.html"> NIST 800-63-3</a> and <a
+target="_blank" href="https://www.iso.org/standard/45138.html"> ISO/IEC
+29115:2013</a>, including their requirements for the security context, and
+making recommendations on how to achieve them. This might include strong user
+authentication where <a target="_blank"
+href="https://fidoalliance.org/fido2/">FIDO2</a>/<a target="_blank"
+href="https://www.w3.org/TR/webauthn-2/">WebAuthn</a> can fulfill the
+requirement.
+      </p>
+
+      <p>
+Some regulated scenarios require the implementation of a specific level of
+assurance. Since <a>verification relationships</a> such as <code>
 <a>assertionMethod</a></code> and <code><a>authentication</a></code> might be
-used in some of these use cases, information about the applied security context
-might need to be expressed and provided to a <em>verifier</em>.
-Whether and how to encode this information in the <a>DID document</a> data model
-is out of scope for this specification, but it should be noted that the <a>DID
-document</a> data model can be extended if necessary (see <a
-href="#extensibility">Extensibility</a> section). Section <a
-href="#privacy-considerations">Privacy Considerations</a> remains applicable for
-such extensions.
+used in some of these situations, information about the applied security context
+might need to be expressed and provided to a <em>verifier</em>. Whether and how
+to encode this information in the <a>DID document</a> data model is out of scope
+for this specification. Interested readers might note that 1) the information
+could be transmitted using Verifiable Credentials [[?VC-DATA-MODEL]], and 2) the
+<a>DID document</a> data model can be extended to incorporate this information
+as described in <a href="#extensibility"></a>, and where <a
+href="#privacy-considerations"></a> is applicable for such extensions.
       </p>
     </section>
   </section>
@@ -4751,39 +4880,43 @@ such extensions.
     <h1>Privacy Considerations</h1>
 
     <p>
-It is critically important to apply the principles of Privacy by Design
-[[PRIVACY-BY-DESIGN]] to all aspects of the <a>decentralized identifier</a>
-architecture, because <a>DIDs</a> and <a>DID documents</a> are, by design,
-administered directly by the <a>DID controller(s)</a>. There is no registrar,
-hosting company, or other intermediate service provider to recommend or apply
-additional privacy safeguards. The authors of this specification have applied
-all seven Privacy by Design principles throughout its development.
-Privacy in this specification is preventative not remedial, and privacy is an
-embedded default.
+Since <a>DIDs</a> and <a>DID documents</a> are designed to be administered
+directly by the <a>DID controller(s)</a>, it is critically important to apply
+the principles of Privacy by Design [[PRIVACY-BY-DESIGN]] to all aspects of the
+<a>decentralized identifier</a> architecture. All seven of these principles
+have been applied throughout the development of this specification. The design
+used in this specification does not assume that there is a registrar, hosting
+company, nor other intermediate service provider to recommend or apply
+additional privacy safeguards. Privacy in this specification is preventive,
+not remedial, and is an embedded default. The following sections cover privacy
+considerations that implementers might find useful when building systems that
+utilize <a>decentralized identifiers</a>.
     </p>
 
     <section>
       <h2>Keep Personal Data Private</h2>
 
       <p>
-If a <a>DID method</a> specification is written for a public <a>verifiable
-data registry</a> where all <a>DIDs</a> and <a>DID documents</a> are publicly
-available, it is <em>critical</em> that <a>DID documents</a> contain no
-personal data.
+If a <a>DID method</a> specification is written for a public-facing
+<a>verifiable data registry</a> where corresponding <a>DIDs</a> and <a>DID
+documents</a> might be made publicly available, it is <em>critical</em> that
+those <a>DID documents</a> contain no personal data. Personal data can instead
+be trasmitted through other means such as 1) Verifiable Credentials
+[[?VC-DATA-MODEL]], or 2) <a>service endpoints</a> under control of the <a>DID
+subject</a> or <a>DID controller</a>.
       </p>
+
       <p>
-Personal data can instead be placed behind <a>service
-endpoints</a> under control of the <a>DID subject</a> or <a>DID controller</a>.
-Due diligence should be taken around the use of URLs in <a>service endpoints</a>
-to prevent leakage of personal data or correlation within a URL
-of a <a>service endpoint</a>. For example, a URL that contains a username is
-dangerous to include in a <a>DID Document</a> because the username is likely
-to be human-meaningful in a way that can reveal information
-that the <a>DID subject</a> did not consent to sharing. With this privacy
-architecture, personal data can be exchanged on a private, peer-to-peer basis
-using communications channels identified and secured by <a>public key
-descriptions</a> in <a>DID documents</a>. This also enables <a>DID
-subjects</a> and requesting parties to implement the <a
+Due diligence is expected to be taken around the use of URLs in <a>service
+endpoints</a> to prevent leakage of personal data or correlation within a URL of
+a <a>service endpoint</a>. For example, a URL that contains a username is
+dangerous to include in a <a>DID Document</a> because the username is likely to
+be human-meaningful in a way that can reveal information that the <a>DID
+subject</a> did not consent to sharing. With the privacy architecture  suggested
+by this specification, personal data can be exchanged on a private, peer-to-peer
+basis using communication channels identified and secured by <a>verification
+methods</a> in <a>DID documents</a>. This also enables <a>DID subjects</a> and
+requesting parties to implement the <a
 href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR</a>
 <a href="https://en.wikipedia.org/wiki/Right_to_be_forgotten">right to be
 forgotten</a>, because no personal data is written to an immutable
@@ -4792,19 +4925,18 @@ forgotten</a>, because no personal data is written to an immutable
     </section>
 
     <section>
-      <h2>DID Correlation Risks and Pseudonymous DIDs</h2>
+      <h2>DID Correlation Risks</h2>
 
       <p>
-Like any type of globally unique identifier, <a>DIDs</a> might be used for
+Like any type of globally unambiguous identifier, <a>DIDs</a> might be used for
 correlation. <a>DID controllers</a> can mitigate this privacy risk by using
-pairwise unique <a>DIDs</a>, that is, sharing a different private <a>DID</a> for
-every relationship. In effect, each <a>DID</a> acts as a pseudonym. A
-pseudonymous <a>DID</a> need only be shared with more than one party when
-the <a>DID subject</a> explicitly authorizes correlation between those parties.
-If pseudonymous <a>DIDs</a> are the default, then the only need for a public
-<a>DID</a> (a <a>DID</a> published openly or shared with a large number of
-parties) is when the <a>DID subject</a> explicitly desires public
-identification.
+pairwise <a>DIDs</a> that are unique to each relationship; in effect, each
+<a>DID</a> acts as a pseudonym. A pairwise <a>DID</a> need only be shared with
+more than one party when correlation is explicitly desired. If pairwise
+<a>DIDs</a> are the default, then the only need to publish a <a>DID</a> openly,
+or to share it with multiple parties, is when the <a
+href="dfn-did-controller">DID controller(s)</a> and/or <a>DID subject</a>
+explicitly desires public identification and correlation.
       </p>
     </section>
 
@@ -4812,26 +4944,29 @@ identification.
       <h2>DID Document Correlation Risks</h2>
 
       <p>
-The anti-correlation protections of pseudonymous <a>DIDs</a> are easily defeated
-if the data in the corresponding <a>DID documents</a> can be correlated. For
-example, using same <a>public key descriptions</a> or bespoke
-<a>service endpoints</a> in multiple <a>DID documents</a> can provide as much
-correlation information as using the same <a>DID</a>. Therefore the
-<a>DID document</a> for a pseudonymous <a>DID</a> also needs to use pairwise
-unique public keys.
+The anti-correlation protections of pairwise <a>DIDs</a> are easily defeated if
+the data in the corresponding <a>DID documents</a> can be correlated. For
+example, using identical <a>verification methods</a> or bespoke <a>service
+endpoints</a> in multiple <a>DID documents</a> can provide as much correlation
+information as using the same <a>DID</a>. Therefore, the <a>DID document</a> for
+a pairwise <a>DID</a> also needs to use pairwise unique information, such as
+ensuring that <a>verification methods</a> are unique to the pairwise
+relationship.
+      </p>
 
+      <p>
 It might seem natural to also use pairwise unique <a>service endpoints</a> in
-the <a>DID document</a> for a pseudonymous <a>DID</a>. However, unique endpoints
+the <a>DID document</a> for a pairwise <a>DID</a>. However, unique endpoints
 allow all traffic between two <a>DIDs</a> to be isolated perfectly into unique
 buckets, where timing correlation and similar analysis is easy. Therefore, a
-better strategy for endpoint privacy might be to share an endpoint among
-thousands or millions of <a>DIDs</a> controlled by many different subjects.
-See also <a href="#herd-privacy"></a>.
+better strategy for endpoint privacy might be to share an endpoint among a large
+number of <a>DIDs</a> controlled by many different subjects (see <a
+href="#herd-privacy"></a>).
       </p>
     </section>
 
     <section>
-      <h2>Assigning a type to the DID subject</h2>
+      <h2>DID Subject Classification</h2>
       <p>
 It is dangerous to add properties to the <a>DID document</a> that can be used
 to indicate, explicitly or through inference, what <em>type</em> or nature of
@@ -4841,7 +4976,7 @@ person.
       <p>
 Not only do such properties potentially result in personal data (see
 <a href="#keep-personal-data-private"></a>) or
-correlatable data (see <a href="#did-correlation-risks-and-pseudonymous-dids">
+correlatable data (see <a href="#did-correlation-risks">
 </a> and <a href="#did-document-correlation-risks"></a>) being present in the
 <a>DID document</a>, but they can be used for grouping particular <a>DIDs</a>
 in such a way that they are included in or excluded from certain operations or
@@ -4885,104 +5020,132 @@ encrypted transport layers, and pad messages to standard lengths.
     <section>
       <h2>Service Privacy</h2>
       <p>
-The ability for a controller to optionally state at least one <a>service endpoint</a>
-in the <a>DID document</a> increases their control and agency. Each additional
-endpoint in the <a>DID document</a> adds privacy risk either due to correlation
-(e.g., across endpoint descriptions) or because the <a>services</a> are not
-protected by an authorization mechanism, or both.
+The ability for a <a>controller</a> to optionally express at least one
+<a>service endpoint</a> in the <a>DID document</a> increases their control and
+agency. Each additional endpoint in the <a>DID document</a> adds privacy risk
+either due to correlation, such as across endpoint descriptions, or because the
+<a>services</a> are not protected by an authorization mechanism, or both.
       </p>
       <p>
-<a>DID documents</a> are often public and will be stored and indexed
-efficiently by their very standards-based nature. This risk is worse if <a>DID
-documents</a> are published to immutable Verifiable Data Registries. Access to
-a history of the <a>DID documents</a> referenced by a <a>DID</a> represents a
-form of traffic analysis made more efficient through the use of standards.
+<a>DID documents</a> are often public and, since they are standardized,  will be
+stored and indexed efficiently by their very standards-based nature. This risk
+is worse if <a>DID documents</a> are published to immutable <a>verifiable data
+registries</a>. Access to a history of the <a>DID documents</a> referenced by a
+<a>DID</a> represents a form of traffic analysis made more efficient through the
+use of standards.
       </p>
       <p>
 The degree of additional privacy risk caused by using multiple <a>service
 endpoints</a> in one <a>DID document</a> can be difficult to estimate. Privacy
-harms are typically unintended consequences. <a>DIDs</a> can refer to
-documents, <a>services</a>, schemas, and other things that may be associated
-with individual people, households, clubs, and employers &mdash; and
-correlation of their <a>service endpoints</a> could become a powerful
-surveillance and inference tool. An example of this is that including multiple
-common country-level top level domain such as
-<code>https://example.co.uk</code> could be used to infer the approximate
-location of the <a>DID subject</a> with a greater degree of probability.
-      </p>
-      <p>
-The variety of possible endpoints makes it particularly challenging to maintain
-herd privacy, in which no information about the <a>DID subject</a> is leaked.
-      </p>
-      <p>
-First, because service endpoints may be specified as <a>URIs</a>, they could
-unintentionally leak personal information because of the architecture of the service.
-For example, a service endpoint of <code>http://example.com/MyFirstName</code> is leaking the term
-<code>MyFirstName</code> to everyone who can access the DID Document. When linking to legacy systems,
-this is an unavoidable risk and care should be taken in such cases. We encourage new,
-DID-aware endpoints to use nothing more than the DID itself for any identification necessary,
-e.g., <code>http://example.com/did%3Aexample%3Aabc123</code>. Since that <code>did:example:abc123</code> is already
-exposed in the DID Document, it leaks no additional information.
+harms are typically unintended consequences. <a>DIDs</a> can refer to documents,
+<a>services</a>, schemas, and other things that might be associated with
+individual people, households, clubs, and employers &mdash; and correlation of
+their <a>service endpoints</a> could become a powerful surveillance and
+inference tool. An example of this potential harm can be seen when multiple
+common country-level top level domains such as <code>https://example.co.uk</code>
+might be used to infer the approximate location of the <a>DID subject</a> with a
+greater degree of probability.
       </p>
 
-      <p>
-Second, because a <a>DID document</a> can list multiple service endpoints, it is possible to
-irreversibly associate services that are not associated in any other context. This
-correlation on its own may lead to de-anonymization, revealing information about the
-<a>DID subject</a> even if the <a>URIs</a> used did not.
-      </p>
-      <p>
-Third, because some types of <a>DID subjects</a> may be more or less likely to list specific
-endpoints, e.g., a <a>DID</a> for an automobile may include a pointer to a public title
-record at the Department of Motor Vehicles, while a <a>DID</a> for an individual would not.
-As such, the listing of a given service could, by itself, leak information that can
-be used to infer something about the subject.
-      </p>
-      <p>
-It is the goal of herd privacy to ensure that the nature of specific subjects is
-obscured by the population of the whole. To maximize herd privacy, implementers
-need to rely on one &mdash; and only one &mdash; service endpoint, with that endpoint providing
-a proxy or mediator service that the controller is willing to depend on to protect
-such associations and that blinds requests to the ultimate service.
-      </p>
-      <p>
-Toward this end, consider any of the following:
-      </p>
-      <ul>
-        <li>
+      <section class="notoc">
+        <h3>Maintaining Herd Privacy</h3>
+        <p>
+The variety of possible endpoints makes it particularly challenging to maintain
+herd privacy, in which no information about the <a>DID subject</a> is leaked (see
+<a href="#herd-privacy"></a>).
+        </p>
+
+        <p>
+First, because service endpoints might be specified as <a>URIs</a>, they could
+unintentionally leak personal information because of the architecture of the
+service. For example, a service endpoint of
+<code>http://example.com/MyFirstName</code> is leaking the term
+<code>MyFirstName</code> to everyone who can access the <a>DID document</a>.
+When linking to legacy systems, this is an unavoidable risk, and care is expected
+to be taken in such cases. This specification encourages new, <a>DID</a>-aware
+endpoints to use nothing more than the <a>DID</a> itself for any identification
+necessary. For example, if a service description were to include
+<code>http://example.com/did%3Aexample%3Aabc123</code>, no harm would be done
+because <code>did:example:abc123</code> is already exposed in the DID Document;
+it leaks no additional information.
+        </p>
+
+        <p>
+Second, because a <a>DID document</a> can list multiple service endpoints, it is
+possible to irreversibly associate services that are not associated in any other
+context. This correlation on its own may lead to privacy harms by revealing
+information about the <a>DID subject</a>, even if the <a>URIs</a> used did not
+contain any sensitive information.
+        </p>
+        <p>
+Third, because some types of <a>DID subjects</a> might be more or less likely to
+list specific endpoints, the listing of a given service could, by itself, leak
+information that can be used to infer something about the <a>DID subject</a>.
+For example, a <a>DID</a> for an automobile might include a pointer to a public
+title record at the Department of Motor Vehicles, while a <a>DID</a> for an
+individual would not include that information.
+        </p>
+        <p>
+It is the goal of herd privacy to ensure that the nature of specific <a>DID
+subjects</a> is obscured by the population of the whole. To maximize herd
+privacy, implementers need to rely on one &mdash; and only one &mdash; service
+endpoint, with that endpoint providing a proxy or mediator service that the
+controller is willing to depend on, to protect such associations and to blind
+requests to the ultimate service.
+        </p>
+      </section>
+
+      <section class="notoc">
+        <h3>Service Endpoint Alternatives</h3>
+
+        <p>
+Given the concerns in the previous section, implementers are urged to
+consider any of the following service endpoint approaches:
+        </p>
+
+        <ul>
+          <li>
 <strong>Negotiator Endpoint</strong> &mdash; Service for negotiating mutually
-agreeable communications channels, preferably using private set intersection. The
-output of negotiation is a communication channel and whatever credentials may be
-needed to access it.
-        </li>
-        <li>
-<strong>Tor Endpoint</strong> (<a href="https://www.torproject.org/about/history/">Tor Onion Router</a>) &mdash;
-Provide a privacy-respecting address for reaching service endpoints. Any service that
-can be provided online can be provided through TOR for additional privacy.</li>
-<li><strong>Mediator Endpoint</strong> &mdash;
-<a href="https://github.com/hyperledger/aries-rfcs/blob/720bdab50e2d0437fda03028c1b17c69781bdd69/concepts/0046-mediators-and-relays/README.md">Mediators</a>
+agreeable communications channels, preferably using private set intersection.
+The output of negotiation is a communication channel and whatever credentials
+might be needed to access it.
+          </li>
+          <li>
+<strong>Tor Endpoint</strong> (<a
+href="https://www.torproject.org/about/history/">Tor Onion Router</a>) &mdash;
+Provide a privacy-respecting address for reaching service endpoints. Any service
+that can be provided online can be provided through TOR for additional
+privacy.
+           </li>
+           <li>
+<strong>Mediator Endpoint</strong> &mdash; <a
+href="https://github.com/hyperledger/aries-rfcs/blob/720bdab50e2d0437fda03028c1b17c69781bdd69/concepts/0046-mediators-and-relays/README.md">Mediators</a>
 provide a generic endpoint, for multiple parties, receive encrypted messages on
-behalf of those parties, and forward
-them to the intended recipient. This avoids the need to have a specific endpoint per subject, which could create a
-correlation risk. Also called a proxy.
-        </li>
-        <li>
-<strong>Confidential Storage</strong> &mdash; Proprietary or confidential personal
-information may need to be kept off-registry to provide additional privacy and/or
-security guarantees, especially for those methods where <a>DID documents</a> are published
+behalf of those parties, and forward them to the intended recipient. This avoids
+the need to have a specific endpoint per subject, which could create a
+correlation risk. This approach is also called a proxy.
+          </li>
+          <li>
+<strong>Confidential Storage</strong> &mdash; Proprietary or confidential
+personal information might need to be kept off of a  <a>verifiable data
+registry</a> to provide additional privacy and/or security guarantees,
+especially for those <a>DID methods</a> where <a>DID documents</a> are published
 on a public ledger. Pointing to external resource services provides a means for
 authorization checks and deletion.
-        </li>
-        <li>
+          </li>
+          <li>
 <strong>Polymorphic Proxy</strong> &mdash; A proxy endpoint that can act as any
-number of services, depending on how it is called. For example, the same URL could
-be used for both negotiator and mediator functions, depending on a mechanism for re-routing.
-        </li>
-      </ul>
-      <p>
-These service endpoint types continue to be an area of innovation.
-      </p>
+number of services, depending on how it is called. For example, the same URL
+could be used for both negotiator and mediator functions, depending on a
+mechanism for re-routing.
+          </li>
+        </ul>
 
+        <p>
+These service endpoint types continue to be an area of innovation and
+exploration.
+        </p>
+      </section>
     </section>
   </section>
 
@@ -5045,99 +5208,138 @@ practice to avoid using the same <a>verification method</a> for multiple purpose
 }
       </pre>
 
-      <pre class="example" title="DID Document with many different verification methods">
+      <pre class="example" title="DID Document with many different key types">
 {
   "@context": [
     "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/suites/jws-2020/v1",
-    "https://w3id.org/security/suites/ed25519-2020/v1"
+    "https://w3id.org/security/suites/jws-2020/v1"
   ],
-  "id": "did:example:123",
   "verificationMethod": [
     {
-      "id": "did:example:123#ZC2jXTO6t4R501bfCXv3RxarZyUbdP2w_psLwMuY6ec",
-      "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
-      "controller": "did:example:123",
-      "publicKeyMultibase": "zH3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
-    },
-    {
-      "id": "did:example:123#zQ3shP2mWsZYWgvgM11nenXRTx9L1yiJKmkf9dfX7NaMKb1pX",
-      "type": "EcdsaSecp256k1VerificationKey2019", <span class="comment">// external (property value)</span>
-      "controller": "did:example:123",
-      "publicKeyBase58": "d5cW2R53NHTTkv7EQSYR8YxaKx7MVCcchjmK5EgCNXxo",
-    },
-    {
-      "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+      "id": "did:example:123#key-0",
+      "type": "JsonWebKey2020",
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "OKP", <span class="comment">// external (property name)</span>
-        "crv": "Ed25519", <span class="comment">// external (property name)</span>
-        "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ" <span class="comment">// external (property name)</span>
+        "kty": "OKP", // external (property name)
+        "crv": "Ed25519", // external (property name)
+        "x": "VCpo2LMLhn6iWku8MKvSLg2ZAoC-nlOyPVQaO3FxVeQ" // external (property name)
       }
     },
     {
-      "id": "did:example:123#z6LSnjagzhe8Df6gZmroW3wjDd7XQLwAuYfwa4ZeTBCGFoYc",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+      "id": "did:example:123#key-1",
+      "type": "JsonWebKey2020",
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "OKP", <span class="comment">// external (property name)</span>
-        "crv": "X25519", <span class="comment">// external (property name)</span>
-        "x": "pE_mG098rdQjY3MKK2D5SUQ6ZOEW3a6Z6T7Z4SgnzCE" <span class="comment">// external (property name)</span>
-      },
+        "kty": "OKP", // external (property name)
+        "crv": "X25519", // external (property name)
+        "x": "pE_mG098rdQjY3MKK2D5SUQ6ZOEW3a6Z6T7Z4SgnzCE" // external (property name)
+      }
+    },
+    {
+      "id": "did:example:123#key-2",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC", // external (property name)
+        "crv": "secp256k1", // external (property name)
+        "x": "Z4Y3NNOxv0J6tCgqOBFnHnaZhJF6LdulT7z8A-2D5_8", // external (property name)
+        "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk" // external (property name)
+      }
+    },
+    {
+      "id": "did:example:123#key-3",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC", // external (property name)
+        "crv": "secp256k1", // external (property name)
+        "x": "U1V4TVZVMUpUa0ZVU1NBcU9CRm5IbmFaaEpGNkxkdWx", // external (property name)
+        "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk" // external (property name)
+      }
+    },
+    {
+      "id": "did:example:123#key-4",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC", // external (property name)
+        "crv": "P-256", // external (property name)
+        "x": "Ums5WVgwRkRTVVFnU3k5c2xvZllMbEcwM3NPRW91ZzN", // external (property name)
+        "y": "nDQW6XZ7b_u2Sy9slofYLlG03sOEoug3I0aAPQ0exs4" // external (property name)
+      }
+    },
+    {
+      "id": "did:example:123#key-5",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC", // external (property name)
+        "crv": "P-384", // external (property name)
+        "x": "VUZKSlUwMGdpSXplekRwODhzX2N4U1BYdHVYWUZsaXVDR25kZ1U0UXA4bDkxeHpE", // external (property name)
+        "y": "jq4QoAHKiIzezDp88s_cxSPXtuXYFliuCGndgU4Qp8l91xzD1spCmFIzQgVjqvcP" // external (property name)
+      }
+    },
+    {
+      "id": "did:example:123#key-6",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "EC", // external (property name)
+        "crv": "P-521", // external (property name)
+        "x": "VTI5c1lYSmZWMmx1WkhNZ0dQTXhaYkhtSnBEU3UtSXZwdUtpZ0VOMnB6Z1d0U28tLVJ3ZC1uNzhuclduWnplRGMx", // external (property name)
+        "y": "UW5WNVgwSnBkR052YVc0Z1VqY1B6LVpoZWNaRnliT3FMSUpqVk9sTEVUSDd1UGx5RzBnRW9NV25JWlhoUVZ5cFB5" // external (property name)
+      }
+    },
+    {
+      "id": "did:example:123#key-7",
+      "type": "JsonWebKey2020",
+      "controller": "did:example:123",
+      "publicKeyJwk": {
+        "kty": "RSA", // external (property name)
+        "e": "AQAB", // external (property name)
+        "n": "UkhWaGJGOUZRMTlFVWtKSElBdENGV2hlU1F2djFNRXh1NVJMQ01UNGpWazlraEpLdjhKZU1YV2UzYldIYXRqUHNrZGYyZGxhR2tXNVFqdE9uVUtMNzQybXZyNHRDbGRLUzNVTElhVDFoSkluTUhIeGoyZ2N1Yk82ZUVlZ0FDUTRRU3U5TE8wSC1MTV9MM0RzUkFCQjdRamE4SGVjcHl1c3BXMVR1X0RicXhjU253ZW5kYW13TDUyVjE3ZUtobE80dVh3djJIRmx4dWZGSE0wS21DSnVqSUt5QXhqRF9tM3FfX0lpSFVWSEQxdERJRXZMUGhHOUF6c24zajk1ZC1zYU" // external (property name)
+      }
     }
+  ]
+}
+      </pre>
+      <pre class="example" title="DID Document with different verification method types">
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2018/v1",
+    "https://w3id.org/security/suites/x25519-2019/v1",
+    "https://w3id.org/security/suites/secp256k1-2019/v1",
+    "https://w3id.org/security/suites/jws-2020/v1"
+  ],
+  "verificationMethod": [
     {
-      "id": "did:example:123#4SZ-StXrp5Yd4_4rxHVTCYTHyt4zyPfN1fIuYsm6k3A",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+      "id": "did:example:123#key-0",
+      "type": "Ed25519VerificationKey2018",
       "controller": "did:example:123",
-      "publicKeyJwk": {
-        "kty": "EC", <span class="comment">// external (property name)</span>
-        "crv": "secp256k1", <span class="comment">// external (property name)</span>
-        "x": "Z4Y3NNOxv0J6tCgqOBFnHnaZhJF6LdulT7z8A-2D5_8", <span class="comment">// external (property name)</span>
-        "y": "i5a2NtJoUKXkLm6q8nOEu9WOkso1Ag6FTUT6k_LMnGk" <span class="comment">// external (property name)</span>
-      }
+      "publicKeyBase58": "3M5RCDjPTWPkKSN3sxUmmMqHbmRPegYP1tjcKyrDbt9J" // external (property name)
     },
     {
-      "id": "did:example:123#n4cQ-I_WkHMcwXBJa7IHkYu8CMfdNcZKnKsOrnHLpFs",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+      "id": "did:example:123#key-1",
+      "type": "X25519KeyAgreementKey2019",
       "controller": "did:example:123",
-      "publicKeyJwk": {
-        "kty": "RSA", <span class="comment">// external (property name)</span>
-        "e": "AQAB", <span class="comment">// external (property name)</span>
-        "n": "omwsC1AqEk6whvxyOltCFWheSQvv1MExu5RLCMT4jVk9khJKv8JeMXWe3bWHatjPskdf2dlaGkW5QjtOnUKL742mvr4tCldKS3ULIaT1hJInMHHxj2gcubO6eEegACQ4QSu9LO0H-LM_L3DsRABB7Qja8HecpyuspW1Tu_DbqxcSnwendamwL52V17eKhlO4uXwv2HFlxufFHM0KmCJujIKyAxjD_m3q__IiHUVHD1tDIEvLPhG9Azsn3j95d-saIgZzPLhQFiKluGvsjrSkYU5pXVWIsV-B2jtLeeLC14XcYxWDUJ0qVopxkBvdlERcNtgF4dvW4X00EHj4vCljFw" <span class="comment">// external (property name)</span>
-      }
+      "publicKeyBase58": "FbQWLPRhTH95MCkQUeFYdiSoQt8zMwetqfWoxqPgaq7x" // external (property name)
     },
     {
-      "id": "did:example:123#_TKzHv2jFIyvdTGF1Dsgwngfdg3SH6TpDv0Ta1aOEkw",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+      "id": "did:example:123#key-2",
+      "type": "EcdsaSecp256k1VerificationKey2019",
       "controller": "did:example:123",
-      "publicKeyJwk": {
-        "kty": "EC", <span class="comment">// external (property name)</span>
-        "crv": "P-256", <span class="comment">// external (property name)</span>
-        "x": "38M1FDts7Oea7urmseiugGW7tWc3mLpJh6rKe7xINZ8", <span class="comment">// external (property name)</span>
-        "y": "nDQW6XZ7b_u2Sy9slofYLlG03sOEoug3I0aAPQ0exs4" <span class="comment">// external (property name)</span>
-      }
+      "publicKeyBase58": "ns2aFDq25fEV1NUd3wZ65sgj5QjFW8JCAHdUJfLwfodt" // external (property name)
     },
     {
-      "id": "did:example:123#8wgRfY3sWmzoeAL-78-oALNvNj67ZlQxd1ss_NX1hZY",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+      "id": "did:example:123#key-3",
+      "type": "JsonWebKey2020",
       "controller": "did:example:123",
       "publicKeyJwk": {
-        "kty": "EC", <span class="comment">// external (property name)</span>
-        "crv": "P-384", <span class="comment">// external (property name)</span>
-        "x": "GnLl6mDti7a2VUIZP5w6pcRX8q5nvEIgB3Q_5RI2p9F_QVsaAlDN7IG68Jn0dS_F", <span class="comment">// external (property name)</span>
-        "y": "jq4QoAHKiIzezDp88s_cxSPXtuXYFliuCGndgU4Qp8l91xzD1spCmFIzQgVjqvcP" <span class="comment">// external (property name)</span>
-      }
-    },
-    {
-      "id": "did:example:123#NjQ6Y_ZMj6IUK_XkgCDwtKHlNTUTVjEYOWZtxhp1n-E",
-      "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
-      "controller": "did:example:123",
-      "publicKeyJwk": {
-        "kty": "EC", <span class="comment">// external (property name)</span>
-        "crv": "P-521", <span class="comment">// external (property name)</span>
-        "x": "AVlZG23LyXYwlbjbGPMxZbHmJpDSu-IvpuKigEN2pzgWtSo--Rwd-n78nrWnZzeDc187Ln3qHlw5LRGrX4qgLQ-y", <span class="comment">// external (property name)</span>
-        "y": "ANIbFeRdPHf1WYMCUjcPz-ZhecZFybOqLIJjVOlLETH7uPlyG0gEoMWnIZXhQVypPy_HtUiUzdnSEPAylYhHBTX2" <span class="comment">// external (property name)</span>
+        "kty": "EC", // external (property name)
+        "crv": "P-256", // external (property name)
+        "x": "Er6KSSnAjI70ObRWhlaMgqyIOQYrDJTE94ej5hybQ2M", // external (property name)
+        "y": "pPVzCOTJwgikPjuUE6UebfZySqEJ0ZtsWFpj7YSPGEk" // external (property name)
       }
     }
   ]
@@ -5469,11 +5671,11 @@ the rules defined in <a href="#fragment"></a>.
 Use of the media type <code>application/did+ld+json</code> is pending
 clarification over the registration of
 <a href="https://datatracker.ietf.org/doc/html/draft-w3cdidwg-media-types-with-multiple-suffixes">
-media types with multiple suffixes</a>. The alternative will be to use
-<code>application/ld+json</code> with an expected profile parameter of
-<code>https://www.w3.org/ns/did/json-ld-profile</code> if multiple suffixes
-cannot be registered by the time the rest of DID Core is ready for W3C
-Proposed Recommendation. Discussion is happening in the
+media types with multiple suffixes</a>. Depending on the outcome of the
+discussion with the IETF Application and Real Time (ART) Media Type group,
+the media type might change, sections involving the media type might change,
+or other changes related to the media type might be applied to this
+specification. Discussion is happening in the
 <a href="https://mailarchive.ietf.org/arch/msg/media-types/Sv8oT38p1nWHPYZQmnL_9GPjeic/">
 IETF media-types mailing list</a>.
       </p>
@@ -5853,7 +6055,27 @@ the <a>DID subject</a>, may change over time. This is under the exclusive author
 of the <a>DID controller</a>. For more details, see section <a href="#persistence"></a>.
       </p>
     </section>
-
+    <section>
+      <h2>Changing the DID controller</h2>
+      <p>
+The <a>DID controller</a> for a <a>DID document</a> might change over time. However,
+depending on how it is implemented, a change in the <a>DID controller</a> might
+not be made apparent by changes to the <a>DID document</a> itself. For example,
+if the change is implemented through a shift in ownership of the underlying
+cryptographic keys or other controls used for one or more of the <a>verification
+methods</a> in the <a>DID document</a>, it might be indistinguishable from a
+standard key rotation.
+      </p>
+      <p>
+On the other hand, if the change is implemented by changing the value of the
+<a>`controller`</a> property, it will be transparent.
+      </p>
+      <p>
+If it is important to verify a change of <a>DID controller</a>, implementers are advised
+to <a>authenticate</a> the new <a>DID controller</a> against the
+<a>verification methods</a> in the revised <a>DID document</a>.
+      </p>
+    </section>
   </section>
 
 
