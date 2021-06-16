@@ -218,7 +218,7 @@ implementations, a Candidate Recommendation <a
 href="https://w3c.github.io/did-test-suite/">test suite</a> that determines
 whether or not a given implementation is conformant with this specification
 and 18 implementations submitted to the conformance test suite.
-Readers are advised to heed the  <a
+Readers are advised to heed the <a
 href="https://github.com/w3c/did-core/issues">DID Core issues</a> and <a
 href="https://github.com/w3c/did-test-suite/issues"> DID Core Test Suite
 issues</a> that each contain the latest list of concerns and proposed changes
@@ -274,7 +274,7 @@ representations including JSON and JSON-LD.
       <li>
 The introduction of a DID Specifications Registry for the purposes of
 registering extension properties, representations, DID Resolution input
-metadata and output metadata, DID Document metadata, DID parameters, and  DID
+metadata and output metadata, DID Document metadata, DID parameters, and DID
 Methods.
       </li>
       <li>
@@ -673,7 +673,7 @@ DID documents
 typically express <a>verification methods</a>, such as cryptographic public
 keys, and <a>services</a> relevant to interactions with the <a>DID subject</a>.
 The generic properties supported in a <a>DID document</a> are specified in <a
-href="#core-properties"></a>.  A <a>DID document</a> can be serialized to a byte
+href="#core-properties"></a>. A <a>DID document</a> can be serialized to a byte
 stream (see <a href="#representations"></a>). The properties present in
 a <a>DID document</a> can be updated according to the applicable operations
 outlined in <a href="#methods"></a>.
@@ -1369,7 +1369,7 @@ data-cite="INFRA#ordered-map">maps</a> and <a
 data-cite="INFRA#ordered-set">sets</a>, are explicitly ordered. All list-like
 value structures in [[INFRA]] are ordered, whether or not that order is
 significant. For the purposes of this specification, unless otherwise stated, <a
-data-cite="INFRA#ordered-map">map</a> and  <a
+data-cite="INFRA#ordered-map">map</a> and <a
 data-cite="INFRA#ordered-set">set</a> ordering is not important and
 implementations are not expected to produce or consume deterministically ordered
 values.
@@ -2905,7 +2905,7 @@ A <a data-cite="INFRA#nulls">null</a> value.
         <p class="advisement">
 All implementers creating <a>conforming consumers</a> that produce JSON
 <a>representations</a> are advised to ensure that their algorithms are aligned
-with the  <a
+with the <a
 data-cite="INFRA#parse-json-bytes-to-an-infra-value">JSON
 conversion rules</a> in the [[INFRA]] specification and the <a
 data-cite="RFC8259#section-6">precision advisements regarding Numbers</a> in the
@@ -3245,7 +3245,7 @@ accept
           </dt>
           <dd>
 The Media Type of the caller's preferred <a>representation</a> of the <a>DID
-document</a>. The Media Type MUST be expressed as an  <a data-lt="ascii
+document</a>. The Media Type MUST be expressed as an <a data-lt="ascii
 string">ASCII string</a>. The <a>DID resolver</a> implementation SHOULD use this
 value to determine the <a>representation</a> contained in the returned
 <code>didDocumentStream</code> if such a <a>representation</a> is supported and
@@ -3394,7 +3394,7 @@ registration in a <a>verifiable data registry</a> and another form after such
 registration. In this case, the <a>DID method</a> specification might need to
 express one or more <a>DIDs</a> that are logically equivalent to the resolved
 <a>DID</a> as a property of the <a>DID document</a>. This is the purpose of the
-<code><a>equivalentId</a></code>  property.
+<code><a>equivalentId</a></code> property.
             </p>
             <p>
 <a>DID document</a> metadata MAY include an <code>equivalentId</code> property.
@@ -3581,7 +3581,7 @@ If the <code>dereferencing</code> function was called and successful, this MUST
 contain a <a>resource</a> corresponding to the <a>DID URL</a>. The
 <code>contentStream</code> MAY be a <a>resource</a> such as a <a>DID
 document</a> that is serializable in one of the conformant
-<a>representations</a>,  a <a href="#verification-methods">Verification Method</a>,  a <a
+<a>representations</a>, a <a href="#verification-methods">Verification Method</a>, a <a
 href="#services">service</a>, or any other resource format that can be identified via a Media Type
 and obtained through the resolution process. If the
 dereferencing is unsuccessful, this value MUST be empty.
@@ -4470,7 +4470,7 @@ true:
 
         <ul>
           <li>
-The proof or signature includes the `versionId` or `versionTime` of the  <a>DID
+The proof or signature includes the `versionId` or `versionTime` of the <a>DID
 document</a> that was used at the point the signature or proof was created.
           </li>
           <li>
@@ -4912,7 +4912,7 @@ endpoints</a> to prevent leakage of personal data or correlation within a URL of
 a <a>service endpoint</a>. For example, a URL that contains a username is
 dangerous to include in a <a>DID Document</a> because the username is likely to
 be human-meaningful in a way that can reveal information that the <a>DID
-subject</a> did not consent to sharing. With the privacy architecture  suggested
+subject</a> did not consent to sharing. With the privacy architecture suggested
 by this specification, personal data can be exchanged on a private, peer-to-peer
 basis using communication channels identified and secured by <a>verification
 methods</a> in <a>DID documents</a>. This also enables <a>DID subjects</a> and
@@ -5027,7 +5027,7 @@ either due to correlation, such as across endpoint descriptions, or because the
 <a>services</a> are not protected by an authorization mechanism, or both.
       </p>
       <p>
-<a>DID documents</a> are often public and, since they are standardized,  will be
+<a>DID documents</a> are often public and, since they are standardized, will be
 stored and indexed efficiently by their very standards-based nature. This risk
 is worse if <a>DID documents</a> are published to immutable <a>verifiable data
 registries</a>. Access to a history of the <a>DID documents</a> referenced by a
@@ -5127,7 +5127,7 @@ correlation risk. This approach is also called a proxy.
           </li>
           <li>
 <strong>Confidential Storage</strong> &mdash; Proprietary or confidential
-personal information might need to be kept off of a  <a>verifiable data
+personal information might need to be kept off of a <a>verifiable data
 registry</a> to provide additional privacy and/or security guarantees,
 especially for those <a>DID methods</a> where <a>DID documents</a> are published
 on a public ledger. Pointing to external resource services provides a means for
@@ -6091,7 +6091,7 @@ policy of the European Union and no official endorsement should be inferred.
     </p>
 
     <p>
-Work on this specification has also been supported by the  <a
+Work on this specification has also been supported by the <a
 href="https://www.weboftrust.info/">Rebooting the Web of Trust</a> community
 facilitated by Christopher Allen, Shannon Appelcline, Kiara Robles, Brian
 Weller, Betty Dhamers, Kaliya Young, Kim Hamilton Duffy, Manu Sporny, Drummond
