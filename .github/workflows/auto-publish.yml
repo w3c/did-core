@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request: {}
   push:
-    branches: [gh-pages]
+    branches: [main]
 jobs:
   main:
     name: Build, Validate and Deploy
