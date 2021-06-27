@@ -6039,7 +6039,22 @@ that is not controlled by a single individual.
         </p>
       </section>
     </section>
-      <section>
+    <section>
+      <h2>Changing the DID subject</h2>
+      <p>
+A <a>DID document</a> has exactly one <a>DID</a> which refers to
+the <a>DID subject</a>. The <a>DID</a> is expressed as the value of the
+<code><a>id</a></code> property. This property value is immutable for
+the lifetime of the
+<a>DID document</a>.
+      </p>
+      <p>
+However, it is possible that the resource <em>identified</em> by the <a>DID</a>,
+the <a>DID subject</a>, may change over time. This is under the exclusive authority
+of the <a>DID controller</a>. For more details, see section <a href="#persistence"></a>.
+      </p>
+    </section>
+    <section>
       <h2>Changing the DID controller</h2>
       <p>
 The <a>DID controller</a> for a <a>DID document</a> might change over time. However,
@@ -6059,8 +6074,7 @@ If it is important to verify a change of <a>DID controller</a>, implementers are
 to <a>authenticate</a> the new <a>DID controller</a> against the
 <a>verification methods</a> in the revised <a>DID document</a>.
       </p>
-      </section>
-
+    </section>
   </section>
 
 
