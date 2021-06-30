@@ -1908,15 +1908,6 @@ Two supported verification material properties are listed below:
         </p>
 
         <dl>
-          <dt><dfn>publicKeyMultibase</dfn></dt>
-          <dd>
-            <p>
-The <code>publicKeyMultibase</code> property is OPTIONAL. This feature is
-non-normative. If present, the value MUST be a <a
-data-cite="INFRA#string">string</a> representation of a [[?MULTIBASE]] encoded
-public key.
-            </p>
-          </dd>
           <dt><dfn>publicKeyJwk</dfn></dt>
           <dd>
             <p>
@@ -1931,6 +1922,20 @@ their <a href="#fragment">fragment identifier</a>. It is RECOMMENDED that JWK
 <code>kid</code> values are set to the public key fingerprint [[RFC7638]]. See
 the first key in <a href="#example-various-verification-method-types"></a> for
 an example of a public key with a compound key identifier.
+            </p>
+          </dd>
+          <dt><dfn>publicKeyMultibase</dfn></dt>
+          <dd>
+            <p>
+The <code>publicKeyMultibase</code> property is OPTIONAL. This feature is
+non-normative. If present, the value MUST be a <a
+data-cite="INFRA#string">string</a> representation of a [[?MULTIBASE]] encoded
+public key.
+            </p>
+            <p class="advisement">
+              Representations of <code>privateKeyMultibase</code> might not 
+              be possible in some cases where <code>publicKeyMultibase</code> can be
+              represented.
             </p>
           </dd>
       </dl>
