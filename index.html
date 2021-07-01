@@ -164,7 +164,6 @@
   .longdesc:target {
     display: block;
     background-color: #ff9;
-    font-style: normal;
   }
   </style>
 </head>
@@ -5838,7 +5837,9 @@ a <a>DID subject</a> and resolve to a <a>DID document</a> that describes the
 <a>DID subject</a>. The <a>DID document</a> is an artifact of <a>DID
 resolution</a> and not a separate resource distinct from the <a>DID subject</a>.
 See also: <a class="longdesc-link" href="#did-and-did-document-graph-longdesc">Text Description</a>
-          <div class="longdesc" id="did-and-did-document-graph-longdesc">
+        </figcaption>
+      </figure>
+      <div class="longdesc" id="did-and-did-document-graph-longdesc">
 Two filled black circles appear at the top of the diagram, one on the left,
 labeled "DID Controller", and one on the right, labeled "DID Subject". A
 rectangle, with lower right corner bent inwards to form a small triangle,
@@ -5854,9 +5855,7 @@ green arrow labeled "Controller" points in the opposite direction, from DID
 Document to DID Controller, making an arc outward to the left of the diagram. A
 blue arrow, labeled, "Describes" points directly from DID Document to DID
 Subject.
-          </div>
-        </figcaption>
-      </figure>
+      </div>
     </section>
     <section>
       <h2>Statements in the DID document</h2>
@@ -5919,7 +5918,9 @@ A <a>DID document</a> can use the alsoKnownAs property to assert that another
 <a>URI</a> (including, but not necessarily, another <a>DID</a>) refers to the
 same <a>DID subject</a>.
 See also: <a class="longdesc-link" href="#alsoKnownAs-graph-longdesc">Text Description</a>
-          <div class="longdesc" id="alsoKnownAs-graph-longdesc">
+        </figcaption>
+      </figure>
+      <div class="longdesc" id="alsoKnownAs-graph-longdesc">
 The diagram contains three small black filled circles, two rectangles with bent
 corners, arrows between them, and labels, as follows. On the upper left is a
 circle labeled "DID Controller". On the upper right is a circle labeled "DID
@@ -5944,9 +5945,7 @@ the center of the image. A green arrow, labeled "Controls", points directly
 from DID Controller to DID Document. Another green arrow points in the opposite
 direction, labeled "Controller", curving outwards on the left of the image,
 from DID Document to DID Controller.
-          </div>
-        </figcaption>
-      </figure>
+      </div>
     </section>
     <section>
       <h2>Serving a representation of the DID subject</h2>
@@ -6023,11 +6022,11 @@ controller</a>. This is the case when an individual or organization creates a
           <figcaption>
 The <a>DID subject</a> is the same entity as the <a>DID controller</a>.
             See also: <a class="longdesc-link" href="#controller-subject-equivalence-longdesc">Text Description</a>
-            <div class="longdesc" id="controller-subject-equivalence-longdesc">
-Two small black circles appear in the diagram, one on the upper left, labeled, "DID Controller", and one on the upper right, labeled "DID Subject". A solid red arrow extends from the DID Controller circle to the DID Subject circle, labeled "DID" in large bold text above the arrow, and "Identifies" in small italic text beneath the arrow. A dotted red double-ended arrow, labeled "Equivalence", extends between the two circles, forming an arc in the space between and above them. In the lower part of the diagram is a rectangle with bent corner, outlined in black, containing the label "DID Document". Arrows point between this DID Document rectangle and the small black circles for DID Controller and DID Subject, with italic labels, as follows. A blue arrow points from the DID Document to the DID Subject, labeled, "Describes". A green arrow points from the DID Controller to the DID Document, labeled "Controls". A green points from the DID Document to the DID Controller, in an outward arc, labeled, "Controller". A dotted red arrow, labeled "Resolves to", extends from the DID controller starting to the right, branching off from the arrow to the DID Subject, then curving downward to point to the DID Document.
-            </div>
           </figcaption>
         </figure>
+        <div class="longdesc" id="controller-subject-equivalence-longdesc">
+Two small black circles appear in the diagram, one on the upper left, labeled, "DID Controller", and one on the upper right, labeled "DID Subject". A solid red arrow extends from the DID Controller circle to the DID Subject circle, labeled "DID" in large bold text above the arrow, and "Identifies" in small italic text beneath the arrow. A dotted red double-ended arrow, labeled "Equivalence", extends between the two circles, forming an arc in the space between and above them. In the lower part of the diagram is a rectangle with bent corner, outlined in black, containing the label "DID Document". Arrows point between this DID Document rectangle and the small black circles for DID Controller and DID Subject, with italic labels, as follows. A blue arrow points from the DID Document to the DID Subject, labeled, "Describes". A green arrow points from the DID Controller to the DID Document, labeled "Controls". A green points from the DID Document to the DID Controller, in an outward arc, labeled, "Controller". A dotted red arrow, labeled "Resolves to", extends from the DID controller starting to the right, branching off from the arrow to the DID Subject, then curving downward to point to the DID Document.
+        </div>
         <p>
 From a graph model perspective, even though the nodes identified as the
 <a>DID controller</a> and <a>DID subject</a> in
@@ -6087,7 +6086,9 @@ The same arcs ("controls" and "controller") exist between each
               Multiple independent <a>DID controllers</a> that can each act
               independently.
               See also: <a href="#independent-did-controllers-longdesc" class="longdesc-link">Text Description</a>
-            <div class="longdesc" id="independent-did-controllers-longdesc">
+          </figcaption>
+        </figure>
+        <div class="longdesc" id="independent-did-controllers-longdesc">
 Three black circles appear on the left, vertically, each labeled "DID
 Controller".  From each of these circles, a pair of green arrows extends
 towards the center of the diagram, to a single rectangle, labeled "DID
@@ -6098,9 +6099,7 @@ circle to the rectangle, labeled "Controls", and one pointing in the opposite
 direction, from the rectangle to the black circle, labeled "Controller". From
 the right of the rectangle extends a blue arrow, labeled, "Describes", pointing
 to a black circle labeled, "DID Subject".
-            </div>
-          </figcaption>
-        </figure>
+        </div>
       </section>
       <section>
         <h3>Group Control</h3>
@@ -6125,7 +6124,9 @@ representing the <a>DID controller</a> group as shown in <a href="#group-did-con
 Multiple <a>DID controllers</a> who are expected to act together as a
 <a>DID controller</a> group.
             See also: <a class="longdesc-link" href="#group-did-controllers-longdesc">Text Description</a>
-            <div class="longdesc" id="group-did-controllers-longdesc">
+          </figcaption>
+        </figure>
+        <div class="longdesc" id="group-did-controllers-longdesc">
 On the left are three black filled circles, labeled "DID Controller Group" by a
 brace on the left. From each of these three circles, a green arrow extends to
 the center right. These three arrows converge towards a single filled white
@@ -6136,9 +6137,7 @@ rectangle, and is labeled "Controls".  The lower arrow points left, from the
 rectangle to the white circle, and is labeled "Controller".  From the right of
 the rectangle extends a blue arrow, labeled "Describes", pointing to a black
 circle, labeled "DID Subject".
-            </div>
-          </figcaption>
-        </figure>
+        </div>
         <p>
 This configuration will often apply when the <a>DID subject</a> is an
 organization, corporation, government agency, community, or other group
