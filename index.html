@@ -1024,6 +1024,12 @@ function the same way across all <a>DID methods</a>. Support for all
 <a href="#did-parameters">DID Parameters</a> is OPTIONAL.
         </p>
 
+        <p class="note">
+It is generally expected that DID URL dereferencer implementations will
+reference [[?DID-RESOLUTION]] for additional implementation details. The scope
+of this specification only defines the contract of the most common 
+query parameters.
+        </p>
         <table class="simple">
           <thead>
             <tr>
@@ -3541,6 +3547,13 @@ A conformant <a>DID URL</a> as a single <a data-cite="INFRA#string">string</a>.
 This is the <a>DID URL</a> to dereference. To dereference a <a>DID fragment</a>,
 the complete <a>DID URL</a> including the <a>DID fragment</a> MUST be used. This
 input is REQUIRED.
+
+        <p class="note" title="DID URL dereferencer patterns">
+While it is valid for any <code>didUrl</code> to be passed to a DID URL
+dereferencer, implementers are expected to refer to [[?DID-RESOLUTION]] to
+further understand common patterns for how a <a>DID URL</a> is expected 
+to be dereferenced.
+        </p>
         </dd>
         <dt>
 dereferencingOptions
