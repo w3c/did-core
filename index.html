@@ -1034,7 +1034,7 @@ function the same way across all <a>DID methods</a>. Support for all
         <p class="note">
 It is generally expected that DID URL dereferencer implementations will
 reference [[?DID-RESOLUTION]] for additional implementation details. The scope
-of this specification only defines the contract of the most common 
+of this specification only defines the contract of the most common
 query parameters.
         </p>
         <table class="simple">
@@ -2633,8 +2633,8 @@ Production and consumption of representations.
       </figure>
 
       <p class="note" title="Conversion between representations">
-An implementation is expected to convert between <a>representations</a> by using the
-<em>consumption</em> rules on the source representation resulting in the <a
+An implementation is expected to convert between <a>representations</a> by using
+the <em>consumption</em> rules on the source representation resulting in the <a
 href="#data-model">data model</a> and then using the <em>production</em> rules
 to serialize <a href="#data-model">data model</a> to the target representation,
 or any other mechanism that results in the same target representation.
@@ -3024,9 +3024,9 @@ Specification Registries [[?DID-SPEC-REGISTRIES]].
 
         <p>
 A <a>conforming producer</a> that generates a JSON-LD <a>representation</a>
-SHOULD NOT produce a <a>DID document</a> that contains terms not defined
-via the <code>@context</code> as <a>conforming consumers</a> are expected
-to remove unknown terms. When serializing a JSON-LD <a>representation</a> of a <a>DID
+SHOULD NOT produce a <a>DID document</a> that contains terms not defined via the
+<code>@context</code> as <a>conforming consumers</a> are expected to remove
+unknown terms. When serializing a JSON-LD <a>representation</a> of a <a>DID
 document</a>, a <a>conforming producer</a> MUST specify a media type of
 <code>application/did+ld+json</code> to downstream applications such as
 described in <a href="#did-resolution-metadata"></a>.
@@ -3186,12 +3186,13 @@ relating to the results of the <a>DID resolution</a> process which typically
 changes between invocations of the <code>resolve</code> and
 <code>resolveRepresentation</code> functions, as it represents data about the
 resolution process itself. This structure is REQUIRED, and in the case of an
-error in the resolution process, this MUST NOT be empty.
-This metadata is defined by <a href="#did-resolution-metadata"></a>. If
+error in the resolution process, this MUST NOT be empty. This metadata is
+defined by <a href="#did-resolution-metadata"></a>. If
 <code>resolveRepresentation</code> was called, this structure MUST contain a
 <code>contentType</code> property containing the Media Type of the
-representation found in the <code>didDocumentStream</code>. If the resolution is not successful, this structure
-MUST contain an <code>error</code> property describing the error.
+representation found in the <code>didDocumentStream</code>. If the resolution is
+not successful, this structure MUST contain an <code>error</code> property
+describing the error.
         </dd>
         <dt>
 <dfn>didDocument</dfn>
@@ -3242,7 +3243,8 @@ these functions in any way. <a>DID resolver</a> implementations might map the
 method-specific internal function to perform the actual <a>DID resolution</a>
 process. <a>DID resolver</a> implementations might implement and expose
 additional functions with different signatures in addition to the
-<code>resolve</code> and <code>resolveRepresentation</code> functions specified here.
+<code>resolve</code> and <code>resolveRepresentation</code> functions specified
+here.
       </p>
 
       <section>
@@ -3517,7 +3519,8 @@ contained in the <a>DID URL</a>. <a>DID URL dereferencing</a> might involve
 multiple steps (e.g., when the DID URL being dereferenced includes a fragment),
 and the function is defined to return the final resource after all steps are
 completed. The details of how this process is accomplished are outside the scope
-of this specification. The following figure depicts the relationship described above.
+of this specification. The following figure depicts the relationship described
+above.
       </p>
 
       <figure id="did-url-dereference-overview">
@@ -3558,7 +3561,7 @@ input is REQUIRED.
         <p class="note" title="DID URL dereferencer patterns">
 While it is valid for any <code>didUrl</code> to be passed to a DID URL
 dereferencer, implementers are expected to refer to [[?DID-RESOLUTION]] to
-further understand common patterns for how a <a>DID URL</a> is expected 
+further understand common patterns for how a <a>DID URL</a> is expected
 to be dereferenced.
         </p>
         </dd>
@@ -3603,10 +3606,10 @@ If the <code>dereferencing</code> function was called and successful, this MUST
 contain a <a>resource</a> corresponding to the <a>DID URL</a>. The
 <code>contentStream</code> MAY be a <a>resource</a> such as a <a>DID
 document</a> that is serializable in one of the conformant
-<a>representations</a>, a <a href="#verification-methods">Verification Method</a>, a <a
-href="#services">service</a>, or any other resource format that can be identified via a Media Type
-and obtained through the resolution process. If the
-dereferencing is unsuccessful, this value MUST be empty.
+<a>representations</a>, a <a href="#verification-methods">Verification
+Method</a>, a <a href="#services">service</a>, or any other resource format that
+can be identified via a Media Type and obtained through the resolution process.
+If the dereferencing is unsuccessful, this value MUST be empty.
         </dd>
         <dt>
 contentMetadata
@@ -3647,10 +3650,10 @@ accept
           </dt>
           <dd>
 The Media Type that the caller prefers for <code>contentStream</code>. The Media
-Type MUST be expressed as an <a data-lt="ascii string">ASCII string</a>.
-The <a>DID URL dereferencing</a> implementation SHOULD use this value to
-determine the <code>contentType</code> of the <a>representation</a> contained in the returned value if such a
-<a>representation</a> is supported and available.
+Type MUST be expressed as an <a data-lt="ascii string">ASCII string</a>. The
+<a>DID URL dereferencing</a> implementation SHOULD use this value to determine
+the <code>contentType</code> of the <a>representation</a> contained in the
+returned value if such a <a>representation</a> is supported and available.
           </dd>
         </dl>
       </section>
@@ -4106,11 +4109,11 @@ implementation to use.
       <h2>Proving Control and Binding</h2>
 
       <p>
-Binding an entity in the digital world or the physical world to a <a>DID</a>,
-to a <a>DID document</a>, or to cryptographic material requires, the use of security
-protocols contemplated by this specification. The following sections describe
-some possible scenarios and how an entity therein might prove control over a
-<a>DID</a> or a <a>DID document</a> for the purposes of authentication or
+Binding an entity in the digital world or the physical world to a <a>DID</a>, to
+a <a>DID document</a>, or to cryptographic material requires, the use of
+security protocols contemplated by this specification. The following sections
+describe some possible scenarios and how an entity therein might prove control
+over a <a>DID</a> or a <a>DID document</a> for the purposes of authentication or
 authorization.
       </p>
 
@@ -4120,14 +4123,14 @@ authorization.
         <p>
 Proving control over a <a>DID</a> and/or a <a>DID Document</a> is useful when
 updating either in a <a>verifiable data registry</a> or authenticating with
-remote systems. Cryptographic digital signatures and <a>verifiable timestamps</a>
-enable certain security protocols related to <a>DID documents</a> to be
-cryptographically verifiable. For these purposes, this specification defines
-useful <a>verification relationships</a> in <a href="#authentication"></a> and
-<a href="#capability-invocation"></a>. The secret cryptographic material
-associated with the <a>verification methods</a> can be used to generate a
-cryptographic digital signature as a part of an authentication or authorization
-security protocol.
+remote systems. Cryptographic digital signatures and <a>verifiable
+timestamps</a> enable certain security protocols related to <a>DID documents</a>
+to be cryptographically verifiable. For these purposes, this specification
+defines useful <a>verification relationships</a> in <a
+href="#authentication"></a> and <a href="#capability-invocation"></a>. The
+secret cryptographic material associated with the <a>verification methods</a>
+can be used to generate a cryptographic digital signature as a part of an
+authentication or authorization security protocol.
         </p>
 
         <p class="note" title="Signed DID documents">
@@ -4293,16 +4296,16 @@ The following considerations might be of use when contemplating the use of
 <a>Verification method</a> rotation is a proactive security measure.
         </li>
         <li>
-It is generally considered a best practice to perform <a>verification method</a> rotation
-on a regular basis.
+It is generally considered a best practice to perform <a>verification method</a>
+rotation on a regular basis.
         </li>
         <li>
 Higher security environments tend to employ more frequent verification method
 rotation.
         </li>
         <li>
-<a>Verification method</a> rotation manifests only as changes to the current or latest
-version of a <a>DID document</a>.
+<a>Verification method</a> rotation manifests only as changes to the current or
+latest version of a <a>DID document</a>.
         </li>
         <li>
 When a <a>verification method</a> has been active for a long time, or used for
@@ -4359,8 +4362,9 @@ Compromise of the secrets associated with a <a>verification method</a> allows
 the attacker to use them according to the <a>verification relationship</a>
 expressed by <a>controller</a> in the <a>DID document</a>, for example, for
 authentication. The attacker's use of the secrets might be indistinguishable
-from the legitimate <a href="#did-controller">controller's</a> use starting from the
-time the <a>verification method</a> was registered, to the time it was revoked.
+from the legitimate <a href="#did-controller">controller's</a> use starting from
+the time the <a>verification method</a> was registered, to the time it was
+revoked.
       </p>
 
 
@@ -4405,10 +4409,11 @@ compromises such as masquerading, theft, and fraud.
         <li>
 Revocation is expected to be understood as a <a>controller</a> expressing that
 proofs or signatures associated with a revoked <a>verification method</a>
-created after its revocation should be treated as invalid. It could also imply
-a concern that existing proofs or signatures might have been created by an
+created after its revocation should be treated as invalid. It could also imply a
+concern that existing proofs or signatures might have been created by an
 attacker, but this is not necessarily the case. Verifiers, however, might still
-choose to accept or reject any such proofs or signatures at their own discretion.
+choose to accept or reject any such proofs or signatures at their own
+discretion.
         </li>
 
         <li>
@@ -4664,11 +4669,11 @@ assumption about whether a <a>DID</a> is a persistent identifier for the same
 
       <p>
 Many cybersecurity abuses hinge on exploiting gaps between reality and the
-assumptions of rational, good-faith actors. Immutability of <a>DID documents</a> can
-provide some security benefits. Individual <a>DID methods</a> ought to
+assumptions of rational, good-faith actors. Immutability of <a>DID documents</a>
+can provide some security benefits. Individual <a>DID methods</a> ought to
 consider constraints that would eliminate behaviors or semantics they do not
-need. The more <em>locked down</em> a <a>DID method</a> is, while providing
-the same set of features, the less it can be manipulated by malicious actors.
+need. The more <em>locked down</em> a <a>DID method</a> is, while providing the
+same set of features, the less it can be manipulated by malicious actors.
       </p>
       <p>
 As an example, consider that a single edit to a <a>DID document</a> can change
@@ -4726,15 +4731,13 @@ receiving party.
     <section>
       <h2>Equivalence Properties</h2>
       <p>
-Given the <code><a>equivalentId</a></code> and
-<code><a>canonicalId</a></code> properties are generated by
-<a>DID methods</a> themselves, the same security and accuracy
-guarantees that apply to the resolved <a>DID</a> present in the
-<code>id</code> field of a <a>DID document</a> also apply to
-these properties. The <code><a>alsoKnownAs</a></code> property
-is not guaranteed to be an accurate statement of equivalence, and
-should not be relied upon without performing validation steps
-beyond the resolution of the <a>DID document</a>.
+Given the <code><a>equivalentId</a></code> and <code><a>canonicalId</a></code>
+properties are generated by <a>DID methods</a> themselves, the same security and
+accuracy guarantees that apply to the resolved <a>DID</a> present in the
+<code>id</code> field of a <a>DID document</a> also apply to these properties.
+The <code><a>alsoKnownAs</a></code> property is not guaranteed to be an accurate
+statement of equivalence, and should not be relied upon without performing
+validation steps beyond the resolution of the <a>DID document</a>.
       </p>
       <p>
 The <code><a>equivalentId</a></code> and <code><a>canonicalId</a></code>
@@ -5063,17 +5066,17 @@ harms are typically unintended consequences. <a>DIDs</a> can refer to documents,
 individual people, households, clubs, and employers &mdash; and correlation of
 their <a>service endpoints</a> could become a powerful surveillance and
 inference tool. An example of this potential harm can be seen when multiple
-common country-level top level domains such as <code>https://example.co.uk</code>
-might be used to infer the approximate location of the <a>DID subject</a> with a
-greater degree of probability.
+common country-level top level domains such as
+<code>https://example.co.uk</code> might be used to infer the approximate
+location of the <a>DID subject</a> with a greater degree of probability.
       </p>
 
       <section class="notoc">
         <h3>Maintaining Herd Privacy</h3>
         <p>
 The variety of possible endpoints makes it particularly challenging to maintain
-herd privacy, in which no information about the <a>DID subject</a> is leaked (see
-<a href="#herd-privacy"></a>).
+herd privacy, in which no information about the <a>DID subject</a> is leaked
+(see <a href="#herd-privacy"></a>).
         </p>
 
         <p>
@@ -5082,13 +5085,13 @@ unintentionally leak personal information because of the architecture of the
 service. For example, a service endpoint of
 <code>http://example.com/MyFirstName</code> is leaking the term
 <code>MyFirstName</code> to everyone who can access the <a>DID document</a>.
-When linking to legacy systems, this is an unavoidable risk, and care is expected
-to be taken in such cases. This specification encourages new, <a>DID</a>-aware
-endpoints to use nothing more than the <a>DID</a> itself for any identification
-necessary. For example, if a service description were to include
-<code>http://example.com/did%3Aexample%3Aabc123</code>, no harm would be done
-because <code>did:example:abc123</code> is already exposed in the DID Document;
-it leaks no additional information.
+When linking to legacy systems, this is an unavoidable risk, and care is
+expected to be taken in such cases. This specification encourages new,
+<a>DID</a>-aware endpoints to use nothing more than the <a>DID</a> itself for
+any identification necessary. For example, if a service description were to
+include <code>http://example.com/did%3Aexample%3Aabc123</code>, no harm would be
+done because <code>did:example:abc123</code> is already exposed in the DID
+Document; it leaks no additional information.
         </p>
 
         <p>
@@ -5184,7 +5187,8 @@ and other verification method types.
 
       <p class="note">
 These examples are for information purposes only, it is considered a best
-practice to avoid using the same <a>verification method</a> for multiple purposes.
+practice to avoid using the same <a>verification method</a> for multiple
+purposes.
       </p>
 
       <pre class="example" title="DID Document with 1 verification method type">
@@ -5600,12 +5604,13 @@ Following is a diagram showing the relationships among
     <figure id="detailed-architecture-overview">
       <img style="margin: auto; display: block; width: 90%;"
         src="diagrams/did_detailed_architecture_overview.svg" alt="
-DIDs and DID documents are recorded on a Verifiable Data Registry;
-DIDs resolve to DID documents; DIDs refer to DID subjects; a DID controller controls
-a DID document; DID URLs contains a DID; DID URLs dereferenced to DID document fragments or
-external resources;
-DID resolver implements resolve function; DID URL dereferencer implements dereferencing function;
-DID method operates a Verfiable Data Registry; DID resolver and DID URL dereferencer instruct a DID method.
+DIDs and DID documents are recorded on a Verifiable Data Registry; DIDs resolve
+to DID documents; DIDs refer to DID subjects; a DID controller controls a DID
+document; DID URLs contains a DID; DID URLs dereferenced to DID document
+fragments or external resources; DID resolver implements resolve function; DID
+URL dereferencer implements dereferencing function; DID method operates a
+Verfiable Data Registry; DID resolver and DID URL dereferencer instruct a DID
+method.
       " >
       <figcaption>
 Detailed overview of DID architecture and the relationship of the basic components.
@@ -5929,8 +5934,8 @@ illustrated in the figure below.
         <figcaption>
 A <a>DID document</a> can use the alsoKnownAs property to assert that another
 <a>URI</a> (including, but not necessarily, another <a>DID</a>) refers to the
-same <a>DID subject</a>.
-See also: <a class="longdesc-link" href="#alsoKnownAs-graph-longdesc">Text Description</a>
+same <a>DID subject</a>. See also: <a class="longdesc-link"
+href="#alsoKnownAs-graph-longdesc">Text Description</a>
         </figcaption>
       </figure>
       <div class="longdesc" id="alsoKnownAs-graph-longdesc">
@@ -6000,13 +6005,13 @@ to point to the new URL for the blog, e.g.:
         "alsoKnownAs": ["https://myblog.example/"]
       </code>
       <p>
-The <a>DID</a> effectively adds a layer of indirection for the blog URL.
-This layer of indirection is under the control of the author instead of
-under the control of an external administrative authority such as the blog
-hosting company. This is how a <a>DID</a> can effectively function as an
-enhanced <a href="https://tools.ietf.org/html/rfc8141">URN (Uniform Resource
-Name)</a>&mdash;a persistent identifier for an information resource whose network
-location might change over time.
+The <a>DID</a> effectively adds a layer of indirection for the blog URL. This
+layer of indirection is under the control of the author instead of under the
+control of an external administrative authority such as the blog hosting
+company. This is how a <a>DID</a> can effectively function as an enhanced <a
+href="https://tools.ietf.org/html/rfc8141">URN (Uniform Resource
+Name)</a>&mdash;a persistent identifier for an information resource whose
+network location might change over time.
       </p>
     </section>
 
@@ -6028,17 +6033,34 @@ controller</a>. This is the case when an individual or organization creates a
         <figure id="controller-subject-equivalence">
           <img style="margin: auto; display: block; width: 75%;"
             longdesc="#controller-subject-equivalence-longdesc"
-            src="diagrams/figure-b.1-controller-and-subject-equivalence.png" alt="
-            Diagram showing a graph model with an
-            equivalence arc from the DID subject to the DID controller.
+            src="diagrams/figure-b.1-controller-and-subject-equivalence.png"
+            alt="
+Diagram showing a graph model with an equivalence arc from the DID
+subject to the DID controller.
           " >
           <figcaption>
-The <a>DID subject</a> is the same entity as the <a>DID controller</a>.
-            See also: <a class="longdesc-link" href="#controller-subject-equivalence-longdesc">Text Description</a>
+The <a>DID subject</a> is the same entity as the <a>DID controller</a>. See
+also: <a class="longdesc-link"
+href="#controller-subject-equivalence-longdesc">Text Description</a>
           </figcaption>
         </figure>
         <div class="longdesc" id="controller-subject-equivalence-longdesc">
-Two small black circles appear in the diagram, one on the upper left, labeled, "DID Controller", and one on the upper right, labeled "DID Subject". A solid red arrow extends from the DID Controller circle to the DID Subject circle, labeled "DID" in large bold text above the arrow, and "Identifies" in small italic text beneath the arrow. A dotted red double-ended arrow, labeled "Equivalence", extends between the two circles, forming an arc in the space between and above them. In the lower part of the diagram is a rectangle with bent corner, outlined in black, containing the label "DID Document". Arrows point between this DID Document rectangle and the small black circles for DID Controller and DID Subject, with italic labels, as follows. A blue arrow points from the DID Document to the DID Subject, labeled, "Describes". A green arrow points from the DID Controller to the DID Document, labeled "Controls". A green points from the DID Document to the DID Controller, in an outward arc, labeled, "Controller". A dotted red arrow, labeled "Resolves to", extends from the DID controller starting to the right, branching off from the arrow to the DID Subject, then curving downward to point to the DID Document.
+Two small black circles appear in the diagram, one on the upper left, labeled,
+"DID Controller", and one on the upper right, labeled "DID Subject". A solid red
+arrow extends from the DID Controller circle to the DID Subject circle, labeled
+"DID" in large bold text above the arrow, and "Identifies" in small italic text
+beneath the arrow. A dotted red double-ended arrow, labeled "Equivalence",
+extends between the two circles, forming an arc in the space between and above
+them. In the lower part of the diagram is a rectangle with bent corner, outlined
+in black, containing the label "DID Document". Arrows point between this DID
+Document rectangle and the small black circles for DID Controller and DID
+Subject, with italic labels, as follows. A blue arrow points from the DID
+Document to the DID Subject, labeled, "Describes". A green arrow points from the
+DID Controller to the DID Document, labeled "Controls". A green points from the
+DID Document to the DID Controller, in an outward arc, labeled, "Controller". A
+dotted red arrow, labeled "Resolves to", extends from the DID controller
+starting to the right, branching off from the arrow to the DID Subject, then
+curving downward to point to the DID Document.
         </div>
         <p>
 From a graph model perspective, even though the nodes identified as the
@@ -6096,22 +6118,22 @@ The same arcs ("controls" and "controller") exist between each
             control relationship with the DID document
           " >
           <figcaption>
-              Multiple independent <a>DID controllers</a> that can each act
-              independently.
-              See also: <a href="#independent-did-controllers-longdesc" class="longdesc-link">Text Description</a>
+Multiple independent <a>DID controllers</a> that can each act independently. See
+also: <a href="#independent-did-controllers-longdesc" class="longdesc-link">Text
+Description</a>
           </figcaption>
         </figure>
         <div class="longdesc" id="independent-did-controllers-longdesc">
 Three black circles appear on the left, vertically, each labeled "DID
-Controller".  From each of these circles, a pair of green arrows extends
-towards the center of the diagram, to a single rectangle, labeled "DID
-Document". The rectangle has the lower right corner cut and bent inward to form
-a small triangle, as if to represent a physical piece of paper with curled
-corner. Each pair of green arrows consists of one arrow pointing from the black
-circle to the rectangle, labeled "Controls", and one pointing in the opposite
-direction, from the rectangle to the black circle, labeled "Controller". From
-the right of the rectangle extends a blue arrow, labeled, "Describes", pointing
-to a black circle labeled, "DID Subject".
+Controller".  From each of these circles, a pair of green arrows extends towards
+the center of the diagram, to a single rectangle, labeled "DID Document". The
+rectangle has the lower right corner cut and bent inward to form a small
+triangle, as if to represent a physical piece of paper with curled corner. Each
+pair of green arrows consists of one arrow pointing from the black circle to the
+rectangle, labeled "Controls", and one pointing in the opposite direction, from
+the rectangle to the black circle, labeled "Controller". From the right of the
+rectangle extends a blue arrow, labeled, "Describes", pointing to a black circle
+labeled, "DID Subject".
         </div>
       </section>
       <section>
@@ -6124,19 +6146,20 @@ digital signatures ("m-of-n"). From a functional standpoint, this option is
 similar to a single <a>DID controller</a> because, although each of the
 <a>DID controllers</a> in the <a>DID controller</a> group has its own graph
 node, the actual control collapses into a single logical graph node
-representing the <a>DID controller</a> group as shown in <a href="#group-did-controllers"></a>.
+representing the <a>DID controller</a> group as shown in
+<a href="#group-did-controllers"></a>.
         </p>
         <figure id="group-did-controllers">
           <img style="margin: auto; display: block; width: 75%;"
             longdesc="#group-did-controllers-longdesc"
             src="diagrams/figure-c.2-group-did-controllers.png" alt="
-            Diagram showing three DID controllers together as a single
-            DID controller group to control a DID document
+Diagram showing three DID controllers together as a single
+DID controller group to control a DID document
           " >
           <figcaption>
-Multiple <a>DID controllers</a> who are expected to act together as a
-<a>DID controller</a> group.
-            See also: <a class="longdesc-link" href="#group-did-controllers-longdesc">Text Description</a>
+Multiple <a>DID controllers</a> who are expected to act together as a <a>DID
+controller</a> group. See also: <a class="longdesc-link"
+href="#group-did-controllers-longdesc"> Text Description</a>
           </figcaption>
         </figure>
         <div class="longdesc" id="group-did-controllers-longdesc">
@@ -6169,28 +6192,29 @@ the lifetime of the
       </p>
       <p>
 However, it is possible that the resource <em>identified</em> by the <a>DID</a>,
-the <a>DID subject</a>, may change over time. This is under the exclusive authority
-of the <a>DID controller</a>. For more details, see section <a href="#persistence"></a>.
+the <a>DID subject</a>, may change over time. This is under the exclusive
+authority of the <a>DID controller</a>. For more details, see section  <a
+href="#persistence"></a>.
       </p>
     </section>
     <section>
       <h2>Changing the DID controller</h2>
       <p>
-The <a>DID controller</a> for a <a>DID document</a> might change over time. However,
-depending on how it is implemented, a change in the <a>DID controller</a> might
-not be made apparent by changes to the <a>DID document</a> itself. For example,
-if the change is implemented through a shift in ownership of the underlying
-cryptographic keys or other controls used for one or more of the <a>verification
-methods</a> in the <a>DID document</a>, it might be indistinguishable from a
-standard key rotation.
+The <a>DID controller</a> for a <a>DID document</a> might change over time.
+However, depending on how it is implemented, a change in the <a>DID
+controller</a> might not be made apparent by changes to the <a>DID document</a>
+itself. For example, if the change is implemented through a shift in ownership
+of the underlying cryptographic keys or other controls used for one or more of
+the <a>verification methods</a> in the <a>DID document</a>, it might be
+indistinguishable from a standard key rotation.
       </p>
       <p>
 On the other hand, if the change is implemented by changing the value of the
 <a>`controller`</a> property, it will be transparent.
       </p>
       <p>
-If it is important to verify a change of <a>DID controller</a>, implementers are advised
-to <a>authenticate</a> the new <a>DID controller</a> against the
+If it is important to verify a change of <a>DID controller</a>, implementers are
+advised to <a>authenticate</a> the new <a>DID controller</a> against the
 <a>verification methods</a> in the revised <a>DID document</a>.
       </p>
     </section>
@@ -6210,8 +6234,8 @@ Department of Homeland Security's (US DHS) Science and Technology Directorate
 under contracts HSHQDC-16-R00012-H-SB2016-1-002, and HSHQDC-17-C-00019, as well
 as the US DHS Silicon Valley Innovation Program under contracts
 70RSAT20T00000010, 70RSAT20T00000029, 70RSAT20T00000030, 70RSAT20T00000045,
-70RSAT20T00000003, and 70RSAT20T00000033. The content of this specification does not
-necessarily reflect the position or the policy of the U.S. Government and no
+70RSAT20T00000003, and 70RSAT20T00000033. The content of this specification does
+not necessarily reflect the position or the policy of the U.S. Government and no
 official endorsement should be inferred.
     </p>
 
