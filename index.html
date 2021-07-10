@@ -34,7 +34,7 @@
 
     // W3C Candidate Recommendation information
     //crEnd: "2021-07-13",
-    implementationReportURI: "https://w3c.github.io/did-test-suite/",
+    //implementationReportURI: "https://w3c.github.io/did-test-suite/",
 
     // Editor's Draft URL
     edDraftURI: "https://w3c.github.io/did-core/",
@@ -133,7 +133,20 @@
         companyURL: "https://danubetech.com/",
         w3cid: 46729
       }
-    ]
+    ],
+    otherLinks: [{
+      key: "Related Documents",
+      data: [{
+        value: "DID Use Cases and Requirements",
+        href: "https://www.w3.org/TR/did-use-cases/"
+      }, {
+        value: "DID Specification Registries",
+        href: "https://www.w3.org/TR/did-spec-registries/"
+      }, {
+        value: "DID Core Implementation Report",
+        href: "https://w3c.github.io/did-test-suite/"
+      }]
+    }]
     };
   </script>
   <style>
@@ -416,6 +429,12 @@ Specification authors that want to create new DID infrastructures, known as DID
 methods, that conform to the ecosystem described by this document.
       </li>
     </ul>
+
+    <p>
+In addition to this specification, readers might find the
+Use Cases and Requirements for Decentralized Identifiers [[DID-USE-CASES]]
+useful.
+    </p>
 
     <section class="informative">
       <h2>A Simple Example</h2>
