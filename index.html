@@ -1075,12 +1075,6 @@ Description
 <code><a>service</a></code>
               </td>
               <td>
-                <p class="issue atrisk">
-The DID Working Group is seeking implementer feedback on this feature. If there
-is not enough implementation experience with this feature at the end of the
-Candidate Recommendation period, it will be removed from the specification.
-                </p>
-
 Identifies a service from the <a>DID document</a> by service ID.
 If present, the associated value MUST be an <a
 data-lt="ascii string">ASCII string</a>.
@@ -1091,12 +1085,6 @@ data-lt="ascii string">ASCII string</a>.
 <code>relativeRef</code>
               </td>
               <td>
-                <p class="issue atrisk">
-The DID Working Group is seeking implementer feedback on this feature. If there
-is not enough implementation experience with this feature at the end of the
-Candidate Recommendation period, it will be removed from the specification.
-                </p>
-
 A relative <a>URI</a> reference according to <a
 data-cite="RFC3986#section-4.2">RFC3986 Section 4.2</a> that identifies a
 <a>resource</a> at a <a>service endpoint</a>, which is selected from a <a>DID
@@ -1123,12 +1111,6 @@ data-lt="ascii string">ASCII string</a>.
 <code>versionTime</code>
               </td>
               <td>
-                <p class="issue atrisk">
-The DID Working Group is seeking implementer feedback on this feature. If there
-is not enough implementation experience with this feature at the end of the
-Candidate Recommendation period, it will be removed from the specification.
-                </p>
-
 Identifies a certain version timestamp of a <a>DID document</a> to be resolved.
 That is, the <a>DID document</a> that was valid for a <a>DID</a> at a certain
 time. If present, the associated value
@@ -1145,12 +1127,6 @@ For example: <code>2020-12-20T19:17:47Z</code>.
 <code>hl</code>
               </td>
               <td>
-                <p class="issue atrisk">
-The DID Working Group is seeking implementer feedback on this feature. If there
-is not enough implementation experience with this feature at the end of the
-Candidate Recommendation period, it will be removed from the specification.
-                </p>
-
 A resource hash of the <a>DID document</a> to add integrity protection, as
 specified in [[?HASHLINK]]. This parameter is non-normative.
 If present, the associated value MUST be an
@@ -2677,15 +2653,6 @@ This section defines the <a>production</a> and <a>consumption</a> rules
 for the JSON <a>representation</a>.
       </p>
 
-      <p class="issue atrisk" title="Unused JSON data model types">
-There are a number of normative <a href="#data-model">data model</a> types such
-as double, boolean, integer, and null that might not be immediately useful to
-DID ecosystem implementers. It is expected that even if these features are not
-implemented, that the DID WG will resolve to keep the features for future use.
-If such a resolution is not made, or is not compatible with the W3C Process, the
-features might be removed.
-      </p>
-
       <section>
         <h3>Production</h3>
 
@@ -3102,20 +3069,6 @@ drop all terms from a <a>DID document</a> that are not defined via the
 
   <section class='normative'>
     <h1>Resolution</h1>
-
-    <p class="issue atrisk" title="Concerns regarding testability of DID Resolution and Dereferencing">
-The Working Group is unsure if there will be enough implementation experience
-for the DID Resolution section. We are seeking feedback from the implementation
-community as to whether they prefer to do all of this work now, or if they would
-prefer that this section is, or parts of the section are, rewritten to be
-non-normative, or published as a NOTE and taken up in a future W3C DID
-Resolution Working Group. If there is support for rewriting a subset of the DID
-Resolution section, or publishing any part of it as a NOTE during the W3C
-Candidate Recommendation process, this section will be modified and/or published
-as a NOTE appropriately before the DID Core specification proceeds to the W3C
-Proposed Recommendation stage. See also <a
-href="https://github.com/w3c/did-core/issues/549"> Issue 549</a>.
-    </p>
 
     <p>
 This section defines the inputs and outputs of <a>DID resolution</a> and <a>DID
