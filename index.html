@@ -5574,32 +5574,6 @@ practice to avoid dislosing unnecessary information in JWE headers.
   </section>
 
   <section class="appendix">
-    <h1>Detailed Architecture Overview Diagram</h1>
-    <p>
-Following is a diagram showing the relationships among
-<a href="#data-model"></a>, <a href="#core-properties"></a>, and
-<a href="#methods"></a>, and <a href="#resolution"></a>.
-    </p>
-
-    <figure id="detailed-architecture-overview">
-      <img style="margin: auto; display: block; width: 90%;"
-        src="diagrams/did_detailed_architecture_overview.svg" alt="
-DIDs and DID documents are recorded on a Verifiable Data Registry; DIDs resolve
-to DID documents; DIDs refer to DID subjects; a DID controller controls a DID
-document; DID URLs contains a DID; DID URLs dereferenced to DID document
-fragments or external resources; DID resolver implements resolve function; DID
-URL dereferencer implements dereferencing function; DID method operates a
-Verfiable Data Registry; DID resolver and DID URL dereferencer instruct a DID
-method.
-      " >
-      <figcaption>
-Detailed overview of DID architecture and the relationship of the basic components.
-      </figcaption>
-    </figure>
-
-  </section>
-
-  <section class="appendix">
     <h1>IANA Considerations</h1>
 
     <p>
@@ -5753,6 +5727,32 @@ media type</a> [[JSON-LD11]].
 
   <section class="appendix">
     <h1>Architectural Considerations</h1>
+
+    <section>
+      <h2>Detailed Architecture Diagram</h2>
+      <p>
+  Following is a diagram showing the relationships among
+  <a href="#data-model"></a>, <a href="#core-properties"></a>, and
+  <a href="#methods"></a>, and <a href="#resolution"></a>.
+      </p>
+
+      <figure id="detailed-architecture-overview">
+        <img style="margin: auto; display: block; width: 90%;"
+          src="diagrams/did_detailed_architecture_overview.svg" alt="
+  DIDs and DID documents are recorded on a Verifiable Data Registry; DIDs resolve
+  to DID documents; DIDs refer to DID subjects; a DID controller controls a DID
+  document; DID URLs contains a DID; DID URLs dereferenced to DID document
+  fragments or external resources; DID resolver implements resolve function; DID
+  URL dereferencer implements dereferencing function; DID method operates a
+  Verfiable Data Registry; DID resolver and DID URL dereferencer instruct a DID
+  method.
+        " >
+        <figcaption>
+  Detailed overview of DID architecture and the relationship of the basic components.
+        </figcaption>
+      </figure>
+
+    </section>
 
     <section>
       <h2>Creation of a DID</h2>
