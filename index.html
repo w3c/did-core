@@ -246,150 +246,6 @@ that might result in alterations to this specification.
     </p>
 
     <p>
-Changes since the <a
-href="https://www.w3.org/TR/2021/CR-did-core-20210615/">Second Candidate
-Recommendation</a> include:
-    </p>
-
-    <ul>
-      <li>
-Non-normatively refer to the DID Resolution specification to guide implementers
-toward common DID URL implementation patterns.
-      </li>
-      <li>
-Elaborate upon when DID Documents are understood to start existing.
-      </li>
-      <li>
-Conversion of PNG diagrams to SVG diagrams.
-      </li>
-      <li>
-Rearranged order of Appendices to improve readability.
-      </li>
-      <li>
-Update the IANA guidance as a result of the IETF Media Type Maintenance
-Working Group efforts.
-      </li>
-      <li>
-Remove at risk feature <code>alsoKnownAs</code> due to insufficient
-implementation experience.
-      </li>
-      <li>
-Add links to use cases document.
-      </li>
-      <li>
-Add warning related to [[?MULTIBASE]] and <code>publicKeyMultibase</code>.
-      </li>
-      <li>
-Remove at risk issue markers for features that gained enough implementation
-experience.
-      </li>
-      <li>
-Finalize the Editors, Authors, and Acknowledgements information.
-      </li>
-    </ul>
-
-    <p>
-Changes since the <a
-href="https://www.w3.org/TR/2021/CR-did-core-20210318/">First Candidate
-Recommendation</a> include:
-    </p>
-
-    <ul>
-      <li>
-Addition of at risk markers to most of the DID Parameters, the data model
-datatypes that are expected to not be implemented, and the
-application/did+ld+json media type. This change resulted in the DID WG's
-decision to perform a second Candidate Recommendation phase. All other
-changes were either editorial or predicted in "at risk" issue markers.
-      </li>
-      <li>
-Removal of the at risk issue marker for the `method-specific-id` ABNF rule
-and for `nextUpdate` and `nextVersionId`.
-      </li>
-      <li>
-Clarification that `equivalentId` and `canonicalId` are optional.
-      </li>
-      <li>
-Addition of a definitions for "amplification attack" and "cryptographic suite".
-      </li>
-      <li>
-Replacing the use of `publicKeyBase58` with `publicKeyMultibase`.
-      </li>
-      <li>
-Updates to the DID Document examples section.
-      </li>
-      <li>
-A large number of editorial clean ups to the Security Considerations section.
-      </li>
-    </ul>
-
-    <p>
-Changes since the <a
-href="https://www.w3.org/TR/2019/WD-did-core-20191107/">First Public Working
-Draft</a> include:
-    </p>
-
-    <ul>
-      <li>
-The introduction of an abstract data model that can be serialized to multiple
-representations including JSON and JSON-LD.
-      </li>
-      <li>
-The introduction of a DID Specifications Registry for the purposes of
-registering extension properties, representations, DID Resolution input
-metadata and output metadata, DID Document metadata, DID parameters, and DID
-Methods.
-      </li>
-      <li>
-Separation of DID Document metadata, such as created and updated values,
-from DID Document properties.
-      </li>
-      <li>
-The removal of embedded proofs in the DID Document.
-      </li>
-      <li>
-The addition of verification relationships for the purposes of authentication,
-assertion, key agreement, capability invocation and capability delegation.
-      </li>
-      <li>
-The ability to support relating multiple identifiers with the DID Document,
-such as the DID controller, also known as, equivalent IDs, and canonical IDs.
-      </li>
-      <li>
-Enhancing privacy by reducing information that could contain personally
-identifiable information in the DID Document.
-      </li>
-      <li>
-The addition of a large section on security considerations and privacy
-considerations.
-      </li>
-      <li>
-A Representations section that details how the abstract data model can be
-produced and consumed in a variety of different formats along with general
-rules for all representations, producers, and consumers.
-      </li>
-      <li>
-A section detailing the DID Resolution and DID URL Dereferencing interface
-definition that all DID resolvers are expected to expose as well as inputs
-and outputs to those processes.
-      </li>
-      <li>
-DID Document examples in an appendix that provide more complex examples of
-DID Document serializations.
-      </li>
-      <li>
-IANA Considerations for multiple representations specified in DID Core.
-      </li>
-      <li>
-Removal of the Future Work section as much of the work has now been
-accomplished.
-      </li>
-      <li>
-An acknowledgements section.
-      </li>
-    </ul>
-
-    <p>
 Comments regarding this document are welcome. Please file issues
 directly on <a href="https://github.com/w3c/did-core/issues/">GitHub</a>,
 or send them
@@ -6088,6 +5944,159 @@ advised to <a>authenticate</a> the new <a>DID controller</a> against the
     </section>
   </section>
 
+  <section class="appendix">
+    <h2>Revision History</h2>
+
+    <p>
+This section contains the changes that have been made since the publication of
+this specification as a W3C First Public Working Draft.
+    </p>
+
+    <p>
+Changes since the <a
+href="https://www.w3.org/TR/2021/CR-did-core-20210615/">Second Candidate
+Recommendation</a> include:
+    </p>
+
+    <ul>
+      <li>
+Non-normatively refer to the DID Resolution specification to guide implementers
+toward common DID URL implementation patterns.
+      </li>
+      <li>
+Elaborate upon when DID Documents are understood to start existing.
+      </li>
+      <li>
+Conversion of PNG diagrams to SVG diagrams.
+      </li>
+      <li>
+Rearranged order of Appendices to improve readability.
+      </li>
+      <li>
+Update the IANA guidance as a result of the IETF Media Type Maintenance
+Working Group efforts.
+      </li>
+      <li>
+Remove at risk feature <code>alsoKnownAs</code> due to insufficient
+implementation experience.
+      </li>
+      <li>
+Add links to use cases document.
+      </li>
+      <li>
+Add warning related to [[?MULTIBASE]] and <code>publicKeyMultibase</code>.
+      </li>
+      <li>
+Remove at risk issue markers for features that gained enough implementation
+experience.
+      </li>
+      <li>
+Finalize the Editors, Authors, and Acknowledgements information.
+      </li>
+    </ul>
+
+    <p>
+Changes since the <a
+href="https://www.w3.org/TR/2021/CR-did-core-20210318/">First Candidate
+Recommendation</a> include:
+    </p>
+
+    <ul>
+      <li>
+Addition of at risk markers to most of the DID Parameters, the data model
+datatypes that are expected to not be implemented, and the
+application/did+ld+json media type. This change resulted in the DID WG's
+decision to perform a second Candidate Recommendation phase. All other
+changes were either editorial or predicted in "at risk" issue markers.
+      </li>
+      <li>
+Removal of the at risk issue marker for the `method-specific-id` ABNF rule
+and for `nextUpdate` and `nextVersionId`.
+      </li>
+      <li>
+Clarification that `equivalentId` and `canonicalId` are optional.
+      </li>
+      <li>
+Addition of a definitions for "amplification attack" and "cryptographic suite".
+      </li>
+      <li>
+Replacing the use of `publicKeyBase58` with `publicKeyMultibase`.
+      </li>
+      <li>
+Updates to the DID Document examples section.
+      </li>
+      <li>
+A large number of editorial clean ups to the Security Considerations section.
+      </li>
+    </ul>
+
+    <p>
+Changes since the <a
+href="https://www.w3.org/TR/2019/WD-did-core-20191107/">First Public Working
+Draft</a> include:
+    </p>
+
+    <ul>
+      <li>
+The introduction of an abstract data model that can be serialized to multiple
+representations including JSON and JSON-LD.
+      </li>
+      <li>
+The introduction of a DID Specifications Registry for the purposes of
+registering extension properties, representations, DID Resolution input
+metadata and output metadata, DID Document metadata, DID parameters, and DID
+Methods.
+      </li>
+      <li>
+Separation of DID Document metadata, such as created and updated values,
+from DID Document properties.
+      </li>
+      <li>
+The removal of embedded proofs in the DID Document.
+      </li>
+      <li>
+The addition of verification relationships for the purposes of authentication,
+assertion, key agreement, capability invocation and capability delegation.
+      </li>
+      <li>
+The ability to support relating multiple identifiers with the DID Document,
+such as the DID controller, also known as, equivalent IDs, and canonical IDs.
+      </li>
+      <li>
+Enhancing privacy by reducing information that could contain personally
+identifiable information in the DID Document.
+      </li>
+      <li>
+The addition of a large section on security considerations and privacy
+considerations.
+      </li>
+      <li>
+A Representations section that details how the abstract data model can be
+produced and consumed in a variety of different formats along with general
+rules for all representations, producers, and consumers.
+      </li>
+      <li>
+A section detailing the DID Resolution and DID URL Dereferencing interface
+definition that all DID resolvers are expected to expose as well as inputs
+and outputs to those processes.
+      </li>
+      <li>
+DID Document examples in an appendix that provide more complex examples of
+DID Document serializations.
+      </li>
+      <li>
+IANA Considerations for multiple representations specified in DID Core.
+      </li>
+      <li>
+Removal of the Future Work section as much of the work has now been
+accomplished.
+      </li>
+      <li>
+An acknowledgements section.
+      </li>
+    </ul>
+
+  </section>
 
   <section class="appendix">
     <h2>Acknowledgements</h2>
