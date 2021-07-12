@@ -3140,8 +3140,94 @@ conformant representations; conversion is possible using production and
 consumption rules.">
         <figcaption>
 Functions resolve() and resolveRepresentation().
+See also: <a class="longdesc-link"
+href="#resolve-resolverepresentation-longdesc">narrative description</a>.
         </figcaption>
       </figure>
+
+        <div class="longdesc" id="resolve-resolverepresentation-longdesc">
+            <p>
+                The upper middle part of the diagram contains a rectangle with dashed grey outline, containing two
+                blue-outlined rectangles, one above the other, as follows.
+                The upper, larger rectangle is labeled, in blue, "Core Properties", and contains the following [INFRA]
+                notation:
+            </p>
+            <pre>
+«[
+  "id" → "example:123",
+  "verificationMethod" → « «[
+    "id": "did:example:123#keys-1",
+    "controller": "did:example:123",
+    "type": "Ed25519VerificationKey2018",
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVA"
+  ]» »,
+  "authentication" → «
+    "did:example:123#keys-1"
+  »
+]»
+            </pre>
+            <p>
+            The lower, smaller rectangle is labeled, in blue, "Core Representation-specific Entries (JSON-LD)", and
+                contains the following monospaced [INFRA] notation:
+            </p>
+            <pre>
+«[ "@context" → "https://www.w3.org/ns/did/v1" ]»
+        </pre>
+            <p>
+                From the grey-outlined rectangle, three pairs of arrows extend to three
+                different black-outlined rectangles, aligned in a horizontal row side-by-side, in the bottom half
+                of the diagram. Each pair of arrows consists of
+                one blue arrow pointing from the grey-outlined rectangle to the respective
+                black-outlined rectangle, labeled "produce", and one red arrow pointing in the
+                reverse direction, labeled "consume". The first black-outlined rectangle in the row
+                is labeled "application/did+ld+json", and contains
+                the following JSON-LD data:
+            </p>
+            <pre>
+{
+  "@context": ["https://www.w3.org/ns/did/v1"],
+  "id": "did:example:123",
+  "verificationMethod": [{
+    "id": "did:example:123#keys-1",
+    "controller": "did:example:123",
+    "type": "Ed25519VerificationKey2018",
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVA"
+  }],
+  "authentication": [
+    "did:example:123#keys-1"
+  ]
+}
+            </pre>
+            <p>
+                The second rectangle in the row is labeled "application/did+json" and contains the following
+                JSON data:
+            </p>
+            <pre>
+{
+  "id": "did:example:123",
+  "verificationMethod": [{
+    "id": "did:example:123#keys-1",
+    "controller": "did:example:123",
+    "type": "Ed25519VerificationKey2018",
+    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVA"
+  }],
+  "authentication": [
+    "did:example:123#keys-1"
+  ]
+}
+            </pre>
+            <p>
+                The third rectangle in the row is labeled "application/did+cbor", and contains hexadecimal data.
+            </p>
+            <p>
+                In the left part of the diagram, in the middle, there is a box, with black outline and light gray
+                background. This box is labeled "VERIFIABLE DATA REGISTRY" and contains a symbol representing a graph
+                with nodes and arcs. From this box, one arrow, labeled "resolve()", extends upwards and points to the
+                top half of the diagram where the grey-outlined rectangle is located. Another arrow, labeled
+                "resolveRepresentation()", extends downwards and points to the bottom half of the diagram, where the
+                row of three black-outlined rectangles is located.
+            </p>
+        </div>
 
       <p>
 The input variables
