@@ -39,18 +39,6 @@ var ccg = {
       status: "FPWD",
       publisher: "Verifiable Claims Working Group"
     },
-    "DID-USE-CASES": {
-      title: "Decentralized Identifier Use Cases",
-      href: "https://www.w3.org/TR/did-use-cases/",
-      authors: [
-        "Joe Andrieu",
-        "Kim Hamilton Duffy",
-        "Ryan Grant",
-        "Adrian Gropper"
-      ],
-      status: "ED",
-      publisher: "Decentralized Identifier Working Group"
-    },
     // aliases to known references
     "HTTP-SIGNATURES": {
       aliasOf: "http-signatures"
