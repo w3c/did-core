@@ -3619,10 +3619,58 @@ external resources.
         " >
         <figcaption>
 Overview of DID URL dereference
+See also: <a class="longdesc-link"
+             href="#did-url-dereference-overview-longdesc">narrative description</a>.
         </figcaption>
     </figure>
 
-      <p>
+        <div class="longdesc" id="did-url-dereference-overview-longdesc">
+            <p>
+                The top left part of the diagram contains a rectangle with black outline, labeled "DID".
+            </p>
+            <p>
+                The bottom left part of the diagram contains a rectangle with black outline, labeled "DID URL".
+                This rectangle contains four smaller black-outlined rectangles, aligned in a horizontal row adjacent to
+                each other. These smaller rectangles are labeled, in order, "DID", "path", "query", and "fragment.
+            </p>
+            <p>
+                The top right part of the diagram contains a rectangle with black outline, labeled "DID document".
+                This rectangle contains three smaller black-outlined rectangles. These smaller rectangles are
+                labeled "id", "(property X)", and "(property Y)", and are surrounded by multiple series of three
+                dots (ellipses). A curved black arrow, labeled "DID document - relative fragment dereference", extends
+                from the rectangle labeled "(property X)", and points to the rectangle labeled "(property Y)".
+            </p>
+            <p>
+                The bottom right part of the diagram contains an oval shape with black outline, labeled "Resource".
+            </p>
+            <p>
+                A black arrow, labeled "resolves to a DID document", extends from the rectangle in the top left part of
+                the diagram, labeled "DID", and points to the rectangle in the top right part of diagram, labeled
+                "DID document".
+            </p>
+            <p>
+                A black arrow, labeled "refers to", extends from the rectangle in the top right part of the diagram,
+                labeled "DID document", and points to the oval shape in the bottom right part of diagram, labeled
+                "Resource".
+            </p>
+            <p>
+                A black arrow, labeled "contains", extends from the small rectangle labeled "DID" inside the
+                rectangle in the bottom left part of the diagram, labeled "DID URL", and points to the rectangle
+                in the top left part of diagram, labeled "DID".
+            </p>
+            <p>
+                A black arrow, labeled "dereferences to a DID document", extends from the rectangle in the bottom left
+                part of the diagram, labeled "DID URL", and points to the rectangle in the top right part of diagram,
+                labeled "DID document".
+            </p>
+            <p>
+                A black arrow, labeled "dereferences to a resource", extends from the rectangle in the bottom left
+                part of the diagram, labeled "DID URL", and points to the oval shape in the bottom right part of diagram,
+                labeled "Resource".
+            </p>
+        </div>
+
+        <p>
 All conforming <a>DID resolvers</a> implement
 the following function which has the following abstract form:
       </p>
