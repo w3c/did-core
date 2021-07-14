@@ -1933,8 +1933,11 @@ data-cite="INFRA#string">string</a> representation of a [[?MULTIBASE]] encoded
 public key.
             </p>
             <p class="advisement">
-Note that publicKeyMultibase is not a standard and is therefore subject to change. There might be some cases where <code><b>public</b>KeyMultibase</code> can
-be represented although <code><b>private</b>KeyMultibase</code> cannot.
+Note that the [[?MULTIBASE]] specification is not yet a standard and is 
+subject to change. There might be some data format use cases where 
+<code><b>public</b>KeyMultibase</code> is defined to express keys 
+publicly, but <code><b>private</b>KeyMultibase</code> is not in order 
+to protect against accidentally leaking secret keys.
             </p>
           </dd>
       </dl>
