@@ -124,9 +124,6 @@ h2>a.self-link,h3>a.self-link,h4>a.self-link,h5>a.self-link,h6>a.self-link{left:
   }
   pre .comment {
     color: SteelBlue;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
   }
   code a[href] {
@@ -194,7 +191,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "edDraftURI": "https://w3c.github.io/did-core/",
   "subtitle": "Core architecture, data model, and representations",
   "publishDate": "2021-07-29",
-  "previousPublishDate": "2021-06-16",
+  "previousPublishDate": "2021-06-15",
   "previousMaturity": "CR",
   "pluralize": true,
   "localBiblio": {
@@ -554,7 +551,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
               <a href="https://w3c.github.io/did-test-suite/">https://w3c.github.io/did-test-suite/</a>
             </dd>
       
-      <dt>Previous version:</dt><dd><a href="https://www.w3.org/TR/2021/CR-did-core-20210616/">https://www.w3.org/TR/2021/CR-did-core-20210616/</a></dd>
+      <dt>Previous version:</dt><dd><a href="https://www.w3.org/TR/2021/CR-did-core-20210615/">https://www.w3.org/TR/2021/CR-did-core-20210615/</a></dd>
       
       <dt>Editors:</dt>
       <dd class="editor p-author h-card vcard" data-editor-id="41758">
@@ -659,7 +656,7 @@ review this specification by August 26th, 2021.
 
     <p>
 At the time of publication, there existed
-<a href="https://w3c-ccg.github.io/did-method-registry/#did-methods">103
+<a href="https://w3c.github.io/did-spec-registries/#did-methods">103
 experimental DID Method specifications</a>, 32 experimental DID Method driver
 implementations, a <a href="https://w3c.github.io/did-test-suite/">test suite</a> that determines
 whether or not a given implementation is conformant with this specification
@@ -5781,7 +5778,7 @@ pairwise <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-
 <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-154">DID</a> acts as a pseudonym. A pairwise <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-155">DID</a> need only be shared with
 more than one party when correlation is explicitly desired. If pairwise
 <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-156">DIDs</a> are the default, then the only need to publish a <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-157">DID</a> openly,
-or to share it with multiple parties, is when the <a href="dfn-did-controller">DID controller(s)</a> and/or <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-56">DID subject</a>
+or to share it with multiple parties, is when the <a href="#dfn-did-controllers" id="ref-for-dfn-did-controllers-33">DID controller(s)</a> and/or <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-56">DID subject</a>
 explicitly desires public identification and correlation.
       </p>
     </section>
@@ -5831,7 +5828,7 @@ functionalities.
 Including <em>type</em> information in a <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-211">DID Document</a> can
 result in personal privacy harms even for <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-59">DID Subjects</a> that are
 non-person entities, such as IoT devices. The aggregation of such
-information around a <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-33">DID Controller</a> could serve as a form of
+information around a <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-34">DID Controller</a> could serve as a form of
 digital fingerprint and this is best avoided.
       </p>
       <p>
@@ -6484,7 +6481,7 @@ can be assigned a URI can be assigned a <a href="#dfn-decentralized-identifiers"
 by the <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-179">DID</a> is the <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-67">DID subject</a>.
       </p>
       <p>
-The <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-34">DID controller</a> determines the <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-68">DID subject</a>.
+The <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-35">DID controller</a> determines the <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-68">DID subject</a>.
 It is not expected to be possible to determine the <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-69">DID subject</a>
 from looking at the <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-180">DID</a> itself, as <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-181">DIDs</a> are generally
 only meaningful to machines, not human. A <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-182">DID</a> is unlikely to contain
@@ -6512,7 +6509,7 @@ The <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type=
 <a href="#dfn-did-methods" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-methods-128">DID method</a>). The <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-227">DID document</a> is not a separate resource from
 the <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-74">DID subject</a> and does not have a <a href="#dfn-uri" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-uri-25">URI</a> separate from the
 <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-191">DID</a>. Rather the <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-228">DID document</a> is an artifact of <a href="#dfn-did-resolution" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-resolution-18">DID
-resolution</a> controlled by the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-35">DID controller</a> for the purpose of
+resolution</a> controlled by the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-36">DID controller</a> for the purpose of
 describing the <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-75">DID subject</a>.
       </p>
       <p>
@@ -6524,7 +6521,7 @@ Diagram showing a graph model for how DID controllers assign DIDs to refer to
 DID subjects and resolve to DID documents that describe the DID subjects.
 " height="495" width="667">
           <figcaption>Figure <bdi class="figno">8</bdi> <span class="fig-title">
-A <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-192">DID</a> is an identifier assigned by a <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-36">DID controller</a> to refer to
+A <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-192">DID</a> is an identifier assigned by a <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-37">DID controller</a> to refer to
 a <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-76">DID subject</a> and resolve to a <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-229">DID document</a> that describes the
 <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-77">DID subject</a>. The <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-230">DID document</a> is an artifact of <a href="#dfn-did-resolution" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-resolution-19">DID
 resolution</a> and not a separate resource distinct from the <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-78">DID subject</a>.
@@ -6554,7 +6551,7 @@ Subject.
       <h3 id="b-5-statements-in-the-did-document"><bdi class="secno">B.5 </bdi>Statements in the DID document<a class="self-link" aria-label="§" href="#statements-in-the-did-document"></a></h3>
       <p>
 Each property in a <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-231">DID document</a> is a statement by the
-<a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-37">DID controller</a> that describes:
+<a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-38">DID controller</a> that describes:
       </p>
       <ul>
         <li>
@@ -6591,7 +6588,7 @@ claims (attributes) describing the <a href="#dfn-did-subjects" class="internalDF
       </p>
       <p>
 Another option is to use the <code><a href="#dfn-alsoknownas" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-alsoknownas-10">alsoKnownAs</a></code> property if it
-is present in the <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-236">DID document</a>. The <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-38">DID controller</a> can use it
+is present in the <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-236">DID document</a>. The <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-39">DID controller</a> can use it
 to provide a list of other URIs (including other <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-194">DIDs</a>) that refer to
 the same <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-84">DID subject</a>. Resolving or dereferencing these URIs might yield
 other descriptions or representations of the <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-85">DID subject</a> as
@@ -6691,13 +6688,13 @@ network location might change over time.
       <p>
 To avoid confusion, it is helpful to classify
 <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-89">DID subject</a>s into two disjoint sets based on their relationship to
-the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-39">DID controller</a>.
+the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-40">DID controller</a>.
       </p>
       <section id="set-1-the-did-subject-is-the-did-controller">
         <h4 id="b-9-1-set-1-the-did-subject-is-the-did-controller"><bdi class="secno">B.9.1 </bdi>Set #1: The DID subject <em>is</em> the DID controller<a class="self-link" aria-label="§" href="#set-1-the-did-subject-is-the-did-controller"></a></h4>
         <p>
 The first case, shown in <a href="#controller-subject-equivalence" class="fig-ref" title="The DID subject is the same entity as the DID controller. See also: narrative description.">Figure <bdi class="figno">10</bdi></a>, is
-the common scenario where the <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-90">DID subject</a> is also the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-40">DID
+the common scenario where the <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-90">DID subject</a> is also the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-41">DID
 controller</a>. This is the case when an individual or organization creates a
 <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-202">DID</a> to self-identify.
         </p>
@@ -6707,7 +6704,7 @@ Diagram showing a graph model with an equivalence arc from the DID
 subject to the DID controller.
           " height="516" width="667">
           <figcaption>Figure <bdi class="figno">10</bdi> <span class="fig-title">
-The <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-91">DID subject</a> is the same entity as the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-41">DID controller</a>. See
+The <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-91">DID subject</a> is the same entity as the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-42">DID controller</a>. See
 also: <a class="longdesc-link" href="#controller-subject-equivalence-longdesc">narrative description</a>.
           </span></figcaption>
         </figure>
@@ -6731,7 +6728,7 @@ curving downward to point to the DID Document.
         </div>
         <p>
 From a graph model perspective, even though the nodes identified as the
-<a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-42">DID controller</a> and <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-92">DID subject</a> in
+<a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-43">DID controller</a> and <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-92">DID subject</a> in
 <a href="#controller-subject-equivalence" class="fig-ref" title="The DID subject is the same entity as the DID controller. See also: narrative description.">Figure <bdi class="figno">10</bdi></a> are distinct, there is a
 logical arc connecting them to express a semantic equivalence relationship.
         </p>
@@ -6740,7 +6737,7 @@ logical arc connecting them to express a semantic equivalence relationship.
         <h4 id="b-9-2-set-2-the-did-subject-is-not-the-did-controller"><bdi class="secno">B.9.2 </bdi>Set #2: The DID subject is <em>not</em> the DID controller<a class="self-link" aria-label="§" href="#set-2-the-did-subject-is-not-the-did-controller"></a></h4>
         <p>
 The second case is when the <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-93">DID subject</a> is a separate entity from the
-<a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-43">DID controller</a>. This is the case when, for example, a parent creates
+<a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-44">DID controller</a>. This is the case when, for example, a parent creates
 and maintains control of a <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-203">DID</a> for a child; a corporation creates and
 maintains control of a <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-204">DID</a> for a subsidiary; or a manufacturer
 creates and maintains control of a <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-205">DID</a> for a product, an IoT device,
@@ -6749,7 +6746,7 @@ or a digital file.
         <p>
 From a graph model perspective, the only difference from Set 1 that there is
 no equivalence arc relationship between the <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-94">DID subject</a> and
-<a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-44">DID controller</a> nodes.
+<a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-45">DID controller</a> nodes.
         </p>
       </section>
     </section>
@@ -6757,24 +6754,24 @@ no equivalence arc relationship between the <a href="#dfn-did-subjects" class="i
     <section id="multiple-did-controllers">
       <h3 id="b-10-multiple-did-controllers"><bdi class="secno">B.10 </bdi>Multiple DID controllers<a class="self-link" aria-label="§" href="#multiple-did-controllers"></a></h3>
       <p>
-A <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-240">DID document</a> might have more than one <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-45">DID controller</a>. This can
+A <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-240">DID document</a> might have more than one <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-46">DID controller</a>. This can
 happen in one of two ways.
       </p>
       <section id="independent-control">
         <h4 id="b-10-1-independent-control"><bdi class="secno">B.10.1 </bdi>Independent Control<a class="self-link" aria-label="§" href="#independent-control"></a></h4>
         <p>
-In this case, each of the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-46">DID controllers</a> might act on its own, i.e.,
+In this case, each of the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-47">DID controllers</a> might act on its own, i.e.,
 each one has full power to update the <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-241">DID document</a> independently. From
 a graph model perspective, in this configuration:
         </p>
         <ul>
           <li>
-Each additional <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-47">DID controller</a> is another distinct graph node
+Each additional <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-48">DID controller</a> is another distinct graph node
 (which might be identified by its own <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-206">DID</a>).
           </li>
           <li>
 The same arcs ("controls" and "controller") exist between each
-<a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-48">DID controller</a> and the <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-242">DID document</a>.
+<a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-49">DID controller</a> and the <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-242">DID document</a>.
           </li>
         </ul>
         <figure id="independent-did-controllers">
@@ -6783,7 +6780,7 @@ The same arcs ("controls" and "controller") exist between each
             control relationship with the DID document
           " height="504" width="824">
           <figcaption>Figure <bdi class="figno">11</bdi> <span class="fig-title">
-Multiple independent <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-49">DID controllers</a> that can each act independently. See
+Multiple independent <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-50">DID controllers</a> that can each act independently. See
 also: <a href="#independent-did-controllers-longdesc" class="longdesc-link">Text
 Description</a>
           </span></figcaption>
@@ -6804,14 +6801,14 @@ labeled, "DID Subject".
       <section id="group-control">
         <h4 id="b-10-2-group-control"><bdi class="secno">B.10.2 </bdi>Group Control<a class="self-link" aria-label="§" href="#group-control"></a></h4>
         <p>
-In the case of group control, the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-50">DID controllers</a> are expected to act
+In the case of group control, the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-51">DID controllers</a> are expected to act
 together in some fashion, such as when using a cryptographic algorithm that
 requires multiple digital signatures ("multi-sig") or a threshold number of
 digital signatures ("m-of-n"). From a functional standpoint, this option is
-similar to a single <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-51">DID controller</a> because, although each of the
-<a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-52">DID controllers</a> in the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-53">DID controller</a> group has its own graph
+similar to a single <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-52">DID controller</a> because, although each of the
+<a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-53">DID controllers</a> in the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-54">DID controller</a> group has its own graph
 node, the actual control collapses into a single logical graph node
-representing the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-54">DID controller</a> group as shown in
+representing the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-55">DID controller</a> group as shown in
 <a href="#group-did-controllers" class="fig-ref" title="Multiple DID controllers who are expected to act together as a DID controller group. See also: narrative description.">Figure <bdi class="figno">12</bdi></a>.
         </p>
         <figure id="group-did-controllers">
@@ -6820,7 +6817,7 @@ Diagram showing three DID controllers together as a single
 DID controller group to control a DID document
           " height="297" width="888">
           <figcaption>Figure <bdi class="figno">12</bdi> <span class="fig-title">
-Multiple <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-55">DID controllers</a> who are expected to act together as a <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-56">DID
+Multiple <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-56">DID controllers</a> who are expected to act together as a <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-57">DID
 controller</a> group. See also: <a class="longdesc-link" href="#group-did-controllers-longdesc"> narrative description</a>.
           </span></figcaption>
         </figure>
@@ -6855,14 +6852,14 @@ the lifetime of the
       <p>
 However, it is possible that the resource <em>identified</em> by the <a href="#dfn-decentralized-identifiers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-decentralized-identifiers-209">DID</a>,
 the <a href="#dfn-did-subjects" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-subjects-97">DID subject</a>, may change over time. This is under the exclusive
-authority of the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-57">DID controller</a>. For more details, see section  <a href="#persistence" class="sec-ref">§&nbsp;<bdi class="secno">9.16 </bdi>Persistence</a>.
+authority of the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-58">DID controller</a>. For more details, see section  <a href="#persistence" class="sec-ref">§&nbsp;<bdi class="secno">9.16 </bdi>Persistence</a>.
       </p>
     </section>
     <section id="changing-the-did-controller">
       <h3 id="b-12-changing-the-did-controller"><bdi class="secno">B.12 </bdi>Changing the DID controller<a class="self-link" aria-label="§" href="#changing-the-did-controller"></a></h3>
       <p>
-The <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-58">DID controller</a> for a <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-245">DID document</a> might change over time.
-However, depending on how it is implemented, a change in the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-59">DID
+The <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-59">DID controller</a> for a <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-245">DID document</a> might change over time.
+However, depending on how it is implemented, a change in the <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-60">DID
 controller</a> might not be made apparent by changes to the <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-246">DID document</a>
 itself. For example, if the change is implemented through a shift in ownership
 of the underlying cryptographic keys or other controls used for one or more of
@@ -6874,8 +6871,8 @@ On the other hand, if the change is implemented by changing the value of the
 <a href="#dfn-controller" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-controller-26"><code>controller</code></a> property, it will be transparent.
       </p>
       <p>
-If it is important to verify a change of <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-60">DID controller</a>, implementers are
-advised to <a href="#dfn-authenticated" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-authenticated-12">authenticate</a> the new <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-61">DID controller</a> against the
+If it is important to verify a change of <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-61">DID controller</a>, implementers are
+advised to <a href="#dfn-authenticated" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-authenticated-12">authenticate</a> the new <a href="#dfn-did-controllers" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-controllers-62">DID controller</a> against the
 <a href="#dfn-verification-method" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-verification-method-106">verification methods</a> in the revised <a href="#dfn-did-documents" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-did-documents-248">DID document</a>.
       </p>
     </section>
@@ -7551,33 +7548,33 @@ media type</a> [<cite><a class="bibref" data-link-type="biblio" href="#bib-json-
   </li><li>
     <a href="#ref-for-dfn-did-controllers-31" title="§ 10.1 Keep Personal Data Private">§ 10.1 Keep Personal Data Private</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-32" title="§ 10.2 DID Correlation Risks">§ 10.2 DID Correlation Risks</a> 
+    <a href="#ref-for-dfn-did-controllers-32" title="§ 10.2 DID Correlation Risks">§ 10.2 DID Correlation Risks</a> <a href="#ref-for-dfn-did-controllers-33" title="Reference 2">(2)</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-33" title="§ 10.4 DID Subject Classification">§ 10.4 DID Subject Classification</a> 
+    <a href="#ref-for-dfn-did-controllers-34" title="§ 10.4 DID Subject Classification">§ 10.4 DID Subject Classification</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-34" title="§ B.3 Determining the DID subject">§ B.3 Determining the DID subject</a> 
+    <a href="#ref-for-dfn-did-controllers-35" title="§ B.3 Determining the DID subject">§ B.3 Determining the DID subject</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-35" title="§ B.4 Referring to the DID document">§ B.4 Referring to the DID document</a> <a href="#ref-for-dfn-did-controllers-36" title="Reference 2">(2)</a> 
+    <a href="#ref-for-dfn-did-controllers-36" title="§ B.4 Referring to the DID document">§ B.4 Referring to the DID document</a> <a href="#ref-for-dfn-did-controllers-37" title="Reference 2">(2)</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-37" title="§ B.5 Statements in the DID document">§ B.5 Statements in the DID document</a> 
+    <a href="#ref-for-dfn-did-controllers-38" title="§ B.5 Statements in the DID document">§ B.5 Statements in the DID document</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-38" title="§ B.6 Discovering more information about the DID subject">§ B.6 Discovering more information about the DID subject</a> 
+    <a href="#ref-for-dfn-did-controllers-39" title="§ B.6 Discovering more information about the DID subject">§ B.6 Discovering more information about the DID subject</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-39" title="§ B.9 The relationship between DID controllers and DID subjects">§ B.9 The relationship between DID controllers and DID subjects</a> 
+    <a href="#ref-for-dfn-did-controllers-40" title="§ B.9 The relationship between DID controllers and DID subjects">§ B.9 The relationship between DID controllers and DID subjects</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-40" title="§ B.9.1 Set #1: The DID subject is the DID controller">§ B.9.1 Set #1: The DID subject is the DID controller</a> <a href="#ref-for-dfn-did-controllers-41" title="Reference 2">(2)</a> <a href="#ref-for-dfn-did-controllers-42" title="Reference 3">(3)</a> 
+    <a href="#ref-for-dfn-did-controllers-41" title="§ B.9.1 Set #1: The DID subject is the DID controller">§ B.9.1 Set #1: The DID subject is the DID controller</a> <a href="#ref-for-dfn-did-controllers-42" title="Reference 2">(2)</a> <a href="#ref-for-dfn-did-controllers-43" title="Reference 3">(3)</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-43" title="§ B.9.2 Set #2: The DID subject is not the DID controller">§ B.9.2 Set #2: The DID subject is not the DID controller</a> <a href="#ref-for-dfn-did-controllers-44" title="Reference 2">(2)</a> 
+    <a href="#ref-for-dfn-did-controllers-44" title="§ B.9.2 Set #2: The DID subject is not the DID controller">§ B.9.2 Set #2: The DID subject is not the DID controller</a> <a href="#ref-for-dfn-did-controllers-45" title="Reference 2">(2)</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-45" title="§ B.10 Multiple DID controllers">§ B.10 Multiple DID controllers</a> 
+    <a href="#ref-for-dfn-did-controllers-46" title="§ B.10 Multiple DID controllers">§ B.10 Multiple DID controllers</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-46" title="§ B.10.1 Independent Control">§ B.10.1 Independent Control</a> <a href="#ref-for-dfn-did-controllers-47" title="Reference 2">(2)</a> <a href="#ref-for-dfn-did-controllers-48" title="Reference 3">(3)</a> <a href="#ref-for-dfn-did-controllers-49" title="Reference 4">(4)</a> 
+    <a href="#ref-for-dfn-did-controllers-47" title="§ B.10.1 Independent Control">§ B.10.1 Independent Control</a> <a href="#ref-for-dfn-did-controllers-48" title="Reference 2">(2)</a> <a href="#ref-for-dfn-did-controllers-49" title="Reference 3">(3)</a> <a href="#ref-for-dfn-did-controllers-50" title="Reference 4">(4)</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-50" title="§ B.10.2 Group Control">§ B.10.2 Group Control</a> <a href="#ref-for-dfn-did-controllers-51" title="Reference 2">(2)</a> <a href="#ref-for-dfn-did-controllers-52" title="Reference 3">(3)</a> <a href="#ref-for-dfn-did-controllers-53" title="Reference 4">(4)</a> <a href="#ref-for-dfn-did-controllers-54" title="Reference 5">(5)</a> <a href="#ref-for-dfn-did-controllers-55" title="Reference 6">(6)</a> <a href="#ref-for-dfn-did-controllers-56" title="Reference 7">(7)</a> 
+    <a href="#ref-for-dfn-did-controllers-51" title="§ B.10.2 Group Control">§ B.10.2 Group Control</a> <a href="#ref-for-dfn-did-controllers-52" title="Reference 2">(2)</a> <a href="#ref-for-dfn-did-controllers-53" title="Reference 3">(3)</a> <a href="#ref-for-dfn-did-controllers-54" title="Reference 4">(4)</a> <a href="#ref-for-dfn-did-controllers-55" title="Reference 5">(5)</a> <a href="#ref-for-dfn-did-controllers-56" title="Reference 6">(6)</a> <a href="#ref-for-dfn-did-controllers-57" title="Reference 7">(7)</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-57" title="§ B.11 Changing the DID subject">§ B.11 Changing the DID subject</a> 
+    <a href="#ref-for-dfn-did-controllers-58" title="§ B.11 Changing the DID subject">§ B.11 Changing the DID subject</a> 
   </li><li>
-    <a href="#ref-for-dfn-did-controllers-58" title="§ B.12 Changing the DID controller">§ B.12 Changing the DID controller</a> <a href="#ref-for-dfn-did-controllers-59" title="Reference 2">(2)</a> <a href="#ref-for-dfn-did-controllers-60" title="Reference 3">(3)</a> <a href="#ref-for-dfn-did-controllers-61" title="Reference 4">(4)</a> 
+    <a href="#ref-for-dfn-did-controllers-59" title="§ B.12 Changing the DID controller">§ B.12 Changing the DID controller</a> <a href="#ref-for-dfn-did-controllers-60" title="Reference 2">(2)</a> <a href="#ref-for-dfn-did-controllers-61" title="Reference 3">(3)</a> <a href="#ref-for-dfn-did-controllers-62" title="Reference 4">(4)</a> 
   </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-did-delegate" aria-label="Links in this document to definition: DID delegate">
