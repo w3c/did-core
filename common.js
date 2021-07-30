@@ -7,16 +7,6 @@ var ccg = {
   // Add as the respecConfig localBiblio variable
   // Extend or override global respec references
   localBiblio: {
-    "DID-SPEC-REGISTRIES": {
-      title: "DID Specification Registries",
-      href: "https://w3c.github.io/did-spec-registries/",
-      authors: [
-        "Orie Steele",
-        "Manu Sporny"
-      ],
-      status: "ED",
-      publisher: "Decentralized Identifier Working Group"
-    },
     "REST": {
       title: "Architectural Styles and the Design of Network-based Software Architectures",
       date: "2000",
@@ -165,26 +155,6 @@ var ccg = {
       ],
       status: "Internet-Draft",
       publisher: "IETF"
-    },
-    "JSON-LD11": {
-      title: "JSON-LD 1.1",
-      date: "2020-07-16",
-      authors: [
-        "Gregg Kellogg", "Pierre-Antoine Champin", "Dave Longley"
-      ],
-      status: "W3C Recommendation",
-      publisher: "W3C",
-      href: "https://www.w3.org/TR/json-ld11/"
-    },
-    "VC-DATA-MODEL": {
-      title: "Verifiable Credentials Data Model 1.0",
-      date: "2019-11-19",
-      authors: [
-        "Manu Sporny", "Grant Noble", "Dave Longley", "Daniel Burnett", "Brent Zundel"
-      ],
-      status: "W3C Recommendation",
-      publisher: "W3C",
-      href: "https://www.w3.org/TR/vc-data-model/"
     }
   }
 };
