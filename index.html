@@ -1178,7 +1178,7 @@ data-cite="INFRA#map-entry">entries</a>, where each entry consists of a
 key/value pair. The <a>DID document</a> data model contains at least two
 different classes of entries. The first class of entries is called properties,
 and is specified in section <a href="#core-properties"></a>. The second class
-is made up of representation-specific entries, and is specified in section <a
+is made up of <a>representation-specific entries</a>, and is specified in section <a
 href="#representations"></a>.
     </p>
 
@@ -2490,8 +2490,8 @@ href="#data-model">data model</a> is lossless. For example, some CBOR-based
 represent the number of seconds since the Unix epoch.
         </li>
         <li>
-A <a>representation</a> MAY define representation-specific entries that are
-stored in a representation-specific entries <a data-cite="INFRA#maps">map</a>
+A <a>representation</a> MAY define <a>representation-specific entries</a> that are
+stored in a <a>representation-specific entries</a> <a data-cite="INFRA#maps">map</a>
 for use during the <a>production</a> and <a>consumption</a> process. These
 entries are used when consuming or producing to aid in ensuring lossless
 conversion.
@@ -2510,7 +2510,7 @@ The requirements for all <a>conforming producers</a> are as follows:
       <ol>
         <li>
 A <a>conforming producer</a> MUST take a <a>DID document</a> <a
-href="#data-model">data model</a> and a representation-specific entries <a
+href="#data-model">data model</a> and a <a>representation-specific entries</a> <a
 data-cite="INFRA#maps">map</a> as input into the <a>production</a> process.
 The <a>conforming producer</a> MAY accept additional options as input
 into the <a>production</a> process.
@@ -2518,7 +2518,7 @@ into the <a>production</a> process.
         <li>
 A <a>conforming producer</a> MUST serialize all entries in the <a>DID
 document</a> <a href="#data-model">data model</a>, and the
-representation-specific entries <a data-cite="INFRA#maps">map</a>, that do not
+<a>representation-specific entries</a> <a data-cite="INFRA#maps">map</a>, that do not
 have explicit processing rules for the <a>representation</a> being produced
 using only the <a>representation</a>'s data type processing rules and
 return the serialization after the <a>production</a> process completes.
@@ -2551,15 +2551,15 @@ A <a>conforming consumer</a> MUST determine the <a>representation</a> of a
 data-cite="INFRA#string">string</a>.
         </li>
         <li>
-A <a>conforming consumer</a> MUST detect any representation-specific
-entry across all known <a>representations</a> and place the entry into a
-representation-specific entries <a data-cite="INFRA#maps">map</a> which is
+A <a>conforming consumer</a> MUST detect any <a>representation-specific
+entry</a> across all known <a>representations</a> and place the entry into a
+<a>representation-specific entries</a> <a data-cite="INFRA#maps">map</a> which is
 returned after the <a>consumption</a> process completes. A list of
-all known representation-specific entries is available in the
+all known <a>representation-specific entries</a> is available in the
 DID Specification Registries [[?DID-SPEC-REGISTRIES]].
         </li>
         <li>
-A <a>conforming consumer</a> MUST add all non-representation-specific entries
+A <a>conforming consumer</a> MUST add all <a>non-representation-specific entries</a>
 that do not have explicit processing rules for the <a>representation</a> being
 consumed to the <a>DID document</a> <a href="#data-model">data model</a> using
 only the <a>representation</a>'s data type processing rules and return the
@@ -2679,7 +2679,7 @@ for the JSON <a>representation</a>.
 
         <p>
 The <a>DID document</a>, DID document data structures, and
-representation-specific entries <a data-cite="INFRA#maps">map</a> MUST be
+<a>representation-specific entries</a> <a data-cite="INFRA#maps">map</a> MUST be
 serialized to the JSON <a>representation</a> according to the following
 <a>production</a> rules:
         </p>
@@ -2967,8 +2967,8 @@ JSON-LD <a>representation</a>.
       </p>
 
       <p>
-The JSON-LD <a>representation</a> defines the following representation-specific
-entries:
+The JSON-LD <a>representation</a> defines the following <a>representation-specific
+entries</a>:
       </p>
 
       <dl>
@@ -2987,7 +2987,7 @@ maps</a>.
 
         <p>
 The <a>DID document</a>, DID document data structures, and
-representation-specific entries <a data-cite="INFRA#maps">map</a> MUST
+<a>representation-specific entries</a> <a data-cite="INFRA#maps">map</a> MUST
 be serialized to the JSON-LD <a>representation</a> according to the JSON
 <a>representation</a> <a>production</a> rules as defined in <a
 href="#json"></a>.
@@ -2995,7 +2995,8 @@ href="#json"></a>.
 
         <p>
 In addition to using the JSON <a>representation</a> <a>production</a> rules,
-JSON-LD production MUST include the representation-specific
+JSON-LD production MUST include the
+<a data-lt="representation-specific entry">representation-specific</a>
 <a><code>@context</code></a> entry. The serialized value of
 <code>@context</code> MUST be the <a data-cite="RFC8259#section-7">JSON
 String</a> <code>https://www.w3.org/ns/did/v1</code>, or a <a
