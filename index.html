@@ -5696,10 +5696,10 @@ practice to avoid dislosing unnecessary information in JWE headers.
     </section>
   </section>
 
-  <section class="appendix">
+  <section class="appendix informative">
     <h1>Architectural Considerations</h1>
 
-    <section>
+    <section class="informative">
       <h2>Detailed Architecture Diagram</h2>
       <p>
   Following is a diagram showing the relationships among
@@ -5725,7 +5725,7 @@ practice to avoid dislosing unnecessary information in JWE headers.
 
     </section>
 
-    <section>
+    <section class="informative">
       <h2>Creation of a DID</h2>
       <p>
 The creation of a <a>DID</a> is a process that is defined by each <a>DID
@@ -5741,7 +5741,7 @@ might be defined by the respective <a>DID method</a>.
     </section>
 
 
-    <section>
+    <section class="informative">
       <h2>Determining the DID subject</h2>
       <p>
 
@@ -5779,7 +5779,7 @@ of a company&mdash;where the actual person occupying the role can be different
 depending on when the <a>DID</a> is resolved.
       </p>
     </section>
-    <section>
+    <section class="informative">
       <h2>Referring to the DID document</h2>
       <p>
 The <a>DID</a> refers to the <a>DID subject</a> and <em>resolves to</em> the
@@ -5827,7 +5827,7 @@ blue arrow, labeled, "Describes" points directly from DID Document to DID
 Subject.
       </div>
     </section>
-    <section>
+    <section class="informative">
       <h2>Statements in the DID document</h2>
       <p>
 Each property in a <a>DID document</a> is a statement by the
@@ -5856,7 +5856,7 @@ That statement is illustrated in <a href="#did-and-did-document-graph"></a>
 with a direct link between the <a>DID</a> and the <a>DID subject</a>.
       </p>
     </section>
-    <section>
+    <section class="informative">
       <h2>Discovering more information about the DID subject</h2>
       <p>
 Options for discovering more information about the <a>DID subject</a> depend
@@ -5916,7 +5916,7 @@ direction, labeled "Controller", curving outwards on the left of the image,
 from DID Document to DID Controller.
       </div>
     </section>
-    <section>
+    <section class="informative">
       <h2>Serving a representation of the DID subject</h2>
       <p>
 If the <a>DID subject</a> is a digital resource that can be retrieved
@@ -5933,7 +5933,7 @@ an image) that can be returned directly from a <a>verifiable data registry</a>
 if that functionality is supported by the applicable <a>DID method</a>.
       </p>
     </section>
-    <section>
+    <section class="informative">
       <h2>Assigning DIDs to existing web resources</h2>
       <p>
 If the controller of a web page or any other web resource wants to
@@ -5966,14 +5966,14 @@ network location might change over time.
       </p>
     </section>
 
-    <section>
+    <section class="informative">
       <h2>The relationship between DID controllers and DID subjects</h2>
       <p>
 To avoid confusion, it is helpful to classify
 <a>DID subject</a>s into two disjoint sets based on their relationship to
 the <a>DID controller</a>.
       </p>
-      <section>
+      <section class="informative">
         <h3>Set #1: The DID subject <em>is</em> the DID controller</h3>
         <p>
 The first case, shown in <a href="#controller-subject-equivalence"></a>, is
@@ -6019,7 +6019,7 @@ From a graph model perspective, even though the nodes identified as the
 logical arc connecting them to express a semantic equivalence relationship.
         </p>
       </section>
-      <section>
+      <section class="informative">
         <h3>Set #2: The DID subject is <em>not</em> the DID controller</h3>
         <p>
 The second case is when the <a>DID subject</a> is a separate entity from the
@@ -6037,13 +6037,13 @@ no equivalence arc relationship between the <a>DID subject</a> and
       </section>
     </section>
 
-    <section>
+    <section class="informative">
       <h2>Multiple DID controllers</h2>
       <p>
 A <a>DID document</a> might have more than one <a>DID controller</a>. This can
 happen in one of two ways.
       </p>
-      <section>
+      <section class="informative">
         <h3>Independent Control</h3>
         <p>
 In this case, each of the <a>DID controllers</a> might act on its own, i.e.,
@@ -6085,7 +6085,7 @@ rectangle extends a blue arrow, labeled, "Describes", pointing to a black circle
 labeled, "DID Subject".
         </div>
       </section>
-      <section>
+      <section class="informative">
         <h3>Group Control</h3>
         <p>
 In the case of group control, the <a>DID controllers</a> are expected to act
@@ -6129,7 +6129,7 @@ that is not controlled by a single individual.
         </p>
       </section>
     </section>
-    <section>
+    <section class="informative">
       <h2>Changing the DID subject</h2>
       <p>
 A <a>DID document</a> has exactly one <a>DID</a> which refers to
@@ -6145,7 +6145,7 @@ authority of the <a>DID controller</a>. For more details, see section  <a
 href="#persistence"></a>.
       </p>
     </section>
-    <section>
+    <section class="informative">
       <h2>Changing the DID controller</h2>
       <p>
 The <a>DID controller</a> for a <a>DID document</a> might change over time.
@@ -6168,7 +6168,7 @@ advised to <a>authenticate</a> the new <a>DID controller</a> against the
     </section>
   </section>
 
-  <section class="appendix">
+  <section class="appendix informative">
     <h2>Revision History</h2>
 
     <p>
@@ -6318,7 +6318,7 @@ An acknowledgements section.
 
   </section>
 
-  <section class="appendix">
+  <section class="appendix informative">
     <h2>Acknowledgements</h2>
     <p>
 The Working Group extends deep appreciation and heartfelt thanks to our Chairs
