@@ -30,7 +30,7 @@
     shortName: "did-core",
 
     // specification status (e.g., WD, LCWD, NOTE, etc.). If in doubt use ED.
-    specStatus: "PR",
+    specStatus: "REC",
 
     // W3C Proposed Recommendation information
     prEnd: "2021-08-31",
@@ -46,12 +46,12 @@
     subtitle: "Core architecture, data model, and representations",
 
     // if you wish the publication date to be other than today, set this
-    publishDate:  "2021-08-03",
+    publishDate:  "2022-07-19",
 
     // previously published draft, uncomment this and set its
     // YYYY-MM-DD date and its maturity status
-    previousPublishDate:  "2021-06-15",
-    previousMaturity:  "CR",
+    previousPublishDate:  "2021-08-03",
+    previousMaturity:  "PR",
 
     // automatically allow term pluralization
     pluralize: true,
@@ -95,7 +95,7 @@
       }, {
         name: "Drummond Reed",
         url: "https://www.linkedin.com/in/drummondreed/",
-        company: "Evernym",
+        company: "Evernym/Avast",
         companyURL: "https://www.evernym.com/",
         w3cid: 3096
       }
@@ -126,7 +126,7 @@
       {
         name: "Drummond Reed",
         url: "https://www.linkedin.com/in/drummondreed/",
-        company: "Evernym",
+        company: "Evernym/Avast",
         companyURL: "https://www.evernym.com/",
         w3cid: 3096
       },
@@ -732,20 +732,20 @@ href="#representations"></a>.
       </p>
 
       <p>
-A <dfn>conforming DID resolver</dfn> is any algorithm realized as software
-and/or hardware that complies with the relevant normative statements in
-<a href="#did-resolution"></a>.
+A <dfn class="lint-ignore">conforming DID resolver</dfn> is any algorithm
+realized as software and/or hardware that complies with the relevant normative
+statements in <a href="#did-resolution"></a>.
       </p>
 
       <p>
-A <dfn>conforming DID URL dereferencer</dfn> is any algorithm realized as
-software and/or hardware that complies with the relevant normative statements in
-<a href="#did-url-dereferencing"></a>.
+A <dfn class="lint-ignore">conforming DID URL dereferencer</dfn> is any
+algorithm realized as software and/or hardware that complies with the relevant
+normative statements in <a href="#did-url-dereferencing"></a>.
       </p>
 
       <p>
-A <dfn>conforming DID method</dfn> is any specification that complies with the
-relevant normative statements in <a href="#methods"></a>.
+A <dfn class="lint-ignore">conforming DID method</dfn> is any specification that
+complies with the relevant normative statements in <a href="#methods"></a>.
       </p>
 
     </section>
@@ -3426,7 +3426,7 @@ This specification defines the following common properties.
         </p>
 
         <dl>
-          <dt><dfn>created</dfn></dt>
+          <dt><dfn class="lint-ignore">created</dfn></dt>
           <dd>
 <a>DID document</a> metadata SHOULD include a <code>created</code> property to
 indicate the timestamp of the <a href="#method-operations">Create operation</a>.
@@ -3436,7 +3436,7 @@ normalized to UTC 00:00:00 and without sub-second decimal precision. For
 example: <code>2020-12-20T19:17:47Z</code>.
           </dd>
 
-          <dt><dfn>updated</dfn></dt>
+          <dt><dfn class="lint-ignore">updated</dfn></dt>
           <dd>
 <a>DID document</a> metadata SHOULD include an <code>updated</code> property to
 indicate the timestamp of the last <a href="#method-operations">Update
@@ -3448,7 +3448,7 @@ property exists, it can be the same value as the <code>created</code> property
 when the difference between the two timestamps is less than one second.
           </dd>
 
-          <dt><dfn>deactivated</dfn></dt>
+          <dt><dfn class="lint-ignore">deactivated</dfn></dt>
           <dd>
 If a DID has been <a href="#method-operations">deactivated</a>,
 <a>DID document</a> metadata MUST include this property with the boolean value
@@ -3456,7 +3456,7 @@ If a DID has been <a href="#method-operations">deactivated</a>,
 but if included, MUST have the boolean value <code>false</code>.
           </dd>
 
-          <dt><dfn>nextUpdate</dfn></dt>
+          <dt><dfn class="lint-ignore">nextUpdate</dfn></dt>
           <dd>
 <a>DID document</a> metadata MAY include a <code>nextUpdate</code> property if
 the resolved document version is not the latest version of the document. It
@@ -3465,7 +3465,7 @@ operation</a>. The value of the property MUST follow the same formatting rules
 as the <code>created</code> property.
           </dd>
 
-          <dt><dfn>versionId</dfn></dt>
+          <dt><dfn class="lint-ignore">versionId</dfn></dt>
           <dd>
 <a>DID document</a> metadata SHOULD include a <code>versionId</code> property to
 indicate the version of the last <a href="#method-operations">Update
@@ -3473,7 +3473,7 @@ operation</a> for the document version which was resolved. The value of the
 property MUST be an <a data-lt="ascii string">ASCII string</a>.
           </dd>
 
-          <dt><dfn>nextVersionId</dfn></dt>
+          <dt><dfn class="lint-ignore">nextVersionId</dfn></dt>
           <dd>
 <a>DID document</a> metadata MAY include a <code>nextVersionId</code> property
 if the resolved document version is not the latest version of the document. It
