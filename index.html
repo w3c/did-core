@@ -1479,7 +1479,7 @@ A <a data-cite="INFRA#ordered-set">set</a> of <a>Service Endpoint</a>
         </thead>
         <tbody>
           <tr>
-            <td><code>id</code></td>
+            <td><code><a href="#prop-verificationMethod-id" class="internalDFN">id</a></code></td>
             <td>yes</td>
             <td>
 A <a data-cite="INFRA#string">string</a> that conforms to the rules in
@@ -1487,7 +1487,7 @@ A <a data-cite="INFRA#string">string</a> that conforms to the rules in
             </td>
           </tr>
           <tr>
-            <td><code><a>controller</a></code></td>
+            <td><code><a href="#prop-verificationMethod-controller" class="internalDFN">controller</a></code></td>
             <td>yes</td>
             <td>
 A <a data-cite="INFRA#string">string</a> that conforms to the rules in
@@ -1495,7 +1495,7 @@ A <a data-cite="INFRA#string">string</a> that conforms to the rules in
             </td>
           </tr>
           <tr>
-            <td><code>type</code></td>
+            <td><code><a href="#prop-verificationMethod-type" class="internalDFN">type</a></code></td>
             <td>yes</td>
             <td>
 A <a data-cite="INFRA#string">string</a>.
@@ -1536,7 +1536,7 @@ A <a data-cite="INFRA#string">string</a> that conforms to a
         </thead>
         <tbody>
           <tr>
-            <td><code>id</code></td>
+            <td><code><a href="#prop-service-id" class="internalDFN">id</a></code></td>
             <td>yes</td>
             <td>
 A <a data-cite="INFRA#string">string</a> that conforms to the rules of
@@ -1544,7 +1544,7 @@ A <a data-cite="INFRA#string">string</a> that conforms to the rules of
             </td>
           </tr>
           <tr>
-            <td><code>type</code></td>
+            <td><code><a href="#prop-service-type" class="internalDFN">type</a></code></td>
             <td>yes</td>
             <td>
 A <a data-cite="INFRA#string">string</a> or a
@@ -1745,7 +1745,7 @@ in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
           </p>
 
           <dl>
-            <dt>id</dt>
+            <dt id="prop-verificationMethod-id">id</dt>
             <dd>
               <p>
 The value of the <code><a>id</a></code> property for a <a>verification
@@ -1754,7 +1754,7 @@ rules in Section <a href="#did-url-syntax"></a>. This value represents the
 <a>DID URL</a> that dereferences to the identified <a>verification method</a>.
               </p>
             </dd>
-            <dt>type</dt>
+            <dt id="prop-verificationMethod-type">type</dt>
             <dd>
 The value of the <code>type</code> property MUST be a <a
 data-cite="INFRA#string">string</a> that references exactly one <a>verification
@@ -1763,7 +1763,7 @@ method</a> type. In order to maximize global interoperability, the
 Registries [[?DID-SPEC-REGISTRIES]]. This value represents the type of
 <a>verification method</a> suite in use.
             </dd>
-            <dt>controller</dt>
+            <dt id="prop-verificationMethod-controller">controller</dt>
             <dd>
 The value of the <code>controller</code> property MUST be a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in <a
@@ -2346,7 +2346,7 @@ which is described below:
       </p>
 
       <dl>
-        <dt>service</dt>
+        <dt><dfn>service</dfn></dt>
         <dd>
           <p>
 The <code>service</code> property is OPTIONAL. If present, the associated value
@@ -2359,7 +2359,7 @@ include additional properties and MAY further restrict the properties associated
 with the extension.
           </p>
           <dl>
-            <dt>id</dt>
+            <dt id="prop-service-id">id</dt>
             <dd>
 The value of the <code>id</code> property MUST be a <a>URI</a> conforming to
 [[RFC3986]]. A <a>conforming producer</a> MUST NOT produce
@@ -2367,7 +2367,7 @@ multiple <code>service</code> entries with the same <code>id</code>.
 A <a>conforming consumer</a> MUST produce an error if it detects
 multiple <code>service</code> entries with the same <code>id</code>.
             </dd>
-          <dt>type</dt>
+          <dt id="prop-service-type">type</dt>
           <dd>
 The value of the <code>type</code> property MUST be a <a
 data-cite="INFRA#string">string</a> or a <a
