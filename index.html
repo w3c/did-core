@@ -1643,7 +1643,8 @@ document</a>, its value expresses one or more <a>DIDs</a>. Any <a>verification
 methods</a> contained in the <a>DID documents</a> for those <a>DIDs</a> SHOULD
 be accepted as authoritative, such that proofs that satisfy those
 <a>verification methods</a> are to be considered equivalent to proofs provided
-by the <a>DID subject</a>.
+by the <a>DID subject</a> and represent the <a>DID controller(s)</a> authorized to
+make updates to the <a>DID document</a>.
         </p>
 
         <pre class="example nohighlight"
@@ -1749,7 +1750,8 @@ in the DID Specification Registries [[?DID-SPEC-REGISTRIES]].
               <p>
 The value of the <code><a>id</a></code> property for a <a>verification
 method</a> MUST be a <a data-cite="INFRA#string">string</a> that conforms to the
-rules in Section <a href="#did-url-syntax"></a>.
+rules in Section <a href="#did-url-syntax"></a>. This value represents the
+<a>DID URL</a> that dereferences to the identified <a>verification method</a>.
               </p>
             </dd>
             <dt>type</dt>
@@ -1758,13 +1760,16 @@ The value of the <code>type</code> property MUST be a <a
 data-cite="INFRA#string">string</a> that references exactly one <a>verification
 method</a> type. In order to maximize global interoperability, the
 <a>verification method</a> type SHOULD be registered in the DID Specification
-Registries [[?DID-SPEC-REGISTRIES]].
+Registries [[?DID-SPEC-REGISTRIES]]. This value represents the type of
+<a>verification method</a> suite in use.
             </dd>
             <dt>controller</dt>
             <dd>
 The value of the <code>controller</code> property MUST be a <a
 data-cite="INFRA#string">string</a> that conforms to the rules in <a
-href="#did-syntax"></a>.
+href="#did-syntax"></a>. This value represents either the <a>DID controller</a>
+or <a>DID delegate</a> who possesses the secret cryptographic material used to
+authenticate the <a>verification method</a>.
             </dd>
           </dl>
         </dd>
