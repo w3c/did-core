@@ -3044,6 +3044,97 @@ drop all terms from a <a>DID document</a> that are not defined via the
 
       </section>
     </section>
+
+    <section class="normative">
+      <h3>Media Types</h3>
+
+      <p>
+Media types, as defined in [[RFC6838]], identify the syntax used to express a
+[=DID document=] as well as other useful processing guidelines.
+      </p>
+      <p>
+Syntaxes used to express the data model in this specification SHOULD be
+identified by a media type, and conventions outlined in this section SHOULD be
+followed when defining or using media types with [=DID documents=].
+      </p>
+      <p>
+There are one media type associated with the core data model, which is
+listed in Section [[[#iana-considerations]]]:
+`application/did`.
+      </p>
+
+      <section class="informative">
+        <h3>Media Type Precision</h3>
+
+        <p>
+At times, developers or systems might use lower precision media types to convey
+[=DID documents=]. Some of the reasons for use of lower precision media types
+include:
+        </p>
+
+        <ul>
+          <li>
+A web server defaults to `text/plain` or `application/octet-stream` when a file
+extension is not available and it cannot determine the media type.
+          </li>
+          <li>
+A developer adds a file extension that leads to a media type that is less
+specific than the content of the file. For example, `.json` could result in a
+media type of `application/json` and `.jsonld` might result in a media type of
+`application/ld+json`.
+          </li>
+          <li>
+A protocol requires a less precise media type for a particular transaction; for
+example, `application/json` instead of `application/did`,
+          </li>
+        </ul>
+
+        <p>
+Implementers are urged to not raise errors when it is possible to determine the
+intended media type from a payload, provided that the media type used is
+acceptable in the given protocol. For example, if an application only accepts
+payloads that conform to the rules associated with the `application/did` media
+type, but the payload is tagged with `application/json` or `application/ld+json`
+instead, the application might perform the following steps to determine whether
+the payload also conforms to the higher precision media type:
+        </p>
+
+        <ol>
+          <li>
+Parse the payload as a JSON document.
+          </li>
+          <li>
+Ensure that the first element of the `@context` property matches
+`https://www.w3.org/ns/did/v1.1`.
+          </li>
+          <li>
+Assume an `application/did` media type if the JSON document contains a top-level
+`id` property containing an identifier that conforms to the rules in Section
+[[[#did-syntax]]].
+          </li>
+        </ol>
+
+        <p>
+Whenever possible, implementers are advised to use the most precise (the highest
+precision) media type for all payloads defined by this specification.
+Implementers are also advised to recognize that a payload tagged with a lower
+precision media type does not mean that the payload does not meet the rules
+necessary to tag it with a higher precision type. Similarly, a payload tagged
+with a higher precision media type does not mean that the payload will meet the
+requirements associated with the media type. Receivers of payloads, regardless
+of their associated media type, are expected to perform appropriate checks to
+ensure that payloads conform with the requirements for their use in a given
+system.
+        </p>
+        <p>
+HTTP clients and servers use media types associated with [=DID documents=] in
+accept headers and when indicating content types. Implementers are warned that
+HTTP servers might ignore the accept header and return another content type, or
+return an error code such as <a data-cite="RFC7231#section-6.5.13">`415
+Unsupported Media Type`</a>.
+        </p>
+      </section>
+    </section>
   </section>
 
   <section>
