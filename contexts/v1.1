@@ -5,9 +5,8 @@
     "type": "@type",
 
     "alsoKnownAs": {
-      "@id": "https://w3id.org/security#alsoKnownAs",
-      "@type": "@id",
-      "@container": "@set"
+      "@id": "https://www.w3.org/ns/activitystreams#alsoKnownAs",
+      "@type": "@id"
     },
     "assertionMethod": {
       "@id": "https://w3id.org/security#assertionMethod",
@@ -38,12 +37,24 @@
       "@type": "@id",
       "@container": "@set"
     },
+    "service": {
+      "@id": "https://www.w3.org/ns/did#service",
+      "@type": "@id",
+      "@context": {
+        "@protected": true,
+        "id": "@id",
+        "type": "@type",
+        "serviceEndpoint": {
+          "@id": "https://www.w3.org/ns/did#serviceEndpoint",
+          "@type": "@id"
+        }
+      }
+    },    
     "verificationMethod": {
       "@id": "https://w3id.org/security#verificationMethod",
-      "@type": "@id",
-      "@container": "@set"
+      "@type": "@id"
     },
-   "Multikey": {
+    "Multikey": {
       "@id": "https://w3id.org/security#Multikey",
       "@context": {
         "@protected": true,
@@ -71,7 +82,7 @@
         }
       }
     },
-   "JsonWebKey": {
+    "JsonWebKey": {
       "@id": "https://w3id.org/security#JsonWebKey",
       "@context": {
         "@protected": true,
