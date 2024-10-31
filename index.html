@@ -3032,7 +3032,7 @@ identified by a media type, and conventions outlined in this section SHOULD be
 followed when defining or using media types with [=DID documents=].
       </p>
       <p>
-There are one media type associated with the core data model, which is
+There is one media type associated with the core data model, which is
 listed in Section [[[#iana-considerations]]]:
 `application/did`.
       </p>
@@ -3041,8 +3041,8 @@ listed in Section [[[#iana-considerations]]]:
         <h3>Media Type Precision</h3>
 
         <p>
-At times, developers or systems might use lower precision media types to convey
-[=DID documents=]. Some of the reasons for use of lower precision media types
+At times, developers or systems might use lower-precision media types to convey
+[=DID documents=]. Some of the reasons for use of lower-precision media types
 include:
         </p>
 
@@ -3064,13 +3064,13 @@ example, `application/json` instead of `application/did`,
         </ul>
 
         <p>
-Implementers are urged to not raise errors when it is possible to determine the
-intended media type from a payload, provided that the media type used is
+Implementers are urged to avoid raising errors when it is possible to determine
+the intended media type from the payload, provided that the media type used is
 acceptable in the given protocol. For example, if an application only accepts
 payloads that conform to the rules associated with the `application/did` media
-type, but the payload is tagged with `application/json` or `application/ld+json`
-instead, the application might perform the following steps to determine whether
-the payload also conforms to the higher precision media type:
+type, but the payload is tagged with the lower-precision `application/json` or
+`application/ld+json`, the application might perform the following steps to
+determine whether the payload also conforms to the higher-precision media type:
         </p>
 
         <ol>
@@ -3089,12 +3089,12 @@ Assume an `application/did` media type if the JSON document contains a top-level
         </ol>
 
         <p>
-Whenever possible, implementers are advised to use the most precise (the highest
+Whenever possible, implementers are advised to use the most precise (the highest-
 precision) media type for all payloads defined by this specification.
-Implementers are also advised to recognize that a payload tagged with a lower
+Implementers are also advised to recognize that a payload tagged with a lower-
 precision media type does not mean that the payload does not meet the rules
-necessary to tag it with a higher precision type. Similarly, a payload tagged
-with a higher precision media type does not mean that the payload will meet the
+necessary to tag it with a higher-precision type. Similarly, a payload tagged
+with a higher-precision media type does not mean that the payload will meet the
 requirements associated with the media type. Receivers of payloads, regardless
 of their associated media type, are expected to perform appropriate checks to
 ensure that payloads conform with the requirements for their use in a given
@@ -3102,8 +3102,8 @@ system.
         </p>
         <p>
 HTTP clients and servers use media types associated with [=DID documents=] in
-accept headers and when indicating content types. Implementers are warned that
-HTTP servers might ignore the accept header and return another content type, or
+`Accept:` headers and when indicating content types. Implementers are warned that
+HTTP servers might ignore the `Accept:` header and return another content type, or
 return an error code such as <a data-cite="RFC7231#section-6.5.13">`415
 Unsupported Media Type`</a>.
         </p>
