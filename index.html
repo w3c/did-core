@@ -345,10 +345,7 @@ to cryptographically <a>authenticate</a> a <a>DID controller</a>.
 
       <pre class="example nohighlight" title="A simple DID document">
 {
-  "@context": [
-    "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/suites/ed25519-2020/v1"
-  ],
+  "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123456789abcdefghi",
   "authentication": [{
     <span class="comment">// used to authenticate as did:...fghi</span>
@@ -1095,10 +1092,7 @@ relative URLs to reduce the storage size of <a>DID documents</a>.
         <pre class="example nohighlight"
           title="An example of a relative DID URL">
 {
-  "@context": [
-    "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/suites/ed25519-2020/v1"
-  ],
+  "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123456789abcdefghi",
   "verificationMethod": [{
     "id": "did:example:123456789abcdefghi#key-1",
@@ -1636,7 +1630,7 @@ make updates to the <a>DID document</a>.
         <pre class="example nohighlight"
           title="DID document with a controller property">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
+  "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123456789abcdefghi",
   "controller": "did:example:bcehfew7h32f32h7af3",
 }
@@ -1763,11 +1757,7 @@ authenticate the <a>verification method</a>.
 
       <pre class="example" title="Example verification method structure">
 {
-  "@context": [
-    "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/suites/jws-2020/v1"
-    "https://w3id.org/security/suites/ed25519-2020/v1"
-  ],
+  "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "verificationMethod": [{
@@ -1880,16 +1870,12 @@ both properties above is shown below.
           class="example nohighlight"
           title="Verification methods using publicKeyJwk and publicKeyMultibase">
 {
-  "@context": [
-    "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/suites/jws-2020/v1",
-    "https://w3id.org/security/suites/ed25519-2020/v1"
-  ],
+  "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "verificationMethod": [{
     "id": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
-    "type": "JsonWebKey2020", <span class="comment">// external (property value)</span>
+    "type": "JsonWebKey", <span class="comment">// external (property value)</span>
     "controller": "did:example:123",
     "publicKeyJwk": {
       "crv": "Ed25519", <span class="comment">// external (property name)</span>
@@ -2017,10 +2003,7 @@ referenced.
         <pre class="example nohighlight" title="Authentication property
                       containing three verification methods">
 {
-  "@context": [
-    "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/suites/ed25519-2020/v1"
-  ],
+  "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "authentication": [
@@ -2104,10 +2087,7 @@ corresponding <a>DID document</a>.
         <pre class="example nohighlight" title="Assertion method property
                     containing two verification methods">
 {
-  "@context": [
-    "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/suites/ed25519-2020/v1"
-  ],
+  "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "assertionMethod": [
@@ -2158,7 +2138,7 @@ decryption key for the recipient.
         <pre class="example nohighlight" title="Key agreement property
                       containing two verification methods">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
+  "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "keyAgreement": [
@@ -2169,9 +2149,9 @@ decryption key for the recipient.
     <span class="comment">// embedded here rather than using only a reference</span>
     {
       "id": "did:example:123#zC9ByQ8aJs8vrNXyDhPHHNNMSHPcaSgNpjjsBYpMMjsTdS",
-      "type": "X25519KeyAgreementKey2019", <span class="comment">// external (property value)</span>
+      "type": "Multikey", <span class="comment">// external (property value)</span>
       "controller": "did:example:123",
-      "publicKeyMultibase": "z6LSn6p3HRxx1ZZk1dT9VwcfTBCYgtNWdzdDMKPZjShLNWG7"
+      "publicKeyMultibase": "z6MkmM42vxfqZQsv4ehtTjFFxQ4sQKS2w6WR7emozFAn5cxu"
     }
   ],
   <span class="comment">...</span>
@@ -2222,10 +2202,7 @@ protected resource.
         <pre class="example nohighlight" title="Capability invocation property
                       containing two verification methods">
 {
-  "@context": [
-    "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/suites/ed25519-2020/v1"
-  ],
+  "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "capabilityInvocation": [
@@ -2280,10 +2257,7 @@ example described in <a href="#capability-invocation"></a>.
         <pre class="example nohighlight" title="Capability Delegation property
                       containing two verification methods">
 {
-  "@context": [
-    "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/suites/ed25519-2020/v1"
-  ],
+  "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123456789abcdefghi",
   <span class="comment">...</span>
   "capabilityDelegation": [
@@ -2566,9 +2540,9 @@ and contains the following <a data-cite="INFRA#maps">INFRA</a> notation:
   "verificationMethod" → « «[
     "id": "did:example:123#keys-1",
     "controller": "did:example:123",
-    "type": "Ed25519VerificationKey2018",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVA"
-  ]» »,
+    "type": "Multikey",
+    "publicKeyMultibase": "z6MkmM42vxfqZQsv4ehtTjFFxQ4sQKS2w6WR7emozFAn5cxu"
+    ]» »,
   "authentication" → «
     "did:example:123#keys-1"
   »
@@ -2578,7 +2552,7 @@ The lower, smaller rectangle is labeled, in blue, "Core Representation-specific
 Entries (JSON-LD)", and contains the following monospaced <a
 data-cite="INFRA#maps">INFRA</a> notation:
         <pre>
-«[ "@context" → "https://www.w3.org/ns/did/v1" ]»
+«[ "@context" → "https://www.w3.org/ns/did/v1.1" ]»
         </pre>
         <p>
 From the grey-outlined rectangle, three pairs of arrows extend to three
@@ -2597,8 +2571,8 @@ the following JSON data:
   "verificationMethod": [{
     "id": "did:example:123#keys-1",
     "controller": "did:example:123",
-    "type": "Ed25519VerificationKey2018",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVA"
+    "type": "Multikey",
+    "publicKeyMultibase": "z6MkmM42vxfqZQsv4ehtTjFFxQ4sQKS2w6WR7emozFAn5cxu"
   }],
   "authentication": [
     "did:example:123#keys-1"
@@ -2611,13 +2585,13 @@ contains the following JSON-LD data:
         </p>
         <pre>
 {
-  "@context": ["https://www.w3.org/ns/did/v1"],
+  "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123",
   "verificationMethod": [{
     "id": "did:example:123#keys-1",
     "controller": "did:example:123",
-    "type": "Ed25519VerificationKey2018",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVA"
+    "type": "Multikey",
+    "publicKeyMultibase": "z6MkmM42vxfqZQsv4ehtTjFFxQ4sQKS2w6WR7emozFAn5cxu"
   }],
   "authentication": [
     "did:example:123#keys-1"
@@ -2778,9 +2752,9 @@ applications.
   "id": "did:example:123456789abcdefghi",
   "authentication": [{
     "id": "did:example:123456789abcdefghi#keys-1",
-    "type": "Ed25519VerificationKey2018",
+    "type": "Multikey",
     "controller": "did:example:123456789abcdefghi",
-    "publicKeyBase58": "H3C2AVvLMv6gmMNam3uVAjZpfkcJCwDwnZn6z3wXmqPV"
+    "publicKeyMultibase": "z6MkmM42vxfqZQsv4ehtTjFFxQ4sQKS2w6WR7emozFAn5cxu"
   }]
 }
       </pre>
@@ -2969,10 +2943,10 @@ JSON-LD production MUST include the
 <a data-lt="representation-specific entry">representation-specific</a>
 <a><code>@context</code></a> entry. The serialized value of
 <code>@context</code> MUST be the <a data-cite="RFC8259#section-7">JSON
-String</a> <code>https://www.w3.org/ns/did/v1</code>, or a <a
+String</a> <code>https://www.w3.org/ns/did/v1.1</code>, or a <a
 data-cite="RFC8259#section-5">JSON Array</a> where the first item is the <a
 data-cite="RFC8259#section-7">JSON String</a>
-<code>https://www.w3.org/ns/did/v1</code> and the subsequent items are
+<code>https://www.w3.org/ns/did/v1.1</code> and the subsequent items are
 serialized according to the JSON <a>representation</a> <a>production</a>
 rules.
         </p>
@@ -2980,7 +2954,7 @@ rules.
         <pre class="example"
           title="A valid serialization of a simple @context entry">
 {
-  "@context": "https://www.w3.org/ns/did/v1",
+  "@context": "https://www.w3.org/ns/did/v1.1",
   ...
 }
         </pre>
@@ -2988,7 +2962,7 @@ rules.
           title="A valid serialization of a layered @context entry">
 {
   "@context": [
-    "https://www.w3.org/ns/did/v1",
+    "https://www.w3.org/ns/did/v1.1",
     "https://did-method-extension.example/v1"
   ],
   ...
@@ -4438,10 +4412,7 @@ purposes.
 
       <pre class="example" title="DID Document with 1 verification method type">
   {
-    "@context": [
-      "https://www.w3.org/ns/did/v1",
-      "https://w3id.org/security/suites/ed25519-2020/v1"
-    ],
+    "@context": "https://www.w3.org/ns/did/v1.1",
     "id": "did:example:123",
     "authentication": [
       {
@@ -4480,15 +4451,12 @@ purposes.
 
       <pre class="example" title="DID Document with many different key types">
 {
-  "@context": [
-    "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/suites/jws-2020/v1"
-  ],
+  "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123",
   "verificationMethod": [
     {
       "id": "did:example:123#key-0",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey",
       "controller": "did:example:123",
       "publicKeyJwk": {
         "kty": "OKP", // external (property name)
@@ -4498,7 +4466,7 @@ purposes.
     },
     {
       "id": "did:example:123#key-1",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey",
       "controller": "did:example:123",
       "publicKeyJwk": {
         "kty": "OKP", // external (property name)
@@ -4508,7 +4476,7 @@ purposes.
     },
     {
       "id": "did:example:123#key-2",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey",
       "controller": "did:example:123",
       "publicKeyJwk": {
         "kty": "EC", // external (property name)
@@ -4519,7 +4487,7 @@ purposes.
     },
     {
       "id": "did:example:123#key-3",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey",
       "controller": "did:example:123",
       "publicKeyJwk": {
         "kty": "EC", // external (property name)
@@ -4530,7 +4498,7 @@ purposes.
     },
     {
       "id": "did:example:123#key-4",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey",
       "controller": "did:example:123",
       "publicKeyJwk": {
         "kty": "EC", // external (property name)
@@ -4541,7 +4509,7 @@ purposes.
     },
     {
       "id": "did:example:123#key-5",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey",
       "controller": "did:example:123",
       "publicKeyJwk": {
         "kty": "EC", // external (property name)
@@ -4552,7 +4520,7 @@ purposes.
     },
     {
       "id": "did:example:123#key-6",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey",
       "controller": "did:example:123",
       "publicKeyJwk": {
         "kty": "EC", // external (property name)
@@ -4563,7 +4531,7 @@ purposes.
     },
     {
       "id": "did:example:123#key-7",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey",
       "controller": "did:example:123",
       "publicKeyJwk": {
         "kty": "RSA", // external (property name)
@@ -4577,41 +4545,38 @@ purposes.
       <pre class="example" title="DID Document with different verification method types">
 {
   "@context": [
-    "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/suites/ed25519-2018/v1",
-    "https://w3id.org/security/suites/x25519-2019/v1",
+    "https://www.w3.org/ns/did/v1.1",
     "https://w3id.org/security/suites/secp256k1-2019/v1",
-    "https://w3id.org/security/suites/jws-2020/v1"
   ],
   "id": "did:example:123",
   "verificationMethod": [
     {
       "id": "did:example:123#key-0",
-      "type": "Ed25519VerificationKey2018",
+      "type": "Multikey",
       "controller": "did:example:123",
-      "publicKeyBase58": "3M5RCDjPTWPkKSN3sxUmmMqHbmRPegYP1tjcKyrDbt9J" // external (property name)
+      "publicKeyMultibase": "z6MkmM42vxfqZQsv4ehtTjFFxQ4sQKS2w6WR7emozFAn5cxu"
     },
     {
       "id": "did:example:123#key-1",
-      "type": "X25519KeyAgreementKey2019",
+      "type": "Multikey",
       "controller": "did:example:123",
-      "publicKeyBase58": "FbQWLPRhTH95MCkQUeFYdiSoQt8zMwetqfWoxqPgaq7x" // external (property name)
+      "publicKeyMultibase": "z6MtTjFFxQ4sQKS2wmozFAn5cxukmM46WR7e2vxfqZQsv4eh"
     },
     {
       "id": "did:example:123#key-2",
       "type": "EcdsaSecp256k1VerificationKey2019",
       "controller": "did:example:123",
-      "publicKeyBase58": "ns2aFDq25fEV1NUd3wZ65sgj5QjFW8JCAHdUJfLwfodt" // external (property name)
+      "publicKeyMultibase": "zns2aFDq25fEV1NUd3wZ65sgtht4j5QjFW8JCAHdUJfLwfodt"
     },
     {
       "id": "did:example:123#key-3",
-      "type": "JsonWebKey2020",
+      "type": "JsonWebKey",
       "controller": "did:example:123",
       "publicKeyJwk": {
         "kty": "EC", // external (property name)
         "crv": "P-256", // external (property name)
-        "x": "Er6KSSnAjI70ObRWhlaMgqyIOQYrDJTE94ej5hybQ2M", // external (property name)
-        "y": "pPVzCOTJwgikPjuUE6UebfZySqEJ0ZtsWFpj7YSPGEk" // external (property name)
+        "x": "Er6KSSnAjI70ObRWhlaMgqyIOQYrDJTE94ej5hybQ2M",
+        "y": "pPVzCOTJwgikPjuUE6UebfZySqEJ0ZtsWFpj7YSPGEk"
       }
     }
   ]
@@ -4673,7 +4638,7 @@ Model</a> for additional examples.
       </pre>
 
       <pre class="example"
-        title="Verifiable Credential linked to a verification method of type JsonWebKey2020">
+        title="Verifiable Credential linked to a verification method of type JsonWebKey">
 {  <span class="comment">// external (all terms in this example)</span>
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
