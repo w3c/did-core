@@ -119,7 +119,7 @@ var ccg = {
     },
     "DID-RESOLUTION": {
       title: "Decentralized Identifier Resolution",
-      href: "https://w3c-ccg.github.io/did-resolution/",
+      href: "https://w3c.github.io/did-resolution/",
       authors: [
         "Markus Sabadello",
         "Dmitri Zagidulin"
