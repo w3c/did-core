@@ -853,8 +853,7 @@ did:example:123456/path
         <p>
 A <a>DID query</a> is identical to a generic <a>URI</a> query and conforms to
 the <code>query</code> ABNF rule in <a
-data-cite="RFC3986#section-3.4">RFC&nbsp;3986, section 3.4</a>. This syntax
-feature is elaborated upon in <a href="#did-parameters"></a>.
+data-cite="RFC3986#section-3.4">RFC&nbsp;3986, section 3.4</a>.
         </p>
 
         <pre class="example nohighlight">
@@ -906,154 +905,6 @@ Additional semantics for fragment identifiers, which are compatible with and
 layered upon the semantics in this section, are described for JSON-LD
 representations in <a href="#application-did"></a>. For information
 about how to dereference a <a>DID fragment</a>, see [[?DID-RESOLUTION]].
-        </p>
-
-      </section>
-
-      <section>
-        <h2>DID Parameters</h2>
-
-        <p>
-The <a>DID URL</a> syntax supports a simple format for parameters based on the
-<code>query</code> component described in <a href="#query"></a>. Adding a DID
-parameter to a <a>DID URL</a> means that the parameter becomes part of the
-identifier for a <a>resource</a>.
-        </p>
-
-        <pre class="example nohighlight"
-          title="A DID URL with a 'versionTime' DID parameter">
-did:example:123?versionTime=2021-05-10T17:00:00Z
-        </pre>
-
-        <pre class="example nohighlight"
-          title="A DID URL with a 'service' and a 'relativeRef' DID parameter">
-did:example:123?service=files&amp;relativeRef=/resume.pdf
-        </pre>
-
-        <p>
-Some DID parameters are completely independent of of any specific <a>DID
-method</a> and function the same way for all <a>DIDs</a>. Other DID parameters
-are not supported by all <a>DID methods</a>. Where optional parameters are
-supported, they are expected to operate uniformly across the <a>DID methods</a>
-that do support them. The following table provides common DID parameters that
-function the same way across all <a>DID methods</a>. Support for all
-<a href="#did-parameters">DID Parameters</a> is OPTIONAL.
-        </p>
-
-        <p class="note">
-It is generally expected that DID URL dereferencer implementations will
-reference [[?DID-RESOLUTION]] for additional implementation details. The scope
-of this specification only defines the contract of the most common
-query parameters.
-        </p>
-        <table class="simple">
-          <thead>
-            <tr>
-              <th>
-Parameter&nbsp;Name
-              </th>
-              <th>
-Description
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>
-<code><a>service</a></code>
-              </td>
-              <td>
-Identifies a service from the <a>DID document</a> by service ID.
-If present, the associated value MUST be an <a
-data-lt="ascii string">ASCII string</a>.
-              </td>
-            </tr>
-            <tr>
-              <td>
-<code>relativeRef</code>
-              </td>
-              <td>
-A relative <a>URI</a> reference according to <a
-data-cite="RFC3986#section-4.2">RFC3986 Section 4.2</a> that identifies a
-<a>resource</a> at a <a>service endpoint</a>, which is selected from a <a>DID
-document</a> by using the <code>service</code> parameter.
-If present, the associated value MUST be an <a
-data-lt="ascii string">ASCII string</a> and MUST use percent-encoding for
-certain characters as specified in <a data-cite="RFC3986#section-2.1">RFC3986
-Section 2.1</a>.
-              </td>
-            </tr>
-            <tr>
-              <td>
-<code>versionId</code>
-              </td>
-              <td>
-Identifies a specific version of a <a>DID document</a> to be resolved (the
-version ID could be sequential, or a <a>UUID</a>, or method-specific).
-If present, the associated value MUST be an <a
-data-lt="ascii string">ASCII string</a>.
-              </td>
-            </tr>
-            <tr>
-              <td>
-<code>versionTime</code>
-              </td>
-              <td>
-Identifies a certain version timestamp of a <a>DID document</a> to be resolved.
-That is, the <a>DID document</a> that was valid for a <a>DID</a> at a certain
-time. If present, the associated value
-MUST be an <a data-lt="ascii string">ASCII string</a> which is a valid XML
-datetime value, as defined in section 3.3.7 of <a
-href="https://www.w3.org/TR/xmlschema11-2/">W3C XML Schema Definition Language
-(XSD) 1.1 Part 2: Datatypes</a> [[XMLSCHEMA11-2]]. This datetime value MUST be
-normalized to UTC 00:00:00 and without sub-second decimal precision.
-For example: <code>2020-12-20T19:17:47Z</code>.
-              </td>
-            </tr>
-            <tr>
-              <td>
-<code>hl</code>
-              </td>
-              <td>
-A resource hash of the <a>DID document</a> to add integrity protection, as
-specified in [[?HASHLINK]]. This parameter is non-normative.
-If present, the associated value MUST be an
-<a data-lt="ascii string">ASCII string</a>.
-              </td>
-            </tr>
-
-          </tbody>
-        </table>
-
-        <p>
-Implementers as well as <a>DID method</a> specification authors might use
-additional DID parameters that are not listed here. For maximum
-interoperability, it is RECOMMENDED that DID parameters use the DID
-Specification Registries mechanism [[?DID-SPEC-REGISTRIES]], to avoid collision
-with other uses of the same DID parameter with different semantics.
-        </p>
-
-        <p>
-DID parameters might be used if there is a clear use case where the parameter
-needs to be part of a <a>URL</a> that references a <a>resource</a> with more
-precision than using the <a>DID</a> alone. It is expected that DID parameters
-are <em>not</em> used if the same functionality can be expressed by passing
-input metadata to a <a>DID resolver</a>. Additional considerations for
-processing these parameters are discussed in [[?DID-RESOLUTION]].
-        </p>
-
-        <p class="note" title="DID parameters and DID resolution">
-The <a>DID resolution</a> and the <a>DID URL dereferencing</a> functions can
-be influenced by passing resolution options to a <a>DID resolver</a> that are
-not part of the <a>DID URL</a> (see "DID Resolution Options" in [[?DID-RESOLUTION]]). This is comparable to
-HTTP, where certain parameters could either be included in an HTTP URL, or
-alternatively passed as HTTP headers during the dereferencing process. The
-important distinction is that DID parameters that are part of the <a>DID
-URL</a> should be used to specify <em>what <a>resource</a> is being
-identified</em>, whereas input metadata that is not part of the <a>DID URL</a>
-should be use to control <em>how that <a>resource</a> is resolved or
-dereferenced</em>.
         </p>
 
       </section>
@@ -5123,8 +4974,8 @@ If the <a>DID subject</a> is a digital resource that can be retrieved
 from the internet, a <a>DID method</a> can choose to construct a <a>DID URL</a>
 which returns a representation of the <a>DID subject</a> itself. For example,
 a data schema that needs a persistent, cryptographically verifiable identifier
-could be assigned a <a>DID</a>, and passing a specified DID parameter (see
-<a href="#did-parameters"></a>) could be used as a standard way to retrieve a
+could be assigned a <a>DID</a>, and passing a specified <a href="#path"></a>
+or <a href="#query"></a> could be used as a standard way to retrieve a
 representation of that schema.
       </p>
       <p>
