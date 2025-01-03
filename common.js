@@ -7,6 +7,13 @@ var ccg = {
   // Add as the respecConfig localBiblio variable
   // Extend or override global respec references
   localBiblio: {
+    "CID": {
+      title:    "Controlled Identifier Document v1.0",
+      href:     "https://www.w3.org/TR/cid/",
+      authors:  ["Manu Sporny", "Dave Longley", "Markus Sabadello", "Drummond Reed", "Orie Steele", "Christopher Allen", "Michael B. Jones"],
+      status:   "CR",
+      publisher:  "W3C Verifiable Credentials Working Group"
+    },
     "REST": {
       title: "Architectural Styles and the Design of Network-based Software Architectures",
       date: "2000",
@@ -119,7 +126,7 @@ var ccg = {
     },
     "DID-RESOLUTION": {
       title: "Decentralized Identifier Resolution",
-      href: "https://w3c-ccg.github.io/did-resolution/",
+      href: "https://w3c.github.io/did-resolution/",
       authors: [
         "Markus Sabadello",
         "Dmitri Zagidulin"
