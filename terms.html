@@ -14,28 +14,11 @@ the system that result in damaging effects that can be exponentially more costly
 to process than the inputs themselves.
   </dd>
 
-  <dt><dfn data-lt="authenticated">authenticate</dfn></dt>
-  <dd>
-Authentication is a process by which an entity can prove it has a specific
-attribute or controls a specific secret using one or more <a>verification
-methods</a>. With <a>DIDs</a>, a common example would be proving control of the
-cryptographic private key associated with a public key published in a <a>DID
-document</a>.
-  </dd>
-
   <dt><dfn class="lint-ignore">binding</dfn></dt>
   <dd>
 A concrete mechanism used by a caller to invoke a <a>DID resolver</a> or a
 <a>DID URL dereferencer</a>. This could be a local command line tool, a software
 library, or a network call such as an HTTPS request.
-  </dd>
-
-  <dt><dfn data-lt="cryptosuite">cryptographic suite</dfn></dt>
-  <dd>
-A specification defining the usage of specific cryptographic primitives in
-order to achieve a particular security goal. These documents are often used
-to specify <a>verification methods</a>, digital signature types,
-their identifiers, and other related properties.
   </dd>
 
   <dt><dfn data-lt="decentralized identifiers|DID|DIDs">decentralized identifier</dfn> (DID)</dt>
@@ -48,18 +31,6 @@ href="#did-syntax"></a>. A specific <a>DID scheme</a> is defined in a <a>DID
 method</a> specification. Many—but not all—DID methods make use of
 <a>distributed ledger technology</a> (DLT) or some other form of decentralized
 network.
-  </dd>
-
-  <dt><dfn>decentralized identity management</dfn></dt>
-
-  <dd>
-<a href="https://en.wikipedia.org/wiki/Identity_management">Identity
-management</a> that is based on the use of <a>decentralized identifiers</a>.
-Decentralized identity management extends authority for identifier generation,
-registration, and assignment beyond traditional roots of trust such as
-<a href="https://en.wikipedia.org/wiki/X.500">X.500 directory services</a>,
-the <a href="https://en.wikipedia.org/wiki/Domain_Name_System">Domain Name System</a>,
-and most national ID systems.
   </dd>
 
   <dt><dfn class="lint-ignore">decentralized public key infrastructure</dfn> (DPKI)</dt>
@@ -281,14 +252,6 @@ The standard identifier format for all resources on the World Wide Web as
 defined by [[RFC3986]]. A <a>DID</a> is a type of URI scheme.
   </dd>
 
-    <dt><dfn data-lt="verifiable credentials">verifiable credential</dfn></dt>
-
-  <dd>
-A standard data model and representation format for cryptographically-verifiable
-digital credentials as defined by the W3C Verifiable Credentials specification
-[[VC-DATA-MODEL]].
-  </dd>
-
   <dt>
     <dfn data-lt="verifiable data registry|verifiable data registries">
     verifiable data registry</dfn>
@@ -311,35 +274,6 @@ existed at a specific moment in time and that it has not been modified or
 corrupted since that moment in time. If the data integrity could reasonably have
 been modified or corrupted since that moment in time, the timestamp is not
 verifiable.
-  </dd>
-
-  <dt><dfn data-lt="">verification method</dfn></dt>
-
-  <dd>
-    <p>
-A set of parameters that can be used together with a process to independently
-verify a proof. For example, a cryptographic public key can be used as a
-verification method with respect to a digital signature; in such usage, it
-verifies that the signer possessed the associated cryptographic private key.
-    </p>
-    <p>
-"Verification" and "proof" in this definition are intended to apply broadly. For
-example, a cryptographic public key might be used during Diffie-Hellman key
-exchange to negotiate a shared symmetric key for encryption. This guarantees the
-integrity of the key agreement process. It is thus another type of verification
-method, even though descriptions of the process might not use the words
-"verification" or "proof."
-    </p>
-  </dd>
-
-  <dt><dfn data-lt="">verification relationship</dfn></dt>
-
-  <dd>
-    <p>
-An expression of the relationship between the <a>DID subject</a> and a
-<a>verification method</a>. An example of a verification relationship is
-<a href="#authentication"></a>.
-    </p>
   </dd>
 
 </dl>
