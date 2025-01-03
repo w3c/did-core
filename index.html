@@ -2110,7 +2110,14 @@ example described in <a href="#capability-invocation"></a>.
 {
   "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123456789abcdefghi",
-  <span class="comment">...</span>
+  "verificationMethod": [
+    {
+      "id": "did:example:123456789abcdefghi#keys-1",
+      "type": "Ed25519VerificationKey2020",
+      "controller": "did:example:123456789abcdefghi",
+      "publicKeyMultibase": "z4BWwfeqdp1obQptLLMvPNgBw48p7og1ie6Hf9p5nTpNN"
+    }
+  ],
   "capabilityDelegation": [
     <span class="comment">// this method can be used to perform capability delegation as did:...fghi</span>
     "did:example:123456789abcdefghi#keys-1",
@@ -2127,6 +2134,9 @@ example described in <a href="#capability-invocation"></a>.
   <span class="comment">...</span>
 }
         </pre>
+
+        In the example above, the DID document for <code>did:example:123456789abcdefghi</code> defines two verificationMethods, <code>#keys-1</code> and <code>#keys-2</code>, that can be used for the purpose of capability delegation. This means that these verification methods can be used to produce and verify delegations of a capability issued to <code>did:example:123456789abcdefghi</code>.
+
       </section>
     </section>
 
