@@ -4525,6 +4525,35 @@ purposes.
 }
       </pre>
 
+      <pre class="example" title="DID Document that uses relative DID URLs">
+        {
+          "@context": "https://www.w3.org/ns/did/v1.1",
+          "id": "did:example:123",
+          "verificationMethod": [
+            {
+              <span class="comment">// A relative DID URL, that will be transformed to the absolute DID URL value did:example:123#key-1</span>
+              "id": "#key-1", 
+              "type": "Ed25519VerificationKey2020", 
+              "controller": "did:example:123",
+              "publicKeyMultibase": "z6MkmM42vxfqZQsv4ehtTjFFxQ4sQKS2w6WR7emozFAn5cxu"
+            }
+          ],
+          "authentication": [
+            "#key-1"
+          ],
+          "capabilityInvocation": [
+            "#key-1"
+          ],
+          "capabilityDelegation": [
+            "#key-1"
+          ],
+          "assertionMethod": [
+            <span class="comment">// Using relative DID URL #key-1 is equivalent to using the absolute DID URL value did:example:123#key-1</span>
+            "did:example:123#key-1" 
+          ]
+      }
+      </pre>
+
     </section>
 
     <section class="informative">
