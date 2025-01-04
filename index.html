@@ -2684,7 +2684,10 @@ identification, secondary use, disclosure, and exclusion.
     <p>
 This section contains a variety of security considerations that people using
 Decentralized Identifiers are advised to consider before deploying this
-technology in a production setting. <a>DIDs</a> are designed to operate under
+technology in a production setting. Readers are urged to read the
+<a data-cite="?CID#security-considerations">Security Considerations</a> section
+in the [[[CID]]] specification before reading
+this section. <a>DIDs</a> are designed to operate under
 the threat model used by many IETF standards and documented
 in [[?RFC3552]]. This section elaborates upon a number of the considerations
 in [[?RFC3552]], as well as other considerations that are unique to <a>DID</a>
@@ -2704,90 +2707,6 @@ specific <a>DID resolver</a> implements a <a>DID method</a> correctly, the DID
 Specification Registries can be used to look up the registered specification
 and make an informed decision regarding which <a>DID resolver</a>
 implementation to use.
-      </p>
-    </section>
-
-    <section>
-      <h2>Proving Control and Binding</h2>
-
-      <p>
-Binding an entity in the digital world or the physical world to a <a>DID</a>, to
-a <a>DID document</a>, or to cryptographic material requires, the use of
-security protocols contemplated by this specification. The following sections
-describe some possible scenarios and how an entity therein might prove control
-over a <a>DID</a> or a <a>DID document</a> for the purposes of authentication or
-authorization.
-      </p>
-
-      <section class="notoc">
-        <h3>Proving Control of a DID and/or DID Document</h3>
-
-        <p>
-Proving control over a <a>DID</a> and/or a <a>DID Document</a> is useful when
-updating either in a <a>verifiable data registry</a> or authenticating with
-remote systems. Cryptographic digital signatures and <a>verifiable
-timestamps</a> enable certain security protocols related to <a>DID documents</a>
-to be cryptographically verifiable. For these purposes, this specification
-defines useful <a>verification relationships</a> in <a
-href="#authentication"></a> and <a href="#capability-invocation"></a>. The
-secret cryptographic material associated with the <a>verification methods</a>
-can be used to generate a cryptographic digital signature as a part of an
-authentication or authorization security protocol.
-        </p>
-
-        <p class="note" title="Signed DID documents">
-Some <a>DID methods</a> allow digital signatures and other proofs to be
-included in the <a>DID document</a> or a metadata structure.
-However, such proofs by themselves do not necessarily prove control over a
-<a>DID</a>, or guarantee that the <a>DID document</a> is the correct one for
-the <a>DID</a>. In order to obtain
-the correct <a>DID document</a> and verify control over a <a>DID</a>, it is
-necessary to perform the <a>DID resolution</a> process as defined by the
-<a>DID method</a>.
-        </p>
-      </section>
-
-      <section class="notoc">
-        <h3>Binding to Physical Identity</h3>
-
-        <p>
-A <a>DID</a> and <a>DID document</a> do not inherently carry any
-<a href="https://en.wikipedia.org/wiki/Personal_data">personal data</a> and
-it is strongly advised that non-public entities do not publish personal data in
-<a>DID documents</a>.
-        </p>
-
-        <p>
-It can be useful to express a binding of a <a>DID</a> to a person's or
-organization's physical identity in a way that is provably asserted by a
-trusted authority, such as a government. This specification provides
-the <a href="#assertion"></a> <a>verification relationship</a> for these
-purposes. This feature can enable interactions that are private and can be
-considered legally enforceable under one or more jurisdictions; establishing
-such bindings has to be carefully balanced against privacy considerations (see
-<a href="#privacy-considerations"></a>).
-        </p>
-
-        <p>
-The process of binding a <a>DID</a> to something in the physical world, such as
-a person or an organization &mdash; for example, by using <a>verifiable
-credentials</a> with the same subject as that <a>DID</a> &mdash; is contemplated
-by this specification and further defined in the Verifiable Credentials Data
-Model [[VC-DATA-MODEL]].
-        </p>
-      </section>
-    </section>
-
-    <section>
-      <h2>Authentication Service Endpoints</h2>
-
-      <p>
-If a <a>DID document</a> publishes a <a>service</a> intended for
-authentication or authorization of the <a>DID subject</a> (see Section <a
-href="#services"></a>), it is the responsibility of the <a>service
-endpoint</a> provider, subject, or requesting party to comply with the
-requirements of the authentication protocols supported at that <a>service
-endpoint</a>.
       </p>
     </section>
 
@@ -2842,249 +2761,9 @@ vector of attack.
     </section>
 
     <section>
-      <h2>Key and Signature Expiration</h2>
+      <h3>Revocation in Trustless Systems</h3>
 
       <p>
-In a <a>decentralized identifier</a> architecture, there might not be
-centralized authorities to enforce cryptographic material or cryptographic
-digital signature expiration policies. Therefore, it is with supporting software
-such as <a>DID resolvers</a> and verification libraries that requesting parties
-validate that cryptographic material were not expired at the time they were
-used. Requesting parties might employ their own expiration policies in addition
-to inputs into their verification processes. For example, some requesting
-parties might accept authentications from five minutes in the past, while others
-with access to high precision time sources might require authentications to be
-time stamped within the last 500 milliseconds.
-      </p>
-      <p>
-There are some requesting parties that have legitimate needs to extend the use
-of already-expired cryptographic material, such as verifying legacy
-cryptographic digital signatures. In these scenarios, a requesting party might
-instruct their verification software to ignore cryptographic key material
-expiration or determine if the cryptographic key material was expired at the
-time it was used.
-      </p>
-    </section>
-
-    <section>
-      <h2>Verification Method Rotation</h2>
-
-      <p>
-Rotation is a management process that enables the secret cryptographic material
-associated with an existing <a>verification method</a> to be deactivated or
-destroyed once a new <a>verification method</a> has been added to the  <a>DID
-document</a>. Going forward, any new proofs that a <a>controller</a> would have
-generated using the old secret cryptographic material can now instead be
-generated using the new  cryptographic material and can be verified using the
-new <a>verification method</a>.
-      </p>
-
-      <p>
-Rotation is a useful mechanism for protecting against verification method
-compromise, since frequent rotation of a verification method by the controller
-reduces the value of a single compromised verification method to an attacker.
-Performing revocation immediately after rotation is useful for verification
-methods that a controller designates for short-lived verifications, such as
-those involved in encrypting messages and authentication.
-      </p>
-
-      <p>
-The following considerations might be of use when contemplating the use of
-<a>verification method</a> rotation:
-      </p>
-
-      <ul>
-        <li>
-<a>Verification method</a> rotation is a proactive security measure.
-        </li>
-        <li>
-It is generally considered a best practice to perform <a>verification method</a>
-rotation on a regular basis.
-        </li>
-        <li>
-Higher security environments tend to employ more frequent verification method
-rotation.
-        </li>
-        <li>
-<a>Verification method</a> rotation manifests only as changes to the current or
-latest version of a <a>DID document</a>.
-        </li>
-        <li>
-When a <a>verification method</a> has been active for a long time, or used for
-many operations, a controller might wish to perform a rotation.
-        </li>
-        <li>
-Frequent rotation of a <a>verification method</a> might be frustrating for
-parties that are forced to continuously renew or refresh associated credentials.
-        </li>
-        <li>
-Proofs or signatures that rely on <a>verification methods</a> that are not
-present in the latest version of a <a>DID document</a> are not impacted by
-rotation. In these cases, verification software might require additional
-information, such as when a particular <a>verification method</a> was
-expected to be valid as well as access to a <a>verifiable data registry</a>
-containing a historical record, to determine the validity of the proof or
-signature. This option might not be available in all <a>DID methods</a>.
-        </li>
-        <li>
-The section on <a href="#method-operations">DID method operations</a> specifies
-the <a>DID</a> operations to be supported by a <a>DID method</a> specification,
-including <a href="#method-operations">update</a> which is expected to be used
-to perform a <a>verification method</a> rotation.
-        </li>
-        <li>
-A <a>controller</a> performs a rotation when they add a new <a>verification
-method</a> that is meant to replace an existing <a>verification method</a> after
-some time.
-        </li>
-        <li>
-Not all <a>DID methods</a> support <a>verification method</a> rotation.
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Verification Method Revocation</h2>
-
-      <p>
-Revocation is a management process that enables the secret cryptographic
-material associated with an existing <a>verification method</a> to be
-deactivated such that it ceases to be a valid form of creating new
-proofs of digital signatures.
-      </p>
-      <p>
-Revocation is a useful mechanism for reacting to a verification method
-compromise. Performing revocation immediately after rotation is useful for
-verification methods that a controller designates for short-lived verifications,
-such as those involved in encrypting messages and authentication.
-      </p>
-
-      <p>
-Compromise of the secrets associated with a <a>verification method</a> allows
-the attacker to use them according to the <a>verification relationship</a>
-expressed by <a>controller</a> in the <a>DID document</a>, for example, for
-authentication. The attacker's use of the secrets might be indistinguishable
-from the legitimate <a href="#did-controller">controller's</a> use starting from
-the time the <a>verification method</a> was registered, to the time it was
-revoked.
-      </p>
-
-
-      <p>
-The following considerations might be of use when contemplating the use of
-<a>verification method</a> revocation:
-      </p>
-
-      <ul>
-        <li>
-<a>Verification method</a> revocation is a reactive security measure.
-        </li>
-
-        <li>
-It is considered a best practice to support key revocation.
-        </li>
-
-        <li>
-A <a>controller</a> is expected to immediately revoke any <a>verification
-method</a> that is known to be compromised.
-        </li>
-
-        <li>
-<a>Verification method</a> revocation can only be embodied in changes to
-the latest version of a <a>DID Document</a>; it cannot retroactively adjust
-previous versions.
-        </li>
-
-        <li>
-As described in <a href="#verification-material"></a>, absence of a verification
-method is the only form of revocation that applies to all <a>DID Methods</a>
-that support revocation.
-        </li>
-
-        <li>
-If a <a>verification method</a> is no longer exclusively accessible to the
-<a>controller</a> or parties trusted to act on behalf of the <a>controller</a>,
-it is expected to be revoked immediately to reduce the risk of
-compromises such as masquerading, theft, and fraud.
-        </li>
-
-        <li>
-Revocation is expected to be understood as a <a>controller</a> expressing that
-proofs or signatures associated with a revoked <a>verification method</a>
-created after its revocation should be treated as invalid. It could also imply a
-concern that existing proofs or signatures might have been created by an
-attacker, but this is not necessarily the case. Verifiers, however, might still
-choose to accept or reject any such proofs or signatures at their own
-discretion.
-        </li>
-
-        <li>
-The section on <a href="#method-operations">DID method operations</a> specifies
-the <a>DID</a> operations to be supported by a <a>DID method</a> specification,
-including <a href="#method-operations">update</a> and <a
-href="#method-operations">deactivate</a>, which might be used to remove
-a <a>verification method</a> from a <a>DID document</a>.
-        </li>
-
-        <li>
-Not all <a>DID methods</a> support <a>verification method</a> revocation.
-        </li>
-
-        <li>
-Even if a <a>verification method</a> is present in a <a>DID document</a>,
-additional information, such as a public key revocation certificate, or an
-external allow or deny list, could be used to determine whether a
-<a>verification method</a> has been revoked.
-        </li>
-
-        <li>
-The day-to-day operation of any software relying on a compromised
-<a>verification method</a>, such as an individual's operating system, antivirus,
-or endpoint protection software, could be impacted when the <a>verification
-method</a> is publicly revoked.
-        </li>
-      </ul>
-
-      <section class="notoc">
-        <h3>Revocation Semantics</h3>
-
-        <p>
-Although verifiers might choose not to accept proofs or signatures from a
-revoked verification method, knowing whether a verification was made with a
-revoked <a>verification method</a> is trickier than it might seem. Some <a>DID
-methods</a> provide the ability to look back at the state of a <a>DID</a> at a
-point in time, or at a particular version of the <a>DID document</a>. When such
-a feature is combined with a reliable way to determine the time or <a>DID</a>
-version that existed when a cryptographically verifiable statement was made,
-then revocation does not undo that statement. This can be the basis for using
-<a>DIDs</a> to make binding commitments; for example, to sign a mortgage.
-        </p>
-        <p>
-If these conditions are met, revocation is not retroactive; it only nullifies
-future use of the method.
-        </p>
-        <p>
-However, in order for such semantics to be safe, the second condition &mdash; an
-ability to know what the state of the <a>DID document</a> was at the time the
-assertion was made &mdash; is expected to apply. Without that guarantee, someone
-could discover a revoked key and use it to make cryptographically verifiable
-statements with a simulated date in the past.
-        </p>
-        <p>
-Some <a>DID methods</a> only allow the retrieval of the current state of a
-<a>DID</a>. When this is true, or when the state of a <a>DID</a> at the time of
-a cryptographically verifiable statement cannot be reliably determined, then the
-only safe course is to disallow any consideration of DID state with respect to
-time, except the present moment. <a>DID</a> ecosystems that take this approach
-essentially provide cryptographically verifiable statements as ephemeral tokens
-that can be invalidated at any time by the <a>DID controller</a>.
-        </p>
-      </section>
-
-      <section class="notoc">
-        <h3>Revocation in Trustless Systems</h3>
-
-        <p>
 Trustless systems are those where all trust is derived from cryptographically
 provable assertions, and more specifically, where no metadata outside of the
 cryptographic system is factored into the determination of trust in the system.
@@ -3094,31 +2773,30 @@ both of the `versionId` or `versionTime`, as well as both the `updated` and
 `nextUpdate`, <a>DID document</a> metadata properties. A verifier can validate a
 signature or proof of a revoked key if and only if all of the following are
 true:
-        </p>
+      </p>
 
-        <ul>
-          <li>
+      <ul>
+        <li>
 The proof or signature includes the `versionId` or `versionTime` of the <a>DID
 document</a> that was used at the point the signature or proof was created.
-          </li>
-          <li>
+        </li>
+        <li>
 The verifier can determine the point in time at which the signature or proof was
 made; for example, it was anchored on a blockchain.
-          </li>
-          <li>
+        </li>
+        <li>
 For the resolved <a>DID document</a> metadata, the `updated` timestamp is
 before, and the `nextUpdate` timestamp is after, the point in time at which the
 signature or proof was made.
-          </li>
-        </ul>
-        <p>
+        </li>
+      </ul>
+      <p>
 In systems that are willing to admit metadata other than those constituting
 cryptographic input, similar trust may be achieved -- but always on the
 same basis where a careful judgment is made about whether a
 <a>DID document</a>'s content at the moment of a signing event
 contained the expected content.
-        </p>
-      </section>
+      </p>
     </section>
 
     <section>
@@ -3367,25 +3045,6 @@ document</a> is re-verified.
     </section>
 
     <section>
-      <h2>Content Integrity Protection</h2>
-      <p>
-<a>DID documents</a> which include links to external machine-readable content
-such as images, web pages, or schemas are vulnerable to tampering. It is
-strongly advised that external links are integrity protected using solutions
-such as a hashlink [[?HASHLINK]]. External links are to be avoided if they
-cannot be integrity protected and the <a>DID document</a>'s integrity is
-dependent on the external link.
-      </p>
-      <p>
-One example of an external link where the integrity of the <a>DID document</a>
-itself could be affected is the JSON-LD Context [[JSON-LD11]]. To protect
-against compromise, <a>DID document</a> consumers are advised to cache local
-static copies of JSON-LD contexts and/or verify the integrity of external
-contexts against a cryptographic hash that is known to be associated with a safe
-version of the external JSON-LD Context.
-      </p>
-    </section>
-    <section>
       <h2>Persistence</h2>
       <p>
 <a>DIDs</a> are designed to be persistent such that a <a>controller</a> need not
@@ -3450,54 +3109,6 @@ of the same <a>controller</a>. Instead, one needs to understand the context in
 which the <a>DID</a> was created, how it is used, and consider the likely shifts
 in their meaning, and adopt procedures and policies to address both potential
 and inevitable semantic drift.
-      </p>
-    </section>
-
-    <section>
-      <h2>Level of Assurance</h2>
-
-      <p>
-Additional information about the security context of authentication events is
-often required for compliance reasons, especially in regulated areas such as the
-financial and public sectors. This information is often referred to as a Level
-of Assurance (LOA). Examples include the protection of secret cryptographic
-material, the identity proofing process, and the form-factor of the
-authenticator.
-      </p>
-
-      <p>
-<a target="_blank"
-href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32015L2366">
-Payment services (PSD 2)</a> and <a target="_blank"
-href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2014.257.01.0073.01.ENG">
-eIDAS</a> introduce such requirements to the security context. Level of
-assurance frameworks are classified and defined by regulations and
-standards such as <a
-target="_blank"
-href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv:OJ.L_.2014.257.01.0073.01.ENG">
-eIDAS</a>, <a target="_blank"
-href="https://pages.nist.gov/800-63-3/sp800-63-3.html"> NIST 800-63-3</a> and <a
-target="_blank" href="https://www.iso.org/standard/45138.html"> ISO/IEC
-29115:2013</a>, including their requirements for the security context, and
-making recommendations on how to achieve them. This might include strong user
-authentication where <a target="_blank"
-href="https://fidoalliance.org/fido2/">FIDO2</a>/<a target="_blank"
-href="https://www.w3.org/TR/webauthn-2/">WebAuthn</a> can fulfill the
-requirement.
-      </p>
-
-      <p>
-Some regulated scenarios require the implementation of a specific level of
-assurance. Since <a>verification relationships</a> such as <code>
-<a>assertionMethod</a></code> and <code><a>authentication</a></code> might be
-used in some of these situations, information about the applied security context
-might need to be expressed and provided to a <em>verifier</em>. Whether and how
-to encode this information in the <a>DID document</a> data model is out of scope
-for this specification. Interested readers might note that 1) the information
-could be transmitted using Verifiable Credentials [[?VC-DATA-MODEL]], and 2) the
-<a>DID document</a> data model can be extended to incorporate this information
-as described in <a href="#extensibility"></a>, and where <a
-href="#privacy-considerations"></a> is applicable for such extensions.
       </p>
     </section>
 
