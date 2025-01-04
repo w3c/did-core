@@ -1538,22 +1538,11 @@ include identifiers for <a>DID subjects</a> and <a>DID controllers</a>.
         <h3>DID Subject</h3>
         <p>
 The <a>DID</a> for a particular <a>DID subject</a> is expressed using the
-<code><a>id</a></code> property in the <a>DID document</a>. This property
+<code>id</code> property in the <a>DID document</a>. This property
 is defined in <a data-cite="CID#subjects">Section 2.1.1: Subjects</a> of
 the [[[CID]]] specification and extended by this specification to include
-DIDs as defined in Section [[[#did-syntax]]].
+<a>decentralized identifiers</a> as defined in Section [[[#did-syntax]]].
         </p>
-
-        <dl>
-          <dt><dfn>id</dfn></dt>
-          <dd>
-The value of <code>id</code> MUST be a <a
-data-cite="INFRA#string">string</a> that conforms to the rules in <a
-href="#did-syntax"></a> and MUST exist in the root <a
-data-cite="INFRA#ordered-map">map</a> of the <a href="#data-model">data
-model</a> for the <a>DID document</a>.
-          </dd>
-        </dl>
 
         <pre class="example nohighlight">
 {
@@ -1561,17 +1550,12 @@ model</a> for the <a>DID document</a>.
 }
         </pre>
 
-        <p>
-The <code>id</code> property only denotes the <a>DID</a> of the
-<a>DID subject</a> when it is present in the <em>topmost</em>
-<a data-cite="INFRA#ordered-map">map</a> of the <a>DID document</a>.
-        </p>
         <p class="note" title="Intermediate representations">
 <a>DID method</a> specifications can create intermediate representations of a
-<a>DID document</a> that do not contain the <code><a>id</a></code> property,
+<a>DID document</a> that do not contain the <code>id</code> property,
 such as when a <a>DID resolver</a> is performing <a>DID resolution</a>.
 However, the fully resolved <a>DID document</a> always contains a valid
-<code><a>id</a></code> property.
+<code>id</code> property.
         </p>
 
       </section>
@@ -1588,29 +1572,6 @@ DIDs as defined in Section [[[#did-syntax]]]. The process of authorizing a
 <a>DID controller</a> is defined by the <a>DID method</a>.
         </p>
 
-        <dl>
-          <dt><dfn>controller</dfn></dt>
-          <dd>
-The <code>controller</code> property is OPTIONAL. If present, the value MUST
-be a <a data-cite="INFRA#string">string</a> or a <a
-data-cite="INFRA#ordered-set">set</a> of <a
-data-cite="INFRA#string">strings</a> that conform to the rules in <a
-href="#did-syntax"></a>. The corresponding <a>DID document</a>(s) SHOULD
-contain <a>verification relationships</a> that explicitly permit the use of
-certain <a>verification methods</a> for specific purposes.
-          </dd>
-        </dl>
-
-        <p>
-When a <code><a>controller</a></code> property is present in a <a>DID
-document</a>, its value expresses one or more <a>DIDs</a>. Any <a>verification
-methods</a> contained in the <a>DID documents</a> for those <a>DIDs</a> SHOULD
-be accepted as authoritative, such that proofs that satisfy those
-<a>verification methods</a> are to be considered equivalent to proofs provided
-by the <a>DID subject</a> and represent the <a>DID controller(s)</a> authorized to
-make updates to the <a>DID document</a>.
-        </p>
-
         <pre class="example nohighlight"
           title="DID document with a controller property">
 {
@@ -1620,16 +1581,6 @@ make updates to the <a>DID document</a>.
 }
         </pre>
 
-        <p class="note" title="Authorization vs authentication">
-Note that authorization provided by the value of <code>controller</code> is
-separate from authentication as described in <a href="#authentication"></a>.
-This is particularly important for key recovery in the case of cryptographic key
-loss, where the <a>DID subject</a> no longer has access to their keys, or key
-compromise, where the <a>DID controller</a>'s trusted third parties need to
-override malicious activity by an attacker. See <a
-href="#security-considerations"></a> for information related to threat models
-and attack vectors.
-        </p>
       </section>
 
     </section>
@@ -2560,15 +2511,15 @@ might &mdash;
 
       <ul>
         <li>
-make use of the <code><a>controller</a></code> property.
+make use of the <code>controller</code> property.
         </li>
         <li>
 use the <a>verification methods</a> listed under
-<code><a>authentication</a></code>.
+<code>authentication</code>.
         </li>
         <li>
 use other constructs in the <a>DID Document</a> such as the <a>verification
-method</a> specified via the <code><a>capabilityInvocation</a></code>
+method</a> specified via the <code>capabilityInvocation</code>
 <a>verification relationship</a>.
         </li>
         <li>
@@ -2826,9 +2777,10 @@ associated with recovery for any other purposes.
         </li>
 
         <li>
-Recovery is commonly performed in conjunction with <a
-href="#verification-method-rotation">verification method rotation</a> and <a
-href="#verification-method-revocation">verification method revocation</a>.
+Recovery is commonly performed in conjunction with
+<a data-cite="?CID#verification-method-rotation">verification method rotation</a>
+and <a data-cite="?CID#verification-method-revocation">verification method
+revocation</a>.
         </li>
 
         <li>
@@ -2957,10 +2909,10 @@ same set of features, the less it can be manipulated by malicious actors.
       </p>
       <p>
 As an example, consider that a single edit to a <a>DID document</a> can change
-anything except the root <code><a>id</a></code> property of the document. But
+anything except the root <code>id</code> property of the document. But
 is it actually desirable for a <a>service</a> to change its
 <code>type</code> after it is defined? Or for a key to change its value? Or
-would it be better to require a new <code><a>id</a></code> when certain
+would it be better to require a new <code>id</code> when certain
 fundamental properties of an object change? Malicious takeovers of a website
 often aim for an outcome where the site keeps its host name identifier,
 but is subtly changed underneath. If certain properties of the site, such
@@ -3015,7 +2967,7 @@ Given the <code>equivalentId</code> and <code>canonicalId</code>
 properties are generated by <a>DID methods</a> themselves, the same security and
 accuracy guarantees that apply to the resolved <a>DID</a> present in the
 <code>id</code> field of a <a>DID document</a> also apply to these properties.
-The <code><a>alsoKnownAs</a></code> property is not guaranteed to be an accurate
+The <code>alsoKnownAs</code> property is not guaranteed to be an accurate
 statement of equivalence, and should not be relied upon without performing
 validation steps beyond the resolution of the <a>DID document</a>.
       </p>
@@ -3027,10 +2979,12 @@ requesting party trusts the <a>DID method</a> and a conforming producer and
 resolver.
       </p>
       <p>
-The <code><a>alsoKnownAs</a></code> property permits an equivalence assertion to
+The <code>alsoKnownAs</code> property permits an equivalence assertion to
 <a>URIs</a> that are not governed by the same <a>DID method</a> and cannot be
 trusted without performing verification steps outside of the governing <a>DID
-method</a>. See additional guidance in <a href="#also-known-as"></a>.
+method</a>. See additional guidance in
+<a data-cite="?CID#also-known-as">Section 2.1.3: Also Known As</a> of the
+[[[CID]]] specification.
       </p>
       <p>
 As with any other security-related properties in the <a>DID document</a>,
@@ -3751,7 +3705,7 @@ to the <a>DID document</a>, obtaining a verifiable credential about the
 <a>DID</a>, or via some other description of the <a>DID</a>.
       </p>
       <p>
-While the value of the <code><a>id</a></code> property in the retrieved
+While the value of the <code>id</code> property in the retrieved
 <a>DID document</a> must always match the <a>DID</a> being resolved, whether
 or not the actual resource to which the <a>DID</a> refers can change over time
 is dependent upon the <a>DID method</a>. For example, a <a>DID method</a>
@@ -3818,12 +3772,12 @@ Each property in a <a>DID document</a> is a statement by the
       <ul>
         <li>
 The string of characters defining identifiers for the <a>DID subject</a>
-(e.g., the <code><a>id</a></code> and <code><a>alsoKnownAs</a></code>
+(e.g., the <code>id</code> and <code>alsoKnownAs</code>
 properties)
         </li>
         <li>
 How to interact with the <a>DID subject</a> (e.g., the
-<code><a>verificationMethod</a></code> and <code><a>service</a></code>
+<code>verificationMethod</code> and <code>service</code>
 properties).
         </li>
         <li>
@@ -3832,7 +3786,7 @@ How to interpret the specific representation of the <a>DID document</a>
         </li>
       </ul>
       <p>
-The only required property in a <a>DID document</a> is <code><a>id</a></code>,
+The only required property in a <a>DID document</a> is <code>id</code>,
 so that is the only statement guaranteed to be in a <a>DID document</a>.
 That statement is illustrated in <a href="#did-and-did-document-graph"></a>
 with a direct link between the <a>DID</a> and the <a>DID subject</a>.
@@ -3843,13 +3797,13 @@ with a direct link between the <a>DID</a> and the <a>DID subject</a>.
       <p>
 Options for discovering more information about the <a>DID subject</a> depend
 on the properties present in the <a>DID document</a>. If the
-<code><a>service</a></code> property is present, more information can be
+<code>service</code> property is present, more information can be
 requested from a <a>service endpoint</a>. For example, by querying a
 <a>service endpoint</a> that supports verifiable credentials for one or more
 claims (attributes) describing the <a>DID subject</a>.
       </p>
       <p>
-Another option is to use the <code><a>alsoKnownAs</a></code> property if it
+Another option is to use the <code>alsoKnownAs</code> property if it
 is present in the <a>DID document</a>. The <a>DID controller</a> can use it
 to provide a list of other URIs (including other <a>DIDs</a>) that refer to
 the same <a>DID subject</a>. Resolving or dereferencing these URIs might yield
@@ -3923,7 +3877,7 @@ assign it a persistent, cryptographically verifiable identifier, the
 controller can give it a <a>DID</a>. For example, the author of a blog
 hosted by a blog hosting company (under that hosting company's domain)
 could create a <a>DID</a> for the blog. In the <a>DID document</a>, the
-author can include the <code><a>alsoKnownAs</a></code> property pointing to
+author can include the <code>alsoKnownAs</code> property pointing to
 the current URL of the blog, e.g.:
       </p>
       <code>
@@ -4116,7 +4070,7 @@ that is not controlled by a single individual.
       <p>
 A <a>DID document</a> has exactly one <a>DID</a> which refers to
 the <a>DID subject</a>. The <a>DID</a> is expressed as the value of the
-<code><a>id</a></code> property. This property value is immutable for
+<code>id</code> property. This property value is immutable for
 the lifetime of the
 <a>DID document</a>.
       </p>
