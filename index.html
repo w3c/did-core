@@ -990,7 +990,7 @@ relative URLs to reduce the storage size of <a>DID documents</a>.
   "id": "did:example:123456789abcdefghi",
   "verificationMethod": [{
     "id": "did:example:123456789abcdefghi#key-1",
-    "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
+    "type": "Multikey", <span class="comment">// external (property value)</span>
     "controller": "did:example:123456789abcdefghi",
     "publicKeyMultibase": "z6MkmM42vxfqZQsv4ehtTjFFxQ4sQKS2w6WR7emozFAn5cxu"
   }, ...],
@@ -3818,7 +3818,7 @@ purposes.
     "authentication": [
       {
         "id": "did:example:123#z6MkmM42vxfqZQsv4ehtTjFFxQ4sQKS2w6WR7emozFAn5cxu",
-        "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
+        "type": "Multikey", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
         "publicKeyMultibase": "z6MkmM42vxfqZQsv4ehtTjFFxQ4sQKS2w6WR7emozFAn5cxu"
       }
@@ -3826,7 +3826,7 @@ purposes.
     "capabilityInvocation": [
       {
         "id": "did:example:123#z6Mkvtac9bidSz9bBttzn7Yg3oCDHvMY2FtkFLs6SXRQGdQR",
-        "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
+        "type": "Multikey", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
         "publicKeyMultibase": "z6Mkvtac9bidSz9bBttzn7Yg3oCDHvMY2FtkFLs6SXRQGdQR"
       }
@@ -3834,7 +3834,7 @@ purposes.
     "capabilityDelegation": [
       {
         "id": "did:example:123#z6MknxsdF4CGVxhRNsx6TvXPFczaHEkajKBBwu75uwBmgpom",
-        "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
+        "type": "Multikey", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
         "publicKeyMultibase": "z6MknxsdF4CGVxhRNsx6TvXPFczaHEkajKBBwu75uwBmgpom"
       }
@@ -3842,7 +3842,7 @@ purposes.
     "assertionMethod": [
       {
         "id": "did:example:123#z6MkgYhVuWq4hyc7ZKBGhsY7pb5Bc8V6VPXGPG3EPja8JBFR",
-        "type": "Ed25519VerificationKey2020", <span class="comment">// external (property value)</span>
+        "type": "Multikey", <span class="comment">// external (property value)</span>
         "controller": "did:example:123",
         "publicKeyMultibase": "z6MkgYhVuWq4hyc7ZKBGhsY7pb5Bc8V6VPXGPG3EPja8JBFR"
       }
@@ -3945,42 +3945,34 @@ purposes.
       </pre>
       <pre class="example" title="DID Document with different verification method types">
 {
-  "@context": [
-    "https://www.w3.org/ns/did/v1.1",
-    "https://w3id.org/security/suites/secp256k1-2019/v1",
-  ],
+  "@context": "https://www.w3.org/ns/did/v1.1",
   "id": "did:example:123",
-  "verificationMethod": [
-    {
-      "id": "did:example:123#key-0",
-      "type": "Multikey",
-      "controller": "did:example:123",
-      "publicKeyMultibase": "z6MkmM42vxfqZQsv4ehtTjFFxQ4sQKS2w6WR7emozFAn5cxu"
-    },
-    {
-      "id": "did:example:123#key-1",
-      "type": "Multikey",
-      "controller": "did:example:123",
-      "publicKeyMultibase": "z6MtTjFFxQ4sQKS2wmozFAn5cxukmM46WR7e2vxfqZQsv4eh"
-    },
-    {
-      "id": "did:example:123#key-2",
-      "type": "EcdsaSecp256k1VerificationKey2019",
-      "controller": "did:example:123",
-      "publicKeyMultibase": "zns2aFDq25fEV1NUd3wZ65sgtht4j5QjFW8JCAHdUJfLwfodt"
-    },
-    {
-      "id": "did:example:123#key-3",
-      "type": "JsonWebKey",
-      "controller": "did:example:123",
-      "publicKeyJwk": {
-        "kty": "EC", // external (property name)
-        "crv": "P-256", // external (property name)
-        "x": "Er6KSSnAjI70ObRWhlaMgqyIOQYrDJTE94ej5hybQ2M",
-        "y": "pPVzCOTJwgikPjuUE6UebfZySqEJ0ZtsWFpj7YSPGEk"
-      }
+  "verificationMethod": [{
+    "id": "did:example:123#key-0",
+    "type": "Multikey",
+    "controller": "did:example:123",
+    "publicKeyMultibase": "z6MkmM42vxfqZQsv4ehtTjFFxQ4sQKS2w6WR7emozFAn5cxu"
+  }, {
+    "id": "did:example:123#key-1",
+    "type": "Multikey",
+    "controller": "did:example:123",
+    "publicKeyMultibase": "z6MtTjFFxQ4sQKS2wmozFAn5cxukmM46WR7e2vxfqZQsv4eh"
+  }, {
+    "id": "did:example:123#key-2",
+    "type": "EcdsaSecp256k1VerificationKey2019",
+    "controller": "did:example:123",
+    "publicKeyMultibase": "zns2aFDq25fEV1NUd3wZ65sgtht4j5QjFW8JCAHdUJfLwfodt"
+  }, {
+    "id": "did:example:123#key-3",
+    "type": "JsonWebKey",
+    "controller": "did:example:123",
+    "publicKeyJwk": {
+      "kty": "EC", // external (property name)
+      "crv": "P-256", // external (property name)
+      "x": "Er6KSSnAjI70ObRWhlaMgqyIOQYrDJTE94ej5hybQ2M",
+      "y": "pPVzCOTJwgikPjuUE6UebfZySqEJ0ZtsWFpj7YSPGEk"
     }
-  ]
+  }]
 }
       </pre>
 
@@ -4025,44 +4017,52 @@ Model</a> for additional examples.
       </p>
 
       <pre class="example"
-        title="Verifiable Credential linked to a verification method of type Ed25519VerificationKey2020">
-{  <span class="comment">// external (all terms in this example)</span>
+        title="Verifiable Credential linked to a verification method of type Multikey">
+{
+  <span class="comment">// external (all terms in this example)</span>
   "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://w3id.org/citizenship/v1"
+    "https://www.w3.org/ns/credentials/v2",
+    "https://w3id.org/citizenship/v4rc1"
   ],
   "type": [
     "VerifiableCredential",
-    "PermanentResidentCard"
+    "PermanentResidentCardCredential"
   ],
+  "issuer": {
+    "id": "did:key:zDnaeYGXycLmAn5m9akGtdL6rqBspGQPM7QZXW2CvJ3k9c2Bz",
+    "image": "data:image/png;base64,iVBORw0KGgo...5CYII="
+  },
+  "name": "Permanent Resident Card",
+  "description": "Government of Utopia Permanent Resident Card.",
   "credentialSubject": {
-    "id": "did:example:123",
     "type": [
       "PermanentResident",
       "Person"
     ],
-    "givenName": "JOHN",
+    "givenName": "JANE",
     "familyName": "SMITH",
-    "gender": "Male",
-    "image": "data:image/png;base64,iVBORw0KGgo...kJggg==",
+    "gender": "Female",
+    "image": "data:image/png;base64,iVBORw0KGgoAA...kJggg==",
     "residentSince": "2015-01-01",
-    "lprCategory": "C09",
-    "lprNumber": "000-000-204",
     "commuterClassification": "C1",
-    "birthCountry": "Bahamas",
-    "birthDate": "1958-08-17"
+    "birthCountry": "Arcadia",
+    "birthDate": "1978-07-17",
+    "permanentResidentCard": {
+      "type": "PermanentResidentCard",
+      "identifier": "83627465",
+      "lprCategory": "C09",
+      "lprNumber": "999-999-999"
+    }
   },
-  "issuer": "did:example:456",
-  "issuanceDate": "2020-04-22T10:37:22Z",
-  "identifier": "83627465",
-  "name": "Permanent Resident Card",
-  "description": "Government of Example Permanent Resident Card.",
+  "validFrom": "2025-01-04T00:00:00Z",
+  "validUntil": "2026-01-04T23:59:59Z",
   "proof": {
-    "type": "Ed25519Signature2018",
-    "created": "2020-04-22T10:37:22Z",
+    "type": "DataIntegrityProof",
+    "created": "2025-01-04T15:02:36Z",
+    "verificationMethod": "did:key:zDnaeYGXycLmAn5m9akGtdL6rqBspGQPM7QZXW2CvJ3k9c2Bz#zDnaeYGXycLmAn5m9akGtdL6rqBspGQPM7QZXW2CvJ3k9c2Bz",
+    "cryptosuite": "ecdsa-rdfc-2019",
     "proofPurpose": "assertionMethod",
-    "verificationMethod": "did:example:456#key-1",
-    "jws": "eyJjcml0IjpbImI2NCJdLCJiNjQiOmZhbHNlLCJhbGciOiJFZERTQSJ9..BhWew0x-txcroGjgdtK-yBCqoetg9DD9SgV4245TmXJi-PmqFzux6Cwaph0r-mbqzlE17yLebjfqbRT275U1AA"
+    "proofValue": "z5CK4DPN7...Jpqwp"
   }
 }
       </pre>
@@ -4071,26 +4071,48 @@ Model</a> for additional examples.
         title="Verifiable Credential linked to a verification method of type JsonWebKey">
 {  <span class="comment">// external (all terms in this example)</span>
   "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://www.w3.org/2018/credentials/examples/v1"
+    "https://www.w3.org/ns/credentials/v2",
+    "https://w3id.org/citizenship/v4rc1"
   ],
-  "id": "http://example.gov/credentials/3732",
-  "type": ["VerifiableCredential", "UniversityDegreeCredential"],
-  "issuer": { "id": "did:example:123" },
-  "issuanceDate": "2020-03-10T04:24:12.164Z",
+  "type": [
+    "VerifiableCredential",
+    "PermanentResidentCardCredential"
+  ],
+  "issuer": {
+    "id": "did:example:123#key-1",
+    "image": "data:image/png;base64,iVBORw0KGgo...5CYII="
+  },
+  "name": "Permanent Resident Card",
+  "description": "Government of Utopia Permanent Resident Card.",
   "credentialSubject": {
-    "id": "did:example:456",
-    "degree": {
-      "type": "BachelorDegree",
-      "name": "Bachelor of Science and Arts"
+    "type": [
+      "PermanentResident",
+      "Person"
+    ],
+    "givenName": "JANE",
+    "familyName": "SMITH",
+    "gender": "Female",
+    "image": "data:image/png;base64,iVBORw0KGgoAA...kJggg==",
+    "residentSince": "2015-01-01",
+    "commuterClassification": "C1",
+    "birthCountry": "Arcadia",
+    "birthDate": "1978-07-17",
+    "permanentResidentCard": {
+      "type": "PermanentResidentCard",
+      "identifier": "83627465",
+      "lprCategory": "C09",
+      "lprNumber": "999-999-999"
     }
   },
+  "validFrom": "2025-01-04T00:00:00Z",
+  "validUntil": "2026-01-04T23:59:59Z",
   "proof": {
-    "type": "JsonWebSignature2020",
-    "created": "2020-02-15T17:13:18Z",
-    "verificationMethod": "did:example:123#_Qq0UL2Fq651Q0Fjd6TvnYE-faHiOpRlPVQcY_-tA4A",
+    "type": "DataIntegrityProof",
+    "created": "2025-01-04T15:02:36Z",
+    "verificationMethod": "did:example:123#key-1",
+    "cryptosuite": "ecdsa-jcs-2019",
     "proofPurpose": "assertionMethod",
-    "jws": "eyJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdLCJhbGciOiJFZERTQSJ9..Y0KqovWCPAeeFhkJxfQ22pbVl43Z7UI-X-1JX32CA9MkFHkmNprcNj9Da4Q4QOl0cY3obF8cdDRdnKr0IwNrAw"
+    "proofValue": "z5m9akGtdL...6rqBspGQP"
   }
 }
       </pre>
@@ -4099,62 +4121,93 @@ Model</a> for additional examples.
         title="Verifiable Credential linked to a bls12381 verification method">
 {  <span class="comment">// external (all terms in this example)</span>
   "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://w3id.org/security/bbs/v1",
-    {
-      "name": "https://schema.org/name",
-      "birthDate": "https://schema.org/birthDate"
-    }
+    "https://www.w3.org/ns/credentials/v2",
+    "https://w3id.org/citizenship/v4rc1"
   ],
-  "id": "urn:uuid:c499e122-3ba9-4e95-8d4d-c0ebfcf8c51a",
-  "type": ["VerifiableCredential"],
-  "issuanceDate": "2021-02-07T16:02:08.571Z",
+  "type": [
+    "VerifiableCredential",
+    "PermanentResidentCardCredential"
+  ],
   "issuer": {
-    "id": "did:example:123"
+    "id": "did:key:zUC7DojAAkoD8WpSS87KG6iuMSBd4wH1fZzmcwmakx4JfaXN7RLSES4wNCfWboHvULxGxRwiSsj6UYSgq1dWGusdwrrJsjUQQEb1oid3igF4hbSFzFjf9aWTJSphhu63vHGoAVE",
+    "image": "data:image/png;base64,iVBORw0KGgoAA...CYII="
   },
+  "name": "Permanent Resident Card",
+  "description": "Government of Utopia Permanent Resident Card.",
   "credentialSubject": {
-    "id": "did:example:456",
-    "name": "John Smith",
-    "birthDate": "2021-02-07"
+    "type": [
+      "PermanentResident",
+      "Person"
+    ],
+    "givenName": "JANE",
+    "familyName": "SMITH",
+    "gender": "Female",
+    "image": "data:image/png;base64,iVBORw0KGgoAAA...3dgg==",
+    "residentSince": "2015-01-01",
+    "commuterClassification": "C1",
+    "birthCountry": "Arcadia",
+    "birthDate": "1978-07-17",
+    "permanentResidentCard": {
+      "type": "PermanentResidentCard",
+      "identifier": "83627465",
+      "lprCategory": "C09",
+      "lprNumber": "999-999-999"
+    }
   },
+  "validFrom": "2025-01-04T00:00:00Z",
+  "validUntil": "2026-01-04T23:59:59Z",
   "proof": {
-    "type": "BbsBlsSignature2020",
-    "created": "2021-02-07T16:02:10Z",
+    "type": "DataIntegrityProof",
+    "verificationMethod": "did:key:zUC7DojAAkoD8WpSS87KG6iuMSBd4wH1fZzmcwmakx4JfaXN7RLSES4wNCfWboHvULxGxRwiSsj6UYSgq1dWGusdwrrJsjUQQEb1oid3igF4hbSFzFjf9aWTJSphhu63vHGoAVE#zUC7DojAAkoD8WpSS87KG6iuMSBd4wH1fZzmcwmakx4JfaXN7RLSES4wNCfWboHvULxGxRwiSsj6UYSgq1dWGusdwrrJsjUQQEb1oid3igF4hbSFzFjf9aWTJSphhu63vHGoAVE",
+    "cryptosuite": "bbs-2023",
     "proofPurpose": "assertionMethod",
-    "proofValue": "o7zD2eNTp657YzkJLub+IO4Zqy/R3Lv/AWmtSA/kUlEAOa73BNyP1vOeoow35jkABolx4kYMKkp/ZsFDweuKwe/p9vxv9wrMJ9GpiOZjHcpjelDRRJLBiccg9Yv7608mHgH0N1Qrj14PZ2saUlfhpQ==",
-    "verificationMethod": "did:example:123#bls12381-g2-key"
+    "proofValue": "u2V0ChVhQik2d4...pc3N1ZXI"
   }
 }
       </pre>
 
       <pre class="example"
         title="Verifiable Credential selective disclosure zero knowledge proof linked to a bls12381 verification method">
-{  <span class="comment">// external (all terms in this example)</span>
-  "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://w3id.org/security/bbs/v1",
-    {
-      "name": "https://schema.org/name",
-      "birthDate": "https://schema.org/birthDate"
+{
+  <span class="comment">// external (all terms in this example)</span>
+  "@context": "https://www.w3.org/ns/credentials/v2",
+  "type": "VerifiablePresentation",
+  <span class="comment">// holder did:key is pairwise to the domain to avoid correlation</span>
+  "holder": "did:key:z6MkveKdpgkQ1pwNktQ5Lc19epBrzFjMUeNMUZGFvezFF2dX",
+  "verifiableCredential": {
+    "@context": [
+      "https://www.w3.org/ns/credentials/v2",
+      "https://w3id.org/citizenship/v4rc1"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "PermanentResidentCardCredential"
+    ],
+    "issuer": {
+      "id": "did:web:unlinkable.example",
+      "image": "data:image/png;base64,iVBORw0KGgoAA...CYII="
+    },
+    "credentialSubject": {
+      "type": ["PermanentResident", "Person"],
+      <span class="comment">// only country is selectively disclosed</span>
+      "birthCountry": "Arcadia"
+    },
+    "proof": {
+      "type": "DataIntegrityProof",
+      "verificationMethod": "did:web:vcplayground.org#zUC7EwMqo9vCjFmj7ArU2SivcbeccAY6hd4nw5fVD6xD4W2vm9eVy6VqVnciAZRmPLXnuxuka5JTJVmgz66CxDno6eqZmvUViCckCcKg8A4s1R4i2JjyzrdTQs5zrfY4jJCHFCp",
+      "cryptosuite": "bbs-2023",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "u2V0DhV...3JnIn0"
     }
-  ],
-  "id": "urn:uuid:c499e122-3ba9-4e95-8d4d-c0ebfcf8c51a",
-  "type": "VerifiableCredential",
-  "issuanceDate": "2021-02-07T16:02:08.571Z",
-  "issuer": {
-    "id": "did:example:123"
-  },
-  "credentialSubject": {
-    "id": "did:example:456",
-    "birthDate": "2021-02-07"
   },
   "proof": {
-    "type": "BbsBlsSignatureProof2020",
-    "created": "2021-02-07T16:02:10Z",
-    "nonce": "OqZHsV/aunS34BhLaSoxiHWK+SUaG4iozM3V+1jO06zRRNcDWID+I0uwtPJJ767Yo8Q=",
-    "proofPurpose": "assertionMethod",
-    "proofValue": "AAsH34lcKsqaqPaLQWcnLMe3mDM+K7fZM0t4Iesfj7BhD//HBtuWCmZE946BqW7OHYU106MP8mLntutqB8FyGwS7AOyK+5/7iW6JwLNVCvh4Nt3IaF3AN47fqVs2VikD9DiCsaFAUU6ISj5pbad8O+6jiT9Yw6ug8t8vJn3XHvMUhCPnDZJeBEdKD1qo4Z0LOq3L8QAAAHSEgtC9BoZL2MLjz4QuPxpwbhTTRC08MIUjdJnP4JUtz6163Lsl3rpadGu2d3Te7loAAAACZBD4YWOgV0xpPoYZ5vywNA5/NTeDHDbX36gvoV5RDJtY1SLU2LN/IDPZGrfhEiASbD1/QXqj8dod6FbjBs9m/LchBcy7z4yDBv/8DnBzDJ9dEaM4bDjpwmqtgJqha2kwtlyNog67xG9tNjnp5rrbIgAAAANMVanwWmlkg5I/f1M2QJ5GRvQiBL4lyL5sttxwIOalbTZP8VqWtFJI54xMNjTiK71aFWWN8SlNEwfVIX34HO5zBIb6fvc+Or21ubYllT9eXv1epl2o2CojuieCZyxE8/Q=",
-    "verificationMethod": "did:example:123#bls12381-g2-key"
+    "type": "DataIntegrityProof",
+    "created": "2025-01-04T15:10:39Z",
+    "verificationMethod": "did:key:z6MkveKdpgkQ1pwNktQ5Lc19epBrzFjMUeNMUZGFvezFF2dX#z6MkveKdpgkQ1pwNktQ5Lc19epBrzFjMUeNMUZGFvezFF2dX",
+    "proofPurpose": "authentication",
+    "challenge": "QZVVFcXlMPStFmpXTSktv",
+    "domain": "https://unlinkable.example",
+    "proofValue": "z5tXmHk...x2GvTt3bF"
   }
 }
       </pre>
@@ -4167,34 +4220,44 @@ Model</a> for additional examples.
     "alg": "EdDSA"
   },
   "payload": {
-    "iss": "did:example:123",
-    "sub": "did:example:456",
-    "vc": {
-      "@context": [
-        "https://www.w3.org/2018/credentials/v1",
-        "https://www.w3.org/2018/credentials/examples/v1"
-      ],
-      "id": "http://example.gov/credentials/3732",
+    "@context": [
+      "https://www.w3.org/ns/credentials/v2",
+      "https://w3id.org/citizenship/v4rc1"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "PermanentResidentCardCredential"
+    ],
+    "issuer": {
+      "id": "did:key:zUC7Do...oAVE",
+      "image": "data:image/png;base64,iVBORw0KGgoAA...CYII="
+    },
+    "name": "Permanent Resident Card",
+    "description": "Government of Utopia Permanent Resident Card.",
+    "credentialSubject": {
       "type": [
-        "VerifiableCredential",
-        "UniversityDegreeCredential"
+        "PermanentResident",
+        "Person"
       ],
-      "issuer": {
-        "id": "did:example:123"
-      },
-      "issuanceDate": "2020-03-10T04:24:12.164Z",
-      "credentialSubject": {
-        "id": "did:example:456",
-        "degree": {
-          "type": "BachelorDegree",
-          "name": "Bachelor of Science and Arts"
-        }
+      "givenName": "JANE",
+      "familyName": "SMITH",
+      "gender": "Female",
+      "image": "data:image/png;base64,iVBORw0KGgoAAA...3dgg==",
+      "residentSince": "2015-01-01",
+      "commuterClassification": "C1",
+      "birthCountry": "Arcadia",
+      "birthDate": "1978-07-17",
+      "permanentResidentCard": {
+        "type": "PermanentResidentCard",
+        "identifier": "83627465",
+        "lprCategory": "C09",
+        "lprNumber": "999-999-999"
       }
     },
-    "jti": "http://example.gov/credentials/3732",
-    "nbf": 1583814252
+    "validFrom": "2025-01-04T00:00:00Z",
+    "validUntil": "2026-01-04T23:59:59Z",
   },
-  "signature": "qSv6dpZJGFybtcifLwGf4ujzlEu-fam_M7HPxinCbVhz9iIJCg70UMeQbPa1ex6BmQ2tnSS7F11FHnMB2bJRAw"
+  "signature": "qSv6d...bJRAw"
 }
       </pre>
     </section>
