@@ -1244,8 +1244,10 @@ definitions and more detailed descriptions of each property.
     </p>
     <p class="note" title="Property names used in maps of different types">
 The property names <code>id</code>, <code>type</code>, and
-<code>controller</code> can be present in maps of different types
-with possible differences in constraints.
+<code>controller</code> can be present in <a>maps</a> of different types
+with possible differences in constraints. For example, an <code>id</code>
+at the top-level of a <a>DID document</a> is required to be a DID, while an
+<code>id</code> in a <code>service</code> <a>map</a> can be a URL.
     </p>
 
     <table class="simple">
@@ -1275,8 +1277,8 @@ Section [[[#did-subject]]].
           <td>
 A <a data-cite="INFRA#string">string</a> or a
 <a data-cite="INFRA#ordered-set">set</a> of
-<a data-cite="INFRA#string">strings</a>, each of which conforms to the URL
-syntax which are compatible with Section <a href="#did-syntax"></a>.
+<a data-cite="INFRA#string">strings</a>, each of which conforms to rules
+defined in Section <a href="#did-syntax"></a>.
           </td>
           <td>
 Section [[[#did-controller]]].
@@ -1288,7 +1290,7 @@ Section [[[#did-controller]]].
           <td>
 A <a data-cite="INFRA#ordered-set">set</a> of
 <a data-cite="INFRA#string">strings</a>, each of which conforms to the URL
-syntax which are compatible with Section <a href="#did-syntax"></a>.
+syntax or Section <a href="#did-syntax"></a>.
           </td>
           <td>
 <a data-cite="CID#also-known-as">Section 2.1.3: Also Known As</a>
@@ -1315,78 +1317,82 @@ A <a data-cite="INFRA#ordered-set">set</a> of
 [=verification method=] <a data-cite="INFRA#ordered-map">maps</a>.
           </td>
           <td>
-<a data-cite="CID#verification-methods">Section 2.2: Verification Methods</a>
-of the [[[CID]]] specification.
+Section [[[#verification-methods]]].
           </td>
         </tr>
         <tr>
           <td>`authentication`</td>
           <td>no</td>
           <td>
-A <a data-cite="INFRA#ordered-set">set</a> of <a
-data-cite="INFRA#string">strings</a>, each of which conforms to
-the URL syntax, or a <a data-cite="INFRA#ordered-set">set</a> of
-[=verification method=] <a data-cite="INFRA#ordered-map">maps</a>.
+A <a data-cite="INFRA#ordered-set">set</a> of data where each element is either
+a <a data-cite="INFRA#string">string</a> which conforms to rules defined in
+Section <a href="#did-syntax"></a>, or a
+<a data-cite="INFRA#ordered-map">map</a> that conforms to the rules for
+[=verification methods=] defined in Section [[[#verification-methods]]].
           </td>
           <td>
 <a data-cite="CID#authentication">Section 2.3.1: Authentication</a>
-of the [[[CID]]] specification.
+of the [[[CID]]] specification and Section [[[#verification-methods]]].
           </td>
         </tr>
         <tr>
           <td>`assertionMethod`</td>
           <td>no</td>
           <td>
-A <a data-cite="INFRA#ordered-set">set</a> of <a
-data-cite="INFRA#string">strings</a>, each of which conforms to
-the URL syntax, or a <a data-cite="INFRA#ordered-set">set</a> of
-[=verification method=] <a data-cite="INFRA#ordered-map">maps</a>.
+A <a data-cite="INFRA#ordered-set">set</a> of data where each element is either
+a <a data-cite="INFRA#string">string</a> which conforms to rules defined in
+Section <a href="#did-syntax"></a>, or a
+<a data-cite="INFRA#ordered-map">map</a> that conforms to the rules for
+[=verification methods=] defined in Section [[[#verification-methods]]].
           </td>
           <td>
 <a data-cite="CID#assertion">Section 2.3.2: Assertion</a>
-of the [[[CID]]] specification.
+of the [[[CID]]] specification and Section [[[#verification-methods]]].
           </td>
         </tr>
         <tr>
           <td>`keyAgreement`</td>
           <td>no</td>
           <td>
-A <a data-cite="INFRA#ordered-set">set</a> of <a
-data-cite="INFRA#string">strings</a>, each of which conforms to
-the URL syntax, or a <a data-cite="INFRA#ordered-set">set</a> of
-[=verification method=] <a data-cite="INFRA#ordered-map">maps</a>.
+A <a data-cite="INFRA#ordered-set">set</a> of data where each element is either
+a <a data-cite="INFRA#string">string</a> which conforms to rules defined in
+Section <a href="#did-syntax"></a>, or a
+<a data-cite="INFRA#ordered-map">map</a> that conforms to the rules for
+[=verification methods=] defined in Section [[[#verification-methods]]].
           </td>
           <td>
 <a data-cite="CID#key-agreement">Section 2.3.3: Key Agreement</a>
-of the [[[CID]]] specification.
+of the [[[CID]]] specification and Section [[[#verification-methods]]].
           </td>
         </tr>
         <tr>
           <td>`capabilityInvocation`</td>
           <td>no</td>
           <td>
-A <a data-cite="INFRA#ordered-set">set</a> of <a
-data-cite="INFRA#string">strings</a>, each of which conforms to
-the URL syntax, or a <a data-cite="INFRA#ordered-set">set</a> of
-[=verification method=] <a data-cite="INFRA#ordered-map">maps</a>.
+A <a data-cite="INFRA#ordered-set">set</a> of data where each element is either
+a <a data-cite="INFRA#string">string</a> which conforms to rules defined in
+Section <a href="#did-syntax"></a>, or a
+<a data-cite="INFRA#ordered-map">map</a> that conforms to the rules for
+[=verification methods=] defined in Section [[[#verification-methods]]].
           </td>
           <td>
 <a data-cite="CID#capability-invocation">Section 2.3.4: Capability Invocation</a>
-of the [[[CID]]] specification.
+of the [[[CID]]] specification and Section [[[#verification-methods]]].
           </td>
         </tr>
         <tr>
           <td>`capabilityDelegation`</td>
           <td>no</td>
           <td>
-A <a data-cite="INFRA#ordered-set">set</a> of <a
-data-cite="INFRA#string">strings</a>, each of which conforms to
-the URL syntax, or a <a data-cite="INFRA#ordered-set">set</a> of
-[=verification method=] <a data-cite="INFRA#ordered-map">maps</a>.
+A <a data-cite="INFRA#ordered-set">set</a> of data where each element is either
+a <a data-cite="INFRA#string">string</a> which conforms to rules defined in
+Section <a href="#did-syntax"></a>, or a
+<a data-cite="INFRA#ordered-map">map</a> that conforms to the rules for
+[=verification methods=] defined in Section [[[#verification-methods]]].
           </td>
           <td>
 <a data-cite="CID#capability-delegation">Section 2.3.5: Capability Delegation</a>
-of the [[[CID]]] specification.
+of the [[[CID]]] specification and Section [[[#verification-methods]]].
           </td>
         </tr>
       </tbody>
@@ -1414,7 +1420,7 @@ A <a data-cite="INFRA#string">string</a> that conforms to the rules in
             </td>
             <td>
 <a data-cite="CID#subjects">Section 2.1.1: Subjects</a>
-of the [[[CID]]] specification.
+of the [[[CID]]] specification and Section [[[#identifiers]]].
             </td>
           </tr>
           <tr>
@@ -1485,8 +1491,7 @@ of the [[[CID]]] specification.
             <td>yes</td>
             <td>
 A <a data-cite="INFRA#string">string</a> that conforms to the rules of
-[[RFC3986]] for <a>URIs</a>, which are compatible with
-Section <a href="#did-syntax"></a>.
+either the [[[URL]]] standard, or Section <a href="#did-syntax"></a>.
             </td>
             <td>
 <a data-cite="CID#subjects">Section 2.1.1: Subjects</a>
@@ -1510,15 +1515,16 @@ of the [[[CID]]] specification.
             <td><code>serviceEndpoint</code></td>
             <td>yes</td>
             <td>
-A <a data-cite="INFRA#string">string</a> that conforms to the rules of
-[[RFC3986]] for <a>URIs</a>, a <a data-cite="INFRA#maps">map</a>, or a
-<a data-cite="INFRA#ordered-set">set</a> composed of a one or more
-<a data-cite="INFRA#string">strings</a> that conform to the rules of
-[[RFC3986]] for <a>URIs</a> and/or <a data-cite="INFRA#maps">maps</a>.
+A single <a data-cite="INFRA#string">string</a>, a single
+<a data-cite="INFRA#maps">map</a>, or a <a data-cite="INFRA#ordered-set">set</a>
+composed of one or more
+<a data-cite="INFRA#string">strings</a> and/or
+<a data-cite="INFRA#maps">maps</a>. Each <a data-cite="INFRA#string">string</a>
+value MUST be a valid URL conforming to [[[URL]]].
             </td>
             <td>
-<a data-cite="CID#services">Section 2.1.4: Services</a>
-of the [[[CID]]] specification.
+<a data-cite="CID#services">Section 2.1.4: Services</a> of the [[[CID]]]
+specification.
             </td>
           </tr>
         </tbody>
@@ -1590,11 +1596,12 @@ DIDs as defined in Section [[[#did-syntax]]]. The process of authorizing a
       <p>
 A <a>DID document</a> can express <a>verification methods</a>, as defined
 <a data-cite="CID#verification-methods">Section 2.2: Verification Methods</a> of
-[[[CID]]]. Identifiers used in <a>verification methods</a> can be expressed
-according to <a href="#did-syntax"></a> and <a href="#did-url-syntax"></a>. See
+[[[CID]]] with the added restriction that the <code>id</code> value
+MUST conform to the <a href="#did-url-syntax"></a> and the
+<code>controller</code> value MUST conform to the <a href="#did-syntax"></a>.
+See
 <a data-cite="CID#verification-methods">Section 2.2: Verification Methods</a>
-of the [[[CID]]] specification for a description of
-<a>verification methods</a>.
+of the [[[CID]]] specification for a description of <a>verification methods</a>.
       </p>
 
     </section>
@@ -1605,10 +1612,7 @@ of the [[[CID]]] specification for a description of
       <p>
 A <a>DID document</a> can express <a>verification relationships</a>, as defined
 <a data-cite="CID#verification-relationships">Section 2.3: Verification
-Relationships</a> of the [[[CID]]] specification. Identifiers used in
-<a>verification relationships</a>
-can be expressed according to <a href="#did-syntax"></a> and
-<a href="#did-url-syntax"></a>. See
+Relationships</a> of the [[[CID]]] specification. See
 <a data-cite="CID#verification-relationships">Section 2.3: Verification
 Relationships</a> of the [[[CID]]] specification for a description of
 <a>verification methods</a>.
@@ -1623,11 +1627,10 @@ Relationships</a> of the [[[CID]]] specification for a description of
 A <a>DID document</a> can express <a>services</a>, as defined
 <a data-cite="CID#services">Section 2.1.4: Services</a> of the [[[CID]]]
 specification. Identifiers used in <a>services</a>
-can be expressed according to <a href="#did-syntax"></a> and
-<a href="#did-url-syntax"></a>. See
+can be expressed according to Section <a href="#did-syntax"></a> or
+Section <a href="#did-url-syntax"></a>. See
 <a data-cite="CID#services">Section 2.1.4: Services</a> of the [[[CID]]]
-specification for a description of
-<a>services</a>.
+specification for a description of <a>services</a>.
       </p>
 
     </section>

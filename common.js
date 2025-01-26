@@ -8,7 +8,7 @@ var ccg = {
   // Extend or override global respec references
   localBiblio: {
     "CID": {
-      title:    "Controlled Identifier Document v1.0",
+      title:    "Controlled Identifiers v1.0",
       href:     "https://www.w3.org/TR/cid/",
       authors:  ["Manu Sporny", "Dave Longley", "Markus Sabadello", "Drummond Reed", "Orie Steele", "Christopher Allen", "Michael B. Jones"],
       status:   "CR",
