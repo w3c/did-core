@@ -58,7 +58,7 @@
 
     // extend the bibliography entries
     localBiblio: ccg.localBiblio,
-    xref: ["web-platform", "vc-data-integrity", "controller-document"],
+    xref: ["web-platform", "vc-data-integrity", "cid"],
     lint: {
       "informative-dfn": false
     },
@@ -1594,7 +1594,7 @@ DIDs as defined in Section [[[#did-syntax]]]. The process of authorizing a
     <section>
       <h2>Verification Methods</h2>
       <p>
-A <a>DID document</a> can express <a>verification methods</a>, as defined
+A <a>DID document</a> can express <a>verification methods</a>, as defined in
 <a data-cite="CID#verification-methods">Section 2.2: Verification Methods</a> of
 [[[CID]]] with the added restriction that the <code>id</code> value
 MUST conform to the <a href="#did-url-syntax"></a> and the
@@ -1611,7 +1611,7 @@ of the [[[CID]]] specification for a description of <a>verification methods</a>.
 
       <p>
 A <a>DID document</a> can express <a>verification relationships</a>, as defined
-<a data-cite="CID#verification-relationships">Section 2.3: Verification
+in <a data-cite="CID#verification-relationships">Section 2.3: Verification
 Relationships</a> of the [[[CID]]] specification. See
 <a data-cite="CID#verification-relationships">Section 2.3: Verification
 Relationships</a> of the [[[CID]]] specification for a description of
@@ -1624,7 +1624,7 @@ Relationships</a> of the [[[CID]]] specification for a description of
       <h2>Services</h2>
 
       <p>
-A <a>DID document</a> can express <a>services</a>, as defined
+A <a>DID document</a> can express <a>services</a>, as defined in
 <a data-cite="CID#services">Section 2.1.4: Services</a> of the [[[CID]]]
 specification. Identifiers used in <a>services</a>
 can be expressed according to Section <a href="#did-syntax"></a> or
@@ -2640,7 +2640,7 @@ This section contains a variety of security considerations that people using
 Decentralized Identifiers are advised to consider before deploying this
 technology in a production setting. Readers are urged to read the
 <a data-cite="?CID#security-considerations">Security Considerations</a> section
-in the [[[CID]]] specification before reading
+of the [[[CID]]] specification before reading
 this section. <a>DIDs</a> are designed to operate under
 the threat model used by many IETF standards and documented
 in [[?RFC3552]]. This section elaborates upon a number of the considerations
@@ -2732,24 +2732,24 @@ true:
       <ul>
         <li>
 The proof or signature includes the `versionId` or `versionTime` of the <a>DID
-document</a> that was used at the point the signature or proof was created.
+document</a> that was used at the point in time at which the signature or
+proof was made.
         </li>
         <li>
 The verifier can determine the point in time at which the signature or proof was
 made; for example, it was anchored on a blockchain.
         </li>
         <li>
-For the resolved <a>DID document</a> metadata, the `updated` timestamp is
+In the resolved <a>DID document</a> metadata, the `updated` timestamp is
 before, and the `nextUpdate` timestamp is after, the point in time at which the
 signature or proof was made.
         </li>
       </ul>
       <p>
-In systems that are willing to admit metadata other than those constituting
-cryptographic input, similar trust may be achieved -- but always on the
-same basis where a careful judgment is made about whether a
-<a>DID document</a>'s content at the moment of a signing event
-contained the expected content.
+Similar trust may be achieved in systems that are willing to accept metadata
+beyond that which constitutes cryptographic input -- but this always requires
+a careful judgment about whether a <a>DID document</a>'s content included the
+expected content at the moment of a signing event.
       </p>
     </section>
 
@@ -2770,8 +2770,8 @@ The following considerations might be of use when contemplating the use of
       <ul>
 
         <li>
-Performing recovery proactively on an infrequent but regular basis, can help to
-ensure that control has not been lost.
+Proactively performing recovery, on an infrequent but regular basis, can help to
+prevent loss of control.
         </li>
 
         <li>
@@ -2787,8 +2787,8 @@ revocation</a>.
         </li>
 
         <li>
-Recovery is advised when a <a>controller</a> or services trusted to act on their
-behalf no longer have the exclusive ability to perform DID operations as
+Recovery is advised when a <a>controller</a> or any service trusted to act on
+their behalf no longer has the exclusive ability to perform DID operations as
 described in <a href="#method-operations"></a>.
         </li>
 
@@ -3100,13 +3100,14 @@ have been applied throughout the development of this specification. The design
 used in this specification does not assume that there is a registrar, hosting
 company, nor other intermediate service provider to recommend or apply
 additional privacy safeguards. Privacy in this specification is preventive,
-not remedial, and is an embedded default. Readers are urged to read the
+not remedial, and is an embedded default. Before reading this section, readers
+are urged to read the
 <a data-cite="?CID#privacy-considerations">Privacy Considerations</a> section
-in the [[[CID]]] specification before reading this section is it contains
+of the [[[CID]]] specification, as it contains
 more general privacy considerations that also apply to <a>DIDs</a>. The rest
 of this section covers privacy considerations that are specific to
-<a>decentralized identifiers</a> beyond the guidance provided in the
-[[[CID]]] specification.
+<a>decentralized identifiers</a> and are in addition to the guidance provided
+in the [[[CID]]] specification.
     </p>
 
     <section>
