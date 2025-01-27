@@ -349,7 +349,7 @@ document useful.
 
       <p>
 A [=DID=] is a simple text string consisting of three parts: 1) the
-<code>did</code> URI scheme identifier, 2) the identifier for the [=DID
+`did` URI scheme identifier, 2) the identifier for the [=DID
 method=], and 3) the DID method-specific identifier.
       </p>
 
@@ -578,7 +578,7 @@ DIDs and DID URLs
         </dt>
         <dd>
 A Decentralized Identifier, or [=DID=], is a [=URI=] composed of three
-parts: the scheme <code>did:</code>, a method identifier, and a unique,
+parts: the scheme `did:`, a method identifier, and a unique,
 method-specific identifier specified by the [=DID method=]. [=DIDs=] are
 resolvable to [=DID documents=]. A [=DID URL=] extends the syntax of a
 basic [=DID=] to incorporate other standard [=URI=] components such as
@@ -678,7 +678,7 @@ is elaborated upon in [[?DID-RESOLUTION]].
       <p>
 This document contains examples that contain JSON and JSON-LD content.
 Some of these examples contain characters that are invalid, such as inline
-comments (<code>//</code>) and the use of ellipsis (<code>...</code>) to denote
+comments (`//`) and the use of ellipsis (`...`) to denote
 information that adds little value to the example. Implementers are cautioned to
 remove this content if they desire to use the information as valid JSON
 or JSON-LD.
@@ -686,8 +686,8 @@ or JSON-LD.
 
       <p>
 Some examples contain terms, both property names and values, that are not
-defined in this specification. These are indicated with a comment (<code>//
-external (property name|value)</code>). Such terms, when used in a [=DID
+defined in this specification. These are indicated with a comment (`//
+external (property name|value)`). Such terms, when used in a [=DID
 document=], are expected to be registered in the DID Specification Registries
 [[?DID-SPEC-REGISTRIES]] with links to both a formal definition and a JSON-LD
 context.
@@ -786,8 +786,8 @@ specifications. The creation processes, and their timing, for [=DIDs=] and
       <p>
 The generic [=DID scheme=] is a [=URI=] scheme conformant with
 [[!RFC3986]]. The ABNF definition can be found below, which uses the syntax in
-[[!RFC5234]] and the corresponding definitions for <code>ALPHA</code> and
-<code>DIGIT</code>. All other rule names not defined in the ABNF below are
+[[!RFC5234]] and the corresponding definitions for `ALPHA` and
+`DIGIT`. All other rule names not defined in the ABNF below are
 defined in [[RFC3986]]. All [=DIDs=] MUST conform to the
 DID Syntax ABNF Rules.
       </p>
@@ -835,10 +835,10 @@ specific parts of a [=DID document=], or other resources.
 
       <p>
 The following is the ABNF definition using the syntax in [[!RFC5234]]. It builds
-on the <code>did</code> scheme defined in [[[#did-syntax]]]. The <a
-data-cite="!rfc3986#section-3.3"><code>path-abempty</code></a>, <a
-data-cite="!rfc3986#section-3.4"><code>query</code></a>, and <a
-data-cite="!rfc3986#section-3.5"><code>fragment</code></a> components are
+on the `did` scheme defined in [[[#did-syntax]]]. The <a
+data-cite="!rfc3986#section-3.3">`path-abempty`</a>, <a
+data-cite="!rfc3986#section-3.4">`query`</a>, and <a
+data-cite="!rfc3986#section-3.5">`fragment`</a> components are
 defined in [[!RFC3986]]. All [=DID URLs=] MUST conform to the
 DID URL Syntax ABNF Rules. [=DID methods=] can further restrict these
 rules, as described in [[[#method-syntax]]].
@@ -864,7 +864,7 @@ did-url = did path-abempty [ "?" query ] [ "#" fragment ]
       </table>
 
       <p class="note" title="Semicolon character is reserved for future use">
-Although the semicolon (<code>;</code>) character can be used according to the
+Although the semicolon (`;`) character can be used according to the
 rules of the [=DID URL=] syntax, future versions of this specification may
 use it as a sub-delimiter for parameters as described in [[?MATRIX-URIS]]. To
 avoid future conflicts, developers ought to refrain from using it.
@@ -875,7 +875,7 @@ avoid future conflicts, developers ought to refrain from using it.
 
         <p>
 A [=DID path=] is identical to a generic [=URI=] path and conforms to the
-<code>path-abempty</code> ABNF rule in <a
+`path-abempty` ABNF rule in <a
 data-cite="RFC3986#section-3.3">RFC&nbsp;3986, section 3.3</a>. As with
 [=URIs=], path semantics can be specified by [=DID Methods=], which in
 turn might enable [=DID controllers=] to further specialize those semantics.
@@ -892,7 +892,7 @@ did:example:123456/path
 
         <p>
 A [=DID query=] is identical to a generic [=URI=] query and conforms to
-the <code>query</code> ABNF rule in <a
+the `query` ABNF rule in <a
 data-cite="RFC3986#section-3.4">RFC&nbsp;3986, section 3.4</a>.
         </p>
 
@@ -906,7 +906,7 @@ did:example:123456?versionId=1
 
         <p>
 [=DID fragment=] syntax and semantics are identical to a generic [=URI=]
-fragment and conforms to the <code>fragment</code> ABNF rule in <a
+fragment and conforms to the `fragment` ABNF rule in <a
 data-cite="RFC3986#section-3.5">RFC&nbsp;3986, section 3.5</a>.
         </p>
 
@@ -954,7 +954,7 @@ about how to dereference a [=DID fragment=], see [[?DID-RESOLUTION]].
 
         <p>
 A relative [=DID URL=] is any URL value in a [=DID document=] that does
-not start with <code>did:&lt;method-name>:&lt;method-specific-id></code>. More
+not start with `did:&lt;method-name>:&lt;method-specific-id>`. More
 specifically, it is any URL value that does not start with the ABNF defined in
 [[[#did-syntax]]]. The URL is expected to reference
 a [=resource=] in the same [=DID document=]. Relative [=DID URLs=] MAY
@@ -966,8 +966,8 @@ When resolving a relative [=DID URL=] reference, the algorithm specified in
 <a data-cite="RFC3986#section-5">RFC3986 Section 5: Reference Resolution</a>
 MUST be used. The <strong>base URI</strong> value is the [=DID=] that is
 associated with the [=DID subject=], see [[[#did-subject]]]. The
-<strong>scheme</strong> is <code>did</code>. The <strong>authority</strong> is a
-combination of <code>&lt;method-name>:&lt;method-specific-id></code>, and the
+<strong>scheme</strong> is `did`. The <strong>authority</strong> is a
+combination of `&lt;method-name>:&lt;method-specific-id>`, and the
 <strong>path</strong>, <strong>query</strong>, and <strong>fragment</strong>
 values are those defined in [[[#path]]], [[[#query]]], and [[[#fragment]]],
 respectively.
@@ -1001,7 +1001,7 @@ relative URLs to reduce the storage size of [=DID documents=].
         <p>
 In the example above, the relative [=DID URL=] value will be transformed to
 an absolute [=DID URL=] value of
-<code>did:example:123456789abcdefghi#key-1</code>.
+`did:example:123456789abcdefghi#key-1`.
         </p>
       </section>
 
@@ -1119,7 +1119,7 @@ as specified in [[INFRA]]. A set is sometimes referred to as an
           </td>
           <td>
 A date and time value that is capable of losslessly expressing all values
-expressible by a <code>dateTime</code> as specified in
+expressible by a `dateTime` as specified in
 [<a data-cite="XMLSCHEMA11-2#dateTime">XMLSCHEMA11-2</a>].
           </td>
         </tr>
@@ -1240,11 +1240,11 @@ required. The property names in the tables are linked to the normative
 definitions and more detailed descriptions of each property.
     </p>
     <p class="note" title="Property names used in maps of different types">
-The property names <code>id</code>, <code>type</code>, and
-<code>controller</code> can be present in [=maps=] of different types
-with possible differences in constraints. For example, an <code>id</code>
+The property names `id`, `type`, and
+`controller` can be present in [=maps=] of different types
+with possible differences in constraints. For example, an `id`
 at the top-level of a [=DID document=] is required to be a DID, while an
-<code>id</code> in a <code>service</code> [=map=] can be a URL.
+`id` in a `service` [=map=] can be a URL.
     </p>
 
     <table class="simple">
@@ -1409,7 +1409,7 @@ of the [[[CID]]] specification and Section [[[#verification-methods]]].
         </thead>
         <tbody>
           <tr>
-            <td><code>id</code></td>
+            <td>`id`</td>
             <td>yes</td>
             <td>
 A <a data-cite="INFRA#string">string</a> that conforms to the rules in
@@ -1421,7 +1421,7 @@ of the [[[CID]]] specification and Section [[[#identifiers]]].
             </td>
           </tr>
           <tr>
-            <td><code>type</code></td>
+            <td>`type`</td>
             <td>yes</td>
             <td>
 A <a data-cite="INFRA#string">string</a>.
@@ -1432,7 +1432,7 @@ of the [[[CID]]] specification.
             </td>
           </tr>
           <tr>
-            <td><code>controller</code></td>
+            <td>`controller`</td>
             <td>yes</td>
             <td>
 A <a data-cite="INFRA#string">string</a> that conforms to the rules in
@@ -1443,7 +1443,7 @@ Section [[[#did-controller]]].
             </td>
           </tr>
           <tr>
-            <td><code>publicKeyMultibase</code></td>
+            <td>`publicKeyMultibase`</td>
             <td>no</td>
             <td>
 A <a data-cite="INFRA#string">string</a> that conforms to a
@@ -1484,7 +1484,7 @@ of the [[[CID]]] specification.
         </thead>
         <tbody>
           <tr>
-            <td><code>id</code></td>
+            <td>`id`</td>
             <td>yes</td>
             <td>
 A <a data-cite="INFRA#string">string</a> that conforms to the rules of
@@ -1496,7 +1496,7 @@ of the [[[CID]]] specification.
             </td>
           </tr>
           <tr>
-            <td><code>type</code></td>
+            <td>`type`</td>
             <td>yes</td>
             <td>
 A <a data-cite="INFRA#string">string</a> or a
@@ -1509,7 +1509,7 @@ of the [[[CID]]] specification.
             </td>
           </tr>
           <tr>
-            <td><code>serviceEndpoint</code></td>
+            <td>`serviceEndpoint`</td>
             <td>yes</td>
             <td>
 A single <a data-cite="INFRA#string">string</a>, a single
@@ -1541,7 +1541,7 @@ include identifiers for [=DID subjects=] and [=DID controllers=].
         <h3>DID Subject</h3>
         <p>
 The [=DID=] for a particular [=DID subject=] is expressed using the
-<code>id</code> property in the [=DID document=]. This property
+`id` property in the [=DID document=]. This property
 is defined in <a data-cite="CID#subjects">Section 2.1.1: Subjects</a> of
 the [[[CID]]] specification and extended by this specification to include
 [=decentralized identifiers=] as defined in Section [[[#did-syntax]]].
@@ -1555,10 +1555,10 @@ the [[[CID]]] specification and extended by this specification to include
 
         <p class="note" title="Intermediate representations">
 [=DID method=] specifications can create intermediate representations of a
-[=DID document=] that do not contain the <code>id</code> property,
+[=DID document=] that do not contain the `id` property,
 such as when a [=DID resolver=] is performing [=DID resolution=].
 However, the fully resolved [=DID document=] always contains a valid
-<code>id</code> property.
+`id` property.
         </p>
 
       </section>
@@ -1593,9 +1593,9 @@ DIDs as defined in Section [[[#did-syntax]]]. The process of authorizing a
       <p>
 A [=DID document=] can express [=verification methods=], as defined in
 <a data-cite="CID#verification-methods">Section 2.2: Verification Methods</a> of
-[[[CID]]] with the added restriction that the <code>id</code> value
+[[[CID]]] with the added restriction that the `id` value
 MUST conform to the [[[#did-url-syntax]]] and the
-<code>controller</code> value MUST conform to the [[[#did-syntax]]].
+`controller` value MUST conform to the [[[#did-syntax]]].
 See
 <a data-cite="CID#verification-methods">Section 2.2: Verification Methods</a>
 of the [[[CID]]] specification for a description of [=verification methods=].
@@ -1683,7 +1683,7 @@ Type that are conformant with the fragment processing rules defined in
         <li>
 A [=representation=] SHOULD use the lexical representation of <a
 href="#data-model">data model</a> data types. For example, JSON and JSON-LD use
-the XML Schema <code>dateTime</code> lexical serialization to represent
+the XML Schema `dateTime` lexical serialization to represent
 [=datetimes=]. A [=representation=] MAY choose to serialize the <a
 href="#data-model">data model</a> data types using a different lexical
 serializations as long as the [=consumption=] process back into the <a
@@ -1941,7 +1941,7 @@ this table.
 A <a data-cite="RFC8259#section-7">JSON String</a> serialized as an
 <a data-cite="XMLSCHEMA11-2#dateTime">XML Datetime</a> normalized to
 UTC 00:00:00 and without sub-second decimal precision. For example:
-<code>2020-12-20T19:17:47Z</code>.
+`2020-12-20T19:17:47Z`.
               </td>
             </tr>
             <tr>
@@ -2003,7 +2003,7 @@ All entries of a [=DID document=] MUST be included in the root <a
 data-cite="RFC8259#section-4">JSON Object</a>. Entries MAY contain additional
 data substructures subject to the value representation rules in the list above.
 When serializing a [=DID document=], a [=conforming producer=] MUST
-specify a media type of <code>application/did+json</code> to downstream
+specify a media type of `application/did+json` to downstream
 applications.
         </p>
 
@@ -2149,7 +2149,7 @@ JSON [[RFC8259]] specification.
 
         <p>
 If media type information is available to a [=conforming consumer=] and the
-media type value is <code>application/did+json</code>, then the data structure
+media type value is `application/did+json`, then the data structure
 being consumed is a [=DID document=], and the root element MUST be a <a
 data-cite="RFC8259#section-4">JSON Object</a> where all members of the object
 are entries of the [=DID document=]. A [=conforming consumer=] for a JSON
@@ -2201,12 +2201,12 @@ be serialized to the JSON-LD [=representation=] according to the JSON
 In addition to using the JSON [=representation=] [=production=] rules,
 JSON-LD production MUST include the
 <a data-lt="representation-specific entry">representation-specific</a>
-<a><code>@context</code></a> entry. The serialized value of
-<code>@context</code> MUST be the <a data-cite="RFC8259#section-7">JSON
-String</a> <code>https://www.w3.org/ns/did/v1.1</code>, or a <a
+<a>`@context`</a> entry. The serialized value of
+`@context` MUST be the <a data-cite="RFC8259#section-7">JSON
+String</a> `https://www.w3.org/ns/did/v1.1`, or a <a
 data-cite="RFC8259#section-5">JSON Array</a> where the first item is the <a
 data-cite="RFC8259#section-7">JSON String</a>
-<code>https://www.w3.org/ns/did/v1.1</code> and the subsequent items are
+`https://www.w3.org/ns/did/v1.1` and the subsequent items are
 serialized according to the JSON [=representation=] [=production=]
 rules.
         </p>
@@ -2245,10 +2245,10 @@ Specification Registries [[?DID-SPEC-REGISTRIES]].
         <p>
 A [=conforming producer=] that generates a JSON-LD [=representation=]
 SHOULD NOT produce a [=DID document=] that contains terms not defined via the
-<code>@context</code> as [=conforming consumers=] are expected to remove
+`@context` as [=conforming consumers=] are expected to remove
 unknown terms. When serializing a JSON-LD [=representation=] of a [=DID
 document=], a [=conforming producer=] MUST specify a media type of
-<code>application/did+ld+json</code> to downstream applications.
+`application/did+ld+json` to downstream applications.
         </p>
 
       </section>
@@ -2273,7 +2273,7 @@ JSON-LD processors to halt and report errors.
         <p>
 [=Conforming consumers=] that process a JSON-LD [=representation=] SHOULD
 drop all terms from a [=DID document=] that are not defined via the
-<code>@context</code>.
+`@context`.
         </p>
 
       </section>
@@ -2386,7 +2386,7 @@ implementations of the same [=DID method=].
 Conceptually, the relationship between this specification and a [=DID
 method=] specification is similar to the relationship between the IETF generic
 [=URI=] specification [[?RFC3986]] and a specific [=URI=] scheme
-[[?IANA-URI-SCHEMES]], such as the <code>http</code> scheme [[?RFC7230]]. In
+[[?IANA-URI-SCHEMES]], such as the `http` scheme [[?RFC7230]]. In
 addition to defining a specific [=DID scheme=], a [=DID method=]
 specification also defines the mechanisms for creating, resolving, updating, and
 deactivating [=DIDs=] and [=DID documents=] using a specific type of
@@ -2412,35 +2412,35 @@ method-specific DID Syntax are as follows:
         <li>
 A [=DID method=] specification MUST define exactly one method-specific [=DID
 scheme=] that is identified by exactly one method name as specified by the
-<code>method-name</code> rule in [[[#did-syntax]]].
+`method-name` rule in [[[#did-syntax]]].
         </li>
         <li>
 The [=DID method=] specification MUST specify how to generate the
-<code>method-specific-id</code> component of a [=DID=].
+`method-specific-id` component of a [=DID=].
         </li>
         <li>
 The [=DID method=] specification MUST define sensitivity and normalization of
-the value of the <code>method-specific-id</code>.
+the value of the `method-specific-id`.
         </li>
         <li>
-The <code>method-specific-id</code> value MUST be unique within a [=DID
-method=]. The <code>method-specific-id</code> value itself might be globally
+The `method-specific-id` value MUST be unique within a [=DID
+method=]. The `method-specific-id` value itself might be globally
 unique.
         </li>
         <li>
 Any [=DID=] generated by a [=DID method=] MUST be globally unique.
         </li>
         <li>
-To reduce the chances of <code>method-name</code> conflicts, a [=DID method=]
+To reduce the chances of `method-name` conflicts, a [=DID method=]
 specification SHOULD be registered in the DID Specification Registries
 [[?DID-SPEC-REGISTRIES]].
         </li>
         <li>
-A [=DID method=] MAY define multiple <code>method-specific-id</code> formats.
+A [=DID method=] MAY define multiple `method-specific-id` formats.
         </li>
         <li>
-The <code>method-specific-id</code> format MAY include colons. The use of
-colons MUST comply syntactically with the <code>method-specific-id</code> ABNF
+The `method-specific-id` format MAY include colons. The use of
+colons MUST comply syntactically with the `method-specific-id` ABNF
 rule.
         </li>
         <li>
@@ -2458,7 +2458,7 @@ fragments=] that are more restrictive than the generic rules in this section.
       </ol>
 
       <p class="note" title="Colons in method-specific-id">
-The meaning of colons in the <code>method-specific-id</code> is entirely
+The meaning of colons in the `method-specific-id` is entirely
 method-specific. Colons might be used by [=DID methods=] for establishing
 hierarchically partitioned namespaces, for identifying specific instances or
 parts of the [=verifiable data registry=], or for other purposes.
@@ -2510,15 +2510,15 @@ might &mdash;
 
       <ul>
         <li>
-make use of the <code>controller</code> property.
+make use of the `controller` property.
         </li>
         <li>
 use the [=verification methods=] listed under
-<code>authentication</code>.
+`authentication`.
         </li>
         <li>
 use other constructs in the [=DID Document=] such as the [=verification
-method=] specified via the <code>capabilityInvocation</code>
+method=] specified via the `capabilityInvocation`
 [=verification relationship=].
         </li>
         <li>
@@ -2907,10 +2907,10 @@ same set of features, the less it can be manipulated by malicious actors.
       </p>
       <p>
 As an example, consider that a single edit to a [=DID document=] can change
-anything except the root <code>id</code> property of the document. But
+anything except the root `id` property of the document. But
 is it actually desirable for a [=service=] to change its
-<code>type</code> after it is defined? Or for a key to change its value? Or
-would it be better to require a new <code>id</code> when certain
+`type` after it is defined? Or for a key to change its value? Or
+would it be better to require a new `id` when certain
 fundamental properties of an object change? Malicious takeovers of a website
 often aim for an outcome where the site keeps its host name identifier,
 but is subtly changed underneath. If certain properties of the site, such
@@ -2961,23 +2961,23 @@ receiving party.
     <section>
       <h2>Equivalence Properties</h2>
       <p>
-Given the <code>equivalentId</code> and <code>canonicalId</code>
+Given the `equivalentId` and `canonicalId`
 properties are generated by [=DID methods=] themselves, the same security and
 accuracy guarantees that apply to the resolved [=DID=] present in the
-<code>id</code> field of a [=DID document=] also apply to these properties.
-The <code>alsoKnownAs</code> property is not guaranteed to be an accurate
+`id` field of a [=DID document=] also apply to these properties.
+The `alsoKnownAs` property is not guaranteed to be an accurate
 statement of equivalence, and should not be relied upon without performing
 validation steps beyond the resolution of the [=DID document=].
       </p>
       <p>
-The <code>equivalentId</code> and <code>canonicalId</code>
+The `equivalentId` and `canonicalId`
 properties express equivalence assertions to variants of a single [=DID=]
 produced by the same [=DID method=] and can be trusted to the extent the
 requesting party trusts the [=DID method=] and a conforming producer and
 resolver.
       </p>
       <p>
-The <code>alsoKnownAs</code> property permits an equivalence assertion to
+The `alsoKnownAs` property permits an equivalence assertion to
 [=URIs=] that are not governed by the same [=DID method=] and cannot be
 trusted without performing verification steps outside of the governing [=DID
 method=]. See additional guidance in
@@ -3663,7 +3663,7 @@ Following is a diagram showing the relationships among [[[#data-model]]],
       <h2>Creation of a DID</h2>
       <p>
 The creation of a [=DID=] is a process that is defined by each [=DID
-Method=]. Some [=DID Methods=], such as <code>did:key</code>, are purely
+Method=]. Some [=DID Methods=], such as `did:key`, are purely
 generative, such that a [=DID=] and a [=DID document=] are generated by
 transforming a single piece of cryptographic material into a conformant
 [=representation=]. Other [=DID methods=] might require the use of a
@@ -3703,7 +3703,7 @@ to the [=DID document=], obtaining a verifiable credential about the
 [=DID=], or via some other description of the [=DID=].
       </p>
       <p>
-While the value of the <code>id</code> property in the retrieved
+While the value of the `id` property in the retrieved
 [=DID document=] must always match the [=DID=] being resolved, whether
 or not the actual resource to which the [=DID=] refers can change over time
 is dependent upon the [=DID method=]. For example, a [=DID method=]
@@ -3770,21 +3770,21 @@ Each property in a [=DID document=] is a statement by the
       <ul>
         <li>
 The string of characters defining identifiers for the [=DID subject=]
-(e.g., the <code>id</code> and <code>alsoKnownAs</code>
+(e.g., the `id` and `alsoKnownAs`
 properties)
         </li>
         <li>
 How to interact with the [=DID subject=] (e.g., the
-<code>verificationMethod</code> and <code>service</code>
+`verificationMethod` and `service`
 properties).
         </li>
         <li>
 How to interpret the specific representation of the [=DID document=]
-(e.g., the <code>@context</code> property for a JSON-LD representation).
+(e.g., the `@context` property for a JSON-LD representation).
         </li>
       </ul>
       <p>
-The only required property in a [=DID document=] is <code>id</code>,
+The only required property in a [=DID document=] is `id`,
 so that is the only statement guaranteed to be in a [=DID document=].
 That statement is illustrated in [[[#did-and-did-document-graph]]]
 with a direct link between the [=DID=] and the [=DID subject=].
@@ -3795,13 +3795,13 @@ with a direct link between the [=DID=] and the [=DID subject=].
       <p>
 Options for discovering more information about the [=DID subject=] depend
 on the properties present in the [=DID document=]. If the
-<code>service</code> property is present, more information can be
+`service` property is present, more information can be
 requested from a [=service endpoint=]. For example, by querying a
 [=service endpoint=] that supports verifiable credentials for one or more
 claims (attributes) describing the [=DID subject=].
       </p>
       <p>
-Another option is to use the <code>alsoKnownAs</code> property if it
+Another option is to use the `alsoKnownAs` property if it
 is present in the [=DID document=]. The [=DID controller=] can use it
 to provide a list of other URIs (including other [=DIDs=]) that refer to
 the same [=DID subject=]. Resolving or dereferencing these URIs might yield
@@ -3875,20 +3875,20 @@ assign it a persistent, cryptographically verifiable identifier, the
 controller can give it a [=DID=]. For example, the author of a blog
 hosted by a blog hosting company (under that hosting company's domain)
 could create a [=DID=] for the blog. In the [=DID document=], the
-author can include the <code>alsoKnownAs</code> property pointing to
+author can include the `alsoKnownAs` property pointing to
 the current URL of the blog, e.g.:
       </p>
-      <code>
+      `
         "alsoKnownAs": ["https://myblog.blogging-host.example/home"]
-      </code>
+      `
       <p>
 If the author subsequently moves the blog to a different hosting company
 (or to the author's own domain), the author can update the [=DID document=]
 to point to the new URL for the blog, e.g.:
       </p>
-      <code>
+      `
         "alsoKnownAs": ["https://myblog.example/"]
-      </code>
+      `
       <p>
 The [=DID=] effectively adds a layer of indirection for the blog URL. This
 layer of indirection is under the control of the author instead of under the
@@ -4068,7 +4068,7 @@ that is not controlled by a single individual.
       <p>
 A [=DID document=] has exactly one [=DID=] which refers to
 the [=DID subject=]. The [=DID=] is expressed as the value of the
-<code>id</code> property. This property value is immutable for
+`id` property. This property value is immutable for
 the lifetime of the
 [=DID document=].
       </p>
@@ -4137,7 +4137,7 @@ Working Group efforts.
 Add links to use cases document.
       </li>
       <li>
-Add warning related to [[?MULTIBASE]] and <code>publicKeyMultibase</code>.
+Add warning related to [[?MULTIBASE]] and `publicKeyMultibase`.
       </li>
       <li>
 Remove at risk issue markers for features that gained enough implementation
